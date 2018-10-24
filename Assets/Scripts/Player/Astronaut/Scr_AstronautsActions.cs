@@ -13,6 +13,7 @@ public class Scr_AstronautsActions : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameObject fuelCollector;
     [SerializeField] private Transform spawnPoint;
+    [SerializeField] private GameObject mainCamera;
     [SerializeField] public Transform pickPoint;
 
     [HideInInspector] public bool canGrab  = true;
@@ -38,7 +39,7 @@ public class Scr_AstronautsActions : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && astronautMovement.canEnterShip)
         {
             playerShip.GetComponent<Scr_PlayerShipMovement>().onBoard = true;
-            //camara.GetComponent<CamMove>().astronaut = false;
+            mainCamera.GetComponent<Scr_CameraFollow>().followAstronaut = false;
             gameObject.SetActive(false);
         }
     }

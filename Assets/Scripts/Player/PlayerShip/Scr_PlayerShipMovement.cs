@@ -25,10 +25,11 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private ParticleSystem thrusterParticles;
+    [SerializeField] private GameObject mapVisuals;
+    [SerializeField] public Camera mainCamera;
 
     [HideInInspector] public bool onBoard;
     [HideInInspector] public GameObject currentPlanet;
-    [HideInInspector] public Camera mainCamera;
     [HideInInspector] public bool onGround;
 
     private bool canMove = true;
@@ -43,6 +44,9 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         playerShipPrediction = GetComponent<Scr_PlayerShipPrediction>();
+        playerShipStats = GetComponent<Scr_PlayerShipStats>();
+
+        mapVisuals.SetActive(true);
 
         landTimerSaved = landTimer;
     }
@@ -50,10 +54,10 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     void FixedUpdate()
     {
         ShipControl();
-        VelocityLimit();
+        SpeedLimiter();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Planet")
         {
@@ -77,7 +81,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Planet")
         {
@@ -90,7 +94,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         }
     }
 
-    void VelocityLimit()
+    void SpeedLimiter()
     {
         speedLimit += Input.GetAxis("Mouse ScrollWheel") * limitUnits;
         speedLimit = Mathf.Clamp(speedLimit, 0f, maxSpeed);
@@ -120,7 +124,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
             if (!onGround)
                 ShipLookingToMouse();
 
-            if (playerShipStats.fuel > 0)
+            if (playerShipStats.currentFuel > 0)
             {
                 if (Input.GetMouseButton(0))
                 {

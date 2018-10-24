@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(CircleCollider2D))]
+
 public class Scr_Planet : MonoBehaviour
 {
     [Header("Planet Properties")]
-    [SerializeField] private float movementSpeed;
+    [Range(0.1f, 0.5f)] [SerializeField] private float movementSpeed;
     [SerializeField] float maxClampDistance;
     [SerializeField] float minClampDistance;
 
