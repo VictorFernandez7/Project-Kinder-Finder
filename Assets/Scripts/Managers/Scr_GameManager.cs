@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Scr_GameManager : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] private GameObject initialPlanet;
 
     private GameObject astronaut;

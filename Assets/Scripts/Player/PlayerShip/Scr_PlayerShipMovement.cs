@@ -2,16 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(Scr_PlayerShipActions))]
+[RequireComponent(typeof(Scr_PlayerShipPrediction))]
+[RequireComponent(typeof(Scr_PlayerShipStats))]
+
 public class Scr_PlayerShipMovement : MonoBehaviour
 {
+    [Header("Movement Properties")]
+    [SerializeField] private float rotationDelay;
+
+    [Header("Speed Properties")]
     [SerializeField] private float maxSpeed;
     [SerializeField] private float limitUnits;
-    [SerializeField] private float landTimer;
     [SerializeField] private float boostSpeed;
     [SerializeField] private float normalSpeed;
-    [SerializeField] private ParticleSystem thrusterParticles;
-    [SerializeField] private float rotationDelay;
     [SerializeField] private float deathSpeed;
+
+    [Header("Landing Properties")]
+    [SerializeField] private float landTimer;
+
+    [Header("References")]
+    [SerializeField] private ParticleSystem thrusterParticles;
 
     [HideInInspector] public bool onBoard;
     [HideInInspector] public GameObject currentPlanet;

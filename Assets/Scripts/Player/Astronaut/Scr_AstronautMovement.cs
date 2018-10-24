@@ -19,7 +19,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     [HideInInspector] public bool canMove;
     [HideInInspector] public bool canEnterShip;
 
-    void Update()
+    private void Update()
     {
         if (canMove == true)
         {

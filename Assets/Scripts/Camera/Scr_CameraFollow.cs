@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Scr_CameraFollow : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] private GameObject playerShip;
     [SerializeField] private GameObject astronaut;
 
@@ -17,7 +18,7 @@ public class Scr_CameraFollow : MonoBehaviour
         astronaut = GameObject.Find("Astronaut");
     }
 
-    void Update()
+    private void Update()
     {
         if (followAstronaut == false)
             transform.position = new Vector3(playerShip.transform.position.x, playerShip.transform.position.y, -10);

@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(BoxCollider2D))]
+
 public class Scr_FuelBlock : MonoBehaviour
 {
-    [SerializeField] private readonly int fuelAmount;
+    [Header("Object Properties")]
+    [SerializeField] private int fuelAmount;
 
     private bool onRange;
     private GameObject nave;
     private GameObject astronaut;
 
-    void Start()
+    private void Start()
     {
         astronaut = transform.parent.gameObject;
     }

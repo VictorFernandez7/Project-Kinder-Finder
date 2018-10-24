@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Scr_Planet : MonoBehaviour
 {
-    [SerializeField] private GameObject rotationPivot;
+    [Header("Planet Properties")]
     [SerializeField] private float movementSpeed;
     [SerializeField] float maxClampDistance;
     [SerializeField] float minClampDistance;
+
+    [Header("References")]
+    [SerializeField] private GameObject rotationPivot;
     [SerializeField] private GameObject mapIndicator;
     [SerializeField] private GameObject directionIndicator;
     [SerializeField] private Scr_MapManager mapManager;

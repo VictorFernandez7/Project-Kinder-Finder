@@ -4,5 +4,6 @@ using UnityEngine;
 
 public class Scr_PlanetManager : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] public GameObject[] planets;
 }

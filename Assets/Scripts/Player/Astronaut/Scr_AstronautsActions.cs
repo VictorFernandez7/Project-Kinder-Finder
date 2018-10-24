@@ -10,7 +10,8 @@ using UnityEngine;
 
 public class Scr_AstronautsActions : MonoBehaviour
 {
-    [SerializeField] private GameObject fuelExtractor;
+    [Header("References")]
+    [SerializeField] private GameObject fuelCollector;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] public Transform pickPoint;
 
@@ -31,7 +32,7 @@ public class Scr_AstronautsActions : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.T))
         {
             //Vector3 pos = Astro.transform.position + (((transform.position - Astro.transform.position).normalized * ((Astro.GetComponent<Renderer>().bounds.size.y/2) + (box.GetComponent<Renderer>().bounds.size.y / 2))));
-            Instantiate(fuelExtractor, spawnPoint.transform.position, transform.rotation).transform.SetParent(astronautMovement.currentPlanet.transform);
+            Instantiate(fuelCollector, spawnPoint.transform.position, transform.rotation).transform.SetParent(astronautMovement.currentPlanet.transform);
         }
 
         if (Input.GetKeyDown(KeyCode.E) && astronautMovement.canEnterShip)

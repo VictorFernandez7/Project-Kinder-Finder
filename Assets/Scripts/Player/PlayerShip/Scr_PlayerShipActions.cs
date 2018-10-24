@@ -2,8 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(Scr_PlayerShipPrediction))]
+[RequireComponent(typeof(Scr_PlayerShipStats))]
+[RequireComponent(typeof(Scr_PlayerShipMovement))]
+
 public class Scr_PlayerShipActions : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] Transform spawnPoint;
 
     private Vector3 lastFramePlanetPosition;

@@ -2,9 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(Scr_PlayerShipActions))]
+[RequireComponent(typeof(Scr_PlayerShipStats))]
+[RequireComponent(typeof(Scr_PlayerShipMovement))]
+
 public class Scr_PlayerShipPrediction : MonoBehaviour
 {
-    [Range(0, 7)] [SerializeField] private readonly int predictionTime;
+    [Header("Prediction Properties")]
+    [Range(0, 7)] [SerializeField] private int predictionTime;
 
     [HideInInspector] public LineRenderer predictionLine;
     [HideInInspector] public LineRenderer predictionLineMap;
