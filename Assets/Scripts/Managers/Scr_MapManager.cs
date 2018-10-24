@@ -12,11 +12,11 @@ public class Scr_MapManager : MonoBehaviour
     [SerializeField] Vector2 clampBorderSize;
 
     [Header("References")]
-    [SerializeField] private Camera mapCamera;
     [SerializeField] private Camera mainCamera;
+    [SerializeField] private Camera mapCamera;
     [SerializeField] private GameObject mapIndicator;
     [SerializeField] private GameObject directionIndicator;
-    [SerializeField] private GameObject normalCanvas;
+    [SerializeField] private GameObject mainCanvas;
     [SerializeField] private GameObject mapCanvas;
 
     [HideInInspector] public GameObject target;
@@ -40,7 +40,7 @@ public class Scr_MapManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.M))
         {
             mapCamera.gameObject.SetActive(!mapActive);
-            normalCanvas.SetActive(mapActive);
+            mainCanvas.SetActive(mapActive);
             mapCanvas.SetActive(!mapActive);
             mapActive = !mapActive;
 
