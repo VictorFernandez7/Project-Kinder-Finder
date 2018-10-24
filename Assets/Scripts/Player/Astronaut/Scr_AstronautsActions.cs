@@ -10,6 +10,7 @@ using UnityEngine;
 
 public class Scr_AstronautsActions : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] private GameObject fuelExtractor;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] public Transform pickPoint;

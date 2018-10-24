@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Scr_FuelBlock : MonoBehaviour
 {
+    [Header("Object Properties")]
     [SerializeField] private readonly int fuelAmount;
 
     private bool onRange;
     private GameObject nave;
     private GameObject astronaut;
 
-    void Start()
+    private void Start()
     {
         astronaut = transform.parent.gameObject;
     }

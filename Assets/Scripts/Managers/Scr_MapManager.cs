@@ -4,17 +4,20 @@ using UnityEngine;
 
 public class Scr_MapManager : MonoBehaviour
 {
-    [SerializeField] private GameObject mapIndicator;
-    [SerializeField] private GameObject directionIndicator;
-    [SerializeField] private GameObject normalCanvas;
-    [SerializeField] private GameObject mapCanvas;
+    [Header("Map Properties")]
     [SerializeField] private float dragSpeed;
-    [SerializeField] private Camera mapCamera;
-    [SerializeField] private Camera mainCamera;
     [SerializeField] float maxZoom;
     [SerializeField] float minZoom;
     [SerializeField] float zoomSpeed;
     [SerializeField] Vector2 clampBorderSize;
+
+    [Header("References")]
+    [SerializeField] private Camera mapCamera;
+    [SerializeField] private Camera mainCamera;
+    [SerializeField] private GameObject mapIndicator;
+    [SerializeField] private GameObject directionIndicator;
+    [SerializeField] private GameObject normalCanvas;
+    [SerializeField] private GameObject mapCanvas;
 
     [HideInInspector] public GameObject target;
     [HideInInspector] public bool mapActive;
@@ -32,7 +35,7 @@ public class Scr_MapManager : MonoBehaviour
         myRectTransform = GetComponent<RectTransform>();
     }
 
-    void Update()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.M))
         {

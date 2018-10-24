@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Scr_PlayerShipActions : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] Transform spawnPoint;
 
     private Vector3 lastFramePlanetPosition;

@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Scr_PlayerShipStats : MonoBehaviour
 {
+    [Header("Fuel Properties")]
+    [SerializeField] private float maxFuel;
     [SerializeField] private float normalConsume;
     [SerializeField] private float boostConsume;
-    [SerializeField] private float maxFuel;
 
     [HideInInspector] public float fuel;
 

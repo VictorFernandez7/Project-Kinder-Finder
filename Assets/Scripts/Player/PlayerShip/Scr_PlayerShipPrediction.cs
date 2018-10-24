@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Scr_PlayerShipPrediction : MonoBehaviour
 {
-    [Range(0, 7)] [SerializeField] private readonly int predictionTime;
+    [Header("Prediction Properties")]
+    [Range(0, 7)] [SerializeField] private int predictionTime;
 
     [HideInInspector] public LineRenderer predictionLine;
     [HideInInspector] public LineRenderer predictionLineMap;

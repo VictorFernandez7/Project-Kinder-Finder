@@ -5,23 +5,26 @@ using TMPro;
 
 public class Scr_FuelCollector : MonoBehaviour
 {
+    [Header("Production Properties")]
     [SerializeField] private float productionTime;
+
+    [Header("References")]
     [SerializeField] private TextMeshProUGUI productionText;
     [SerializeField] private Transform fuelBlock;
 
     private int fuelAmount;
     private float productionTimeSaved;
-    private GameObject astronaut;
     private bool onRange;
+    private GameObject astronaut;
 
-    void Start()
+    private void Start()
     {
         astronaut = GameObject.FindGameObjectWithTag("Astronauta");
 
         productionTimeSaved = productionTime;
     }
 
-    void Update()
+    private void Update()
     {
         productionTime -= Time.deltaTime;
 

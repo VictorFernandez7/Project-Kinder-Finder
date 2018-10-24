@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Scr_MenuManager : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] GameObject cuadro;
 
     private void Update()
