@@ -11,7 +11,7 @@ using UnityEngine;
 public class Scr_AstronautMovement : MonoBehaviour
 {
     [Header("Movement Properties")]
-    [SerializeField] private readonly float movementSpeed;
+    [SerializeField] private float movementSpeed;
 
     [HideInInspector] public Vector3 planetPosition;
     [HideInInspector] public bool onGround = true;
