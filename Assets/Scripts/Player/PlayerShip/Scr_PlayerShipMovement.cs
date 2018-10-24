@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(BoxCollider2D))]
@@ -19,6 +20,8 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [SerializeField] private float boostSpeed;
     [SerializeField] private float normalSpeed;
     [SerializeField] private float deathSpeed;
+    [SerializeField] private TextMeshProUGUI textLimiter;
+    [SerializeField] private TextMeshProUGUI textSpeed;
 
     [Header("Landing Properties")]
     [SerializeField] private float landTimer;
@@ -31,12 +34,13 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [HideInInspector] public bool onBoard;
     [HideInInspector] public GameObject currentPlanet;
     [HideInInspector] public bool onGround;
+    [HideInInspector] public Rigidbody2D rb;
 
     private bool canMove = true;
     private float speedLimit;
     private float currentSpeed;
     private float landTimerSaved;
-    private Rigidbody2D rb;
+    
     private Scr_PlayerShipStats playerShipStats;
     private Scr_PlayerShipPrediction playerShipPrediction;
 
@@ -49,12 +53,29 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         mapVisuals.SetActive(true);
 
         landTimerSaved = landTimer;
+        speedLimit = maxSpeed;
+    }
+
+    private void Update()
+    {
+        textLimiter.text = speedLimit.ToString();
+        textSpeed.text = ((int)(rb.velocity.magnitude * 10)).ToString();
     }
 
     void FixedUpdate()
     {
         ShipControl();
         SpeedLimiter();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -86,6 +107,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         if (collision.gameObject.tag == "Planet")
         {
             onGround = false;
+
             transform.SetParent(null);
             playerShipPrediction.predictionLine.enabled = true;
             playerShipPrediction.predictionLineMap.enabled = true;

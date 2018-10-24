@@ -106,7 +106,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1452036844316726}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3466.66, y: 730.85, z: 0}
+  m_LocalPosition: {x: 3460.01, y: 475.36, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4553187427976860}
@@ -150,7 +150,7 @@ Transform:
   m_GameObject: {fileID: 1670836209583306}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1}
   m_Children: []
   m_Father: {fileID: 4030621875282276}
   m_RootOrder: 0
@@ -186,7 +186,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!61 &61120635698601538
 BoxCollider2D:
@@ -211,7 +211,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.5, y: 5.22}
+  m_Size: {x: 1.1, y: 1.35}
   m_EdgeRadius: 0
 --- !u!61 &61226822276868388
 BoxCollider2D:
@@ -225,7 +225,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -3466.66, y: -730.85}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -236,7 +236,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.1, y: 1.27}
   m_EdgeRadius: 0
 --- !u!96 &96206161718378074
 TrailRenderer:
@@ -274,7 +274,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 5
+  m_Time: 15
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 1
@@ -283,7 +283,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0.043956757
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -341,7 +341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab9cd7c8679e4004c809b94a40e42621, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  predictionTime: 0
+  predictionTime: 6
   predictionLine: {fileID: 0}
   predictionLineMap: {fileID: 0}
 --- !u!114 &114696350668254112
@@ -356,11 +356,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationDelay: 2
-  maxSpeed: 35000
+  maxSpeed: 200
   limitUnits: 100
-  boostSpeed: 150000
-  normalSpeed: 50000
+  boostSpeed: 1500
+  normalSpeed: 200
   deathSpeed: 80
+  textLimiter: {fileID: 0}
+  textSpeed: {fileID: 0}
   landTimer: 2
   thrusterParticles: {fileID: 198933388196207670}
   mapVisuals: {fileID: 1179959987047468}
@@ -368,6 +370,7 @@ MonoBehaviour:
   onBoard: 0
   currentPlanet: {fileID: 0}
   onGround: 0
+  rb: {fileID: 0}
 --- !u!114 &114778194997285574
 MonoBehaviour:
   m_ObjectHideFlags: 1

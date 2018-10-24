@@ -82,7 +82,7 @@ Transform:
   m_GameObject: {fileID: 1979087232212308}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 60, y: 60, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 4681939228795974}
   m_RootOrder: 0
@@ -94,7 +94,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1451560525358238}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14753, y: 466, z: 0}
+  m_LocalPosition: {x: 3460, y: 466, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4590122465990986}
@@ -113,14 +113,14 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 3000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!58 &58447905781387278
 CircleCollider2D:
@@ -136,7 +136,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 87.7
+  m_Radius: 8.8
 --- !u!114 &114932586858497322
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -148,12 +148,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb48af1198e87a44cbf18eaaba28c976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 0
-  maxClampDistance: 0
-  minClampDistance: 0
+  movementSpeed: 0.15
+  maxClampDistance: 35
+  minClampDistance: -8.74
   rotationPivot: {fileID: 0}
-  mapIndicator: {fileID: 0}
-  directionIndicator: {fileID: 0}
+  mapIndicator: {fileID: 1454654233925100, guid: 2e19b1cec2a1b3643927fae1203a82ac,
+    type: 2}
+  directionIndicator: {fileID: 1415828685659110, guid: c2e828f2f7c94fa498f9c9e58fd973d1,
+    type: 2}
   mapManager: {fileID: 0}
 --- !u!212 &212042880998922800
 SpriteRenderer:
