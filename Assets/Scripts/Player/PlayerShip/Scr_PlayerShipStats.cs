@@ -11,29 +11,28 @@ using UnityEngine;
 public class Scr_PlayerShipStats : MonoBehaviour
 {
     [Header("Fuel Properties")]
+    [SerializeField] public float currentFuel;
     [SerializeField] private float maxFuel;
     [SerializeField] private float normalConsume;
     [SerializeField] private float boostConsume;
 
-    [HideInInspector] public float fuel;
-
     private void Update()
     {
-        fuel = Mathf.Clamp(fuel, 0f, maxFuel);
+        currentFuel = Mathf.Clamp(currentFuel, 0f, maxFuel);
     }
 
     public void FuelConsumption(bool boost)
     {
         if (boost)
-            fuel -= boostConsume;
+            currentFuel -= boostConsume;
 
         else
-            fuel -= normalConsume;
+            currentFuel -= normalConsume;
     }
 
     public void ReFuel(float amount)
     {
-        fuel += amount;
+        currentFuel += amount;
     }
 
     public void Death()

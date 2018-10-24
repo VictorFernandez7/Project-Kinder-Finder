@@ -16,8 +16,13 @@ public class Scr_AstronautMovement : MonoBehaviour
     [HideInInspector] public Vector3 planetPosition;
     [HideInInspector] public bool onGround = true;
     [HideInInspector] public GameObject currentPlanet;
-    [HideInInspector] public bool canMove;
+    [HideInInspector] public bool canMove = true;
     [HideInInspector] public bool canEnterShip;
+
+    private void Start()
+    {
+        canMove = true;
+    }
 
     private void Update()
     {
@@ -26,13 +31,13 @@ public class Scr_AstronautMovement : MonoBehaviour
             if (Input.GetKey(KeyCode.A))
             {
                 MoveLeft();
-                GetComponent<SpriteRenderer>().flipX = true;
+                Flip();
             }
 
             else if (Input.GetKey(KeyCode.D))
             {
                 MoveRight();
-                GetComponent<SpriteRenderer>().flipX = false;
+                Flip();
             }
         }
     }
@@ -46,25 +51,27 @@ public class Scr_AstronautMovement : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Planet")
-            currentPlanet = collision.gameObject;
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "PlayerShip")
             canEnterShip = true;
+
+        if (collision.gameObject.tag == "Planet")
+            currentPlanet = collision.gameObject;
     }
 
     private void MoveRight()
     {
-        transform.RotateAround(planetPosition, Vector3.forward, -movementSpeed / (currentPlanet.GetComponent<Renderer>().bounds.size.y / 2) * Time.fixedDeltaTime);
+        transform.RotateAround(planetPosition, Vector3.forward, -movementSpeed / (currentPlanet.transform.GetChild(0).GetComponent<Renderer>().bounds.size.y / 2) * Time.fixedDeltaTime);
     }
 
     private void MoveLeft()
     {
-        transform.RotateAround(planetPosition, Vector3.forward, movementSpeed / (currentPlanet.GetComponent<Renderer>().bounds.size.y / 2) * Time.fixedDeltaTime);
+        transform.RotateAround(planetPosition, Vector3.forward, movementSpeed / (currentPlanet.transform.GetChild(0).GetComponent<Renderer>().bounds.size.y / 2) * Time.fixedDeltaTime);
+    }
+
+    private void Flip()
+    {
+
     }
 }

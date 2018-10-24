@@ -53,7 +53,8 @@ public class Scr_MapManager : MonoBehaviour
         if (mapActive)
             MinimapControl();
 
-        mapIndicator.transform.position = target.transform.position + new Vector3(0f, ((target.GetComponent<Renderer>().bounds.size.x) / 2) + 10f, 0f);
+        if(target != null)
+            mapIndicator.transform.position = target.transform.position + new Vector3(0f, ((target.GetComponent<Renderer>().bounds.size.x) / 2) + 10f, 0f);
     }
 
     private void MinimapControl()
