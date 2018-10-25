@@ -8,7 +8,7 @@ using UnityEngine;
 public class Scr_Planet : MonoBehaviour
 {
     [Header("Planet Properties")]
-    [Range(0.1f, 0.5f)] [SerializeField] private float movementSpeed;
+    [SerializeField] private float movementSpeed;
     [SerializeField] float maxClampDistance;
     [SerializeField] float minClampDistance;
 
@@ -18,7 +18,7 @@ public class Scr_Planet : MonoBehaviour
     [SerializeField] private GameObject directionIndicator;
     [SerializeField] private Scr_MapManager mapManager;
 
-    private double gravity;
+    private double gravityConstant;
     private GameObject playerShip;
     private Vector3 lastFrameRotationPivot;
     private Rigidbody2D planetRb;
@@ -30,7 +30,7 @@ public class Scr_Planet : MonoBehaviour
         lastFrameRotationPivot = rotationPivot.transform.position;
         planetRb = GetComponent<Rigidbody2D>();
         playerShipRb = playerShip.GetComponent<Rigidbody2D>();
-        gravity = 6.674 * (10 ^ -11);
+        gravityConstant = 6.674 * (10 ^ -11);
     }
 
     private void FixedUpdate()
@@ -50,7 +50,7 @@ public class Scr_Planet : MonoBehaviour
             playerShip.transform.position += clamp * translocation;
 
             Vector3 gravityDirection = (transform.position - playerShip.transform.position);
-            float gravity = (float)(planetRb.mass * playerShipRb.mass * this.gravity) / ((gravityDirection.magnitude) * (gravityDirection.magnitude));
+            float gravity = (float)(planetRb.mass * playerShipRb.mass * gravityConstant) / ((gravityDirection.magnitude) * (gravityDirection.magnitude));
             playerShipRb.AddForce(gravityDirection.normalized * -gravity * Time.fixedDeltaTime);
         }
     }
@@ -75,7 +75,7 @@ public class Scr_Planet : MonoBehaviour
         transform.RotateAround(lastFrameRotationPivot, Vector3.forward, movementSpeed * time);
 
         Vector3 gravityDirection = (transform.position - position);
-        float gravity = (float)(planetRb.mass * playerShipRb.mass * this.gravity) / ((gravityDirection.magnitude) * (gravityDirection.magnitude));
+        float gravity = (float)(planetRb.mass * playerShipRb.mass * gravityConstant) / ((gravityDirection.magnitude) * (gravityDirection.magnitude));
         transform.RotateAround(lastFrameRotationPivot, Vector3.forward, -movementSpeed * time);
 
         return gravityDirection.normalized * -gravity * Time.fixedDeltaTime;
