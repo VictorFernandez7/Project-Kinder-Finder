@@ -86,6 +86,9 @@ public class Scr_PlayerShipMovement : MonoBehaviour
             canMove = false;
             onGround = true;
 
+            rb.drag = 100f;
+            rb.angularDrag = 200f;
+
             Vector3 landDirection = (collision.gameObject.transform.position - transform.position);
             landDirection.Normalize();
             float rotationZ = Mathf.Atan2(-landDirection.y, -landDirection.x) * Mathf.Rad2Deg;
@@ -150,6 +153,9 @@ public class Scr_PlayerShipMovement : MonoBehaviour
             {
                 if (Input.GetMouseButton(0))
                 {
+                    rb.drag = 0f;
+                    rb.angularDrag = 0.05f; 
+
                     if (Input.GetKey(KeyCode.LeftShift))
                     {
                         playerShipStats.FuelConsumption(true);
