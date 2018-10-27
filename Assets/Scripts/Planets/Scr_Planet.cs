@@ -18,6 +18,7 @@ public class Scr_Planet : MonoBehaviour
     [SerializeField] private GameObject directionIndicator;
     [SerializeField] private Scr_MapManager mapManager;
     [SerializeField] private GameObject mapVisuals;
+    [SerializeField] private GameObject canvas;
 
     private double gravityConstant;
     private GameObject playerShip;
@@ -96,11 +97,16 @@ public class Scr_Planet : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                mapIndicator.SetActive(true);
-                directionIndicator.SetActive(true);
-                directionIndicator.GetComponent<Scr_MapManager>().currentTarget = this.gameObject;
-                mapIndicator.GetComponent<Scr_MapManager>().target = this.gameObject;
-                mapIndicator.transform.position = transform.position + new Vector3(0f, ((GetComponent<Renderer>().bounds.size.x) / 2) + 10f, 0f);
+                mapIndicator = Instantiate(mapIndicator);
+                directionIndicator = Instantiate(directionIndicator);
+                mapManager.mapIndicator = mapIndicator;
+                mapManager.directionIndicator = directionIndicator;
+                directionIndicator.transform.SetParent(canvas.transform);
+                mapManager.myRectTransform = directionIndicator.GetComponent<RectTransform>();
+                mapManager.currentTarget = this.gameObject;
+                mapManager.target = this.gameObject;
+                mapManager.waypointActive = true;
+                mapIndicator.transform.position = transform.position + new Vector3(0f, ((transform.GetChild(1).GetComponent<Renderer>().bounds.size.x) / 2) + 10f, 0f);
             }
         }
     }

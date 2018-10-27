@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Scr_MoonOrbit : MonoBehaviour {
-
+public class Scr_MoonOrbit : MonoBehaviour
+{
     [SerializeField] private GameObject planet;
 
 	void Update () {

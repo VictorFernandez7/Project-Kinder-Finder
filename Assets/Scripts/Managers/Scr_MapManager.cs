@@ -14,29 +14,31 @@ public class Scr_MapManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private Camera mainCamera;
     [SerializeField] private Camera mapCamera;
-    [SerializeField] private GameObject mapIndicator;
-    [SerializeField] private GameObject directionIndicator;
     [SerializeField] private GameObject mainCanvas;
     [SerializeField] private GameObject mapCanvas;
 
     [HideInInspector] public GameObject target;
     [HideInInspector] public bool mapActive;
     [HideInInspector] public GameObject currentTarget;
+    [HideInInspector] public bool waypointActive;
+    [HideInInspector] public RectTransform myRectTransform;
+    [HideInInspector] public GameObject directionIndicator;
+    [HideInInspector] public GameObject mapIndicator;
 
     private Vector3 dragOrigin;
     private GameObject playerShip;
-    private RectTransform myRectTransform;
     private bool clampToScreen = true;
 
     private void Start()
     {
         playerShip = GameObject.Find("PlayerShip");
-
-        myRectTransform = GetComponent<RectTransform>();
     }
 
     private void Update()
     {
+        if (waypointActive)
+            DirectionIndicator();
+
         if (Input.GetKeyDown(KeyCode.M))
         {
             mapCamera.gameObject.SetActive(!mapActive);
@@ -54,7 +56,7 @@ public class Scr_MapManager : MonoBehaviour
             MinimapControl();
 
         if(target != null)
-            mapIndicator.transform.position = target.transform.position + new Vector3(0f, ((target.GetComponent<Renderer>().bounds.size.x) / 2) + 10f, 0f);
+            mapIndicator.transform.position = target.transform.position + new Vector3(0f, ((target.transform.GetChild(1).GetComponent<Renderer>().bounds.size.x) / 2) + 10f, 0f);
     }
 
     private void MinimapControl()
@@ -90,6 +92,6 @@ public class Scr_MapManager : MonoBehaviour
         difference.Normalize();
 
         float rotation_z = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rotation_z + 90f);
+        directionIndicator.transform.rotation = Quaternion.Euler(0f, 0f, rotation_z + 90f);
     }
 }
