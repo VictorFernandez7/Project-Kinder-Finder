@@ -154,8 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07395d5405c1c6d408b4f6161647add1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atmosphereDrag: 1
-  playerShip: {fileID: 1922724880}
+  playerShipMovement: {fileID: 0}
 --- !u!58 &24753663
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -292,6 +291,7 @@ MonoBehaviour:
     type: 2}
   mapManager: {fileID: 1313272091}
   mapVisuals: {fileID: 860221361}
+  canvas: {fileID: 0}
 --- !u!58 &115657822
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -616,6 +616,34 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &279903698
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 279903699}
+  m_Layer: 0
+  m_Name: RaycastPointRight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &279903699
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 279903698}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.0453, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1075748595}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &283162598 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1360327206842014, guid: 5c7e8f1f62be70143b2e0edf73736d31,
@@ -1185,6 +1213,7 @@ MonoBehaviour:
     type: 2}
   mapManager: {fileID: 1313272091}
   mapVisuals: {fileID: 1845966781}
+  canvas: {fileID: 0}
 --- !u!58 &492697987
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1323,8 +1352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07395d5405c1c6d408b4f6161647add1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atmosphereDrag: 1
-  playerShip: {fileID: 1922724880}
+  playerShipMovement: {fileID: 0}
 --- !u!58 &522131179
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1509,6 +1537,7 @@ MonoBehaviour:
     type: 2}
   mapManager: {fileID: 1313272091}
   mapVisuals: {fileID: 1632822734}
+  canvas: {fileID: 0}
 --- !u!58 &755707168
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1556,6 +1585,34 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 20452384316129220, guid: bc458ee511220854cbc76d1626ceae4f,
     type: 2}
   m_PrefabInternal: {fileID: 419593660}
+--- !u!1 &852590868
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 852590869}
+  m_Layer: 0
+  m_Name: RaycastPointLeft
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &852590869
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 852590868}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.0453, y: -0.0000012952369, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1075748595}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &860221361
 GameObject:
   m_ObjectHideFlags: 0
@@ -2008,7 +2065,57 @@ Prefab:
     - target: {fileID: 114755716893654776, guid: a7965b5f8a536a540b7c003202d37841,
         type: 2}
       propertyPath: movementSpeed
-      value: 40
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 70854431537498288, guid: a7965b5f8a536a540b7c003202d37841,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 70854431537498288, guid: a7965b5f8a536a540b7c003202d37841,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 70854431537498288, guid: a7965b5f8a536a540b7c003202d37841,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 0.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 70854431537498288, guid: a7965b5f8a536a540b7c003202d37841,
+        type: 2}
+      propertyPath: m_UsedByEffector
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50578835625786104, guid: a7965b5f8a536a540b7c003202d37841,
+        type: 2}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50578835625786104, guid: a7965b5f8a536a540b7c003202d37841,
+        type: 2}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114755716893654776, guid: a7965b5f8a536a540b7c003202d37841,
+        type: 2}
+      propertyPath: distance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114755716893654776, guid: a7965b5f8a536a540b7c003202d37841,
+        type: 2}
+      propertyPath: rayPointLeft
+      value: 
+      objectReference: {fileID: 852590868}
+    - target: {fileID: 114755716893654776, guid: a7965b5f8a536a540b7c003202d37841,
+        type: 2}
+      propertyPath: rayPointRight
+      value: 
+      objectReference: {fileID: 279903698}
+    - target: {fileID: 114755716893654776, guid: a7965b5f8a536a540b7c003202d37841,
+        type: 2}
+      propertyPath: collisionMask.m_Bits
+      value: 1024
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7965b5f8a536a540b7c003202d37841, type: 2}
@@ -2016,6 +2123,11 @@ Prefab:
 --- !u!1 &1075748588 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1635559910669824, guid: a7965b5f8a536a540b7c003202d37841,
+    type: 2}
+  m_PrefabInternal: {fileID: 1075748587}
+--- !u!4 &1075748595 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4004395127091482, guid: a7965b5f8a536a540b7c003202d37841,
     type: 2}
   m_PrefabInternal: {fileID: 1075748587}
 --- !u!1 &1107882577
@@ -3071,8 +3183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07395d5405c1c6d408b4f6161647add1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atmosphereDrag: 1
-  playerShip: {fileID: 1922724880}
+  playerShipMovement: {fileID: 0}
 --- !u!58 &1667444799
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3524,8 +3635,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07395d5405c1c6d408b4f6161647add1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atmosphereDrag: 1
-  playerShip: {fileID: 1922724880}
+  playerShipMovement: {fileID: 0}
 --- !u!1 &1845966781
 GameObject:
   m_ObjectHideFlags: 0
@@ -3672,6 +3782,7 @@ MonoBehaviour:
     type: 2}
   mapManager: {fileID: 1313272091}
   mapVisuals: {fileID: 1332209163}
+  canvas: {fileID: 0}
 --- !u!58 &1859374550
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3750,8 +3861,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07395d5405c1c6d408b4f6161647add1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atmosphereDrag: 1
-  playerShip: {fileID: 1922724880}
+  playerShipMovement: {fileID: 0}
 --- !u!58 &1876856708
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3857,11 +3967,6 @@ Prefab:
 --- !u!1 &1922724874 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1452036844316726, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
-    type: 2}
-  m_PrefabInternal: {fileID: 475805757}
---- !u!50 &1922724880 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 50308801135138494, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
     type: 2}
   m_PrefabInternal: {fileID: 475805757}
 --- !u!1 &2009863782
@@ -4005,6 +4110,7 @@ MonoBehaviour:
     type: 2}
   mapManager: {fileID: 1313272091}
   mapVisuals: {fileID: 402883085}
+  canvas: {fileID: 0}
 --- !u!58 &2109190147
 CircleCollider2D:
   m_ObjectHideFlags: 0

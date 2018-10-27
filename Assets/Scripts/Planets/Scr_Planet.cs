@@ -22,16 +22,20 @@ public class Scr_Planet : MonoBehaviour
 
     private double gravityConstant;
     private GameObject playerShip;
+    private GameObject astronaut;
     private Vector3 lastFrameRotationPivot;
     private Rigidbody2D planetRb;
     private Rigidbody2D playerShipRb;
+    private Rigidbody2D astronautRB;
 
     private void Start()
     {
         playerShip = GameObject.Find("PlayerShip");
+        astronaut = GameObject.Find("Astronaut");
         lastFrameRotationPivot = rotationPivot.transform.position;
         planetRb = GetComponent<Rigidbody2D>();
         playerShipRb = playerShip.GetComponent<Rigidbody2D>();
+        astronautRB = astronaut.GetComponent<Rigidbody2D>();
         gravityConstant = 6.674 * (10 ^ -11);
         mapVisuals.SetActive(true);
     }
