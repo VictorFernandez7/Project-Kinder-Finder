@@ -15,9 +15,9 @@ public class Scr_AstronautMovement : MonoBehaviour
 
     [HideInInspector] public Vector3 planetPosition;
     [HideInInspector] public bool onGround = true;
-    [HideInInspector] public GameObject currentPlanet;
     [HideInInspector] public bool canMove = true;
     [HideInInspector] public bool canEnterShip;
+    [HideInInspector] public GameObject currentPlanet;
 
     private void Start()
     {
@@ -55,9 +55,6 @@ public class Scr_AstronautMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "PlayerShip")
             canEnterShip = true;
-
-        if (collision.gameObject.tag == "Planet")
-            currentPlanet = collision.gameObject;
     }
 
     private void MoveRight()
