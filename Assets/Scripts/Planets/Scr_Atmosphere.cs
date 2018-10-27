@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class Scr_Atmosphere : MonoBehaviour
 {
-    [Header("Atmosphere properties")]
-    [SerializeField] private float atmosphereDrag;
-
     [Header("References")]
-    [SerializeField] private Rigidbody2D playerShip;
+    [SerializeField] private Scr_PlayerShipMovement playerShipMovement;
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "PlayerShip")
         {
-            playerShip.drag = atmosphereDrag;
+            playerShipMovement.insideAtmosphere = true;
         }
     }
 
@@ -22,7 +19,7 @@ public class Scr_Atmosphere : MonoBehaviour
     {
         if (collision.gameObject.tag == "PlayerShip")
         {
-            playerShip.drag = 0;
+            playerShipMovement.insideAtmosphere = false;
         }
     }
 }
