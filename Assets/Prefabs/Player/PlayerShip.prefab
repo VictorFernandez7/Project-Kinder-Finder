@@ -67,6 +67,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1708981421470954
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4286758703338974}
+  m_Layer: 0
+  m_Name: EndOfShip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1728081687911404
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,15 +121,29 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1452036844316726}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 780.999, y: 4.684015, z: 0}
+  m_LocalPosition: {x: 31, y: 4.684015, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4553187427976860}
   - {fileID: 4294356267724688}
   - {fileID: 4650739806024484}
   - {fileID: 4307902234812244}
+  - {fileID: 4286758703338974}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4286758703338974
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1708981421470954}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.215, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4030621875282276}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4294356267724688
 Transform:
@@ -162,7 +191,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1728081687911404}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.101, z: 0}
+  m_LocalPosition: {x: 0, y: -0.159, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4030621875282276}
@@ -211,7 +240,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.32, y: 0.45}
+  m_Size: {x: 0.40416768, y: 0.48751226}
   m_EdgeRadius: 0
 --- !u!61 &61226822276868388
 BoxCollider2D:
@@ -219,7 +248,7 @@ BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1452036844316726}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -356,20 +385,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationDelay: 2
-  maxSpeed: 200
+  maxSpeed: 50
   limitUnits: 100
   boostSpeed: 1500
+  boostSpeedPlanet: 5000
   normalSpeed: 200
   deathSpeed: 80
   textLimiter: {fileID: 0}
   textSpeed: {fileID: 0}
   landTimer: 2
+  landDistance: 0.25
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 1024
   thrusterParticles: {fileID: 198933388196207670}
   mapVisuals: {fileID: 1179959987047468}
+  endOfShip: {fileID: 4286758703338974}
   mainCamera: {fileID: 0}
   onBoard: 0
   currentPlanet: {fileID: 0}
   onGround: 0
+  insideAtmosphere: 0
   rb: {fileID: 0}
 --- !u!114 &114778194997285574
 MonoBehaviour:
