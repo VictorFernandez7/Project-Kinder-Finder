@@ -78,7 +78,6 @@ public class Scr_PlayerShipMovement : MonoBehaviour
             else
             {
                 RaycastHit2D hit = Physics2D.Raycast(endOfShip.position, -endOfShip.up, landDistance, collisionMask);
-                Debug.DrawRay(endOfShip.position, -endOfShip.transform.up * landDistance, Color.red);
 
                 if (hit)
                     ShipLanding();

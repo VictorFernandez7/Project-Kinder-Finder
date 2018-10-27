@@ -11,6 +11,21 @@ Prefab:
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1452036844316726}
   m_IsPrefabAsset: 1
+--- !u!1 &1028618017071084
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4046255908165590}
+  m_Layer: 0
+  m_Name: EndOfShip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1179959987047468
 GameObject:
   m_ObjectHideFlags: 0
@@ -67,21 +82,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1708981421470954
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4286758703338974}
-  m_Layer: 0
-  m_Name: EndOfShip
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1728081687911404
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,18 +128,18 @@ Transform:
   - {fileID: 4294356267724688}
   - {fileID: 4650739806024484}
   - {fileID: 4307902234812244}
-  - {fileID: 4286758703338974}
+  - {fileID: 4046255908165590}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4286758703338974
+--- !u!4 &4046255908165590
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1708981421470954}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.215, z: 0}
+  m_GameObject: {fileID: 1028618017071084}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.19999981, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4030621875282276}
@@ -303,7 +303,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 15
+  m_Time: 5
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 1
@@ -394,13 +394,13 @@ MonoBehaviour:
   textLimiter: {fileID: 0}
   textSpeed: {fileID: 0}
   landTimer: 2
-  landDistance: 0.25
+  landDistance: 1
   collisionMask:
     serializedVersion: 2
     m_Bits: 1024
   thrusterParticles: {fileID: 198933388196207670}
   mapVisuals: {fileID: 1179959987047468}
-  endOfShip: {fileID: 4286758703338974}
+  endOfShip: {fileID: 4046255908165590}
   mainCamera: {fileID: 0}
   onBoard: 0
   currentPlanet: {fileID: 0}
