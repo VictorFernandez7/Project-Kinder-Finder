@@ -12,6 +12,10 @@ public class Scr_AstronautMovement : MonoBehaviour
 {
     [Header("Movement Properties")]
     [SerializeField] private float movementSpeed;
+    [SerializeField] private GameObject rayPointLeft;
+    [SerializeField] private GameObject rayPointRight;
+    [SerializeField] private float distance;
+    [SerializeField] private LayerMask collisionMask;
 
     [HideInInspector] public Vector3 planetPosition;
     [HideInInspector] public bool onGround = true;
@@ -19,36 +23,51 @@ public class Scr_AstronautMovement : MonoBehaviour
     [HideInInspector] public bool canEnterShip;
     [HideInInspector] public GameObject currentPlanet;
 
+    private Rigidbody2D astronautRB;
+    private Vector3 VectorTangente;
+    private RaycastHit2D hitL;
+    private RaycastHit2D hitR;
+    private float currentDistance;
+
     private void Start()
     {
         canMove = true;
+        astronautRB = GetComponent<Rigidbody2D>();
+        hitL = Physics2D.Raycast(rayPointLeft.transform.position, -rayPointLeft.transform.up, distance, collisionMask);
+        if (hitL)
+            currentDistance = Vector2.Distance(rayPointLeft.transform.position, hitL.transform.position);
     }
 
     private void Update()
     {
-        if (canMove == true)
-        {
-            if (Input.GetKey(KeyCode.A))
-            {
-                MoveLeft();
-                Flip();
-            }
+          if (canMove == true)
+          {
+              if (Input.GetKey(KeyCode.A))
+              {
+                  MoveLeft();
+                  Flip();
+              }
 
-            else if (Input.GetKey(KeyCode.D))
-            {
-                MoveRight();
-                Flip();
-            }
-        }
+              else if (Input.GetKey(KeyCode.D))
+              {
+                  MoveRight();
+                  Flip();
+              }
+          }
+
+        hitL = Physics2D.Raycast(rayPointLeft.transform.position, -rayPointLeft.transform.up, distance, collisionMask);
+        hitR = Physics2D.Raycast(rayPointRight.transform.position, -rayPointLeft.transform.up, distance, collisionMask);
     }
 
     private void FixedUpdate()
     {
+
         if (onGround)
         {
             transform.position += (currentPlanet.transform.position - planetPosition);
             planetPosition = currentPlanet.transform.position;
         }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

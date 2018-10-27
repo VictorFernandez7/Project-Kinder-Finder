@@ -59,11 +59,6 @@ public class Scr_Planet : MonoBehaviour
             Vector3 gravityDirection = (transform.position - playerShip.transform.position);
             float gravity = (float)(planetRb.mass * playerShipRb.mass * gravityConstant) / ((gravityDirection.magnitude) * (gravityDirection.magnitude));
             playerShipRb.AddForce(gravityDirection.normalized * -gravity * Time.fixedDeltaTime);
-        }else if (astronaut.activeInHierarchy)
-        {
-            Vector3 gravityDirection = (transform.position - astronaut.transform.position);
-            float gravity = (float)(planetRb.mass * astronautRB.mass * gravityConstant) / ((gravityDirection.magnitude) * (gravityDirection.magnitude));
-            astronautRB.AddForce(gravityDirection.normalized * -gravity * Time.fixedDeltaTime);
         }
     }
 
