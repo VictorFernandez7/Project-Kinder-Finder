@@ -12,7 +12,13 @@ public class Scr_Atmosphere : MonoBehaviour
         if (collision.gameObject.tag == "PlayerShip")
         {
             playerShipMovement.insideAtmosphere = true;
+            playerShipMovement.currentPlanet = transform.parent.gameObject;
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        playerShipMovement.initialVelocity = playerShipMovement.gameObject.GetComponent<Rigidbody2D>().velocity;
     }
 
     private void OnTriggerExit2D(Collider2D collision)

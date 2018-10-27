@@ -78,21 +78,66 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1642608111972328
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4707779715405470}
+  m_Layer: 0
+  m_Name: RaycastPointRight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1705007326068512
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4405472476937738}
+  m_Layer: 0
+  m_Name: RaycastPointLeft
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &4004395127091482
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1635559910669824}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3460, y: 470.447, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.18168646, w: 0.98335654}
+  m_LocalPosition: {x: 145, y: 4.253412, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4440720484848266}
   - {fileID: 4973946125739948}
   - {fileID: 4412191580725764}
+  - {fileID: 4707779715405470}
+  - {fileID: 4405472476937738}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4405472476937738
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1705007326068512}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.0453, y: -0.0000012952369, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4004395127091482}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4412191580725764
 Transform:
@@ -120,6 +165,19 @@ Transform:
   m_Father: {fileID: 4004395127091482}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4707779715405470
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1642608111972328}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.0453, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4004395127091482}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4973946125739948
 Transform:
   m_ObjectHideFlags: 1
@@ -140,7 +198,7 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1635559910669824}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -191,7 +249,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.23682031, y: 0.3696397}
+  m_Size: {x: 0.08, y: 0.14}
   m_Direction: 0
 --- !u!114 &114105366921904924
 MonoBehaviour:
@@ -221,12 +279,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13991ef6310ac6e44bfd40289a73e7f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 200
+  movementSpeed: 100
+  rayPointLeft: {fileID: 1705007326068512}
+  rayPointRight: {fileID: 1642608111972328}
+  distance: 1
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 1024
   planetPosition: {x: 0, y: 0, z: 0}
   onGround: 1
-  currentPlanet: {fileID: 0}
   canMove: 0
   canEnterShip: 0
+  currentPlanet: {fileID: 0}
 --- !u!114 &114844797242794480
 MonoBehaviour:
   m_ObjectHideFlags: 1
