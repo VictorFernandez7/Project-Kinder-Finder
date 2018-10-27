@@ -21,8 +21,6 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [SerializeField] private float boostSpeedPlanet;
     [SerializeField] private float normalSpeed;
     [SerializeField] private float deathSpeed;
-    [SerializeField] private TextMeshProUGUI textLimiter;
-    [SerializeField] private TextMeshProUGUI textSpeed;
 
     [Header("Landing Properties")]
     [SerializeField] private float landTimer;
@@ -31,18 +29,23 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
     [Header("TakeOff Properties")]
     [SerializeField] private float takeOffTimer;
+    [SerializeField] private float dustMultiplier;
 
     [Header("References")]
-    [SerializeField] private ParticleSystem thrusterParticles;
     [SerializeField] private GameObject mapVisuals;
     [SerializeField] private Transform endOfShip;
-    [SerializeField] public Camera mainCamera;
+
+    [Header("References (FX)")]
+    [SerializeField] private ParticleSystem thrusterParticles;
+    [SerializeField] private ParticleSystem dustParticles1;
+    [SerializeField] private ParticleSystem dustParticles2;
 
     [HideInInspector] public bool onBoard;
-    [HideInInspector] public GameObject currentPlanet;
     [HideInInspector] public bool onGround;
     [HideInInspector] public bool insideAtmosphere;
+    [HideInInspector] public GameObject currentPlanet;
     [HideInInspector] public Rigidbody2D rb;
+    [HideInInspector] public Camera mainCamera;
 
     private bool canMove = true;
     private bool canRotateShip = true;
@@ -53,13 +56,18 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     private float speedLimit;
     private float currentSpeed;
     private float landTimerSaved;
-    
+    private TextMeshProUGUI limiterText;
+    private TextMeshProUGUI speedText;
     private Scr_PlayerShipStats playerShipStats;
     private Scr_PlayerShipPrediction playerShipPrediction;
     private Scr_PlayerShipActions playerShipActions;
 
     private void Start()
     {
+        mainCamera = GameObject.Find("MainCamera").GetComponent<Camera>();
+        limiterText = GameObject.Find("LimiterText").GetComponent<TextMeshProUGUI>();
+        speedText = GameObject.Find("SpeedText").GetComponent<TextMeshProUGUI>();
+
         rb = GetComponent<Rigidbody2D>();
         playerShipPrediction = GetComponent<Scr_PlayerShipPrediction>();
         playerShipStats = GetComponent<Scr_PlayerShipStats>();
@@ -74,14 +82,15 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
     private void Update()
     {
-        textLimiter.text = speedLimit.ToString();
-        textSpeed.text = ((int)(rb.velocity.magnitude * 10)).ToString();
+        limiterText.text = speedLimit.ToString();
+        speedText.text = ((int)(rb.velocity.magnitude * 10)).ToString();
 
         if (insideAtmosphere)
         {
             if (takingOff)
             {
                 ShipTakeOff();
+                LandingEffects(true);
             }
 
             else
@@ -90,8 +99,13 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
                 if (hit)
                     ShipLanding();
+
+                LandingEffects(true);
             }
         }
+
+        else
+            LandingEffects(false);
 
         if (!insideAtmosphere)
             takingOff = false;
@@ -124,6 +138,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
             canMove = false;
             onGround = true;
             playerShipActions.canExitShip = true;
+            LandingEffects(false);
 
             if ((rb.velocity.magnitude * 10) >= deathSpeed)
                 playerShipStats.Death();
@@ -242,8 +257,36 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         }
     }
 
-    private void ThrusterEffects()
+    private void LandingEffects(bool active)
     {
+        float dustPower = 0;
+        var emission1 = dustParticles1.emission;
+        var emission2 = dustParticles2.emission;
+
+        if (active)
+        {
+            thrusterParticles.Play();
+            dustParticles1.Play();
+            dustParticles2.Play();
+
+            RaycastHit2D hit = Physics2D.Raycast(endOfShip.position, -endOfShip.up, Mathf.Infinity, collisionMask);
+
+            if (hit)
+            {
+                dustPower = Vector2.Distance(endOfShip.position, hit.transform.position);
+
+                emission1.rateOverTime = dustPower * dustMultiplier;
+                emission2.rateOverTime = dustPower * dustMultiplier;
+
+                dustParticles1.transform.position = hit.transform.position;
+                dustParticles2.transform.position = hit.transform.position;
+            }
+        }
         
+        else
+        {
+            dustParticles1.Stop();
+            dustParticles2.Stop();
+        }
     }
 }
