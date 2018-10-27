@@ -29,6 +29,9 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [SerializeField] private float landDistance;
     [SerializeField] private LayerMask collisionMask;
 
+    [Header("TakeOff Properties")]
+    [SerializeField] private float takeOffTimer;
+
     [Header("References")]
     [SerializeField] private ParticleSystem thrusterParticles;
     [SerializeField] private GameObject mapVisuals;
@@ -42,25 +45,31 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [HideInInspector] public Rigidbody2D rb;
 
     private bool canMove = true;
+    private bool canRotateShip = true;
     private bool landing;
     private bool takingOff;
+    private float takeOffTimerSaved;
+    private bool countDownToControlShip;
     private float speedLimit;
     private float currentSpeed;
     private float landTimerSaved;
     
     private Scr_PlayerShipStats playerShipStats;
     private Scr_PlayerShipPrediction playerShipPrediction;
+    private Scr_PlayerShipActions playerShipActions;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         playerShipPrediction = GetComponent<Scr_PlayerShipPrediction>();
         playerShipStats = GetComponent<Scr_PlayerShipStats>();
+        playerShipActions = GetComponent<Scr_PlayerShipActions>();
 
         mapVisuals.SetActive(true);
 
         landTimerSaved = landTimer;
         speedLimit = maxSpeed;
+        takeOffTimerSaved = takeOffTimer;
     }
 
     private void Update()
@@ -86,6 +95,19 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
         if (!insideAtmosphere)
             takingOff = false;
+
+        if (countDownToControlShip)
+        {
+            canRotateShip = false;
+            takeOffTimerSaved -= Time.deltaTime;
+
+            if (takeOffTimerSaved <= 0)
+            {
+                canRotateShip = true;
+                takeOffTimerSaved = takeOffTimer;
+                countDownToControlShip = false;
+            }
+        }
     }
 
     void FixedUpdate()
@@ -101,6 +123,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
             currentPlanet = collision.gameObject;
             canMove = false;
             onGround = true;
+            playerShipActions.canExitShip = true;
 
             if ((rb.velocity.magnitude * 10) >= deathSpeed)
                 playerShipStats.Death();
@@ -111,7 +134,9 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Planet")
         {
+            playerShipActions.canExitShip = false;
             onGround = false;
+            countDownToControlShip = true;
 
             ShipTakeOff();
         }
@@ -208,10 +233,13 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
     private void ShipLookingToMouse()
     {
-        Vector3 difference = (mainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position);
-        difference.Normalize();
-        float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0f, 0f, rotationZ - 90), rotationDelay);
+        if (canRotateShip)
+        {
+            Vector3 difference = (mainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position);
+            difference.Normalize();
+            float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0f, 0f, rotationZ - 90), rotationDelay);
+        }
     }
 
     private void ThrusterEffects()

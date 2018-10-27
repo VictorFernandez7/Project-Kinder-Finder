@@ -13,6 +13,8 @@ public class Scr_PlayerShipActions : MonoBehaviour
     [Header("References")]
     [SerializeField] Transform spawnPoint;
 
+    [HideInInspector] public bool canExitShip;
+
     private Vector3 lastFramePlanetPosition;
     private GameObject astronaut;
     private Scr_PlayerShipMovement playerShipMovement;
@@ -25,7 +27,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && !astronaut.activeInHierarchy)
+        if (Input.GetKeyDown(KeyCode.E) && !astronaut.activeInHierarchy && canExitShip)
             DeployAstronaut();
     }
 
