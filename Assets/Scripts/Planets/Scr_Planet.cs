@@ -17,6 +17,7 @@ public class Scr_Planet : MonoBehaviour
     [SerializeField] private GameObject mapIndicator;
     [SerializeField] private GameObject directionIndicator;
     [SerializeField] private Scr_MapManager mapManager;
+    [SerializeField] private GameObject mapVisuals;
 
     private double gravityConstant;
     private GameObject playerShip;
@@ -31,6 +32,7 @@ public class Scr_Planet : MonoBehaviour
         planetRb = GetComponent<Rigidbody2D>();
         playerShipRb = playerShip.GetComponent<Rigidbody2D>();
         gravityConstant = 6.674 * (10 ^ -11);
+        mapVisuals.SetActive(true);
     }
 
     private void FixedUpdate()
