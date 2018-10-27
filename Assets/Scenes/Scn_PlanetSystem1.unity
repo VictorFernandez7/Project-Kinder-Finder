@@ -123,13 +123,13 @@ GameObject:
   - component: {fileID: 24753661}
   - component: {fileID: 24753663}
   - component: {fileID: 24753662}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Atmosphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &24753661
 Transform:
   m_ObjectHideFlags: 0
@@ -154,8 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07395d5405c1c6d408b4f6161647add1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atmosphereDrag: 1
-  playerShip: {fileID: 1922724880}
+  playerShipMovement: {fileID: 475805758}
 --- !u!58 &24753663
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -170,7 +169,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 15.29
+  m_Radius: 6.9
 --- !u!1 &50570714
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,6 +291,7 @@ MonoBehaviour:
     type: 2}
   mapManager: {fileID: 1313272091}
   mapVisuals: {fileID: 860221361}
+  canvas: {fileID: 0}
 --- !u!58 &115657822
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -339,7 +339,7 @@ Prefab:
     - target: {fileID: 114382748905521248, guid: 6182c2d349db7ce4cae038922977ae83,
         type: 2}
       propertyPath: planets.Array.size
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4441604931133082, guid: 6182c2d349db7ce4cae038922977ae83, type: 2}
       propertyPath: m_LocalPosition.x
@@ -378,6 +378,26 @@ Prefab:
       propertyPath: planets.Array.data[0]
       value: 
       objectReference: {fileID: 2109190144}
+    - target: {fileID: 114382748905521248, guid: 6182c2d349db7ce4cae038922977ae83,
+        type: 2}
+      propertyPath: planets.Array.data[1]
+      value: 
+      objectReference: {fileID: 1859374547}
+    - target: {fileID: 114382748905521248, guid: 6182c2d349db7ce4cae038922977ae83,
+        type: 2}
+      propertyPath: planets.Array.data[2]
+      value: 
+      objectReference: {fileID: 492697985}
+    - target: {fileID: 114382748905521248, guid: 6182c2d349db7ce4cae038922977ae83,
+        type: 2}
+      propertyPath: planets.Array.data[3]
+      value: 
+      objectReference: {fileID: 115657819}
+    - target: {fileID: 114382748905521248, guid: 6182c2d349db7ce4cae038922977ae83,
+        type: 2}
+      propertyPath: planets.Array.data[4]
+      value: 
+      objectReference: {fileID: 755707165}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6182c2d349db7ce4cae038922977ae83, type: 2}
   m_IsPrefabAsset: 0
@@ -1127,7 +1147,7 @@ Prefab:
     - target: {fileID: 114696350668254112, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
         type: 2}
       propertyPath: boostSpeed
-      value: 5000
+      value: 1500
       objectReference: {fileID: 0}
     - target: {fileID: 4650739806024484, guid: 15c55cceacb93ea4bb7e3f3c7e160410, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1144,6 +1164,12 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15c55cceacb93ea4bb7e3f3c7e160410, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &475805758 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114696350668254112, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
+    type: 2}
+  m_PrefabInternal: {fileID: 475805757}
+  m_Script: {fileID: 11500000, guid: 0e51695d77089f54b95c91905edfacff, type: 3}
 --- !u!1 &492697985
 GameObject:
   m_ObjectHideFlags: 0
@@ -1185,6 +1211,7 @@ MonoBehaviour:
     type: 2}
   mapManager: {fileID: 1313272091}
   mapVisuals: {fileID: 1845966781}
+  canvas: {fileID: 0}
 --- !u!58 &492697987
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1292,13 +1319,13 @@ GameObject:
   - component: {fileID: 522131177}
   - component: {fileID: 522131179}
   - component: {fileID: 522131178}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Atmosphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &522131177
 Transform:
   m_ObjectHideFlags: 0
@@ -1323,8 +1350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07395d5405c1c6d408b4f6161647add1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atmosphereDrag: 1
-  playerShip: {fileID: 1922724880}
+  playerShipMovement: {fileID: 475805758}
 --- !u!58 &522131179
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1339,7 +1365,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 15.29
+  m_Radius: 11
 --- !u!1 &572041132
 GameObject:
   m_ObjectHideFlags: 0
@@ -1509,6 +1535,7 @@ MonoBehaviour:
     type: 2}
   mapManager: {fileID: 1313272091}
   mapVisuals: {fileID: 1632822734}
+  canvas: {fileID: 0}
 --- !u!58 &755707168
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3040,13 +3067,13 @@ GameObject:
   - component: {fileID: 1667444797}
   - component: {fileID: 1667444799}
   - component: {fileID: 1667444798}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Atmosphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1667444797
 Transform:
   m_ObjectHideFlags: 0
@@ -3071,8 +3098,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07395d5405c1c6d408b4f6161647add1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atmosphereDrag: 1
-  playerShip: {fileID: 1922724880}
+  playerShipMovement: {fileID: 475805758}
 --- !u!58 &1667444799
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3087,7 +3113,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 15.29
+  m_Radius: 20.6
 --- !u!1 &1689236734
 GameObject:
   m_ObjectHideFlags: 0
@@ -3478,13 +3504,13 @@ GameObject:
   - component: {fileID: 1842939280}
   - component: {fileID: 1842939281}
   - component: {fileID: 1842939282}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Atmosphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1842939280
 Transform:
   m_ObjectHideFlags: 0
@@ -3512,7 +3538,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 15.29
+  m_Radius: 5.27
 --- !u!114 &1842939282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3524,8 +3550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07395d5405c1c6d408b4f6161647add1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atmosphereDrag: 1
-  playerShip: {fileID: 1922724880}
+  playerShipMovement: {fileID: 475805758}
 --- !u!1 &1845966781
 GameObject:
   m_ObjectHideFlags: 0
@@ -3672,6 +3697,7 @@ MonoBehaviour:
     type: 2}
   mapManager: {fileID: 1313272091}
   mapVisuals: {fileID: 1332209163}
+  canvas: {fileID: 0}
 --- !u!58 &1859374550
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3700,7 +3726,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 3000
+  m_Mass: 6000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -3719,13 +3745,13 @@ GameObject:
   - component: {fileID: 1876856706}
   - component: {fileID: 1876856708}
   - component: {fileID: 1876856707}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Atmosphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1876856706
 Transform:
   m_ObjectHideFlags: 0
@@ -3750,8 +3776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07395d5405c1c6d408b4f6161647add1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atmosphereDrag: 1
-  playerShip: {fileID: 1922724880}
+  playerShipMovement: {fileID: 475805758}
 --- !u!58 &1876856708
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3766,7 +3791,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 15.29
+  m_Radius: 3.89
 --- !u!1 &1881117650
 GameObject:
   m_ObjectHideFlags: 0
@@ -3806,11 +3831,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4535685070600488, guid: 86116cd5e148cdc41b2b039f4eb5b686, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 146.8
       objectReference: {fileID: 0}
     - target: {fileID: 4535685070600488, guid: 86116cd5e148cdc41b2b039f4eb5b686, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 4535685070600488, guid: 86116cd5e148cdc41b2b039f4eb5b686, type: 2}
       propertyPath: m_LocalPosition.z
@@ -3849,7 +3874,7 @@ Prefab:
     - target: {fileID: 20830875072148088, guid: 86116cd5e148cdc41b2b039f4eb5b686,
         type: 2}
       propertyPath: orthographic size
-      value: 4.3
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86116cd5e148cdc41b2b039f4eb5b686, type: 2}
@@ -3857,11 +3882,6 @@ Prefab:
 --- !u!1 &1922724874 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1452036844316726, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
-    type: 2}
-  m_PrefabInternal: {fileID: 475805757}
---- !u!50 &1922724880 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 50308801135138494, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
     type: 2}
   m_PrefabInternal: {fileID: 475805757}
 --- !u!1 &2009863782
@@ -4005,6 +4025,7 @@ MonoBehaviour:
     type: 2}
   mapManager: {fileID: 1313272091}
   mapVisuals: {fileID: 402883085}
+  canvas: {fileID: 0}
 --- !u!58 &2109190147
 CircleCollider2D:
   m_ObjectHideFlags: 0
