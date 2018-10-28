@@ -37,11 +37,16 @@ public class Scr_AstronautMovement : MonoBehaviour
     private float baseDistanceLeft;
     private float currentDistanceLeft;
     private float currentDistanceRight;
+    private bool facingRight;
+    private SpriteRenderer astronautVisuals;
 
     private void Start()
     {
-        canMove = true;
+        astronautVisuals = GetComponentInChildren<SpriteRenderer>();
         astronautRB = GetComponent<Rigidbody2D>();
+
+        canMove = true;
+
         hitL = Physics2D.Raycast(rayPointLeft.transform.position, -rayPointLeft.transform.up, checkDistance, collisionMask);
         if (hitL)
             baseDistanceLeft = Vector2.Distance(rayPointLeft.transform.position, hitL.point);
@@ -58,7 +63,10 @@ public class Scr_AstronautMovement : MonoBehaviour
               if (Input.GetKey(KeyCode.A))
               {
                 MoveLeft();
-                Flip();
+
+                    Flip(true);
+
+                    
                 hitL = Physics2D.Raycast(rayPointLeft.transform.position, -rayPointLeft.transform.up, checkDistance, collisionMask);
 
                 if (hitL)
@@ -83,8 +91,10 @@ public class Scr_AstronautMovement : MonoBehaviour
               else if (Input.GetKey(KeyCode.D))
               {
                   MoveRight();
-                  Flip();
-                  hitL = Physics2D.Raycast(rayPointLeft.transform.position, -rayPointLeft.transform.up, checkDistance, collisionMask);
+
+                    Flip(false);
+                
+                hitL = Physics2D.Raycast(rayPointLeft.transform.position, -rayPointLeft.transform.up, checkDistance, collisionMask);
 
                   if (hitL)
                     currentDistanceLeft = Vector2.Distance(rayPointLeft.transform.position, hitL.point);
@@ -135,8 +145,9 @@ public class Scr_AstronautMovement : MonoBehaviour
         transform.RotateAround(planetPosition, Vector3.forward, movementSpeed / (currentPlanet.transform.GetChild(0).GetComponent<Renderer>().bounds.size.y / 2) * Time.fixedDeltaTime);
     }
 
-    private void Flip()
+    private void Flip( bool orientation)
     {
-
+        facingRight = !facingRight;
+        astronautVisuals.flipX = orientation;
     }
 }
