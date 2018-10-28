@@ -15,8 +15,8 @@ public class Scr_AstronautMovement : MonoBehaviour
     [SerializeField] private float checkDistance;
     [SerializeField] private LayerMask collisionMask;
 
-    [Header("High System Values")]
-    [SerializeField] private float highVariation;
+    [Header("Height System Values")]
+    [SerializeField] private float heightVariation;
     [SerializeField] private float precisionValue;
 
     [Header("References")]
@@ -48,85 +48,71 @@ public class Scr_AstronautMovement : MonoBehaviour
         canMove = true;
 
         hitL = Physics2D.Raycast(rayPointLeft.transform.position, -rayPointLeft.transform.up, checkDistance, collisionMask);
+
         if (hitL)
             baseDistanceLeft = Vector2.Distance(rayPointLeft.transform.position, hitL.point);
 
         hitR = Physics2D.Raycast(rayPointRight.transform.position, -rayPointRight.transform.up, checkDistance, collisionMask);
+
         if (hitR)
             baseDistanceRight = Vector2.Distance(rayPointRight.transform.position, hitR.point);
     }
 
     private void Update()
     {
-          if (canMove == true)
-          {
-              if (Input.GetKey(KeyCode.A))
-              {
-                MoveLeft();
-
-                    Flip(true);
-
-                    
+        if (canMove == true)
+        {
+            if (Input.GetKey(KeyCode.A))
+            {
                 hitL = Physics2D.Raycast(rayPointLeft.transform.position, -rayPointLeft.transform.up, checkDistance, collisionMask);
+                hitR = Physics2D.Raycast(rayPointRight.transform.position, -rayPointRight.transform.up, checkDistance, collisionMask);
+
+                MoveLeft();
+                Flip(true);
 
                 if (hitL)
                     currentDistanceLeft = Vector2.Distance(rayPointLeft.transform.position, hitL.point);
-
-                hitR = Physics2D.Raycast(rayPointRight.transform.position, -rayPointRight.transform.up, checkDistance, collisionMask);
 
                 if (hitR)
                     currentDistanceRight = Vector2.Distance(rayPointRight.transform.position, hitR.point);
 
                 if (currentDistanceLeft < (baseDistanceLeft - precisionValue))
-                  {
-                    transform.position += new Vector3(0f,(currentDistanceLeft - baseDistanceLeft) * highVariation, 0f);
-                  }
+                    transform.position += new Vector3(0f, (currentDistanceLeft - baseDistanceLeft) * heightVariation, 0f);
 
                 else if (currentDistanceLeft > (baseDistanceLeft + precisionValue))
-                  {
-                    transform.position += new Vector3(0f, (currentDistanceRight - baseDistanceRight) * highVariation, 0f);
-                  }
+                    transform.position += new Vector3(0f, (currentDistanceRight - baseDistanceRight) * heightVariation, 0f);
             }
 
-              else if (Input.GetKey(KeyCode.D))
-              {
-                  MoveRight();
-
-                    Flip(false);
-                
+            else if (Input.GetKey(KeyCode.D))
+            {
                 hitL = Physics2D.Raycast(rayPointLeft.transform.position, -rayPointLeft.transform.up, checkDistance, collisionMask);
+                hitR = Physics2D.Raycast(rayPointRight.transform.position, -rayPointRight.transform.up, checkDistance, collisionMask);
 
-                  if (hitL)
+                MoveRight();
+                Flip(false);
+
+                if (hitL)
                     currentDistanceLeft = Vector2.Distance(rayPointLeft.transform.position, hitL.point);
 
-                  hitR = Physics2D.Raycast(rayPointRight.transform.position, -rayPointRight.transform.up, checkDistance, collisionMask);
-
-                  if (hitR)
+                if (hitR)
                     currentDistanceRight = Vector2.Distance(rayPointRight.transform.position, hitR.point);
 
-                  if (currentDistanceRight < (baseDistanceRight - precisionValue))
-                  {
-                    transform.position += new Vector3(0f, (currentDistanceRight - baseDistanceRight) * highVariation, 0f);
-                  }
-                  else if (currentDistanceRight > (baseDistanceRight + precisionValue))
-                  {
-                    transform.position += new Vector3(0f, (currentDistanceLeft - baseDistanceLeft) * highVariation, 0f);
-                  }
+                if (currentDistanceRight < (baseDistanceRight - precisionValue))
+                    transform.position += new Vector3(0f, (currentDistanceRight - baseDistanceRight) * heightVariation, 0f);
+
+                else if (currentDistanceRight > (baseDistanceRight + precisionValue))
+                    transform.position += new Vector3(0f, (currentDistanceLeft - baseDistanceLeft) * heightVariation, 0f);
             }
-          }
-
-
+        }
     }
 
     private void FixedUpdate()
     {
-
         if (onGround)
         {
             transform.position += (currentPlanet.transform.position - planetPosition);
             planetPosition = currentPlanet.transform.position;
         }
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
