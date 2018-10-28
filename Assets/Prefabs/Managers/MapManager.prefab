@@ -51,19 +51,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a60e7e6b4b4eba4ea7f0df72b7e1791, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dragSpeed: 0
-  maxZoom: 0
-  minZoom: 0
-  zoomSpeed: 0
-  clampBorderSize: {x: 0, y: 0}
+  dragSpeed: -1
+  maxZoom: 300
+  minZoom: 100
+  zoomSpeed: 100
+  clampBorderSize: {x: 20, y: 20}
   mainCamera: {fileID: 0}
   mapCamera: {fileID: 0}
-  mapIndicator: {fileID: 1454654233925100, guid: 2e19b1cec2a1b3643927fae1203a82ac,
-    type: 2}
-  directionIndicator: {fileID: 1415828685659110, guid: c2e828f2f7c94fa498f9c9e58fd973d1,
-    type: 2}
   mainCanvas: {fileID: 0}
   mapCanvas: {fileID: 0}
   target: {fileID: 0}
   mapActive: 0
   currentTarget: {fileID: 0}
+  waypointActive: 0
+  myRectTransform: {fileID: 0}
+  directionIndicator: {fileID: 0}
+  mapIndicator: {fileID: 1454654233925100, guid: 2e19b1cec2a1b3643927fae1203a82ac,
+    type: 2}

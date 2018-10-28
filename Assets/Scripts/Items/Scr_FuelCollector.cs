@@ -15,54 +15,45 @@ public class Scr_FuelCollector : MonoBehaviour
     [SerializeField] private TextMeshProUGUI productionText;
     [SerializeField] private Transform fuelBlock;
 
-    private int fuelAmount;
+    [HideInInspector] public bool canCollect;
+    [HideInInspector] public int fuelAmount;
+    
     private float productionTimeSaved;
     private bool onRange;
     private GameObject astronaut;
+    private Scr_GameManager gameManager;
+    private Scr_AstronautMovement astronautMovement;
 
     private void Start()
     {
-        astronaut = GameObject.FindGameObjectWithTag("Astronauta");
+        astronautMovement = GameObject.Find("Astronaut").GetComponent<Scr_AstronautMovement>();
+        gameManager = GameObject.Find("GameManager").GetComponent<Scr_GameManager>();
 
         productionTimeSaved = productionTime;
+
+        transform.SetParent(gameManager.initialPlanet.transform);
     }
 
     private void Update()
     {
-        productionTime -= Time.deltaTime;
+        productionTimeSaved -= Time.deltaTime;
+        productionText.text = fuelAmount.ToString();
 
-        if (productionTime <= 0)
-            productionTime = productionTimeSaved;
-
-        else
+        if (productionTimeSaved <= 0)
         {
             fuelAmount += 1;
-            productionText.text = fuelAmount.ToString();
+            productionTimeSaved = productionTime;
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && onRange)
-        {
-            if (fuelAmount > 0 && astronaut.GetComponent<Scr_AstronautsActions>().canGrab)
-            {
-                astronaut.GetComponent<Scr_AstronautsActions>().canGrab = false;
-                fuelAmount -= 1;
-                productionText.text = fuelAmount.ToString();
-
-                Instantiate(fuelBlock, astronaut.GetComponent<Scr_AstronautsActions>().pickPoint.transform.position, astronaut.GetComponent<Scr_AstronautsActions>().pickPoint.transform.rotation).SetParent(astronaut.transform);
-            }
-        }
-
+        if (fuelAmount > 0)
+            canCollect = true;
+        else
+            canCollect = false;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void CollectFuel()
     {
-        if (collision.gameObject.tag == "Astronaut")
-            onRange = true;
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Astronaut")
-            onRange = false;
+        if (canCollect)
+            fuelAmount -= 1;
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -10,15 +12,43 @@ using UnityEngine;
 
 public class Scr_PlayerShipStats : MonoBehaviour
 {
+    [Header("Respawn Properties")]
+    [SerializeField] private float respawnTime;
+
     [Header("Fuel Properties")]
     [SerializeField] public float currentFuel;
     [SerializeField] private float maxFuel;
     [SerializeField] private float normalConsume;
     [SerializeField] private float boostConsume;
 
+    [Header("References")]
+    [SerializeField] ParticleSystem deathParticles;
+    [SerializeField] SpriteRenderer shipVisuals;
+    [SerializeField] SpriteRenderer mapVisuals;
+    [SerializeField] TrailRenderer trailRenderer;
+    [SerializeField] Slider fuelSlider;
+    [SerializeField] Image fuelSliderFill;
+
+    private Scr_PlayerShipMovement playerShipMovement;
+    private Rigidbody2D rb;
+
+    private void Start()
+    {
+        playerShipMovement = GetComponent<Scr_PlayerShipMovement>();
+        rb = GetComponent<Rigidbody2D>();
+
+        fuelSlider.maxValue = maxFuel;
+    }
+
     private void Update()
     {
         currentFuel = Mathf.Clamp(currentFuel, 0f, maxFuel);
+        fuelSlider.value = currentFuel;
+
+        if (fuelSlider.value <= 150)
+            fuelSliderFill.color = Color.yellow;
+        if (fuelSlider.value <= 50)
+            fuelSliderFill.color = Color.red;
     }
 
     public void FuelConsumption(bool boost)
@@ -37,6 +67,21 @@ public class Scr_PlayerShipStats : MonoBehaviour
 
     public void Death()
     {
+        playerShipMovement.canMove = false;
+        playerShipMovement.dead = true;
+        rb.isKinematic = true;
+        rb.velocity = Vector3.zero;
+        shipVisuals.gameObject.SetActive(false);
+        mapVisuals.gameObject.SetActive(false);
+        trailRenderer.enabled = false;
+        deathParticles.Play();
+        playerShipMovement.thrusterParticles.Stop();
 
+        Invoke("Respawn", respawnTime);
+    }
+
+    private void Respawn()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

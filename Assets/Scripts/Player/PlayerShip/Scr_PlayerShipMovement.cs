@@ -35,8 +35,8 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [SerializeField] private float timeToDestroyParticles;
 
     [Header("References FX")]
-    [SerializeField] ParticleSystem thrusterParticles;
-    [SerializeField] GameObject dustParticles;
+    [SerializeField] public ParticleSystem thrusterParticles;
+    [SerializeField] private GameObject dustParticles;
 
     [Header("References")]
     [SerializeField] private GameObject mapVisuals;
@@ -45,16 +45,17 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [HideInInspector] public bool onBoard;
     [HideInInspector] public bool onGround;
     [HideInInspector] public bool insideAtmosphere = true;
+    [HideInInspector] public bool canMove = true;
+    [HideInInspector] public bool dead;
+    [HideInInspector] public bool takingOffParticles;
     [HideInInspector] public GameObject currentPlanet;
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public Camera mainCamera;
     [HideInInspector] public Vector3 initialVelocity; // Sin usar
 
-    private bool canMove = true;
     private bool canRotateShip = true;
     private bool landing;
     private bool takingOff;
-    public bool takingOffParticles;
     private float takeOffTimerSaved;
     private bool countDownToControl;
     private float speedLimit;
@@ -66,12 +67,14 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     private Scr_PlayerShipStats playerShipStats;
     private Scr_PlayerShipPrediction playerShipPrediction;
     private Scr_PlayerShipActions playerShipActions;
+    private Scr_AstronautMovement astronautMovement;
 
     private void Start()
     {
         mainCamera = GameObject.Find("MainCamera").GetComponent<Camera>();
         limiterText = GameObject.Find("LimiterText").GetComponent<TextMeshProUGUI>();
         speedText = GameObject.Find("SpeedText").GetComponent<TextMeshProUGUI>();
+        astronautMovement = GameObject.Find("Astronaut").GetComponent<Scr_AstronautMovement>();
 
         rb = GetComponent<Rigidbody2D>();
         playerShipPrediction = GetComponent<Scr_PlayerShipPrediction>();
@@ -137,9 +140,10 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Planet")
+        if (collision.gameObject.tag == "Planet" && !dead)
         {
             currentPlanet = collision.gameObject;
+            astronautMovement.currentPlanet = collision.gameObject;
             canMove = false;
             onGround = true;
             playerShipActions.canExitShip = true;
@@ -153,7 +157,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Planet")
+        if (collision.gameObject.tag == "Planet" && !dead)
         {
             playerShipActions.canExitShip = false;
             countDownToControl = true;
@@ -208,7 +212,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
     private void ShipControl()
     {
-        if (!canMove)
+        if (!canMove && !dead)
         {
             landTimer -= Time.fixedDeltaTime;
 

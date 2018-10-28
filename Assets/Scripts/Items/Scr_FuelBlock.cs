@@ -8,39 +8,14 @@ using UnityEngine;
 public class Scr_FuelBlock : MonoBehaviour
 {
     [Header("Object Properties")]
-    [SerializeField] private int fuelAmount;
+    [SerializeField] public int fuelAmount;
 
-    private bool onRange;
-    private GameObject nave;
-    private GameObject astronaut;
+    private GameObject astronautPickUp;
 
     private void Start()
     {
-        astronaut = transform.parent.gameObject;
-    }
+        astronautPickUp = GameObject.Find("PickUp");
 
-    private void Update()
-    {
-        if (onRange)
-        {
-            nave.GetComponent<Scr_PlayerShipStats>().ReFuel(fuelAmount);
-            astronaut.GetComponent<Scr_AstronautsActions>().canGrab = true;
-            Destroy(gameObject);
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "PlayerShip")
-        {
-            nave = collision.gameObject;
-            onRange = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "PlayerShip")
-            onRange = false;
+        transform.SetParent(astronautPickUp.transform);
     }
 }
