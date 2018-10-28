@@ -32,6 +32,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [Header("TakeOff Properties")]
     [SerializeField] private float takeOffTimer;
     [SerializeField] private float dustMultiplier;
+    [SerializeField] private float timeToDestroyParticles;
 
     [Header("References FX")]
     [SerializeField] ParticleSystem thrusterParticles;
@@ -43,7 +44,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
     [HideInInspector] public bool onBoard;
     [HideInInspector] public bool onGround;
-    [HideInInspector] public bool insideAtmosphere;
+    [HideInInspector] public bool insideAtmosphere = true;
     [HideInInspector] public GameObject currentPlanet;
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public Camera mainCamera;
@@ -53,6 +54,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     private bool canRotateShip = true;
     private bool landing;
     private bool takingOff;
+    public bool takingOffParticles;
     private float takeOffTimerSaved;
     private bool countDownToControl;
     private float speedLimit;
@@ -144,6 +146,8 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
             if ((rb.velocity.magnitude * 10) >= deathSpeed)
                 playerShipStats.Death();
+
+            takingOffParticles = true;
         }
     }
 
@@ -228,9 +232,10 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
                     if (Input.GetKey(KeyCode.LeftShift))
                     {
+                        takingOff = true;
+
                         if (insideAtmosphere)
                         {
-                            takingOff = true;
                             playerShipStats.FuelConsumption(true);
                             currentSpeed = boostSpeedPlanet;
                             rb.AddForce(transform.up * currentSpeed * Time.fixedDeltaTime);
@@ -296,6 +301,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
                     dustParticles2 = currentDustParticles.transform.GetChild(1).GetComponent<ParticleSystem>();
 
                     currentDustParticles.transform.SetParent(currentPlanet.transform);
+
                     dustParticles1.Play();
                     dustParticles2.Play();
 
@@ -304,13 +310,8 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
                     emission1.rateOverTime = (1 - dustPower) * dustMultiplier;
                     emission2.rateOverTime = (1 - dustPower) * dustMultiplier;
-                }
 
-                if (Vector2.Distance(endOfShip.position, takingOffHit.point) >= 3)
-                {
-                    GameObject currentDustParticles = GameObject.Find("DustParticles(Clone)");
-
-                    Destroy(currentDustParticles);
+                    Destroy(currentDustParticles, timeToDestroyParticles);
                 }
             }
         }
@@ -324,6 +325,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
                 if (Vector2.Distance(endOfShip.position, landingHit.point) >= 0.000000005)
                 {
                     float dustPower;
+                    Vector2 direction;
                     ParticleSystem dustParticles1;
                     ParticleSystem dustParticles2;
 
@@ -337,8 +339,14 @@ public class Scr_PlayerShipMovement : MonoBehaviour
                     dustParticles2 = currentDustParticles.transform.GetChild(1).GetComponent<ParticleSystem>();
 
                     currentDustParticles.transform.SetParent(currentPlanet.transform);
+                    currentDustParticles.transform.position = landingHit.point;
+
+                    direction = new Vector2(landingHit.point.x - currentPlanet.transform.position.x, landingHit.point.y - currentPlanet.transform.position.y);
+                    currentDustParticles.transform.up = direction;
+
                     dustParticles1.Play();
                     dustParticles2.Play();
+                    thrusterParticles.Play();
 
                     var emission1 = dustParticles1.emission;
                     var emission2 = dustParticles2.emission;
@@ -347,10 +355,11 @@ public class Scr_PlayerShipMovement : MonoBehaviour
                     emission2.rateOverTime = (1 - dustPower) * dustMultiplier;
                 }
 
-                if (onGround)
+                if (onGround && !Input.GetMouseButton(0))
                 {
                     GameObject currentDustParticles = GameObject.Find("DustParticles(Clone)");
 
+                    thrusterParticles.Stop();
                     Destroy(currentDustParticles);
                 }
             }

@@ -26,6 +26,7 @@ public class Scr_Atmosphere : MonoBehaviour
         if (collision.gameObject.tag == "PlayerShip")
         {
             playerShipMovement.insideAtmosphere = false;
+            playerShipMovement.takingOffParticles = false;
         }
     }
 }
