@@ -291,7 +291,7 @@ MonoBehaviour:
     type: 2}
   mapManager: {fileID: 1313272091}
   mapVisuals: {fileID: 860221361}
-  canvas: {fileID: 0}
+  mainCanvas: {fileID: 0}
 --- !u!58 &115657822
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -801,7 +801,7 @@ MonoBehaviour:
     type: 2}
   mapManager: {fileID: 1313272091}
   mapVisuals: {fileID: 1845966781}
-  canvas: {fileID: 0}
+  mainCanvas: {fileID: 0}
 --- !u!58 &492697987
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1125,7 +1125,7 @@ MonoBehaviour:
     type: 2}
   mapManager: {fileID: 1313272091}
   mapVisuals: {fileID: 1632822734}
-  canvas: {fileID: 0}
+  mainCanvas: {fileID: 0}
 --- !u!58 &755707168
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1163,11 +1163,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!1 &767405005 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1247645789991328, guid: bbbbba65b8622bd4b990250ed90c558a,
-    type: 2}
-  m_PrefabInternal: {fileID: 1935989260}
 --- !u!4 &812404521 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4716615781731968, guid: bc458ee511220854cbc76d1626ceae4f,
@@ -2461,9 +2456,34 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114696350668254112, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
         type: 2}
-      propertyPath: dustParticles
+      propertyPath: dustMultiplier
+      value: 750
+      objectReference: {fileID: 0}
+    - target: {fileID: 96206161718378074, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
+        type: 2}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 0.12805066
+      objectReference: {fileID: 0}
+    - target: {fileID: 96206161718378074, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
+        type: 2}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 96206161718378074, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
+        type: 2}
+      propertyPath: m_Parameters.widthMultiplier
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 96206161718378074, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
+        type: 2}
+      propertyPath: m_Time
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 96206161718378074, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 767405005}
+      objectReference: {fileID: 2100000, guid: 22e79bc532c4ae749a74dea5cd42a366, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15c55cceacb93ea4bb7e3f3c7e160410, type: 2}
   m_IsPrefabAsset: 0
@@ -3099,7 +3119,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 5.9
+  m_Radius: 5.5
 --- !u!114 &1842939282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3258,7 +3278,7 @@ MonoBehaviour:
     type: 2}
   mapManager: {fileID: 1313272091}
   mapVisuals: {fileID: 1332209163}
-  canvas: {fileID: 0}
+  mainCanvas: {fileID: 0}
 --- !u!58 &1859374550
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3446,52 +3466,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1593395877}
   m_Script: {fileID: 11500000, guid: 0e51695d77089f54b95c91905edfacff, type: 3}
---- !u!1001 &1935989260
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4657186177953544, guid: bbbbba65b8622bd4b990250ed90c558a, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 150.24129
-      objectReference: {fileID: 0}
-    - target: {fileID: 4657186177953544, guid: bbbbba65b8622bd4b990250ed90c558a, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 5.193753
-      objectReference: {fileID: 0}
-    - target: {fileID: 4657186177953544, guid: bbbbba65b8622bd4b990250ed90c558a, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4657186177953544, guid: bbbbba65b8622bd4b990250ed90c558a, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4657186177953544, guid: bbbbba65b8622bd4b990250ed90c558a, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4657186177953544, guid: bbbbba65b8622bd4b990250ed90c558a, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4657186177953544, guid: bbbbba65b8622bd4b990250ed90c558a, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4657186177953544, guid: bbbbba65b8622bd4b990250ed90c558a, type: 2}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1247645789991328, guid: bbbbba65b8622bd4b990250ed90c558a, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: bbbbba65b8622bd4b990250ed90c558a, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1 &2009863782
 GameObject:
   m_ObjectHideFlags: 0
@@ -3633,7 +3607,7 @@ MonoBehaviour:
     type: 2}
   mapManager: {fileID: 1313272091}
   mapVisuals: {fileID: 402883085}
-  canvas: {fileID: 0}
+  mainCanvas: {fileID: 0}
 --- !u!58 &2109190147
 CircleCollider2D:
   m_ObjectHideFlags: 0

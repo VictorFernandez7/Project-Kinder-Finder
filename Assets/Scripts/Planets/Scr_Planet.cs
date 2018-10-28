@@ -18,7 +18,7 @@ public class Scr_Planet : MonoBehaviour
     [SerializeField] private GameObject directionIndicator;
     [SerializeField] private Scr_MapManager mapManager;
     [SerializeField] private GameObject mapVisuals;
-    [SerializeField] private GameObject canvas;
+    [SerializeField] private GameObject mainCanvas;
 
     private double gravityConstant;
     private GameObject playerShip;
@@ -105,7 +105,7 @@ public class Scr_Planet : MonoBehaviour
                 directionIndicator = Instantiate(directionIndicator);
                 mapManager.mapIndicator = mapIndicator;
                 mapManager.directionIndicator = directionIndicator;
-                directionIndicator.transform.SetParent(canvas.transform);
+                directionIndicator.transform.SetParent(mainCanvas.transform);
                 mapManager.myRectTransform = directionIndicator.GetComponent<RectTransform>();
                 mapManager.currentTarget = this.gameObject;
                 mapManager.target = this.gameObject;

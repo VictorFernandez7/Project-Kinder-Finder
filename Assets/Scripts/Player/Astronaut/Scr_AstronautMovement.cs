@@ -12,10 +12,12 @@ public class Scr_AstronautMovement : MonoBehaviour
 {
     [Header("Movement Properties")]
     [SerializeField] private float movementSpeed;
+    [SerializeField] private float checkDistance;
+    [SerializeField] private LayerMask collisionMask;
+
+    [Header("References")]
     [SerializeField] private GameObject rayPointLeft;
     [SerializeField] private GameObject rayPointRight;
-    [SerializeField] private float distance;
-    [SerializeField] private LayerMask collisionMask;
 
     [HideInInspector] public Vector3 planetPosition;
     [HideInInspector] public bool onGround = true;
@@ -33,7 +35,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     {
         canMove = true;
         astronautRB = GetComponent<Rigidbody2D>();
-        hitL = Physics2D.Raycast(rayPointLeft.transform.position, -rayPointLeft.transform.up, distance, collisionMask);
+        hitL = Physics2D.Raycast(rayPointLeft.transform.position, -rayPointLeft.transform.up, checkDistance, collisionMask);
         if (hitL)
             currentDistance = Vector2.Distance(rayPointLeft.transform.position, hitL.transform.position);
     }
@@ -55,8 +57,8 @@ public class Scr_AstronautMovement : MonoBehaviour
               }
           }
 
-        hitL = Physics2D.Raycast(rayPointLeft.transform.position, -rayPointLeft.transform.up, distance, collisionMask);
-        hitR = Physics2D.Raycast(rayPointRight.transform.position, -rayPointLeft.transform.up, distance, collisionMask);
+        hitL = Physics2D.Raycast(rayPointLeft.transform.position, -rayPointLeft.transform.up, checkDistance, collisionMask);
+        hitR = Physics2D.Raycast(rayPointRight.transform.position, -rayPointLeft.transform.up, checkDistance, collisionMask);
     }
 
     private void FixedUpdate()
