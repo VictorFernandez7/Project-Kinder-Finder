@@ -12,7 +12,7 @@ public class Scr_Atmosphere : MonoBehaviour
         if (collision.gameObject.tag == "PlayerShip")
         {
             playerShipMovement.insideAtmosphere = true;
-            playerShipMovement.currentPlanet = transform.parent.gameObject;
+            playerShipMovement.currentPlanet = transform.parent.transform.parent.gameObject;
         }
     }
 
