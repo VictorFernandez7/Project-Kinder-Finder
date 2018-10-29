@@ -10,7 +10,6 @@ public class Scr_CameraFollow : MonoBehaviour
     [SerializeField] private float zoomSpeed;
     [SerializeField] private float zoomDistance;
 
-
     [Header("References")]
     [SerializeField] private GameObject playerShip;
     [SerializeField] private GameObject astronaut;
@@ -20,15 +19,17 @@ public class Scr_CameraFollow : MonoBehaviour
     public GameObject currentPlanet;
     private Camera mainCamera;
 
-    private float rot;
+    private float astronautRotation;
+    private float currentRotation;
+    private bool tookOff;
+    private bool changeRotation;
 
     private void Start()
     {
         playerShip = GameObject.Find("PlayerShip");
         astronaut = GameObject.Find("Astronaut");
-
-        //currentPlanet = astronaut.GetComponent<Scr_AstronautMovement>().currentPlanet;
         mainCamera = GetComponent<Camera>();
+        //currentPlanet = astronaut.GetComponent<Scr_AstronautMovement>().currentPlanet;
 
         mainCamera.orthographicSize = zoomInPlanet;
     }
@@ -41,13 +42,29 @@ public class Scr_CameraFollow : MonoBehaviour
         else
         {
             transform.position = new Vector3(astronaut.transform.position.x, astronaut.transform.position.y, -10);
-            rot = astronaut.transform.rotation.eulerAngles.z;
-            transform.rotation = Quaternion.Euler(0f, 0f, rot);
+            changeRotation = true;
+            
         }
 
-        /*if (Vector3.Distance(currentPlanet.transform.position, playerShip.transform.position) > zoomDistance)
+        if (changeRotation)
         {
-            mainCamera.orthographicSize = Mathf.Lerp(zoomInPlanet, zoomInSpace, Time.deltaTime);
-        }*/
+            astronautRotation = astronaut.transform.rotation.eulerAngles.z;
+            currentRotation = transform.rotation.eulerAngles.z;
+            transform.rotation = Quaternion.Euler(0f, 0f, astronautRotation);
+
+            //transform.rotation = Quaternion.Euler(0, 0, Mathf.Lerp(currentRotation, astronautRotation, Time.deltaTime));
+        }
+
+        if (Vector3.Distance(currentPlanet.transform.position, playerShip.transform.position) > zoomDistance && mainCamera.orthographicSize < zoomInSpace)
+        {
+            mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, zoomInSpace, Time.deltaTime * zoomSpeed);
+
+            tookOff = true;
+        }
+
+        if (Vector3.Distance(currentPlanet.transform.position, playerShip.transform.position) < zoomDistance && mainCamera.orthographicSize > zoomInPlanet && tookOff)
+        {
+            mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, zoomInPlanet, Time.deltaTime * zoomSpeed);
+        }
     }
 }
