@@ -60,6 +60,7 @@ public class Scr_AstronautsActions : MonoBehaviour
         {
             playerShip.GetComponent<Scr_PlayerShipStats>().ReFuel(currentFuelBLock.GetComponent<Scr_FuelBlock>().fuelAmount);
             Destroy(currentFuelBLock);
+            emptyHands = true;
         }
     }
 
