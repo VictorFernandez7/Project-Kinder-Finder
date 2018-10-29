@@ -17,7 +17,6 @@ public class Scr_AstronautMovement : MonoBehaviour
     [SerializeField] private LayerMask collisionMask;
 
     [Header("Height System Values")]
-    [SerializeField] private float heightVariation;
     [SerializeField] private float precisionValue;
 
     [Header("References")]
@@ -69,54 +68,48 @@ public class Scr_AstronautMovement : MonoBehaviour
             baseDistanceRight = Vector2.Distance(rayPointRight.transform.position, hitR.point);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
+        Debug.DrawLine(rayPointLeft.transform.position, hitL.point, Color.yellow);
+        Debug.DrawLine(rayPointRight.transform.position, hitR.point, Color.yellow);
+
         if (canMove == true)
         {
+            hitL = Physics2D.Raycast(rayPointLeft.transform.position, -rayPointLeft.transform.up, checkDistance, collisionMask);
+            hitR = Physics2D.Raycast(rayPointRight.transform.position, -rayPointRight.transform.up, checkDistance, collisionMask);
+
+            if (hitL)
+                currentDistanceLeft = Vector2.Distance(rayPointLeft.transform.position, hitL.point);
+
+            if (hitR)
+                currentDistanceRight = Vector2.Distance(rayPointRight.transform.position, hitR.point);
+
             if (Input.GetKey(KeyCode.A))
             {
-                hitL = Physics2D.Raycast(rayPointLeft.transform.position, -rayPointLeft.transform.up, checkDistance, collisionMask);
-                hitR = Physics2D.Raycast(rayPointRight.transform.position, -rayPointRight.transform.up, checkDistance, collisionMask);
-
                 MoveLeft();
 
                 if (faceRight)
                     Flip(true);
 
-                if (hitL)
-                    currentDistanceLeft = Vector2.Distance(rayPointLeft.transform.position, hitL.point);
-
-                if (hitR)
-                    currentDistanceRight = Vector2.Distance(rayPointRight.transform.position, hitR.point);
-
                 if (currentDistanceLeft < (baseDistanceLeft - precisionValue))
-                    transform.position += new Vector3(0f, (currentDistanceLeft - baseDistanceLeft) * heightVariation, 0f);
+                    transform.position += new Vector3(0f, (baseDistanceLeft - currentDistanceLeft), 0f);
 
                 else if (currentDistanceLeft > (baseDistanceLeft + precisionValue))
-                    transform.position += new Vector3(0f, (currentDistanceRight - baseDistanceRight) * heightVariation, 0f);
+                    transform.position += new Vector3(0f, (baseDistanceRight - currentDistanceRight), 0f);
             }
 
             else if (Input.GetKey(KeyCode.D))
             {
-                hitL = Physics2D.Raycast(rayPointLeft.transform.position, -rayPointLeft.transform.up, checkDistance, collisionMask);
-                hitR = Physics2D.Raycast(rayPointRight.transform.position, -rayPointRight.transform.up, checkDistance, collisionMask);
-
                 MoveRight();
 
                 if (!faceRight)
                     Flip(false);
 
-                if (hitL)
-                    currentDistanceLeft = Vector2.Distance(rayPointLeft.transform.position, hitL.point);
-
-                if (hitR)
-                    currentDistanceRight = Vector2.Distance(rayPointRight.transform.position, hitR.point);
-
                 if (currentDistanceRight < (baseDistanceRight - precisionValue))
-                    transform.position += new Vector3(0f, (currentDistanceRight - baseDistanceRight) * heightVariation, 0f);
+                    transform.position += new Vector3(0f, (baseDistanceRight - currentDistanceRight), 0f);
 
                 else if (currentDistanceRight > (baseDistanceRight + precisionValue))
-                    transform.position += new Vector3(0f, (currentDistanceLeft - baseDistanceLeft) * heightVariation, 0f);
+                    transform.position += new Vector3(0f, (baseDistanceLeft - currentDistanceLeft), 0f);
             }
 
             if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A))
@@ -124,10 +117,7 @@ public class Scr_AstronautMovement : MonoBehaviour
             else
                 walkingParticles.Stop();
         }
-    }
-
-    private void FixedUpdate()
-    {
+   
         if (onGround)
         {
             transform.position += (currentPlanet.transform.position - planetPosition);
