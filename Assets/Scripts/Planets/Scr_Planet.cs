@@ -27,6 +27,7 @@ public class Scr_Planet : MonoBehaviour
     private Rigidbody2D planetRb;
     private Rigidbody2D playerShipRb;
     private Rigidbody2D astronautRB;
+    private bool indicator;
 
     private void Start()
     {
@@ -101,6 +102,12 @@ public class Scr_Planet : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
+                if (indicator)
+                {
+                    Destroy (mapIndicator);
+                    Destroy (directionIndicator);
+                }
+
                 mapIndicator = Instantiate(mapIndicator);
                 directionIndicator = Instantiate(directionIndicator);
                 mapManager.mapIndicator = mapIndicator;
@@ -111,6 +118,7 @@ public class Scr_Planet : MonoBehaviour
                 mapManager.target = this.gameObject;
                 mapManager.waypointActive = true;
                 mapIndicator.transform.position = transform.position + new Vector3(0f, ((transform.GetChild(1).GetComponent<Renderer>().bounds.size.x) / 2) + 10f, 0f);
+                indicator = true;
             }
         }
     }
