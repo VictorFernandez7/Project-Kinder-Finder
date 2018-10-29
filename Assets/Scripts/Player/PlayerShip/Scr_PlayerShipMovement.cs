@@ -41,6 +41,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameObject mapVisuals;
     [SerializeField] private Transform endOfShip;
+    [SerializeField] private Animator planetPanel;
 
     [HideInInspector] public bool onBoard;
     [HideInInspector] public bool onGround;
@@ -316,6 +317,8 @@ public class Scr_PlayerShipMovement : MonoBehaviour
                     emission2.rateOverTime = (1 - dustPower) * dustMultiplier;
 
                     Destroy(currentDustParticles, timeToDestroyParticles);
+
+                    planetPanel.SetTrigger("TookOff");
                 }
             }
         }
