@@ -110,6 +110,8 @@ public class Scr_PlayerShipMovement : MonoBehaviour
                 {
                     ShipLanding();
                     LandingEffects(false);
+
+                    mainCamera.GetComponent<Scr_CameraFollow>().smoothRotation = true;
                 }
             }
         }
@@ -292,6 +294,8 @@ public class Scr_PlayerShipMovement : MonoBehaviour
             {
                 if (Vector2.Distance(endOfShip.position, takingOffHit.point) >= 0.000000005)
                 {
+                    mainCamera.GetComponent<Scr_CameraFollow>().smoothRotation = false;
+
                     float dustPower;
                     ParticleSystem dustParticles1;
                     ParticleSystem dustParticles2;
