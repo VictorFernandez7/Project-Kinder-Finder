@@ -23,6 +23,7 @@ public class Scr_CameraFollow : MonoBehaviour
 
     private Vector3 playerShipVectorUp;
     private Vector3 astronauUpVector;
+    private float angleDifference;
     private float astronautRotation;
     private float currentRotation;
     private bool tookOff;
@@ -39,6 +40,8 @@ public class Scr_CameraFollow : MonoBehaviour
 
     private void Update()
     {
+        angleDifference = Vector3.Angle(transform.up, playerShipVectorUp);
+
         if (followAstronaut == false)
         {
             transform.position = new Vector3(playerShip.transform.position.x, playerShip.transform.position.y, -10);
@@ -47,7 +50,7 @@ public class Scr_CameraFollow : MonoBehaviour
             {
                 playerShipVectorUp = playerShip.transform.up;
 
-                transform.up = Vector3.Lerp(transform.up, playerShipVectorUp, Time.deltaTime * rotationSpeed);
+                transform.up = Vector3.Lerp(transform.up, playerShipVectorUp, Time.deltaTime * (angleDifference / 60));
             }
         }
 
