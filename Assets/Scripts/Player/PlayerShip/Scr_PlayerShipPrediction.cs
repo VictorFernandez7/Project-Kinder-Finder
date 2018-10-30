@@ -14,7 +14,7 @@ public class Scr_PlayerShipPrediction : MonoBehaviour
     [Range(0, 7)] [SerializeField] private int predictionTime;
 
     [HideInInspector] public LineRenderer predictionLine;
-    [HideInInspector] public LineRenderer predictionLineMap;
+    public LineRenderer predictionLineMap;
 
     private int pointNumber;
     private Scr_PlanetManager planetManager;
@@ -26,7 +26,11 @@ public class Scr_PlayerShipPrediction : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
         predictionLine = GetComponent<LineRenderer>();
-        predictionLineMap = GetComponentInChildren<LineRenderer>();
+    }
+
+    private void FixedUpdate()
+    {
+        Prediction();
     }
 
     private Vector3[] GeneratePredictionPoints()

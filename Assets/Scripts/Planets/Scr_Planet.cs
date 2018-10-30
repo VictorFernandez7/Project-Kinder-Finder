@@ -104,7 +104,6 @@ public class Scr_Planet : MonoBehaviour
             {
                 if (mapManager.indicatorActive)
                 {
-
                     Destroy (mapManager.mapIndicator);
                     Destroy (mapManager.directionIndicator);
                 }
