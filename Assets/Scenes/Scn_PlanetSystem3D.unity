@@ -285,13 +285,13 @@ MonoBehaviour:
   maxClampDistance: 6.59
   minClampDistance: 2.45
   rotationPivot: {fileID: 492697985}
-  mapIndicator: {fileID: 1454654233925100, guid: 2e19b1cec2a1b3643927fae1203a82ac,
+  mapIndicator: {fileID: 1537797829338736, guid: d2431a6539bbcd045b900b661cb80386,
     type: 2}
-  directionIndicator: {fileID: 1415828685659110, guid: c2e828f2f7c94fa498f9c9e58fd973d1,
+  directionIndicator: {fileID: 1950305335235828, guid: 1119c64b41cb07c41a19ca011a2d1f83,
     type: 2}
   mapManager: {fileID: 1313272091}
   mapVisuals: {fileID: 860221361}
-  mainCanvas: {fileID: 0}
+  mainCanvas: {fileID: 283162598}
 --- !u!58 &115657822
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1197,6 +1197,195 @@ Transform:
   m_Father: {fileID: 75527859}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &451334838 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1179959987047468, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
+    type: 2}
+  m_PrefabInternal: {fileID: 1288940837}
+--- !u!96 &451334841
+TrailRenderer:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 451334838}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 2100000, guid: 22e79bc532c4ae749a74dea5cd42a366, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Time: 5
+  m_Parameters:
+    serializedVersion: 2
+    widthMultiplier: 1
+    widthCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorGradient:
+      serializedVersion: 2
+      key0: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 1}
+      key2: {r: 0, g: 0, b: 0, a: 0}
+      key3: {r: 0, g: 0, b: 0, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 65535
+      ctime2: 0
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
+    numCornerVertices: 0
+    numCapVertices: 0
+    alignment: 0
+    textureMode: 0
+    generateLightingData: 0
+  m_MinVertexDistance: 0.1
+  m_Autodestruct: 0
+  m_Emitting: 1
+--- !u!120 &451334842
+LineRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 451334838}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Positions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
+  m_Parameters:
+    serializedVersion: 2
+    widthMultiplier: 1
+    widthCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorGradient:
+      serializedVersion: 2
+      key0: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 1}
+      key2: {r: 0, g: 0, b: 0, a: 0}
+      key3: {r: 0, g: 0, b: 0, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 65535
+      ctime2: 0
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
+    numCornerVertices: 0
+    numCapVertices: 0
+    alignment: 0
+    textureMode: 0
+    generateLightingData: 0
+  m_UseWorldSpace: 1
+  m_Loop: 0
 --- !u!1 &492697985
 GameObject:
   m_ObjectHideFlags: 0
@@ -1232,13 +1421,13 @@ MonoBehaviour:
   maxClampDistance: 6.59
   minClampDistance: 2.45
   rotationPivot: {fileID: 441807388}
-  mapIndicator: {fileID: 1454654233925100, guid: 2e19b1cec2a1b3643927fae1203a82ac,
+  mapIndicator: {fileID: 1537797829338736, guid: d2431a6539bbcd045b900b661cb80386,
     type: 2}
-  directionIndicator: {fileID: 1415828685659110, guid: c2e828f2f7c94fa498f9c9e58fd973d1,
+  directionIndicator: {fileID: 1950305335235828, guid: 1119c64b41cb07c41a19ca011a2d1f83,
     type: 2}
   mapManager: {fileID: 1313272091}
   mapVisuals: {fileID: 1845966781}
-  mainCanvas: {fileID: 0}
+  mainCanvas: {fileID: 283162598}
 --- !u!58 &492697987
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1752,13 +1941,13 @@ MonoBehaviour:
   maxClampDistance: 23.94
   minClampDistance: 14.7
   rotationPivot: {fileID: 441807388}
-  mapIndicator: {fileID: 1454654233925100, guid: 2e19b1cec2a1b3643927fae1203a82ac,
+  mapIndicator: {fileID: 1537797829338736, guid: d2431a6539bbcd045b900b661cb80386,
     type: 2}
-  directionIndicator: {fileID: 1415828685659110, guid: c2e828f2f7c94fa498f9c9e58fd973d1,
+  directionIndicator: {fileID: 1950305335235828, guid: 1119c64b41cb07c41a19ca011a2d1f83,
     type: 2}
   mapManager: {fileID: 1313272091}
   mapVisuals: {fileID: 1632822734}
-  mainCanvas: {fileID: 0}
+  mainCanvas: {fileID: 283162598}
 --- !u!58 &755707168
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1796,34 +1985,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!1 &766839900
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 766839901}
-  m_Layer: 11
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &766839901
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 766839900}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 159.23, y: 0.24, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &812404521 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4716615781731968, guid: bc458ee511220854cbc76d1626ceae4f,
@@ -1875,6 +2036,7 @@ GameObject:
   m_Component:
   - component: {fileID: 860221362}
   - component: {fileID: 860221363}
+  - component: {fileID: 860221364}
   m_Layer: 9
   m_Name: Map Visuals
   m_TagString: Untagged
@@ -1943,6 +2105,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &860221364
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 860221361}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 4.3849998
 --- !u!1 &878877040
 GameObject:
   m_ObjectHideFlags: 0
@@ -2635,6 +2812,16 @@ Prefab:
       propertyPath: planetPanel
       value: 
       objectReference: {fileID: 1915165950}
+    - target: {fileID: 120585037782567636, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
+        type: 2}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 0.041885376
+      objectReference: {fileID: 0}
+    - target: {fileID: 114544141144842080, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
+        type: 2}
+      propertyPath: predictionLineMap
+      value: 
+      objectReference: {fileID: 451334842}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15c55cceacb93ea4bb7e3f3c7e160410, type: 2}
   m_IsPrefabAsset: 0
@@ -3263,6 +3450,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1632822735}
   - component: {fileID: 1632822736}
+  - component: {fileID: 1632822737}
   m_Layer: 9
   m_Name: Map Visuals
   m_TagString: Untagged
@@ -3331,6 +3519,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &1632822737
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1632822734}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 4.385
 --- !u!114 &1634334467 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114911509645942742, guid: 5c7e8f1f62be70143b2e0edf73736d31,
@@ -3716,6 +3919,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1845966782}
   - component: {fileID: 1845966783}
+  - component: {fileID: 1845966784}
   m_Layer: 9
   m_Name: Map Visuals
   m_TagString: Untagged
@@ -3784,6 +3988,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &1845966784
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1845966781}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 4.3849998
 --- !u!1 &1855744291 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1977310056797718, guid: 1356dbf95eaed654cbd4b78550bbc468,
@@ -3846,9 +4065,9 @@ MonoBehaviour:
   maxClampDistance: 14.14
   minClampDistance: 8.08
   rotationPivot: {fileID: 441807388}
-  mapIndicator: {fileID: 1454654233925100, guid: 2e19b1cec2a1b3643927fae1203a82ac,
+  mapIndicator: {fileID: 1537797829338736, guid: d2431a6539bbcd045b900b661cb80386,
     type: 2}
-  directionIndicator: {fileID: 1719211965737268, guid: bb7812d188701f548aabb4ba0a256349,
+  directionIndicator: {fileID: 1950305335235828, guid: 1119c64b41cb07c41a19ca011a2d1f83,
     type: 2}
   mapManager: {fileID: 1313272091}
   mapVisuals: {fileID: 1332209163}
@@ -4142,9 +4361,9 @@ MonoBehaviour:
   maxClampDistance: 6.59
   minClampDistance: 2.45
   rotationPivot: {fileID: 441807388}
-  mapIndicator: {fileID: 1454654233925100, guid: 2e19b1cec2a1b3643927fae1203a82ac,
+  mapIndicator: {fileID: 1537797829338736, guid: d2431a6539bbcd045b900b661cb80386,
     type: 2}
-  directionIndicator: {fileID: 1719211965737268, guid: bb7812d188701f548aabb4ba0a256349,
+  directionIndicator: {fileID: 1950305335235828, guid: 1119c64b41cb07c41a19ca011a2d1f83,
     type: 2}
   mapManager: {fileID: 1313272091}
   mapVisuals: {fileID: 402883085}
