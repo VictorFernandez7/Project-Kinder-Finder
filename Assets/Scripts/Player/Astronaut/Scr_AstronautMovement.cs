@@ -24,18 +24,18 @@ public class Scr_AstronautMovement : MonoBehaviour
     [SerializeField] private GameObject rayPointRight;
     [SerializeField] private ParticleSystem walkingParticles;
     [SerializeField] private Transform transforms;
+    [SerializeField] private GameObject astronautVisuals;
 
     [HideInInspector] public Vector3 planetPosition;
     [HideInInspector] public bool onGround = true;
-    [HideInInspector] public bool canMove = true;
+    [HideInInspector] public bool canMove;
     [HideInInspector] public bool canEnterShip;
     [HideInInspector] public bool closeToCollector;
     [HideInInspector] public bool faceRight;
     [HideInInspector] public GameObject currentPlanet;
     [HideInInspector] public GameObject currentFuelCollector;
 
-    private Rigidbody2D astronautRB;
-    private Vector3 VectorTangente;
+    private Rigidbody2D rb;
     private RaycastHit2D hitL;
     private RaycastHit2D hitR;
     private float baseDistanceRight;
@@ -43,7 +43,6 @@ public class Scr_AstronautMovement : MonoBehaviour
     private float currentDistanceLeft;
     private float currentDistanceRight;
     private bool facingRight;
-    private SpriteRenderer astronautVisuals;
     private GameObject miniPlayer;
     private GameObject miniPlanet;
 
@@ -52,17 +51,16 @@ public class Scr_AstronautMovement : MonoBehaviour
         miniPlayer = GameObject.Find("MiniPlayer");
         miniPlanet = GameObject.Find("MiniPlanet");
 
-        astronautVisuals = GetComponentInChildren<SpriteRenderer>();
-        astronautRB = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
 
         canMove = true;
+        transform.up = - new Vector3(currentPlanet.transform.position.x - transform.position.x, currentPlanet.transform.position.y - transform.position.y, currentPlanet.transform.position.z - transform.position.z);
 
         hitL = Physics2D.Raycast(rayPointLeft.transform.position, -rayPointLeft.transform.up, checkDistance, collisionMask);
+        hitR = Physics2D.Raycast(rayPointRight.transform.position, -rayPointRight.transform.up, checkDistance, collisionMask);
 
         if (hitL)
             baseDistanceLeft = Vector2.Distance(rayPointLeft.transform.position, hitL.point);
-
-        hitR = Physics2D.Raycast(rayPointRight.transform.position, -rayPointRight.transform.up, checkDistance, collisionMask);
 
         if (hitR)
             baseDistanceRight = Vector2.Distance(rayPointRight.transform.position, hitR.point);
@@ -89,7 +87,7 @@ public class Scr_AstronautMovement : MonoBehaviour
                 MoveLeft();
 
                 if (faceRight)
-                    Flip(true);
+                    Flip();
 
                 if (currentDistanceLeft < (baseDistanceLeft - precisionValue))
                     transform.position += new Vector3(0f, (baseDistanceLeft - currentDistanceLeft), 0f);
@@ -103,7 +101,7 @@ public class Scr_AstronautMovement : MonoBehaviour
                 MoveRight();
 
                 if (!faceRight)
-                    Flip(false);
+                    Flip();
 
                 if (currentDistanceRight < (baseDistanceRight - precisionValue))
                     transform.position += new Vector3(0f, (baseDistanceRight - currentDistanceRight), 0f);
@@ -158,11 +156,10 @@ public class Scr_AstronautMovement : MonoBehaviour
         miniPlayer.transform.RotateAround(miniPlanet.transform.position, Vector3.forward, (movementSpeed / 4.5f) * Time.fixedDeltaTime);
     }
 
-    private void Flip(bool orientation)
+    private void Flip()
     {
         faceRight = !faceRight;
-
-        //astronautVisuals.flipX = !astronautVisuals.flipX; PENDIENTE DE CAMBIAR POR EL 3D
-        transforms.transform.Rotate(new Vector3(0, 0, 180));
+        astronautVisuals.transform.Rotate(new Vector3(0, 180, 0));
+        transforms.transform.Rotate(new Vector3(0, 180, 0));
     }
 }

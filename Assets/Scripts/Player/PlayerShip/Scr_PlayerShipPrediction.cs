@@ -11,7 +11,8 @@ using UnityEngine;
 public class Scr_PlayerShipPrediction : MonoBehaviour
 {
     [Header("Prediction Properties")]
-    [Range(0, 7)] [SerializeField] private int predictionTime;
+    [Range(0, 7)] [SerializeField] public int predictionTime;
+    [SerializeField] public float maxDistanceToPlanet;
 
     [HideInInspector] public LineRenderer predictionLine;
     public LineRenderer predictionLineMap;
@@ -19,6 +20,7 @@ public class Scr_PlayerShipPrediction : MonoBehaviour
     private int pointNumber;
     private Scr_PlanetManager planetManager;
     private Rigidbody2D rb;
+    private GameObject currentPlanet;
 
     private void Start()
     {
@@ -30,7 +32,10 @@ public class Scr_PlayerShipPrediction : MonoBehaviour
 
     private void FixedUpdate()
     {
+        currentPlanet = GetComponent<Scr_PlayerShipMovement>().currentPlanet;
+
         Prediction();
+        PredictionLength();
     }
 
     private Vector3[] GeneratePredictionPoints()
@@ -69,5 +74,25 @@ public class Scr_PlayerShipPrediction : MonoBehaviour
         predictionLine.SetPositions(points);
         predictionLineMap.positionCount = points.Length;
         predictionLineMap.SetPositions(points);
+    }
+
+    private void PredictionLength()
+    {
+        if (currentPlanet != null)
+        {
+            float distance = Vector3.Distance(transform.position, currentPlanet.transform.position);
+
+            print(distance);
+
+            if (distance < maxDistanceToPlanet)
+            {
+                predictionTime = (int)distance / 4;
+            }
+
+            else
+            {
+                predictionTime = 6;
+            }
+        }
     }
 }
