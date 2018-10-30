@@ -27,7 +27,7 @@ public class Scr_Planet : MonoBehaviour
     private Rigidbody2D planetRb;
     private Rigidbody2D playerShipRb;
     private Rigidbody2D astronautRB;
-    private bool indicator;
+    
 
     private void Start()
     {
@@ -102,23 +102,22 @@ public class Scr_Planet : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                if (indicator)
+                if (mapManager.indicatorActive)
                 {
-                    Destroy (mapIndicator);
-                    Destroy (directionIndicator);
+
+                    Destroy (mapManager.mapIndicator);
+                    Destroy (mapManager.directionIndicator);
                 }
 
-                mapIndicator = Instantiate(mapIndicator);
-                directionIndicator = Instantiate(directionIndicator);
-                mapManager.mapIndicator = mapIndicator;
-                mapManager.directionIndicator = directionIndicator;
-                directionIndicator.transform.SetParent(mainCanvas.transform);
-                mapManager.myRectTransform = directionIndicator.GetComponent<RectTransform>();
+                mapManager.mapIndicator = Instantiate(mapIndicator);
+                mapManager.directionIndicator = Instantiate(directionIndicator);
+                mapManager.directionIndicator.transform.SetParent(mainCanvas.transform);
+                mapManager.myRectTransform = mapManager.directionIndicator.GetComponent<RectTransform>();
                 mapManager.currentTarget = this.gameObject;
                 mapManager.target = this.gameObject;
                 mapManager.waypointActive = true;
-                mapIndicator.transform.position = transform.position + new Vector3(0f, ((transform.GetChild(1).GetComponent<Renderer>().bounds.size.x) / 2) + 10f, 0f);
-                indicator = true;
+                mapManager.mapIndicator.transform.position = transform.position + new Vector3(0f, ((transform.GetChild(1).GetComponent<Renderer>().bounds.size.x) / 2) + 10f, 0f);
+                mapManager.indicatorActive = true;
             }
         }
     }

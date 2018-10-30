@@ -287,11 +287,11 @@ MonoBehaviour:
   rotationPivot: {fileID: 492697985}
   mapIndicator: {fileID: 1454654233925100, guid: 2e19b1cec2a1b3643927fae1203a82ac,
     type: 2}
-  directionIndicator: {fileID: 1415828685659110, guid: c2e828f2f7c94fa498f9c9e58fd973d1,
+  directionIndicator: {fileID: 1719211965737268, guid: bb7812d188701f548aabb4ba0a256349,
     type: 2}
   mapManager: {fileID: 1313272091}
   mapVisuals: {fileID: 860221361}
-  mainCanvas: {fileID: 0}
+  mainCanvas: {fileID: 283162598}
 --- !u!58 &115657822
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1234,11 +1234,11 @@ MonoBehaviour:
   rotationPivot: {fileID: 441807388}
   mapIndicator: {fileID: 1454654233925100, guid: 2e19b1cec2a1b3643927fae1203a82ac,
     type: 2}
-  directionIndicator: {fileID: 1415828685659110, guid: c2e828f2f7c94fa498f9c9e58fd973d1,
+  directionIndicator: {fileID: 1719211965737268, guid: bb7812d188701f548aabb4ba0a256349,
     type: 2}
   mapManager: {fileID: 1313272091}
   mapVisuals: {fileID: 1845966781}
-  mainCanvas: {fileID: 0}
+  mainCanvas: {fileID: 283162598}
 --- !u!58 &492697987
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1754,11 +1754,11 @@ MonoBehaviour:
   rotationPivot: {fileID: 441807388}
   mapIndicator: {fileID: 1454654233925100, guid: 2e19b1cec2a1b3643927fae1203a82ac,
     type: 2}
-  directionIndicator: {fileID: 1415828685659110, guid: c2e828f2f7c94fa498f9c9e58fd973d1,
+  directionIndicator: {fileID: 1719211965737268, guid: bb7812d188701f548aabb4ba0a256349,
     type: 2}
   mapManager: {fileID: 1313272091}
   mapVisuals: {fileID: 1632822734}
-  mainCanvas: {fileID: 0}
+  mainCanvas: {fileID: 283162598}
 --- !u!58 &755707168
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1875,6 +1875,7 @@ GameObject:
   m_Component:
   - component: {fileID: 860221362}
   - component: {fileID: 860221363}
+  - component: {fileID: 860221364}
   m_Layer: 9
   m_Name: Map Visuals
   m_TagString: Untagged
@@ -1943,6 +1944,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &860221364
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 860221361}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 4.3849998
 --- !u!1 &878877040
 GameObject:
   m_ObjectHideFlags: 0
@@ -3263,6 +3279,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1632822735}
   - component: {fileID: 1632822736}
+  - component: {fileID: 1632822737}
   m_Layer: 9
   m_Name: Map Visuals
   m_TagString: Untagged
@@ -3331,6 +3348,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &1632822737
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1632822734}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 4.385
 --- !u!114 &1634334467 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114911509645942742, guid: 5c7e8f1f62be70143b2e0edf73736d31,
@@ -3716,6 +3748,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1845966782}
   - component: {fileID: 1845966783}
+  - component: {fileID: 1845966784}
   m_Layer: 9
   m_Name: Map Visuals
   m_TagString: Untagged
@@ -3784,6 +3817,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &1845966784
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1845966781}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 4.3849998
 --- !u!1 &1855744291 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1977310056797718, guid: 1356dbf95eaed654cbd4b78550bbc468,

@@ -24,6 +24,7 @@ public class Scr_MapManager : MonoBehaviour
     [HideInInspector] public RectTransform myRectTransform;
     [HideInInspector] public GameObject directionIndicator;
     [HideInInspector] public GameObject mapIndicator;
+    [HideInInspector] public bool indicatorActive;
 
     private Vector3 dragOrigin;
     private GameObject playerShip;
