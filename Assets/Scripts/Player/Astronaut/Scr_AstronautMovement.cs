@@ -162,7 +162,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     {
         faceRight = !faceRight;
 
-        astronautVisuals.flipX = !astronautVisuals.flipX;
+        //astronautVisuals.flipX = !astronautVisuals.flipX; PENDIENTE DE CAMBIAR POR EL 3D
         transforms.transform.Rotate(new Vector3(0, 0, 180));
     }
 }
