@@ -368,6 +368,15 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1171498935616764, guid: a7965b5f8a536a540b7c003202d37841, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 23997731812016888, guid: a7965b5f8a536a540b7c003202d37841,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 75dcc777f9763cc4fbf33d599e051a19, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7965b5f8a536a540b7c003202d37841, type: 2}
   m_IsPrefabAsset: 0
@@ -2003,20 +2012,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114350138147120712, guid: bc458ee511220854cbc76d1626ceae4f,
-        type: 2}
-      propertyPath: volumeTrigger
-      value: 
-      objectReference: {fileID: 812404521}
-    - target: {fileID: 20452384316129220, guid: bc458ee511220854cbc76d1626ceae4f,
-        type: 2}
-      propertyPath: m_ForceIntoRT
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1476974549256876, guid: bc458ee511220854cbc76d1626ceae4f, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc458ee511220854cbc76d1626ceae4f, type: 2}
   m_IsPrefabAsset: 0
@@ -2640,30 +2635,6 @@ Prefab:
       propertyPath: planetPanel
       value: 
       objectReference: {fileID: 1915165950}
-    - target: {fileID: 4863493895901964, guid: 15c55cceacb93ea4bb7e3f3c7e160410, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 4863493895901964, guid: 15c55cceacb93ea4bb7e3f3c7e160410, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4863493895901964, guid: 15c55cceacb93ea4bb7e3f3c7e160410, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -0.074
-      objectReference: {fileID: 0}
-    - target: {fileID: 4863493895901964, guid: 15c55cceacb93ea4bb7e3f3c7e160410, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.74556005
-      objectReference: {fileID: 0}
-    - target: {fileID: 4863493895901964, guid: 15c55cceacb93ea4bb7e3f3c7e160410, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 0.7729921
-      objectReference: {fileID: 0}
-    - target: {fileID: 4863493895901964, guid: 15c55cceacb93ea4bb7e3f3c7e160410, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 0.72
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15c55cceacb93ea4bb7e3f3c7e160410, type: 2}
   m_IsPrefabAsset: 0
@@ -3221,7 +3192,7 @@ GameObject:
   - component: {fileID: 1509945827}
   - component: {fileID: 1509945826}
   m_Layer: 10
-  m_Name: Visuals
+  m_Name: Visuals3D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3255,7 +3226,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 35265bc91dbfe944cb3718697b3eb57d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
