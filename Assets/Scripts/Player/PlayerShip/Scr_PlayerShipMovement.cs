@@ -133,6 +133,13 @@ public class Scr_PlayerShipMovement : MonoBehaviour
                 countDownToControl = false;
             }
         }
+
+        if (onGround)
+        {
+            Vector3 direction = -new Vector3(currentPlanet.transform.position.x - transform.position.x, currentPlanet.transform.position.y - transform.position.y, currentPlanet.transform.position.z - transform.position.z);
+
+            transform.up = Vector3.Lerp(transform.up, direction, Time.deltaTime);
+        }
     }
 
     void FixedUpdate()

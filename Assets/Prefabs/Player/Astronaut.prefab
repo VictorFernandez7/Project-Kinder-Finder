@@ -41,7 +41,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1237434967680266
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,7 +325,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 75dcc777f9763cc4fbf33d599e051a19, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -425,7 +425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13991ef6310ac6e44bfd40289a73e7f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 20
+  movementSpeed: 40
   checkDistance: 1
   collisionMask:
     serializedVersion: 2
@@ -435,6 +435,7 @@ MonoBehaviour:
   rayPointRight: {fileID: 1642608111972328}
   walkingParticles: {fileID: 198665950421681262}
   transforms: {fileID: 4080018639410374}
+  astronautVisuals: {fileID: 1238433231619372}
   planetPosition: {x: 0, y: 0, z: 0}
   onGround: 1
   canMove: 0
