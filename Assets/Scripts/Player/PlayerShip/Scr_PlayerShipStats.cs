@@ -26,14 +26,17 @@ public class Scr_PlayerShipStats : MonoBehaviour
     [SerializeField] SpriteRenderer shipVisuals;
     [SerializeField] SpriteRenderer mapVisuals;
     [SerializeField] TrailRenderer trailRenderer;
-    [SerializeField] Slider fuelSlider;
-    [SerializeField] Image fuelSliderFill;
 
     private Scr_PlayerShipMovement playerShipMovement;
+    private Slider fuelSlider;
+    private Image fuelSliderFill;
     private Rigidbody2D rb;
 
     private void Start()
     {
+        fuelSlider = GameObject.Find("FuelSlider").GetComponent<Slider>();
+        fuelSliderFill = GameObject.Find("FuelFill").GetComponent<Image>();
+
         playerShipMovement = GetComponent<Scr_PlayerShipMovement>();
         rb = GetComponent<Rigidbody2D>();
 
@@ -67,7 +70,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
 
     public void Death()
     {
-        playerShipMovement.canMove = false;
+        playerShipMovement.canControlShip = false;
         playerShipMovement.dead = true;
         rb.isKinematic = true;
         rb.velocity = Vector3.zero;

@@ -154,7 +154,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07395d5405c1c6d408b4f6161647add1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerShipMovement: {fileID: 1922724877}
 --- !u!58 &24753663
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1242,12 +1241,6 @@ Transform:
   m_Father: {fileID: 1243227217}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &502918043 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114798426577923630, guid: 5c7e8f1f62be70143b2e0edf73736d31,
-    type: 2}
-  m_PrefabInternal: {fileID: 740859881}
-  m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &513468733
 GameObject:
   m_ObjectHideFlags: 0
@@ -1332,7 +1325,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07395d5405c1c6d408b4f6161647add1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerShipMovement: {fileID: 1922724877}
 --- !u!58 &522131179
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1645,6 +1637,10 @@ Prefab:
         type: 2}
       propertyPath: m_Color.a
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1842490505844476, guid: 5c7e8f1f62be70143b2e0edf73736d31, type: 2}
+      propertyPath: m_Name
+      value: FuelFill
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c7e8f1f62be70143b2e0edf73736d31, type: 2}
@@ -2557,21 +2553,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114778194997285574, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
-        type: 2}
-      propertyPath: fuelSlider
-      value: 
-      objectReference: {fileID: 502918043}
-    - target: {fileID: 114778194997285574, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
-        type: 2}
-      propertyPath: fuelSliderFill
-      value: 
-      objectReference: {fileID: 1634334467}
-    - target: {fileID: 114696350668254112, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
-        type: 2}
-      propertyPath: planetPanel
-      value: 
-      objectReference: {fileID: 1915165950}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15c55cceacb93ea4bb7e3f3c7e160410, type: 2}
   m_IsPrefabAsset: 0
@@ -3326,12 +3307,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 4.385
---- !u!114 &1634334467 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114911509645942742, guid: 5c7e8f1f62be70143b2e0edf73736d31,
-    type: 2}
-  m_PrefabInternal: {fileID: 740859881}
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1667444796
 GameObject:
   m_ObjectHideFlags: 0
@@ -3373,7 +3348,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07395d5405c1c6d408b4f6161647add1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerShipMovement: {fileID: 1922724877}
 --- !u!58 &1667444799
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3700,7 +3674,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07395d5405c1c6d408b4f6161647add1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerShipMovement: {fileID: 1922724877}
 --- !u!1 &1845966781
 GameObject:
   m_ObjectHideFlags: 0
@@ -3942,7 +3915,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07395d5405c1c6d408b4f6161647add1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerShipMovement: {fileID: 1922724877}
 --- !u!58 &1876856708
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -4016,12 +3988,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1452036844316726, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
     type: 2}
   m_PrefabInternal: {fileID: 1288940837}
---- !u!114 &1922724877 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114696350668254112, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
-    type: 2}
-  m_PrefabInternal: {fileID: 1288940837}
-  m_Script: {fileID: 11500000, guid: 0e51695d77089f54b95c91905edfacff, type: 3}
 --- !u!1 &2009863782
 GameObject:
   m_ObjectHideFlags: 0
