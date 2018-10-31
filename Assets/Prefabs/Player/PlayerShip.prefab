@@ -677,8 +677,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab9cd7c8679e4004c809b94a40e42621, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  predictionTime: 0
-  maxDistanceToPlanet: 0
+  predictionTime: 6
+  maxDistanceToPlanet: 15
   predictionLine: {fileID: 0}
   predictionLineMap: {fileID: 120501272858494042}
 --- !u!114 &114696350668254112
@@ -693,7 +693,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationDelay: 2
-  maxSpeed: 50
+  maxSpeed: 100
+  maxSpeedAtmosphere: 20
   limitUnits: 100
   boostSpeed: 1500
   boostSpeedPlanet: 2000

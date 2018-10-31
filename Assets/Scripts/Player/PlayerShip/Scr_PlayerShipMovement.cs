@@ -15,7 +15,8 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [SerializeField] private float rotationDelay;
 
     [Header("Speed Properties")]
-    [SerializeField] private float maxSpeed;
+    [SerializeField] public float maxSpeed;
+    [SerializeField] public float maxSpeedAtmosphere;
     [SerializeField] private float limitUnits;
     [SerializeField] private float boostSpeed;
     [SerializeField] private float boostSpeedPlanet;
