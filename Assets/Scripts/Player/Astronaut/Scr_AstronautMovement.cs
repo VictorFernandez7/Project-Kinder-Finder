@@ -45,15 +45,19 @@ public class Scr_AstronautMovement : MonoBehaviour
     private bool facingRight;
     private GameObject miniPlayer;
     private GameObject miniPlanet;
+    private Scr_GameManager gameManager;
 
     private void Start()
     {
         miniPlayer = GameObject.Find("MiniPlayer");
         miniPlanet = GameObject.Find("MiniPlanet");
+        gameManager = GameObject.Find("GameManager").GetComponent<Scr_GameManager>();
 
         rb = GetComponent<Rigidbody2D>();
 
         canMove = true;
+
+        currentPlanet = gameManager.initialPlanet;
         transform.up = - new Vector3(currentPlanet.transform.position.x - transform.position.x, currentPlanet.transform.position.y - transform.position.y, currentPlanet.transform.position.z - transform.position.z);
 
         hitL = Physics2D.Raycast(rayPointLeft.transform.position, -rayPointLeft.transform.up, checkDistance, collisionMask);

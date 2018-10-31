@@ -11,7 +11,8 @@ using UnityEngine;
 public class Scr_PlayerShipActions : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] Transform spawnPoint;
+    [SerializeField] private Transform spawnPoint;
+    [SerializeField] private GameObject mapVisuals;
 
     [HideInInspector] public bool canExitShip;
 
@@ -29,6 +30,9 @@ public class Scr_PlayerShipActions : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && !astronaut.activeInHierarchy && canExitShip)
             DeployAstronaut();
+
+        if (Input.GetKeyDown(KeyCode.M))
+            mapVisuals.SetActive(true);
     }
 
     private void FixedUpdate()
@@ -41,7 +45,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
         astronaut.transform.position = spawnPoint.position;
         astronaut.transform.rotation = transform.rotation;
         astronaut.SetActive(true);
-        playerShipMovement.onBoard = false;
+        playerShipMovement.astronautOnBoard = false;
         astronaut.GetComponent<Scr_AstronautMovement>().planetPosition = lastFramePlanetPosition;
         astronaut.GetComponent<Scr_AstronautMovement>().onGround = true;
         playerShipMovement.mainCamera.GetComponent<Scr_CameraFollow>().followAstronaut = true;

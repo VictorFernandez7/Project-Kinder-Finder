@@ -82,8 +82,6 @@ public class Scr_PlayerShipPrediction : MonoBehaviour
         {
             float distance = Vector3.Distance(transform.position, currentPlanet.transform.position);
 
-            print(distance);
-
             if (distance < maxDistanceToPlanet)
             {
                 predictionTime = (int)distance / 4;

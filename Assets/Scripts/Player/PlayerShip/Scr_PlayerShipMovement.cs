@@ -11,64 +11,62 @@ using TMPro;
 
 public class Scr_PlayerShipMovement : MonoBehaviour
 {
-    [Header("Movement Properties")]
+    [Header("Ship State")]
+    [SerializeField] private PlayerShipState playerShipState;
+
+    [Header("Taking Off Parameters")]
+    [SerializeField] private float canRotateTimer;
+    [Range(500, 1250)] [SerializeField] private float dustMultiplier;
+
+    [Header("Landed Parameters")]
+    [SerializeField] private float canControlTimer;
+    [SerializeField] private float shipOrientationSpeed;
+
+    [Header("Landing Parameters")]
+    [SerializeField] private float landDistance;
+    [SerializeField] private LayerMask planetLayer;
+
+    [Header("In Space Parameters")]    
     [SerializeField] private float rotationDelay;
 
-    [Header("Speed Properties")]
-    [SerializeField] private float maxSpeed;
-    [SerializeField] private float limitUnits;
-    [SerializeField] private float boostSpeed;
-    [SerializeField] private float boostSpeedPlanet;
+    [Header("Speed System")]
+    [SerializeField] public float maxSpeed;
     [SerializeField] private float normalSpeed;
-    [SerializeField] private float deathSpeed;
+    [SerializeField] private float boostSpeed;
+    [SerializeField] private float limitUnits;
 
-    [Header("Landing Properties")]
-    [SerializeField] private bool landingAssistance;
-    [SerializeField] private float landTimer;
-    [SerializeField] private float landDistance;
-    [SerializeField] private float landingVelocityLerpSpeed; // Sin usar
-    [SerializeField] private LayerMask collisionMask;
-
-    [Header("TakeOff Properties")]
-    [SerializeField] private float takeOffTimer;
-    [SerializeField] private float dustMultiplier;
-    [SerializeField] private float timeToDestroyParticles;
-
-    [Header("References FX")]
+    [Header("References ")]
     [SerializeField] public ParticleSystem thrusterParticles;
     [SerializeField] private GameObject dustParticles;
-
-    [Header("References")]
-    [SerializeField] private GameObject mapVisuals;
     [SerializeField] private Transform endOfShip;
-    [SerializeField] private Animator planetPanel;
 
-    [HideInInspector] public bool onBoard;
+    [HideInInspector] public bool astronautOnBoard;
     [HideInInspector] public bool onGround;
-    [HideInInspector] public bool insideAtmosphere = true;
-    [HideInInspector] public bool canMove = true;
     [HideInInspector] public bool dead;
-    [HideInInspector] public bool takingOffParticles;
     [HideInInspector] public GameObject currentPlanet;
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public Camera mainCamera;
-    [HideInInspector] public Vector3 initialVelocity; // Sin usar
+    [HideInInspector] public bool canControlShip = true;
 
-    private bool canRotateShip = true;
-    private bool landing;
-    private bool takingOff;
-    private float takeOffTimerSaved;
-    private bool countDownToControl;
-    private float speedLimit;
+    private float maxSpeedSaved;
+    private bool countDownToRotate;
+    private bool countDownToMove;
     private float currentSpeed;
-    private float landTimerSaved;
+    private float canControlTimerSaved;
+    private float canRotateTimerSaved;
     private TextMeshProUGUI limiterText;
     private TextMeshProUGUI speedText;
-
     private Scr_PlayerShipStats playerShipStats;
-    private Scr_PlayerShipPrediction playerShipPrediction;
     private Scr_PlayerShipActions playerShipActions;
     private Scr_AstronautMovement astronautMovement;
+
+    private enum PlayerShipState
+    {
+        landing,
+        takingOff,
+        landed,
+        inSpace
+    }
 
     private void Start()
     {
@@ -78,74 +76,65 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         astronautMovement = GameObject.Find("Astronaut").GetComponent<Scr_AstronautMovement>();
 
         rb = GetComponent<Rigidbody2D>();
-        playerShipPrediction = GetComponent<Scr_PlayerShipPrediction>();
         playerShipStats = GetComponent<Scr_PlayerShipStats>();
         playerShipActions = GetComponent<Scr_PlayerShipActions>();
 
-        mapVisuals.SetActive(true);
-
-        landTimerSaved = landTimer;
-        speedLimit = maxSpeed;
-        takeOffTimerSaved = takeOffTimer;
+        canControlTimerSaved = canControlTimer;
+        canRotateTimerSaved = canRotateTimer;
+        maxSpeedSaved = maxSpeed;
     }
 
     private void Update()
     {
-        limiterText.text = speedLimit.ToString();
+        float distanceToPlanet = Vector3.Distance(transform.position, currentPlanet.transform.position);
+
+        limiterText.text = maxSpeedSaved.ToString();
         speedText.text = ((int)(rb.velocity.magnitude * 10)).ToString();
 
-        if (insideAtmosphere)
+        ShipControl();
+        SpeedLimiter();
+        Timers();
+
+        if (distanceToPlanet < landDistance)
         {
-            if (takingOff)
-            {
-                ShipTakeOff();
-                LandingEffects(true);
-            }
+            RaycastHit2D distanceHit = Physics2D.Raycast(endOfShip.position, -endOfShip.up, Mathf.Infinity, planetLayer);
 
-            else
+            if (distanceHit)
             {
-                RaycastHit2D hit = Physics2D.Raycast(endOfShip.position, -endOfShip.up, landDistance, collisionMask);
+                float margin = 0.25f;
 
-                if (hit)
+                if (Vector3.Distance(endOfShip.position, distanceHit.point) >= 0.05f)
                 {
-                    ShipLanding();
-                    LandingEffects(false);
+                    playerShipState = PlayerShipState.takingOff;
 
-                    mainCamera.GetComponent<Scr_CameraFollow>().smoothRotation = true;
+                    TakingOff();
+                    TakingOffEffects(true);
+                }
+
+                else if (Vector3.Distance(endOfShip.position, distanceHit.point) >= landDistance - margin)
+                {
+                    playerShipState = PlayerShipState.landing;
+
+                    Landing();
+                    LandingEffects(true);
                 }
             }
         }
 
         else
         {
-            takingOff = false;
-        }
+            playerShipState = PlayerShipState.inSpace;
 
-        if (countDownToControl)
-        {
-            canRotateShip = false;
-            takeOffTimerSaved -= Time.deltaTime;
-
-            if (takeOffTimerSaved <= 0)
-            {
-                canRotateShip = true;
-                takeOffTimerSaved = takeOffTimer;
-                countDownToControl = false;
-            }
+            TakingOffEffects(false);
         }
 
         if (onGround)
         {
-            Vector3 direction = -new Vector3(currentPlanet.transform.position.x - transform.position.x, currentPlanet.transform.position.y - transform.position.y, currentPlanet.transform.position.z - transform.position.z);
+            playerShipState = PlayerShipState.landed;
 
-            transform.up = Vector3.Lerp(transform.up, direction, Time.deltaTime);
+            Landed();
+            LandingEffects(false);
         }
-    }
-
-    void FixedUpdate()
-    {
-        ShipControl();
-        SpeedLimiter();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -154,14 +143,12 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         {
             currentPlanet = collision.gameObject;
             astronautMovement.currentPlanet = collision.gameObject;
-            canMove = false;
+
+            countDownToMove = true;
+            canControlShip = false;
             onGround = true;
+
             playerShipActions.canExitShip = true;
-
-            if ((rb.velocity.magnitude * 10) >= deathSpeed)
-                playerShipStats.Death();
-
-            takingOffParticles = true;
         }
     }
 
@@ -169,74 +156,88 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Planet" && !dead)
         {
-            playerShipActions.canExitShip = false;
-            countDownToControl = true;
+            countDownToRotate = true;
             onGround = false;
 
-            ShipTakeOff();
+            playerShipActions.canExitShip = false;
         }
     }
 
-    private void ShipLanding()
+    private void Timers()
     {
-        if (landingAssistance)
+        if (countDownToRotate)
         {
-            Vector3 landDirection = (currentPlanet.gameObject.transform.position - transform.position);
-            landDirection.Normalize();
-            float rotationZ = Mathf.Atan2(-landDirection.y, -landDirection.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0f, 0f, rotationZ - 90);
+            canControlShip = false;
+            canRotateTimerSaved -= Time.deltaTime;
+
+            if (canRotateTimerSaved <= 0)
+            {
+                canControlShip = true;
+                canRotateTimerSaved = canRotateTimer;
+                countDownToRotate = false;
+            }
         }
 
+        if (countDownToMove)
+        {
+            canControlShip = false;
+            canControlTimerSaved -= Time.deltaTime;
+
+            if (canControlTimerSaved <= 0)
+            {
+                canControlShip = true;
+                canControlTimerSaved = canControlTimer;
+                countDownToMove = false;
+            }
+        }
+    }
+
+    void SetVelocityToZero()
+    {
         if (rb.velocity != Vector2.zero)
             rb.velocity = Vector2.zero;
-
-        //rb.velocity = Vector3.Lerp(initialVelocity, Vector3.zero, Time.deltaTime * landingVelocityLerpSpeed);
-
-        transform.SetParent(currentPlanet.transform);
-        playerShipPrediction.predictionLine.enabled = false;
-        playerShipPrediction.predictionLineMap.enabled = false;
-        GetComponent<TrailRenderer>().enabled = false;
-        GetComponentInChildren<TrailRenderer>().enabled = false;
     }
 
-    void ShipTakeOff()
+    private void Landed()
+    {
+        Vector3 direction = -new Vector3(currentPlanet.transform.position.x - transform.position.x, currentPlanet.transform.position.y - transform.position.y, currentPlanet.transform.position.z - transform.position.z);
+
+        transform.up = Vector3.Lerp(transform.up, direction, Time.deltaTime * shipOrientationSpeed);
+        transform.SetParent(currentPlanet.transform);
+
+        SetVelocityToZero();
+    }
+
+    private void Landing()
+    {
+        transform.SetParent(currentPlanet.transform);
+
+        SetVelocityToZero();
+    }
+
+    void TakingOff()
     {
         transform.SetParent(null);
-        playerShipPrediction.predictionLine.enabled = true;
-        playerShipPrediction.predictionLineMap.enabled = true;
-        GetComponent<TrailRenderer>().enabled = true;
-        GetComponentInChildren<TrailRenderer>().enabled = true;
     }
 
     private void SpeedLimiter()
     {
-        speedLimit += Input.GetAxis("Mouse ScrollWheel") * limitUnits;
-        speedLimit = Mathf.Clamp(speedLimit, 0f, maxSpeed);
-        speedLimit = (float)((int)speedLimit);
+        maxSpeedSaved += Input.GetAxis("Mouse ScrollWheel") * limitUnits;
+        maxSpeedSaved = Mathf.Clamp(maxSpeedSaved, 0f, maxSpeed);
+        maxSpeedSaved = (float)((int)maxSpeedSaved);
 
-        if ((rb.velocity.magnitude * 10) > speedLimit)
-        {
+        if ((rb.velocity.magnitude * 10) > maxSpeedSaved)
             rb.AddForce(-rb.velocity.normalized * currentSpeed * Time.fixedDeltaTime);
-        }
     }
 
     private void ShipControl()
     {
-        if (!canMove && !dead)
+        if (canControlShip && astronautOnBoard)
         {
-            landTimer -= Time.fixedDeltaTime;
-
-            if (landTimer <= 0)
-            {
-                canMove = true;
-                landTimer = landTimerSaved;
-            }
-        }
-
-        if (canMove && onBoard)
-        {
-            if (!onGround)
-                ShipLookingToMouse();
+            Vector3 difference = (mainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position);
+            difference.Normalize();
+            float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0f, 0f, rotationZ - 90), rotationDelay);
 
             if (playerShipStats.currentFuel > 0)
             {
@@ -246,21 +247,9 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
                     if (Input.GetKey(KeyCode.LeftShift))
                     {
-                        takingOff = true;
-
-                        if (insideAtmosphere)
-                        {
-                            playerShipStats.FuelConsumption(true);
-                            currentSpeed = boostSpeedPlanet;
-                            rb.AddForce(transform.up * currentSpeed * Time.fixedDeltaTime);
-                        }
-
-                        else
-                        {
-                            playerShipStats.FuelConsumption(true);
-                            currentSpeed = boostSpeed;
-                            rb.AddForce(transform.up * currentSpeed * Time.fixedDeltaTime);
-                        }
+                        playerShipStats.FuelConsumption(true);
+                        currentSpeed = boostSpeed;
+                        rb.AddForce(transform.up * currentSpeed * Time.fixedDeltaTime);
                     }
 
                     else
@@ -269,9 +258,6 @@ public class Scr_PlayerShipMovement : MonoBehaviour
                         currentSpeed = normalSpeed;
                         rb.AddForce(transform.up * currentSpeed * Time.fixedDeltaTime);
                     }
-
-                    if (onGround)
-                        LandingEffects(true);
                 }
 
                 else
@@ -280,107 +266,90 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         }
     }
 
-    private void ShipLookingToMouse()
+    private void OnGroundEffects()
     {
-        if (canRotateShip)
-        {
-            Vector3 difference = (mainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position);
-            difference.Normalize();
-            float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0f, 0f, rotationZ - 90), rotationDelay);
-        }
+
     }
 
-    private void LandingEffects(bool shipTakingOff)
+    private void TakingOffEffects(bool play)
     {
-        if (shipTakingOff)
+        float dustPower;        
+        GameObject currentDustParticles = null;
+        ParticleSystem dustParticles1;
+        ParticleSystem dustParticles2;
+
+        if (play)
         {
-            RaycastHit2D takingOffHit = Physics2D.Raycast(endOfShip.position, -endOfShip.up, Mathf.Infinity, collisionMask);
+            RaycastHit2D takingOffHit = Physics2D.Raycast(endOfShip.position, -endOfShip.up, Mathf.Infinity, planetLayer);
 
             if (takingOffHit)
             {
-                if (Vector2.Distance(endOfShip.position, takingOffHit.point) >= 0.000000005)
-                {
-                    mainCamera.GetComponent<Scr_CameraFollow>().smoothRotation = false;
+                dustPower = Vector2.Distance(endOfShip.position, takingOffHit.point);
 
-                    float dustPower;
-                    ParticleSystem dustParticles1;
-                    ParticleSystem dustParticles2;
+                if (GameObject.Find("DustParticles(Clone)") == null)
+                    currentDustParticles = Instantiate(dustParticles, takingOffHit.point, gameObject.transform.rotation);
 
-                    dustPower = Vector2.Distance(endOfShip.position, takingOffHit.point);
+                dustParticles1 = currentDustParticles.transform.GetChild(0).GetComponent<ParticleSystem>();
+                dustParticles2 = currentDustParticles.transform.GetChild(1).GetComponent<ParticleSystem>();
 
-                    if (GameObject.Find("DustParticles(Clone)") == null)
-                        Instantiate(dustParticles, takingOffHit.point, gameObject.transform.rotation);
+                currentDustParticles.transform.SetParent(currentPlanet.transform);
 
-                    GameObject currentDustParticles = GameObject.Find("DustParticles(Clone)");
-                    dustParticles1 = currentDustParticles.transform.GetChild(0).GetComponent<ParticleSystem>();
-                    dustParticles2 = currentDustParticles.transform.GetChild(1).GetComponent<ParticleSystem>();
+                dustParticles1.Play();
+                dustParticles2.Play();
 
-                    currentDustParticles.transform.SetParent(currentPlanet.transform);
+                var emission1 = dustParticles1.emission;
+                var emission2 = dustParticles2.emission;
 
-                    dustParticles1.Play();
-                    dustParticles2.Play();
-
-                    var emission1 = dustParticles1.emission;
-                    var emission2 = dustParticles2.emission;
-
-                    emission1.rateOverTime = (1 - dustPower) * dustMultiplier;
-                    emission2.rateOverTime = (1 - dustPower) * dustMultiplier;
-
-                    Destroy(currentDustParticles, timeToDestroyParticles);
-
-                    planetPanel.SetTrigger("TookOff");
-                }
+                emission1.rateOverTime = (1 - dustPower) * dustMultiplier;
+                emission2.rateOverTime = (1 - dustPower) * dustMultiplier;
             }
         }
 
         else
+            Destroy(currentDustParticles);
+    }
+
+    private void LandingEffects(bool play)
+    {
+        float dustPower;
+        GameObject currentDustParticles = null;
+        ParticleSystem dustParticles1;
+        ParticleSystem dustParticles2;
+        Vector2 direction;
+
+        if (play)
         {
-            RaycastHit2D landingHit = Physics2D.Raycast(endOfShip.position, -endOfShip.up, Mathf.Infinity, collisionMask);
+            RaycastHit2D landingHit = Physics2D.Raycast(endOfShip.position, -endOfShip.up, Mathf.Infinity, planetLayer);
 
             if (landingHit)
             {
-                if (Vector2.Distance(endOfShip.position, landingHit.point) >= 0.000000005)
-                {
-                    float dustPower;
-                    Vector2 direction;
-                    ParticleSystem dustParticles1;
-                    ParticleSystem dustParticles2;
+                dustPower = Vector2.Distance(endOfShip.position, landingHit.point);
 
-                    dustPower = Vector2.Distance(endOfShip.position, landingHit.point);
+                if (GameObject.Find("DustParticles(Clone)") == null)
+                    currentDustParticles = Instantiate(dustParticles, landingHit.point, gameObject.transform.rotation);
 
-                    if (GameObject.Find("DustParticles(Clone)") == null)
-                        Instantiate(dustParticles, landingHit.point, gameObject.transform.rotation);
+                dustParticles1 = currentDustParticles.transform.GetChild(0).GetComponent<ParticleSystem>();
+                dustParticles2 = currentDustParticles.transform.GetChild(1).GetComponent<ParticleSystem>();
 
-                    GameObject currentDustParticles = GameObject.Find("DustParticles(Clone)");
-                    dustParticles1 = currentDustParticles.transform.GetChild(0).GetComponent<ParticleSystem>();
-                    dustParticles2 = currentDustParticles.transform.GetChild(1).GetComponent<ParticleSystem>();
+                currentDustParticles.transform.SetParent(currentPlanet.transform);
+                currentDustParticles.transform.position = landingHit.point;
 
-                    currentDustParticles.transform.SetParent(currentPlanet.transform);
-                    currentDustParticles.transform.position = landingHit.point;
+                direction = new Vector2(landingHit.point.x - currentPlanet.transform.position.x, landingHit.point.y - currentPlanet.transform.position.y);
+                currentDustParticles.transform.up = direction;
 
-                    direction = new Vector2(landingHit.point.x - currentPlanet.transform.position.x, landingHit.point.y - currentPlanet.transform.position.y);
-                    currentDustParticles.transform.up = direction;
+                dustParticles1.Play();
+                dustParticles2.Play();
+                thrusterParticles.Play();
 
-                    dustParticles1.Play();
-                    dustParticles2.Play();
-                    thrusterParticles.Play();
+                var emission1 = dustParticles1.emission;
+                var emission2 = dustParticles2.emission;
 
-                    var emission1 = dustParticles1.emission;
-                    var emission2 = dustParticles2.emission;
-
-                    emission1.rateOverTime = (1 - dustPower) * dustMultiplier;
-                    emission2.rateOverTime = (1 - dustPower) * dustMultiplier;
-                }
-
-                if (onGround && !Input.GetMouseButton(0))
-                {
-                    GameObject currentDustParticles = GameObject.Find("DustParticles(Clone)");
-
-                    thrusterParticles.Stop();
-                    Destroy(currentDustParticles);
-                }
+                emission1.rateOverTime = (1 - dustPower) * dustMultiplier;
+                emission2.rateOverTime = (1 - dustPower) * dustMultiplier;
             }
         }
+
+        else
+            Destroy(currentDustParticles);
     }
 }

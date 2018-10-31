@@ -60,7 +60,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1242696029769166
 GameObject:
   m_ObjectHideFlags: 1
@@ -677,8 +677,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab9cd7c8679e4004c809b94a40e42621, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  predictionTime: 0
-  maxDistanceToPlanet: 0
+  predictionTime: 6
+  maxDistanceToPlanet: 15
   predictionLine: {fileID: 0}
   predictionLineMap: {fileID: 120501272858494042}
 --- !u!114 &114696350668254112
@@ -692,39 +692,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e51695d77089f54b95c91905edfacff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationDelay: 2
-  maxSpeed: 50
-  limitUnits: 100
-  boostSpeed: 1500
-  boostSpeedPlanet: 2000
-  normalSpeed: 200
-  deathSpeed: 80
-  landingAssistance: 0
-  landTimer: 2
+  playerShipState: 0
+  canRotateTimer: 1
+  dustMultiplier: 750
+  canControlTimer: 2
+  shipOrientationSpeed: 1
   landDistance: 1
-  landingVelocityLerpSpeed: 4
-  collisionMask:
+  planetLayer:
     serializedVersion: 2
     m_Bits: 1024
-  takeOffTimer: 1
-  dustMultiplier: 750
-  timeToDestroyParticles: 2
+  rotationDelay: 2
+  maxSpeed: 100
+  normalSpeed: 200
+  boostSpeed: 1500
+  limitUnits: 100
   thrusterParticles: {fileID: 198333808919146426}
   dustParticles: {fileID: 1247645789991328, guid: bbbbba65b8622bd4b990250ed90c558a,
     type: 2}
-  mapVisuals: {fileID: 1179959987047468}
   endOfShip: {fileID: 4046255908165590}
-  planetPanel: {fileID: 0}
-  onBoard: 0
+  astronautOnBoard: 0
   onGround: 0
-  insideAtmosphere: 0
-  canMove: 1
   dead: 0
-  takingOffParticles: 1
   currentPlanet: {fileID: 0}
   rb: {fileID: 0}
   mainCamera: {fileID: 0}
-  initialVelocity: {x: 0, y: 0, z: 0}
+  canControlShip: 1
 --- !u!114 &114778194997285574
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -745,8 +737,6 @@ MonoBehaviour:
   shipVisuals: {fileID: 212765120040757374}
   mapVisuals: {fileID: 212722966266022432}
   trailRenderer: {fileID: 96206161718378074}
-  fuelSlider: {fileID: 0}
-  fuelSliderFill: {fileID: 0}
 --- !u!114 &114928841212499524
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -759,6 +749,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 4650739806024484}
+  mapVisuals: {fileID: 0}
   canExitShip: 0
 --- !u!114 &114947369718006980
 MonoBehaviour:
