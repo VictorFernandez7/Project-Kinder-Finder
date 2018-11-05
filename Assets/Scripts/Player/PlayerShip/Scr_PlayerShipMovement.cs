@@ -15,7 +15,8 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [SerializeField] private PlayerShipState playerShipState;
 
     [Header("Taking Off Parameters")]
-    [SerializeField] private float canRotateTimer;
+    [SerializeField] private float takeOffDistance;
+    [SerializeField] private float takeOffSpeed;
     [Range(500, 1250)] [SerializeField] private float dustMultiplier;
 
     [Header("Landed Parameters")]
@@ -24,6 +25,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
     [Header("Landing Parameters")]
     [SerializeField] private float landDistance;
+    [SerializeField] private float landSpeed;
     [SerializeField] private LayerMask planetLayer;
 
     [Header("In Space Parameters")]    
@@ -43,17 +45,18 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [HideInInspector] public bool astronautOnBoard;
     [HideInInspector] public bool onGround;
     [HideInInspector] public bool dead;
+    [HideInInspector] public bool canRotateShip;
+    [HideInInspector] public bool canControlShip = true;
     [HideInInspector] public GameObject currentPlanet;
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public Camera mainCamera;
-    [HideInInspector] public bool canControlShip = true;
 
-    private float maxSpeedSaved;
-    private bool countDownToRotate;
     private bool countDownToMove;
+    private bool takingOff;
+    private float maxSpeedSaved;
     private float currentSpeed;
     private float canControlTimerSaved;
-    private float canRotateTimerSaved;
+    private Vector3 targetPosition;
     private TextMeshProUGUI limiterText;
     private TextMeshProUGUI speedText;
     private Scr_PlayerShipStats playerShipStats;
@@ -80,7 +83,6 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         playerShipActions = GetComponent<Scr_PlayerShipActions>();
 
         canControlTimerSaved = canControlTimer;
-        canRotateTimerSaved = canRotateTimer;
         maxSpeedSaved = maxSpeed;
     }
 
@@ -88,44 +90,39 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     {
         float distanceToPlanet = Vector3.Distance(transform.position, currentPlanet.transform.position);
 
-        limiterText.text = maxSpeedSaved.ToString();
         speedText.text = ((int)(rb.velocity.magnitude * 10)).ToString();
 
         ShipControl();
         SpeedLimiter();
         Timers();
 
-        if (distanceToPlanet < landDistance)
+        if (currentPlanet != null)
         {
-            RaycastHit2D distanceHit = Physics2D.Raycast(endOfShip.position, -endOfShip.up, Mathf.Infinity, planetLayer);
+            RaycastHit2D distanceHit = Physics2D.Raycast(endOfShip.position, -endOfShip.up, landDistance, planetLayer);
+            Debug.DrawLine(endOfShip.position, endOfShip.position  - endOfShip.up * landDistance, Color.red);
 
             if (distanceHit)
             {
-                float margin = 0.25f;
-
-                if (Vector3.Distance(endOfShip.position, distanceHit.point) >= 0.05f)
-                {
-                    playerShipState = PlayerShipState.takingOff;
-
-                    TakingOff();
-                    TakingOffEffects(true);
-                }
-
-                else if (Vector3.Distance(endOfShip.position, distanceHit.point) >= landDistance - margin)
+                Debug.Log("land");
+                if (playerShipState == PlayerShipState.inSpace)
                 {
                     playerShipState = PlayerShipState.landing;
-
+                    Debug.Log("land");
                     Landing();
-                    LandingEffects(true);
                 }
+            }
+
+            if (onGround && Input.GetKey(KeyCode.LeftShift) && Input.GetMouseButtonDown(0) && playerShipState == PlayerShipState.landed)
+            {
+                playerShipState = PlayerShipState.takingOff;
+
+                TakingOff();
             }
         }
 
         else
         {
             playerShipState = PlayerShipState.inSpace;
-
-            TakingOffEffects(false);
         }
 
         if (onGround)
@@ -133,7 +130,28 @@ public class Scr_PlayerShipMovement : MonoBehaviour
             playerShipState = PlayerShipState.landed;
 
             Landed();
+            OnGroundEffects();
             LandingEffects(false);
+        }
+
+        if (takingOff)
+        {
+            float margin = 10f;
+
+            transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * takeOffSpeed);
+
+            TakingOffEffects(true);
+
+            if (transform.position.y >= targetPosition.y - margin)
+            {
+                rb.isKinematic = false;
+                transform.SetParent(null);
+                TakingOffEffects(false);
+
+                canRotateShip = true;
+
+                takingOff = false;
+            }
         }
     }
 
@@ -145,7 +163,6 @@ public class Scr_PlayerShipMovement : MonoBehaviour
             astronautMovement.currentPlanet = collision.gameObject;
 
             countDownToMove = true;
-            canControlShip = false;
             onGround = true;
 
             playerShipActions.canExitShip = true;
@@ -156,7 +173,6 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Planet" && !dead)
         {
-            countDownToRotate = true;
             onGround = false;
 
             playerShipActions.canExitShip = false;
@@ -165,28 +181,17 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
     private void Timers()
     {
-        if (countDownToRotate)
-        {
-            canControlShip = false;
-            canRotateTimerSaved -= Time.deltaTime;
-
-            if (canRotateTimerSaved <= 0)
-            {
-                canControlShip = true;
-                canRotateTimerSaved = canRotateTimer;
-                countDownToRotate = false;
-            }
-        }
-
         if (countDownToMove)
         {
-            canControlShip = false;
             canControlTimerSaved -= Time.deltaTime;
+
+            canControlShip = false;
 
             if (canControlTimerSaved <= 0)
             {
-                canControlShip = true;
                 canControlTimerSaved = canControlTimer;
+
+                canControlShip = true;
                 countDownToMove = false;
             }
         }
@@ -217,7 +222,10 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
     void TakingOff()
     {
-        transform.SetParent(null);
+        targetPosition = transform.position + new Vector3(0, takeOffDistance, 0);
+
+        rb.isKinematic = true;
+        takingOff = true;
     }
 
     private void SpeedLimiter()
@@ -232,12 +240,15 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
     private void ShipControl()
     {
-        if (canControlShip && astronautOnBoard)
+        if (canControlShip && astronautOnBoard && !onGround)
         {
-            Vector3 difference = (mainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position);
-            difference.Normalize();
-            float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0f, 0f, rotationZ - 90), rotationDelay);
+            if (canRotateShip)
+            {
+                Vector3 difference = (mainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position);
+                difference.Normalize();
+                float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0f, 0f, rotationZ - 90), rotationDelay);
+            }
 
             if (playerShipStats.currentFuel > 0)
             {
@@ -268,13 +279,24 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
     private void OnGroundEffects()
     {
+        if (playerShipStats.currentFuel > 0)
+        {
+            if (Input.GetMouseButton(0))
+            {
+                thrusterParticles.Play();
 
+                playerShipStats.FuelConsumption(false);
+            }
+
+            else
+                thrusterParticles.Stop();
+        }
     }
 
     private void TakingOffEffects(bool play)
     {
         float dustPower;        
-        GameObject currentDustParticles = null;
+        GameObject currentDustParticles;
         ParticleSystem dustParticles1;
         ParticleSystem dustParticles2;
 
@@ -286,8 +308,12 @@ public class Scr_PlayerShipMovement : MonoBehaviour
             {
                 dustPower = Vector2.Distance(endOfShip.position, takingOffHit.point);
 
+                thrusterParticles.Play();
+
                 if (GameObject.Find("DustParticles(Clone)") == null)
                     currentDustParticles = Instantiate(dustParticles, takingOffHit.point, gameObject.transform.rotation);
+
+                currentDustParticles = GameObject.Find("DustParticles(Clone)");
 
                 dustParticles1 = currentDustParticles.transform.GetChild(0).GetComponent<ParticleSystem>();
                 dustParticles2 = currentDustParticles.transform.GetChild(1).GetComponent<ParticleSystem>();
@@ -306,13 +332,19 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         }
 
         else
+        {
+            currentDustParticles = GameObject.Find("DustParticles(Clone)");
+
+            thrusterParticles.Stop();
+
             Destroy(currentDustParticles);
+        }
     }
 
     private void LandingEffects(bool play)
     {
         float dustPower;
-        GameObject currentDustParticles = null;
+        GameObject currentDustParticles;
         ParticleSystem dustParticles1;
         ParticleSystem dustParticles2;
         Vector2 direction;
@@ -325,8 +357,12 @@ public class Scr_PlayerShipMovement : MonoBehaviour
             {
                 dustPower = Vector2.Distance(endOfShip.position, landingHit.point);
 
+                thrusterParticles.Play();
+
                 if (GameObject.Find("DustParticles(Clone)") == null)
                     currentDustParticles = Instantiate(dustParticles, landingHit.point, gameObject.transform.rotation);
+
+                currentDustParticles = GameObject.Find("DustParticles(Clone)");
 
                 dustParticles1 = currentDustParticles.transform.GetChild(0).GetComponent<ParticleSystem>();
                 dustParticles2 = currentDustParticles.transform.GetChild(1).GetComponent<ParticleSystem>();
@@ -350,6 +386,12 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         }
 
         else
+        {
+            currentDustParticles = GameObject.Find("DustParticles(Clone)");
+
+            thrusterParticles.Stop();
+
             Destroy(currentDustParticles);
+        }
     }
 }
