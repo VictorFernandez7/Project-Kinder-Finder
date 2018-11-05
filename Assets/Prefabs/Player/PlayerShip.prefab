@@ -693,18 +693,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerShipState: 0
-  canRotateTimer: 1
-  dustMultiplier: 750
+  takeOffDistance: 15
+  takeOffSpeed: 0.15
+  dustMultiplier: 1000
   canControlTimer: 2
   shipOrientationSpeed: 1
-  landDistance: 1
+  landDistance: 10
+  landSpeed: 0
   planetLayer:
     serializedVersion: 2
     m_Bits: 1024
   rotationDelay: 2
   maxSpeed: 100
   normalSpeed: 200
-  boostSpeed: 1500
+  boostSpeed: 400
   limitUnits: 100
   thrusterParticles: {fileID: 198333808919146426}
   dustParticles: {fileID: 1247645789991328, guid: bbbbba65b8622bd4b990250ed90c558a,
@@ -713,10 +715,11 @@ MonoBehaviour:
   astronautOnBoard: 0
   onGround: 0
   dead: 0
+  canRotateShip: 0
+  canControlShip: 1
   currentPlanet: {fileID: 0}
   rb: {fileID: 0}
   mainCamera: {fileID: 0}
-  canControlShip: 1
 --- !u!114 &114778194997285574
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -729,8 +732,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnTime: 3
-  currentFuel: 100
-  maxFuel: 200
+  currentFuel: 350
+  maxFuel: 350
   normalConsume: 0.1
   boostConsume: 0.2
   deathParticles: {fileID: 198678149364849852}
