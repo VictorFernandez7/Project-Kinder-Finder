@@ -25,6 +25,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     [SerializeField] private ParticleSystem walkingParticles;
     [SerializeField] private Transform transforms;
     [SerializeField] private GameObject astronautVisuals;
+   // [SerializeField] private GameObject mainCamara;
 
     [HideInInspector] public Vector3 planetPosition;
     [HideInInspector] public bool onGround = true;
@@ -72,9 +73,6 @@ public class Scr_AstronautMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.DrawLine(rayPointLeft.transform.position, hitL.point, Color.yellow);
-        Debug.DrawLine(rayPointRight.transform.position, hitR.point, Color.yellow);
-
         if (canMove == true)
         {
             hitL = Physics2D.Raycast(rayPointLeft.transform.position, -rayPointLeft.transform.up, checkDistance, collisionMask);
@@ -88,38 +86,35 @@ public class Scr_AstronautMovement : MonoBehaviour
 
             if (Input.GetKey(KeyCode.A))
             {
-                MoveLeft();
-
-                if (faceRight)
-                    Flip();
-
-                if (currentDistanceLeft < (baseDistanceLeft - precisionValue))
+              /*  if (currentDistanceLeft < (baseDistanceLeft - precisionValue))
                     transform.position += new Vector3(0f, (baseDistanceLeft - currentDistanceLeft), 0f);
 
                 else if (currentDistanceLeft > (baseDistanceLeft + precisionValue))
                     transform.position += new Vector3(0f, (baseDistanceRight - currentDistanceRight), 0f);
+*/
+                Move(movementSpeed);
+
+                if (faceRight)
+                    Flip();
             }
 
             else if (Input.GetKey(KeyCode.D))
             {
-                MoveRight();
-
-                if (!faceRight)
-                    Flip();
-
-                if (currentDistanceRight < (baseDistanceRight - precisionValue))
+             /*   if (currentDistanceRight < (baseDistanceRight - precisionValue))
                     transform.position += new Vector3(0f, (baseDistanceRight - currentDistanceRight), 0f);
 
                 else if (currentDistanceRight > (baseDistanceRight + precisionValue))
                     transform.position += new Vector3(0f, (baseDistanceLeft - currentDistanceLeft), 0f);
-            }
+*/
+                Move(-movementSpeed);
 
-            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A))
-                walkingParticles.Play();
-            else
-                walkingParticles.Stop();
+                if (!faceRight)
+                    Flip();
+            }
         }
-   
+        
+        transform.up = -new Vector3(currentPlanet.transform.position.x - transform.position.x, currentPlanet.transform.position.y - transform.position.y, currentPlanet.transform.position.z - transform.position.z);
+
         if (onGround)
         {
             transform.position += (currentPlanet.transform.position - planetPosition);
@@ -150,13 +145,17 @@ public class Scr_AstronautMovement : MonoBehaviour
 
     private void MoveRight()
     {
-        transform.RotateAround(planetPosition, Vector3.forward, -movementSpeed / (currentPlanet.transform.GetChild(0).GetComponent<Renderer>().bounds.size.y / 2) * Time.fixedDeltaTime);
+        //transform.RotateAround(planetPosition, Vector3.forward, -movementSpeed / (currentPlanet.transform.GetChild(0).GetComponent<Renderer>().bounds.size.y / 2) * Time.fixedDeltaTime);
         miniPlayer.transform.RotateAround(miniPlanet.transform.position, Vector3.forward, (-movementSpeed / 4.5f) * Time.fixedDeltaTime);
     }
 
-    private void MoveLeft()
+    private void Move(float movement)
     {
-        transform.RotateAround(planetPosition, Vector3.forward, movementSpeed / (currentPlanet.transform.GetChild(0).GetComponent<Renderer>().bounds.size.y / 2) * Time.fixedDeltaTime);
+        Vector3 movementVector = (currentPlanet.transform.position - transform.position).normalized;
+        movementVector = Vector3.Cross(Vector3.back, movementVector);
+        Debug.DrawRay(transform.position, movementVector*movement*100, Color.red);
+        transform.Translate(movementVector * movement, Space.World);
+        //transform.RotateAround(planetPosition, Vector3.forward, movementSpeed / (currentPlanet.transform.GetChild(0).GetComponent<Renderer>().bounds.size.y / 2) * Time.fixedDeltaTime);
         miniPlayer.transform.RotateAround(miniPlanet.transform.position, Vector3.forward, (movementSpeed / 4.5f) * Time.fixedDeltaTime);
     }
 
