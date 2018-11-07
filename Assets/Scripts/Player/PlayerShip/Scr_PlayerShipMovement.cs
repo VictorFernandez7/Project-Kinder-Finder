@@ -53,10 +53,12 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
     private bool countDownToMove;
     private bool takingOff;
+    private bool landing;
     private float maxSpeedSaved;
     private float currentSpeed;
     private float canControlTimerSaved;
-    private Vector3 targetPosition;
+    private Vector3 targetTakingOff;
+    private Vector3 targetLanding;
     private TextMeshProUGUI limiterText;
     private TextMeshProUGUI speedText;
     private Scr_PlayerShipStats playerShipStats;
@@ -88,8 +90,6 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
     private void Update()
     {
-        float distanceToPlanet = Vector3.Distance(transform.position, currentPlanet.transform.position);
-
         speedText.text = ((int)(rb.velocity.magnitude * 10)).ToString();
 
         ShipControl();
@@ -99,31 +99,20 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         if (currentPlanet != null)
         {
             RaycastHit2D distanceHit = Physics2D.Raycast(endOfShip.position, -endOfShip.up, landDistance, planetLayer);
-            Debug.DrawLine(endOfShip.position, endOfShip.position  - endOfShip.up * landDistance, Color.red);
 
-            if (distanceHit)
+            if (distanceHit && playerShipState == PlayerShipState.inSpace)
             {
-                Debug.Log("land");
-                if (playerShipState == PlayerShipState.inSpace)
-                {
-                    playerShipState = PlayerShipState.landing;
-                    Debug.Log("land");
-                    Landing();
-                }
-            }
+                targetLanding = distanceHit.point;
 
-            if (onGround && Input.GetKey(KeyCode.LeftShift) && Input.GetMouseButtonDown(0) && playerShipState == PlayerShipState.landed)
-            {
-                playerShipState = PlayerShipState.takingOff;
-
-                TakingOff();
+                Landing();
             }
         }
 
         else
-        {
             playerShipState = PlayerShipState.inSpace;
-        }
+
+        if (onGround && Input.GetKey(KeyCode.LeftShift) && Input.GetMouseButtonDown(0) && playerShipState == PlayerShipState.landed)
+            TakingOff();
 
         if (onGround)
         {
@@ -138,17 +127,36 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         {
             float margin = 10f;
 
-            transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * takeOffSpeed);
+            playerShipState = PlayerShipState.takingOff;
+
+            transform.position = Vector3.Lerp(transform.position, targetTakingOff, Time.deltaTime * takeOffSpeed);
 
             TakingOffEffects(true);
 
-            if (transform.position.y >= targetPosition.y - margin)
+            if (transform.position.y >= targetTakingOff.y - margin)
             {
                 rb.isKinematic = false;
                 transform.SetParent(null);
                 TakingOffEffects(false);
 
                 canRotateShip = true;
+
+                takingOff = false;
+            }
+        }
+
+        if (landing)
+        {
+            playerShipState = PlayerShipState.landing;
+
+            transform.position = Vector3.Lerp(transform.position, targetLanding, Time.deltaTime * landSpeed);
+
+            //LandingEffects(true);
+
+            if (Vector3.Distance(endOfShip.position, targetLanding) <= 1f)
+            {
+                rb.isKinematic = false;
+                //LandingEffects(false);
 
                 takingOff = false;
             }
@@ -217,12 +225,13 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     {
         transform.SetParent(currentPlanet.transform);
 
-        SetVelocityToZero();
+        rb.isKinematic = true;
+        landing = true;
     }
 
     void TakingOff()
     {
-        targetPosition = transform.position + new Vector3(0, takeOffDistance, 0);
+        targetTakingOff = transform.position + new Vector3(0, takeOffDistance, 0);
 
         rb.isKinematic = true;
         takingOff = true;

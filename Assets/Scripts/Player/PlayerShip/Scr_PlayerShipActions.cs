@@ -37,7 +37,8 @@ public class Scr_PlayerShipActions : MonoBehaviour
 
     private void FixedUpdate()
     {
-        lastFramePlanetPosition = playerShipMovement.currentPlanet.transform.position;
+        if (playerShipMovement.currentPlanet != null)
+            lastFramePlanetPosition = playerShipMovement.currentPlanet.transform.position;
     }
 
     void DeployAstronaut()
