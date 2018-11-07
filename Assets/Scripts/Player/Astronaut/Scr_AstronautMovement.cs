@@ -16,16 +16,12 @@ public class Scr_AstronautMovement : MonoBehaviour
     [SerializeField] private float checkDistance;
     [SerializeField] private LayerMask collisionMask;
 
-    [Header("Height System Values")]
-    [SerializeField] private float precisionValue;
-
     [Header("References")]
     [SerializeField] private GameObject rayPointLeft;
     [SerializeField] private GameObject rayPointRight;
     [SerializeField] private ParticleSystem walkingParticles;
     [SerializeField] private Transform transforms;
     [SerializeField] private GameObject astronautVisuals;
-   // [SerializeField] private GameObject mainCamara;
 
     [HideInInspector] public Vector3 planetPosition;
     [HideInInspector] public bool onGround = true;
@@ -36,13 +32,10 @@ public class Scr_AstronautMovement : MonoBehaviour
     [HideInInspector] public GameObject currentPlanet;
     [HideInInspector] public GameObject currentFuelCollector;
 
-    private Rigidbody2D rb;
     private RaycastHit2D hitL;
     private RaycastHit2D hitR;
-    private float baseDistanceRight;
-    private float baseDistanceLeft;
-    private float currentDistanceLeft;
-    private float currentDistanceRight;
+    private Vector2 pointLeft;
+    private Vector2 pointRight;
     private bool facingRight;
     private GameObject miniPlayer;
     private GameObject miniPlanet;
@@ -54,21 +47,10 @@ public class Scr_AstronautMovement : MonoBehaviour
         miniPlanet = GameObject.Find("MiniPlanet");
         gameManager = GameObject.Find("GameManager").GetComponent<Scr_GameManager>();
 
-        rb = GetComponent<Rigidbody2D>();
-
         canMove = true;
 
         currentPlanet = gameManager.initialPlanet;
         transform.up = - new Vector3(currentPlanet.transform.position.x - transform.position.x, currentPlanet.transform.position.y - transform.position.y, currentPlanet.transform.position.z - transform.position.z);
-
-        hitL = Physics2D.Raycast(rayPointLeft.transform.position, -rayPointLeft.transform.up, checkDistance, collisionMask);
-        hitR = Physics2D.Raycast(rayPointRight.transform.position, -rayPointRight.transform.up, checkDistance, collisionMask);
-
-        if (hitL)
-            baseDistanceLeft = Vector2.Distance(rayPointLeft.transform.position, hitL.point);
-
-        if (hitR)
-            baseDistanceRight = Vector2.Distance(rayPointRight.transform.position, hitR.point);
     }
 
     private void FixedUpdate()
@@ -79,42 +61,32 @@ public class Scr_AstronautMovement : MonoBehaviour
             hitR = Physics2D.Raycast(rayPointRight.transform.position, -rayPointRight.transform.up, checkDistance, collisionMask);
 
             if (hitL)
-                currentDistanceLeft = Vector2.Distance(rayPointLeft.transform.position, hitL.point);
+                pointLeft = hitL.point;
 
             if (hitR)
-                currentDistanceRight = Vector2.Distance(rayPointRight.transform.position, hitR.point);
+                pointRight = hitR.point;
 
-            if (Input.GetKey(KeyCode.A))
+
+            Debug.DrawLine(rayPointLeft.transform.position, pointLeft, Color.yellow);
+            Debug.DrawLine(rayPointRight.transform.position, pointRight, Color.yellow);
+
+            if (Input.GetAxis("Horizontal") <= -0.5f)
             {
-              /*  if (currentDistanceLeft < (baseDistanceLeft - precisionValue))
-                    transform.position += new Vector3(0f, (baseDistanceLeft - currentDistanceLeft), 0f);
-
-                else if (currentDistanceLeft > (baseDistanceLeft + precisionValue))
-                    transform.position += new Vector3(0f, (baseDistanceRight - currentDistanceRight), 0f);
-*/
-                Move(movementSpeed);
+                Move(false, movementSpeed);
 
                 if (faceRight)
                     Flip();
             }
 
-            else if (Input.GetKey(KeyCode.D))
+            else if (Input.GetAxis("Horizontal") >= 0.5f)
             {
-             /*   if (currentDistanceRight < (baseDistanceRight - precisionValue))
-                    transform.position += new Vector3(0f, (baseDistanceRight - currentDistanceRight), 0f);
-
-                else if (currentDistanceRight > (baseDistanceRight + precisionValue))
-                    transform.position += new Vector3(0f, (baseDistanceLeft - currentDistanceLeft), 0f);
-*/
-                Move(-movementSpeed);
+                Move(true, movementSpeed);
 
                 if (!faceRight)
                     Flip();
             }
         }
         
-        transform.up = -new Vector3(currentPlanet.transform.position.x - transform.position.x, currentPlanet.transform.position.y - transform.position.y, currentPlanet.transform.position.z - transform.position.z);
-
         if (onGround)
         {
             transform.position += (currentPlanet.transform.position - planetPosition);
@@ -143,19 +115,29 @@ public class Scr_AstronautMovement : MonoBehaviour
             closeToCollector = true;
     }
 
-    private void MoveRight()
+    private void Move(bool right, float movement)
     {
-        //transform.RotateAround(planetPosition, Vector3.forward, -movementSpeed / (currentPlanet.transform.GetChild(0).GetComponent<Renderer>().bounds.size.y / 2) * Time.fixedDeltaTime);
-        miniPlayer.transform.RotateAround(miniPlanet.transform.position, Vector3.forward, (-movementSpeed / 4.5f) * Time.fixedDeltaTime);
-    }
+        Vector2 movementVector = new Vector2(0f, 0f);
+        Vector3 initialPosition = (currentPlanet.transform.position - transform.position);
 
-    private void Move(float movement)
-    {
-        Vector3 movementVector = (currentPlanet.transform.position - transform.position).normalized;
-        movementVector = Vector3.Cross(Vector3.back, movementVector);
-        Debug.DrawRay(transform.position, movementVector*movement*100, Color.red);
+        if (right)
+            movementVector = (pointRight - pointLeft).normalized;
+
+        if (!right)
+            movementVector = (pointLeft - pointRight).normalized;
+
+        Debug.DrawRay(transform.position, movementVector, Color.red);
+
         transform.Translate(movementVector * movement, Space.World);
-        //transform.RotateAround(planetPosition, Vector3.forward, movementSpeed / (currentPlanet.transform.GetChild(0).GetComponent<Renderer>().bounds.size.y / 2) * Time.fixedDeltaTime);
+
+        float angle = Vector3.Angle(initialPosition, (currentPlanet.transform.position - transform.position));
+
+        if(right)
+            transform.Rotate(new Vector3(0f, 0f, -angle), Space.Self);
+
+        else
+            transform.Rotate(new Vector3(0f, 0f, angle), Space.Self);
+
         miniPlayer.transform.RotateAround(miniPlanet.transform.position, Vector3.forward, (movementSpeed / 4.5f) * Time.fixedDeltaTime);
     }
 
