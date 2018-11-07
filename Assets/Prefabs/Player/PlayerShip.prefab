@@ -700,8 +700,8 @@ MonoBehaviour:
   thrusterPower: 1000
   canControlTimer: 2
   shipOrientationSpeed: 2
-  landDistance: 2
-  landingTime: 100
+  landDistance: 2.5
+  landingTime: 20
   planetLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -722,6 +722,8 @@ MonoBehaviour:
   currentPlanet: {fileID: 0}
   rb: {fileID: 0}
   mainCamera: {fileID: 0}
+  takingOff: 0
+  landing: 0
 --- !u!114 &114778194997285574
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -754,7 +756,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 4650739806024484}
-  mapVisuals: {fileID: 0}
+  mapVisuals: {fileID: 1179959987047468}
   canExitShip: 0
 --- !u!114 &114947369718006980
 MonoBehaviour:

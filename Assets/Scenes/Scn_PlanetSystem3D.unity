@@ -646,19 +646,9 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114460277530790754, guid: 86116cd5e148cdc41b2b039f4eb5b686,
         type: 2}
-      propertyPath: playerShip
-      value: 
-      objectReference: {fileID: 1922724874}
-    - target: {fileID: 114460277530790754, guid: 86116cd5e148cdc41b2b039f4eb5b686,
-        type: 2}
-      propertyPath: astronaut
-      value: 
-      objectReference: {fileID: 1075748588}
-    - target: {fileID: 114460277530790754, guid: 86116cd5e148cdc41b2b039f4eb5b686,
-        type: 2}
-      propertyPath: currentPlanet
-      value: 
-      objectReference: {fileID: 2109190144}
+      propertyPath: zoomSpeed
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86116cd5e148cdc41b2b039f4eb5b686, type: 2}
   m_IsPrefabAsset: 0
@@ -1747,11 +1737,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1075748588 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1635559910669824, guid: a7965b5f8a536a540b7c003202d37841,
-    type: 2}
-  m_PrefabInternal: {fileID: 1442916851}
 --- !u!1 &1107882577
 GameObject:
   m_ObjectHideFlags: 0
@@ -2566,11 +2551,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4004395127091482, guid: a7965b5f8a536a540b7c003202d37841, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 145
+      value: 144.873
       objectReference: {fileID: 0}
     - target: {fileID: 4004395127091482, guid: a7965b5f8a536a540b7c003202d37841, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 4.253412
+      value: 4.205
       objectReference: {fileID: 0}
     - target: {fileID: 4004395127091482, guid: a7965b5f8a536a540b7c003202d37841, type: 2}
       propertyPath: m_LocalPosition.z
@@ -3436,11 +3421,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!1 &1922724874 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1452036844316726, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
-    type: 2}
-  m_PrefabInternal: {fileID: 1288940837}
 --- !u!1 &2009863782
 GameObject:
   m_ObjectHideFlags: 0
