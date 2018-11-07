@@ -13,14 +13,12 @@ public class Scr_AstronautMovement : MonoBehaviour
 {
     [Header("Movement Properties")]
     [SerializeField] private float movementSpeed;
-    [SerializeField] private float checkDistance;
     [SerializeField] private LayerMask collisionMask;
 
     [Header("Hight Properties")]
     [SerializeField] private float precisionHight;
     [SerializeField] private float speedJump;
     [SerializeField] private float gravity;
-
 
     [Header("References")]
     [SerializeField] private GameObject rayPointLeft;
@@ -52,20 +50,20 @@ public class Scr_AstronautMovement : MonoBehaviour
     private bool jumping;
     private GameObject miniPlayer;
     private GameObject miniPlanet;
-    private Scr_GameManager gameManager;
+    private Scr_PlayerShipMovement playerShipMovement;
 
     private void Start()
     {
         miniPlayer = GameObject.Find("MiniPlayer");
         miniPlanet = GameObject.Find("MiniPlanet");
-        gameManager = GameObject.Find("GameManager").GetComponent<Scr_GameManager>();
+        playerShipMovement = GameObject.Find("PlayerShip").GetComponent<Scr_PlayerShipMovement>();
 
         canMove = true;
 
-        currentPlanet = gameManager.initialPlanet;
+        currentPlanet = playerShipMovement.currentPlanet;
         transform.up = - new Vector3(currentPlanet.transform.position.x - transform.position.x, currentPlanet.transform.position.y - transform.position.y, currentPlanet.transform.position.z - transform.position.z);
 
-        hitCentral = Physics2D.Raycast(transform.position, -transform.up, checkDistance, collisionMask);
+        hitCentral = Physics2D.Raycast(transform.position, (currentPlanet.transform.position - transform.position).normalized, Mathf.Infinity, collisionMask);
 
         if (hitCentral)
             baseDistance = Vector3.Distance(transform.position, hitCentral.point);
@@ -93,21 +91,10 @@ public class Scr_AstronautMovement : MonoBehaviour
     {
         if (canMove == true)
         {
-            hitL = Physics2D.Raycast(rayPointLeft.transform.position, -rayPointLeft.transform.up, checkDistance, collisionMask);
-            hitR = Physics2D.Raycast(rayPointRight.transform.position, -rayPointRight.transform.up, checkDistance, collisionMask);
-            hitCentral = Physics2D.Raycast(transform.position, -transform.up, checkDistance, collisionMask);
-
-            if (hitL)
-                pointLeft = hitL.point;
-
-            if (hitR)
-                pointRight = hitR.point;
+            hitCentral = Physics2D.Raycast(transform.position, (currentPlanet.transform.position - transform.position).normalized, Mathf.Infinity, collisionMask);
            
             if (hitCentral)
                 currentDistance = Vector3.Distance(transform.position, hitCentral.point);
-
-            Debug.DrawLine(rayPointLeft.transform.position, pointLeft, Color.yellow);
-            Debug.DrawLine(rayPointRight.transform.position, pointRight, Color.yellow);
 
             if (!jumping)
             {
@@ -118,7 +105,7 @@ public class Scr_AstronautMovement : MonoBehaviour
                     transform.Translate(Vector3.up * 0.01f, Space.World);
             }
 
-            else if((currentDistance > (baseDistance - precisionHight * 1.5f)) && (currentDistance < (baseDistance + precisionHight * 1.5f)))
+            else if((currentDistance > (baseDistance - precisionHight)) && (currentDistance < (baseDistance + precisionHight)))
             {
                 vectorJump = new Vector2(0f, 0f);
                 jumping = false;
@@ -126,6 +113,18 @@ public class Scr_AstronautMovement : MonoBehaviour
 
             if (Input.GetButton("Horizontal") && Input.GetAxis("Horizontal") < 0f)
             {
+                hitL = Physics2D.Raycast(rayPointLeft.transform.position, -rayPointLeft.transform.up, Mathf.Infinity, collisionMask);
+                hitR = Physics2D.Raycast(rayPointRight.transform.position, -rayPointRight.transform.up, Mathf.Infinity, collisionMask);
+
+                if (hitL)
+                    pointLeft = hitL.point;
+
+                if (hitR)
+                    pointRight = hitR.point;
+
+                Debug.DrawLine(rayPointLeft.transform.position, pointLeft, Color.yellow);
+                Debug.DrawLine(rayPointRight.transform.position, pointRight, Color.yellow);
+
                 if (faceRight)
                     Flip();
 
@@ -134,6 +133,18 @@ public class Scr_AstronautMovement : MonoBehaviour
 
             else if (Input.GetButton("Horizontal") && Input.GetAxis("Horizontal") > 0f)
             {
+                hitL = Physics2D.Raycast(rayPointLeft.transform.position, -rayPointLeft.transform.up, Mathf.Infinity, collisionMask);
+                hitR = Physics2D.Raycast(rayPointRight.transform.position, -rayPointRight.transform.up, Mathf.Infinity, collisionMask);
+
+                if (hitL)
+                    pointLeft = hitL.point;
+
+                if (hitR)
+                    pointRight = hitR.point;
+
+                Debug.DrawLine(rayPointLeft.transform.position, pointLeft, Color.yellow);
+                Debug.DrawLine(rayPointRight.transform.position, pointRight, Color.yellow);
+
                 if (!faceRight)
                     Flip();
 
@@ -171,7 +182,6 @@ public class Scr_AstronautMovement : MonoBehaviour
 
     private void Move(bool right, float movement)
     {
-        lastVector = (transform.position - currentPlanet.transform.position);
         if (right)
             movementVector = (pointRight - pointLeft).normalized;
 
@@ -183,6 +193,8 @@ public class Scr_AstronautMovement : MonoBehaviour
         transform.Translate(movementVector * movement, Space.World);
 
         float angle = Vector2.Angle(lastVector, (transform.position - currentPlanet.transform.position));
+
+        lastVector = (transform.position - currentPlanet.transform.position);
 
         if(right)
             transform.Rotate(new Vector3(0f, 0f, -angle), Space.Self);
