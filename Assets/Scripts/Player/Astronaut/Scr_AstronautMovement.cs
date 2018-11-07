@@ -20,7 +20,6 @@ public class Scr_AstronautMovement : MonoBehaviour
     [SerializeField] private float speedJump;
     [SerializeField] private float gravity;
 
-
     [Header("References")]
     [SerializeField] private GameObject rayPointLeft;
     [SerializeField] private GameObject rayPointRight;
@@ -51,17 +50,17 @@ public class Scr_AstronautMovement : MonoBehaviour
     private bool jumping;
     private GameObject miniPlayer;
     private GameObject miniPlanet;
-    private Scr_GameManager gameManager;
+    private Scr_PlayerShipMovement playerShipMovement;
 
     private void Start()
     {
         miniPlayer = GameObject.Find("MiniPlayer");
         miniPlanet = GameObject.Find("MiniPlanet");
-        gameManager = GameObject.Find("GameManager").GetComponent<Scr_GameManager>();
+        playerShipMovement = GameObject.Find("PlayerShip").GetComponent<Scr_PlayerShipMovement>();
 
         canMove = true;
 
-        currentPlanet = gameManager.initialPlanet;
+        currentPlanet = playerShipMovement.currentPlanet;
         transform.up = - new Vector3(currentPlanet.transform.position.x - transform.position.x, currentPlanet.transform.position.y - transform.position.y, currentPlanet.transform.position.z - transform.position.z);
 
         hitCentral = Physics2D.Raycast(transform.position, (currentPlanet.transform.position - transform.position).normalized, Mathf.Infinity, collisionMask);
