@@ -692,14 +692,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e51695d77089f54b95c91905edfacff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerShipState: 0
-  takeOffDistance: 15
-  takeOffSpeed: 0.15
+  playerShipState: 2
+  takeOffDistance: 18
+  targetVelocity: {x: 0, y: 1, z: 0}
+  takingOffTime: 0.001
   dustMultiplier: 1000
   canControlTimer: 2
   shipOrientationSpeed: 1
   landDistance: 5
-  landSpeed: 0
+  landingTime: 100
   planetLayer:
     serializedVersion: 2
     m_Bits: 1024
