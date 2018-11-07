@@ -70,7 +70,7 @@ public class Scr_AstronautMovement : MonoBehaviour
             Debug.DrawLine(rayPointLeft.transform.position, pointLeft, Color.yellow);
             Debug.DrawLine(rayPointRight.transform.position, pointRight, Color.yellow);
 
-            if (Input.GetKey(KeyCode.A))
+            if (Input.GetAxis("Horizontal") <= -0.5f)
             {
                 Move(false, movementSpeed);
 
@@ -78,7 +78,7 @@ public class Scr_AstronautMovement : MonoBehaviour
                     Flip();
             }
 
-            else if (Input.GetKey(KeyCode.D))
+            else if (Input.GetAxis("Horizontal") >= 0.5f)
             {
                 Move(true, movementSpeed);
 
@@ -129,6 +129,7 @@ public class Scr_AstronautMovement : MonoBehaviour
         Debug.DrawRay(transform.position, movementVector, Color.red);
 
         transform.Translate(movementVector * movement, Space.World);
+
         float angle = Vector3.Angle(initialPosition, (currentPlanet.transform.position - transform.position));
 
         if(right)
