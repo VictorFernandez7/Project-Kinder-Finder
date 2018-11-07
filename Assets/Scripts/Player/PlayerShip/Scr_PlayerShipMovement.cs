@@ -16,7 +16,8 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
     [Header("Taking Off Parameters")]
     [SerializeField] private float takeOffDistance;
-    [SerializeField] private float takeOffSpeed;
+    [SerializeField] private Vector3 targetVelocity;
+    [SerializeField] private float takingOffTime;
     [Range(500, 1250)] [SerializeField] private float dustMultiplier;
 
     [Header("Landed Parameters")]
@@ -25,7 +26,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
     [Header("Landing Parameters")]
     [SerializeField] private float landDistance;
-    [SerializeField] private float landSpeed;
+    [SerializeField] private float landingTime;
     [SerializeField] private LayerMask planetLayer;
 
     [Header("In Space Parameters")]    
@@ -102,8 +103,6 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
             if (distanceHit && playerShipState == PlayerShipState.inSpace)
             {
-                targetLanding = distanceHit.point;
-
                 Landing();
             }
         }
@@ -125,19 +124,17 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
         if (takingOff)
         {
-            float margin = 10f;
-
             playerShipState = PlayerShipState.takingOff;
 
-            transform.position = Vector3.Lerp(transform.position, targetTakingOff, Time.deltaTime * takeOffSpeed);
+            transform.position = Vector3.Lerp(transform.position, targetTakingOff, Time.deltaTime);
+            rb.velocity = Vector2.Lerp(rb.velocity, targetVelocity, Time.deltaTime * takingOffTime);
 
-            TakingOffEffects(true);
+            //TakingOffEffects(true);
 
-            if (transform.position.y >= targetTakingOff.y - margin)
+            if (currentPlanet == null)
             {
-                rb.isKinematic = false;
                 transform.SetParent(null);
-                TakingOffEffects(false);
+                //TakingOffEffects(false);
 
                 canRotateShip = true;
 
@@ -149,16 +146,21 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         {
             playerShipState = PlayerShipState.landing;
 
-            transform.position = Vector3.Lerp(transform.position, targetLanding, Time.deltaTime * landSpeed);
+            RaycastHit2D landingHit = Physics2D.Raycast(endOfShip.position, -endOfShip.up, landDistance, planetLayer);
+
+            if (landingHit && playerShipState == PlayerShipState.landing)
+                targetLanding = landingHit.point;
+
+            transform.position = Vector3.Lerp(transform.position, targetLanding, Time.deltaTime);
+            rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, Time.deltaTime * landingTime);
 
             //LandingEffects(true);
 
-            if (Vector3.Distance(endOfShip.position, targetLanding) <= 1f)
+            if (onGround)
             {
-                rb.isKinematic = false;
                 //LandingEffects(false);
 
-                takingOff = false;
+                landing = false;
             }
         }
     }
@@ -205,12 +207,6 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         }
     }
 
-    void SetVelocityToZero()
-    {
-        if (rb.velocity != Vector2.zero)
-            rb.velocity = Vector2.zero;
-    }
-
     private void Landed()
     {
         Vector3 direction = -new Vector3(currentPlanet.transform.position.x - transform.position.x, currentPlanet.transform.position.y - transform.position.y, currentPlanet.transform.position.z - transform.position.z);
@@ -218,23 +214,22 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         transform.up = Vector3.Lerp(transform.up, direction, Time.deltaTime * shipOrientationSpeed);
         transform.SetParent(currentPlanet.transform);
 
-        SetVelocityToZero();
-    }
-
-    private void Landing()
-    {
-        transform.SetParent(currentPlanet.transform);
-
-        rb.isKinematic = true;
-        landing = true;
+        if (rb.velocity != Vector2.zero)
+            rb.velocity = Vector2.zero;
     }
 
     void TakingOff()
     {
         targetTakingOff = transform.position + new Vector3(0, takeOffDistance, 0);
 
-        rb.isKinematic = true;
         takingOff = true;
+    }
+
+    private void Landing()
+    {
+        transform.SetParent(currentPlanet.transform);
+
+        landing = true;
     }
 
     private void SpeedLimiter()
