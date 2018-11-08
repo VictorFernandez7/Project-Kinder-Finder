@@ -678,9 +678,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   predictionTime: 6
-  maxDistanceToPlanet: 15
-  predictionLine: {fileID: 0}
   predictionLineMap: {fileID: 120501272858494042}
+  predictionLine: {fileID: 0}
 --- !u!114 &114696350668254112
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -694,14 +693,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerShipState: 2
   takeOffDistance: 18
-  targetVelocity: {x: 0, y: 4}
+  targetVelocity: 4
   takingOffTime: 5
   dustMultiplier: 1000
   thrusterPower: 1000
   canControlTimer: 2
   shipOrientationSpeed: 2
-  landDistance: 2
-  landingTime: 100
+  landDistance: 2.5
+  landingTime: 20
   planetLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -716,6 +715,8 @@ MonoBehaviour:
   endOfShip: {fileID: 4046255908165590}
   astronautOnBoard: 0
   onGround: 0
+  takingOff: 0
+  landing: 0
   dead: 0
   canRotateShip: 0
   canControlShip: 1
@@ -754,7 +755,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 4650739806024484}
-  mapVisuals: {fileID: 0}
+  mapVisuals: {fileID: 1179959987047468}
   canExitShip: 0
 --- !u!114 &114947369718006980
 MonoBehaviour:
@@ -874,7 +875,7 @@ LineRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 8839978ace441524bb9cf6e9d9def197, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

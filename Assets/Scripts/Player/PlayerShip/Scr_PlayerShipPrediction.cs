@@ -12,14 +12,15 @@ public class Scr_PlayerShipPrediction : MonoBehaviour
 {
     [Header("Prediction Properties")]
     [Range(0, 7)] [SerializeField] public int predictionTime;
-    [SerializeField] public float maxDistanceToPlanet;
+
+    [Header("References")]
+    [SerializeField] LineRenderer predictionLineMap;
 
     [HideInInspector] public LineRenderer predictionLine;
-    public LineRenderer predictionLineMap;
 
     private int pointNumber;
-    private Scr_PlanetManager planetManager;
     private Rigidbody2D rb;
+    private Scr_PlanetManager planetManager;
     private GameObject currentPlanet;
 
     private void Start()
@@ -82,15 +83,10 @@ public class Scr_PlayerShipPrediction : MonoBehaviour
         {
             float distance = Vector3.Distance(transform.position, currentPlanet.transform.position);
 
-            if (distance < maxDistanceToPlanet)
-            {
-                predictionTime = (int)distance / 4;
-            }
-
-            else
-            {
-                predictionTime = 6;
-            }
+            predictionTime = 0;
         }
+
+        else
+            predictionTime = 6;
     }
 }
