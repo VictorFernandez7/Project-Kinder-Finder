@@ -16,7 +16,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
     [Header("Taking Off Parameters")]
     [SerializeField] private float takeOffDistance;
-    [SerializeField] private Vector2 targetVelocity;
+    [SerializeField] private float targetVelocity;
     [SerializeField] private float takingOffTime;
     [Range(500, 1250)] [SerializeField] private float dustMultiplier;
     [Range(350, 2000)] [SerializeField] private float thrusterPower;
@@ -39,21 +39,21 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [SerializeField] private float boostSpeed;
     [SerializeField] private float limitUnits;
 
-    [Header("References ")]
+    [Header("References")]
     [SerializeField] public ParticleSystem thrusterParticles;
     [SerializeField] private GameObject dustParticles;
     [SerializeField] private Transform endOfShip;
 
     [HideInInspector] public bool astronautOnBoard;
     [HideInInspector] public bool onGround;
+    [HideInInspector] public bool takingOff;
+    [HideInInspector] public bool landing;
     [HideInInspector] public bool dead;
     [HideInInspector] public bool canRotateShip;
     [HideInInspector] public bool canControlShip = true;
     [HideInInspector] public GameObject currentPlanet;
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public Camera mainCamera;
-    [HideInInspector] public bool takingOff;
-    [HideInInspector] public bool landing;
 
     private bool countDownToMove;
     private float maxSpeedSaved;
@@ -61,11 +61,12 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     private float canControlTimerSaved;
     private Vector3 targetTakingOff;
     private Vector3 targetLanding;
+    private TrailRenderer trailRenderer;
     private TextMeshProUGUI limiterText;
     private TextMeshProUGUI speedText;
     private Scr_PlayerShipStats playerShipStats;
     private Scr_PlayerShipActions playerShipActions;
-    private Scr_AstronautMovement astronautMovement;
+    private Scr_AstronautMovement astronautMovement;    
 
     public enum PlayerShipState
     {
@@ -85,6 +86,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         playerShipStats = GetComponent<Scr_PlayerShipStats>();
         playerShipActions = GetComponent<Scr_PlayerShipActions>();
+        trailRenderer = GetComponent<TrailRenderer>();
 
         canControlTimerSaved = canControlTimer;
         maxSpeedSaved = maxSpeed;
@@ -100,6 +102,8 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
         if (currentPlanet != null)
         {
+            trailRenderer.enabled = false;
+
             RaycastHit2D distanceHit = Physics2D.Raycast(endOfShip.position, -endOfShip.up, landDistance, planetLayer);
 
             if (distanceHit && playerShipState == PlayerShipState.inSpace)
@@ -111,7 +115,12 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         }
 
         else
+        {
             playerShipState = PlayerShipState.inSpace;
+
+            trailRenderer.enabled = true;
+
+        }
 
         if (onGround && Input.GetKey(KeyCode.LeftShift) && Input.GetMouseButtonDown(0) && playerShipState == PlayerShipState.landed)
         {
@@ -135,7 +144,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
             canRotateShip = false;
             canControlShip = false;
 
-            rb.velocity = Vector2.Lerp(rb.velocity, targetVelocity, Time.deltaTime * takingOffTime);
+            rb.velocity = Vector2.Lerp(rb.velocity, targetVelocity * transform.up, Time.deltaTime * takingOffTime);
 
             TakingOffEffects(true);
 
