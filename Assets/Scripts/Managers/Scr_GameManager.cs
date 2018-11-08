@@ -10,7 +10,7 @@ public class Scr_GameManager : MonoBehaviour
     private GameObject astronaut;
     private GameObject playerShip;
 
-    private void Start()
+    private void Awake()
     {
         astronaut = GameObject.Find("Astronaut");
         playerShip = GameObject.Find("PlayerShip");

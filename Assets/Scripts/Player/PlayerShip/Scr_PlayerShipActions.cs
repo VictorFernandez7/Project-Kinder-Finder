@@ -11,11 +11,16 @@ using UnityEngine;
 public class Scr_PlayerShipActions : MonoBehaviour
 {
     [Header("References")]
+    [SerializeField] private float deployDelay;
+
+    [Header("References")]
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private GameObject mapVisuals;
 
-    [HideInInspector] public bool canExitShip;
+    [HideInInspector] public bool startExitDelay;
 
+    private float deployDelaySaved;
+    private bool canExitShip;
     private Vector3 lastFramePlanetPosition;
     private GameObject astronaut;
     private Scr_PlayerShipMovement playerShipMovement;
@@ -26,6 +31,8 @@ public class Scr_PlayerShipActions : MonoBehaviour
         astronaut = GameObject.Find("Astronaut");
         playerShipMovement = GetComponent<Scr_PlayerShipMovement>();
         mainCanvasAnim = GameObject.Find("MainCanvas").GetComponent<Animator>();
+
+        deployDelaySaved = deployDelay;
     }
 
     private void Update()
@@ -35,6 +42,21 @@ public class Scr_PlayerShipActions : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.M))
             mapVisuals.SetActive(true);
+
+        if (startExitDelay)
+        {
+            canExitShip = false;
+
+            deployDelay -= Time.deltaTime;
+
+            if (deployDelaySaved <= 0)
+            {
+                deployDelaySaved = deployDelay;
+
+                canExitShip = true;
+                startExitDelay = false;
+            }
+        }
     }
 
     private void FixedUpdate()

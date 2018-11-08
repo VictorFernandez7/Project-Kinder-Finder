@@ -48,9 +48,9 @@ public class Scr_PlayerShipStats : MonoBehaviour
         currentFuel = Mathf.Clamp(currentFuel, 0f, maxFuel);
         fuelSlider.value = currentFuel;
 
-        if (fuelSlider.value <= 150)
+        if (fuelSlider.value <= 250)
             fuelSliderFill.color = Color.yellow;
-        if (fuelSlider.value <= 50)
+        if (fuelSlider.value <= 150)
             fuelSliderFill.color = Color.red;
     }
 

@@ -706,7 +706,7 @@ MonoBehaviour:
     m_Bits: 1024
   rotationDelay: 2
   maxSpeed: 100
-  normalSpeed: 200
+  normalSpeed: 100
   boostSpeed: 400
   limitUnits: 100
   thrusterParticles: {fileID: 198333808919146426}
@@ -754,9 +754,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d290ee398c412304e9d29e6d70fee3fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deployDelay: 1
   spawnPoint: {fileID: 4650739806024484}
   mapVisuals: {fileID: 1179959987047468}
-  canExitShip: 0
+  startExitDelay: 0
 --- !u!114 &114947369718006980
 MonoBehaviour:
   m_ObjectHideFlags: 1

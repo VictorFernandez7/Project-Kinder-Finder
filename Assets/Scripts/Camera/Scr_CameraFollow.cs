@@ -10,7 +10,8 @@ public class Scr_CameraFollow : MonoBehaviour
     [SerializeField] private float zoomSpeed;
 
     [Header("Camera Rotation Properties")]
-    [SerializeField] private float rotationSpeed;
+    [SerializeField] private float shipRotationSpeed;
+    [SerializeField] private float astronautRotationSpeed;
 
     [HideInInspector] public bool followAstronaut = true;
     [HideInInspector] public bool smoothRotation = true;
@@ -31,6 +32,7 @@ public class Scr_CameraFollow : MonoBehaviour
         mainCamera = GetComponent<Camera>();
 
         mainCamera.orthographicSize = zoomInPlanet;
+        smoothRotation = true;
     }
 
     private void Update()
@@ -59,7 +61,7 @@ public class Scr_CameraFollow : MonoBehaviour
             Vector3 astronautUpVector = astronaut.transform.up;
             Vector3 playerShipVectorUp = playerShip.transform.up;
 
-            transform.up = Vector3.Lerp(transform.up, followAstronaut ? astronautUpVector : playerShipVectorUp, Time.deltaTime * rotationSpeed);
+            transform.up = Vector3.Lerp(transform.up, followAstronaut ? astronautUpVector : playerShipVectorUp, Time.deltaTime * (followAstronaut ? astronautRotationSpeed : shipRotationSpeed));
         }
     }
 
