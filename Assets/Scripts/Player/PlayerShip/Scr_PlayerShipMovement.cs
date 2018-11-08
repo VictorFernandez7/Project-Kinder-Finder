@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 
@@ -64,6 +65,8 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     private TrailRenderer trailRenderer;
     private TextMeshProUGUI limiterText;
     private TextMeshProUGUI speedText;
+    private Slider speedSlider;
+    private Slider limitSlider;
     private Scr_PlayerShipStats playerShipStats;
     private Scr_PlayerShipActions playerShipActions;
     private Scr_AstronautMovement astronautMovement;    
@@ -82,6 +85,8 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         limiterText = GameObject.Find("Limiter").GetComponent<TextMeshProUGUI>();
         speedText = GameObject.Find("Speed").GetComponent<TextMeshProUGUI>();
         astronautMovement = GameObject.Find("Astronaut").GetComponent<Scr_AstronautMovement>();
+        speedSlider = GameObject.Find("SpeedSlider").GetComponent<Slider>();
+        limitSlider = GameObject.Find("LimitSlider").GetComponent<Slider>();
 
         rb = GetComponent<Rigidbody2D>();
         playerShipStats = GetComponent<Scr_PlayerShipStats>();
@@ -90,12 +95,12 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
         canControlTimerSaved = canControlTimer;
         maxSpeedSaved = maxSpeed;
+        limitSlider.maxValue = maxSpeedSaved;
+        speedSlider.maxValue = maxSpeedSaved;
     }
 
     private void Update()
     {
-        speedText.text = ((int)(rb.velocity.magnitude * 10)).ToString();
-
         ShipControl();
         SpeedLimiter();
         Timers();
@@ -252,6 +257,15 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
     private void SpeedLimiter()
     {
+        int speed = (int)(rb.velocity.magnitude * 10);
+
+        speedSlider.value = speed;
+        limitSlider.value = maxSpeedSaved;
+
+        speedText.text = speed.ToString();
+        speedText.transform.localPosition = new Vector3(0, speed * 3, 0);
+        limiterText.text = maxSpeedSaved.ToString();
+
         maxSpeedSaved += Input.GetAxis("Mouse ScrollWheel") * limitUnits;
         maxSpeedSaved = Mathf.Clamp(maxSpeedSaved, 0f, maxSpeed);
         maxSpeedSaved = (float)((int)maxSpeedSaved);

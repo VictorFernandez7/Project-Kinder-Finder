@@ -60,7 +60,6 @@ public class Scr_AstronautMovement : MonoBehaviour
 
         canMove = true;
 
-        currentPlanet = playerShipMovement.currentPlanet;
         transform.up = - new Vector3(currentPlanet.transform.position.x - transform.position.x, currentPlanet.transform.position.y - transform.position.y, currentPlanet.transform.position.z - transform.position.z);
 
         hitCentral = Physics2D.Raycast(transform.position, (currentPlanet.transform.position - transform.position).normalized, Mathf.Infinity, collisionMask);
@@ -79,6 +78,7 @@ public class Scr_AstronautMovement : MonoBehaviour
                 jumping = true;
             }
         }
+
         else if (jumping)
         {
             vectorJump -= (transform.position - currentPlanet.transform.position).normalized * gravity * Time.deltaTime;
@@ -196,7 +196,7 @@ public class Scr_AstronautMovement : MonoBehaviour
 
         lastVector = (transform.position - currentPlanet.transform.position);
 
-        if(right)
+        if (right)
             transform.Rotate(new Vector3(0f, 0f, -angle), Space.Self);
 
         else
