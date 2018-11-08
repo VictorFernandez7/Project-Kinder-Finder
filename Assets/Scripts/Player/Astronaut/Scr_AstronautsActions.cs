@@ -23,11 +23,13 @@ public class Scr_AstronautsActions : MonoBehaviour
     private GameObject playerShip;
     private Scr_AstronautMovement astronautMovement;
     private GameObject currentFuelBLock;
+    private Animator mainCanvasAnim;
 
     private void Start()
     {
         playerShip = GameObject.Find("PlayerShip");
         mainCamera = GameObject.Find("MainCamera");
+        mainCanvasAnim = GameObject.Find("MainCanvas").GetComponent<Animator>();
 
         astronautMovement = GetComponent<Scr_AstronautMovement>();
     }
@@ -45,6 +47,8 @@ public class Scr_AstronautsActions : MonoBehaviour
             playerShip.GetComponent<Scr_PlayerShipMovement>().astronautOnBoard = true;
             mainCamera.GetComponent<Scr_CameraFollow>().followAstronaut = false;
             gameObject.SetActive(false);
+
+            mainCanvasAnim.SetBool("OnBoard", true);
         }
 
         if (Input.GetKeyDown(KeyCode.E) && astronautMovement.closeToCollector && astronautMovement.currentFuelCollector != null)

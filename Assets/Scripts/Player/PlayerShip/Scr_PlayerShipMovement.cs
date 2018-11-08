@@ -79,8 +79,8 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     private void Start()
     {
         mainCamera = GameObject.Find("MainCamera").GetComponent<Camera>();
-        limiterText = GameObject.Find("LimiterText").GetComponent<TextMeshProUGUI>();
-        speedText = GameObject.Find("SpeedText").GetComponent<TextMeshProUGUI>();
+        limiterText = GameObject.Find("Limiter").GetComponent<TextMeshProUGUI>();
+        speedText = GameObject.Find("Speed").GetComponent<TextMeshProUGUI>();
         astronautMovement = GameObject.Find("Astronaut").GetComponent<Scr_AstronautMovement>();
 
         rb = GetComponent<Rigidbody2D>();

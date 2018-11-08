@@ -19,11 +19,13 @@ public class Scr_PlayerShipActions : MonoBehaviour
     private Vector3 lastFramePlanetPosition;
     private GameObject astronaut;
     private Scr_PlayerShipMovement playerShipMovement;
+    private Animator mainCanvasAnim;
 
     private void Start()
     {
         astronaut = GameObject.Find("Astronaut");
         playerShipMovement = GetComponent<Scr_PlayerShipMovement>();
+        mainCanvasAnim = GameObject.Find("MainCanvas").GetComponent<Animator>();
     }
 
     private void Update()
@@ -50,5 +52,6 @@ public class Scr_PlayerShipActions : MonoBehaviour
         astronaut.GetComponent<Scr_AstronautMovement>().planetPosition = lastFramePlanetPosition;
         astronaut.GetComponent<Scr_AstronautMovement>().onGround = true;
         playerShipMovement.mainCamera.GetComponent<Scr_CameraFollow>().followAstronaut = true;
+        mainCanvasAnim.SetBool("OnBoard", false);
     }
 }
