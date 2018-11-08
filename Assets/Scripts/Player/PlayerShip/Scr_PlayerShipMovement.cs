@@ -193,7 +193,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
             countDownToMove = true;
             onGround = true;
 
-            playerShipActions.canExitShip = true;
+            playerShipActions.startExitDelay = true;
         }
     }
 
@@ -203,7 +203,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         {
             onGround = false;
 
-            playerShipActions.canExitShip = false;
+            playerShipActions.startExitDelay = false;
         }
     }
 
