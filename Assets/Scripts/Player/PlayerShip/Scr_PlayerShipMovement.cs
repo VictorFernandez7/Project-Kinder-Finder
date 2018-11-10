@@ -69,7 +69,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     private TextMeshProUGUI speedText;
     private Scr_PlayerShipStats playerShipStats;
     private Scr_PlayerShipActions playerShipActions;
-    private Scr_AstronautMovement astronautMovement;    
+    private Scr_AstronautMovement astronautMovement;
 
     public enum PlayerShipState
     {
@@ -113,7 +113,8 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
             if (distanceHit && playerShipState == PlayerShipState.inSpace)
             {
-                mainCamera.GetComponent<Scr_CameraFollow>().smoothRotation = true;
+                mainCamera.GetComponent<Scr_MainCamera>().smoothRotation = true;
+                mainCamera.GetComponent<Scr_MainCamera>().CameraStartShake(true);
 
                 Landing();
             }
@@ -124,12 +125,12 @@ public class Scr_PlayerShipMovement : MonoBehaviour
             playerShipState = PlayerShipState.inSpace;
 
             trailRenderer.enabled = true;
-
         }
 
         if (onGround && Input.GetKey(KeyCode.LeftShift) && Input.GetMouseButtonDown(0) && playerShipState == PlayerShipState.landed)
         {
-            mainCamera.GetComponent<Scr_CameraFollow>().smoothRotation = false;
+            mainCamera.GetComponent<Scr_MainCamera>().smoothRotation = false;
+            mainCamera.GetComponent<Scr_MainCamera>().CameraShake();
 
             TakingOff();
         }
@@ -137,6 +138,8 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         if (onGround)
         {
             playerShipState = PlayerShipState.landed;
+
+            mainCamera.GetComponent<Scr_MainCamera>().CameraStartShake(false);
 
             Landed();
             OnGroundEffects();

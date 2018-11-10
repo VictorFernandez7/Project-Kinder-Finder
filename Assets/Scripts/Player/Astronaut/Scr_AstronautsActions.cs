@@ -46,7 +46,7 @@ public class Scr_AstronautsActions : MonoBehaviour
         {
             playerShip.GetComponent<Scr_PlayerShipMovement>().astronautOnBoard = true;
             playerShip.GetComponent<Scr_PlayerShipActions>().startExitDelay = true;
-            mainCamera.GetComponent<Scr_CameraFollow>().followAstronaut = false;
+            mainCamera.GetComponent<Scr_MainCamera>().followAstronaut = false;
             gameObject.SetActive(false);
 
             mainCanvasAnim.SetBool("OnBoard", true);

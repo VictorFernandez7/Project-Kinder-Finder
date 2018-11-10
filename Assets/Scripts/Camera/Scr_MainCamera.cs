@@ -1,17 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using EZCameraShake;
 using UnityEngine;
 
-public class Scr_CameraFollow : MonoBehaviour
+public class Scr_MainCamera : MonoBehaviour
 {
-    [Header("Camera Zoom Properties")]
+    [Header("Zoom Properties")]
     [SerializeField] private float zoomInSpace;
     [SerializeField] private float zoomInPlanet;
     [SerializeField] private float zoomSpeed;
 
-    [Header("Camera Rotation Properties")]
+    [Header("Rotation Properties")]
     [SerializeField] private float shipRotationSpeed;
     [SerializeField] private float astronautRotationSpeed;
+
+    [Header("Shake Properties")]
+    [SerializeField] private float magnitude = 2f;
+    [SerializeField] private float roughness = 10f;
+    [SerializeField] private float fadeOutTime = 5f;
 
     [HideInInspector] public bool followAstronaut = true;
     [HideInInspector] public bool smoothRotation = true;
@@ -23,6 +29,7 @@ public class Scr_CameraFollow : MonoBehaviour
     private GameObject playerShip;
     private GameObject astronaut;
     private Scr_PlayerShipMovement playerShipMovement;
+    private CameraShakeInstance shakeInstance;
 
     private void Start()
     {
@@ -33,6 +40,10 @@ public class Scr_CameraFollow : MonoBehaviour
 
         mainCamera.orthographicSize = zoomInPlanet;
         smoothRotation = true;
+
+        shakeInstance = CameraShaker.Instance.StartShake(magnitude, roughness, fadeOutTime);
+        shakeInstance.StartFadeOut(0);
+        shakeInstance.DeleteOnInactive = true;
     }
 
     private void Update()
@@ -73,5 +84,18 @@ public class Scr_CameraFollow : MonoBehaviour
 
         if (playerShipMovement.landing || playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed)
             mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, zoomInPlanet, Time.deltaTime * zoomSpeed);
+    }
+
+    public void CameraShake()
+    {
+        CameraShaker.Instance.ShakeOnce(magnitude, roughness, 0, fadeOutTime);
+    }
+
+    public void CameraStartShake(bool fadeIn)
+    {
+        if (fadeIn)
+            shakeInstance.StartFadeIn(1f);
+        else
+            shakeInstance.StartFadeOut(3f);
     }
 }
