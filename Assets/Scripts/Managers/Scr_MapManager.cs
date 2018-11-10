@@ -11,12 +11,6 @@ public class Scr_MapManager : MonoBehaviour
     [SerializeField] float zoomSpeed;
     [SerializeField] Vector2 clampBorderSize;
 
-    [Header("References")]
-    [SerializeField] private Camera mainCamera;
-    [SerializeField] private Camera mapCamera;
-    [SerializeField] private GameObject mainCanvas;
-    [SerializeField] private GameObject mapCanvas;
-
     [HideInInspector] public GameObject target;
     [HideInInspector] public bool mapActive;
     [HideInInspector] public GameObject currentTarget;
@@ -26,13 +20,21 @@ public class Scr_MapManager : MonoBehaviour
     [HideInInspector] public GameObject mapIndicator;
     [HideInInspector] public bool indicatorActive;
 
-    private Vector3 dragOrigin;
-    private GameObject playerShip;
     private bool clampToScreen = true;
+    private Camera mainCamera;
+    private Camera mapCamera;
+    private Vector3 dragOrigin;
+    private GameObject mainCanvas;
+    private GameObject mapCanvas;
+    private GameObject playerShip;
 
     private void Start()
     {
         playerShip = GameObject.Find("PlayerShip");
+        mainCamera = GameObject.Find("MainCamera").GetComponent<Camera>();
+        mapCamera = GameObject.Find("MapCamera").GetComponent<Camera>();
+        mainCanvas = GameObject.Find("MainCanvas");
+        mapCanvas = GameObject.Find("MapCanvas");
     }
 
     private void Update()

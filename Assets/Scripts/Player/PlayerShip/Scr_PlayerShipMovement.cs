@@ -31,7 +31,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [SerializeField] private float landingTime;
     [SerializeField] private LayerMask planetLayer;
 
-    [Header("In Space Parameters")]    
+    [Header("In Space Parameters")]
     [SerializeField] private float rotationDelay;
 
     [Header("Speed System")]
@@ -60,13 +60,13 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     private float maxSpeedSaved;
     private float currentSpeed;
     private float canControlTimerSaved;
+    private Slider speedSlider;
+    private Slider limitSlider;
     private Vector3 targetTakingOff;
     private Vector3 targetLanding;
     private TrailRenderer trailRenderer;
     private TextMeshProUGUI limiterText;
     private TextMeshProUGUI speedText;
-    private Slider speedSlider;
-    private Slider limitSlider;
     private Scr_PlayerShipStats playerShipStats;
     private Scr_PlayerShipActions playerShipActions;
     private Scr_AstronautMovement astronautMovement;    
