@@ -49,13 +49,12 @@ public class Scr_PlayerShipActions : MonoBehaviour
             mainCanvasAnim.SetBool("QuestPanel", !questPanel);
             questPanel = !questPanel;
         }
-            
 
         if (startExitDelay)
         {
             canExitShip = false;
 
-            deployDelay -= Time.deltaTime;
+            deployDelaySaved -= Time.deltaTime;
 
             if (deployDelaySaved <= 0)
             {
@@ -81,7 +80,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
         playerShipMovement.astronautOnBoard = false;
         astronaut.GetComponent<Scr_AstronautMovement>().planetPosition = lastFramePlanetPosition;
         astronaut.GetComponent<Scr_AstronautMovement>().onGround = true;
-        playerShipMovement.mainCamera.GetComponent<Scr_CameraFollow>().followAstronaut = true;
+        playerShipMovement.mainCamera.GetComponent<Scr_MainCamera>().followAstronaut = true;
         mainCanvasAnim.SetBool("OnBoard", false);
     }
 }

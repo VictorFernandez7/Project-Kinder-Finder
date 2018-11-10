@@ -45,7 +45,8 @@ public class Scr_AstronautsActions : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && astronautMovement.canEnterShip && emptyHands)
         {
             playerShip.GetComponent<Scr_PlayerShipMovement>().astronautOnBoard = true;
-            mainCamera.GetComponent<Scr_CameraFollow>().followAstronaut = false;
+            playerShip.GetComponent<Scr_PlayerShipActions>().startExitDelay = true;
+            mainCamera.GetComponent<Scr_MainCamera>().followAstronaut = false;
             gameObject.SetActive(false);
 
             mainCanvasAnim.SetBool("OnBoard", true);
