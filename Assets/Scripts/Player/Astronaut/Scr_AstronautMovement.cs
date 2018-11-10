@@ -37,6 +37,8 @@ public class Scr_AstronautMovement : MonoBehaviour
     [HideInInspector] public GameObject currentFuelCollector;
 
     private RaycastHit2D hitL;
+    private float timeAfterJump = 1f;
+    private float savedTimeAfterJump = 1f;
     private RaycastHit2D hitR;
     private RaycastHit2D hitCentral;
     private float baseDistance;
@@ -48,6 +50,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     private Vector3 vectorJump;
     private bool facingRight;
     private bool jumping;
+    private bool toJump;
     private GameObject miniPlayer;
     private GameObject miniPlanet;
     private Scr_PlayerShipMovement playerShipMovement;
@@ -70,6 +73,14 @@ public class Scr_AstronautMovement : MonoBehaviour
 
     private void Update()
     {
+        if (jumping && !toJump)
+        {
+            if (timeAfterJump > 0f)
+                timeAfterJump -= Time.deltaTime;
+            else if (timeAfterJump <= 0f)
+                toJump = true;
+        }
+
         if ((currentDistance > (baseDistance - precisionHight)) && (currentDistance < (baseDistance + precisionHight)))
         {
             if (Input.GetButtonDown("Jump"))
@@ -98,16 +109,18 @@ public class Scr_AstronautMovement : MonoBehaviour
 
             if (!jumping)
             {
-                if (currentDistance > (baseDistance + precisionHight))
-                    transform.Translate(Vector3.up * -0.01f, Space.World);
+                if (currentDistance > baseDistance)
+                    transform.Translate(transform.up * (baseDistance - currentDistance), Space.World);
 
-                else if (currentDistance < (baseDistance - precisionHight))
-                    transform.Translate(Vector3.up * 0.01f, Space.World);
+                else if (currentDistance < baseDistance)
+                    transform.Translate(transform.up * (baseDistance - currentDistance), Space.World);
             }
 
-            else if((currentDistance > (baseDistance - precisionHight)) && (currentDistance < (baseDistance + precisionHight)))
+            else if((currentDistance > (baseDistance - precisionHight)) && (currentDistance < (baseDistance + precisionHight)) && toJump)
             {
                 vectorJump = new Vector2(0f, 0f);
+                timeAfterJump = savedTimeAfterJump;
+                toJump = false;
                 jumping = false;
             }
 
