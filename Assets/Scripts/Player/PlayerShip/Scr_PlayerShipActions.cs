@@ -49,13 +49,12 @@ public class Scr_PlayerShipActions : MonoBehaviour
             mainCanvasAnim.SetBool("QuestPanel", !questPanel);
             questPanel = !questPanel;
         }
-            
 
         if (startExitDelay)
         {
             canExitShip = false;
 
-            deployDelay -= Time.deltaTime;
+            deployDelaySaved -= Time.deltaTime;
 
             if (deployDelaySaved <= 0)
             {
