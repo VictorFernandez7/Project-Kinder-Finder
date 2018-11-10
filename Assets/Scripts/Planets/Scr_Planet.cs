@@ -13,28 +13,32 @@ public class Scr_Planet : MonoBehaviour
     [SerializeField] float minClampDistance;
 
     [Header("References")]
-    [SerializeField] private GameObject rotationPivot;
     [SerializeField] private GameObject mapIndicator;
     [SerializeField] private GameObject directionIndicator;
-    [SerializeField] private Scr_MapManager mapManager;
     [SerializeField] private GameObject mapVisuals;
-    [SerializeField] private GameObject mainCanvas;
 
     private double gravityConstant;
+    private Vector3 lastFrameRotationPivot;
+    private GameObject rotationPivot;
     private GameObject playerShip;
     private GameObject astronaut;
-    private Vector3 lastFrameRotationPivot;
+    private GameObject mainCanvas;
     private Rigidbody2D planetRb;
     private Rigidbody2D playerShipRb;
     private Rigidbody2D astronautRB;
-    
+    private Scr_MapManager mapManager;
 
     private void Start()
     {
         playerShip = GameObject.Find("PlayerShip");
         astronaut = GameObject.Find("Astronaut");
-        lastFrameRotationPivot = rotationPivot.transform.position;
+        rotationPivot = GameObject.Find("Pivot");
+        mainCanvas = GameObject.Find("MainCanvas");
+        mapManager = GameObject.Find("MapManager").GetComponent<Scr_MapManager>();
+
         planetRb = GetComponent<Rigidbody2D>();
+
+        lastFrameRotationPivot = rotationPivot.transform.position;
         playerShipRb = playerShip.GetComponent<Rigidbody2D>();
         astronautRB = astronaut.GetComponent<Rigidbody2D>();
         gravityConstant = 6.674 * (10 ^ -11);

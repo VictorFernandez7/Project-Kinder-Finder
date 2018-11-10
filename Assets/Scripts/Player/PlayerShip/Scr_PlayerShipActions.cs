@@ -21,10 +21,11 @@ public class Scr_PlayerShipActions : MonoBehaviour
 
     private float deployDelaySaved;
     private bool canExitShip;
+    private bool questPanel;
     private Vector3 lastFramePlanetPosition;
+    private Animator mainCanvasAnim;
     private GameObject astronaut;
     private Scr_PlayerShipMovement playerShipMovement;
-    private Animator mainCanvasAnim;
 
     private void Start()
     {
@@ -42,6 +43,13 @@ public class Scr_PlayerShipActions : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.M))
             mapVisuals.SetActive(true);
+
+        if (Input.GetKeyDown(KeyCode.J) && playerShipMovement.astronautOnBoard)
+        {
+            mainCanvasAnim.SetBool("QuestPanel", !questPanel);
+            questPanel = !questPanel;
+        }
+            
 
         if (startExitDelay)
         {
