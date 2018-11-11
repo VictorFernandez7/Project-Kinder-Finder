@@ -22,6 +22,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
     private float deployDelaySaved;
     private bool canExitShip;
     private bool questPanel;
+    private bool upgradePanel;
     private Vector3 lastFramePlanetPosition;
     private Animator mainCanvasAnim;
     private GameObject astronaut;
@@ -48,6 +49,12 @@ public class Scr_PlayerShipActions : MonoBehaviour
         {
             mainCanvasAnim.SetBool("QuestPanel", !questPanel);
             questPanel = !questPanel;
+        }
+
+        if (Input.GetKeyDown(KeyCode.U) && playerShipMovement.astronautOnBoard)
+        {
+            mainCanvasAnim.SetBool("UpgradePanel", !upgradePanel);
+            upgradePanel = !upgradePanel;
         }
 
         if (startExitDelay)
