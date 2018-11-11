@@ -15,12 +15,12 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [Header("Ship State")]
     [SerializeField] public PlayerShipState playerShipState;
 
-    [Header("Taking Off Parameters")]
+    [Header("Taking Off Parameters")]    
     [SerializeField] private float takeOffDistance;
     [SerializeField] private float targetVelocity;
     [SerializeField] private float takingOffTime;
     [Range(500, 1250)] [SerializeField] private float dustMultiplier;
-    [Range(350, 2000)] [SerializeField] private float thrusterPower;
+    [Range(350, 2000)] [SerializeField] private float takingOffThrusterPower;
 
     [Header("Landed Parameters")]
     [SerializeField] private float canControlTimer;
@@ -29,9 +29,11 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [Header("Landing Parameters")]
     [SerializeField] public float landDistance;
     [SerializeField] private float landingTime;
+    [Range(350, 2000)] [SerializeField] private float landingThrusterPower;
     [SerializeField] private LayerMask planetLayer;
 
     [Header("In Space Parameters")]
+    [Range(350, 750)] [SerializeField] private float inSpaceThrusterPower;
     [SerializeField] private float rotationDelay;
 
     [Header("Speed System")]
@@ -40,9 +42,25 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [SerializeField] private float boostSpeed;
     [SerializeField] private float limitUnits;
 
+    [Header("Warming System")]
+    [SerializeField] private float warmingAmount;
+    [SerializeField] private float warmingSpeed;
+    [SerializeField] private float landedThrusterMult;
+    [SerializeField] private float landedDustMult;
+    [SerializeField] private Color color0;
+    [SerializeField] private Color color25;
+    [SerializeField] private Color color50;
+    [SerializeField] private Color color75;
+
+    [Header("Interface")]
+    [SerializeField] private string warmingMessage;
+    [SerializeField] private string getInOutMessage;
+    [SerializeField] private string takeOffMessage;
+
     [Header("References")]
     [SerializeField] public ParticleSystem thrusterParticles;
     [SerializeField] private GameObject dustParticles;
+    [SerializeField] private ParticleSystem atmosphereParticles;
     [SerializeField] private Transform endOfShip;
 
     [HideInInspector] public bool astronautOnBoard;
@@ -60,13 +78,16 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     private float maxSpeedSaved;
     private float currentSpeed;
     private float canControlTimerSaved;
+    private Image warmingFill;
     private Slider speedSlider;
     private Slider limitSlider;
+    private Slider warmingSlider;
     private Vector3 targetTakingOff;
     private Vector3 targetLanding;
     private TrailRenderer trailRenderer;
     private TextMeshProUGUI limiterText;
     private TextMeshProUGUI speedText;
+    private TextMeshProUGUI messageText;
     private Scr_PlayerShipStats playerShipStats;
     private Scr_PlayerShipActions playerShipActions;
     private Scr_AstronautMovement astronautMovement;
@@ -84,9 +105,12 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         mainCamera = GameObject.Find("MainCamera").GetComponent<Camera>();
         limiterText = GameObject.Find("Limiter").GetComponent<TextMeshProUGUI>();
         speedText = GameObject.Find("Speed").GetComponent<TextMeshProUGUI>();
+        messageText = GameObject.Find("MessageText").GetComponent<TextMeshProUGUI>();
         astronautMovement = GameObject.Find("Astronaut").GetComponent<Scr_AstronautMovement>();
         speedSlider = GameObject.Find("SpeedSlider").GetComponent<Slider>();
         limitSlider = GameObject.Find("LimitSlider").GetComponent<Slider>();
+        warmingSlider = GameObject.Find("WarmingSlider").GetComponent<Slider>();
+        warmingFill = GameObject.Find("WarmingFill").GetComponent<Image>();
 
         rb = GetComponent<Rigidbody2D>();
         playerShipStats = GetComponent<Scr_PlayerShipStats>();
@@ -97,14 +121,101 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         maxSpeedSaved = maxSpeed;
         limitSlider.maxValue = maxSpeedSaved;
         speedSlider.maxValue = maxSpeedSaved;
+        warmingSlider.maxValue = warmingAmount;
+        messageText.text = "";
+
+        warmingSlider.gameObject.SetActive(false);
     }
 
     private void Update()
     {
-        ShipControl();
-        SpeedLimiter();
+        PlayerShipStateCheck();
+        MessageTextManager();
+        OnGroundEffects();
         Timers();
 
+        if (playerShipState == PlayerShipState.inSpace)
+        {
+            ShipControl();
+            SpeedLimiter();
+            InSpaceEffects();
+        }
+
+        if (playerShipState == PlayerShipState.landing)
+            ShipControl();
+
+        if (playerShipState == PlayerShipState.landed)
+            WarmingSliderColor();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Planet" && !dead)
+        {
+            currentPlanet = collision.gameObject;
+            astronautMovement.currentPlanet = collision.gameObject;
+
+            countDownToMove = true;
+            onGround = true;
+
+            playerShipActions.startExitDelay = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Planet" && !dead)
+        {
+            onGround = false;
+
+            playerShipActions.startExitDelay = false;
+        }
+    }
+
+    private void MessageTextManager()
+    {
+        if (playerShipState == PlayerShipState.landed && astronautOnBoard)
+        {
+            messageText.fontSize = 6;
+            messageText.text = warmingMessage;
+
+            if (warmingSlider.value >= 0.9f * warmingSlider.maxValue)
+                messageText.text = takeOffMessage;
+            else
+                messageText.text = warmingMessage;
+        }
+
+        else
+            messageText.text = "";
+
+        if (astronautMovement.canEnterShip && !astronautOnBoard)
+        {
+            messageText.fontSize = 14;
+            messageText.text = getInOutMessage;
+        }
+    }
+
+
+    private void Timers()
+    {
+        if (countDownToMove)
+        {
+            canControlTimerSaved -= Time.deltaTime;
+
+            canControlShip = false;
+
+            if (canControlTimerSaved <= 0)
+            {
+                canControlTimerSaved = canControlTimer;
+
+                canControlShip = true;
+                countDownToMove = false;
+            }
+        }
+    }
+
+    private void PlayerShipStateCheck()
+    {
         if (currentPlanet != null)
         {
             trailRenderer.enabled = false;
@@ -123,16 +234,31 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         else
         {
             playerShipState = PlayerShipState.inSpace;
-
             trailRenderer.enabled = true;
         }
-
-        if (onGround && Input.GetKey(KeyCode.LeftShift) && Input.GetMouseButtonDown(0) && playerShipState == PlayerShipState.landed)
+        
+        if (Input.GetKey(KeyCode.LeftShift) && playerShipState == PlayerShipState.landed)
         {
-            mainCamera.GetComponent<Scr_MainCamera>().smoothRotation = false;
-            mainCamera.GetComponent<Scr_MainCamera>().CameraShake();
+            warmingSlider.gameObject.SetActive(true);
+            warmingSlider.value += Time.deltaTime * warmingSpeed;
 
-            TakingOff();
+            if (warmingSlider.value >= (0.95f * warmingSlider.maxValue) && Input.GetMouseButtonDown(0))
+            {
+                warmingSlider.gameObject.SetActive(false);
+
+                mainCamera.GetComponent<Scr_MainCamera>().smoothRotation = false;
+                mainCamera.GetComponent<Scr_MainCamera>().CameraShake();
+
+                TakingOff();
+            }
+        }
+
+        else
+        {
+            warmingSlider.value -= Time.deltaTime;
+
+            if (warmingSlider.value <= 0)
+                warmingSlider.gameObject.SetActive(false);
         }
 
         if (onGround)
@@ -142,7 +268,6 @@ public class Scr_PlayerShipMovement : MonoBehaviour
             mainCamera.GetComponent<Scr_MainCamera>().CameraStartShake(false);
 
             Landed();
-            OnGroundEffects();
             LandingEffects(false);
         }
 
@@ -182,48 +307,6 @@ public class Scr_PlayerShipMovement : MonoBehaviour
                 LandingEffects(false);
 
                 landing = false;
-            }
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Planet" && !dead)
-        {
-            currentPlanet = collision.gameObject;
-            astronautMovement.currentPlanet = collision.gameObject;
-
-            countDownToMove = true;
-            onGround = true;
-
-            playerShipActions.startExitDelay = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Planet" && !dead)
-        {
-            onGround = false;
-
-            playerShipActions.startExitDelay = false;
-        }
-    }
-
-    private void Timers()
-    {
-        if (countDownToMove)
-        {
-            canControlTimerSaved -= Time.deltaTime;
-
-            canControlShip = false;
-
-            if (canControlTimerSaved <= 0)
-            {
-                canControlTimerSaved = canControlTimer;
-
-                canControlShip = true;
-                countDownToMove = false;
             }
         }
     }
@@ -310,26 +393,60 @@ public class Scr_PlayerShipMovement : MonoBehaviour
                     }
                 }
 
-                else
+                else if (playerShipState == PlayerShipState.inSpace)
                     thrusterParticles.Stop();
             }
         }
     }
 
+    private void WarmingSliderColor()
+    {
+        float colorChangeSpeed = 2;
+
+        if (warmingSlider.value >= (0.75f * warmingSlider.maxValue))
+            warmingFill.color = Color.Lerp(warmingFill.color, color75, Time.deltaTime * colorChangeSpeed);
+        if (warmingSlider.value <= (0.75f * warmingSlider.maxValue))
+            warmingFill.color = Color.Lerp(warmingFill.color, color50, Time.deltaTime * colorChangeSpeed);
+        if (warmingSlider.value <= (0.50f * warmingSlider.maxValue))
+            warmingFill.color = Color.Lerp(warmingFill.color, color25, Time.deltaTime * colorChangeSpeed);
+        if (warmingSlider.value <= (0.25f * warmingSlider.maxValue))
+            warmingFill.color = Color.Lerp(warmingFill.color, color0, Time.deltaTime * colorChangeSpeed);
+    }
+
     private void OnGroundEffects()
     {
-        if (playerShipStats.currentFuel > 0)
+        ParticleSystem landedDustParticles1 = GameObject.Find("LandedDustParticles1").GetComponent<ParticleSystem>();
+        ParticleSystem landedDustParticles2 = GameObject.Find("LandedDustParticles2").GetComponent<ParticleSystem>();
+
+        var thrusterEmission = thrusterParticles.emission;
+        var LandedDustParticles1Emission = landedDustParticles1.emission;
+        var LandedDustParticles2Emission = landedDustParticles2.emission;
+
+        if (playerShipState == PlayerShipState.landed)
         {
-            if (Input.GetMouseButton(0))
-            {
-                thrusterParticles.Play();
+            thrusterParticles.Play();
+            landedDustParticles1.Play();
+            landedDustParticles2.Play();
 
-                playerShipStats.FuelConsumption(false);
-            }
-
-            else
-                thrusterParticles.Stop();
+            thrusterEmission.rateOverTime = warmingSlider.value * landedThrusterMult;
+            LandedDustParticles1Emission.rateOverTime = warmingSlider.value * landedDustMult;
+            LandedDustParticles2Emission.rateOverTime = warmingSlider.value * landedDustMult;
         }
+
+        if (playerShipState == PlayerShipState.takingOff)
+        {
+            thrusterEmission.rateOverTime = takingOffThrusterPower;
+
+            landedDustParticles1.Stop();
+            landedDustParticles2.Stop();
+        }
+    }
+
+    private void InSpaceEffects()
+    {
+        var thrusterEmission = thrusterParticles.emission;
+
+        thrusterEmission.rateOverTime = inSpaceThrusterPower;
     }
 
     private void TakingOffEffects(bool play)
@@ -341,8 +458,6 @@ public class Scr_PlayerShipMovement : MonoBehaviour
             if (takingOffHit)
             {
                 float dustPower = Vector2.Distance(endOfShip.position, takingOffHit.point);
-
-                thrusterParticles.Play();
 
                 if (GameObject.Find("DustParticles(Clone)") == null)
                     Instantiate(dustParticles, takingOffHit.point, gameObject.transform.rotation);
@@ -357,6 +472,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
                 dustParticles1.Play();
                 dustParticles2.Play();
+                thrusterParticles.Play();
 
                 var emission1 = dustParticles1.emission;
                 var emission2 = dustParticles2.emission;
@@ -364,7 +480,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
                 emission1.rateOverTime = (2.5f - dustPower) * dustMultiplier;
                 emission2.rateOverTime = (2.5f - dustPower) * dustMultiplier;
-                emission3.rateOverTime = thrusterPower;
+                emission3.rateOverTime = takingOffThrusterPower;
             }
         }
 
@@ -408,9 +524,11 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
                 var emission1 = dustParticles1.emission;
                 var emission2 = dustParticles2.emission;
+                var emission3 = thrusterParticles.emission;
 
                 emission1.rateOverTime = (2.5f - dustPower) * dustMultiplier;
                 emission2.rateOverTime = (2.5f - dustPower) * dustMultiplier;
+                emission3.rateOverTime = landingThrusterPower;
             }
         }
 
@@ -420,7 +538,8 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
             currentDustParticles = GameObject.Find("DustParticles(Clone)");
 
-            thrusterParticles.Stop();
+            if (!Input.GetKey(KeyCode.LeftShift))
+                thrusterParticles.Stop();
 
             Destroy(currentDustParticles);
         }

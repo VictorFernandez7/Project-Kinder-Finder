@@ -36,21 +36,28 @@ public class Scr_AstronautsActions : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.E) && astronautMovement.canEnterShip)
+        {
+            if (emptyHands)
+            {
+                playerShip.GetComponent<Scr_PlayerShipMovement>().astronautOnBoard = true;
+                playerShip.GetComponent<Scr_PlayerShipActions>().startExitDelay = true;
+                mainCamera.GetComponent<Scr_MainCamera>().followAstronaut = false;
+                mainCanvasAnim.SetBool("OnBoard", true);
+
+                gameObject.SetActive(false);
+            }
+
+            else
+            {
+                playerShip.GetComponent<Scr_PlayerShipStats>().ReFuel(currentFuelBLock.GetComponent<Scr_FuelBlock>().fuelAmount);
+                Destroy(currentFuelBLock);
+                emptyHands = true;
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.T))
-        {
-            //Vector3 pos = Astro.transform.position + (((transform.position - Astro.transform.position).normalized * ((Astro.GetComponent<Renderer>().bounds.size.y/2) + (box.GetComponent<Renderer>().bounds.size.y / 2))));
             Instantiate(fuelCollector, spawnPoint.transform.position, transform.rotation);
-        }
-
-        if (Input.GetKeyDown(KeyCode.E) && astronautMovement.canEnterShip && emptyHands)
-        {
-            playerShip.GetComponent<Scr_PlayerShipMovement>().astronautOnBoard = true;
-            playerShip.GetComponent<Scr_PlayerShipActions>().startExitDelay = true;
-            mainCamera.GetComponent<Scr_MainCamera>().followAstronaut = false;
-            gameObject.SetActive(false);
-
-            mainCanvasAnim.SetBool("OnBoard", true);
-        }
 
         if (Input.GetKeyDown(KeyCode.E) && astronautMovement.closeToCollector && astronautMovement.currentFuelCollector != null)
         {
@@ -59,13 +66,6 @@ public class Scr_AstronautsActions : MonoBehaviour
                 astronautMovement.currentFuelCollector.GetComponent<Scr_FuelCollector>().CollectFuel();
                 CollectFuel();
             }
-        }
-
-        if (Input.GetKeyDown(KeyCode.E) && astronautMovement.canEnterShip && !emptyHands)
-        {
-            playerShip.GetComponent<Scr_PlayerShipStats>().ReFuel(currentFuelBLock.GetComponent<Scr_FuelBlock>().fuelAmount);
-            Destroy(currentFuelBLock);
-            emptyHands = true;
         }
     }
 

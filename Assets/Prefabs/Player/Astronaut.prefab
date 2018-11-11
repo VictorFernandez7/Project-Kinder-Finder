@@ -181,9 +181,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4657426298995060}
+  - {fileID: 4590653716362036}
   - {fileID: 4080018639410374}
   - {fileID: 4024023934522912}
-  - {fileID: 4590653716362036}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -199,7 +199,7 @@ Transform:
   m_Children:
   - {fileID: 4611420074893982}
   m_Father: {fileID: 4004395127091482}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4080018639410374
 Transform:
@@ -214,7 +214,7 @@ Transform:
   - {fileID: 4973946125739948}
   - {fileID: 4412191580725764}
   m_Father: {fileID: 4004395127091482}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4405472476937738
 Transform:
@@ -255,7 +255,7 @@ Transform:
   - {fileID: 4707779715405470}
   - {fileID: 4405472476937738}
   m_Father: {fileID: 4004395127091482}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4611420074893982
 Transform:
@@ -428,7 +428,7 @@ MonoBehaviour:
   collisionMask:
     serializedVersion: 2
     m_Bits: 1024
-  precisionHight: 0.03
+  precisionHeight: 0.1
   speedJump: 0.02
   gravity: 0.01
   rayPointLeft: {fileID: 1705007326068512}
@@ -436,12 +436,12 @@ MonoBehaviour:
   walkingParticles: {fileID: 198665950421681262}
   transforms: {fileID: 4080018639410374}
   astronautVisuals: {fileID: 1238433231619372}
-  planetPosition: {x: 0, y: 0, z: 0}
   onGround: 1
   canMove: 0
   canEnterShip: 0
   closeToCollector: 0
   faceRight: 0
+  planetPosition: {x: 0, y: 0, z: 0}
   currentPlanet: {fileID: 0}
   currentFuelCollector: {fileID: 0}
 --- !u!114 &114844797242794480

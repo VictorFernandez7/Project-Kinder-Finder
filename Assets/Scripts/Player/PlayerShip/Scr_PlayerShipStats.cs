@@ -20,6 +20,10 @@ public class Scr_PlayerShipStats : MonoBehaviour
     [SerializeField] private float maxFuel;
     [SerializeField] private float normalConsume;
     [SerializeField] private float boostConsume;
+    [SerializeField] private Color color0;
+    [SerializeField] private Color color25;
+    [SerializeField] private Color color50;
+    [SerializeField] private Color color75;
 
     [Header("References")]
     [SerializeField] ParticleSystem deathParticles;
@@ -48,10 +52,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
         currentFuel = Mathf.Clamp(currentFuel, 0f, maxFuel);
         fuelSlider.value = currentFuel;
 
-        if (fuelSlider.value <= 250)
-            fuelSliderFill.color = Color.yellow;
-        if (fuelSlider.value <= 150)
-            fuelSliderFill.color = Color.red;
+        FuelSliderColor();
     }
 
     public void FuelConsumption(bool boost)
@@ -66,6 +67,20 @@ public class Scr_PlayerShipStats : MonoBehaviour
     public void ReFuel(float amount)
     {
         currentFuel += amount;
+    }
+
+    private void FuelSliderColor()
+    {
+        float colorChangeSpeed = 2;
+
+        if (fuelSlider.value >= (0.75f * fuelSlider.maxValue))
+            fuelSliderFill.color = Color.Lerp(fuelSliderFill.color, color75, Time.deltaTime * colorChangeSpeed);
+        if (fuelSlider.value <= (0.75f * fuelSlider.maxValue))
+            fuelSliderFill.color = Color.Lerp(fuelSliderFill.color, color50, Time.deltaTime * colorChangeSpeed);
+        if (fuelSlider.value <= (0.50f * fuelSlider.maxValue))
+            fuelSliderFill.color = Color.Lerp(fuelSliderFill.color, color25, Time.deltaTime * colorChangeSpeed);
+        if (fuelSlider.value <= (0.25f * fuelSlider.maxValue))
+            fuelSliderFill.color = Color.Lerp(fuelSliderFill.color, color0, Time.deltaTime * colorChangeSpeed);
     }
 
     public void Death()
