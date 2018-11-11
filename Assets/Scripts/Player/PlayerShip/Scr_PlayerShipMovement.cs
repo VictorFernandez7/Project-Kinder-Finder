@@ -52,6 +52,11 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [SerializeField] private Color color50;
     [SerializeField] private Color color75;
 
+    [Header("Interface")]
+    [SerializeField] private string warmingMessage;
+    [SerializeField] private string getInOutMessage;
+    [SerializeField] private string takeOffMessage;
+
     [Header("References")]
     [SerializeField] public ParticleSystem thrusterParticles;
     [SerializeField] private GameObject dustParticles;
@@ -82,6 +87,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     private TrailRenderer trailRenderer;
     private TextMeshProUGUI limiterText;
     private TextMeshProUGUI speedText;
+    private TextMeshProUGUI messageText;
     private Scr_PlayerShipStats playerShipStats;
     private Scr_PlayerShipActions playerShipActions;
     private Scr_AstronautMovement astronautMovement;
@@ -99,6 +105,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         mainCamera = GameObject.Find("MainCamera").GetComponent<Camera>();
         limiterText = GameObject.Find("Limiter").GetComponent<TextMeshProUGUI>();
         speedText = GameObject.Find("Speed").GetComponent<TextMeshProUGUI>();
+        messageText = GameObject.Find("MessageText").GetComponent<TextMeshProUGUI>();
         astronautMovement = GameObject.Find("Astronaut").GetComponent<Scr_AstronautMovement>();
         speedSlider = GameObject.Find("SpeedSlider").GetComponent<Slider>();
         limitSlider = GameObject.Find("LimitSlider").GetComponent<Slider>();
@@ -115,6 +122,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         limitSlider.maxValue = maxSpeedSaved;
         speedSlider.maxValue = maxSpeedSaved;
         warmingSlider.maxValue = warmingAmount;
+        messageText.text = "";
 
         warmingSlider.gameObject.SetActive(false);
     }
@@ -122,6 +130,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     private void Update()
     {
         PlayerShipStateCheck();
+        MessageTextManager();
         OnGroundEffects();
         Timers();
 
@@ -162,6 +171,30 @@ public class Scr_PlayerShipMovement : MonoBehaviour
             playerShipActions.startExitDelay = false;
         }
     }
+
+    private void MessageTextManager()
+    {
+        if (playerShipState == PlayerShipState.landed && astronautOnBoard)
+        {
+            messageText.fontSize = 6;
+            messageText.text = warmingMessage;
+
+            if (warmingSlider.value >= 0.9f * warmingSlider.maxValue)
+                messageText.text = takeOffMessage;
+            else
+                messageText.text = warmingMessage;
+        }
+
+        else
+            messageText.text = "";
+
+        if (astronautMovement.canEnterShip && !astronautOnBoard)
+        {
+            messageText.fontSize = 14;
+            messageText.text = getInOutMessage;
+        }
+    }
+
 
     private void Timers()
     {
