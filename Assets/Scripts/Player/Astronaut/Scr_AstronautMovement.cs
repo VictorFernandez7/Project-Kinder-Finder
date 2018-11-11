@@ -15,8 +15,8 @@ public class Scr_AstronautMovement : MonoBehaviour
     [SerializeField] private float movementSpeed;
     [SerializeField] private LayerMask collisionMask;
 
-    [Header("Hight Properties")]
-    [SerializeField] private float precisionHight;
+    [Header("Height Properties")]
+    [SerializeField] private float precisionHeight;
     [SerializeField] private float speedJump;
     [SerializeField] private float gravity;
 
@@ -27,20 +27,20 @@ public class Scr_AstronautMovement : MonoBehaviour
     [SerializeField] private Transform transforms;
     [SerializeField] private GameObject astronautVisuals;
 
-    [HideInInspector] public Vector3 planetPosition;
     [HideInInspector] public bool onGround = true;
     [HideInInspector] public bool canMove;
     [HideInInspector] public bool canEnterShip;
     [HideInInspector] public bool closeToCollector;
     [HideInInspector] public bool faceRight;
+    [HideInInspector] public Vector3 planetPosition;    
     [HideInInspector] public GameObject currentPlanet;
     [HideInInspector] public GameObject currentFuelCollector;
 
-    private RaycastHit2D hitL;
+    private bool facingRight;
+    private bool jumping;
+    private bool toJump;
     private float timeAfterJump = 1f;
     private float savedTimeAfterJump = 1f;
-    private RaycastHit2D hitR;
-    private RaycastHit2D hitCentral;
     private float baseDistance;
     private float currentDistance;
     private Vector2 pointLeft;
@@ -48,11 +48,11 @@ public class Scr_AstronautMovement : MonoBehaviour
     private Vector2 movementVector;
     private Vector2 lastVector;
     private Vector3 vectorJump;
-    private bool facingRight;
-    private bool jumping;
-    private bool toJump;
     private GameObject miniPlayer;
     private GameObject miniPlanet;
+    private RaycastHit2D hitL;
+    private RaycastHit2D hitR;
+    private RaycastHit2D hitCentral;    
     private Scr_PlayerShipMovement playerShipMovement;
 
     private void Start()
@@ -77,11 +77,12 @@ public class Scr_AstronautMovement : MonoBehaviour
         {
             if (timeAfterJump > 0f)
                 timeAfterJump -= Time.deltaTime;
+
             else if (timeAfterJump <= 0f)
                 toJump = true;
         }
 
-        if ((currentDistance > (baseDistance - precisionHight)) && (currentDistance < (baseDistance + precisionHight)))
+        if ((currentDistance > (baseDistance - precisionHeight)) && (currentDistance < (baseDistance + precisionHeight)))
         {
             if (Input.GetButtonDown("Jump"))
             {
@@ -91,9 +92,7 @@ public class Scr_AstronautMovement : MonoBehaviour
         }
 
         else if (jumping)
-        {
             vectorJump -= (transform.position - currentPlanet.transform.position).normalized * gravity * Time.deltaTime;
-        }
 
         transform.Translate(vectorJump, Space.World);
     }
@@ -116,7 +115,7 @@ public class Scr_AstronautMovement : MonoBehaviour
                     transform.Translate(transform.up * (baseDistance - currentDistance), Space.World);
             }
 
-            else if((currentDistance > (baseDistance - precisionHight)) && (currentDistance < (baseDistance + precisionHight)) && toJump)
+            else if((currentDistance > (baseDistance - precisionHeight)) && (currentDistance < (baseDistance + precisionHeight)) && toJump)
             {
                 vectorJump = new Vector2(0f, 0f);
                 timeAfterJump = savedTimeAfterJump;
