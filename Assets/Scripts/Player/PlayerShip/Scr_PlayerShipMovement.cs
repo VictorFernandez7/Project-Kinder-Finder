@@ -55,6 +55,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [Header("References")]
     [SerializeField] public ParticleSystem thrusterParticles;
     [SerializeField] private GameObject dustParticles;
+    [SerializeField] private ParticleSystem atmosphereParticles;
     [SerializeField] private Transform endOfShip;
 
     [HideInInspector] public bool astronautOnBoard;
@@ -200,7 +201,6 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         else
         {
             playerShipState = PlayerShipState.inSpace;
-
             trailRenderer.enabled = true;
         }
         
@@ -415,7 +415,6 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
         thrusterEmission.rateOverTime = inSpaceThrusterPower;
     }
-
 
     private void TakingOffEffects(bool play)
     {
