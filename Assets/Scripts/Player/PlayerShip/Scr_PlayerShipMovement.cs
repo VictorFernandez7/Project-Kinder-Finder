@@ -16,6 +16,8 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [SerializeField] public PlayerShipState playerShipState;
 
     [Header("Taking Off Parameters")]
+    [SerializeField] private float warmingAmount;
+    [SerializeField] private float warmingSpeed;
     [SerializeField] private float takeOffDistance;
     [SerializeField] private float targetVelocity;
     [SerializeField] private float takingOffTime;
