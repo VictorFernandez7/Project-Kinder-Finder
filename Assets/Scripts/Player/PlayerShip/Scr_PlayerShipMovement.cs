@@ -209,7 +209,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
             warmingSlider.gameObject.SetActive(true);
             warmingSlider.value += Time.deltaTime * warmingSpeed;
 
-            if (warmingSlider.value == warmingSlider.maxValue && Input.GetMouseButtonDown(0))
+            if (warmingSlider.value >= (0.95f * warmingSlider.maxValue) && Input.GetMouseButtonDown(0))
             {
                 warmingSlider.gameObject.SetActive(false);
 
