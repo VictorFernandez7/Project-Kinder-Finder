@@ -19,7 +19,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [SerializeField] private float takeOffDistance;
     [SerializeField] private float targetVelocity;
     [SerializeField] private float takingOffTime;
-    [Range(500, 1250)] [SerializeField] private float dustMultiplier;
+    [Range(50, 500)] [SerializeField] private float dustMultiplier;
     [Range(350, 2000)] [SerializeField] private float takingOffThrusterPower;
 
     [Header("Landed Parameters")]
@@ -225,7 +225,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
             if (distanceHit && playerShipState == PlayerShipState.inSpace)
             {
                 mainCamera.GetComponent<Scr_MainCamera>().smoothRotation = true;
-                mainCamera.GetComponent<Scr_MainCamera>().CameraStartShake(true);
+                mainCamera.GetComponent<Scr_MainCamera>().CameraShake();
 
                 Landing();
             }
@@ -264,8 +264,6 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         if (onGround)
         {
             playerShipState = PlayerShipState.landed;
-
-            mainCamera.GetComponent<Scr_MainCamera>().CameraStartShake(false);
 
             Landed();
             LandingEffects(false);
@@ -424,9 +422,12 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
         if (playerShipState == PlayerShipState.landed)
         {
-            thrusterParticles.Play();
-            landedDustParticles1.Play();
-            landedDustParticles2.Play();
+            if(!thrusterParticles.isPlaying)
+                thrusterParticles.Play();
+            if (!landedDustParticles1.isPlaying)
+                landedDustParticles1.Play();
+            if (!landedDustParticles2.isPlaying)
+                landedDustParticles2.Play();
 
             thrusterEmission.rateOverTime = warmingSlider.value * landedThrusterMult;
             LandedDustParticles1Emission.rateOverTime = warmingSlider.value * landedDustMult;
@@ -470,9 +471,12 @@ public class Scr_PlayerShipMovement : MonoBehaviour
                 if (currentPlanet != null)
                     currentDustParticles.transform.SetParent(currentPlanet.transform);
 
-                dustParticles1.Play();
-                dustParticles2.Play();
-                thrusterParticles.Play();
+                if (!dustParticles1.isPlaying)
+                    dustParticles1.Play();
+                if (!dustParticles2.isPlaying)
+                    dustParticles2.Play();
+                if (!thrusterParticles.isPlaying)
+                    thrusterParticles.Play();
 
                 var emission1 = dustParticles1.emission;
                 var emission2 = dustParticles2.emission;
@@ -494,6 +498,8 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         }
     }
 
+    float dustPower = 0;
+
     private void LandingEffects(bool play)
     {
         if (play)
@@ -502,7 +508,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
             if (landingHit)
             {
-                float dustPower = Vector2.Distance(endOfShip.position, landingHit.point);
+                dustPower = Vector2.Distance(endOfShip.position, landingHit.point);
 
                 if (GameObject.Find("DustParticles(Clone)") == null)
                     Instantiate(dustParticles, landingHit.point, gameObject.transform.rotation);
@@ -518,9 +524,12 @@ public class Scr_PlayerShipMovement : MonoBehaviour
                 Vector2 direction = new Vector2(landingHit.point.x - currentPlanet.transform.position.x, landingHit.point.y - currentPlanet.transform.position.y);
                 currentDustParticles.transform.up = direction;
 
-                dustParticles1.Play();
-                dustParticles2.Play();
-                thrusterParticles.Play();
+                if (!dustParticles1.isPlaying)
+                    dustParticles1.Play();
+                if (!dustParticles2.isPlaying)
+                    dustParticles2.Play();
+                if (!thrusterParticles.isPlaying)
+                    thrusterParticles.Play();
 
                 var emission1 = dustParticles1.emission;
                 var emission2 = dustParticles2.emission;
@@ -534,14 +543,26 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
         else
         {
-            GameObject currentDustParticles = GameObject.Find("DustParticles(Clone)");
+            if (GameObject.Find("DustParticles(Clone)") != null)
+            {
+                GameObject currentDustParticles = GameObject.Find("DustParticles(Clone)");
+                ParticleSystem dustParticles1 = currentDustParticles.transform.GetChild(0).GetComponent<ParticleSystem>();
+                ParticleSystem dustParticles2 = currentDustParticles.transform.GetChild(1).GetComponent<ParticleSystem>();
 
-            currentDustParticles = GameObject.Find("DustParticles(Clone)");
+                float newEmission;
+                var emission1 = dustParticles1.emission;
+                var emission2 = dustParticles2.emission;
 
-            if (!Input.GetKey(KeyCode.LeftShift))
-                thrusterParticles.Stop();
+                if (!Input.GetKey(KeyCode.LeftShift))
+                {
+                    newEmission = Mathf.Lerp(dustPower, 0, Time.deltaTime);
+                    emission1.rateOverTime = newEmission;
+                    emission2.rateOverTime = newEmission;
+                }
 
-            Destroy(currentDustParticles);
+                if (landing)
+                    thrusterParticles.Stop();
+            }
         }
     }
 }
