@@ -36,6 +36,8 @@ public class Scr_MapManager : MonoBehaviour
         mainCamera = GameObject.Find("MainCamera").GetComponent<Camera>();
         mainCanvas = GameObject.Find("MainCanvas");
         mapCanvas = GameObject.Find("MapCanvas");
+
+        mapCanvas.SetActive(false);
     }
 
     private void Update()

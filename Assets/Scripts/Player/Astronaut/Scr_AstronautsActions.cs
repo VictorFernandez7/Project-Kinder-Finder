@@ -44,6 +44,7 @@ public class Scr_AstronautsActions : MonoBehaviour
                 playerShip.GetComponent<Scr_PlayerShipActions>().startExitDelay = true;
                 mainCamera.GetComponent<Scr_MainCamera>().followAstronaut = false;
                 mainCanvasAnim.SetBool("OnBoard", true);
+                astronautMovement.keep = true;
 
                 gameObject.SetActive(false);
             }
