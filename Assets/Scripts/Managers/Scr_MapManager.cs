@@ -61,6 +61,7 @@ public class Scr_MapManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.M))
         {
+            playerShip.GetComponent<Scr_PlayerShipMovement>().canControlShip = mapActive;
             mapCamera.gameObject.SetActive(!mapActive);
             mainCanvas.SetActive(mapActive);
             mapCanvas.SetActive(!mapActive);
