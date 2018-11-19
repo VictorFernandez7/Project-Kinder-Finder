@@ -13,7 +13,9 @@ public class Scr_MapManager : MonoBehaviour
 
     [Header("Map Properties")]
     [SerializeField] private Camera mapCamera;
-    
+    [SerializeField] private float distance;
+    [SerializeField] private GameObject halo;
+
     [HideInInspector] public GameObject target;
     [HideInInspector] public bool mapActive;
     [HideInInspector] public GameObject currentTarget;
@@ -43,7 +45,19 @@ public class Scr_MapManager : MonoBehaviour
     private void Update()
     {
         if (waypointActive)
+        {
             DirectionIndicator();
+            if(playerShip.GetComponent<Scr_PlayerShipMovement>().playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace)
+            {
+                directionIndicator.GetComponent<SVGImage>().enabled = true;
+                halo.SetActive(true);
+            }
+            else
+            {
+                directionIndicator.GetComponent<SVGImage>().enabled = false;
+                halo.SetActive(false);
+            }
+        }
 
         if (Input.GetKeyDown(KeyCode.M))
         {
@@ -89,15 +103,12 @@ public class Scr_MapManager : MonoBehaviour
 
     private void DirectionIndicator()
     {
-        Vector3 noClampPosition = mainCamera.WorldToScreenPoint(currentTarget.transform.position + Vector3.zero);
-        Vector3 clampedPosition = new Vector3(Mathf.Clamp(noClampPosition.x, 0 + clampBorderSize.x, Screen.width - clampBorderSize.x), Mathf.Clamp(noClampPosition.y, 0 + clampBorderSize.y, Screen.height - clampBorderSize.y), noClampPosition.z);
-
-        myRectTransform.position = clampToScreen ? clampedPosition : noClampPosition;
-
         Vector3 difference = (currentTarget.transform.position - playerShip.transform.position);
         difference.Normalize();
 
         float rotation_z = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
         directionIndicator.transform.rotation = Quaternion.Euler(0f, 0f, rotation_z + 90f);
+
+        directionIndicator.transform.localPosition = new Vector3(0, 0, 0f) + ((currentTarget.transform.position - playerShip.transform.position).normalized * distance);
     }
 }
