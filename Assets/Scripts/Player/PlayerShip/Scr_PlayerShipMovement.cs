@@ -74,12 +74,13 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [HideInInspector] public bool landing;
     [HideInInspector] public bool dead;
     [HideInInspector] public bool canRotateShip;
-    [HideInInspector] public bool canControlShip = true;
+    [HideInInspector] public bool canControlShip;
     [HideInInspector] public GameObject currentPlanet;
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public Camera mainCamera;
 
     private bool countDownToMove;
+    private bool landedOnce;
     private float maxSpeedSaved;
     private float currentSpeed;
     private float canControlTimerSaved;
@@ -128,6 +129,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         speedSlider.maxValue = maxSpeedSaved;
         warmingSlider.maxValue = warmingAmount;
         messageText.text = "";
+        canControlShip = false;
 
         warmingSlider.gameObject.SetActive(false);
     }
@@ -160,7 +162,9 @@ public class Scr_PlayerShipMovement : MonoBehaviour
             currentPlanet = collision.gameObject;
             astronautMovement.currentPlanet = collision.gameObject;
 
-            countDownToMove = true;
+            if (landedOnce)
+                countDownToMove = true;
+
             onGround = true;
 
             playerShipActions.startExitDelay = true;
@@ -221,95 +225,99 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
     private void PlayerShipStateCheck()
     {
-        if (currentPlanet != null)
+        if (!dead)
         {
-            trailRenderer.enabled = false;
-
-            RaycastHit2D distanceHit = Physics2D.Raycast(endOfShip.position, -endOfShip.up, landDistance, planetLayer);
-
-            if (distanceHit && playerShipState == PlayerShipState.inSpace)
+            if (currentPlanet != null)
             {
-                mainCamera.GetComponent<Scr_MainCamera>().smoothRotation = true;
-                mainCamera.GetComponent<Scr_MainCamera>().CameraShake();
+                trailRenderer.enabled = false;
 
-                Landing();
+                RaycastHit2D beginLandingHit = Physics2D.Raycast(endOfShip.position, -endOfShip.up, landDistance, planetLayer);
+
+                if (beginLandingHit && playerShipState == PlayerShipState.inSpace)
+                {
+                    mainCamera.GetComponent<Scr_MainCamera>().smoothRotation = true;
+                    mainCamera.GetComponent<Scr_MainCamera>().CameraShake();
+
+                    Landing();
+                }
             }
-        }
 
-        else
-        {
-            playerShipState = PlayerShipState.inSpace;
-            trailRenderer.enabled = true;
-        }
-        
-        if (Input.GetKey(KeyCode.LeftShift) && playerShipState == PlayerShipState.landed)
-        {
-            warmingSlider.gameObject.SetActive(true);
-            warmingSlider.value += Time.deltaTime * warmingSpeed;
-
-            if (warmingSlider.value >= (0.95f * warmingSlider.maxValue) && Input.GetMouseButtonDown(0))
+            else
             {
-                warmingSlider.gameObject.SetActive(false);
-
-                mainCamera.GetComponent<Scr_MainCamera>().smoothRotation = false;
-                mainCamera.GetComponent<Scr_MainCamera>().CameraShake();
-
-                TakingOff();
+                playerShipState = PlayerShipState.inSpace;
+                trailRenderer.enabled = true;
+                landedOnce = true;
             }
-        }
 
-        else
-        {
-            warmingSlider.value -= Time.deltaTime;
-
-            if (warmingSlider.value <= 0)
-                warmingSlider.gameObject.SetActive(false);
-        }
-
-        if (onGround)
-        {
-            playerShipState = PlayerShipState.landed;
-
-            Landed();
-            LandingEffects(false);
-        }
-
-        if (takingOff)
-        {
-            playerShipState = PlayerShipState.takingOff;
-            canRotateShip = false;
-            canControlShip = false;
-
-            rb.velocity = Vector2.Lerp(rb.velocity, targetVelocity * transform.up, Time.deltaTime * takingOffTime);
-
-            TakingOffEffects(true);
-
-            if (currentPlanet == null)
+            if (Input.GetKey(KeyCode.LeftShift) && playerShipState == PlayerShipState.landed && canControlShip)
             {
-                transform.SetParent(null);
-                TakingOffEffects(false);
+                warmingSlider.gameObject.SetActive(true);
+                warmingSlider.value += Time.deltaTime * warmingSpeed;
 
-                canRotateShip = true;
-                canControlShip = true;
+                if (warmingSlider.value >= (0.95f * warmingSlider.maxValue) && Input.GetMouseButtonDown(0))
+                {
+                    warmingSlider.gameObject.SetActive(false);
 
-                takingOff = false;
+                    mainCamera.GetComponent<Scr_MainCamera>().smoothRotation = false;
+                    mainCamera.GetComponent<Scr_MainCamera>().CameraShake();
+
+                    TakingOff();
+                }
             }
-        }
 
-        if (landing)
-        {
-            playerShipState = PlayerShipState.landing;
-            canRotateShip = true;
+            else
+            {
+                warmingSlider.value -= Time.deltaTime;
 
-            rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, Time.deltaTime * landingTime);
-
-            LandingEffects(true);
+                if (warmingSlider.value <= 0)
+                    warmingSlider.gameObject.SetActive(false);
+            }
 
             if (onGround)
             {
-                LandingEffects(false);
+                playerShipState = PlayerShipState.landed;
 
-                landing = false;
+                Landed();
+                LandingEffects(false);
+            }
+
+            if (takingOff)
+            {
+                playerShipState = PlayerShipState.takingOff;
+                canRotateShip = false;
+                canControlShip = false;
+
+                rb.velocity = Vector2.Lerp(rb.velocity, targetVelocity * transform.up, Time.deltaTime * takingOffTime);
+
+                TakingOffEffects(true);
+
+                if (currentPlanet == null)
+                {
+                    transform.SetParent(null);
+                    TakingOffEffects(false);
+
+                    canRotateShip = true;
+                    canControlShip = true;
+
+                    takingOff = false;
+                }
+            }
+
+            if (landing)
+            {
+                playerShipState = PlayerShipState.landing;
+                canRotateShip = true;
+
+                rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, Time.deltaTime * landingTime);
+
+                LandingEffects(true);
+
+                if (onGround)
+                {
+                    LandingEffects(false);
+
+                    landing = false;
+                }
             }
         }
     }
@@ -368,7 +376,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
     private void ShipControl()
     {
-        if (canControlShip && astronautOnBoard && !onGround)
+        if (canControlShip && !onGround)
         {
             //tocada audio
             thrusterTakingOffSound.Stop();

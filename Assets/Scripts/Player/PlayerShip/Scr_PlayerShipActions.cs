@@ -89,6 +89,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
         astronaut.transform.rotation = Quaternion.LookRotation(astronaut.transform.forward, (astronaut.transform.position - playerShipMovement.currentPlanet.transform.position));
         astronaut.GetComponent<Scr_AstronautMovement>().keep = false;
         playerShipMovement.astronautOnBoard = false;
+        playerShipMovement.canControlShip = false;
         astronaut.GetComponent<Scr_AstronautMovement>().planetPosition = lastFramePlanetPosition;
         astronaut.GetComponent<Scr_AstronautMovement>().onGround = true;
         playerShipMovement.mainCamera.GetComponent<Scr_MainCamera>().followAstronaut = true;

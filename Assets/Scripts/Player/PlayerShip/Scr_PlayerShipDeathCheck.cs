@@ -13,7 +13,7 @@ public class Scr_PlayerShipDeathCheck : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Planet")
+        if (collision.gameObject.CompareTag("Planet"))
             playerShipStats.Death();
     }
 }
