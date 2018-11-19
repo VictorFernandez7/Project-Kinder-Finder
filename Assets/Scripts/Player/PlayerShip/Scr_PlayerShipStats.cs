@@ -27,9 +27,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
 
     [Header("References")]
     [SerializeField] ParticleSystem deathParticles;
-    [SerializeField] SpriteRenderer shipVisuals;
-    [SerializeField] SpriteRenderer mapVisuals;
-    [SerializeField] TrailRenderer trailRenderer;
+    [SerializeField] GameObject shipVisuals;
 
     [Header("Audio")]
     [SerializeField] private AudioSource fuelAlarm;
@@ -100,8 +98,6 @@ public class Scr_PlayerShipStats : MonoBehaviour
         rb.isKinematic = true;
         rb.velocity = Vector3.zero;
         shipVisuals.gameObject.SetActive(false);
-        mapVisuals.gameObject.SetActive(false);
-        trailRenderer.enabled = false;
         deathParticles.Play();
         playerShipMovement.thrusterParticles.Stop();
 
