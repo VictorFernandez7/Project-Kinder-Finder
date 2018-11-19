@@ -17,6 +17,9 @@ public class Scr_PlayerShipActions : MonoBehaviour
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private GameObject mapVisuals;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource getOutTheShipSound;
+
     [HideInInspector] public bool startExitDelay;
 
     private float deployDelaySaved;
@@ -82,12 +85,14 @@ public class Scr_PlayerShipActions : MonoBehaviour
     void DeployAstronaut()
     {
         astronaut.transform.position = spawnPoint.position;
-        astronaut.transform.rotation = transform.rotation;
         astronaut.SetActive(true);
+        astronaut.transform.rotation = Quaternion.LookRotation(astronaut.transform.forward, (astronaut.transform.position - playerShipMovement.currentPlanet.transform.position));
+        astronaut.GetComponent<Scr_AstronautMovement>().keep = false;
         playerShipMovement.astronautOnBoard = false;
         astronaut.GetComponent<Scr_AstronautMovement>().planetPosition = lastFramePlanetPosition;
         astronaut.GetComponent<Scr_AstronautMovement>().onGround = true;
         playerShipMovement.mainCamera.GetComponent<Scr_MainCamera>().followAstronaut = true;
         mainCanvasAnim.SetBool("OnBoard", false);
+        getOutTheShipSound.Play();
     }
 }
