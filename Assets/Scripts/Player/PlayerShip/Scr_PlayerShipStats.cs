@@ -31,6 +31,10 @@ public class Scr_PlayerShipStats : MonoBehaviour
     [SerializeField] SpriteRenderer mapVisuals;
     [SerializeField] TrailRenderer trailRenderer;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource fuelAlarm;
+    private bool alarm;
+
     private Scr_PlayerShipMovement playerShipMovement;
     private Slider fuelSlider;
     private Image fuelSliderFill;
@@ -53,6 +57,12 @@ public class Scr_PlayerShipStats : MonoBehaviour
         fuelSlider.value = currentFuel;
 
         FuelSliderColor();
+
+        if(currentFuel < 100 && !alarm)
+        {
+            fuelAlarm.Play();
+            alarm = true;
+        }
     }
 
     public void FuelConsumption(bool boost)

@@ -63,6 +63,11 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [SerializeField] private ParticleSystem atmosphereParticles;
     [SerializeField] private Transform endOfShip;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource thrusterOnSpaceSound;
+    [SerializeField] private AudioSource thrusterTakingOffSound;
+    [SerializeField] private AudioSource IASound;
+
     [HideInInspector] public bool astronautOnBoard;
     [HideInInspector] public bool onGround;
     [HideInInspector] public bool takingOff;
@@ -325,6 +330,9 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         targetTakingOff = transform.position + new Vector3(0, takeOffDistance, 0);
 
         takingOff = true;
+
+        //tocada audio
+        thrusterTakingOffSound.Play();
     }
 
     private void Landing()
@@ -362,6 +370,9 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     {
         if (canControlShip && astronautOnBoard && !onGround)
         {
+            //tocada audio
+            thrusterTakingOffSound.Stop();
+
             if (canRotateShip)
             {
                 Vector3 difference = (mainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position);
@@ -372,6 +383,17 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
             if (playerShipStats.currentFuel > 0)
             {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    //tocada audio
+                    thrusterOnSpaceSound.Play();
+                }
+                else if (Input.GetMouseButtonUp(0))
+                {
+                    //tocada audio
+                    thrusterOnSpaceSound.Stop();
+                }
+
                 if (Input.GetMouseButton(0))
                 {
                     thrusterParticles.Play();
@@ -392,7 +414,9 @@ public class Scr_PlayerShipMovement : MonoBehaviour
                 }
 
                 else if (playerShipState == PlayerShipState.inSpace)
+                {
                     thrusterParticles.Stop();
+                }
             }
         }
     }

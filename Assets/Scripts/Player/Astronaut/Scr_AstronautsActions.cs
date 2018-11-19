@@ -16,6 +16,9 @@ public class Scr_AstronautsActions : MonoBehaviour
     [SerializeField] private Transform spawnPoint;
     [SerializeField] public Transform pickPoint;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource getIntoTheShipSound;
+
     [HideInInspector] public bool emptyHands = true;
     [HideInInspector] private GameObject mainCamera;
     
@@ -40,6 +43,9 @@ public class Scr_AstronautsActions : MonoBehaviour
         {
             if (emptyHands)
             {
+                //tocada audio
+                getIntoTheShipSound.Play();
+
                 playerShip.GetComponent<Scr_PlayerShipMovement>().astronautOnBoard = true;
                 playerShip.GetComponent<Scr_PlayerShipActions>().startExitDelay = true;
                 mainCamera.GetComponent<Scr_MainCamera>().followAstronaut = false;

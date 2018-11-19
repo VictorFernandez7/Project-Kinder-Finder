@@ -17,6 +17,9 @@ public class Scr_PlayerShipActions : MonoBehaviour
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private GameObject mapVisuals;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource getOutTheShipSound;
+
     [HideInInspector] public bool startExitDelay;
 
     private float deployDelaySaved;
@@ -90,6 +93,6 @@ public class Scr_PlayerShipActions : MonoBehaviour
         astronaut.GetComponent<Scr_AstronautMovement>().onGround = true;
         playerShipMovement.mainCamera.GetComponent<Scr_MainCamera>().followAstronaut = true;
         mainCanvasAnim.SetBool("OnBoard", false);
-        
+        getOutTheShipSound.Play();
     }
 }
