@@ -75,15 +75,16 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [HideInInspector] public bool dead;
     [HideInInspector] public bool canRotateShip;
     [HideInInspector] public bool canControlShip;
+    [HideInInspector] public bool landedOnce;
     [HideInInspector] public GameObject currentPlanet;
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public Camera mainCamera;
 
     private bool countDownToMove;
-    private bool landedOnce;
     private float maxSpeedSaved;
     private float currentSpeed;
     private float canControlTimerSaved;
+    private float checkingDistance;
     private Image warmingFill;
     private Slider speedSlider;
     private Slider limitSlider;
@@ -97,6 +98,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     private Scr_PlayerShipStats playerShipStats;
     private Scr_PlayerShipActions playerShipActions;
     private Scr_AstronautMovement astronautMovement;
+    private Scr_PlayerShipDeathCheck playerShipDeathCheck;
 
     public enum PlayerShipState
     {
@@ -121,6 +123,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         playerShipStats = GetComponent<Scr_PlayerShipStats>();
         playerShipActions = GetComponent<Scr_PlayerShipActions>();
+        playerShipDeathCheck = GetComponentInChildren<Scr_PlayerShipDeathCheck>();
         trailRenderer = GetComponent<TrailRenderer>();
 
         canControlTimerSaved = canControlTimer;
@@ -130,6 +133,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         warmingSlider.maxValue = warmingAmount;
         messageText.text = "";
         canControlShip = false;
+        checkingDistance = 100f;
 
         warmingSlider.gameObject.SetActive(false);
     }
@@ -246,6 +250,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
             {
                 playerShipState = PlayerShipState.inSpace;
                 trailRenderer.enabled = true;
+                checkingDistance = 100;
                 landedOnce = true;
             }
 
@@ -305,12 +310,30 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
             if (landing)
             {
+                Vector3 planetDirection = new Vector3(transform.position.x - currentPlanet.transform.position.x, transform.position.y - currentPlanet.transform.position.y, transform.position.z - currentPlanet.transform.position.z);
+
                 playerShipState = PlayerShipState.landing;
                 canRotateShip = true;
 
-                rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, Time.deltaTime * landingTime);
+                RaycastHit2D checkingDistanceHit = Physics2D.Raycast(endOfShip.position, -endOfShip.up, Mathf.Infinity, planetLayer);
 
-                LandingEffects(true);
+                if (checkingDistanceHit)
+                {
+                    if (checkingDistanceHit.distance < checkingDistance)
+                        checkingDistance = checkingDistanceHit.distance;
+                }
+
+                Debug.DrawRay(endOfShip.position, -endOfShip.up * checkingDistance, Color.yellow);
+
+                RaycastHit2D landingProperlyHit = Physics2D.Raycast(endOfShip.position, -endOfShip.up, checkingDistance + 0.1f, planetLayer);
+
+                if (landingProperlyHit)
+                {
+                    rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, Time.deltaTime * landingTime);
+
+                    playerShipDeathCheck.CheckLandingTime(false);
+                    LandingEffects(true);
+                }
 
                 if (onGround)
                 {
@@ -346,11 +369,6 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     private void Landing()
     {
         transform.SetParent(currentPlanet.transform);
-
-        RaycastHit2D landingHit = Physics2D.Raycast(endOfShip.position, -endOfShip.up, landDistance, planetLayer);
-
-        if (landingHit && playerShipState == PlayerShipState.inSpace)
-            targetLanding = landingHit.point;
 
         landing = true;
     }

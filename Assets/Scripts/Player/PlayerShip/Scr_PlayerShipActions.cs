@@ -82,7 +82,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
             lastFramePlanetPosition = playerShipMovement.currentPlanet.transform.position;
     }
 
-    void DeployAstronaut()
+    private void DeployAstronaut()
     {
         astronaut.transform.position = spawnPoint.position;
         astronaut.SetActive(true);
@@ -95,5 +95,15 @@ public class Scr_PlayerShipActions : MonoBehaviour
         playerShipMovement.mainCamera.GetComponent<Scr_MainCamera>().followAstronaut = true;
         mainCanvasAnim.SetBool("OnBoard", false);
         getOutTheShipSound.Play();
+    }
+
+    public void TakeTool(int warehouseNumber, int slotNumber)
+    {
+        astronaut.GetComponent<Scr_AstronautStats>().toolSlots[slotNumber] = GetComponent<Scr_PlayerShipStats>().toolWarehouse[warehouseNumber];
+    }
+
+    public void SaveTool(int slotNumber, int emptyWarehouse)
+    {
+        GetComponent<Scr_PlayerShipStats>().toolWarehouse[emptyWarehouse] = astronaut.GetComponent<Scr_AstronautStats>().toolSlots[slotNumber];
     }
 }

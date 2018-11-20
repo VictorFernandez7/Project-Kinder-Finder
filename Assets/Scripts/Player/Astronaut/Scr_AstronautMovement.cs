@@ -12,7 +12,8 @@ using UnityEngine;
 public class Scr_AstronautMovement : MonoBehaviour
 {
     [Header("Movement Properties")]
-    [SerializeField] private float movementSpeed;
+    [SerializeField] private float walkingSpeed;
+    [SerializeField] private float sprintSpeed;
     [SerializeField] private LayerMask collisionMask;
 
     [Header("Height Properties")]
@@ -33,6 +34,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     [HideInInspector] public bool closeToCollector;
     [HideInInspector] public bool keep;
     [HideInInspector] public bool faceRight;
+    [HideInInspector] public bool breathable;
     [HideInInspector] public Vector3 planetPosition;    
     [HideInInspector] public GameObject currentPlanet;
     [HideInInspector] public GameObject currentFuelCollector;
@@ -141,7 +143,8 @@ public class Scr_AstronautMovement : MonoBehaviour
                 if (faceRight)
                     Flip();
 
-                Move(false, movementSpeed);
+                Move(false, walkingSpeed);
+                Sprint(false);
             }
 
             else if (Input.GetButton("Horizontal") && Input.GetAxis("Horizontal") > 0f)
@@ -161,7 +164,8 @@ public class Scr_AstronautMovement : MonoBehaviour
                 if (!faceRight)
                     Flip();
 
-                Move(true, movementSpeed);
+                Move(true, walkingSpeed);
+                Sprint(true);
             }
         }
         
@@ -196,7 +200,6 @@ public class Scr_AstronautMovement : MonoBehaviour
 
     private void Move(bool right, float movement)
     {
-
         if (!jumping)
         {
             if (right)
@@ -205,6 +208,7 @@ public class Scr_AstronautMovement : MonoBehaviour
             if (!right)
                 movementVector = (pointLeft - pointRight).normalized;
         }
+
         else
         {
             if (right)
@@ -218,7 +222,21 @@ public class Scr_AstronautMovement : MonoBehaviour
 
         transform.Translate(movementVector * movement, Space.World);
 
-        miniPlayer.transform.RotateAround(miniPlanet.transform.position, Vector3.forward, (movementSpeed / 4.5f) * Time.fixedDeltaTime);
+        miniPlayer.transform.RotateAround(miniPlanet.transform.position, Vector3.forward, (walkingSpeed / 4.5f) * Time.fixedDeltaTime);
+    }
+
+    private void Sprint(bool right)
+    {
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            Move(right, sprintSpeed);
+
+            if (!breathable)
+                GetComponent<Scr_AstronautStats>().currentOxygen -= 0.05f;
+        }
+
+        else
+            Move(right, walkingSpeed);
     }
 
     private void Flip()
