@@ -39,6 +39,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
     private int numberOfSlotsWithTools;
     private bool alarm;
     private Scr_PlayerShipMovement playerShipMovement;
+    private Scr_PlayerShipEffects playerShipEffects;
     private Slider fuelSlider;
     private Image fuelSliderFill;
     private Rigidbody2D rb;
@@ -49,6 +50,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
         fuelSliderFill = GameObject.Find("FuelFill").GetComponent<Image>();
 
         playerShipMovement = GetComponent<Scr_PlayerShipMovement>();
+        playerShipEffects = GetComponent<Scr_PlayerShipEffects>();
         rb = GetComponent<Rigidbody2D>();
 
         fuelSlider.maxValue = maxFuel;
@@ -105,7 +107,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
         rb.velocity = Vector3.zero;
         shipVisuals.gameObject.SetActive(false);
         deathParticles.Play();
-        playerShipMovement.thrusterParticles.Stop();
+        playerShipEffects.thrusterParticles.Stop();
 
         Invoke("Respawn", respawnTime);
     }

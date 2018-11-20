@@ -70,7 +70,6 @@ public class Scr_PlayerShipDeathCheck : MonoBehaviour
         float timeQuality = (int)((100 / deathTime) * (landingTime));
         float resultQuality = (angleQuality + timeQuality) / 2;
 
-        //Debug.Log("Landing Quality " + resultQuality + "/100");
-        Debug.Log("LANDING INFO | " + "Angle Quality " + angleQuality + "/100 | " + "Time Quality " + timeQuality + "/100");
+        Debug.Log("LANDING QUALITY " + resultQuality + " | " + "Angle Quality " + angleQuality + "/100 | " + "Time Quality " + timeQuality + "/100");
     }
 }
