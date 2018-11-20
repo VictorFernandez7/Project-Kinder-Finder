@@ -10,12 +10,13 @@ using UnityEngine;
 
 public class Scr_PlayerShipActions : MonoBehaviour
 {
-    [Header("References")]
+    [Header("Deploy Values")]
     [SerializeField] private float deployDelay;
 
     [Header("References")]
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private GameObject mapVisuals;
+    [SerializeField] private GameObject toolPanelVisuals;
 
     [Header("Audio")]
     [SerializeField] private AudioSource getOutTheShipSound;
@@ -26,6 +27,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
     private bool canExitShip;
     private bool questPanel;
     private bool upgradePanel;
+    private bool toolPanel;
     private Vector3 lastFramePlanetPosition;
     private Animator mainCanvasAnim;
     private GameObject astronaut;
@@ -56,8 +58,16 @@ public class Scr_PlayerShipActions : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.U) && playerShipMovement.astronautOnBoard)
         {
+            playerShipMovement.canControlShip = upgradePanel;
             mainCanvasAnim.SetBool("UpgradePanel", !upgradePanel);
             upgradePanel = !upgradePanel;
+        }
+
+        if(Input.GetKeyDown(KeyCode.T) && playerShipMovement.astronautOnBoard)
+        {
+            playerShipMovement.canControlShip = toolPanel;
+            toolPanelVisuals.SetActive(!toolPanel);
+            toolPanel = !toolPanel;
         }
 
         if (startExitDelay)
