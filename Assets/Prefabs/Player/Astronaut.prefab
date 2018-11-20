@@ -412,6 +412,7 @@ MonoBehaviour:
   fuelBlock: {fileID: 1231448540965128, guid: 81cfcdd80a0ddd340bbde83adf93d86d, type: 2}
   spawnPoint: {fileID: 4412191580725764}
   pickPoint: {fileID: 4973946125739948}
+  getIntoTheShipSound: {fileID: 0}
   emptyHands: 1
 --- !u!114 &114755716893654776
 MonoBehaviour:
@@ -424,7 +425,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13991ef6310ac6e44bfd40289a73e7f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 0.02
+  walkingSpeed: 0.015
+  sprintSpeed: 0.03
   collisionMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -440,7 +442,9 @@ MonoBehaviour:
   canMove: 0
   canEnterShip: 0
   closeToCollector: 0
+  keep: 0
   faceRight: 0
+  breathable: 0
   planetPosition: {x: 0, y: 0, z: 0}
   currentPlanet: {fileID: 0}
   currentFuelCollector: {fileID: 0}
@@ -455,6 +459,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6ace4242c6f75848b893d58bc51733f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  oxygenCapacity: 200
+  toolSlots: []
+  currentOxygen: 0
 --- !u!198 &198665950421681262
 ParticleSystem:
   m_ObjectHideFlags: 1

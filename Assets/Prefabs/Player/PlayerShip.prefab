@@ -702,8 +702,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.072087765}
-  m_Size: {x: 0.35826775, y: 0.42424583}
+  m_Offset: {x: 0, y: 0.02658391}
+  m_Size: {x: 0.35826775, y: 0.5089774}
   m_Direction: 0
 --- !u!96 &96206161718378074
 TrailRenderer:
@@ -1056,6 +1056,7 @@ MonoBehaviour:
   dead: 0
   canRotateShip: 0
   canControlShip: 1
+  landingProperly: 0
   currentPlanet: {fileID: 0}
   rb: {fileID: 0}
   mainCamera: {fileID: 0}
@@ -1195,6 +1196,9 @@ MonoBehaviour:
   deathParticles: {fileID: 198544837972985684}
   shipVisuals: {fileID: 1037411504919446}
   fuelAlarm: {fileID: 0}
+  toolWarehouse: []
+  lastWarehouseEmpty: 0
+  warehouseFull: 0
 --- !u!114 &114833538102003966
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -75,6 +75,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [HideInInspector] public bool dead;
     [HideInInspector] public bool canRotateShip;
     [HideInInspector] public bool canControlShip;
+    [HideInInspector] public bool landingProperly;
     [HideInInspector] public GameObject currentPlanet;
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public Camera mainCamera;
@@ -130,6 +131,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         warmingSlider.maxValue = warmingAmount;
         messageText.text = "";
         canControlShip = false;
+        landingProperly = true;
 
         warmingSlider.gameObject.SetActive(false);
     }
@@ -308,9 +310,18 @@ public class Scr_PlayerShipMovement : MonoBehaviour
                 playerShipState = PlayerShipState.landing;
                 canRotateShip = true;
 
-                rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, Time.deltaTime * landingTime);
+                RaycastHit2D landingProperlyHit = Physics2D.Raycast(endOfShip.position, -endOfShip.up, landDistance, planetLayer);
 
-                LandingEffects(true);
+                if (landingProperlyHit)
+                {
+                    rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, Time.deltaTime * landingTime);
+                    landingProperly = true;
+
+                    LandingEffects(true);
+                }
+
+                else
+                    landingProperly = false;
 
                 if (onGround)
                 {
@@ -346,11 +357,6 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     private void Landing()
     {
         transform.SetParent(currentPlanet.transform);
-
-        RaycastHit2D landingHit = Physics2D.Raycast(endOfShip.position, -endOfShip.up, landDistance, planetLayer);
-
-        if (landingHit && playerShipState == PlayerShipState.inSpace)
-            targetLanding = landingHit.point;
 
         landing = true;
     }

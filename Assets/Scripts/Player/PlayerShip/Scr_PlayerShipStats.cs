@@ -31,8 +31,13 @@ public class Scr_PlayerShipStats : MonoBehaviour
 
     [Header("Audio")]
     [SerializeField] private AudioSource fuelAlarm;
-    private bool alarm;
 
+    [HideInInspector] public GameObject[] toolWarehouse;
+    [HideInInspector] public int lastWarehouseEmpty;
+    [HideInInspector] public bool warehouseFull;
+
+    private int numberOfSlotsWithTools;
+    private bool alarm;
     private Scr_PlayerShipMovement playerShipMovement;
     private Slider fuelSlider;
     private Image fuelSliderFill;
@@ -47,6 +52,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         fuelSlider.maxValue = maxFuel;
+        toolWarehouse = new GameObject[5];
     }
 
     private void Update()
@@ -107,5 +113,17 @@ public class Scr_PlayerShipStats : MonoBehaviour
     private void Respawn()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void RecalculateWarehouse(int warehouseSlot)
+    {
+        if (warehouseSlot < numberOfSlotsWithTools - 1)
+        {
+            for (int i = numberOfSlotsWithTools - 1; toolWarehouse[i] != null; i--)
+            {
+                toolWarehouse[warehouseSlot] = toolWarehouse[i];
+                toolWarehouse[i] = null;
+            }
+        }
     }
 }
