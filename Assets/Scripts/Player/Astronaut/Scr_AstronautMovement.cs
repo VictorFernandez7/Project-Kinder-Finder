@@ -51,8 +51,6 @@ public class Scr_AstronautMovement : MonoBehaviour
     private Vector2 movementVector;
     private Vector2 lastVector;
     private Vector3 vectorJump;
-    private GameObject miniPlayer;
-    private GameObject miniPlanet;
     private RaycastHit2D hitL;
     private RaycastHit2D hitR;
     private RaycastHit2D hitCentral;    
@@ -60,8 +58,6 @@ public class Scr_AstronautMovement : MonoBehaviour
 
     public void Start()
     {
-        miniPlayer = GameObject.Find("MiniPlayer");
-        miniPlanet = GameObject.Find("MiniPlanet");
         playerShipMovement = GameObject.Find("PlayerShip").GetComponent<Scr_PlayerShipMovement>();
 
         canMove = true;
@@ -221,8 +217,6 @@ public class Scr_AstronautMovement : MonoBehaviour
         Debug.DrawRay(transform.position, movementVector, Color.red);
 
         transform.Translate(movementVector * movement, Space.World);
-
-        miniPlayer.transform.RotateAround(miniPlanet.transform.position, Vector3.forward, (walkingSpeed / 4.5f) * Time.fixedDeltaTime);
     }
 
     private void Sprint(bool right)

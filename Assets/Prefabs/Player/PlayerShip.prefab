@@ -227,6 +227,7 @@ GameObject:
   - component: {fileID: 114696350668254112}
   - component: {fileID: 114544141144842080}
   - component: {fileID: 114778194997285574}
+  - component: {fileID: 114564075594853054}
   m_Layer: 0
   m_Name: PlayerShip
   m_TagString: PlayerShip
@@ -951,6 +952,33 @@ MonoBehaviour:
   predictionTime: 6
   predictionLineMap: {fileID: 120501272858494042}
   predictionLine: {fileID: 0}
+--- !u!114 &114564075594853054
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1452036844316726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89dc3e89ced4c0c44b9fbbb493c43466, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dustMultiplier: 500
+  takingOffThrusterPower: 1750
+  inSpaceThrusterPower: 500
+  landingThrusterPower: 1500
+  landedThrusterMult: 250
+  landedDustMult: 30
+  color0: {r: 0.9078033, g: 1, b: 0, a: 1}
+  color25: {r: 1, g: 0.6443302, b: 0, a: 1}
+  color50: {r: 1, g: 0.41492444, b: 0, a: 1}
+  color75: {r: 1, g: 0, b: 0.04318142, a: 1}
+  endOfShip: {fileID: 4046255908165590}
+  thrusterParticles: {fileID: 198333808919146426}
+  dustParticles: {fileID: 1247645789991328, guid: bbbbba65b8622bd4b990250ed90c558a,
+    type: 2}
+  atmosphereParticles: {fileID: 198678149364849852}
+  warmingSlider: {fileID: 0}
 --- !u!114 &114602957055860766
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1014,17 +1042,13 @@ MonoBehaviour:
   takeOffDistance: 18
   targetVelocity: 4
   takingOffTime: 5
-  dustMultiplier: 500
-  takingOffThrusterPower: 1750
   canControlTimer: 2
   shipOrientationSpeed: 2
   landDistance: 2.5
   landingTime: 20
-  landingThrusterPower: 1500
   planetLayer:
     serializedVersion: 2
     m_Bits: 1024
-  inSpaceThrusterPower: 500
   rotationDelay: 2
   maxSpeed: 100
   normalSpeed: 100
@@ -1032,19 +1056,9 @@ MonoBehaviour:
   limitUnits: 100
   warmingAmount: 5
   warmingSpeed: 2
-  landedThrusterMult: 250
-  landedDustMult: 30
-  color0: {r: 0.9963192, g: 1, b: 0, a: 1}
-  color25: {r: 1, g: 0.67668825, b: 0, a: 1}
-  color50: {r: 1, g: 0.35030997, b: 0, a: 1}
-  color75: {r: 1, g: 0, b: 0.083918095, a: 1}
   warmingMessage: Hold Shift to start engines
   getInOutMessage: E
   takeOffMessage: Left Click to take off
-  thrusterParticles: {fileID: 198333808919146426}
-  dustParticles: {fileID: 1247645789991328, guid: bbbbba65b8622bd4b990250ed90c558a,
-    type: 2}
-  atmosphereParticles: {fileID: 198678149364849852}
   endOfShip: {fileID: 4046255908165590}
   thrusterOnSpaceSound: {fileID: 0}
   thrusterTakingOffSound: {fileID: 0}
@@ -1185,14 +1199,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnTime: 3
+  currentShield: 100
+  maxShield: 100
+  shieldColor0: {r: 0.027350426, g: 0, b: 1, a: 0}
+  shieldColor25: {r: 0, g: 0.41091633, b: 1, a: 1}
+  shieldColor50: {r: 0, g: 0.71046233, b: 1, a: 1}
+  shieldColor75: {r: 0, g: 0.9171715, b: 1, a: 0}
   currentFuel: 350
   maxFuel: 350
   normalConsume: 0.1
   boostConsume: 0.2
-  color0: {r: 1, g: 0.12962769, b: 0, a: 1}
-  color25: {r: 1, g: 0.49785483, b: 0, a: 1}
-  color50: {r: 0.96015084, g: 1, b: 0, a: 1}
-  color75: {r: 0.023534775, g: 1, b: 0, a: 1}
+  fuelColor0: {r: 1, g: 0, b: 0, a: 1}
+  fuelColor25: {r: 1, g: 0.40840292, b: 0, a: 1}
+  fuelColor50: {r: 0.90465856, g: 1, b: 0, a: 1}
+  fuelColor75: {r: 0, g: 1, b: 0.09281945, a: 0}
   deathParticles: {fileID: 198544837972985684}
   shipVisuals: {fileID: 1037411504919446}
   fuelAlarm: {fileID: 0}
