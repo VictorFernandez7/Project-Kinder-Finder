@@ -10,6 +10,9 @@ public class Scr_PlayerShipDeathCheck : MonoBehaviour
 
     private float landingTime;
     private float landingAngle;
+    float angleQuality;
+    float timeQuality;
+    float resultQuality;
     private Vector3 playerShipDirection;
     private Vector3 playerShipToPlanetDirection;
     private GameObject currentPlanet;
@@ -66,10 +69,17 @@ public class Scr_PlayerShipDeathCheck : MonoBehaviour
 
     private void LandingQuality()
     {
-        float angleQuality = (int)((100 / deathAngle) * (deathAngle - landingAngle));
-        float timeQuality = (int)((100 / deathTime) * (landingTime));
-        float resultQuality = (angleQuality + timeQuality) / 2;
+        angleQuality = (int)((100 / deathAngle) * (deathAngle - landingAngle));
+        timeQuality = (int)((100 / deathTime) * (landingTime));
+        resultQuality = (angleQuality + timeQuality) / 2;
 
         Debug.Log("LANDING QUALITY " + resultQuality + " | " + "Angle Quality " + angleQuality + "/100 | " + "Time Quality " + timeQuality + "/100");
+
+        TakeDamage(100 - resultQuality);
+    }
+
+    private void TakeDamage(float amount)
+    {
+        playerShipStats.currentShield -= amount;
     }
 }
