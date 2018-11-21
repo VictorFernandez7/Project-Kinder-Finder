@@ -5,7 +5,6 @@ public class Scr_DevTools : MonoBehaviour
 {
     [Header("BulletTime")]
     [Range(0, 1)] [SerializeField] private float slowAmount;
-    [SerializeField] private bool holdPressed;
     [SerializeField] private KeyCode BT_key;
 
     [Header("ReloadScene")]

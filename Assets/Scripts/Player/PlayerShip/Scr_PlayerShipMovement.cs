@@ -305,7 +305,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
                 RaycastHit2D landingProperlyHit = Physics2D.Raycast(endOfShip.position, -endOfShip.up, checkingDistance + 0.1f, planetLayer);
 
-                if (landingProperlyHit)
+                if (landingProperlyHit && Input.GetMouseButton(0))
                 {
                     rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, Time.deltaTime * landingTime);
 
@@ -394,13 +394,14 @@ public class Scr_PlayerShipMovement : MonoBehaviour
                     //tocada audio
                     thrusterOnSpaceSound.Play();
                 }
+
                 else if (Input.GetMouseButtonUp(0))
                 {
                     //tocada audio
                     thrusterOnSpaceSound.Stop();
                 }
 
-                if (Input.GetMouseButton(0))
+                if (Input.GetMouseButton(0) && playerShipState == PlayerShipState.inSpace)
                 {
                     playerShipEffects.thrusterParticles.Play();
 
