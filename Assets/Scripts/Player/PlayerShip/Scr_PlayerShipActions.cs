@@ -25,11 +25,12 @@ public class Scr_PlayerShipActions : MonoBehaviour
 
     private float deployDelaySaved;
     private bool canExitShip;
-    private bool questPanel;
     private bool upgradePanel;
     private bool toolPanel;
     private Vector3 lastFramePlanetPosition;
     private Animator mainCanvasAnim;
+    private Animator missionAnim;
+    private Animator upgradesAnim;
     private GameObject astronaut;
     private Scr_PlayerShipMovement playerShipMovement;
 
@@ -38,6 +39,8 @@ public class Scr_PlayerShipActions : MonoBehaviour
         astronaut = GameObject.Find("Astronaut");
         playerShipMovement = GetComponent<Scr_PlayerShipMovement>();
         mainCanvasAnim = GameObject.Find("MainCanvas").GetComponent<Animator>();
+        missionAnim = GameObject.Find("MissionsPanels").GetComponent<Animator>();
+        upgradesAnim = GameObject.Find("UpgradePanel").GetComponent<Animator>();
 
         deployDelaySaved = deployDelay;
     }
@@ -51,15 +54,12 @@ public class Scr_PlayerShipActions : MonoBehaviour
             mapVisuals.SetActive(true);
 
         if (Input.GetKeyDown(KeyCode.J) && playerShipMovement.astronautOnBoard)
-        {
-            mainCanvasAnim.SetBool("QuestPanel", !questPanel);
-            questPanel = !questPanel;
-        }
+            missionAnim.SetTrigger("Activate");
 
         if (Input.GetKeyDown(KeyCode.U) && playerShipMovement.astronautOnBoard)
         {
             playerShipMovement.canControlShip = upgradePanel;
-            mainCanvasAnim.SetBool("UpgradePanel", !upgradePanel);
+            upgradesAnim.SetTrigger("Show");
             upgradePanel = !upgradePanel;
         }
 
