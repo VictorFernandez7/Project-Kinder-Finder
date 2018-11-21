@@ -120,11 +120,11 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         MessageTextManager();
         playerShipEffects.OnGroundEffects();
         Timers();
+        SpeedLimiter();
 
         if (playerShipState == PlayerShipState.inSpace)
         {
             ShipControl();
-            SpeedLimiter();
             playerShipEffects.InSpaceEffects();
         }
 
@@ -217,6 +217,8 @@ public class Scr_PlayerShipMovement : MonoBehaviour
                 {
                     mainCamera.GetComponent<Scr_MainCamera>().smoothRotation = true;
                     mainCamera.GetComponent<Scr_MainCamera>().CameraShake();
+
+                    maxSpeedSaved = maxSpeed;
 
                     Landing();
                 }
@@ -360,7 +362,9 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         speedText.transform.localPosition = new Vector3(0, speed * 3, 0);
         limiterText.text = maxSpeedSaved.ToString();
 
-        maxSpeedSaved += Input.GetAxis("Mouse ScrollWheel") * limitUnits;
+        if (playerShipState == PlayerShipState.inSpace)
+            maxSpeedSaved += Input.GetAxis("Mouse ScrollWheel") * limitUnits;
+
         maxSpeedSaved = Mathf.Clamp(maxSpeedSaved, 0f, maxSpeed);
         maxSpeedSaved = (float)((int)maxSpeedSaved);
 
@@ -416,9 +420,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
                 }
 
                 else if (playerShipState == PlayerShipState.inSpace)
-                {
                     playerShipEffects.thrusterParticles.Stop();
-                }
             }
         }
     }
