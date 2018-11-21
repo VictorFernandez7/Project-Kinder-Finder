@@ -8,6 +8,7 @@ public class Scr_MiniMapCamera : MonoBehaviour
     [SerializeField] private float zoomInPlanet;
     [SerializeField] private float zoomInSpace;
     [SerializeField] private float zoomSpeed;
+    [SerializeField] private float followSpeed;
 
     private Camera minimapCamera;
     private GameObject playerShip;
@@ -39,7 +40,9 @@ public class Scr_MiniMapCamera : MonoBehaviour
 
     private void FollowTarget()
     {
-        transform.position = new Vector3(currentTarget.transform.position.x, currentTarget.transform.position.y, -10);
+        Vector3 followedTarget = new Vector3(currentTarget.transform.position.x, currentTarget.transform.position.y, -10);
+
+        transform.position = Vector3.Lerp(transform.position, followedTarget, Time.deltaTime * followSpeed);
     }
 
     private void ZoomSystem()
