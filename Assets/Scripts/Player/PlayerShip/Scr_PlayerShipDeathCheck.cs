@@ -80,6 +80,7 @@ public class Scr_PlayerShipDeathCheck : MonoBehaviour
 
     private void TakeDamage(float amount)
     {
-        playerShipStats.currentShield -= amount;
+        if (amount <= playerShipStats.maxShield)
+            playerShipStats.currentShield -= amount;
     }
 }
