@@ -30,13 +30,7 @@ public class Scr_AstronautStats : MonoBehaviour
         oxygenSlider.maxValue = oxygenCapacity;
         currentOxygen = oxygenCapacity;
 
-        for(int i = 0; i < toolSlots.Length; i++)
-        {
-            if (toolSlots[i] == null)
-                textToolSlots[i].text = "null";
-            else
-                textToolSlots[i].text = toolSlots[i].name;
-        }
+        ReadNames();
     }
 
     private void Update()
@@ -45,5 +39,16 @@ public class Scr_AstronautStats : MonoBehaviour
             currentOxygen -= 0.5f * Time.deltaTime;
 
         oxygenSlider.value = currentOxygen;
+    }
+
+    public void ReadNames()
+    {
+        for (int i = 0; i < toolSlots.Length; i++)
+        {
+            if (toolSlots[i] == null)
+                textToolSlots[i].text = "null";
+            else
+                textToolSlots[i].text = toolSlots[i].GetComponent<Scr_Tool>().toolName;
+        }
     }
 }
