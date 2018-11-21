@@ -17,7 +17,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
 
     [Header("Shield Properties")]
     [SerializeField] public float currentShield;
-    [SerializeField] private float maxShield;
+    [SerializeField] public float maxShield;
     [SerializeField] private Color shieldColor0;
     [SerializeField] private Color shieldColor25;
     [SerializeField] private Color shieldColor50;

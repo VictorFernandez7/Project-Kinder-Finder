@@ -51,12 +51,7 @@ public class Scr_PlayerShipDeathCheck : MonoBehaviour
             landingTime = 0;
 
         else
-        {
             landingTime += Time.deltaTime;
-
-            //if (landingTime >= deathTime)
-            //    playerShipStats.Death();
-        }
     }
 
     private void CheckAngle()
@@ -80,6 +75,7 @@ public class Scr_PlayerShipDeathCheck : MonoBehaviour
 
     private void TakeDamage(float amount)
     {
-        playerShipStats.currentShield -= amount;
+        if (amount >= 0)
+            playerShipStats.currentShield -= amount;
     }
 }
