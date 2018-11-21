@@ -5,11 +5,10 @@ using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 
-[RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(BoxCollider2D))]
-[RequireComponent(typeof(Scr_PlayerShipActions))]
-[RequireComponent(typeof(Scr_PlayerShipPrediction))]
-[RequireComponent(typeof(Scr_PlayerShipMovement))]
+[RequireComponent(typeof(Rigidbody2D))] [RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(LineRenderer))] [RequireComponent(typeof(TrailRenderer))]
+[RequireComponent(typeof(Scr_PlayerShipActions))] [RequireComponent(typeof(Scr_PlayerShipMovement))]
+[RequireComponent(typeof(Scr_PlayerShipPrediction))] [RequireComponent(typeof(Scr_PlayerShipEffects))]
 
 public class Scr_PlayerShipStats : MonoBehaviour
 {
