@@ -110,10 +110,12 @@ public class Scr_PlayerShipActions : MonoBehaviour
     public void TakeTool(int warehouseNumber, int slotNumber)
     {
         astronaut.GetComponent<Scr_AstronautStats>().toolSlots[slotNumber] = GetComponent<Scr_PlayerShipStats>().toolWarehouse[warehouseNumber];
+        GetComponent<Scr_PlayerShipStats>().toolWarehouse[warehouseNumber] = null;
     }
 
     public void SaveTool(int slotNumber, int emptyWarehouse)
     {
         GetComponent<Scr_PlayerShipStats>().toolWarehouse[emptyWarehouse] = astronaut.GetComponent<Scr_AstronautStats>().toolSlots[slotNumber];
+        astronaut.GetComponent<Scr_AstronautStats>().toolSlots[slotNumber] = null;
     }
 }

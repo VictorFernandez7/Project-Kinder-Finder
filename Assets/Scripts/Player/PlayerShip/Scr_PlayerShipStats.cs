@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(BoxCollider2D))]
@@ -40,7 +41,9 @@ public class Scr_PlayerShipStats : MonoBehaviour
     [Header("Audio")]
     [SerializeField] private AudioSource fuelAlarm;
 
-    [HideInInspector] public GameObject[] toolWarehouse;
+    public TextMeshProUGUI[] textToolWarehouse;
+    [SerializeField] public GameObject[] toolWarehouse;
+
     [HideInInspector] public int lastWarehouseEmpty;
     [HideInInspector] public bool warehouseFull;
 
@@ -68,6 +71,8 @@ public class Scr_PlayerShipStats : MonoBehaviour
         fuelSlider.maxValue = maxFuel;
         shieldSlider.maxValue = maxShield;
         toolWarehouse = new GameObject[5];
+
+        ReadNames();
     }
 
     private void Update()
@@ -154,15 +159,16 @@ public class Scr_PlayerShipStats : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void RecalculateWarehouse(int warehouseSlot)
+    //TOOL SYSTEM
+
+    public void ReadNames()
     {
-        if (warehouseSlot < numberOfSlotsWithTools - 1)
+        for (int i = 0; i < toolWarehouse.Length; i++)
         {
-            for (int i = numberOfSlotsWithTools - 1; toolWarehouse[i] != null; i--)
-            {
-                toolWarehouse[warehouseSlot] = toolWarehouse[i];
-                toolWarehouse[i] = null;
-            }
+            if (toolWarehouse[i] == null)
+                textToolWarehouse[i].text = "null";
+            else
+                textToolWarehouse[i].text = toolWarehouse[i].GetComponent<Scr_Tool>().toolName;
         }
     }
 }
