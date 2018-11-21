@@ -4,12 +4,6 @@ using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 
-[RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(BoxCollider2D))]
-[RequireComponent(typeof(Scr_PlayerShipActions))]
-[RequireComponent(typeof(Scr_PlayerShipPrediction))]
-[RequireComponent(typeof(Scr_PlayerShipStats))]
-
 public class Scr_PlayerShipMovement : MonoBehaviour
 {
     [Header("Ship State")]
