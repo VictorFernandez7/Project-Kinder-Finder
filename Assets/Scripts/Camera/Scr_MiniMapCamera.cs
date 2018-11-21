@@ -4,20 +4,50 @@ using UnityEngine;
 
 public class Scr_MiniMapCamera : MonoBehaviour
 {
+    [Header("Minimap Parameters")]
+    [SerializeField] private float zoomInPlanet;
+    [SerializeField] private float zoomInSpace;
+    [SerializeField] private float zoomSpeed;
+
+    private Camera minimapCamera;
     private GameObject playerShip;
+    private GameObject currentTarget;
+    private Scr_PlayerShipMovement playerShipMovement;
 
     private void Start()
     {
         playerShip = GameObject.Find("PlayerShip");
+
+        minimapCamera = GetComponent<Camera>();
+        playerShipMovement = playerShip.GetComponent<Scr_PlayerShipMovement>();
+
+        currentTarget = playerShipMovement.currentPlanet;
     }
 
     private void Update()
     {
+        ZoomSystem();
+
+        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed || playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landing)
+            currentTarget = playerShipMovement.currentPlanet;
+
+        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.takingOff || playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace)
+            currentTarget = playerShip;
+
         FollowTarget();
     }
 
     private void FollowTarget()
     {
-        transform.position = new Vector3(playerShip.transform.position.x, playerShip.transform.position.y, -10);
+        transform.position = new Vector3(currentTarget.transform.position.x, currentTarget.transform.position.y, -10);
+    }
+
+    private void ZoomSystem()
+    {
+        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed || playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landing)
+            minimapCamera.orthographicSize = Mathf.Lerp(minimapCamera.orthographicSize, zoomInPlanet, Time.deltaTime * zoomSpeed);
+
+        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.takingOff || playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace)
+            minimapCamera.orthographicSize = Mathf.Lerp(minimapCamera.orthographicSize, zoomInSpace, Time.deltaTime * zoomSpeed);
     }
 }

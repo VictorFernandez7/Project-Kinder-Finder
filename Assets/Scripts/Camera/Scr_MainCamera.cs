@@ -37,7 +37,7 @@ public class Scr_MainCamera : MonoBehaviour
         playerShipMovement = playerShip.GetComponent<Scr_PlayerShipMovement>();
         astronaut = GameObject.Find("Astronaut");
         mainCamera = GetComponent<Camera>();
-        desiredup = transform.up;
+        desiredUp = transform.up;
 
         mainCamera.orthographicSize = zoomInPlanet;
         smoothRotation = true;
@@ -66,7 +66,7 @@ public class Scr_MainCamera : MonoBehaviour
             transform.position = new Vector3(playerShip.transform.position.x, playerShip.transform.position.y, -10);
     }
 
-    Vector3 desiredup;
+    Vector3 desiredUp;
 
     private void CameraRotation()
     {
@@ -75,10 +75,10 @@ public class Scr_MainCamera : MonoBehaviour
             Vector3 astronautUpVector = astronaut.transform.up;
             Vector3 playerShipVectorUp = playerShip.transform.up;
 
-            desiredup = Vector3.Lerp(desiredup, followAstronaut ? astronautUpVector : playerShipVectorUp, Time.deltaTime * (followAstronaut ? astronautRotationSpeed : shipRotationSpeed));
+            desiredUp = Vector3.Lerp(desiredUp, followAstronaut ? astronautUpVector : playerShipVectorUp, Time.deltaTime * (followAstronaut ? astronautRotationSpeed : shipRotationSpeed));
 
 
-            transform.rotation = Quaternion.LookRotation(transform.forward, desiredup);
+            transform.rotation = Quaternion.LookRotation(transform.forward, desiredUp);
         }
     }
 
