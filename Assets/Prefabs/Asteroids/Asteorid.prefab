@@ -61,21 +61,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1162418812103382
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4253089643194826}
-  m_Layer: 12
-  m_Name: Particles
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1205103630347084
 GameObject:
   m_ObjectHideFlags: 1
@@ -448,7 +433,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 50, y: 50, z: 50}
-  m_Children: []
+  m_Children:
+  - {fileID: 4183092887477658}
   m_Father: {fileID: 4817745596031412}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -460,25 +446,11 @@ Transform:
   m_GameObject: {fileID: 1378668467923946}
   m_LocalRotation: {x: 0.59636784, y: -0.37992817, z: -0.59636784, w: 0.37992817}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5000005, y: 0.50000054, z: 0.50000006}
+  m_LocalScale: {x: 0.010000017, y: 0.010000018, z: 0.0100000035}
   m_Children: []
-  m_Father: {fileID: 4253089643194826}
+  m_Father: {fileID: 4014740479268596}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -115}
---- !u!4 &4253089643194826
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1162418812103382}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4183092887477658}
-  m_Father: {fileID: 4817745596031412}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4300427222329972
 Transform:
   m_ObjectHideFlags: 1
@@ -505,7 +477,6 @@ Transform:
   - {fileID: 4014740479268596}
   - {fileID: 4300427222329972}
   - {fileID: 224427534149229508}
-  - {fileID: 4253089643194826}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
@@ -842,6 +813,7 @@ MonoBehaviour:
   extractigResourceSpeed: 15
   deathSpeed: 25
   deathForce: 250
+  deathDamage: 0
   powerRegenSpeed: 40
   steelAmount: 10
   steelBlock: {fileID: 1587913126483098, guid: cfefb6ccd75627e43935b403f0219e50, type: 2}
@@ -852,7 +824,7 @@ MonoBehaviour:
   explosionText: {fileID: 114322793472075446}
   resourceText: {fileID: 114241859712452576}
   deathParticles: {fileID: 198954811865938466}
-  asteroidVisuals: {fileID: 1050114576830782}
+  asteroidVisuals: {fileID: 23102827715832630}
   asteroidCanvas: {fileID: 1575356383245936}
   currentPower: 0
   mining: 0

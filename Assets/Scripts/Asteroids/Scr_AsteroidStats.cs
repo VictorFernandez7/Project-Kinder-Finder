@@ -13,6 +13,7 @@ public class Scr_AsteroidStats : MonoBehaviour
     [SerializeField] public float extractigResourceSpeed;
     [SerializeField] public float deathSpeed;
     [SerializeField] public float deathForce;
+    [SerializeField] public float deathDamage;
     [SerializeField] public float powerRegenSpeed;
 
     [Header("Resources: Steel")]
@@ -27,7 +28,7 @@ public class Scr_AsteroidStats : MonoBehaviour
     [SerializeField] private TextMeshProUGUI explosionText;
     [SerializeField] private TextMeshProUGUI resourceText;
     [SerializeField] private ParticleSystem deathParticles;
-    [SerializeField] private GameObject asteroidVisuals;
+    [SerializeField] private MeshRenderer asteroidVisuals;
     [SerializeField] private GameObject asteroidCanvas;
 
     [HideInInspector] public float currentPower;
@@ -42,6 +43,7 @@ public class Scr_AsteroidStats : MonoBehaviour
     private GameObject playerShip;
     private Scr_PlayerShipActions playerShipActions;
     private Scr_PlayerShipEffects playerShipEffects;
+    private Scr_PlayerShipStats playerShipStats;
     private Scr_AsteroidBehaviour asteroidBehaviour;
 
     private void Start()
@@ -49,6 +51,7 @@ public class Scr_AsteroidStats : MonoBehaviour
         playerShip = GameObject.Find("PlayerShip");
         playerShipActions = playerShip.GetComponent<Scr_PlayerShipActions>();
         playerShipEffects = playerShip.GetComponent<Scr_PlayerShipEffects>();
+        playerShipStats = playerShip.GetComponent<Scr_PlayerShipStats>();
 
         asteroidBehaviour = GetComponent<Scr_AsteroidBehaviour>();
 
@@ -66,6 +69,7 @@ public class Scr_AsteroidStats : MonoBehaviour
             newCurrentPower = Mathf.Clamp(newCurrentPower, 0, 1);
 
             newCurrentPower = currentPower / 100;
+
             currentPowerSlider.value = newCurrentPower;
 
             if (!mining && currentPowerSlider.value > 0)
@@ -119,7 +123,7 @@ public class Scr_AsteroidStats : MonoBehaviour
 
         dead = true;
         asteroidBehaviour.move = false;
-        asteroidVisuals.SetActive(false);
+        asteroidVisuals.enabled = false;
         asteroidCanvas.SetActive(false);
         GetComponent<CircleCollider2D>().enabled = false;
 
