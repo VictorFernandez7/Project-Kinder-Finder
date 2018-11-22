@@ -367,7 +367,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         speedText.transform.localPosition = new Vector3(0, speed * 3, 0);
         limiterText.text = maxSpeedSaved.ToString();
 
-        if (playerShipState == PlayerShipState.inSpace)
+        if (playerShipState == PlayerShipState.inSpace && !mainCamera.GetComponent<Scr_MainCamera>().mining)
             maxSpeedSaved += Input.GetAxis("Mouse ScrollWheel") * limitUnits;
 
         maxSpeedSaved = Mathf.Clamp(maxSpeedSaved, 0f, maxSpeed);

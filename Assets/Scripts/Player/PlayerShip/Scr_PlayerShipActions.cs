@@ -1,12 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 
 public class Scr_PlayerShipActions : MonoBehaviour
 {
     [Header("Mining System")]
     [SerializeField] private float laserRange;
+    [SerializeField] public float currentPower;
+    [SerializeField] private float maxPower;
     [SerializeField] private LayerMask miningMask;
+    [SerializeField] private Color powerColor0;
+    [SerializeField] private Color powerColor25;
+    [SerializeField] private Color powerColor50;
+    [SerializeField] private Color powerColor75;
 
     [Header("Deploy Values")]
     [SerializeField] private float deployDelay;
@@ -30,6 +38,8 @@ public class Scr_PlayerShipActions : MonoBehaviour
     private bool canExitShip;
     private bool upgradePanel;
     private bool toolPanel;
+    private Image miningFill;
+    private Slider miningSlider;
     private Vector3 lastFramePlanetPosition;
     private Animator mainCanvasAnim;
     private Animator missionAnim;
@@ -39,6 +49,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
     private GameObject astronaut;
     private Rigidbody2D playerShipRb;
     private Scr_MainCamera mainCamera;
+    private TextMeshProUGUI miningPowerText;
     private Scr_PlayerShipMovement playerShipMovement;
     private Scr_PlayerShipPrediction playerShipPrediction;
     private Scr_PlayerShipEffects playerShipEffects;
@@ -46,6 +57,9 @@ public class Scr_PlayerShipActions : MonoBehaviour
     private void Start()
     {
         astronaut = GameObject.Find("Astronaut");
+        miningSlider = GameObject.Find("MiningSlider").GetComponent<Slider>();
+        miningFill = GameObject.Find("MiningFill").GetComponent<Image>();
+        miningPowerText = GameObject.Find("Power").GetComponent<TextMeshProUGUI>();
         mainCanvasAnim = GameObject.Find("MainCanvas").GetComponent<Animator>();
         missionAnim = GameObject.Find("MissionsPanels").GetComponent<Animator>();
         upgradesAnim = GameObject.Find("UpgradePanel").GetComponent<Animator>();
@@ -59,10 +73,14 @@ public class Scr_PlayerShipActions : MonoBehaviour
         playerShipRb = GetComponent<Rigidbody2D>();
 
         deployDelaySaved = deployDelay;
+
+        miningSlider.maxValue = maxPower;
     }
 
     private void Update()
     {
+        MiningSliderColor();
+
         if (playerShipMovement.astronautOnBoard)
         {
             if (Input.GetKeyDown(KeyCode.E) && !astronaut.activeInHierarchy && canExitShip)
@@ -129,8 +147,6 @@ public class Scr_PlayerShipActions : MonoBehaviour
 
                         if (laserHit)
                         {
-                            //Debug.DrawRay(transform.position, transform.up * laserHit.distance, Color.yellow);
-
                             miningLaser.SetPosition(1, laserHit.point);
                             laserHitPosition = laserHit.point;
 
@@ -139,8 +155,6 @@ public class Scr_PlayerShipActions : MonoBehaviour
 
                         else
                         {
-                            //Debug.DrawRay(transform.position, transform.up * laserRange, Color.yellow);
-
                             miningLaser.SetPosition(1, miningLaserStart.position + transform.up * laserRange);
 
                             playerShipEffects.MiningEffects(false);
@@ -153,6 +167,11 @@ public class Scr_PlayerShipActions : MonoBehaviour
 
                         playerShipEffects.MiningEffects(false);
                     }
+
+                    currentPower = Mathf.Clamp(currentPower, 0, maxPower);
+                    currentPower += Input.GetAxis("Mouse ScrollWheel") * 100;
+                    miningSlider.value = currentPower;
+                    miningPowerText.text = "" + (int)currentPower;
                 }
             }
 
@@ -205,5 +224,34 @@ public class Scr_PlayerShipActions : MonoBehaviour
     {
         GetComponent<Scr_PlayerShipStats>().toolWarehouse[emptyWarehouse] = astronaut.GetComponent<Scr_AstronautStats>().toolSlots[slotNumber];
         astronaut.GetComponent<Scr_AstronautStats>().toolSlots[slotNumber] = null;
+    }
+
+    private void MiningSliderColor()
+    {
+        float colorChangeSpeed = 2;
+
+        if (miningSlider.value >= (0.75f * miningSlider.maxValue))
+        {
+            miningFill.color = Color.Lerp(miningFill.color, powerColor75, Time.deltaTime * colorChangeSpeed);
+            miningPowerText.color = Color.Lerp(miningFill.color, powerColor75, Time.deltaTime * colorChangeSpeed);
+        }
+
+        if (miningSlider.value <= (0.75f * miningSlider.maxValue))
+        {
+            miningFill.color = Color.Lerp(miningFill.color, powerColor50, Time.deltaTime * colorChangeSpeed);
+            miningPowerText.color = Color.Lerp(miningFill.color, powerColor50, Time.deltaTime * colorChangeSpeed);
+        }
+
+        if (miningSlider.value <= (0.50f * miningSlider.maxValue))
+        {
+            miningFill.color = Color.Lerp(miningFill.color, powerColor25, Time.deltaTime * colorChangeSpeed);
+            miningPowerText.color = Color.Lerp(miningFill.color, powerColor25, Time.deltaTime * colorChangeSpeed);
+        }
+
+        if (miningSlider.value <= (0.25f * miningSlider.maxValue))
+        {
+            miningFill.color = Color.Lerp(miningFill.color, powerColor0, Time.deltaTime * colorChangeSpeed);
+            miningPowerText.color = Color.Lerp(miningFill.color, powerColor0, Time.deltaTime * colorChangeSpeed);
+        }
     }
 }
