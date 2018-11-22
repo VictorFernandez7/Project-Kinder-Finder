@@ -79,6 +79,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     private Scr_AstronautMovement astronautMovement;
     private Scr_PlayerShipDeathCheck playerShipDeathCheck;
     private Scr_PlayerShipEffects playerShipEffects;
+    private Scr_PlayerShipPrediction playerShipPrediction;
 
     public enum PlayerShipState
     {
@@ -102,6 +103,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         playerShipStats = GetComponent<Scr_PlayerShipStats>();
         playerShipActions = GetComponent<Scr_PlayerShipActions>();
         playerShipEffects = GetComponent<Scr_PlayerShipEffects>();
+        playerShipPrediction = GetComponent<Scr_PlayerShipPrediction>();
         playerShipDeathCheck = GetComponentInChildren<Scr_PlayerShipDeathCheck>();
         trailRenderer = GetComponent<TrailRenderer>();
 
@@ -210,6 +212,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
             if (currentPlanet != null)
             {
                 trailRenderer.enabled = false;
+                playerShipPrediction.predictionTime = 0;
 
                 RaycastHit2D beginLandingHit = Physics2D.Raycast(endOfShip.position, -endOfShip.up, landDistance, planetLayer);
 
@@ -230,10 +233,10 @@ public class Scr_PlayerShipMovement : MonoBehaviour
                 checkingDistance = 100;
                 landedOnce = true;
 
-                if (playerShipActions.currentAsteroid != null)
+                if (playerShipActions.currentAsteroid == null)
                 {
-                    if (!playerShipActions.currentAsteroid.GetComponent<Scr_AsteroidBehaviour>().attached)
-                        trailRenderer.enabled = true;
+                    trailRenderer.enabled = true;
+                    playerShipPrediction.predictionTime = 6;
                 }
             }
 

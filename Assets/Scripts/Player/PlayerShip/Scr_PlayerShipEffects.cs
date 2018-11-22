@@ -31,7 +31,7 @@ public class Scr_PlayerShipEffects : MonoBehaviour
     [SerializeField] public ParticleSystem thrusterParticles;
     [SerializeField] private GameObject dustParticles;
     [SerializeField] private ParticleSystem atmosphereParticles;
-    [SerializeField] private ParticleSystem miningParticles;
+    [SerializeField] public ParticleSystem miningParticles;
     [SerializeField] private Light miningLight;
 
     [HideInInspector] public Slider warmingSlider;

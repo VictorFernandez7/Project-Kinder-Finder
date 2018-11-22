@@ -22,11 +22,13 @@ public class Scr_AsteroidBehaviour : MonoBehaviour
 
     [HideInInspector] public bool attached;
     [HideInInspector] public bool closeToShip;
+    [HideInInspector] public bool move;
 
     private Vector3 canvasPos;
     private GameObject playerShip;
     private TextMeshProUGUI messageText;
     private Scr_PlayerShipActions playerShipActions;
+    private Scr_AsteroidStats asteroidStats;
 
     private enum AsteroidType
     {
@@ -39,17 +41,22 @@ public class Scr_AsteroidBehaviour : MonoBehaviour
 
         playerShipActions = playerShip.GetComponent<Scr_PlayerShipActions>();
         messageText = GetComponentInChildren<TextMeshProUGUI>();
+        asteroidStats = GetComponent<Scr_AsteroidStats>();
 
         messageText.text = "";
+        move = true;
     }
 
     private void Update()
     {
-        if (asteroidType == AsteroidType.planetOrbit)
-            Orbit();
+        if (!asteroidStats.dead)
+        {
+            if (asteroidType == AsteroidType.planetOrbit && move)
+                Orbit();
 
-        ShipAttach();
-        SetCanvasPositionAndRotation();
+            ShipAttach();
+            SetCanvasPositionAndRotation();
+        }
     }
 
     private void OnDrawGizmos()
