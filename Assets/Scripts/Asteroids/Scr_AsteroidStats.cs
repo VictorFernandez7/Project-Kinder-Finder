@@ -12,6 +12,7 @@ public class Scr_AsteroidStats : MonoBehaviour
     [Range(0, 1)] [SerializeField] public float resistentZone;
     [SerializeField] public float extractigResourceSpeed;
     [SerializeField] public float deathSpeed;
+    [SerializeField] public float deathForce;
     [SerializeField] public float powerRegenSpeed;
 
     [Header("Resources: Steel")]
@@ -38,14 +39,16 @@ public class Scr_AsteroidStats : MonoBehaviour
     private float resourceAmount;
     private float newCurrentPower;
     private float resourceZoneMultiplier;
+    private GameObject playerShip;
     private Scr_PlayerShipActions playerShipActions;
     private Scr_PlayerShipEffects playerShipEffects;
     private Scr_AsteroidBehaviour asteroidBehaviour;
 
     private void Start()
     {
-        playerShipActions = GameObject.Find("PlayerShip").GetComponent<Scr_PlayerShipActions>();
-        playerShipEffects = GameObject.Find("PlayerShip").GetComponent<Scr_PlayerShipEffects>();
+        playerShip = GameObject.Find("PlayerShip");
+        playerShipActions = playerShip.GetComponent<Scr_PlayerShipActions>();
+        playerShipEffects = playerShip.GetComponent<Scr_PlayerShipEffects>();
 
         asteroidBehaviour = GetComponent<Scr_AsteroidBehaviour>();
 
@@ -110,6 +113,8 @@ public class Scr_AsteroidStats : MonoBehaviour
 
     private void Death()
     {
+        Vector3 impulseDirection = new Vector3(playerShip.transform.position.x - transform.position.x, playerShip.transform.position.y - transform.position.y, playerShip.transform.position.z - transform.position.z);
+
         playerShipActions.MiningState(false);
 
         dead = true;
@@ -124,7 +129,8 @@ public class Scr_AsteroidStats : MonoBehaviour
         if (playerShipEffects.miningParticles.isPlaying)
             playerShipEffects.miningParticles.Stop();
 
+        playerShip.GetComponent<Rigidbody2D>().AddForce(impulseDirection * deathForce);
+
         Destroy(gameObject, 1.5f);
     }
-
 }
