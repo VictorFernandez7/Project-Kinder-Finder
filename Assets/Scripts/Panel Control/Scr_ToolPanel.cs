@@ -53,25 +53,25 @@ public class Scr_ToolPanel : MonoBehaviour {
         }
     }
 
-    public void Slot1()
+    public void Slot(int indice)
     {
         if(!slot && !warehouse)
         {
-            slots[0] = true;
+            slots[indice] = true;
         }
-        else if (slots[0])
+        else if (slots[indice])
         {
-            slots[0] = false;
+            slots[indice] = false;
         }
         else if (slot)
         {
             slots[slotNumber] = false;
-            slots[0] = true;
+            slots[indice] = true;
         }
         else if (warehouse)
         {
-            GameObject temporalObject = astronautStats.toolSlots[0]; 
-            playerShipActions.TakeTool(warehouseNumber, 0);
+            GameObject temporalObject = astronautStats.toolSlots[indice]; 
+            playerShipActions.TakeTool(warehouseNumber, indice);
             playerShipStats.toolWarehouse[warehouseNumber] = temporalObject;
             astronautStats.ReadNames();
             playerShipStats.ReadNames();
@@ -81,193 +81,25 @@ public class Scr_ToolPanel : MonoBehaviour {
         boolControl();
     }
 
-    public void Slot2()
+    public void Warehouse(int indice)
     {
         if (!slot && !warehouse)
         {
-            slots[1] = true;
+            warehouses[indice] = true;
         }
-        else if (slots[1])
+        else if (warehouses[indice])
         {
-            slots[1] = false;
-        }
-        else if (slot)
-        {
-            slots[slotNumber] = false;
-            slots[1] = true;
-        }
-        else if (warehouse)
-        {
-            GameObject temporalObject = astronautStats.toolSlots[1];
-            playerShipActions.TakeTool(warehouseNumber, 1);
-            playerShipStats.toolWarehouse[warehouseNumber] = temporalObject;
-            astronautStats.ReadNames();
-            playerShipStats.ReadNames();
-            warehouses[warehouseNumber] = false;
-        }
-
-        boolControl();
-    }
-
-    public void Slot3()
-    {
-        if (!slot && !warehouse)
-        {
-            slots[2] = true;
-        }
-        else if (slots[2])
-        {
-            slots[2] = false;
-        }
-        else if (slot)
-        {
-            slots[slotNumber] = false;
-            slots[2] = true;
-        }
-        else if (warehouse)
-        {
-            GameObject temporalObject = astronautStats.toolSlots[2];
-            playerShipActions.TakeTool(warehouseNumber, 2);
-            playerShipStats.toolWarehouse[warehouseNumber] = temporalObject;
-            astronautStats.ReadNames();
-            playerShipStats.ReadNames();
-            warehouses[warehouseNumber] = false;
-        }
-
-        boolControl();
-    }
-
-    public void Warehouse1()
-    {
-        if (!slot && !warehouse)
-        {
-            warehouses[0] = true;
-        }
-        else if (warehouses[0])
-        {
-            warehouses[0] = false;
+            warehouses[indice] = false;
         }
         else if (warehouse)
         {
             warehouses[warehouseNumber] = false;
-            warehouses[0] = true;
+            warehouses[indice] = true;
         }
         else if (slot)
         {
-            GameObject temporalObject = playerShipStats.toolWarehouse[0];
-            playerShipActions.SaveTool(slotNumber, 0);
-            astronautStats.toolSlots[slotNumber] = temporalObject;
-            astronautStats.ReadNames();
-            playerShipStats.ReadNames();
-            slots[slotNumber] = false;
-        }
-
-        boolControl();
-    }
-
-    public void Warehouse2()
-    {
-        if (!slot && !warehouse)
-        {
-            warehouses[1] = true;
-        }
-        else if (warehouses[1])
-        {
-            warehouses[1] = false;
-        }
-        else if (warehouse)
-        {
-            warehouses[warehouseNumber] = false;
-            warehouses[1] = true;
-        }
-        else if (slot)
-        {
-            GameObject temporalObject = playerShipStats.toolWarehouse[1];
-            playerShipActions.SaveTool(slotNumber, 1);
-            astronautStats.toolSlots[slotNumber] = temporalObject;
-            astronautStats.ReadNames();
-            playerShipStats.ReadNames();
-            slots[slotNumber] = false;
-        }
-
-        boolControl();
-    }
-
-    public void Warehouse3()
-    {
-        if (!slot && !warehouse)
-        {
-            warehouses[2] = true;
-        }
-        else if (warehouses[2])
-        {
-            warehouses[2] = false;
-        }
-        else if (warehouse)
-        {
-            warehouses[warehouseNumber] = false;
-            warehouses[2] = true;
-        }
-        else if (slot)
-        {
-            GameObject temporalObject = playerShipStats.toolWarehouse[2];
-            playerShipActions.SaveTool(slotNumber, 2);
-            astronautStats.toolSlots[slotNumber] = temporalObject;
-            astronautStats.ReadNames();
-            playerShipStats.ReadNames();
-            slots[slotNumber] = false;
-        }
-
-        boolControl();
-    }
-
-    public void Warehouse4()
-    {
-        if (!slot && !warehouse)
-        {
-            warehouses[3] = true;
-        }
-        else if (warehouses[3])
-        {
-            warehouses[3] = false;
-        }
-        else if (warehouse)
-        {
-            warehouses[warehouseNumber] = false;
-            warehouses[3] = true;
-        }
-        else if (slot)
-        {
-            GameObject temporalObject = playerShipStats.toolWarehouse[3];
-            playerShipActions.SaveTool(slotNumber, 3);
-            astronautStats.toolSlots[slotNumber] = temporalObject;
-            astronautStats.ReadNames();
-            playerShipStats.ReadNames();
-            slots[slotNumber] = false;
-        }
-
-        boolControl();
-    }
-
-    public void Warehouse5()
-    {
-        if (!slot && !warehouse)
-        {
-            warehouses[4] = true;
-        }
-        else if (warehouses[4])
-        {
-            warehouses[4] = false;
-        }
-        else if (warehouse)
-        {
-            warehouses[warehouseNumber] = false;
-            warehouses[4] = true;
-        }
-        else if (slot)
-        {
-            GameObject temporalObject = playerShipStats.toolWarehouse[4];
-            playerShipActions.SaveTool(slotNumber, 4);
+            GameObject temporalObject = playerShipStats.toolWarehouse[indice];
+            playerShipActions.SaveTool(slotNumber, indice);
             astronautStats.toolSlots[slotNumber] = temporalObject;
             astronautStats.ReadNames();
             playerShipStats.ReadNames();

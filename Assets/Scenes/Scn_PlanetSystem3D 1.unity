@@ -277,7 +277,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 71518041}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 874209457}
+        m_MethodName: Warehouse
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &71518041
@@ -714,7 +725,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 220095540}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 874209457}
+        m_MethodName: Warehouse
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &220095540
@@ -1482,6 +1504,18 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 345238501}
   m_CullTransparentMesh: 0
+--- !u!114 &359540418 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114928841212499524, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
+    type: 2}
+  m_PrefabInternal: {fileID: 832405279}
+  m_Script: {fileID: 11500000, guid: d290ee398c412304e9d29e6d70fee3fb, type: 3}
+--- !u!114 &359540420 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114778194997285574, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
+    type: 2}
+  m_PrefabInternal: {fileID: 832405279}
+  m_Script: {fileID: 11500000, guid: 697ec0ba4065dc64f86132f5c6e72603, type: 3}
 --- !u!1 &377298753
 GameObject:
   m_ObjectHideFlags: 0
@@ -1557,7 +1591,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 377298756}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 874209457}
+        m_MethodName: Slot
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &377298756
@@ -2027,7 +2072,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 473352679}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 874209457}
+        m_MethodName: Slot
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &473352679
@@ -2881,6 +2937,46 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114928841212499524, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
+        type: 2}
+      propertyPath: toolPanelVisuals
+      value: 
+      objectReference: {fileID: 874209455}
+    - target: {fileID: 114928841212499524, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
+        type: 2}
+      propertyPath: getOutTheShipSound
+      value: 
+      objectReference: {fileID: 1155820323}
+    - target: {fileID: 114778194997285574, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
+        type: 2}
+      propertyPath: fuelAlarm
+      value: 
+      objectReference: {fileID: 1978852164}
+    - target: {fileID: 114778194997285574, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
+        type: 2}
+      propertyPath: textToolWarehouse.Array.data[0]
+      value: 
+      objectReference: {fileID: 1121456719}
+    - target: {fileID: 114778194997285574, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
+        type: 2}
+      propertyPath: textToolWarehouse.Array.data[1]
+      value: 
+      objectReference: {fileID: 1467514904}
+    - target: {fileID: 114778194997285574, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
+        type: 2}
+      propertyPath: textToolWarehouse.Array.data[2]
+      value: 
+      objectReference: {fileID: 345238503}
+    - target: {fileID: 114778194997285574, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
+        type: 2}
+      propertyPath: textToolWarehouse.Array.data[3]
+      value: 
+      objectReference: {fileID: 1269965263}
+    - target: {fileID: 114778194997285574, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
+        type: 2}
+      propertyPath: textToolWarehouse.Array.data[4]
+      value: 
+      objectReference: {fileID: 644269257}
     - target: {fileID: 114696350668254112, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
         type: 2}
       propertyPath: thrusterOnSpaceSound
@@ -2896,16 +2992,6 @@ Prefab:
       propertyPath: IASound
       value: 
       objectReference: {fileID: 304624576}
-    - target: {fileID: 114778194997285574, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
-        type: 2}
-      propertyPath: fuelAlarm
-      value: 
-      objectReference: {fileID: 1978852164}
-    - target: {fileID: 114928841212499524, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
-        type: 2}
-      propertyPath: getOutTheShipSound
-      value: 
-      objectReference: {fileID: 1155820323}
     - target: {fileID: 224665154131214556, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
         type: 2}
       propertyPath: m_AnchorMax.y
@@ -2921,11 +3007,6 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114928841212499524, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
-        type: 2}
-      propertyPath: toolPanelVisuals
-      value: 
-      objectReference: {fileID: 874209455}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15c55cceacb93ea4bb7e3f3c7e160410, type: 2}
   m_IsPrefabAsset: 0
@@ -3031,6 +3112,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 874209456}
+  - component: {fileID: 874209457}
   m_Layer: 0
   m_Name: ToolPanel
   m_TagString: Untagged
@@ -3057,6 +3139,26 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &874209457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 874209455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 029558f9818c274478e7ec56be4cf2f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slots: 000000
+  warehouses: 0000000000
+  playerShipStats: {fileID: 359540420}
+  playerShipActions: {fileID: 359540418}
+  astronautStats: {fileID: 1465850241}
+  slot: 0
+  warehouse: 0
+  warehouseNumber: 0
+  slotNumber: 0
 --- !u!1001 &906815787
 Prefab:
   m_ObjectHideFlags: 0
@@ -3460,7 +3562,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1016711630}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 874209457}
+        m_MethodName: Warehouse
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1016711630
@@ -4358,7 +4471,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1235158107}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 874209457}
+        m_MethodName: Warehouse
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1235158107
@@ -4503,7 +4627,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1243242978}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 874209457}
+        m_MethodName: Warehouse
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1243242978
@@ -4547,16 +4682,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114844797242794480, guid: a7965b5f8a536a540b7c003202d37841,
-        type: 2}
-      propertyPath: toolSlots.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114844797242794480, guid: a7965b5f8a536a540b7c003202d37841,
-        type: 2}
-      propertyPath: textToolSlots.Array.size
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 4004395127091482, guid: a7965b5f8a536a540b7c003202d37841, type: 2}
       propertyPath: m_LocalPosition.x
       value: 144.873
@@ -4589,11 +4714,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114105366921904924, guid: a7965b5f8a536a540b7c003202d37841,
-        type: 2}
-      propertyPath: getIntoTheShipSound
-      value: 
-      objectReference: {fileID: 157368593}
     - target: {fileID: 114844797242794480, guid: a7965b5f8a536a540b7c003202d37841,
         type: 2}
       propertyPath: textToolSlots.Array.data[0]
@@ -4609,12 +4729,11 @@ Prefab:
       propertyPath: textToolSlots.Array.data[2]
       value: 
       objectReference: {fileID: 520022542}
-    - target: {fileID: 114844797242794480, guid: a7965b5f8a536a540b7c003202d37841,
+    - target: {fileID: 114105366921904924, guid: a7965b5f8a536a540b7c003202d37841,
         type: 2}
-      propertyPath: toolSlots.Array.data[0]
+      propertyPath: getIntoTheShipSound
       value: 
-      objectReference: {fileID: 1133261545983634, guid: 4e177f4dbd5a9fd4db989192344a7ac9,
-        type: 2}
+      objectReference: {fileID: 157368593}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7965b5f8a536a540b7c003202d37841, type: 2}
   m_IsPrefabAsset: 0
@@ -5876,6 +5995,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 224947831149508678, guid: 5c7e8f1f62be70143b2e0edf73736d31,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224947831149508678, guid: 5c7e8f1f62be70143b2e0edf73736d31,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c7e8f1f62be70143b2e0edf73736d31, type: 2}
   m_IsPrefabAsset: 0
@@ -6234,7 +6363,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1432987381}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 874209457}
+        m_MethodName: Slot
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1432987381
@@ -6384,6 +6524,12 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &1465850241 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114844797242794480, guid: a7965b5f8a536a540b7c003202d37841,
+    type: 2}
+  m_PrefabInternal: {fileID: 1254532822}
+  m_Script: {fileID: 11500000, guid: d6ace4242c6f75848b893d58bc51733f, type: 3}
 --- !u!1 &1467514902
 GameObject:
   m_ObjectHideFlags: 0
