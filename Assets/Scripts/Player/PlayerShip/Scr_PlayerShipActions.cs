@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Scr_PlayerShipActions : MonoBehaviour
 {
+    [Header("Mining System")]
+    [SerializeField] private float laserRange;
+    [SerializeField] private LayerMask miningMask;
+
     [Header("Deploy Values")]
     [SerializeField] private float deployDelay;
 
@@ -11,11 +15,15 @@ public class Scr_PlayerShipActions : MonoBehaviour
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private GameObject mapVisuals;
     [SerializeField] private GameObject toolPanelVisuals;
+    [SerializeField] private Transform miningLaserStart;
+    [SerializeField] private LineRenderer miningLaser;
 
     [Header("Audio")]
     [SerializeField] private AudioSource getOutTheShipSound;
 
     [HideInInspector] public bool startExitDelay;
+    [HideInInspector] public bool closeToAsteroid;
+    [HideInInspector] public GameObject currentAsteroid;
 
     private float deployDelaySaved;
     private bool canExitShip;
@@ -25,57 +33,132 @@ public class Scr_PlayerShipActions : MonoBehaviour
     private Animator mainCanvasAnim;
     private Animator missionAnim;
     private Animator upgradesAnim;
+    private Animator miningAnim;
+    private Animator speedAnim;
     private GameObject astronaut;
+    private Rigidbody2D playerShipRb;
+    private Scr_MainCamera mainCamera;
     private Scr_PlayerShipMovement playerShipMovement;
+    private Scr_PlayerShipPrediction playerShipPrediction;
 
     private void Start()
     {
         astronaut = GameObject.Find("Astronaut");
-        playerShipMovement = GetComponent<Scr_PlayerShipMovement>();
         mainCanvasAnim = GameObject.Find("MainCanvas").GetComponent<Animator>();
         missionAnim = GameObject.Find("MissionsPanels").GetComponent<Animator>();
         upgradesAnim = GameObject.Find("UpgradePanel").GetComponent<Animator>();
+        miningAnim = GameObject.Find("MiningPanel").GetComponent<Animator>();
+        speedAnim = GameObject.Find("SpeedPanel").GetComponent<Animator>();
+        mainCamera = GameObject.Find("MainCamera").GetComponent<Scr_MainCamera>();
+
+        playerShipMovement = GetComponent<Scr_PlayerShipMovement>();
+        playerShipPrediction = GetComponent<Scr_PlayerShipPrediction>();
+        playerShipRb = GetComponent<Rigidbody2D>();
 
         deployDelaySaved = deployDelay;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && !astronaut.activeInHierarchy && canExitShip)
-            DeployAstronaut();
-
-        if (Input.GetKeyDown(KeyCode.M))
-            mapVisuals.SetActive(true);
-
-        if (Input.GetKeyDown(KeyCode.J) && playerShipMovement.astronautOnBoard)
-            missionAnim.SetTrigger("Activate");
-
-        if (Input.GetKeyDown(KeyCode.U) && playerShipMovement.astronautOnBoard)
+        if (playerShipMovement.astronautOnBoard)
         {
-            playerShipMovement.canControlShip = upgradePanel;
-            upgradesAnim.SetTrigger("Show");
-            upgradePanel = !upgradePanel;
-        }
+            if (Input.GetKeyDown(KeyCode.E) && !astronaut.activeInHierarchy && canExitShip)
+                DeployAstronaut();
 
-        if(Input.GetKeyDown(KeyCode.T) && playerShipMovement.astronautOnBoard)
-        {
-            playerShipMovement.canControlShip = toolPanel;
-            toolPanelVisuals.SetActive(!toolPanel);
-            toolPanel = !toolPanel;
-        }
+            if (Input.GetKeyDown(KeyCode.M))
+                mapVisuals.SetActive(true);
 
-        if (startExitDelay)
-        {
-            canExitShip = false;
+            if (Input.GetKeyDown(KeyCode.J))
+                missionAnim.SetTrigger("Activate");
 
-            deployDelaySaved -= Time.deltaTime;
-
-            if (deployDelaySaved <= 0)
+            if (Input.GetKeyDown(KeyCode.U))
             {
-                deployDelaySaved = deployDelay;
+                playerShipMovement.canControlShip = upgradePanel;
+                upgradesAnim.SetTrigger("Show");
+                upgradePanel = !upgradePanel;
+            }
 
-                canExitShip = true;
-                startExitDelay = false;
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                playerShipMovement.canControlShip = toolPanel;
+                toolPanelVisuals.SetActive(!toolPanel);
+                toolPanel = !toolPanel;
+            }
+
+            if (closeToAsteroid)
+            {
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    currentAsteroid.GetComponent<Scr_AsteroidBehaviour>().attached = !currentAsteroid.GetComponent<Scr_AsteroidBehaviour>().attached;
+
+                    miningAnim.SetTrigger("Activate");
+
+                    if (playerShipRb.isKinematic)
+                    {
+                        playerShipRb.isKinematic = false;
+                        playerShipMovement.canControlShip = true;
+                        GetComponent<TrailRenderer>().enabled = true;
+                        playerShipPrediction.predictionTime = 6;
+                        mainCamera.mining = false;
+                        speedAnim.SetBool("Active", true);
+                    }
+
+                    else
+                    {
+                        playerShipRb.velocity = Vector2.zero;
+                        playerShipRb.isKinematic = true;
+                        playerShipMovement.canControlShip = false;
+                        GetComponent<TrailRenderer>().enabled = false;
+                        playerShipPrediction.predictionTime = 0;
+                        mainCamera.mining = true;
+                        speedAnim.SetBool("Active", false);
+                    }
+                }
+
+                if (mainCamera.mining)
+                {
+                    if (Input.GetMouseButton(0))
+                    {
+                        miningLaser.enabled = true;
+                        miningLaser.SetPosition(0, miningLaserStart.position);
+
+                        RaycastHit2D laserHit = Physics2D.Raycast(miningLaserStart.position, transform.up, laserRange, miningMask);
+
+                        if (laserHit)
+                        {
+                            //Debug.DrawRay(transform.position, transform.up * laserHit.distance, Color.yellow);
+
+                            miningLaser.SetPosition(1, laserHit.point);
+                        }
+
+                        else
+                        {
+                            //Debug.DrawRay(transform.position, transform.up * laserRange, Color.yellow);
+
+                            miningLaser.SetPosition(1, miningLaserStart.position + transform.up * laserRange);
+                        }
+                    }
+
+                    else
+                    {
+                        miningLaser.enabled = false;
+                    }
+                }
+            }
+
+            if (startExitDelay)
+            {
+                canExitShip = false;
+
+                deployDelaySaved -= Time.deltaTime;
+
+                if (deployDelaySaved <= 0)
+                {
+                    deployDelaySaved = deployDelay;
+
+                    canExitShip = true;
+                    startExitDelay = false;
+                }
             }
         }
     }
@@ -98,6 +181,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
         astronaut.GetComponent<Scr_AstronautMovement>().onGround = true;
         playerShipMovement.mainCamera.GetComponent<Scr_MainCamera>().followAstronaut = true;
         mainCanvasAnim.SetBool("OnBoard", false);
+        speedAnim.SetBool("Active", false);
         getOutTheShipSound.Play();
     }
 

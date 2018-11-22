@@ -8,6 +8,7 @@ public class Scr_MainCamera : MonoBehaviour
     [Header("Zoom Properties")]
     [SerializeField] private float zoomInSpace;
     [SerializeField] private float zoomInPlanet;
+    [SerializeField] private float miningZoom;
     [SerializeField] private float zoomSpeed;
 
     [Header("Rotation Properties")]
@@ -21,6 +22,7 @@ public class Scr_MainCamera : MonoBehaviour
 
     [HideInInspector] public bool followAstronaut = true;
     [HideInInspector] public bool smoothRotation = true;
+    [HideInInspector] public bool mining;
 
     private float angleDifference;
     private float zoomDistance;
@@ -85,8 +87,13 @@ public class Scr_MainCamera : MonoBehaviour
     private void CameraZoom()
     {
         if (playerShipMovement.takingOff || playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace)
-            mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, zoomInSpace, Time.deltaTime * zoomSpeed);
-
+        {
+            if (mining)
+                mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, miningZoom, Time.deltaTime * zoomSpeed);
+            
+            else
+                mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, zoomInSpace, Time.deltaTime * zoomSpeed);
+        }
 
         if (playerShipMovement.landing || playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed)
             mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, zoomInPlanet, Time.deltaTime * zoomSpeed);

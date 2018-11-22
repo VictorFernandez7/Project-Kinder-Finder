@@ -5,61 +5,89 @@ using TMPro;
 
 public class Scr_AsteroidBehaviour : MonoBehaviour
 {
+    [Header("Type")]
+    [SerializeField] private AsteroidType asteroidType;
+
+    [Header("Planet Orbit")]
+    [SerializeField] private GameObject planet;
+
+    [Header("Movement Parameters")]
+    [SerializeField] float moveSpeed;
+
     [Header("Mining Parameters")]
     [SerializeField] float attachingDistance;
 
-    [Header("Control Properties")]
-    [SerializeField] private KeyCode miningKey;
+    [Header("Control Assistance")]
     [SerializeField] private string message;
-    [SerializeField] private float fontSize;
-    [SerializeField] private bool bold;
 
-    private bool attached;
+    [HideInInspector] public bool attached;
+    [HideInInspector] public bool closeToShip;
+
     private GameObject playerShip;
     private TextMeshProUGUI messageText;
+    private Scr_PlayerShipActions playerShipActions;
+
+    private enum AsteroidType
+    {
+        planetOrbit
+    }
 
     private void Start()
     {
         playerShip = GameObject.Find("PlayerShip");
 
+        playerShipActions = playerShip.GetComponent<Scr_PlayerShipActions>();
         messageText = GetComponentInChildren<TextMeshProUGUI>();
 
         messageText.text = "";
-        messageText.fontSize = fontSize;
-
-        if (bold)
-            messageText.fontStyle = FontStyles.Bold;
     }
 
     private void Update()
     {
+        if (asteroidType == AsteroidType.planetOrbit)
+            Orbit();
+
+        ShipAttach();
+
+        GetComponentInChildren<Canvas>().gameObject.transform.up = Vector3.up;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, attachingDistance);
+    }
+
+    private void Orbit()
+    {
+        transform.RotateAround(planet.transform.position, transform.right, Time.deltaTime * moveSpeed);
+    }
+
+    public void CloseToShip()
+    {
+        messageText.text = message;
+        playerShipActions.closeToAsteroid = true;
+        playerShipActions.currentAsteroid = gameObject;
+    }
+
+    public void NotColoseToShip()
+    {
+        messageText.text = "";
+        playerShipActions.closeToAsteroid = true;
+        playerShipActions.currentAsteroid = null;
+    }
+
+    private void ShipAttach()
+    {
         if (attached)
         {
-            //Vector3 direction = new Vector3(playerShip.transform.position.x - transform.position.x, playerShip.transform.position.y - transform.position.y, playerShip.transform.position.z - transform.position.z);
+            float currentDistance = Vector3.Distance(transform.position, playerShip.transform.position);
+            float attachingSpeed = currentDistance / 4;
 
-            if (Vector3.Distance(transform.position, playerShip.transform.position) > attachingDistance)
-                playerShip.transform.position = Vector3.MoveTowards(playerShip.transform.position, transform.position, Time.deltaTime);
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("PlayerShip"))
-        {
-            messageText.text = message;
-
-            if (Input.GetKeyDown(miningKey))
-            {
-                attached = true;
-            }
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("PlayerShip"))
-        {
             messageText.text = "";
+
+            if (currentDistance > attachingDistance)
+                playerShip.transform.position = Vector3.Lerp(playerShip.transform.position, transform.position, Time.deltaTime * attachingSpeed);
         }
     }
 }

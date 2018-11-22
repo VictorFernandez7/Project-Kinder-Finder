@@ -30,7 +30,7 @@ public class Scr_PlayerShipPrediction : MonoBehaviour
         currentPlanet = GetComponent<Scr_PlayerShipMovement>().currentPlanet;
 
         Prediction();
-        PredictionLength();
+        //PredictionLength();
     }
 
     private Vector3[] GeneratePredictionPoints()
