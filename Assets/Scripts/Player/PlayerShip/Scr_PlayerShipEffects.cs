@@ -28,11 +28,14 @@ public class Scr_PlayerShipEffects : MonoBehaviour
     [SerializeField] public ParticleSystem thrusterParticles;
     [SerializeField] private GameObject dustParticles;
     [SerializeField] private ParticleSystem atmosphereParticles;
+    [SerializeField] private ParticleSystem miningParticles;
+    [SerializeField] private Light miningLight;
 
     [HideInInspector] public Slider warmingSlider;
 
     private Image warmingFill;
     private Scr_PlayerShipMovement playerShipMovement;
+    private Scr_PlayerShipActions playerShipActions;
 
     private void Start()
     {
@@ -40,6 +43,7 @@ public class Scr_PlayerShipEffects : MonoBehaviour
         warmingFill = GameObject.Find("WarmingFill").GetComponent<Image>();
 
         playerShipMovement = GetComponent<Scr_PlayerShipMovement>();
+        playerShipActions = GetComponent<Scr_PlayerShipActions>();
 
         warmingSlider.maxValue = playerShipMovement.warmingAmount;
 
@@ -212,6 +216,28 @@ public class Scr_PlayerShipEffects : MonoBehaviour
                 if (playerShipMovement.landing)
                     thrusterParticles.Stop();
             }
+        }
+    }
+
+    public void MiningEffects(bool play)
+    {
+        if (play)
+        {
+            miningLight.enabled = true;
+
+            if (!miningParticles.isPlaying)
+                miningParticles.Play();
+
+            Vector2 direction = new Vector2(playerShipActions.laserHitPosition.x - playerShipActions.currentAsteroid.transform.position.x, playerShipActions.laserHitPosition.y - playerShipActions.currentAsteroid.transform.position.y);
+
+            miningParticles.transform.up = direction;
+            miningParticles.transform.position = playerShipActions.laserHitPosition;
+        }
+
+        else
+        {
+            miningLight.enabled = false;
+            miningParticles.Stop();
         }
     }
 }

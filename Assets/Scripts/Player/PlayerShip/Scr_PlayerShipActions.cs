@@ -24,6 +24,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
     [HideInInspector] public bool startExitDelay;
     [HideInInspector] public bool closeToAsteroid;
     [HideInInspector] public GameObject currentAsteroid;
+    [HideInInspector] public Vector3 laserHitPosition;
 
     private float deployDelaySaved;
     private bool canExitShip;
@@ -40,6 +41,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
     private Scr_MainCamera mainCamera;
     private Scr_PlayerShipMovement playerShipMovement;
     private Scr_PlayerShipPrediction playerShipPrediction;
+    private Scr_PlayerShipEffects playerShipEffects;
 
     private void Start()
     {
@@ -53,6 +55,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
 
         playerShipMovement = GetComponent<Scr_PlayerShipMovement>();
         playerShipPrediction = GetComponent<Scr_PlayerShipPrediction>();
+        playerShipEffects = GetComponent<Scr_PlayerShipEffects>();
         playerShipRb = GetComponent<Rigidbody2D>();
 
         deployDelaySaved = deployDelay;
@@ -129,6 +132,9 @@ public class Scr_PlayerShipActions : MonoBehaviour
                             //Debug.DrawRay(transform.position, transform.up * laserHit.distance, Color.yellow);
 
                             miningLaser.SetPosition(1, laserHit.point);
+                            laserHitPosition = laserHit.point;
+
+                            playerShipEffects.MiningEffects(true);
                         }
 
                         else
@@ -136,12 +142,16 @@ public class Scr_PlayerShipActions : MonoBehaviour
                             //Debug.DrawRay(transform.position, transform.up * laserRange, Color.yellow);
 
                             miningLaser.SetPosition(1, miningLaserStart.position + transform.up * laserRange);
+
+                            playerShipEffects.MiningEffects(false);
                         }
                     }
 
                     else
                     {
                         miningLaser.enabled = false;
+
+                        playerShipEffects.MiningEffects(false);
                     }
                 }
             }
