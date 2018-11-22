@@ -79,8 +79,10 @@ public class Scr_AsteroidStats : MonoBehaviour
             newCurrentPower = Mathf.Clamp(newCurrentPower, 0, 1);
 
             newCurrentPower = currentPower / 100;
+            newCurrentPower = Mathf.Clamp(newCurrentPower, 0, 1);
 
             currentPowerSlider.value = newCurrentPower;
+            currentPowerSlider.value = Mathf.Clamp(currentPowerSlider.value, 0, 1);
 
             if (!mining && currentPowerSlider.value > 0)
             {
@@ -93,6 +95,8 @@ public class Scr_AsteroidStats : MonoBehaviour
 
             if (newCurrentPower >= resourceZone)
                 ExplosionZone();
+
+            currentPower = Mathf.Clamp(currentPower, 0, 100);
         }
     }
 
