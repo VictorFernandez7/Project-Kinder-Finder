@@ -24,6 +24,7 @@ public class Scr_AstronautsActions : MonoBehaviour
 
     private bool toolOnHands;
     private float fuelAmount;
+    private int numberToolActive;
     private GameObject playerShip;
     private Scr_AstronautMovement astronautMovement;
     private Scr_AstronautStats astronautStats;
@@ -59,7 +60,7 @@ public class Scr_AstronautsActions : MonoBehaviour
                 speedAnim.SetTrigger("Activate");
                 speedAnim.SetBool("Active", true);
                 astronautMovement.keep = true;
-
+                DestroyAllTools();
                 gameObject.SetActive(false);
             }
 
@@ -85,13 +86,68 @@ public class Scr_AstronautsActions : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            if (!toolOnHands && emptyHands)
-                astronautStats.physicToolSlots[1].SetActive(true);
+            HandTool(0);
+        }
 
-            else if (astronautStats.physicToolSlots[1].activeInHierarchy)
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            HandTool(1);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            HandTool(2);
+        }
+    }
+
+    private void BoolControl()
+    {
+        for (int i = 0; i < astronautStats.physicToolSlots.Length; i++)
+        {
+            if (astronautStats.physicToolSlots[i] != null)
             {
-                astronautStats.physicToolSlots[1].SetActive(false);
+                if (astronautStats.physicToolSlots[i].activeInHierarchy)
+                {
+                    toolOnHands = true;
+                    numberToolActive = i;
+                    break;
+                }
             }
+
+            toolOnHands = false;
+        }
+    }
+
+    private void HandTool(int indice)
+    {
+        if (astronautStats.physicToolSlots[indice] != null)
+        {
+            if (!toolOnHands && emptyHands)
+                astronautStats.physicToolSlots[indice].SetActive(true);
+
+            else if (astronautStats.physicToolSlots[indice].activeInHierarchy && emptyHands)
+            {
+                astronautStats.physicToolSlots[indice].SetActive(false);
+            }
+            else if (toolOnHands && emptyHands)
+            {
+                astronautStats.physicToolSlots[numberToolActive].SetActive(false);
+                astronautStats.physicToolSlots[indice].SetActive(true);
+            }
+        }
+
+        BoolControl();
+    }
+
+    private void DestroyAllTools()
+    {
+        for (int i = 0; i < astronautStats.physicToolSlots.Length; i++)
+        {
+            if (astronautStats.physicToolSlots[i] != null)
+            {
+                Destroy(astronautStats.physicToolSlots[i]);
+            }
+
         }
     }
 
