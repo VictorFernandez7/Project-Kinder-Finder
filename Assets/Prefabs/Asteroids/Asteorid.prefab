@@ -216,7 +216,7 @@ GameObject:
   - component: {fileID: 222041968159857008}
   - component: {fileID: 114322793472075446}
   m_Layer: 12
-  m_Name: ResourceText
+  m_Name: ExplosionText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -251,7 +251,7 @@ GameObject:
   - component: {fileID: 222804363508086456}
   - component: {fileID: 114241859712452576}
   m_Layer: 12
-  m_Name: ExplosionText
+  m_Name: ResourceText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -779,12 +779,17 @@ MonoBehaviour:
   explosionZone: 1
   resourceZone: 0.7
   resistentZone: 0.5
+  extractigResourceSpeed: 15
+  deathSpeed: 25
+  powerRegenSpeed: 40
   steelAmount: 10
   steelBlock: {fileID: 1587913126483098, guid: cfefb6ccd75627e43935b403f0219e50, type: 2}
   explosionSlider: {fileID: 114085211472421256}
   resourceSlider: {fileID: 114894710302941922}
   resistentSlider: {fileID: 114362943953784978}
   currentPowerSlider: {fileID: 114991485331371426}
+  explosionText: {fileID: 114322793472075446}
+  resourceText: {fileID: 114241859712452576}
   currentPower: 0
   mining: 0
 --- !u!114 &114275296000127308

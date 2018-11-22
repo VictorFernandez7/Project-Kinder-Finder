@@ -2401,6 +2401,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 20846939337814266, guid: 170112fac36228546baf9f3a554cd842,
+        type: 2}
+      propertyPath: m_CullingMask.m_Bits
+      value: 7479
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 170112fac36228546baf9f3a554cd842, type: 2}
   m_IsPrefabAsset: 0
@@ -4198,6 +4203,8 @@ MonoBehaviour:
   playerShipStats: {fileID: 1440275090}
   playerShipActions: {fileID: 1440275093}
   astronautStats: {fileID: 343216946}
+  textToolSlots: []
+  textToolWarehouse: []
   slot: 0
   warehouse: 0
   warehouseNumber: 0
@@ -7422,6 +7429,16 @@ Prefab:
       propertyPath: planet
       value: 
       objectReference: {fileID: 2109190144}
+    - target: {fileID: 224801747461060966, guid: 6f80b84da4ab0214c90b238e020d680e,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224801747461060966, guid: 6f80b84da4ab0214c90b238e020d680e,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 224394579025310982, guid: 6f80b84da4ab0214c90b238e020d680e,
         type: 2}
       propertyPath: m_AnchorMax.x
@@ -7438,16 +7455,6 @@ Prefab:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224842114642800404, guid: 6f80b84da4ab0214c90b238e020d680e,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224801747461060966, guid: 6f80b84da4ab0214c90b238e020d680e,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224801747461060966, guid: 6f80b84da4ab0214c90b238e020d680e,
         type: 2}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -7457,12 +7464,12 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114241859712452576, guid: 6f80b84da4ab0214c90b238e020d680e,
+    - target: {fileID: 114425165561658920, guid: 6f80b84da4ab0214c90b238e020d680e,
         type: 2}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114241859712452576, guid: 6f80b84da4ab0214c90b238e020d680e,
+    - target: {fileID: 114425165561658920, guid: 6f80b84da4ab0214c90b238e020d680e,
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
@@ -7477,12 +7484,12 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114425165561658920, guid: 6f80b84da4ab0214c90b238e020d680e,
+    - target: {fileID: 114241859712452576, guid: 6f80b84da4ab0214c90b238e020d680e,
         type: 2}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114425165561658920, guid: 6f80b84da4ab0214c90b238e020d680e,
+    - target: {fileID: 114241859712452576, guid: 6f80b84da4ab0214c90b238e020d680e,
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
@@ -8515,31 +8522,6 @@ Prefab:
       propertyPath: fuelAlarm
       value: 
       objectReference: {fileID: 1978852164}
-    - target: {fileID: 114778194997285574, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
-        type: 2}
-      propertyPath: textToolWarehouse.Array.data[0]
-      value: 
-      objectReference: {fileID: 228701171}
-    - target: {fileID: 114778194997285574, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
-        type: 2}
-      propertyPath: textToolWarehouse.Array.data[1]
-      value: 
-      objectReference: {fileID: 289058642}
-    - target: {fileID: 114778194997285574, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
-        type: 2}
-      propertyPath: textToolWarehouse.Array.data[2]
-      value: 
-      objectReference: {fileID: 278002746}
-    - target: {fileID: 114778194997285574, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
-        type: 2}
-      propertyPath: textToolWarehouse.Array.data[3]
-      value: 
-      objectReference: {fileID: 1915167842}
-    - target: {fileID: 114778194997285574, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
-        type: 2}
-      propertyPath: textToolWarehouse.Array.data[4]
-      value: 
-      objectReference: {fileID: 1752378360}
     - target: {fileID: 114928841212499524, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
         type: 2}
       propertyPath: toolPanelVisuals

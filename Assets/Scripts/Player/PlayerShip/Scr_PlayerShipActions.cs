@@ -170,7 +170,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
 
                 if (mainCamera.mining)
                 {
-                    if (Input.GetMouseButton(0))
+                    if (Input.GetMouseButton(0) && currentPower > 0)
                     {
                         miningLaser.enabled = true;
                         miningLaser.SetPosition(0, miningLaserStart.position);
@@ -185,7 +185,8 @@ public class Scr_PlayerShipActions : MonoBehaviour
                             playerShipEffects.MiningEffects(true);
 
                             currentAsteroid.GetComponent<Scr_AsteroidStats>().mining = true;
-                            currentAsteroid.GetComponent<Scr_AsteroidStats>().currentPower += ((currentPower / 2f) * Time.deltaTime);
+
+                            currentAsteroid.GetComponent<Scr_AsteroidStats>().currentPower += (currentPower * Time.deltaTime);
                         }
 
                         else
@@ -208,7 +209,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
                     }
 
                     currentPower = Mathf.Clamp(currentPower, 0, maxPower);
-                    currentPower += Input.GetAxis("Mouse ScrollWheel") * 100;
+                    currentPower += Input.GetAxis("Mouse ScrollWheel") * 50;
                     miningSlider.value = currentPower;
                     miningPowerText.text = "" + (int)currentPower;
                 }
