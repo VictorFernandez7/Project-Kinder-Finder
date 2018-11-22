@@ -21,8 +21,8 @@ public class Scr_AsteroidBehaviour : MonoBehaviour
     [SerializeField] private string message;
 
     [Header("References")]
-    [SerializeField] private Animator messageTextAnim;
-    [SerializeField] private Animator asteroidAnim;
+    [SerializeField] public Animator messageTextAnim;
+    [SerializeField] public Animator asteroidAnim;
 
     [HideInInspector] public bool attached;
     [HideInInspector] public bool closeToShip;
