@@ -19,6 +19,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [SerializeField] private float shipOrientationSpeed;
 
     [Header("Landing Parameters")]
+    [SerializeField] private bool manualLanding;
     [SerializeField] public float landDistance;
     [SerializeField] private float landingTime;
     [SerializeField] public LayerMask planetLayer;
@@ -313,12 +314,23 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
                 RaycastHit2D landingProperlyHit = Physics2D.Raycast(endOfShip.position, -endOfShip.up, checkingDistance + 0.1f, planetLayer);
 
-                if (landingProperlyHit && Input.GetMouseButton(0))
+                if (landingProperlyHit)
                 {
-                    rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, Time.deltaTime * landingTime);
+                    if (manualLanding && Input.GetMouseButton(0))
+                    {
+                        rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, Time.deltaTime * landingTime);
 
-                    playerShipDeathCheck.CheckLandingTime(false);
-                    playerShipEffects.LandingEffects(true);
+                        playerShipDeathCheck.CheckLandingTime(false);
+                        playerShipEffects.LandingEffects(true);
+                    }
+
+                    else
+                    {
+                        rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, Time.deltaTime * landingTime);
+
+                        playerShipDeathCheck.CheckLandingTime(false);
+                        playerShipEffects.LandingEffects(true);
+                    }
                 }
 
                 if (onGround)
