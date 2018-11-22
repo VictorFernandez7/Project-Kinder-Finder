@@ -44,6 +44,8 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Transform endOfShip;
+    [SerializeField] private Animator warmingSliderAnim;
+    [SerializeField] private Animator messageTextAnim;
 
     [Header("Audio")]
     [SerializeField] private AudioSource thrusterOnSpaceSound;
@@ -164,26 +166,47 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         }
     }
 
+    float messageTimer1 = 2f;
+
     private void MessageTextManager()
     {
-        if (playerShipState == PlayerShipState.landed && astronautOnBoard)
+        if (astronautMovement.canEnterShip)
         {
-            messageText.fontSize = 6;
-            messageText.text = warmingMessage;
+            if (!astronautOnBoard)
+            {
+                messageText.fontSize = 14;
+                messageText.text = getInOutMessage;
+                messageTextAnim.SetBool("Show", true);
+            }
 
-            if (playerShipEffects.warmingSlider.value >= 0.9f * playerShipEffects.warmingSlider.maxValue)
-                messageText.text = takeOffMessage;
             else
-                messageText.text = warmingMessage;
+                messageTextAnim.SetBool("Show", false);
         }
 
         else
-            messageText.text = "";
+            messageTextAnim.SetBool("Show", false);
 
-        if (astronautMovement.canEnterShip && !astronautOnBoard)
+        if (playerShipState == PlayerShipState.landed && astronautOnBoard)
         {
-            messageText.fontSize = 14;
-            messageText.text = getInOutMessage;
+            messageTimer1 -= Time.deltaTime;
+
+            if (messageTimer1 <= 0)
+            {
+                messageText.fontSize = 6;
+                messageText.text = warmingMessage;
+                messageTextAnim.SetBool("Show", true);
+
+                if (playerShipEffects.warmingSlider.value > 0)
+                {
+                    messageTextAnim.SetBool("Show", false);
+
+                    if (playerShipEffects.warmingSlider.value >= 0.9f * playerShipEffects.warmingSlider.maxValue)
+                    {
+                        messageText.text = takeOffMessage;
+                        messageTextAnim.SetBool("Show", true);
+                    }
+                }
+            }
         }
     }
 

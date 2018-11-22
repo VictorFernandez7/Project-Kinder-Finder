@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 224396860441878378}
   - component: {fileID: 222873499838332532}
   - component: {fileID: 114767215190140938}
+  - component: {fileID: 95209686538126738}
   m_Layer: 0
   m_Name: MessageText
   m_TagString: Untagged
@@ -375,6 +376,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224869551552009808}
   - component: {fileID: 114109521143006318}
+  - component: {fileID: 95170297888001112}
   m_Layer: 0
   m_Name: WarmingSlider
   m_TagString: Untagged
@@ -857,6 +859,42 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.03771925}
   m_Size: {x: 0.3208777, y: 0.45644093}
   m_Direction: 0
+--- !u!95 &95170297888001112
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1760481297113384}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d59a6aa210df1b7409170f2901ff2c84, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!95 &95209686538126738
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1021418937829524}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a48e64f853e08bc4b929074dc4c0931a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!96 &96206161718378074
 TrailRenderer:
   serializedVersion: 2
@@ -1095,7 +1133,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1203,7 +1241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.87326586, g: 1, b: 0, a: 1}
+  m_Color: {r: 0.87326586, g: 1, b: 0, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1252,6 +1290,8 @@ MonoBehaviour:
   getInOutMessage: E
   takeOffMessage: Left Click to take off
   endOfShip: {fileID: 4046255908165590}
+  warmingSliderAnim: {fileID: 95170297888001112}
+  messageTextAnim: {fileID: 95209686538126738}
   thrusterOnSpaceSound: {fileID: 0}
   thrusterTakingOffSound: {fileID: 0}
   IASound: {fileID: 0}
@@ -1295,7 +1335,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_fontColorGradient:
     topLeft: {r: 1, g: 1, b: 1, a: 1}
@@ -1489,7 +1529,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
