@@ -40,7 +40,6 @@ public class Scr_PlayerShipStats : MonoBehaviour
     [Header("Audio")]
     [SerializeField] private AudioSource fuelAlarm;
 
-    public TextMeshProUGUI[] textToolWarehouse;
     [SerializeField] public GameObject[] toolWarehouse;
 
     [HideInInspector] public int lastWarehouseEmpty;
@@ -70,8 +69,6 @@ public class Scr_PlayerShipStats : MonoBehaviour
         fuelSlider.maxValue = maxFuel;
         shieldSlider.maxValue = maxShield;
         toolWarehouse = new GameObject[5];
-
-        ReadNames();
     }
 
     private void Update()
@@ -159,18 +156,5 @@ public class Scr_PlayerShipStats : MonoBehaviour
     private void Respawn()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
-    //TOOL SYSTEM
-
-    public void ReadNames()
-    {
-        for (int i = 0; i < toolWarehouse.Length; i++)
-        {
-            if (toolWarehouse[i] == null)
-                textToolWarehouse[i].text = "null";
-            else
-                textToolWarehouse[i].text = toolWarehouse[i].GetComponent<Scr_Tool>().toolName;
-        }
     }
 }

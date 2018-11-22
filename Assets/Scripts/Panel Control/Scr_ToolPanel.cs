@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Scr_ToolPanel : MonoBehaviour {
 
@@ -13,6 +14,10 @@ public class Scr_ToolPanel : MonoBehaviour {
     [SerializeField] private Scr_PlayerShipActions playerShipActions;
     [SerializeField] private Scr_AstronautStats astronautStats;
 
+    [Header("Text References")]
+    [SerializeField] private TextMeshProUGUI[] textToolSlots;
+    [SerializeField] private TextMeshProUGUI[] textToolWarehouse;
+
     [HideInInspector] public bool slot;
     [HideInInspector] public bool warehouse;
     [HideInInspector] public int warehouseNumber;
@@ -21,6 +26,7 @@ public class Scr_ToolPanel : MonoBehaviour {
     // Use this for initialization
     void Start () {
         boolControl();
+        ReadNames();
 	}
 	
 	// Update is called once per frame
@@ -73,8 +79,8 @@ public class Scr_ToolPanel : MonoBehaviour {
             GameObject temporalObject = astronautStats.toolSlots[indice]; 
             playerShipActions.TakeTool(warehouseNumber, indice);
             playerShipStats.toolWarehouse[warehouseNumber] = temporalObject;
-            astronautStats.ReadNames();
-            playerShipStats.ReadNames();
+            ReadNames();
+            ReadNames();
             warehouses[warehouseNumber] = false;
         }
 
@@ -101,11 +107,30 @@ public class Scr_ToolPanel : MonoBehaviour {
             GameObject temporalObject = playerShipStats.toolWarehouse[indice];
             playerShipActions.SaveTool(slotNumber, indice);
             astronautStats.toolSlots[slotNumber] = temporalObject;
-            astronautStats.ReadNames();
-            playerShipStats.ReadNames();
+            ReadNames();
+            ReadNames();
             slots[slotNumber] = false;
         }
 
         boolControl();
+    }
+
+    public void ReadNames()
+    {
+        for (int i = 0; i < astronautStats.toolSlots.Length; i++)
+        {
+            if (astronautStats.toolSlots[i] == null)
+                textToolSlots[i].text = "null";
+            else
+                textToolSlots[i].text = astronautStats.toolSlots[i].GetComponent<Scr_Tool>().toolName;
+        }
+
+        for (int i = 0; i < playerShipStats.toolWarehouse.Length; i++)
+        {
+            if (playerShipStats.toolWarehouse[i] == null)
+                textToolWarehouse[i].text = "null";
+            else
+                textToolWarehouse[i].text = playerShipStats.toolWarehouse[i].GetComponent<Scr_Tool>().toolName;
+        }
     }
 }

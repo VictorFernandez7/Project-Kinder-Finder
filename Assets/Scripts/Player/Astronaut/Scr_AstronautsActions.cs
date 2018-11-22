@@ -21,10 +21,12 @@ public class Scr_AstronautsActions : MonoBehaviour
 
     [HideInInspector] public bool emptyHands = true;
     [HideInInspector] private GameObject mainCamera;
-    
+
+    private bool toolOnHands;
     private float fuelAmount;
     private GameObject playerShip;
     private Scr_AstronautMovement astronautMovement;
+    private Scr_AstronautStats astronautStats;
     private GameObject currentFuelBLock;
     private Animator mainCanvasAnim;
     private Animator speedAnim;
@@ -37,6 +39,7 @@ public class Scr_AstronautsActions : MonoBehaviour
         speedAnim = GameObject.Find("SpeedPanel").GetComponent<Animator>();
 
         astronautMovement = GetComponent<Scr_AstronautMovement>();
+        astronautStats = GetComponent<Scr_AstronautStats>();
     }
 
     private void Update()
@@ -77,6 +80,17 @@ public class Scr_AstronautsActions : MonoBehaviour
             {
                 astronautMovement.currentFuelCollector.GetComponent<Scr_FuelCollector>().CollectFuel();
                 CollectFuel();
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            if (!toolOnHands && emptyHands)
+                astronautStats.physicToolSlots[1].SetActive(true);
+
+            else if (astronautStats.physicToolSlots[1].activeInHierarchy)
+            {
+                astronautStats.physicToolSlots[1].SetActive(false);
             }
         }
     }
