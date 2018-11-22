@@ -35,24 +35,26 @@ public class Scr_AsteroidStats : MonoBehaviour
     [HideInInspector] public bool mining;
     [HideInInspector] public bool dead;
 
-    private float initialResourceZone;
     private float regenSpeed;
     private float explosionAmount;
     private float resourceAmount;
     private float newCurrentPower;
-    private float resourceZoneMultiplier;
+    private float initialResourceZone;
     private float initialColliderRadius;
+    private float resourceZoneMultiplier;
     private Vector3 initialScale;
     private GameObject playerShip;
+    private Scr_MainCamera mainCamera;
     private CircleCollider2D asteroidCollider;
+    private Scr_PlayerShipStats playerShipStats;
     private Scr_PlayerShipActions playerShipActions;
     private Scr_PlayerShipEffects playerShipEffects;
-    private Scr_PlayerShipStats playerShipStats;
     private Scr_AsteroidBehaviour asteroidBehaviour;
 
     private void Start()
     {
         playerShip = GameObject.Find("PlayerShip");
+        mainCamera = GameObject.Find("MainCamera").GetComponent< Scr_MainCamera>();
         playerShipActions = playerShip.GetComponent<Scr_PlayerShipActions>();
         playerShipEffects = playerShip.GetComponent<Scr_PlayerShipEffects>();
         playerShipStats = playerShip.GetComponent<Scr_PlayerShipStats>();
@@ -77,8 +79,10 @@ public class Scr_AsteroidStats : MonoBehaviour
             newCurrentPower = Mathf.Clamp(newCurrentPower, 0, 1);
 
             newCurrentPower = currentPower / 100;
+            newCurrentPower = Mathf.Clamp(newCurrentPower, 0, 1);
 
             currentPowerSlider.value = newCurrentPower;
+            currentPowerSlider.value = Mathf.Clamp(currentPowerSlider.value, 0, 1);
 
             if (!mining && currentPowerSlider.value > 0)
             {
@@ -91,6 +95,8 @@ public class Scr_AsteroidStats : MonoBehaviour
 
             if (newCurrentPower >= resourceZone)
                 ExplosionZone();
+
+            currentPower = Mathf.Clamp(currentPower, 0, 100);
         }
     }
 
@@ -103,7 +109,7 @@ public class Scr_AsteroidStats : MonoBehaviour
 
     private void ResourceZone()
     {
-        if (resourceAmount > 0)
+        if (resourceAmount > 0.5f)
         {
             resourceAmount -= Time.deltaTime * extractigResourceSpeed;
 
@@ -118,6 +124,9 @@ public class Scr_AsteroidStats : MonoBehaviour
             if (resourceZone > (resistentZone + (0.3f * (initialResourceZone - resistentZone))))
                 resourceZone = resistentZone + ((resourceAmount / 100) * (initialResourceZone - resistentZone));
         }
+
+        else
+            NoResources();
     }
 
     private void ExplosionZone()
@@ -149,7 +158,17 @@ public class Scr_AsteroidStats : MonoBehaviour
             playerShipEffects.miningParticles.Stop();
 
         playerShip.GetComponent<Rigidbody2D>().AddForce(impulseDirection * deathForce);
+        playerShipStats.currentShield -= deathDamage;
+
+        mainCamera.CameraShake();
 
         Destroy(gameObject, 1.5f);
+    }
+
+    private void NoResources()
+    {
+        playerShipActions.MiningState(false);
+
+        Destroy(gameObject, 0.5f);
     }
 }

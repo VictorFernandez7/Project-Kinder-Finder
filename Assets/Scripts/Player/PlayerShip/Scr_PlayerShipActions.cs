@@ -7,7 +7,6 @@ using TMPro;
 public class Scr_PlayerShipActions : MonoBehaviour
 {
     [Header("Mining System")]
-    [SerializeField] private float laserRange;
     [SerializeField] public float currentPower;
     [SerializeField] private float maxPower;
     [SerializeField] private LayerMask miningMask;
@@ -34,6 +33,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
     [HideInInspector] public GameObject currentAsteroid;
     [HideInInspector] public Vector3 laserHitPosition;
 
+    private float laserRange;
     private float deployDelaySaved;
     private bool canExitShip;
     private bool upgradePanel;
@@ -148,6 +148,8 @@ public class Scr_PlayerShipActions : MonoBehaviour
 
                 if (mainCamera.mining)
                 {
+                    laserRange = Vector3.Distance(transform.position, currentAsteroid.transform.position);
+
                     if (Input.GetMouseButton(0) && currentPower > 0)
                     {
                         miningLaser.enabled = true;
@@ -231,24 +233,31 @@ public class Scr_PlayerShipActions : MonoBehaviour
         {
             miningFill.color = Color.Lerp(miningFill.color, powerColor75, Time.deltaTime * colorChangeSpeed);
             miningPowerText.color = Color.Lerp(miningFill.color, powerColor75, Time.deltaTime * colorChangeSpeed);
+            miningLaser.material.color = Color.Lerp(miningLaser.material.GetColor("_Color"), powerColor75, Time.deltaTime * colorChangeSpeed);
         }
 
         if (miningSlider.value <= (0.75f * miningSlider.maxValue))
         {
             miningFill.color = Color.Lerp(miningFill.color, powerColor50, Time.deltaTime * colorChangeSpeed);
             miningPowerText.color = Color.Lerp(miningFill.color, powerColor50, Time.deltaTime * colorChangeSpeed);
+            miningLaser.material.color = Color.Lerp(miningLaser.material.GetColor("_Color"), powerColor50, Time.deltaTime * colorChangeSpeed);
+
         }
 
         if (miningSlider.value <= (0.50f * miningSlider.maxValue))
         {
             miningFill.color = Color.Lerp(miningFill.color, powerColor25, Time.deltaTime * colorChangeSpeed);
             miningPowerText.color = Color.Lerp(miningFill.color, powerColor25, Time.deltaTime * colorChangeSpeed);
+            miningLaser.material.color = Color.Lerp(miningLaser.material.GetColor("_Color"), powerColor25, Time.deltaTime * colorChangeSpeed);
+
         }
 
         if (miningSlider.value <= (0.25f * miningSlider.maxValue))
         {
             miningFill.color = Color.Lerp(miningFill.color, powerColor0, Time.deltaTime * colorChangeSpeed);
             miningPowerText.color = Color.Lerp(miningFill.color, powerColor0, Time.deltaTime * colorChangeSpeed);
+            miningLaser.material.color = Color.Lerp(miningLaser.material.GetColor("_Color"), powerColor0, Time.deltaTime * colorChangeSpeed);
+
         }
     }
 

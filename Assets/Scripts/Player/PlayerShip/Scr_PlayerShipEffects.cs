@@ -256,7 +256,9 @@ public class Scr_PlayerShipEffects : MonoBehaviour
         else
         {
             miningLight.enabled = false;
-            miningParticles.Stop();
+
+            if (miningParticles.isPlaying)
+                miningParticles.Stop();
         }
     }
 }
