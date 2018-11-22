@@ -89,6 +89,9 @@ public class Scr_PlayerShipStats : MonoBehaviour
             fuelAlarm.Play();
             alarm = true;
         }
+
+        if (currentShield < 0)
+            Death();
     }
 
     public void FuelConsumption(bool boost)

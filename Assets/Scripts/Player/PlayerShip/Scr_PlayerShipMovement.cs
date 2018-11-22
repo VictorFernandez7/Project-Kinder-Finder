@@ -227,9 +227,14 @@ public class Scr_PlayerShipMovement : MonoBehaviour
             else
             {
                 playerShipState = PlayerShipState.inSpace;
-                trailRenderer.enabled = true;
                 checkingDistance = 100;
                 landedOnce = true;
+
+                if (playerShipActions.currentAsteroid != null)
+                {
+                    if (!playerShipActions.currentAsteroid.GetComponent<Scr_AsteroidBehaviour>().attached)
+                        trailRenderer.enabled = true;
+                }
             }
 
             if (Input.GetKey(KeyCode.LeftShift) && playerShipState == PlayerShipState.landed && canControlShip)
@@ -362,7 +367,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         speedText.transform.localPosition = new Vector3(0, speed * 3, 0);
         limiterText.text = maxSpeedSaved.ToString();
 
-        if (playerShipState == PlayerShipState.inSpace)
+        if (playerShipState == PlayerShipState.inSpace && !mainCamera.GetComponent<Scr_MainCamera>().mining)
             maxSpeedSaved += Input.GetAxis("Mouse ScrollWheel") * limitUnits;
 
         maxSpeedSaved = Mathf.Clamp(maxSpeedSaved, 0f, maxSpeed);
@@ -378,14 +383,6 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         {
             //tocada audio
             thrusterTakingOffSound.Stop();
-
-            if (canRotateShip)
-            {
-                Vector3 difference = (mainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position);
-                difference.Normalize();
-                float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0f, 0f, rotationZ - 90), rotationDelay);
-            }
 
             if (playerShipStats.currentFuel > 0)
             {
@@ -423,6 +420,14 @@ public class Scr_PlayerShipMovement : MonoBehaviour
                 else if (playerShipState == PlayerShipState.inSpace)
                     playerShipEffects.thrusterParticles.Stop();
             }
+        }
+
+        if (canRotateShip && (playerShipState == PlayerShipState.inSpace || playerShipState == PlayerShipState.landing))
+        {
+            Vector3 difference = (mainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position);
+            difference.Normalize();
+            float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0f, 0f, rotationZ - 90), rotationDelay);
         }
     }
 }

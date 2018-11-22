@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Scr_PlayerShipDeathCheck : MonoBehaviour
 {
-    [Header("Death Parameters")]
+    [Header("Landing Parameters")]
     [SerializeField] private float deathAngle;
     [SerializeField] private float deathTime;
 
+    [Header("Collision Parameters")]
+    [SerializeField] private float deathVelocity;
+
     private float landingTime;
     private float landingAngle;
-    float angleQuality;
-    float timeQuality;
-    float resultQuality;
     private Vector3 playerShipDirection;
     private Vector3 playerShipToPlanetDirection;
     private GameObject currentPlanet;
@@ -43,6 +43,9 @@ public class Scr_PlayerShipDeathCheck : MonoBehaviour
             LandingQuality();
             CheckLandingTime(true);
         }
+
+        if (collision.gameObject.CompareTag("Asteroid"))
+            CheckVelocity();
     }
 
     public void CheckLandingTime(bool reset)
@@ -62,11 +65,19 @@ public class Scr_PlayerShipDeathCheck : MonoBehaviour
             playerShipStats.Death();
     }
 
+    private void CheckVelocity()
+    {
+        //float collisionVelocity = GetComponentInParent<Rigidbody2D>().velocity.magnitude * 10;
+        //float collisionDamage = (100 / deathVelocity) * (deathVelocity - collisionVelocity);
+
+        //TakeDamage(100 - collisionDamage);
+    }
+
     private void LandingQuality()
     {
-        angleQuality = (int)((100 / deathAngle) * (deathAngle - landingAngle));
-        timeQuality = (int)((100 / deathTime) * (landingTime));
-        resultQuality = (angleQuality + timeQuality) / 2;
+        float angleQuality = (int)((100 / deathAngle) * (deathAngle - landingAngle));
+        float timeQuality = (int)((100 / deathTime) * (landingTime));
+        float resultQuality = (angleQuality + timeQuality) / 2;
 
         Debug.Log("LANDING QUALITY " + resultQuality + " | " + "Angle Quality " + angleQuality + "/100 | " + "Time Quality " + timeQuality + "/100");
 
