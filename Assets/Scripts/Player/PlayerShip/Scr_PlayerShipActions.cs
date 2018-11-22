@@ -38,6 +38,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
     private bool canExitShip;
     private bool upgradePanel;
     private bool toolPanel;
+    private bool doneOnce;
     private Image miningFill;
     private Slider miningSlider;
     private Vector3 lastFramePlanetPosition;
@@ -138,34 +139,11 @@ public class Scr_PlayerShipActions : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.Q))
                 {
-                    currentAsteroid.GetComponent<Scr_AsteroidBehaviour>().attached = !currentAsteroid.GetComponent<Scr_AsteroidBehaviour>().attached;
-
-                    miningAnim.SetTrigger("Activate");
-
                     if (playerShipRb.isKinematic)
-                    {
-                        playerShipRb.isKinematic = false;
-                        playerShipMovement.canControlShip = true;
-                        GetComponent<TrailRenderer>().enabled = true;
-                        playerShipPrediction.predictionTime = 6;
-                        mainCamera.mining = false;
-                        speedAnim.SetBool("Active", true);
-
-                        playerShipEffects.AttachedEffects(false);
-                    }
+                        MiningState(false);
 
                     else
-                    {
-                        playerShipRb.velocity = Vector2.zero;
-                        playerShipRb.isKinematic = true;
-                        playerShipMovement.canControlShip = false;
-                        GetComponent<TrailRenderer>().enabled = false;
-                        playerShipPrediction.predictionTime = 0;
-                        mainCamera.mining = true;
-                        speedAnim.SetBool("Active", false);
-
-                        playerShipEffects.AttachedEffects(true);
-                    }
+                        MiningState(true);
                 }
 
                 if (mainCamera.mining)
@@ -271,6 +249,39 @@ public class Scr_PlayerShipActions : MonoBehaviour
         {
             miningFill.color = Color.Lerp(miningFill.color, powerColor0, Time.deltaTime * colorChangeSpeed);
             miningPowerText.color = Color.Lerp(miningFill.color, powerColor0, Time.deltaTime * colorChangeSpeed);
+        }
+    }
+
+    public void MiningState(bool on)
+    {
+        currentAsteroid.GetComponent<Scr_AsteroidBehaviour>().attached = !currentAsteroid.GetComponent<Scr_AsteroidBehaviour>().attached;
+
+        miningAnim.SetTrigger("Activate");
+
+        if (on)
+        {
+            playerShipRb.velocity = Vector2.zero;
+            playerShipRb.isKinematic = true;
+            playerShipMovement.canControlShip = false;
+            GetComponent<TrailRenderer>().enabled = false;
+            playerShipPrediction.predictionTime = 0;
+            mainCamera.mining = true;
+            speedAnim.SetBool("Active", false);
+
+            playerShipEffects.AttachedEffects(true);
+        }
+
+        else
+        {
+            playerShipRb.isKinematic = false;
+            playerShipMovement.canControlShip = true;
+            GetComponent<TrailRenderer>().enabled = true;
+            playerShipPrediction.predictionTime = 6;
+            mainCamera.mining = false;
+            speedAnim.SetBool("Active", true);
+            miningLaser.enabled = false;
+
+            playerShipEffects.AttachedEffects(false);
         }
     }
 }

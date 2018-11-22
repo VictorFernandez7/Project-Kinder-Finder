@@ -25,9 +25,13 @@ public class Scr_AsteroidStats : MonoBehaviour
     [SerializeField] private Slider currentPowerSlider;
     [SerializeField] private TextMeshProUGUI explosionText;
     [SerializeField] private TextMeshProUGUI resourceText;
+    [SerializeField] private ParticleSystem deathParticles;
+    [SerializeField] private GameObject asteroidVisuals;
+    [SerializeField] private GameObject asteroidCanvas;
 
     [HideInInspector] public float currentPower;
     [HideInInspector] public bool mining;
+    [HideInInspector] public bool dead;
 
     private float regenSpeed;
     private float explosionAmount;
@@ -35,10 +39,15 @@ public class Scr_AsteroidStats : MonoBehaviour
     private float newCurrentPower;
     private float resourceZoneMultiplier;
     private Scr_PlayerShipActions playerShipActions;
+    private Scr_PlayerShipEffects playerShipEffects;
+    private Scr_AsteroidBehaviour asteroidBehaviour;
 
     private void Start()
     {
         playerShipActions = GameObject.Find("PlayerShip").GetComponent<Scr_PlayerShipActions>();
+        playerShipEffects = GameObject.Find("PlayerShip").GetComponent<Scr_PlayerShipEffects>();
+
+        asteroidBehaviour = GetComponent<Scr_AsteroidBehaviour>();
 
         resourceAmount = 100;
         resourceZoneMultiplier = (resourceZone - resistentZone) / 10;
@@ -46,24 +55,28 @@ public class Scr_AsteroidStats : MonoBehaviour
 
     private void Update()
     {
-        SliderSet();
-
-        newCurrentPower = currentPower / 100;
-        currentPowerSlider.value = newCurrentPower;
-
-        if (!mining && currentPowerSlider.value > 0)
+        if (!dead)
         {
-            regenSpeed = currentPowerSlider.value * powerRegenSpeed;
-            currentPower -= regenSpeed * Time.deltaTime;
+            SliderSet();
+
+            resourceZone = Mathf.Clamp(resourceZone, resistentZone, resourceZone);
+            newCurrentPower = Mathf.Clamp(newCurrentPower, 0, 1);
+
+            newCurrentPower = currentPower / 100;
+            currentPowerSlider.value = newCurrentPower;
+
+            if (!mining && currentPowerSlider.value > 0)
+            {
+                regenSpeed = currentPowerSlider.value * powerRegenSpeed;
+                currentPower -= regenSpeed * Time.deltaTime;
+            }
+
+            if (newCurrentPower >= resistentZone && newCurrentPower <= resourceZone)
+                ResourceZone();
+
+            if (newCurrentPower >= resourceZone)
+                ExplosionZone();
         }
-
-        if (newCurrentPower >= resistentZone && newCurrentPower <= resourceZone)
-            ResourceZone();
-
-        if (newCurrentPower >= resourceZone)
-            ExplosionZone();
-
-        resourceZone = Mathf.Clamp(resourceZone, resistentZone, resourceZone);
     }
 
     private void SliderSet()
@@ -87,11 +100,31 @@ public class Scr_AsteroidStats : MonoBehaviour
 
     private void ExplosionZone()
     {
-        if (explosionAmount < 100)
-        {
-            explosionAmount += Time.deltaTime * deathSpeed;
+        explosionAmount += Time.deltaTime * deathSpeed;
 
-            explosionText.text = "" + (int)explosionAmount + " %";
-        }
+        explosionText.text = "" + (int)explosionAmount + " %";
+
+        if (explosionAmount >= 100)
+            Death();
     }
+
+    private void Death()
+    {
+        playerShipActions.MiningState(false);
+
+        dead = true;
+        asteroidBehaviour.move = false;
+        asteroidVisuals.SetActive(false);
+        asteroidCanvas.SetActive(false);
+        GetComponent<CircleCollider2D>().enabled = false;
+
+        if (!deathParticles.isPlaying)
+            deathParticles.Play();
+
+        if (playerShipEffects.miningParticles.isPlaying)
+            playerShipEffects.miningParticles.Stop();
+
+        Destroy(gameObject, 1.5f);
+    }
+
 }
