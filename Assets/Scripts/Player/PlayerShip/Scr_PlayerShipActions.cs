@@ -80,7 +80,35 @@ public class Scr_PlayerShipActions : MonoBehaviour
     private void Update()
     {
         MiningSliderColor();
+        CheckInputs();
 
+        if (playerShipMovement.astronautOnBoard)
+        {
+            if (startExitDelay)
+            {
+                canExitShip = false;
+
+                deployDelaySaved -= Time.deltaTime;
+
+                if (deployDelaySaved <= 0)
+                {
+                    deployDelaySaved = deployDelay;
+
+                    canExitShip = true;
+                    startExitDelay = false;
+                }
+            }
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (playerShipMovement.currentPlanet != null)
+            lastFramePlanetPosition = playerShipMovement.currentPlanet.transform.position;
+    }
+
+    private void CheckInputs()
+    {
         if (playerShipMovement.astronautOnBoard)
         {
             if (Input.GetKeyDown(KeyCode.E) && !astronaut.activeInHierarchy && canExitShip)
@@ -156,15 +184,15 @@ public class Scr_PlayerShipActions : MonoBehaviour
 
                             playerShipEffects.MiningEffects(true);
 
-                            if (currentAsteroid.GetComponent<Scr_AsteroidStats>().steelAmount > 0)
-                            {
-                                currentAsteroid.GetComponent<Scr_AsteroidStats>().steelAmount -= 10 * Time.deltaTime;
-                            }
+                            currentAsteroid.GetComponent<Scr_AsteroidStats>().mining = true;
+                            currentAsteroid.GetComponent<Scr_AsteroidStats>().currentPower += ((currentPower / 2f) * Time.deltaTime);
                         }
 
                         else
                         {
                             miningLaser.SetPosition(1, miningLaserStart.position + transform.up * laserRange);
+
+                            currentAsteroid.GetComponent<Scr_AsteroidStats>().mining = false;
 
                             playerShipEffects.MiningEffects(false);
                         }
@@ -173,6 +201,8 @@ public class Scr_PlayerShipActions : MonoBehaviour
                     else
                     {
                         miningLaser.enabled = false;
+
+                        currentAsteroid.GetComponent<Scr_AsteroidStats>().mining = false;
 
                         playerShipEffects.MiningEffects(false);
                     }
@@ -183,28 +213,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
                     miningPowerText.text = "" + (int)currentPower;
                 }
             }
-
-            if (startExitDelay)
-            {
-                canExitShip = false;
-
-                deployDelaySaved -= Time.deltaTime;
-
-                if (deployDelaySaved <= 0)
-                {
-                    deployDelaySaved = deployDelay;
-
-                    canExitShip = true;
-                    startExitDelay = false;
-                }
-            }
         }
-    }
-
-    private void FixedUpdate()
-    {
-        if (playerShipMovement.currentPlanet != null)
-            lastFramePlanetPosition = playerShipMovement.currentPlanet.transform.position;
     }
 
     private void DeployAstronaut()

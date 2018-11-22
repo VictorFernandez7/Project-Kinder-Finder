@@ -1,36 +1,53 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class Scr_AsteroidStats : MonoBehaviour
 {
-    [Header("Resources")]
+    [Header("Mining System")]
+    [Range(0, 1)] [SerializeField] public float explosionZone;
+    [Range(0, 1)] [SerializeField] public float resourceZone;
+    [Range(0, 1)] [SerializeField] public float resistentZone;
+
+    [Header("Resources: Steel")]
     [SerializeField] public float steelAmount;
     [SerializeField] public GameObject steelBlock;
 
     [Header("References")]
-    [SerializeField] public float maxHealth;
+    [SerializeField] private Slider explosionSlider;
+    [SerializeField] private Slider resourceSlider;
+    [SerializeField] private Slider resistentSlider;
+    [SerializeField] private Slider currentPowerSlider;
 
-    [HideInInspector] public float currentHealth;
+    [HideInInspector] public float currentPower;
+    [HideInInspector] public bool mining;
 
-    private float steelSaved;
+    private float regenSpeed;
     private Scr_PlayerShipActions playerShipActions;
 
     private void Start()
     {
         playerShipActions = GameObject.Find("PlayerShip").GetComponent<Scr_PlayerShipActions>();
 
-        steelSaved = steelAmount;
+        SliderSet();
     }
 
     private void Update()
     {
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        currentPowerSlider.value = currentPower / 100;
 
-        if (steelAmount < steelSaved)
+        if (!mining && currentPowerSlider.value > 0)
         {
-            //Instantiate(steelBlock, playerShipActions.laserHitPosition, playerShipActions.transform.rotation);
-            steelAmount = steelSaved;
+            regenSpeed = currentPowerSlider.value * 25;
+            currentPower -= regenSpeed * Time.deltaTime;
         }
+    }
+
+    private void SliderSet()
+    {
+        explosionSlider.value = explosionZone;
+        resourceSlider.value = resourceZone;
+        resistentSlider.value = resistentZone;
     }
 }
