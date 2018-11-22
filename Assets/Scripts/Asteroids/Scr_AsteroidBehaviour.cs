@@ -49,8 +49,7 @@ public class Scr_AsteroidBehaviour : MonoBehaviour
             Orbit();
 
         ShipAttach();
-
-        GetComponentInChildren<Canvas>().gameObject.transform.up = Vector3.up;
+        SetCanvasPositionAndRotation();
     }
 
     private void OnDrawGizmos()
@@ -90,5 +89,11 @@ public class Scr_AsteroidBehaviour : MonoBehaviour
             if (currentDistance > attachingDistance)
                 playerShip.transform.position = Vector3.Lerp(playerShip.transform.position, transform.position, Time.deltaTime * attachingSpeed);
         }
+    }
+
+    private void SetCanvasPositionAndRotation()
+    {
+        GetComponentInChildren<Canvas>().gameObject.transform.position = transform.position + Vector3.up * 1.35f;
+        GetComponentInChildren<Canvas>().gameObject.transform.up = Vector3.up;
     }
 }
