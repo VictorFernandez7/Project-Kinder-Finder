@@ -15,9 +15,8 @@ public class Scr_AstronautStats : MonoBehaviour
     [Header("Oxygen System")]
     [SerializeField] private float oxygenCapacity;
 
-    [Header("Text References")]
-    [SerializeField] private TextMeshProUGUI[] textToolSlots;
     [SerializeField] public GameObject[] toolSlots;
+    [SerializeField] public GameObject[] physicToolSlots;
 
     [HideInInspector] public float currentOxygen;
 
@@ -29,8 +28,6 @@ public class Scr_AstronautStats : MonoBehaviour
 
         oxygenSlider.maxValue = oxygenCapacity;
         currentOxygen = oxygenCapacity;
-
-        ReadNames();
     }
 
     private void Update()
@@ -39,16 +36,5 @@ public class Scr_AstronautStats : MonoBehaviour
             currentOxygen -= 0.5f * Time.deltaTime;
 
         oxygenSlider.value = currentOxygen;
-    }
-
-    public void ReadNames()
-    {
-        for (int i = 0; i < toolSlots.Length; i++)
-        {
-            if (toolSlots[i] == null)
-                textToolSlots[i].text = "null";
-            else
-                textToolSlots[i].text = toolSlots[i].GetComponent<Scr_Tool>().toolName;
-        }
     }
 }
