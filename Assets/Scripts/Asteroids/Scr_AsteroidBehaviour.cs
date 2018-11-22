@@ -23,6 +23,7 @@ public class Scr_AsteroidBehaviour : MonoBehaviour
     [HideInInspector] public bool attached;
     [HideInInspector] public bool closeToShip;
 
+    private Vector3 canvasPos;
     private GameObject playerShip;
     private TextMeshProUGUI messageText;
     private Scr_PlayerShipActions playerShipActions;

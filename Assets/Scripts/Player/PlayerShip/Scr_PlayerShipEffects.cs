@@ -15,6 +15,9 @@ public class Scr_PlayerShipEffects : MonoBehaviour
     [Header("Landing Effects")]
     [Range(350, 2000)] [SerializeField] private float landingThrusterPower;
 
+    [Header("Mining Effects")]
+    [SerializeField] private float attachedThrusterPower;
+
     [Header("Warming System")]
     [SerializeField] private float landedThrusterMult;
     [SerializeField] private float landedDustMult;
@@ -217,6 +220,22 @@ public class Scr_PlayerShipEffects : MonoBehaviour
                     thrusterParticles.Stop();
             }
         }
+    }
+
+    public void AttachedEffects(bool play)
+    {
+        if (play)
+        {
+            if (!thrusterParticles.isPlaying)
+                thrusterParticles.Play();
+
+            var emission = thrusterParticles.emission;
+
+            emission.rateOverTime = attachedThrusterPower;
+        }
+
+        else
+            thrusterParticles.Stop();
     }
 
     public void MiningEffects(bool play)

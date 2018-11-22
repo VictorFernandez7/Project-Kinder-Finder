@@ -122,6 +122,8 @@ public class Scr_PlayerShipActions : MonoBehaviour
                         playerShipPrediction.predictionTime = 6;
                         mainCamera.mining = false;
                         speedAnim.SetBool("Active", true);
+
+                        playerShipEffects.AttachedEffects(false);
                     }
 
                     else
@@ -133,6 +135,8 @@ public class Scr_PlayerShipActions : MonoBehaviour
                         playerShipPrediction.predictionTime = 0;
                         mainCamera.mining = true;
                         speedAnim.SetBool("Active", false);
+
+                        playerShipEffects.AttachedEffects(true);
                     }
                 }
 
@@ -151,6 +155,11 @@ public class Scr_PlayerShipActions : MonoBehaviour
                             laserHitPosition = laserHit.point;
 
                             playerShipEffects.MiningEffects(true);
+
+                            if (currentAsteroid.GetComponent<Scr_AsteroidStats>().steelAmount > 0)
+                            {
+                                currentAsteroid.GetComponent<Scr_AsteroidStats>().steelAmount -= 10 * Time.deltaTime;
+                            }
                         }
 
                         else
