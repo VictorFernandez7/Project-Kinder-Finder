@@ -20,6 +20,10 @@ public class Scr_AsteroidBehaviour : MonoBehaviour
     [Header("Control Assistance")]
     [SerializeField] private string message;
 
+    [Header("References")]
+    [SerializeField] private Animator messageTextAnim;
+    [SerializeField] private Animator asteroidAnim;
+
     [HideInInspector] public bool attached;
     [HideInInspector] public bool closeToShip;
     [HideInInspector] public bool move;
@@ -43,8 +47,9 @@ public class Scr_AsteroidBehaviour : MonoBehaviour
         messageText = GetComponentInChildren<TextMeshProUGUI>();
         asteroidStats = GetComponent<Scr_AsteroidStats>();
 
-        messageText.text = "";
         move = true;
+
+        messageText.text = message;
     }
 
     private void Update()
@@ -72,14 +77,14 @@ public class Scr_AsteroidBehaviour : MonoBehaviour
 
     public void CloseToShip()
     {
-        messageText.text = message;
+        messageTextAnim.SetBool("CanAttach", true);
         playerShipActions.closeToAsteroid = true;
         playerShipActions.currentAsteroid = gameObject;
     }
 
     public void NotColoseToShip()
     {
-        messageText.text = "";
+        messageTextAnim.SetBool("CanAttach", false);
         playerShipActions.closeToAsteroid = true;
         playerShipActions.currentAsteroid = null;
     }
@@ -91,11 +96,15 @@ public class Scr_AsteroidBehaviour : MonoBehaviour
             float currentDistance = Vector3.Distance(transform.position, playerShip.transform.position);
             float attachingSpeed = currentDistance / 4;
 
-            messageText.text = "";
+            messageTextAnim.SetBool("CanAttach", false);
+            asteroidAnim.SetBool("Sliders", true);
 
             if (currentDistance > attachingDistance)
                 playerShip.transform.position = Vector3.Lerp(playerShip.transform.position, transform.position, Time.deltaTime * attachingSpeed);
         }
+
+        else
+            asteroidAnim.SetBool("Sliders", false);
     }
 
     private void SetCanvasPositionAndRotation()
