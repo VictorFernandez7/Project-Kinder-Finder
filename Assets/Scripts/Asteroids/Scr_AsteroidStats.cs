@@ -35,12 +35,16 @@ public class Scr_AsteroidStats : MonoBehaviour
     [HideInInspector] public bool mining;
     [HideInInspector] public bool dead;
 
+    private float initialResourceZone;
     private float regenSpeed;
     private float explosionAmount;
     private float resourceAmount;
     private float newCurrentPower;
     private float resourceZoneMultiplier;
+    private float initialColliderRadius;
+    private Vector3 initialScale;
     private GameObject playerShip;
+    private CircleCollider2D asteroidCollider;
     private Scr_PlayerShipActions playerShipActions;
     private Scr_PlayerShipEffects playerShipEffects;
     private Scr_PlayerShipStats playerShipStats;
@@ -54,8 +58,12 @@ public class Scr_AsteroidStats : MonoBehaviour
         playerShipStats = playerShip.GetComponent<Scr_PlayerShipStats>();
 
         asteroidBehaviour = GetComponent<Scr_AsteroidBehaviour>();
+        asteroidCollider = GetComponent<CircleCollider2D>();
 
         resourceAmount = 100;
+        initialScale = asteroidVisuals.gameObject.transform.localScale;
+        initialResourceZone = resourceZone;
+        initialColliderRadius = asteroidCollider.radius;
         resourceZoneMultiplier = (resourceZone - resistentZone) / 10;
     }
 
@@ -99,9 +107,16 @@ public class Scr_AsteroidStats : MonoBehaviour
         {
             resourceAmount -= Time.deltaTime * extractigResourceSpeed;
 
-            resourceZone -= resourceZoneMultiplier * Time.deltaTime;
-
             resourceText.text = "" + (int)resourceAmount + " %";
+
+            if (asteroidVisuals.gameObject.transform.localScale.x >= 0.2f * initialScale.x)
+            {
+                asteroidVisuals.gameObject.transform.localScale = resourceAmount / 100 * initialScale;
+                asteroidCollider.radius = resourceAmount / 100 * initialColliderRadius;
+            }
+
+            if (resourceZone > (resistentZone + (0.3f * (initialResourceZone - resistentZone))))
+                resourceZone = resistentZone + ((resourceAmount / 100) * (initialResourceZone - resistentZone));
         }
     }
 
@@ -125,7 +140,7 @@ public class Scr_AsteroidStats : MonoBehaviour
         asteroidBehaviour.move = false;
         asteroidVisuals.enabled = false;
         asteroidCanvas.SetActive(false);
-        GetComponent<CircleCollider2D>().enabled = false;
+        asteroidCollider.enabled = false;
 
         if (!deathParticles.isPlaying)
             deathParticles.Play();
