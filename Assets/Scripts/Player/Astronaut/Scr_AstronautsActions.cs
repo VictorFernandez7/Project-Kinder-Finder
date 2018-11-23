@@ -19,12 +19,14 @@ public class Scr_AstronautsActions : MonoBehaviour
     [Header("Audio")]
     [SerializeField] private AudioSource getIntoTheShipSound;
 
-    [HideInInspector] public bool emptyHands = true;
-    [HideInInspector] private GameObject mainCamera;
+    [HideInInspector] public bool emptyHands;
+    [HideInInspector] public bool toolOnHands;
+    [HideInInspector] public int numberToolActive;
+ public GameObject toolOnFloor;
 
-    private bool toolOnHands;
+    private GameObject mainCamera;
+
     private float fuelAmount;
-    private int numberToolActive;
     private GameObject playerShip;
     private Scr_AstronautMovement astronautMovement;
     private Scr_AstronautStats astronautStats;
@@ -41,10 +43,15 @@ public class Scr_AstronautsActions : MonoBehaviour
 
         astronautMovement = GetComponent<Scr_AstronautMovement>();
         astronautStats = GetComponent<Scr_AstronautStats>();
+
+        emptyHands = true;
     }
 
     private void Update()
     {
+        Debug.Log(emptyHands);
+        Debug.Log(toolOnHands);
+
         if (Input.GetKeyDown(KeyCode.E) && astronautMovement.canEnterShip)
         {
             if (emptyHands)
@@ -96,14 +103,20 @@ public class Scr_AstronautsActions : MonoBehaviour
             HandTool(2);
         }
 
-        if(Input.GetKeyDown(KeyCode.R) && toolOnHands)
+        if(Input.GetKeyDown(KeyCode.R))
         {
-            astronautStats.physicToolSlots[numberToolActive].GetComponent<Scr_Tool>().UseTool();
+            if (toolOnHands)
+            {
+                astronautStats.physicToolSlots[numberToolActive].GetComponent<Scr_Tool>().UseTool();
+            }
+            else if (toolOnFloor != null)
+            {
+                toolOnFloor.GetComponent<Scr_Tool>().RecoverTool();
+            }
         }
-
     }
 
-    private void BoolControl()
+    public void BoolControl()
     {
         for (int i = 0; i < astronautStats.physicToolSlots.Length; i++)
         {
@@ -160,5 +173,21 @@ public class Scr_AstronautsActions : MonoBehaviour
             currentFuelBLock = Instantiate(fuelBlock, pickPoint.transform.position, pickPoint.transform.rotation);
 
         emptyHands = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Tool")
+        {
+            toolOnFloor = collision.gameObject;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Tool")
+        {
+            toolOnFloor = null;
+        }
     }
 }

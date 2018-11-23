@@ -11,19 +11,18 @@ public class Scr_Tool : MonoBehaviour {
     [HideInInspector] public Camera mainCamera;
 
     private bool placing;
+    private bool onRange;
     private GameObject gosht;
     private Scr_AstronautMovement astronautMovement;
     private GameObject astronaut;
 
-    // Use this for initialization
     void Start () {
         mainCamera = GameObject.Find("MainCamera").GetComponent<Camera>();
         astronautMovement = GameObject.Find("Astronaut").GetComponent<Scr_AstronautMovement>();
         astronaut = GameObject.Find("Astronaut");
         onHands = true;
     }
-	
-	// Update is called once per frame
+
 	void Update () {
         if (placing)
         {
@@ -48,6 +47,27 @@ public class Scr_Tool : MonoBehaviour {
         }
     }
 
+    public void RecoverTool()
+    {
+        if (astronaut.GetComponent<Scr_AstronautsActions>().emptyHands && !astronaut.GetComponent<Scr_AstronautsActions>().toolOnHands && !onHands)
+        {
+            for (int i = 0; i < astronaut.GetComponent<Scr_AstronautStats>().toolSlots.Length; i++)
+            {
+                if (astronaut.GetComponent<Scr_AstronautStats>().toolSlots[i] == null)
+                {
+                    astronaut.GetComponent<Scr_AstronautStats>().toolSlots[i] = gameObject;
+                    astronaut.GetComponent<Scr_AstronautStats>().physicToolSlots[i] = gameObject;
+                    transform.SetParent(null);
+                    transform.position = astronaut.GetComponent<Scr_AstronautsActions>().pickPoint.position;
+                    transform.SetParent(astronaut.GetComponent<Scr_AstronautsActions>().pickPoint);
+                    onHands = true;
+                    astronaut.GetComponent<Scr_AstronautsActions>().BoolControl();
+                    break;
+                }
+            }
+        }
+    }
+
     private void PutOnPlace()
     {
         float mouseposX = mainCamera.ScreenToWorldPoint(Input.mousePosition).x;
@@ -56,7 +76,6 @@ public class Scr_Tool : MonoBehaviour {
         mouseposY = Mathf.Clamp(mouseposY, astronaut.transform.position.y - 0.1f, astronaut.transform.position.y + 0.1f);
         Vector3 mousepos = new Vector3(mouseposX, mouseposY, 0f);
         gosht.transform.position = astronautMovement.currentPlanet.transform.position + ((mousepos - astronautMovement.currentPlanet.transform.position).normalized * (astronautMovement.currentPlanet.transform.position - astronaut.transform.position).magnitude);
-        gosht.transform.position += Vector3.forward * 10f;
         gosht.transform.rotation = Quaternion.LookRotation(transform.forward, (gosht.transform.position - astronautMovement.currentPlanet.transform.position));
         Color color = gosht.GetComponent<Renderer>().material.color;
         color.g = 250;
@@ -74,7 +93,9 @@ public class Scr_Tool : MonoBehaviour {
             transform.SetParent(astronautMovement.currentPlanet.transform);
             onHands = false;
             placing = false;
+            astronaut.GetComponent<Scr_AstronautStats>().toolSlots[astronaut.GetComponent<Scr_AstronautsActions>().numberToolActive] = null;
+            astronaut.GetComponent<Scr_AstronautStats>().physicToolSlots[astronaut.GetComponent<Scr_AstronautsActions>().numberToolActive] = null;
+            astronaut.GetComponent<Scr_AstronautsActions>().BoolControl();
         }
     }
-
 }
