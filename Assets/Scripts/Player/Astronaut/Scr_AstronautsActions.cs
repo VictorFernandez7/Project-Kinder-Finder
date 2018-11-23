@@ -22,7 +22,7 @@ public class Scr_AstronautsActions : MonoBehaviour
     [HideInInspector] public bool emptyHands;
     [HideInInspector] public bool toolOnHands;
     [HideInInspector] public int numberToolActive;
- public GameObject toolOnFloor;
+    public GameObject toolOnFloor;
 
     private GameObject mainCamera;
 
