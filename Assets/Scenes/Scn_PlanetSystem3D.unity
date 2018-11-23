@@ -4315,8 +4315,16 @@ MonoBehaviour:
   playerShipStats: {fileID: 1440275090}
   playerShipActions: {fileID: 1440275093}
   astronautStats: {fileID: 343216946}
-  textToolSlots: []
-  textToolWarehouse: []
+  textToolSlots:
+  - {fileID: 1951442090}
+  - {fileID: 604805884}
+  - {fileID: 1514305671}
+  textToolWarehouse:
+  - {fileID: 228701171}
+  - {fileID: 289058642}
+  - {fileID: 278002746}
+  - {fileID: 1915167842}
+  - {fileID: 1752378360}
   slot: 0
   warehouse: 0
   warehouseNumber: 0
@@ -5924,6 +5932,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114844797242794480, guid: a7965b5f8a536a540b7c003202d37841,
+        type: 2}
+      propertyPath: physicToolSlots.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4004395127091482, guid: a7965b5f8a536a540b7c003202d37841, type: 2}
       propertyPath: m_LocalPosition.x
       value: 144.873
@@ -5976,6 +5989,12 @@ Prefab:
       propertyPath: getIntoTheShipSound
       value: 
       objectReference: {fileID: 157368593}
+    - target: {fileID: 114844797242794480, guid: a7965b5f8a536a540b7c003202d37841,
+        type: 2}
+      propertyPath: toolSlots.Array.data[1]
+      value: 
+      objectReference: {fileID: 1195437349475892, guid: 37794a5a2a8f9fb48a889621ba6ed563,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7965b5f8a536a540b7c003202d37841, type: 2}
   m_IsPrefabAsset: 0
@@ -7091,6 +7110,16 @@ Prefab:
     - target: {fileID: 4044190229291100, guid: 3adbf28352da57943ac34af6e55d1963, type: 2}
       propertyPath: m_RootOrder
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114838471349013554, guid: 3adbf28352da57943ac34af6e55d1963,
+        type: 2}
+      propertyPath: BT_key
+      value: 56
+      objectReference: {fileID: 0}
+    - target: {fileID: 114838471349013554, guid: 3adbf28352da57943ac34af6e55d1963,
+        type: 2}
+      propertyPath: RS_key
+      value: 57
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3adbf28352da57943ac34af6e55d1963, type: 2}
@@ -8343,6 +8372,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!4 &1776565813 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4973946125739948, guid: a7965b5f8a536a540b7c003202d37841,
+    type: 2}
+  m_PrefabInternal: {fileID: 1254532822}
 --- !u!1 &1783473998
 GameObject:
   m_ObjectHideFlags: 0
@@ -8551,6 +8585,11 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114928841212499524, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
+        type: 2}
+      propertyPath: astronautPickUp
+      value: 
+      objectReference: {fileID: 1776565813}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15c55cceacb93ea4bb7e3f3c7e160410, type: 2}
   m_IsPrefabAsset: 0
