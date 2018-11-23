@@ -15,13 +15,16 @@ public class Scr_MenuManager : MonoBehaviour
     [SerializeField] private Transform controlsBackSpot;
     [SerializeField] private Transform aboutUsCamSpot;
     [SerializeField] private Transform aboutUsBackSpot;
+    [SerializeField] private Transform playCamSpot;
 
     [Header("Text References")]
     [SerializeField] private Animator playText;
     [SerializeField] private Animator controlsText;
     [SerializeField] private Animator controlPanel;
     [SerializeField] private Animator aboutUsText;
+    [SerializeField] private Animator aboutUsPanel;
     [SerializeField] private Animator exitText;
+    [SerializeField] private Animator exitCrash;
     [SerializeField] private Animator backText;
 
     private bool moveToSpot;
@@ -150,7 +153,18 @@ public class Scr_MenuManager : MonoBehaviour
 
     private void PlayGame()
     {
+        moveToSpot = true;
+        mainMenu = false;
+        playText.SetBool("ShowText", false);
+        currentCameraSpot = playCamSpot.position;
+
+        Invoke("ChangeScene", 3);
+    }
+
+    private void ChangeScene()
+    {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
     }
 
     private void ControlsPlanet()
@@ -168,6 +182,7 @@ public class Scr_MenuManager : MonoBehaviour
         moveToSpot = true;
         mainMenu = false;
         aboutUsText.SetBool("ShowText", false);
+        aboutUsPanel.SetBool("ShowText", true);
         currentCameraSpot = aboutUsCamSpot.position;
         currentBackSpot = aboutUsBackSpot.position;
     }
@@ -178,11 +193,21 @@ public class Scr_MenuManager : MonoBehaviour
         mainMenu = true;
         backText.SetBool("ShowText", false);
         controlPanel.SetBool("ShowText", false);
+        aboutUsPanel.SetBool("ShowText", false);
         currentCameraSpot = initialCameraSpot;
         currentBackSpot = initialBackSpot;
     }
 
     private void ExitGame()
+    {
+        mainMenu = false;
+        exitText.SetBool("ShowText", false);
+        exitCrash.SetTrigger("Crash");
+
+        Invoke("Quit", 2.5f);
+    }
+
+    private void Quit()
     {
         Application.Quit();
     }
