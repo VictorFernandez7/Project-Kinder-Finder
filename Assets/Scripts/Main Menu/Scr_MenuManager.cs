@@ -19,6 +19,7 @@ public class Scr_MenuManager : MonoBehaviour
     [Header("Text References")]
     [SerializeField] private Animator playText;
     [SerializeField] private Animator controlsText;
+    [SerializeField] private Animator controlPanel;
     [SerializeField] private Animator aboutUsText;
     [SerializeField] private Animator exitText;
     [SerializeField] private Animator backText;
@@ -157,6 +158,7 @@ public class Scr_MenuManager : MonoBehaviour
         moveToSpot = true;
         mainMenu = false;
         controlsText.SetBool("ShowText", false);
+        controlPanel.SetBool("ShowText", true);
         currentCameraSpot = controlsCamSpot.position;
         currentBackSpot = controlsBackSpot.position;
     }
@@ -175,6 +177,7 @@ public class Scr_MenuManager : MonoBehaviour
         moveToSpot = true;
         mainMenu = true;
         backText.SetBool("ShowText", false);
+        controlPanel.SetBool("ShowText", false);
         currentCameraSpot = initialCameraSpot;
         currentBackSpot = initialBackSpot;
     }
