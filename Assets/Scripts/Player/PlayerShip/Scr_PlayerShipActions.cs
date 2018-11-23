@@ -20,6 +20,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Transform spawnPoint;
+    [SerializeField] private Transform astronautPickUp;
     [SerializeField] private GameObject mapVisuals;
     [SerializeField] private GameObject toolPanelVisuals;
     [SerializeField] private Transform miningLaserStart;
@@ -211,6 +212,15 @@ public class Scr_PlayerShipActions : MonoBehaviour
         mainCanvasAnim.SetBool("OnBoard", false);
         speedAnim.SetBool("Active", false);
         getOutTheShipSound.Play();
+
+        for (int i = 0; i < astronaut.GetComponent<Scr_AstronautStats>().toolSlots.Length; i++)
+        {
+            if (astronaut.GetComponent<Scr_AstronautStats>().toolSlots[i] != null)
+            {
+                astronaut.GetComponent<Scr_AstronautStats>().physicToolSlots[i] = Instantiate(astronaut.GetComponent<Scr_AstronautStats>().toolSlots[i], astronautPickUp);
+                astronaut.GetComponent<Scr_AstronautStats>().physicToolSlots[i].SetActive(false);
+            }
+        }
     }
 
     public void TakeTool(int warehouseNumber, int slotNumber)
