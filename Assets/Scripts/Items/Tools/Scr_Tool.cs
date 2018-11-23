@@ -6,7 +6,6 @@ public class Scr_Tool : MonoBehaviour {
 
     [Header("Tool Info")]
     [SerializeField] public string toolName;
-    [SerializeField] private LayerMask mask;
 
     [HideInInspector] public bool onHands;
     [HideInInspector] public Camera mainCamera;
@@ -16,9 +15,6 @@ public class Scr_Tool : MonoBehaviour {
     private GameObject gosht;
     private Scr_AstronautMovement astronautMovement;
     private GameObject astronaut;
-    private RaycastHit2D hit;
-    private RaycastHit2D hitR;
-    private RaycastHit2D hitL;
 
     void Start () {
         mainCamera = GameObject.Find("MainCamera").GetComponent<Camera>();
@@ -74,19 +70,13 @@ public class Scr_Tool : MonoBehaviour {
 
     private void PutOnPlace()
     {
-        hit = Physics2D.Raycast(gosht.transform.position, (astronautMovement.currentPlanet.transform.position - transform.position).normalized, Mathf.Infinity, mask);
-        hitR = Physics2D.Raycast(gosht.transform.position + Vector3.right, (astronautMovement.currentPlanet.transform.position - transform.position).normalized, Mathf.Infinity, mask);
-        hitL = Physics2D.Raycast(gosht.transform.position - Vector3.right, (astronautMovement.currentPlanet.transform.position - transform.position).normalized, Mathf.Infinity, mask);
-
-        Debug.DrawRay(gosht.transform.position + Vector3.right, (astronautMovement.currentPlanet.transform.position - transform.position).normalized * 5, Color.red);
-
         float mouseposX = mainCamera.ScreenToWorldPoint(Input.mousePosition).x;
         float mouseposY = mainCamera.ScreenToWorldPoint(Input.mousePosition).y;
         mouseposX = Mathf.Clamp(mouseposX, astronaut.transform.position.x - 0.5f, astronaut.transform.position.x + 0.5f);
         mouseposY = Mathf.Clamp(mouseposY, astronaut.transform.position.y - 0.1f, astronaut.transform.position.y + 0.1f);
         Vector3 mousepos = new Vector3(mouseposX, mouseposY, 0f);
-        gosht.transform.position = astronautMovement.currentPlanet.transform.position + ((mousepos - astronautMovement.currentPlanet.transform.position).normalized * (Vector3.Distance(hit.point, astronautMovement.currentPlanet.transform.position) + GetComponent<Renderer>().bounds.size.y / 2));
-        gosht.transform.localRotation = Quaternion.LookRotation(gosht.transform.forward, Vector2.Perpendicular(hitL.point - hitR.point));
+        gosht.transform.position = astronautMovement.currentPlanet.transform.position + ((mousepos - astronautMovement.currentPlanet.transform.position).normalized * (astronautMovement.currentPlanet.transform.position - astronaut.transform.position).magnitude);
+        gosht.transform.rotation = Quaternion.LookRotation(transform.forward, (gosht.transform.position - astronautMovement.currentPlanet.transform.position));
         Color color = gosht.GetComponent<Renderer>().material.color;
         color.g = 250;
         color.b = 0;
