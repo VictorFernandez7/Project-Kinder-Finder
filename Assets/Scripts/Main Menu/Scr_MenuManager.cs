@@ -8,11 +8,11 @@ public class Scr_MenuManager : MonoBehaviour
     [Header("Button Detection")]
     [SerializeField] private LayerMask layerMask;
 
-    [Header("Animations")]
-    [SerializeField] public Animation playAnimation;
-    [SerializeField] public Animation controlsAnimation;
-    [SerializeField] public Animation aboutUsAnimation;
-    [SerializeField] public Animation extitAnimation;
+    [Header("Text References")]
+    [SerializeField] private Animator playText;
+    [SerializeField] private Animator controlsText;
+    [SerializeField] private Animator aboutUsText;
+    [SerializeField] private Animator exitText;
 
     private GameObject mainCamera;
     private GameObject targetPlanet;
@@ -34,18 +34,19 @@ public class Scr_MenuManager : MonoBehaviour
             targetPlanet = buttonHit.transform.gameObject;
 
             targetPlanet.GetComponent<Animator>().SetBool("Rotate", true);
+            targetPlanet.GetComponent<Animator>().SetFloat("Speed", 1);
 
             if (buttonHit.transform.gameObject.CompareTag("PlayButton"))
-                playAnimation["Anim_PlayButtonRotation"].speed = 1;
+                playText.SetBool("ShowText", true);
 
             else if (buttonHit.transform.gameObject.CompareTag("ControlsButton"))
-                controlsAnimation["Anim_ControlButtonRotate"].speed = 1;
+                controlsText.SetBool("ShowText", true);
 
             else if (buttonHit.transform.gameObject.CompareTag("AboutUsButton"))
-                aboutUsAnimation["Anim_AboutUsButtonRotate"].speed = 1;
+                aboutUsText.SetBool("ShowText", true);
 
             else if (buttonHit.transform.gameObject.CompareTag("ExitButton"))
-                extitAnimation["Anim_ExitButtonRotate"].speed = 1;
+                exitText.SetBool("ShowText", true);
 
             if (Input.GetMouseButtonDown(0))
             {
@@ -65,13 +66,12 @@ public class Scr_MenuManager : MonoBehaviour
 
         else if (targetPlanet != null)
         {
-            playAnimation["Anim_PlayButtonRotation"].speed = 0;
-            controlsAnimation["Anim_ControlButtonRotate"].speed = 0;
-            aboutUsAnimation["Anim_AboutUsButtonRotate"].speed = 0;
-            extitAnimation["Anim_ExitButtonRotate"].speed = 0;
+            targetPlanet.GetComponent<Animator>().SetFloat("Speed", 0);
+            playText.SetBool("ShowText", false);
+            controlsText.SetBool("ShowText", false);
+            aboutUsText.SetBool("ShowText", false);
+            exitText.SetBool("ShowText", false);
         }
-
-        print(targetPlanet);
     }
 
     public void PlayGame()
