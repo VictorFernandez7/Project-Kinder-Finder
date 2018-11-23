@@ -72,9 +72,6 @@ public class Scr_AstronautsActions : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.T))
-            Instantiate(fuelCollector, spawnPoint.transform.position, transform.rotation);
-
         if (Input.GetKeyDown(KeyCode.E) && astronautMovement.closeToCollector && astronautMovement.currentFuelCollector != null)
         {
             if (astronautMovement.currentFuelCollector.GetComponent<Scr_FuelCollector>().canCollect)
@@ -98,6 +95,12 @@ public class Scr_AstronautsActions : MonoBehaviour
         {
             HandTool(2);
         }
+
+        if(Input.GetKeyDown(KeyCode.R) && toolOnHands)
+        {
+            astronautStats.physicToolSlots[numberToolActive].GetComponent<Scr_Tool>().UseTool();
+        }
+
     }
 
     private void BoolControl()
