@@ -180,7 +180,7 @@ public class Scr_AstronautMovement : MonoBehaviour
         if (collision.gameObject.tag == "PlayerShip")
             canEnterShip = true;
 
-        if (collision.gameObject.tag == "FuelCollector")
+        if (collision.gameObject.tag == "Tool")
         {
             currentFuelCollector = collision.gameObject;
             closeToCollector = true;
@@ -192,7 +192,7 @@ public class Scr_AstronautMovement : MonoBehaviour
         if (collision.gameObject.tag == "PlayerShip")
             canEnterShip = false;
 
-        if (collision.gameObject.tag == "FuelCollector")
+        if (collision.gameObject.tag == "Tool")
             closeToCollector = true;
     }
 
