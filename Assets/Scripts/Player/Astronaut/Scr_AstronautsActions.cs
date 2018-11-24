@@ -15,6 +15,8 @@ public class Scr_AstronautsActions : MonoBehaviour
     [SerializeField] private GameObject fuelBlock;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] public Transform pickPoint;
+    [SerializeField] public Scr_ToolPanel toolPanel;
+    [SerializeField] public GameObject prefab;
 
     [Header("Audio")]
     [SerializeField] private AudioSource getIntoTheShipSound;
@@ -22,10 +24,9 @@ public class Scr_AstronautsActions : MonoBehaviour
     [HideInInspector] public bool emptyHands;
     [HideInInspector] public bool toolOnHands;
     [HideInInspector] public int numberToolActive;
- public GameObject toolOnFloor;
 
+    public GameObject toolOnFloor;
     private GameObject mainCamera;
-
     private float fuelAmount;
     private GameObject playerShip;
     private Scr_AstronautMovement astronautMovement;
@@ -43,15 +44,13 @@ public class Scr_AstronautsActions : MonoBehaviour
 
         astronautMovement = GetComponent<Scr_AstronautMovement>();
         astronautStats = GetComponent<Scr_AstronautStats>();
+        toolOnFloor = null;
 
         emptyHands = true;
     }
 
     private void Update()
     {
-        Debug.Log(emptyHands);
-        Debug.Log(toolOnHands);
-
         if (Input.GetKeyDown(KeyCode.E) && astronautMovement.canEnterShip)
         {
             if (emptyHands)
@@ -68,6 +67,7 @@ public class Scr_AstronautsActions : MonoBehaviour
                 speedAnim.SetBool("Active", true);
                 astronautMovement.keep = true;
                 DestroyAllTools();
+                toolPanel.ReadNames();
                 gameObject.SetActive(false);
             }
 

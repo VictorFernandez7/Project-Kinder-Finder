@@ -41,9 +41,13 @@ public class Scr_PlayerShipStats : MonoBehaviour
     [SerializeField] private AudioSource fuelAlarm;
 
     [SerializeField] public GameObject[] toolWarehouse;
+    [SerializeField] public GameObject[] toolWarehouseReferences;
 
     [HideInInspector] public int lastWarehouseEmpty;
     [HideInInspector] public bool warehouseFull;
+    [HideInInspector] public bool gasExtractor;
+    [HideInInspector] public bool repairingTool;
+    [HideInInspector] public bool jetpack;
 
     private int numberOfSlotsWithTools;
     private bool alarm;
@@ -68,7 +72,6 @@ public class Scr_PlayerShipStats : MonoBehaviour
 
         fuelSlider.maxValue = maxFuel;
         shieldSlider.maxValue = maxShield;
-        toolWarehouse = new GameObject[5];
     }
 
     private void Update()
@@ -89,6 +92,24 @@ public class Scr_PlayerShipStats : MonoBehaviour
 
         if (currentShield < 0)
             Death();
+
+        if (gasExtractor)
+        {
+            toolWarehouse[0] = toolWarehouseReferences[0];
+            gasExtractor = false;
+        }
+
+        if (repairingTool)
+        {
+            toolWarehouse[1] = toolWarehouseReferences[1];
+            repairingTool = false;
+        }
+
+        if (jetpack)
+        {
+            toolWarehouse[2] = toolWarehouseReferences[2];
+            jetpack = false;
+        }
     }
 
     public void FuelConsumption(bool boost)
