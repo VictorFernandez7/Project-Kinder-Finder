@@ -22,7 +22,6 @@ public class Scr_PlayerShipActions : MonoBehaviour
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private Transform astronautPickUp;
     [SerializeField] private GameObject mapVisuals;
-    [SerializeField] private GameObject toolPanelVisuals;
     [SerializeField] private Transform miningLaserStart;
     [SerializeField] private LineRenderer miningLaser;
 
@@ -37,17 +36,11 @@ public class Scr_PlayerShipActions : MonoBehaviour
     private float laserRange;
     private float deployDelaySaved;
     private bool canExitShip;
-    private bool upgradePanel;
     private bool toolPanel;
     private bool doneOnce;
     private Image miningFill;
     private Slider miningSlider;
     private Vector3 lastFramePlanetPosition;
-    private Animator mainCanvasAnim;
-    private Animator missionAnim;
-    private Animator upgradesAnim;
-    private Animator miningAnim;
-    private Animator speedAnim;
     private GameObject astronaut;
     private Rigidbody2D playerShipRb;
     private Scr_MainCamera mainCamera;
@@ -62,11 +55,6 @@ public class Scr_PlayerShipActions : MonoBehaviour
         miningSlider = GameObject.Find("MiningSlider").GetComponent<Slider>();
         miningFill = GameObject.Find("MiningFill").GetComponent<Image>();
         miningPowerText = GameObject.Find("Power").GetComponent<TextMeshProUGUI>();
-        mainCanvasAnim = GameObject.Find("MainCanvas").GetComponent<Animator>();
-        missionAnim = GameObject.Find("MissionsPanels").GetComponent<Animator>();
-        upgradesAnim = GameObject.Find("UpgradePanel").GetComponent<Animator>();
-        miningAnim = GameObject.Find("MiningPanel").GetComponent<Animator>();
-        speedAnim = GameObject.Find("SpeedPanel").GetComponent<Animator>();
         mainCamera = GameObject.Find("MainCamera").GetComponent<Scr_MainCamera>();
 
         playerShipMovement = GetComponent<Scr_PlayerShipMovement>();
@@ -118,23 +106,6 @@ public class Scr_PlayerShipActions : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.M))
                 mapVisuals.SetActive(true);
-
-            if (Input.GetKeyDown(KeyCode.J))
-                missionAnim.SetTrigger("Activate");
-
-            if (Input.GetKeyDown(KeyCode.U))
-            {
-                playerShipMovement.canControlShip = upgradePanel;
-                upgradesAnim.SetTrigger("Show");
-                upgradePanel = !upgradePanel;
-            }
-
-            if (Input.GetKeyDown(KeyCode.T))
-            {
-                playerShipMovement.canControlShip = toolPanel;
-                toolPanelVisuals.SetActive(!toolPanel);
-                toolPanel = !toolPanel;
-            }
 
             if (closeToAsteroid)
             {
@@ -209,8 +180,6 @@ public class Scr_PlayerShipActions : MonoBehaviour
         astronaut.GetComponent<Scr_AstronautMovement>().planetPosition = lastFramePlanetPosition;
         astronaut.GetComponent<Scr_AstronautMovement>().onGround = true;
         playerShipMovement.mainCamera.GetComponent<Scr_MainCamera>().followAstronaut = true;
-        mainCanvasAnim.SetBool("OnBoard", false);
-        speedAnim.SetBool("Active", false);
         getOutTheShipSound.Play();
 
         for (int i = 0; i < astronaut.GetComponent<Scr_AstronautStats>().toolSlots.Length; i++)
@@ -275,8 +244,6 @@ public class Scr_PlayerShipActions : MonoBehaviour
     {
         currentAsteroid.GetComponent<Scr_AsteroidBehaviour>().attached = !currentAsteroid.GetComponent<Scr_AsteroidBehaviour>().attached;
 
-        miningAnim.SetTrigger("Activate");
-
         if (on)
         {
             playerShipRb.velocity = Vector2.zero;
@@ -285,7 +252,6 @@ public class Scr_PlayerShipActions : MonoBehaviour
             GetComponent<TrailRenderer>().enabled = false;
             playerShipPrediction.predictionTime = 0;
             mainCamera.mining = true;
-            speedAnim.SetBool("Active", false);
 
             playerShipEffects.AttachedEffects(true);
         }
@@ -297,7 +263,6 @@ public class Scr_PlayerShipActions : MonoBehaviour
             GetComponent<TrailRenderer>().enabled = true;
             playerShipPrediction.predictionTime = 6;
             mainCamera.mining = false;
-            speedAnim.SetBool("Active", true);
             miningLaser.enabled = false;
 
             playerShipEffects.AttachedEffects(false);
