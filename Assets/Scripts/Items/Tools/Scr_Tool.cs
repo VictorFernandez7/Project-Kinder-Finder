@@ -10,16 +10,23 @@ public class Scr_Tool : MonoBehaviour {
     [SerializeField] private LayerMask masker;
     [SerializeField] private bool placeable;
     [SerializeField] private bool multitool;
+    [SerializeField] private bool jetpack;
     [SerializeField] private float distance;
+    [SerializeField] private float speedJetpack;
+    [SerializeField] private float extractorTime;
     [SerializeField] private LineRenderer laser;
-
+    
     [HideInInspector] public bool onHands;
+    [HideInInspector] public int resourceAmount;
     [HideInInspector] public Camera mainCamera;
+    [HideInInspector] public bool recolectable;
 
     private bool placing;
+    private float savedExtractorTime; 
     private bool onRange;
     private bool executingMultitool;
     private GameObject gosht;
+    private GameObject gasZone;
     private Scr_AstronautMovement astronautMovement;
     private GameObject astronaut;
     private RaycastHit2D hit;
@@ -32,9 +39,15 @@ public class Scr_Tool : MonoBehaviour {
         astronautMovement = GameObject.Find("Astronaut").GetComponent<Scr_AstronautMovement>();
         astronaut = GameObject.Find("Astronaut");
         onHands = true;
+        savedExtractorTime = extractorTime;
+        resourceAmount = 0;
+        gasZone = null;
+        recolectable = false;
     }
 
 	void Update () {
+        print(resourceAmount);
+
         if (placing)
         {
             PutOnPlace();
@@ -43,6 +56,22 @@ public class Scr_Tool : MonoBehaviour {
         if (executingMultitool)
         {
             Multitool();
+        }
+
+        if(placeable && !onHands && recolectable)
+        {
+            savedExtractorTime -= Time.deltaTime;
+            if(savedExtractorTime <= 0)
+            {
+                resourceAmount += 1;
+                gasZone.GetComponent<Scr_GasZone>().amount -= 1;
+                savedExtractorTime = extractorTime;
+            }
+        }
+
+       if(gasZone == null)
+        {
+            recolectable = false;
         }
     }
 
@@ -70,6 +99,12 @@ public class Scr_Tool : MonoBehaviour {
             executingMultitool = !executingMultitool;
             laser.enabled = executingMultitool;
         }
+
+        if (jetpack)
+        {
+            astronautMovement.vectorJump = (astronaut.transform.position - astronautMovement.currentPlanet.transform.position).normalized * speedJetpack;
+            astronautMovement.jumping = true;
+        }
     }
 
     public void RecoverTool()
@@ -80,7 +115,7 @@ public class Scr_Tool : MonoBehaviour {
             {
                 if (astronaut.GetComponent<Scr_AstronautStats>().toolSlots[i] == null)
                 {
-                    astronaut.GetComponent<Scr_AstronautStats>().toolSlots[i] = gameObject;
+                    astronaut.GetComponent<Scr_AstronautStats>().toolSlots[i] = astronaut.GetComponent<Scr_AstronautsActions>().prefab;
                     astronaut.GetComponent<Scr_AstronautStats>().physicToolSlots[i] = gameObject;
                     transform.SetParent(null);
                     transform.position = astronaut.GetComponent<Scr_AstronautsActions>().pickPoint.position;
@@ -143,5 +178,23 @@ public class Scr_Tool : MonoBehaviour {
             laser.SetPosition(1, (transform.position + (transform.up * 0.01f)) + transform.right * -distance);
         }
 
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "GasZone")
+        {
+            recolectable = true;
+            gasZone = collision.gameObject;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "GasZone")
+        {
+            recolectable = false;
+            gasZone = null;
+        }
     }
 }

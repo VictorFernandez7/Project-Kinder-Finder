@@ -39,9 +39,9 @@ public class Scr_AstronautMovement : MonoBehaviour
     [HideInInspector] public Quaternion planetRotation;
     [HideInInspector] public GameObject currentPlanet;
     [HideInInspector] public GameObject currentFuelCollector;
+    [HideInInspector] public bool jumping;
+    [HideInInspector] public Vector3 vectorJump;
 
-    private bool facingRight;
-    private bool jumping;
     private bool toJump;
     private float timeAfterJump = 1f;
     private float savedTimeAfterJump = 1f;
@@ -51,7 +51,6 @@ public class Scr_AstronautMovement : MonoBehaviour
     private Vector2 pointRight;
     private Vector2 movementVector;
     private Vector2 lastVector;
-    private Vector3 vectorJump;
     private RaycastHit2D hitL;
     private RaycastHit2D hitR;
     private RaycastHit2D hitCentral;    
