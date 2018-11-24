@@ -36,6 +36,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     [HideInInspector] public bool faceRight;
     [HideInInspector] public bool breathable;
     [HideInInspector] public Vector3 planetPosition;    
+    [HideInInspector] public Quaternion planetRotation;
     [HideInInspector] public GameObject currentPlanet;
     [HideInInspector] public GameObject currentFuelCollector;
 
@@ -169,6 +170,8 @@ public class Scr_AstronautMovement : MonoBehaviour
         {
             transform.position += (currentPlanet.transform.position - planetPosition);
             planetPosition = currentPlanet.transform.position;
+            transform.RotateAround(currentPlanet.transform.position, Vector3.forward, currentPlanet.transform.rotation.eulerAngles.z - planetRotation.eulerAngles.z);
+            planetRotation = currentPlanet.transform.rotation;
         }
 
     }
