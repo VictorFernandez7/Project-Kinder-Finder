@@ -7,18 +7,25 @@ public class Scr_Tool : MonoBehaviour {
     [Header("Tool Info")]
     [SerializeField] public string toolName;
     [SerializeField] private LayerMask mask;
+    [SerializeField] private LayerMask masker;
+    [SerializeField] private bool placeable;
+    [SerializeField] private bool multitool;
+    [SerializeField] private float distance;
+    [SerializeField] private LineRenderer laser;
 
     [HideInInspector] public bool onHands;
     [HideInInspector] public Camera mainCamera;
 
     private bool placing;
     private bool onRange;
+    private bool executingMultitool;
     private GameObject gosht;
     private Scr_AstronautMovement astronautMovement;
     private GameObject astronaut;
     private RaycastHit2D hit;
     private RaycastHit2D hitR;
     private RaycastHit2D hitL;
+    private RaycastHit2D hitLaser;
 
     void Start () {
         mainCamera = GameObject.Find("MainCamera").GetComponent<Camera>();
@@ -32,22 +39,36 @@ public class Scr_Tool : MonoBehaviour {
         {
             PutOnPlace();
         }
+
+        if (executingMultitool)
+        {
+            Multitool();
+        }
     }
 
     public void UseTool()
     {
-        if (onHands)
+        if (placeable)
         {
-            placing = !placing;
+            if (onHands)
+            {
+                placing = !placing;
 
-            if (placing)
-            {
-                gosht = Instantiate(gameObject);
+                if (placing)
+                {
+                    gosht = Instantiate(gameObject);
+                }
+                else if (!placing)
+                {
+                    Destroy(gosht);
+                }
             }
-            else if (!placing)
-            {
-                Destroy(gosht);
-            }
+        }
+
+        if (multitool)
+        {
+            executingMultitool = !executingMultitool;
+            laser.enabled = executingMultitool;
         }
     }
 
@@ -105,5 +126,22 @@ public class Scr_Tool : MonoBehaviour {
             astronaut.GetComponent<Scr_AstronautStats>().physicToolSlots[astronaut.GetComponent<Scr_AstronautsActions>().numberToolActive] = null;
             astronaut.GetComponent<Scr_AstronautsActions>().BoolControl();
         }
+    }
+
+    private void Multitool()
+    {
+        hitLaser = Physics2D.Raycast(transform.position + (transform.up * 0.01f), transform.right, distance, masker);
+
+        laser.SetPosition(0, transform.position + (transform.up * 0.01f));
+
+        if (hitLaser)
+        {
+            laser.SetPosition(1, hitLaser.point);
+        }
+        else
+        {
+            laser.SetPosition(1, (transform.position + (transform.up * 0.01f)) + transform.right * -distance);
+        }
+
     }
 }
