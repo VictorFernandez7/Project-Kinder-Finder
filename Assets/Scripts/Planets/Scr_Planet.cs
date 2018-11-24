@@ -11,15 +11,16 @@ public class Scr_Planet : MonoBehaviour
     [SerializeField] private float movementSpeed;
     [SerializeField] float maxClampDistance;
     [SerializeField] float minClampDistance;
+    [SerializeField] [Range(-0.1f, 0.1f)]float rotationSpeed;
 
     [Header("References")]
     [SerializeField] private GameObject mapIndicator;
     [SerializeField] private GameObject directionIndicator;
     [SerializeField] private GameObject mapVisuals;
+    [SerializeField] private GameObject rotationPivot;
 
     private double gravityConstant;
     private Vector3 lastFrameRotationPivot;
-    private GameObject rotationPivot;
     private GameObject playerShip;
     private GameObject astronaut;
     private GameObject mainCanvas;
@@ -32,7 +33,6 @@ public class Scr_Planet : MonoBehaviour
     {
         playerShip = GameObject.Find("PlayerShip");
         astronaut = GameObject.Find("Astronaut");
-        rotationPivot = GameObject.Find("Pivot");
         mainCanvas = GameObject.Find("MainCanvas");
         mapManager = GameObject.Find("MapManager").GetComponent<Scr_MapManager>();
 
@@ -51,6 +51,8 @@ public class Scr_Planet : MonoBehaviour
         lastFrameRotationPivot = rotationPivot.transform.position;
 
         transform.RotateAround(lastFrameRotationPivot, Vector3.forward, movementSpeed * Time.fixedDeltaTime);
+
+        transform.Rotate(new Vector3(0f, 0f, rotationSpeed), Space.Self);
 
         if (playerShip.GetComponent<Scr_PlayerShipMovement>().onGround == false)
         {
