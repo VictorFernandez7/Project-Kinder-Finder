@@ -2638,6 +2638,7 @@ GameObject:
   - component: {fileID: 222966690985286186}
   - component: {fileID: 114306306239118464}
   - component: {fileID: 114565897504875146}
+  - component: {fileID: 114768509184946556}
   m_Layer: 0
   m_Name: BuyUpgradeButton
   m_TagString: Untagged
@@ -3408,11 +3409,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -3613,11 +3614,17 @@ MonoBehaviour:
   descriptionImage: {fileID: 0}
   requirements: 
   price: 
+  givesUpgrade: 0
+  isRepairingTool: 0
+  isExtractor: 0
+  isJetpack: 0
+  cantBuyThis: 1
   upgradeNameText: {fileID: 114703304338732608}
   descriptionText: {fileID: 114798029335330624}
   descriptionImageImage: {fileID: 114863134971969468}
   requirementsText: {fileID: 114576944711063988}
   priceText: {fileID: 114762303981748304}
+  upgradeButton: {fileID: 114768509184946556}
 --- !u!114 &114028227605223686
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3713,11 +3720,17 @@ MonoBehaviour:
   descriptionImage: {fileID: 0}
   requirements: '- No requirements needed to build.'
   price: '- X resources.'
+  givesUpgrade: 1
+  isRepairingTool: 0
+  isExtractor: 1
+  isJetpack: 0
+  cantBuyThis: 0
   upgradeNameText: {fileID: 114703304338732608}
   descriptionText: {fileID: 114798029335330624}
   descriptionImageImage: {fileID: 114863134971969468}
   requirementsText: {fileID: 114576944711063988}
   priceText: {fileID: 114762303981748304}
+  upgradeButton: {fileID: 114768509184946556}
 --- !u!114 &114037746178339704
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3915,11 +3928,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -4224,11 +4237,17 @@ MonoBehaviour:
   descriptionImage: {fileID: 0}
   requirements: 
   price: 
+  givesUpgrade: 0
+  isRepairingTool: 0
+  isExtractor: 0
+  isJetpack: 0
+  cantBuyThis: 1
   upgradeNameText: {fileID: 114703304338732608}
   descriptionText: {fileID: 114798029335330624}
   descriptionImageImage: {fileID: 114863134971969468}
   requirementsText: {fileID: 114576944711063988}
   priceText: {fileID: 114762303981748304}
+  upgradeButton: {fileID: 114768509184946556}
 --- !u!114 &114060231128357838
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4379,11 +4398,17 @@ MonoBehaviour:
   descriptionImage: {fileID: 0}
   requirements: '- You need to build the spacesuit module of the ship first.'
   price: '- X resources.'
+  givesUpgrade: 0
+  isRepairingTool: 0
+  isExtractor: 0
+  isJetpack: 0
+  cantBuyThis: 1
   upgradeNameText: {fileID: 114703304338732608}
   descriptionText: {fileID: 114798029335330624}
   descriptionImageImage: {fileID: 0}
   requirementsText: {fileID: 114576944711063988}
   priceText: {fileID: 114762303981748304}
+  upgradeButton: {fileID: 114768509184946556}
 --- !u!114 &114091422903162410
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4513,11 +4538,17 @@ MonoBehaviour:
   descriptionImage: {fileID: 0}
   requirements: '- No requirements needed to build.'
   price: '- X resources.'
+  givesUpgrade: 0
+  isRepairingTool: 0
+  isExtractor: 0
+  isJetpack: 0
+  cantBuyThis: 1
   upgradeNameText: {fileID: 114703304338732608}
   descriptionText: {fileID: 114798029335330624}
   descriptionImageImage: {fileID: 114863134971969468}
   requirementsText: {fileID: 114576944711063988}
   priceText: {fileID: 114762303981748304}
+  upgradeButton: {fileID: 114768509184946556}
 --- !u!114 &114109320672253244
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5950,11 +5981,17 @@ MonoBehaviour:
   descriptionImage: {fileID: 0}
   requirements: '- You need to build the spacesuit module of the ship first.'
   price: '- X resources.'
+  givesUpgrade: 0
+  isRepairingTool: 0
+  isExtractor: 0
+  isJetpack: 0
+  cantBuyThis: 1
   upgradeNameText: {fileID: 114703304338732608}
   descriptionText: {fileID: 114798029335330624}
   descriptionImageImage: {fileID: 0}
   requirementsText: {fileID: 114576944711063988}
   priceText: {fileID: 114762303981748304}
+  upgradeButton: {fileID: 114768509184946556}
 --- !u!114 &114275434463873406
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6693,11 +6730,17 @@ MonoBehaviour:
   descriptionImage: {fileID: 0}
   requirements: '- No requirements needed to build.'
   price: '- X resources.'
+  givesUpgrade: 0
+  isRepairingTool: 0
+  isExtractor: 0
+  isJetpack: 0
+  cantBuyThis: 1
   upgradeNameText: {fileID: 114703304338732608}
   descriptionText: {fileID: 114798029335330624}
   descriptionImageImage: {fileID: 114863134971969468}
   requirementsText: {fileID: 114576944711063988}
   priceText: {fileID: 114762303981748304}
+  upgradeButton: {fileID: 114768509184946556}
 --- !u!114 &114329482756006156
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6820,11 +6863,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -6968,11 +7011,17 @@ MonoBehaviour:
   descriptionImage: {fileID: 0}
   requirements: '- You need to build the spacesuit module of the ship first.'
   price: '- X resources.'
+  givesUpgrade: 0
+  isRepairingTool: 0
+  isExtractor: 0
+  isJetpack: 0
+  cantBuyThis: 1
   upgradeNameText: {fileID: 114703304338732608}
   descriptionText: {fileID: 114798029335330624}
   descriptionImageImage: {fileID: 0}
   requirementsText: {fileID: 114576944711063988}
   priceText: {fileID: 114762303981748304}
+  upgradeButton: {fileID: 114768509184946556}
 --- !u!114 &114354932561554696
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7237,11 +7286,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -7693,11 +7742,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -9155,7 +9204,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114306306239118464}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114768509184946556}
+        m_MethodName: BuyUpgrade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114567489704763376
@@ -9253,11 +9313,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -9688,11 +9748,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -9963,11 +10023,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -10076,11 +10136,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -10368,7 +10428,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 114174507673412194}
   m_OnClick:
     m_PersistentCalls:
@@ -10466,11 +10526,17 @@ MonoBehaviour:
   descriptionImage: {fileID: 0}
   requirements: '- You need to build the spacesuit module of the ship first.'
   price: '- X resources.'
+  givesUpgrade: 0
+  isRepairingTool: 0
+  isExtractor: 0
+  isJetpack: 0
+  cantBuyThis: 1
   upgradeNameText: {fileID: 114703304338732608}
   descriptionText: {fileID: 114798029335330624}
   descriptionImageImage: {fileID: 0}
   requirementsText: {fileID: 114576944711063988}
   priceText: {fileID: 114762303981748304}
+  upgradeButton: {fileID: 114768509184946556}
 --- !u!114 &114641723305500866
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10566,11 +10632,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -10835,11 +10901,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -11113,11 +11179,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -11307,11 +11373,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -11783,11 +11849,17 @@ MonoBehaviour:
   descriptionImage: {fileID: 0}
   requirements: '- You need to build the spacesuit module of the ship first.'
   price: '- X resources.'
+  givesUpgrade: 0
+  isRepairingTool: 0
+  isExtractor: 0
+  isJetpack: 0
+  cantBuyThis: 1
   upgradeNameText: {fileID: 114703304338732608}
   descriptionText: {fileID: 114798029335330624}
   descriptionImageImage: {fileID: 0}
   requirementsText: {fileID: 114576944711063988}
   priceText: {fileID: 114762303981748304}
+  upgradeButton: {fileID: 114768509184946556}
 --- !u!114 &114726482229433958
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12501,11 +12573,33 @@ MonoBehaviour:
   descriptionImage: {fileID: 0}
   requirements: '- No requirements needed to build.'
   price: '- X resources.'
+  givesUpgrade: 1
+  isRepairingTool: 0
+  isExtractor: 0
+  isJetpack: 1
+  cantBuyThis: 0
   upgradeNameText: {fileID: 114703304338732608}
   descriptionText: {fileID: 114798029335330624}
   descriptionImageImage: {fileID: 114863134971969468}
   requirementsText: {fileID: 114576944711063988}
   priceText: {fileID: 114762303981748304}
+  upgradeButton: {fileID: 114768509184946556}
+--- !u!114 &114768509184946556
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1879451302933978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1223339ac865299438abc8bdceb074d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disabledColor: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 1}
+  enabledColor: {r: 0, g: 0.7058824, b: 0.10980393, a: 1}
+  notActive: 0
+  giveUpgrade: 0
+  upgrade: 0
 --- !u!114 &114781569969982404
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12639,11 +12733,17 @@ MonoBehaviour:
   descriptionImage: {fileID: 0}
   requirements: '- No requirements needed to build.'
   price: '- X resources.'
+  givesUpgrade: 1
+  isRepairingTool: 1
+  isExtractor: 0
+  isJetpack: 0
+  cantBuyThis: 0
   upgradeNameText: {fileID: 114703304338732608}
   descriptionText: {fileID: 114798029335330624}
   descriptionImageImage: {fileID: 114863134971969468}
   requirementsText: {fileID: 114576944711063988}
   priceText: {fileID: 114762303981748304}
+  upgradeButton: {fileID: 114768509184946556}
 --- !u!114 &114798029335330624
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -13072,11 +13172,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -13212,11 +13312,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -13437,11 +13537,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -13602,11 +13702,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -14016,7 +14116,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 114903988555493270}
   m_OnClick:
     m_PersistentCalls:
@@ -14062,11 +14162,17 @@ MonoBehaviour:
   descriptionImage: {fileID: 0}
   requirements: '- Meet an alien.'
   price: '- X alien resource.'
+  givesUpgrade: 0
+  isRepairingTool: 0
+  isExtractor: 0
+  isJetpack: 0
+  cantBuyThis: 1
   upgradeNameText: {fileID: 114703304338732608}
   descriptionText: {fileID: 114798029335330624}
   descriptionImageImage: {fileID: 114863134971969468}
   requirementsText: {fileID: 114576944711063988}
   priceText: {fileID: 114762303981748304}
+  upgradeButton: {fileID: 114768509184946556}
 --- !u!114 &114909287714969652
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -14719,11 +14825,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -16500,7 +16606,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0.000061035156, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 599.5, y: 555.6}
   m_Pivot: {x: 1, y: 0}
 --- !u!224 &224145407331620114
@@ -17361,7 +17467,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.00012207031, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 567.9, y: 408.59998}
   m_Pivot: {x: 0, y: 0}
 --- !u!224 &224417775855809090
@@ -18323,7 +18429,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.054382324, y: -59.593994}
+  m_AnchoredPosition: {x: -0.05419922, y: -59.593987}
   m_SizeDelta: {x: 0, y: -119.18}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224645388883252130
@@ -18749,7 +18855,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0.00012207031, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 782.30005, y: 577.9}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &224739975124431120
@@ -19052,7 +19158,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.00012207031, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 557.9, y: 535.7}
   m_Pivot: {x: 0, y: 0}
 --- !u!224 &224855475066111086
@@ -19163,7 +19269,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00012207031, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224909215813158052
@@ -19182,7 +19288,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -0.00012207031, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 603.4, y: 535.6}
   m_Pivot: {x: 1, y: 0}
 --- !u!224 &224927571811770362

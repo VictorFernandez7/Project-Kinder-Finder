@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aada712cbdce29d44ae90e9a99e49089, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toolName: Multitool
+  toolName: Jetpack
   mask:
     serializedVersion: 2
     m_Bits: 1024
@@ -104,16 +104,17 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   placeable: 0
-  multitool: 1
-  jetpack: 0
+  multitool: 0
+  jetpack: 1
   distance: 0.08
-  speedJetpack: 0
+  speedJetpack: 0.02
   extractorTime: 0
   laser: {fileID: 120982139196981936}
   onHands: 0
   resourceAmount: 0
   mainCamera: {fileID: 0}
   recolectable: 0
+  resource: {fileID: 0}
 --- !u!120 &120982139196981936
 LineRenderer:
   m_ObjectHideFlags: 1
