@@ -193,7 +193,7 @@ public class Scr_AstronautMovement : MonoBehaviour
             canEnterShip = false;
 
         if (collision.gameObject.tag == "Tool")
-            closeToCollector = true;
+            closeToCollector = false;
     }
 
     private void Move(bool right, float movement)

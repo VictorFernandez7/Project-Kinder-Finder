@@ -20,6 +20,7 @@ public class Scr_Tool : MonoBehaviour {
     [HideInInspector] public int resourceAmount;
     [HideInInspector] public Camera mainCamera;
     [HideInInspector] public bool recolectable;
+    [HideInInspector] public GameObject resource;
 
     private bool placing;
     private float savedExtractorTime; 
@@ -186,6 +187,7 @@ public class Scr_Tool : MonoBehaviour {
         {
             recolectable = true;
             gasZone = collision.gameObject;
+            resource = gasZone.GetComponent<Scr_GasZone>().resource;
         }
     }
 
