@@ -412,8 +412,13 @@ MonoBehaviour:
   fuelBlock: {fileID: 1231448540965128, guid: 81cfcdd80a0ddd340bbde83adf93d86d, type: 2}
   spawnPoint: {fileID: 4412191580725764}
   pickPoint: {fileID: 4973946125739948}
+  toolPanel: {fileID: 0}
+  prefab: {fileID: 1195437349475892, guid: 6f05530aaa756d94d92bb623e0edb6ef, type: 2}
   getIntoTheShipSound: {fileID: 0}
   emptyHands: 1
+  toolOnHands: 0
+  numberToolActive: 0
+  toolOnFloor: {fileID: 0}
 --- !u!114 &114755716893654776
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -446,8 +451,11 @@ MonoBehaviour:
   faceRight: 0
   breathable: 0
   planetPosition: {x: 0, y: 0, z: 0}
+  planetRotation: {x: 0, y: 0, z: 0, w: 0}
   currentPlanet: {fileID: 0}
   currentFuelCollector: {fileID: 0}
+  jumping: 0
+  vectorJump: {x: 0, y: 0, z: 0}
 --- !u!114 &114844797242794480
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -460,12 +468,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oxygenCapacity: 200
-  textToolSlots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   toolSlots:
   - {fileID: 1195437349475892, guid: 6f05530aaa756d94d92bb623e0edb6ef, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  physicToolSlots:
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   currentOxygen: 0
