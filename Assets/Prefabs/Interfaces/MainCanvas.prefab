@@ -292,6 +292,7 @@ GameObject:
   - component: {fileID: 222294375498696830}
   - component: {fileID: 114014661339795130}
   - component: {fileID: 114790710467105920}
+  - component: {fileID: 114027987629359672}
   m_Layer: 0
   m_Name: StoryNode3
   m_TagString: Untagged
@@ -375,6 +376,7 @@ GameObject:
   - component: {fileID: 222338290080548512}
   - component: {fileID: 114436297654516060}
   - component: {fileID: 114504377803937888}
+  - component: {fileID: 114792244114623422}
   m_Layer: 0
   m_Name: ToolsNode1
   m_TagString: Untagged
@@ -462,7 +464,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1137404273674250
 GameObject:
   m_ObjectHideFlags: 1
@@ -829,7 +831,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1287533142665982
 GameObject:
   m_ObjectHideFlags: 1
@@ -1301,6 +1303,7 @@ GameObject:
   - component: {fileID: 222326522438455054}
   - component: {fileID: 114903988555493270}
   - component: {fileID: 114906711382720624}
+  - component: {fileID: 114099965636475196}
   m_Layer: 0
   m_Name: ToolsNode4
   m_TagString: Untagged
@@ -1471,6 +1474,7 @@ GameObject:
   - component: {fileID: 222862553218878634}
   - component: {fileID: 114689453903525340}
   - component: {fileID: 114407956440573800}
+  - component: {fileID: 114907491771364404}
   m_Layer: 0
   m_Name: StoryNode1
   m_TagString: Untagged
@@ -1573,6 +1577,7 @@ GameObject:
   - component: {fileID: 222636990807974624}
   - component: {fileID: 114075520617417934}
   - component: {fileID: 114386527967788198}
+  - component: {fileID: 114036894513970414}
   m_Layer: 0
   m_Name: ToolsNode3
   m_TagString: Untagged
@@ -2197,6 +2202,7 @@ GameObject:
   - component: {fileID: 222263004812939748}
   - component: {fileID: 114825117159385696}
   - component: {fileID: 114239021507801478}
+  - component: {fileID: 114768022249510198}
   m_Layer: 0
   m_Name: ToolsNode2
   m_TagString: Untagged
@@ -2735,6 +2741,7 @@ GameObject:
   - component: {fileID: 222937237804306984}
   - component: {fileID: 114174507673412194}
   - component: {fileID: 114628763313640684}
+  - component: {fileID: 114326003565912556}
   m_Layer: 0
   m_Name: ToolsNode5
   m_TagString: Untagged
@@ -2855,6 +2862,7 @@ GameObject:
   - component: {fileID: 222758958006681200}
   - component: {fileID: 114862390255873754}
   - component: {fileID: 114575864856905428}
+  - component: {fileID: 114058739051008778}
   m_Layer: 0
   m_Name: StoryNode2
   m_TagString: Untagged
@@ -3509,6 +3517,27 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114027987629359672
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1083183198110730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24c097a3b8665b34cb102f8f4e4ce30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeName: 
+  description: 
+  descriptionImage: {fileID: 0}
+  requirements: 
+  price: 
+  upgradeNameText: {fileID: 114703304338732608}
+  descriptionText: {fileID: 114798029335330624}
+  descriptionImageImage: {fileID: 114863134971969468}
+  requirementsText: {fileID: 114576944711063988}
+  priceText: {fileID: 114762303981748304}
 --- !u!114 &114028227605223686
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3577,6 +3606,27 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114036894513970414
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1528466500617650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24c097a3b8665b34cb102f8f4e4ce30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeName: Gas Extractor
+  description: "\tDeploy one of this in gas zone to extract resources such as fuel."
+  descriptionImage: {fileID: 0}
+  requirements: '- No requirements needed to build.'
+  price: '- X resources.'
+  upgradeNameText: {fileID: 114703304338732608}
+  descriptionText: {fileID: 114798029335330624}
+  descriptionImageImage: {fileID: 114863134971969468}
+  requirementsText: {fileID: 114576944711063988}
+  priceText: {fileID: 114762303981748304}
 --- !u!114 &114037746178339704
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4049,11 +4099,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -4067,6 +4117,27 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &114058739051008778
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1954200945858572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24c097a3b8665b34cb102f8f4e4ce30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeName: 
+  description: 
+  descriptionImage: {fileID: 0}
+  requirements: 
+  price: 
+  upgradeNameText: {fileID: 114703304338732608}
+  descriptionText: {fileID: 114798029335330624}
+  descriptionImageImage: {fileID: 114863134971969468}
+  requirementsText: {fileID: 114576944711063988}
+  priceText: {fileID: 114762303981748304}
 --- !u!114 &114060231128357838
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4324,6 +4395,27 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &114099965636475196
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1464486693409234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24c097a3b8665b34cb102f8f4e4ce30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeName: Solid Extractor
+  description: 
+  descriptionImage: {fileID: 0}
+  requirements: '- No requirements needed to build.'
+  price: '- X resources.'
+  upgradeNameText: {fileID: 114703304338732608}
+  descriptionText: {fileID: 114798029335330624}
+  descriptionImageImage: {fileID: 114863134971969468}
+  requirementsText: {fileID: 114576944711063988}
+  priceText: {fileID: 114762303981748304}
 --- !u!114 &114109320672253244
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4996,11 +5088,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -5359,7 +5451,29 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114825117159385696}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114768022249510198}
+        m_MethodName: ApplyTextChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1285574339643096}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114240799446276874
@@ -6336,6 +6450,27 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114326003565912556
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1910802557957656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24c097a3b8665b34cb102f8f4e4ce30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeName: Liquid Extractor
+  description: 
+  descriptionImage: {fileID: 0}
+  requirements: '- No requirements needed to build.'
+  price: '- X resources.'
+  upgradeNameText: {fileID: 114703304338732608}
+  descriptionText: {fileID: 114798029335330624}
+  descriptionImageImage: {fileID: 114863134971969468}
+  requirementsText: {fileID: 114576944711063988}
+  priceText: {fileID: 114762303981748304}
 --- !u!114 &114329482756006156
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6571,11 +6706,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -6972,7 +7107,29 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114075520617417934}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114036894513970414}
+        m_MethodName: ApplyTextChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1285574339643096}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114392280736624548
@@ -7354,7 +7511,29 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114689453903525340}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114907491771364404}
+        m_MethodName: ApplyTextChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1285574339643096}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114422282150946764
@@ -8049,7 +8228,29 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114436297654516060}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114792244114623422}
+        m_MethodName: ApplyTextChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1285574339643096}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114516679666240810
@@ -8975,11 +9176,33 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 114862390255873754}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114058739051008778}
+        m_MethodName: ApplyTextChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1285574339643096}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114576944711063988
@@ -9081,11 +9304,11 @@ MonoBehaviour:
     lineCount: 3
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -9747,11 +9970,33 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 114174507673412194}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114326003565912556}
+        m_MethodName: ApplyTextChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1285574339643096}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114635847710296334
@@ -10755,11 +11000,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -11083,11 +11328,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -11677,11 +11922,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -11808,6 +12053,28 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &114768022249510198
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1747867296820066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24c097a3b8665b34cb102f8f4e4ce30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeName: Jetpack
+  description: "\tWith this tool the astronaut will be able to reach high zones such
+    as mountains."
+  descriptionImage: {fileID: 0}
+  requirements: '- No requirements needed to build.'
+  price: '- X resources.'
+  upgradeNameText: {fileID: 114703304338732608}
+  descriptionText: {fileID: 114798029335330624}
+  descriptionImageImage: {fileID: 114863134971969468}
+  requirementsText: {fileID: 114576944711063988}
+  priceText: {fileID: 114762303981748304}
 --- !u!114 &114781569969982404
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11896,13 +12163,56 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 114014661339795130}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114027987629359672}
+        m_MethodName: ApplyTextChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1285574339643096}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114792244114623422
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1106694631411644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24c097a3b8665b34cb102f8f4e4ce30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeName: Repairing Tool
+  description: "\tThis tool can be used to repair the space ship shield when damaged."
+  descriptionImage: {fileID: 0}
+  requirements: '- No requirements needed to build.'
+  price: '- X resources.'
+  upgradeNameText: {fileID: 114703304338732608}
+  descriptionText: {fileID: 114798029335330624}
+  descriptionImageImage: {fileID: 114863134971969468}
+  requirementsText: {fileID: 114576944711063988}
+  priceText: {fileID: 114762303981748304}
 --- !u!114 &114798029335330624
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12003,11 +12313,11 @@ MonoBehaviour:
     lineCount: 8
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -13231,13 +13541,57 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 114903988555493270}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114099965636475196}
+        m_MethodName: ApplyTextChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1285574339643096}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114907491771364404
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1495974529081392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24c097a3b8665b34cb102f8f4e4ce30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeName: Idiomatic Adapter
+  description: "\tThis tool will allow you to understand foreign alien languages and
+    speak them."
+  descriptionImage: {fileID: 0}
+  requirements: '- Meet an alien.'
+  price: '- X alien resource.'
+  upgradeNameText: {fileID: 114703304338732608}
+  descriptionText: {fileID: 114798029335330624}
+  descriptionImageImage: {fileID: 114863134971969468}
+  requirementsText: {fileID: 114576944711063988}
+  priceText: {fileID: 114762303981748304}
 --- !u!114 &114909287714969652
 MonoBehaviour:
   m_ObjectHideFlags: 1
