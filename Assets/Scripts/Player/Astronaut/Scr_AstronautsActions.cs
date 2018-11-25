@@ -32,15 +32,11 @@ public class Scr_AstronautsActions : MonoBehaviour
     private Scr_AstronautMovement astronautMovement;
     private Scr_AstronautStats astronautStats;
     private GameObject currentFuelBLock;
-    private Animator mainCanvasAnim;
-    private Animator speedAnim;
 
     private void Start()
     {
         playerShip = GameObject.Find("PlayerShip");
         mainCamera = GameObject.Find("MainCamera");
-        mainCanvasAnim = GameObject.Find("MainCanvas").GetComponent<Animator>();
-        speedAnim = GameObject.Find("SpeedPanel").GetComponent<Animator>();
 
         astronautMovement = GetComponent<Scr_AstronautMovement>();
         astronautStats = GetComponent<Scr_AstronautStats>();
@@ -62,9 +58,6 @@ public class Scr_AstronautsActions : MonoBehaviour
                 playerShip.GetComponent<Scr_PlayerShipActions>().startExitDelay = true;
                 playerShip.GetComponent<Scr_PlayerShipMovement>().canControlShip = true;
                 mainCamera.GetComponent<Scr_MainCamera>().followAstronaut = false;
-                mainCanvasAnim.SetBool("OnBoard", true);
-                speedAnim.SetTrigger("Activate");
-                speedAnim.SetBool("Active", true);
                 astronautMovement.keep = true;
                 DestroyAllTools();
                 toolPanel.ReadNames();
@@ -145,6 +138,7 @@ public class Scr_AstronautsActions : MonoBehaviour
             {
                 astronautStats.physicToolSlots[indice].SetActive(false);
             }
+
             else if (toolOnHands && emptyHands)
             {
                 astronautStats.physicToolSlots[numberToolActive].SetActive(false);
@@ -163,7 +157,6 @@ public class Scr_AstronautsActions : MonoBehaviour
             {
                 Destroy(astronautStats.physicToolSlots[i]);
             }
-
         }
     }
 
