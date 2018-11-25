@@ -16,8 +16,8 @@ public class Scr_UpgradeButton : MonoBehaviour
     [HideInInspector] public bool notActive;
     [HideInInspector] public bool giveUpgrade;
     [HideInInspector] public int upgrade;
+    [HideInInspector] public bool canBeChanged;
 
-    private bool canBeChanged;
     private Scr_PlayerShipStats playerShipStats;
 
     private void Start()
