@@ -20,6 +20,9 @@ public class Scr_InterfaceManager : MonoBehaviour
     private Animator anim_PlayerShipWindow;
     private Animator anim_FadeImage;
 
+    private GameObject astronautControls;
+    private GameObject playerShipControls;
+
     private Scr_MainCamera mainCamera;
     private Scr_PlayerShipMovement playerShipMovement;
 
@@ -32,11 +35,16 @@ public class Scr_InterfaceManager : MonoBehaviour
         anim_PlayerShipWindow = GameObject.Find("PlayerShipWindow").GetComponent<Animator>();
         anim_FadeImage = GameObject.Find("FadeImage").GetComponent<Animator>();
 
+        astronautControls = GameObject.Find("AstronautControls");
+        playerShipControls = GameObject.Find("PlayerShipControls");
+
         mainCamera = GameObject.Find("MainCamera").GetComponent<Scr_MainCamera>();
         playerShipMovement = GameObject.Find("PlayerShip").GetComponent<Scr_PlayerShipMovement>();
 
         anim_AstronautInterface.SetBool("Show", true);
         anim_FadeImage.SetBool("Fade", true);
+
+        playerShipControls.SetActive(false);
     }
 
     private void Update()
@@ -56,6 +64,9 @@ public class Scr_InterfaceManager : MonoBehaviour
             anim_AstronautInterface.SetBool("Show", false);
             anim_PlayerShipInterface.SetBool("Show", true);
             anim_PlayerShipActions.SetBool("InsideShip", true);
+
+            playerShipControls.SetActive(true);
+            astronautControls.SetActive(false);
         }
 
         else
@@ -63,6 +74,9 @@ public class Scr_InterfaceManager : MonoBehaviour
             anim_AstronautInterface.SetBool("Show", true);
             anim_PlayerShipInterface.SetBool("Show", false);
             anim_PlayerShipActions.SetBool("InsideShip", false);
+
+            playerShipControls.SetActive(false);
+            astronautControls.SetActive(true);
         }
     }
 
