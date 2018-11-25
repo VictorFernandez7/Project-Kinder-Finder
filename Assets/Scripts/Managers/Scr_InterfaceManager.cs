@@ -10,6 +10,7 @@ public class Scr_InterfaceManager : MonoBehaviour
     [SerializeField] private KeyCode input_QuestPanel;
     [SerializeField] private KeyCode input_PlayerShipWindow;
 
+    private bool showControls;
     private bool questPanelActive;
     private bool playerShipWindowActive;
 
@@ -45,6 +46,8 @@ public class Scr_InterfaceManager : MonoBehaviour
         anim_FadeImage.SetBool("Fade", true);
 
         playerShipControls.SetActive(false);
+
+        showControls = true;
     }
 
     private void Update()
@@ -64,9 +67,6 @@ public class Scr_InterfaceManager : MonoBehaviour
             anim_AstronautInterface.SetBool("Show", false);
             anim_PlayerShipInterface.SetBool("Show", true);
             anim_PlayerShipActions.SetBool("InsideShip", true);
-
-            playerShipControls.SetActive(true);
-            astronautControls.SetActive(false);
         }
 
         else
@@ -74,9 +74,18 @@ public class Scr_InterfaceManager : MonoBehaviour
             anim_AstronautInterface.SetBool("Show", true);
             anim_PlayerShipInterface.SetBool("Show", false);
             anim_PlayerShipActions.SetBool("InsideShip", false);
+        }
 
+        if (showControls)
+        {
+            playerShipControls.SetActive(playerShipMovement.astronautOnBoard);
+            astronautControls.SetActive(!playerShipMovement.astronautOnBoard);
+        }
+
+        else
+        {
             playerShipControls.SetActive(false);
-            astronautControls.SetActive(true);
+            astronautControls.SetActive(false);
         }
     }
 
@@ -92,6 +101,8 @@ public class Scr_InterfaceManager : MonoBehaviour
         {
             playerShipWindowActive = !playerShipWindowActive;
             anim_PlayerShipWindow.SetBool("Show", playerShipWindowActive);
+
+            showControls = !showControls;
         }
     }
 
