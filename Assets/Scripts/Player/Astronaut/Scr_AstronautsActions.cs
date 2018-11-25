@@ -81,10 +81,9 @@ public class Scr_AstronautsActions : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E) && astronautMovement.closeToCollector && astronautMovement.currentFuelCollector != null)
         {
-            if (astronautMovement.currentFuelCollector.GetComponent<Scr_FuelCollector>().canCollect)
+           if(emptyHands && !toolOnHands)
             {
-                astronautMovement.currentFuelCollector.GetComponent<Scr_FuelCollector>().CollectFuel();
-                CollectFuel();
+
             }
         }
 
