@@ -40,6 +40,7 @@ public class Scr_MapManager : MonoBehaviour
         mapCanvas = GameObject.Find("MapCanvas");
 
         mapCanvas.SetActive(false);
+        currentTarget = null;
     }
 
     private void Update()
@@ -108,8 +109,8 @@ public class Scr_MapManager : MonoBehaviour
         difference.Normalize();
 
         float rotation_z = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-        directionIndicator.transform.rotation = Quaternion.Euler(0f, 0f, rotation_z + 90f);
+        directionIndicator.transform.rotation = Quaternion.Euler(0f, 0f, rotation_z + 90f - mainCamera.transform.rotation.eulerAngles.z);
 
-        directionIndicator.transform.localPosition = new Vector3(0, 0, 0f) + ((currentTarget.transform.position - playerShip.transform.position).normalized * distance);
+        directionIndicator.transform.localPosition = -directionIndicator.transform.up * distance;
     }
 }
