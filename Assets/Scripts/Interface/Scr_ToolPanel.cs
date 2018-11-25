@@ -31,7 +31,7 @@ public class Scr_ToolPanel : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        ReadNames();
 	}
 
     private void boolControl()
@@ -80,7 +80,6 @@ public class Scr_ToolPanel : MonoBehaviour {
             playerShipActions.TakeTool(warehouseNumber, indice);
             playerShipStats.toolWarehouse[warehouseNumber] = temporalObject;
             ReadNames();
-            ReadNames();
             warehouses[warehouseNumber] = false;
         }
 
@@ -108,7 +107,6 @@ public class Scr_ToolPanel : MonoBehaviour {
             playerShipActions.SaveTool(slotNumber, indice);
             astronautStats.toolSlots[slotNumber] = temporalObject;
             ReadNames();
-            ReadNames();
             slots[slotNumber] = false;
         }
 
@@ -120,7 +118,7 @@ public class Scr_ToolPanel : MonoBehaviour {
         for (int i = 0; i < astronautStats.toolSlots.Length; i++)
         {
             if (astronautStats.toolSlots[i] == null)
-                textToolSlots[i].text = "null";
+                textToolSlots[i].text = "Empty";
             else
                 textToolSlots[i].text = astronautStats.toolSlots[i].GetComponent<Scr_Tool>().toolName;
         }
@@ -128,7 +126,7 @@ public class Scr_ToolPanel : MonoBehaviour {
         for (int i = 0; i < playerShipStats.toolWarehouse.Length; i++)
         {
             if (playerShipStats.toolWarehouse[i] == null)
-                textToolWarehouse[i].text = "null";
+                textToolWarehouse[i].text = "Empty";
             else
                 textToolWarehouse[i].text = playerShipStats.toolWarehouse[i].GetComponent<Scr_Tool>().toolName;
         }

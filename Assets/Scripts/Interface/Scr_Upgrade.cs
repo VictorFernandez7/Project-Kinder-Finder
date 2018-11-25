@@ -45,13 +45,25 @@ public class Scr_Upgrade : MonoBehaviour
             upgradeButton.giveUpgrade = true;
 
             if (isRepairingTool)
+            {
                 upgradeButton.upgrade = 1;
+                upgradeButton.canBeChanged = true;
+                upgradeButton.notActive = false;
+            }
 
             else if (isExtractor)
+            {
                 upgradeButton.upgrade = 2;
+                upgradeButton.canBeChanged = true;
+                upgradeButton.notActive = false;
+            }
 
             else if (isJetpack)
+            {
                 upgradeButton.upgrade = 3;
+                upgradeButton.canBeChanged = true;
+                upgradeButton.notActive = false;
+            }
 
             else
                 upgradeButton.upgrade = 0;
