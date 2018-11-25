@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 
 public class Scr_InterfaceManager : MonoBehaviour
 {
@@ -78,5 +79,14 @@ public class Scr_InterfaceManager : MonoBehaviour
             playerShipWindowActive = !playerShipWindowActive;
             anim_PlayerShipWindow.SetBool("Show", playerShipWindowActive);
         }
+    }
+
+    public void ChangeTextColor(TextMeshProUGUI currentSelected)
+    {
+        if (currentSelected.color == Color.black)
+            currentSelected.color = Color.white;
+
+        else
+            currentSelected.color = Color.black;
     }
 }
