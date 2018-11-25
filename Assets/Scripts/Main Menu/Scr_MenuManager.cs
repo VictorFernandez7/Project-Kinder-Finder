@@ -27,6 +27,9 @@ public class Scr_MenuManager : MonoBehaviour
     [SerializeField] private Animator exitCrash;
     [SerializeField] private Animator backText;
 
+    [Header("Other References")]
+    [SerializeField] private Animator fadeImage;
+
     private bool moveToSpot;
     private bool mainMenu;
     private Vector3 currentCameraSpot;
@@ -41,6 +44,8 @@ public class Scr_MenuManager : MonoBehaviour
     {
         mainCamera = GameObject.Find("MainCamera");
         backPlanet = GameObject.Find("BackPlanet");
+
+        fadeImage.SetBool("Fade", true);
 
         initialCameraSpot = mainCamera.transform.position;
         initialBackSpot = backPlanet.transform.position;
@@ -158,13 +163,18 @@ public class Scr_MenuManager : MonoBehaviour
         playText.SetBool("ShowText", false);
         currentCameraSpot = playCamSpot.position;
 
-        Invoke("ChangeScene", 3);
+        Invoke("FadeOut", 2f);
+        Invoke("ChangeScene", 3f);
     }
 
     private void ChangeScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
 
+    private void FadeOut()
+    {
+        fadeImage.SetBool("Fade", false);
     }
 
     private void ControlsPlanet()
