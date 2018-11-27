@@ -86,7 +86,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.57
+  m_Radius: 0.6
 --- !u!114 &114418085955624514
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -100,6 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gasType: 0
   amount: 5
+  zoneSize: 0.6
   initialEmission: 100
   fuelResource: {fileID: 1231448540965128, guid: 81cfcdd80a0ddd340bbde83adf93d86d,
     type: 2}
@@ -877,7 +878,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 15
+      scalar: 100
       minScalar: 10
       maxCurve:
         serializedVersion: 2
