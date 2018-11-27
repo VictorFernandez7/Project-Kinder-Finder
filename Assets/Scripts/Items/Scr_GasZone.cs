@@ -9,12 +9,13 @@ public class Scr_GasZone : MonoBehaviour
 
     [Header("Resource Properties")]
     [SerializeField] public float amount;
+    [SerializeField] public float zoneSize;
 
     [Header("Particle Properties")]
     [SerializeField] private float initialEmission;
 
     [Header("Resource References")]
-    [SerializeField] public GameObject fuelResource;
+    [SerializeField] private GameObject fuelResource;
 
     [HideInInspector] public GameObject currentResource;
 
@@ -44,11 +45,12 @@ public class Scr_GasZone : MonoBehaviour
     {
         CheckAmount();
         ParticleAmount();
+        GasZoneSize();
     }
 
     private void CheckAmount()
     {
-        if (amount <= 0)
+        if (amount <= 0 || Input.GetKey(KeyCode.Z))
             Destroy(gameObject);
     }
 
@@ -57,5 +59,19 @@ public class Scr_GasZone : MonoBehaviour
         var emission = gasParticles.emission;
 
         emission.rateOverTime = amount * (initialEmission / initialAmount);
+    }
+
+    private void GasZoneSize()
+    {
+        var shape = gasParticles.shape;
+
+        GetComponent<CircleCollider2D>().radius = zoneSize;
+        shape.radius = zoneSize * 10;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, zoneSize);
     }
 }
