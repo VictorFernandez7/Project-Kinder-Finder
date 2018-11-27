@@ -17,6 +17,7 @@ public class Scr_MenuManager : MonoBehaviour
 
     [Header("Main Menu Settings")]
     [SerializeField] private float cameraMoveSpeed;
+    [SerializeField] private KeyCode keyToBack;
     [SerializeField] private LayerMask buttonMask;
     [SerializeField] private LayerMask backMask;
 
@@ -41,7 +42,7 @@ public class Scr_MenuManager : MonoBehaviour
     [SerializeField] private GameObject playPlanet;
     [SerializeField] private GameObject backPlanet;
 
-    private bool checkMainMenu;
+    private bool firstMenuScreen;
     private bool checkIntroScreen;
     private float initialTimeToInteract;
     private float initialtimeToGoBack;
@@ -69,7 +70,7 @@ public class Scr_MenuManager : MonoBehaviour
         initialTimeToInteract = timeToInteract;
         initialtimeToGoBack = timeToGoBack;
 
-    currentCameraSpot = initialCameraSpot;
+        currentCameraSpot = initialCameraSpot;
         currentBackSpot = initialBackSpot;
 
         checkIntroScreen = true;
@@ -102,7 +103,7 @@ public class Scr_MenuManager : MonoBehaviour
         {
             if (Input.anyKeyDown)
             {
-                checkMainMenu = true;
+                firstMenuScreen = true;
                 timeToInteract = initialTimeToInteract;
                 continueTextAnim.SetBool("Show", false);
                 logoAnim.SetBool("Show", false);
@@ -116,9 +117,9 @@ public class Scr_MenuManager : MonoBehaviour
         timeToGoBack -= Time.deltaTime;
         checkMouseMovement -= Time.deltaTime;
 
-        if (timeToGoBack <= 0 || Input.GetKeyDown(keyToGoBack))
+        if (timeToGoBack <= 0 || (Input.GetKeyDown(keyToGoBack) && firstMenuScreen))
         {
-            checkMainMenu = false;
+            firstMenuScreen = false;
             timeToGoBack = initialtimeToGoBack;
             continueTextAnim.SetBool("Show", true);
             logoAnim.SetBool("Show", true);
@@ -150,7 +151,7 @@ public class Scr_MenuManager : MonoBehaviour
 
             targetPlanet = buttonHit.transform.gameObject;
 
-            if (checkMainMenu)
+            if (firstMenuScreen)
             {
                 if (!targetPlanet.gameObject.CompareTag("BackButton"))
                 {
@@ -199,7 +200,7 @@ public class Scr_MenuManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (checkMainMenu)
+            if (firstMenuScreen)
             {
                 if (targetPlanet.gameObject.CompareTag("PlayButton"))
                     PlayGame();
@@ -220,6 +221,9 @@ public class Scr_MenuManager : MonoBehaviour
                     Back();
             }
         }
+
+        if (Input.GetKeyDown(keyToBack) && !firstMenuScreen)
+            Back();
     }
 
     private void MoveToSpot()
@@ -235,7 +239,7 @@ public class Scr_MenuManager : MonoBehaviour
 
     private void PlayGame()
     {
-        checkMainMenu = false;
+        firstMenuScreen = false;
         playTextAnim.SetBool("ShowText", false);
         currentCameraSpot = playCamSpot.position;
 
@@ -255,7 +259,7 @@ public class Scr_MenuManager : MonoBehaviour
 
     private void ControlsPlanet()
     {
-        checkMainMenu = false;
+        firstMenuScreen = false;
         controlsTextAnim.SetBool("ShowText", false);
         controlPanelAnim.SetBool("ShowText", true);
         currentCameraSpot = controlsCamSpot.position;
@@ -264,7 +268,7 @@ public class Scr_MenuManager : MonoBehaviour
 
     private void AboutUsPlanet()
     {
-        checkMainMenu = false;
+        firstMenuScreen = false;
         aboutUsTextAnim.SetBool("ShowText", false);
         aboutUsPanelAnim.SetBool("ShowText", true);
         currentCameraSpot = aboutUsCamSpot.position;
@@ -273,7 +277,7 @@ public class Scr_MenuManager : MonoBehaviour
 
     private void Back()
     {
-        checkMainMenu = true;
+        firstMenuScreen = true;
         backTextAnim.SetBool("ShowText", false);
         controlPanelAnim.SetBool("ShowText", false);
         aboutUsPanelAnim.SetBool("ShowText", false);
@@ -283,7 +287,7 @@ public class Scr_MenuManager : MonoBehaviour
 
     private void ExitGame()
     {
-        checkMainMenu = false;
+        firstMenuScreen = false;
         exitTextAnim.SetBool("ShowText", false);
         exitCrashAnim.SetTrigger("Crash");
 
