@@ -20,6 +20,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     [SerializeField] private float precisionHeight;
     [SerializeField] private float speedJump;
     [SerializeField] private float gravity;
+    [SerializeField] private float distance;
 
     [Header("References")]
     [SerializeField] private GameObject rayPointLeft;
@@ -53,6 +54,8 @@ public class Scr_AstronautMovement : MonoBehaviour
     private Vector2 lastVector;
     private RaycastHit2D hitL;
     private RaycastHit2D hitR;
+    private RaycastHit2D hitJL;
+    private RaycastHit2D hitJR;
     private RaycastHit2D hitCentral;    
     private Scr_PlayerShipMovement playerShipMovement;
 
@@ -126,6 +129,11 @@ public class Scr_AstronautMovement : MonoBehaviour
             {
                 hitL = Physics2D.Raycast(rayPointLeft.transform.position, -rayPointLeft.transform.up, Mathf.Infinity, collisionMask);
                 hitR = Physics2D.Raycast(rayPointRight.transform.position, -rayPointRight.transform.up, Mathf.Infinity, collisionMask);
+                hitJL = Physics2D.Raycast(rayPointLeft.transform.position + (Vector3.down * 0.05f), -rayPointLeft.transform.right, distance, collisionMask);
+                hitJR = Physics2D.Raycast(rayPointRight.transform.position + (Vector3.down * 0.05f), rayPointRight.transform.right, distance, collisionMask);
+
+                Debug.DrawRay(rayPointLeft.transform.position + (Vector3.down * 0.05f), -rayPointRight.transform.right * distance, Color.red);
+                Debug.DrawRay(rayPointRight.transform.position + (Vector3.down * 0.05f), rayPointRight.transform.right * distance, Color.red);
 
                 if (hitL)
                     pointLeft = hitL.point;
@@ -147,6 +155,11 @@ public class Scr_AstronautMovement : MonoBehaviour
             {
                 hitL = Physics2D.Raycast(rayPointLeft.transform.position, -rayPointLeft.transform.up, Mathf.Infinity, collisionMask);
                 hitR = Physics2D.Raycast(rayPointRight.transform.position, -rayPointRight.transform.up, Mathf.Infinity, collisionMask);
+                hitJL = Physics2D.Raycast(rayPointLeft.transform.position + (Vector3.down * 0.05f), -rayPointLeft.transform.right, Mathf.Infinity, collisionMask);
+                hitJR = Physics2D.Raycast(rayPointRight.transform.position + (Vector3.down * 0.05f), rayPointRight.transform.right, Mathf.Infinity, collisionMask);
+
+                Debug.DrawRay(rayPointLeft.transform.position + (Vector3.down * 0.05f), -rayPointRight.transform.right, Color.red);
+                Debug.DrawRay(rayPointRight.transform.position + (Vector3.down * 0.05f), rayPointRight.transform.right, Color.red);
 
                 if (hitL)
                     pointLeft = hitL.point;
