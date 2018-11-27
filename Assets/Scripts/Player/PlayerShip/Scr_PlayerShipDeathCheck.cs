@@ -65,6 +65,8 @@ public class Scr_PlayerShipDeathCheck : MonoBehaviour
             playerShipStats.Death();
     }
 
+    float maxHelath;
+
     private void CheckVelocity()
     {
         //float collisionVelocity = GetComponentInParent<Rigidbody2D>().velocity.magnitude * 10;
