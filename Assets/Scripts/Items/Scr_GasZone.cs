@@ -2,21 +2,60 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Scr_GasZone : MonoBehaviour {
+public class Scr_GasZone : MonoBehaviour
+{
+    [Header("Gas Zone Type")]
+    [SerializeField] private GasType gasType;
 
-    [SerializeField] public GameObject resource;
+    [Header("Resource Properties")]
     [SerializeField] public float amount;
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		if(amount <= 0)
+    [Header("Particle Properties")]
+    [SerializeField] private float initialEmission;
+
+    [Header("Resource References")]
+    [SerializeField] public GameObject fuelResource;
+
+    [HideInInspector] public GameObject currentResource;
+
+    private float initialAmount;
+    private ParticleSystem gasParticles;
+
+    private enum GasType
+    {
+        fuel
+    }
+
+    private void Start()
+    {
+        gasParticles = GetComponentInChildren<ParticleSystem>();
+
+        initialAmount = amount;
+
+        switch (gasType)
         {
-            Destroy(gameObject);
+            case GasType.fuel:
+                currentResource = fuelResource;
+                break;
         }
-	}
+    }
+
+    private void Update ()
+    {
+        CheckAmount();
+        ParticleAmount();
+    }
+
+    private void CheckAmount()
+    {
+        if (amount <= 0)
+            Destroy(gameObject);
+    }
+
+    private void ParticleAmount()
+    {
+        var emission = gasParticles.emission;
+
+        emission.rateOverTime = amount * (initialEmission / initialAmount);
+    }
 }

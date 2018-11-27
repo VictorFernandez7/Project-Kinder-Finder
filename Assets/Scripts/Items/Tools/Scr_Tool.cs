@@ -187,7 +187,7 @@ public class Scr_Tool : MonoBehaviour {
         {
             recolectable = true;
             gasZone = collision.gameObject;
-            resource = gasZone.GetComponent<Scr_GasZone>().resource;
+            resource = gasZone.GetComponent<Scr_GasZone>().currentResource;
         }
     }
 
