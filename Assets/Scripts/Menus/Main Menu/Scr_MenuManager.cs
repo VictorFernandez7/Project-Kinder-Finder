@@ -38,8 +38,8 @@ public class Scr_MenuManager : MonoBehaviour
     [SerializeField] private Animator exitCrashAnim;
     [SerializeField] private Animator backTextAnim;
     [SerializeField] private Animator fadeImageAnim;
-    [SerializeField] private GameObject backPlanet;
     [SerializeField] private GameObject playPlanet;
+    [SerializeField] private GameObject backPlanet;
 
     private bool checkMainMenu;
     private bool checkIntroScreen;
@@ -51,6 +51,10 @@ public class Scr_MenuManager : MonoBehaviour
     private Vector3 currentBackSpot;
     private Vector3 initialCameraSpot;
     private Vector3 initialBackSpot;
+    private Vector3 initialPlayPlanetPos;
+    private Vector3 initialControlsPlanetPos;
+    private Vector3 initialAboutUsPlanetPos;
+    private Vector3 initialBackPlanetPos;
     private GameObject targetPlanet;
 
     private void Start()
@@ -65,7 +69,7 @@ public class Scr_MenuManager : MonoBehaviour
         initialTimeToInteract = timeToInteract;
         initialtimeToGoBack = timeToGoBack;
 
-        currentCameraSpot = initialCameraSpot;
+    currentCameraSpot = initialCameraSpot;
         currentBackSpot = initialBackSpot;
 
         checkIntroScreen = true;
