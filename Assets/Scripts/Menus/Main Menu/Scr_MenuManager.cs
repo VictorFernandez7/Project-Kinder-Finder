@@ -5,61 +5,125 @@ using UnityEngine;
 
 public class Scr_MenuManager : MonoBehaviour
 {
-    [Header("Button Detection")]
+    [Header("Intro Screen Settings")]
+    [SerializeField] private float timeToInteract;
+    [SerializeField] private string continueText;
+    [SerializeField] private float timeToGoBack;
+    [SerializeField] private KeyCode keyToGoBack;
+
+    [Header("Intro Screen References")]
+    [SerializeField] private Animator logoAnim;
+    [SerializeField] private Animator continueTextAnim;
+
+    [Header("Main Menu Settings")]
+    [SerializeField] private float cameraMoveSpeed;
     [SerializeField] private LayerMask buttonMask;
     [SerializeField] private LayerMask backMask;
 
-    [Header("Camera Settings")]
-    [SerializeField] private float moveSpeed;
+    [Header("Main Menu References")]
+    [SerializeField] private GameObject mainCamera;
     [SerializeField] private Transform controlsCamSpot;
     [SerializeField] private Transform controlsBackSpot;
     [SerializeField] private Transform aboutUsCamSpot;
     [SerializeField] private Transform aboutUsBackSpot;
     [SerializeField] private Transform playCamSpot;
+    [SerializeField] private Animator playTextAnim;
+    [SerializeField] private Animator controlsTextAnim;
+    [SerializeField] private Animator controlPanelAnim;
+    [SerializeField] private Animator aboutUsTextAnim;
+    [SerializeField] private Animator aboutUsPanelAnim;
+    [SerializeField] private Animator exitTextAnim;
+    [SerializeField] private Animator exitCrashAnim;
+    [SerializeField] private Animator backTextAnim;
+    [SerializeField] private Animator fadeImageAnim;
+    [SerializeField] private GameObject backPlanet;
 
-    [Header("Text References")]
-    [SerializeField] private Animator playText;
-    [SerializeField] private Animator controlsText;
-    [SerializeField] private Animator controlPanel;
-    [SerializeField] private Animator aboutUsText;
-    [SerializeField] private Animator aboutUsPanel;
-    [SerializeField] private Animator exitText;
-    [SerializeField] private Animator exitCrash;
-    [SerializeField] private Animator backText;
-
-    [Header("Other References")]
-    [SerializeField] private Animator fadeImage;
-
-    private bool moveToSpot;
-    private bool mainMenu;
+    private bool checkMainMenu;
+    private bool checkIntroScreen;
+    private float initialTimeToInteract;
+    private float initialtimeToGoBack;
+    private float checkMouseMovement = 1f;
+    private Vector3 currentMousePos;
     private Vector3 currentCameraSpot;
     private Vector3 currentBackSpot;
     private Vector3 initialCameraSpot;
     private Vector3 initialBackSpot;
-    private GameObject mainCamera;
-    private GameObject backPlanet;
     private GameObject targetPlanet;
 
     private void Start()
     {
-        mainCamera = GameObject.Find("MainCamera");
-        backPlanet = GameObject.Find("BackPlanet");
-
-        fadeImage.SetBool("Fade", true);
+        fadeImageAnim.SetBool("Fade", true);
+        continueTextAnim.SetBool("Show", true);
+        logoAnim.SetBool("Show", true);
+        continueTextAnim.SetFloat("TimeToInteract", timeToInteract);
 
         initialCameraSpot = mainCamera.transform.position;
         initialBackSpot = backPlanet.transform.position;
+        initialTimeToInteract = timeToInteract;
+        initialtimeToGoBack = timeToGoBack;
 
-        mainMenu = true;
+        currentCameraSpot = initialCameraSpot;
+        currentBackSpot = initialBackSpot;
+
+        checkIntroScreen = true;
     }
 
     private void Update()
     {
-        CheckSelection();
-        CheckInput();
+        MoveToSpot();
 
-        if (moveToSpot)
-            MoveToSpot();
+        if (checkIntroScreen)
+            IntroScreen();
+
+        else
+        {
+            CheckReturnToIntro();
+            CheckSelection();
+            CheckInput();
+        }
+    }
+
+    private void IntroScreen()
+    {
+        timeToInteract -= Time.deltaTime;
+        continueTextAnim.SetFloat("TimeToInteract", timeToInteract);
+
+        if (timeToInteract <= 0)
+        {
+            if (Input.anyKeyDown)
+            {
+                checkMainMenu = true;
+                timeToInteract = initialTimeToInteract;
+                continueTextAnim.SetBool("Show", false);
+                logoAnim.SetBool("Show", false);
+                checkIntroScreen = false;
+            }
+        }
+    }
+
+    private void CheckReturnToIntro()
+    {
+        timeToGoBack -= Time.deltaTime;
+        checkMouseMovement -= Time.deltaTime;
+
+        if (timeToGoBack <= 0 || Input.GetKeyDown(keyToGoBack))
+        {
+            checkMainMenu = false;
+            timeToGoBack = initialtimeToGoBack;
+            continueTextAnim.SetBool("Show", true);
+            logoAnim.SetBool("Show", true);
+            currentCameraSpot = initialCameraSpot;
+            checkIntroScreen = true;
+        }
+
+        if (checkMouseMovement <= 0)
+        {
+            currentMousePos = Input.mousePosition;
+            checkMouseMovement = 1f;
+        }
+
+        if (Input.anyKeyDown || Input.mousePosition != currentMousePos)
+            timeToGoBack = initialtimeToGoBack;
     }
 
     private void CheckSelection()
@@ -73,7 +137,7 @@ public class Scr_MenuManager : MonoBehaviour
 
             targetPlanet = buttonHit.transform.gameObject;
 
-            if (mainMenu)
+            if (checkMainMenu)
             {
                 if (!targetPlanet.gameObject.CompareTag("BackButton"))
                 {
@@ -82,16 +146,16 @@ public class Scr_MenuManager : MonoBehaviour
                 }
 
                 if (targetPlanet.gameObject.CompareTag("PlayButton"))
-                    playText.SetBool("ShowText", true);
+                    playTextAnim.SetBool("ShowText", true);
 
                 else if (targetPlanet.gameObject.CompareTag("ControlsButton"))
-                    controlsText.SetBool("ShowText", true);
+                    controlsTextAnim.SetBool("ShowText", true);
 
                 else if (targetPlanet.gameObject.CompareTag("AboutUsButton"))
-                    aboutUsText.SetBool("ShowText", true);
+                    aboutUsTextAnim.SetBool("ShowText", true);
 
                 else if (targetPlanet.gameObject.CompareTag("ExitButton"))
-                    exitText.SetBool("ShowText", true);
+                    exitTextAnim.SetBool("ShowText", true);
             }
 
             else
@@ -103,18 +167,18 @@ public class Scr_MenuManager : MonoBehaviour
                 }
 
                 if (targetPlanet.gameObject.CompareTag("BackButton"))
-                    backText.SetBool("ShowText", true);
+                    backTextAnim.SetBool("ShowText", true);
             }
         }
 
         else if (targetPlanet != null)
         {
             targetPlanet.GetComponent<Animator>().SetFloat("Speed", 0);
-            playText.SetBool("ShowText", false);
-            controlsText.SetBool("ShowText", false);
-            aboutUsText.SetBool("ShowText", false);
-            exitText.SetBool("ShowText", false);
-            backText.SetBool("ShowText", false);
+            playTextAnim.SetBool("ShowText", false);
+            controlsTextAnim.SetBool("ShowText", false);
+            aboutUsTextAnim.SetBool("ShowText", false);
+            exitTextAnim.SetBool("ShowText", false);
+            backTextAnim.SetBool("ShowText", false);
         }
     }
 
@@ -122,7 +186,7 @@ public class Scr_MenuManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (mainMenu)
+            if (checkMainMenu)
             {
                 if (targetPlanet.gameObject.CompareTag("PlayButton"))
                     PlayGame();
@@ -147,20 +211,19 @@ public class Scr_MenuManager : MonoBehaviour
 
     private void MoveToSpot()
     {
-        mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, currentCameraSpot, Time.deltaTime * moveSpeed);
+        mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, currentCameraSpot, Time.deltaTime * cameraMoveSpeed);
 
         if (currentBackSpot == initialBackSpot)
-            backPlanet.transform.position = Vector3.Lerp(backPlanet.transform.position, currentBackSpot, Time.deltaTime * moveSpeed * 3);
+            backPlanet.transform.position = Vector3.Lerp(backPlanet.transform.position, currentBackSpot, Time.deltaTime * cameraMoveSpeed * 3);
 
         else
-            backPlanet.transform.position = Vector3.Lerp(backPlanet.transform.position, currentBackSpot, Time.deltaTime * moveSpeed);
+            backPlanet.transform.position = Vector3.Lerp(backPlanet.transform.position, currentBackSpot, Time.deltaTime * cameraMoveSpeed);
     }
 
     private void PlayGame()
     {
-        moveToSpot = true;
-        mainMenu = false;
-        playText.SetBool("ShowText", false);
+        checkMainMenu = false;
+        playTextAnim.SetBool("ShowText", false);
         currentCameraSpot = playCamSpot.position;
 
         Invoke("FadeOut", 2f);
@@ -174,45 +237,42 @@ public class Scr_MenuManager : MonoBehaviour
 
     private void FadeOut()
     {
-        fadeImage.SetBool("Fade", false);
+        fadeImageAnim.SetBool("Fade", false);
     }
 
     private void ControlsPlanet()
     {
-        moveToSpot = true;
-        mainMenu = false;
-        controlsText.SetBool("ShowText", false);
-        controlPanel.SetBool("ShowText", true);
+        checkMainMenu = false;
+        controlsTextAnim.SetBool("ShowText", false);
+        controlPanelAnim.SetBool("ShowText", true);
         currentCameraSpot = controlsCamSpot.position;
         currentBackSpot = controlsBackSpot.position;
     }
 
     private void AboutUsPlanet()
     {
-        moveToSpot = true;
-        mainMenu = false;
-        aboutUsText.SetBool("ShowText", false);
-        aboutUsPanel.SetBool("ShowText", true);
+        checkMainMenu = false;
+        aboutUsTextAnim.SetBool("ShowText", false);
+        aboutUsPanelAnim.SetBool("ShowText", true);
         currentCameraSpot = aboutUsCamSpot.position;
         currentBackSpot = aboutUsBackSpot.position;
     }
 
     private void Back()
     {
-        moveToSpot = true;
-        mainMenu = true;
-        backText.SetBool("ShowText", false);
-        controlPanel.SetBool("ShowText", false);
-        aboutUsPanel.SetBool("ShowText", false);
+        checkMainMenu = true;
+        backTextAnim.SetBool("ShowText", false);
+        controlPanelAnim.SetBool("ShowText", false);
+        aboutUsPanelAnim.SetBool("ShowText", false);
         currentCameraSpot = initialCameraSpot;
         currentBackSpot = initialBackSpot;
     }
 
     private void ExitGame()
     {
-        mainMenu = false;
-        exitText.SetBool("ShowText", false);
-        exitCrash.SetTrigger("Crash");
+        checkMainMenu = false;
+        exitTextAnim.SetBool("ShowText", false);
+        exitCrashAnim.SetTrigger("Crash");
 
         Invoke("Quit", 2.5f);
     }
