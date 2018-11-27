@@ -27,6 +27,8 @@ public class Scr_MenuManager : MonoBehaviour
     [SerializeField] private Transform aboutUsCamSpot;
     [SerializeField] private Transform aboutUsBackSpot;
     [SerializeField] private Transform playCamSpot;
+    [SerializeField] private Animator buttonsAnim;
+    [SerializeField] private Animator lightAnim;
     [SerializeField] private Animator playTextAnim;
     [SerializeField] private Animator controlsTextAnim;
     [SerializeField] private Animator controlPanelAnim;
@@ -37,6 +39,7 @@ public class Scr_MenuManager : MonoBehaviour
     [SerializeField] private Animator backTextAnim;
     [SerializeField] private Animator fadeImageAnim;
     [SerializeField] private GameObject backPlanet;
+    [SerializeField] private GameObject playPlanet;
 
     private bool checkMainMenu;
     private bool checkIntroScreen;
@@ -85,6 +88,9 @@ public class Scr_MenuManager : MonoBehaviour
 
     private void IntroScreen()
     {
+        buttonsAnim.SetBool("Show", false);
+        lightAnim.SetBool("MainMenu", false);
+
         timeToInteract -= Time.deltaTime;
         continueTextAnim.SetFloat("TimeToInteract", timeToInteract);
 
@@ -128,6 +134,9 @@ public class Scr_MenuManager : MonoBehaviour
 
     private void CheckSelection()
     {
+        buttonsAnim.SetBool("Show", true);
+        lightAnim.SetBool("MainMenu", true);
+
         RaycastHit buttonHit;
         Ray ratCastToMousePos = mainCamera.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
 
