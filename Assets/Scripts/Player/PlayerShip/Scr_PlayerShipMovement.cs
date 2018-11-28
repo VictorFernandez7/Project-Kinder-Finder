@@ -121,7 +121,6 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(astronautOnBoard);
         PlayerShipStateCheck();
         MessageTextManager();
         playerShipEffects.OnGroundEffects();

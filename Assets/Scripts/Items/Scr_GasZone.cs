@@ -66,7 +66,7 @@ public class Scr_GasZone : MonoBehaviour
         var shape = gasParticles.shape;
 
         GetComponent<CircleCollider2D>().radius = zoneSize;
-        shape.radius = zoneSize * 10;
+        shape.radius = zoneSize * 10 * 2;
     }
 
     private void OnDrawGizmos()
