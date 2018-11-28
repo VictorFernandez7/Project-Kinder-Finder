@@ -223,7 +223,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1705007326068512}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.045303576, y: 0, z: 0}
+  m_LocalPosition: {x: -0.029, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4590653716362036}
@@ -290,7 +290,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1642608111972328}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.045303576, y: 0, z: 0}
+  m_LocalPosition: {x: 0.03, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4590653716362036}
@@ -435,9 +435,11 @@ MonoBehaviour:
   collisionMask:
     serializedVersion: 2
     m_Bits: 1024
-  precisionHeight: 0.1
+  precisionHeight: 0.03
   speedJump: 0.005
   gravity: 0.01
+  distance: 0.01
+  angleHight: 0.04
   rayPointLeft: {fileID: 1705007326068512}
   rayPointRight: {fileID: 1642608111972328}
   walkingParticles: {fileID: 198665950421681262}
@@ -469,9 +471,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   oxygenCapacity: 200
   toolSlots:
-  - {fileID: 1195437349475892, guid: 6f05530aaa756d94d92bb623e0edb6ef, type: 2}
-  - {fileID: 1195437349475892, guid: 37794a5a2a8f9fb48a889621ba6ed563, type: 2}
-  - {fileID: 1195437349475892, guid: 4d46cd3606e5e684da9b0d072e444da4, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   physicToolSlots:
   - {fileID: 0}
   - {fileID: 0}
