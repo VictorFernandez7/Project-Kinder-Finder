@@ -149,27 +149,46 @@ public class Scr_MenuManager : MonoBehaviour
         {
             Debug.DrawLine(mainCamera.transform.position, buttonHit.point, Color.yellow);
 
-            targetPlanet = buttonHit.transform.gameObject;
-
             if (firstMenuScreen)
             {
-                if (!targetPlanet.gameObject.CompareTag("BackButton"))
+                if (targetPlanet != null)
                 {
-                    targetPlanet.GetComponent<Animator>().SetBool("Rotate", true);
-                    targetPlanet.GetComponent<Animator>().SetFloat("Speed", 1);
+                    if (!targetPlanet.gameObject.CompareTag("BackButton"))
+                    {
+                        targetPlanet.GetComponent<Animator>().SetBool("Rotate", true);
+                        targetPlanet.GetComponent<Animator>().SetFloat("Speed", 1);
+                    }
+
+                    if (targetPlanet.gameObject.CompareTag("PlayButton"))
+                        playTextAnim.SetBool("ShowText", true);
+
+                    else if (targetPlanet.gameObject.CompareTag("ControlsButton"))
+                        controlsTextAnim.SetBool("ShowText", true);
+
+                    else if (targetPlanet.gameObject.CompareTag("AboutUsButton"))
+                        aboutUsTextAnim.SetBool("ShowText", true);
+
+                    else if (targetPlanet.gameObject.CompareTag("ExitButton"))
+                        exitTextAnim.SetBool("ShowText", true);
                 }
 
-                if (targetPlanet.gameObject.CompareTag("PlayButton"))
-                    playTextAnim.SetBool("ShowText", true);
+                if (buttonHit.transform.gameObject.CompareTag("MenuBackground"))
+                {
+                    if (targetPlanet != null)
+                    {
+                        targetPlanet.GetComponent<Animator>().SetFloat("Speed", 0);
+                        targetPlanet = null;
+                    }
 
-                else if (targetPlanet.gameObject.CompareTag("ControlsButton"))
-                    controlsTextAnim.SetBool("ShowText", true);
+                    playTextAnim.SetBool("ShowText", false);
+                    controlsTextAnim.SetBool("ShowText", false);
+                    aboutUsTextAnim.SetBool("ShowText", false);
+                    exitTextAnim.SetBool("ShowText", false);
+                    backTextAnim.SetBool("ShowText", false);
+                }
 
-                else if (targetPlanet.gameObject.CompareTag("AboutUsButton"))
-                    aboutUsTextAnim.SetBool("ShowText", true);
-
-                else if (targetPlanet.gameObject.CompareTag("ExitButton"))
-                    exitTextAnim.SetBool("ShowText", true);
+                else
+                    targetPlanet = buttonHit.transform.gameObject;
             }
 
             else
@@ -184,21 +203,11 @@ public class Scr_MenuManager : MonoBehaviour
                     backTextAnim.SetBool("ShowText", true);
             }
         }
-
-        else if (targetPlanet != null)
-        {
-            targetPlanet.GetComponent<Animator>().SetFloat("Speed", 0);
-            playTextAnim.SetBool("ShowText", false);
-            controlsTextAnim.SetBool("ShowText", false);
-            aboutUsTextAnim.SetBool("ShowText", false);
-            exitTextAnim.SetBool("ShowText", false);
-            backTextAnim.SetBool("ShowText", false);
-        }
     }
 
     private void CheckInput()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && targetPlanet != null)
         {
             if (firstMenuScreen)
             {
