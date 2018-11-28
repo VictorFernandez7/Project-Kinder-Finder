@@ -21,6 +21,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     [SerializeField] private float speedJump;
     [SerializeField] private float gravity;
     [SerializeField] private float distance;
+    [SerializeField] private float angleHight;
 
     [Header("References")]
     [SerializeField] private GameObject rayPointLeft;
@@ -110,11 +111,11 @@ public class Scr_AstronautMovement : MonoBehaviour
 
             if (!jumping && !keep)
             {
-                if (currentDistance > baseDistance)
-                    transform.Translate(transform.up * (baseDistance - currentDistance), Space.World);
+                if (currentDistance > (baseDistance + gravity))
+                    transform.Translate(transform.up * -gravity, Space.World);
 
-                else if (currentDistance < baseDistance)
-                    transform.Translate(transform.up * (baseDistance - currentDistance), Space.World);
+                else if (currentDistance < (baseDistance - gravity))
+                    transform.Translate(transform.up * gravity, Space.World);
             }
 
             else if((currentDistance > (baseDistance - precisionHeight)) && (currentDistance < (baseDistance + precisionHeight)) && toJump)
@@ -129,11 +130,9 @@ public class Scr_AstronautMovement : MonoBehaviour
             {
                 hitL = Physics2D.Raycast(rayPointLeft.transform.position, -rayPointLeft.transform.up, Mathf.Infinity, collisionMask);
                 hitR = Physics2D.Raycast(rayPointRight.transform.position, -rayPointRight.transform.up, Mathf.Infinity, collisionMask);
-                hitJL = Physics2D.Raycast(rayPointLeft.transform.position + (Vector3.down * 0.05f), -rayPointLeft.transform.right, distance, collisionMask);
-                hitJR = Physics2D.Raycast(rayPointRight.transform.position + (Vector3.down * 0.05f), rayPointRight.transform.right, distance, collisionMask);
+                hitJL = Physics2D.Raycast(rayPointLeft.transform.position + (-rayPointLeft.transform.up * angleHight), -rayPointLeft.transform.right, distance, collisionMask);               
 
-                Debug.DrawRay(rayPointLeft.transform.position + (Vector3.down * 0.05f), -rayPointRight.transform.right * distance, Color.red);
-                Debug.DrawRay(rayPointRight.transform.position + (Vector3.down * 0.05f), rayPointRight.transform.right * distance, Color.red);
+                Debug.DrawRay(rayPointLeft.transform.position + (-rayPointLeft.transform.up * angleHight), -rayPointRight.transform.right * distance, Color.red);
 
                 if (hitL)
                     pointLeft = hitL.point;
@@ -147,19 +146,17 @@ public class Scr_AstronautMovement : MonoBehaviour
                 if (faceRight)
                     Flip();
 
-                Move(false, walkingSpeed);
-                Sprint(false);
+                if(!hitJL)
+                    Sprint(false);
             }
 
             else if (Input.GetButton("Horizontal") && Input.GetAxis("Horizontal") > 0f)
             {
                 hitL = Physics2D.Raycast(rayPointLeft.transform.position, -rayPointLeft.transform.up, Mathf.Infinity, collisionMask);
                 hitR = Physics2D.Raycast(rayPointRight.transform.position, -rayPointRight.transform.up, Mathf.Infinity, collisionMask);
-                hitJL = Physics2D.Raycast(rayPointLeft.transform.position + (Vector3.down * 0.05f), -rayPointLeft.transform.right, Mathf.Infinity, collisionMask);
-                hitJR = Physics2D.Raycast(rayPointRight.transform.position + (Vector3.down * 0.05f), rayPointRight.transform.right, Mathf.Infinity, collisionMask);
+                hitJR = Physics2D.Raycast(rayPointRight.transform.position + (-rayPointRight.transform.up * angleHight), rayPointRight.transform.right, distance, collisionMask);
 
-                Debug.DrawRay(rayPointLeft.transform.position + (Vector3.down * 0.05f), -rayPointRight.transform.right, Color.red);
-                Debug.DrawRay(rayPointRight.transform.position + (Vector3.down * 0.05f), rayPointRight.transform.right, Color.red);
+                Debug.DrawRay(rayPointRight.transform.position + (-rayPointRight.transform.up * angleHight), rayPointRight.transform.right * distance, Color.red);
 
                 if (hitL)
                     pointLeft = hitL.point;
@@ -173,8 +170,8 @@ public class Scr_AstronautMovement : MonoBehaviour
                 if (!faceRight)
                     Flip();
 
-                Move(true, walkingSpeed);
-                Sprint(true);
+                if(!hitJR)
+                    Sprint(true);
             }
         }
         
