@@ -77,9 +77,9 @@ public class Scr_MainCamera : MonoBehaviour
             Vector3 astronautUpVector = astronaut.transform.up;
             Vector3 playerShipVectorUp = playerShip.transform.up;
 
-            desiredUp = Vector3.Lerp(desiredUp, followAstronaut ? astronautUpVector : playerShipVectorUp, Time.deltaTime * (followAstronaut ? astronautRotationSpeed : shipRotationSpeed));
+            //desiredUp = Vector3.Lerp(desiredUp, followAstronaut ? astronautUpVector : playerShipVectorUp, Time.deltaTime * (followAstronaut ? astronautRotationSpeed : shipRotationSpeed));
 
-            transform.rotation = Quaternion.LookRotation(transform.forward, desiredUp);
+            transform.rotation = Quaternion.LookRotation(transform.forward, followAstronaut ? astronautUpVector : playerShipVectorUp);
         }
     }
 
