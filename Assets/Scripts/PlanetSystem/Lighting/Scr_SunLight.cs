@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Scr_SunLight : MonoBehaviour {
+public class Scr_SunLight : MonoBehaviour
+{
+    private GameObject playerShip;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private void Start()
+    {
+        playerShip = GameObject.Find("PlayerShip");
+    }
+
+    private void Update()
+    {
+        transform.LookAt(playerShip.transform);
+    }
 }
