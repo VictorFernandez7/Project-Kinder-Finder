@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
@@ -58,6 +59,9 @@ public class Scr_MenuManager : MonoBehaviour
     private Vector3 initialBackPlanetPos;
     private GameObject targetPlanet;
 
+    [DllImport("user32.dll")]
+    static extern bool SetCursorPos(int X, int Y);
+
     private void Start()
     {
         fadeImageAnim.SetBool("Fade", true);
@@ -107,6 +111,7 @@ public class Scr_MenuManager : MonoBehaviour
                 timeToInteract = initialTimeToInteract;
                 continueTextAnim.SetBool("Show", false);
                 logoAnim.SetBool("Show", false);
+                SetCursorPos(Screen.width / 2, Screen.height / 4);
                 checkIntroScreen = false;
             }
         }
@@ -153,11 +158,8 @@ public class Scr_MenuManager : MonoBehaviour
             {
                 if (targetPlanet != null)
                 {
-                    if (!targetPlanet.gameObject.CompareTag("BackButton"))
-                    {
-                        targetPlanet.GetComponent<Animator>().SetBool("Rotate", true);
-                        targetPlanet.GetComponent<Animator>().SetFloat("Speed", 1);
-                    }
+                    targetPlanet.GetComponent<Animator>().SetBool("Rotate", true);
+                    targetPlanet.GetComponent<Animator>().SetFloat("Speed", 1);
 
                     if (targetPlanet.gameObject.CompareTag("PlayButton"))
                         playTextAnim.SetBool("ShowText", true);
@@ -184,7 +186,6 @@ public class Scr_MenuManager : MonoBehaviour
                     controlsTextAnim.SetBool("ShowText", false);
                     aboutUsTextAnim.SetBool("ShowText", false);
                     exitTextAnim.SetBool("ShowText", false);
-                    backTextAnim.SetBool("ShowText", false);
                 }
 
                 else
@@ -193,14 +194,29 @@ public class Scr_MenuManager : MonoBehaviour
 
             else
             {
-                if (targetPlanet.gameObject.CompareTag("BackButton"))
+                if (buttonHit.transform.gameObject.CompareTag("MenuBackground"))
                 {
-                    targetPlanet.GetComponent<Animator>().SetBool("Rotate", true);
-                    targetPlanet.GetComponent<Animator>().SetFloat("Speed", 1);
+                    if (targetPlanet != null)
+                    {
+                        targetPlanet.GetComponent<Animator>().SetFloat("Speed", 0);
+                        targetPlanet = null;
+                    }
+
+                    backTextAnim.SetBool("ShowText", false);
                 }
 
-                if (targetPlanet.gameObject.CompareTag("BackButton"))
-                    backTextAnim.SetBool("ShowText", true);
+                else
+                    targetPlanet = buttonHit.transform.gameObject;
+
+                if (targetPlanet != null)
+                {
+                    if (targetPlanet.gameObject.CompareTag("BackButton"))
+                    {
+                        targetPlanet.GetComponent<Animator>().SetBool("Rotate", true);
+                        targetPlanet.GetComponent<Animator>().SetFloat("Speed", 1);
+                        backTextAnim.SetBool("ShowText", true);
+                    }
+                }
             }
         }
     }
