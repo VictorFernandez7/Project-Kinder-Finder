@@ -60,7 +60,6 @@ public class Scr_AsteroidBehaviour : MonoBehaviour
                 Orbit();
 
             ShipAttach();
-            SetCanvasPositionAndRotation();
         }
     }
 
@@ -105,11 +104,5 @@ public class Scr_AsteroidBehaviour : MonoBehaviour
 
         else
             asteroidAnim.SetBool("Sliders", false);
-    }
-
-    private void SetCanvasPositionAndRotation()
-    {
-        GetComponentInChildren<Canvas>().gameObject.transform.position = transform.position + Vector3.up * 1.35f;
-        GetComponentInChildren<Canvas>().gameObject.transform.up = Vector3.up;
     }
 }

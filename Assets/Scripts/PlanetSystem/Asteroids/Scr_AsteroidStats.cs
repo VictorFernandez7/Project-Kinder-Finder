@@ -73,8 +73,6 @@ public class Scr_AsteroidStats : MonoBehaviour
     {
         if (!dead)
         {
-            SliderSet();
-
             resourceZone = Mathf.Clamp(resourceZone, resistentZone, resourceZone);
             newCurrentPower = Mathf.Clamp(newCurrentPower, 0, 1);
 
@@ -83,6 +81,9 @@ public class Scr_AsteroidStats : MonoBehaviour
 
             currentPowerSlider.value = newCurrentPower;
             currentPowerSlider.value = Mathf.Clamp(currentPowerSlider.value, 0, 1);
+
+            SliderSet();
+            SetCanvasPositionAndRotation();
 
             if (!mining && currentPowerSlider.value > 0)
             {
@@ -170,5 +171,11 @@ public class Scr_AsteroidStats : MonoBehaviour
         playerShipActions.MiningState(false);
 
         Destroy(gameObject, 0.5f);
+    }
+
+    private void SetCanvasPositionAndRotation()
+    {
+        asteroidCanvas.transform.position = transform.position + mainCamera.transform.up * 1.35f;
+        asteroidCanvas.transform.up = mainCamera.transform.up;
     }
 }
