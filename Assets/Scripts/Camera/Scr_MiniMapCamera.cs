@@ -5,11 +5,11 @@ using UnityEngine;
 public class Scr_MiniMapCamera : MonoBehaviour
 {
     [Header("Minimap Parameters")]
-    [SerializeField] private float zoomInPlanet;
     [SerializeField] private float zoomInSpace;
     [SerializeField] private float zoomSpeed;
     [SerializeField] private float followSpeed;
 
+    private float zoomInPlanet;
     private Camera minimapCamera;
     private GameObject mainCamera;
     private GameObject playerShip;
@@ -48,11 +48,14 @@ public class Scr_MiniMapCamera : MonoBehaviour
     {
         Vector3 followedTarget = new Vector3(currentTarget.transform.position.x, currentTarget.transform.position.y, -10);
 
-        transform.position = Vector3.Lerp(transform.position, followedTarget, Time.deltaTime * followSpeed);
+        transform.position = Vector3.Lerp(transform.position, followedTarget, Time.deltaTime * (currentTarget == playerShip ? followSpeed : (followSpeed * 25f)));
     }
 
     private void ZoomSystem()
     {
+        if (playerShipMovement.currentPlanet != null)
+            zoomInPlanet = playerShipMovement.currentPlanet.transform.localScale.x * 6f;
+
         if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed || playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landing)
             minimapCamera.orthographicSize = Mathf.Lerp(minimapCamera.orthographicSize, zoomInPlanet, Time.deltaTime * zoomSpeed);
 
