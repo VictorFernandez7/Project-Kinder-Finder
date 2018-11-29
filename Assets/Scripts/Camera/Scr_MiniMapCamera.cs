@@ -11,6 +11,7 @@ public class Scr_MiniMapCamera : MonoBehaviour
     [SerializeField] private float followSpeed;
 
     private Camera minimapCamera;
+    private GameObject mainCamera;
     private GameObject playerShip;
     private GameObject currentTarget;
     private Scr_PlayerShipMovement playerShipMovement;
@@ -18,6 +19,7 @@ public class Scr_MiniMapCamera : MonoBehaviour
     private void Start()
     {
         playerShip = GameObject.Find("PlayerShip");
+        mainCamera = GameObject.Find("MainCamera");
 
         minimapCamera = GetComponent<Camera>();
         playerShipMovement = playerShip.GetComponent<Scr_PlayerShipMovement>();
@@ -28,14 +30,18 @@ public class Scr_MiniMapCamera : MonoBehaviour
     private void Update()
     {
         ZoomSystem();
+        TargetSet();
+        FollowTarget();
+        RecalibrateCamera();
+    }
 
+    private void TargetSet()
+    {
         if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed || playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landing)
             currentTarget = playerShipMovement.currentPlanet;
 
         if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.takingOff || playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace)
             currentTarget = playerShip;
-
-        FollowTarget();
     }
 
     private void FollowTarget()
@@ -52,5 +58,15 @@ public class Scr_MiniMapCamera : MonoBehaviour
 
         if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.takingOff || playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace)
             minimapCamera.orthographicSize = Mathf.Lerp(minimapCamera.orthographicSize, zoomInSpace, Time.deltaTime * zoomSpeed);
+    }
+
+    private void RecalibrateCamera()
+    {
+        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.takingOff)
+        {
+            Vector3 targetUp = Vector3.Lerp(transform.up, mainCamera.transform.up, Time.deltaTime);
+
+            transform.rotation = Quaternion.Euler(targetUp);
+        }
     }
 }
