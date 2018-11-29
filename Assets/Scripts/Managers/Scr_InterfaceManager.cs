@@ -10,7 +10,6 @@ public class Scr_InterfaceManager : MonoBehaviour
     [SerializeField] private KeyCode input_QuestPanel;
     [SerializeField] private KeyCode input_PlayerShipWindow;
 
-    private bool showControls;
     private bool questPanelActive;
     private bool playerShipWindowActive;
 
@@ -20,9 +19,6 @@ public class Scr_InterfaceManager : MonoBehaviour
     private Animator anim_QuestPanel;
     private Animator anim_PlayerShipWindow;
     private Animator anim_FadeImage;
-
-    private GameObject astronautControls;
-    private GameObject playerShipControls;
 
     private Scr_MainCamera mainCamera;
     private Scr_PlayerShipMovement playerShipMovement;
@@ -36,18 +32,11 @@ public class Scr_InterfaceManager : MonoBehaviour
         anim_PlayerShipWindow = GameObject.Find("PlayerShipWindow").GetComponent<Animator>();
         anim_FadeImage = GameObject.Find("FadeImage").GetComponent<Animator>();
 
-        astronautControls = GameObject.Find("AstronautControls");
-        playerShipControls = GameObject.Find("PlayerShipControls");
-
         mainCamera = GameObject.Find("MainCamera").GetComponent<Scr_MainCamera>();
         playerShipMovement = GameObject.Find("PlayerShip").GetComponent<Scr_PlayerShipMovement>();
 
         anim_AstronautInterface.SetBool("Show", true);
         anim_FadeImage.SetBool("Fade", true);
-
-        playerShipControls.SetActive(false);
-
-        showControls = true;
     }
 
     private void Update()
@@ -75,18 +64,6 @@ public class Scr_InterfaceManager : MonoBehaviour
             anim_PlayerShipInterface.SetBool("Show", false);
             anim_PlayerShipActions.SetBool("InsideShip", false);
         }
-
-        if (showControls)
-        {
-            playerShipControls.SetActive(playerShipMovement.astronautOnBoard);
-            astronautControls.SetActive(!playerShipMovement.astronautOnBoard);
-        }
-
-        else
-        {
-            playerShipControls.SetActive(false);
-            astronautControls.SetActive(false);
-        }
     }
 
     private void CheckInputs()
@@ -101,8 +78,6 @@ public class Scr_InterfaceManager : MonoBehaviour
         {
             playerShipWindowActive = !playerShipWindowActive;
             anim_PlayerShipWindow.SetBool("Show", playerShipWindowActive);
-
-            showControls = !showControls;
         }
     }
 
