@@ -63,10 +63,6 @@ public class Scr_MiniMapCamera : MonoBehaviour
     private void RecalibrateCamera()
     {
         if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.takingOff)
-        {
-            Vector3 targetUp = Vector3.Lerp(transform.up, mainCamera.transform.up, Time.deltaTime);
-
-            transform.rotation = Quaternion.Euler(targetUp);
-        }
+            transform.rotation = mainCamera.transform.rotation;
     }
 }
