@@ -31,7 +31,7 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
 
     private void Update()
     {
-        //CheckAsteroids();
+        CheckAsteroids();
 
         print(closestAsteroidDistance);
     }
@@ -44,7 +44,6 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
             asteroids.CopyTo(newAsteroids, 0);
 
             asteroids[asteroids.Length + 1] = collision.gameObject;
-
         }
     }
 

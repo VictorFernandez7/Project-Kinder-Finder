@@ -10,6 +10,10 @@ public class Scr_InterfaceManager : MonoBehaviour
     [SerializeField] private KeyCode input_QuestPanel;
     [SerializeField] private KeyCode input_PlayerShipWindow;
 
+    [Header("References")]
+    [SerializeField] private GameObject landingInterface;
+    [SerializeField] private GameObject landingInterfaceShip;
+
     private bool questPanelActive;
     private bool playerShipWindowActive;
 
@@ -20,20 +24,22 @@ public class Scr_InterfaceManager : MonoBehaviour
     private Animator anim_PlayerShipWindow;
     private Animator anim_FadeImage;
 
+    private GameObject playerShip;
     private Scr_MainCamera mainCamera;
     private Scr_PlayerShipMovement playerShipMovement;
 
     private void Start()
     {
+        playerShip = GameObject.Find("PlayerShip");
         anim_AstronautInterface = GameObject.Find("AstronautInterface").GetComponent<Animator>();
         anim_PlayerShipInterface = GameObject.Find("PlayerShipInterface").GetComponent<Animator>();
         anim_PlayerShipActions = GameObject.Find("PlayerShipActions").GetComponent<Animator>();
         anim_QuestPanel = GameObject.Find("QuestPanel").GetComponent<Animator>();
         anim_PlayerShipWindow = GameObject.Find("PlayerShipWindow").GetComponent<Animator>();
         anim_FadeImage = GameObject.Find("FadeImage").GetComponent<Animator>();
-
         mainCamera = GameObject.Find("MainCamera").GetComponent<Scr_MainCamera>();
-        playerShipMovement = GameObject.Find("PlayerShip").GetComponent<Scr_PlayerShipMovement>();
+
+        playerShipMovement = playerShip.GetComponent<Scr_PlayerShipMovement>();
 
         anim_AstronautInterface.SetBool("Show", true);
         anim_FadeImage.SetBool("Fade", true);
@@ -41,13 +47,14 @@ public class Scr_InterfaceManager : MonoBehaviour
 
     private void Update()
     {
-        CheckPlayerState();
+        CheckAstronautState();
+        LandingInterface();
 
         if (playerShipMovement.astronautOnBoard)
             CheckInputs();
     }
 
-    private void CheckPlayerState()
+    private void CheckAstronautState()
     {
         anim_PlayerShipActions.SetBool("Mining", mainCamera.mining);
 
@@ -88,5 +95,21 @@ public class Scr_InterfaceManager : MonoBehaviour
 
         else
             currentSelected.color = Color.black;
+    }
+
+    private void LandingInterface()
+    {
+        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landing)
+        {
+            landingInterface.SetActive(true);
+
+            Vector3 direction = new Vector3(landingInterface.transform.position.x - playerShip.transform.position.x, landingInterface.transform.position.y - playerShip.transform.position.y, landingInterface.transform.position.z - playerShip.transform.position.z);
+
+            landingInterfaceShip.transform.up = direction;
+        }
+
+        else
+            landingInterface.SetActive(false);
+
     }
 }

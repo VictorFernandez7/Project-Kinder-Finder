@@ -71,6 +71,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     private float checkingDistance;
     private Slider speedSlider;
     private Slider limitSlider;
+    private Vector3 landingOrientationVector;
     private Vector3 targetTakingOff;
     private Vector3 targetLanding;
     private TrailRenderer trailRenderer;
@@ -138,6 +139,12 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
         if (playerShipState == PlayerShipState.landed)
             playerShipEffects.WarmingSliderColor();
+    }
+
+    private void FixedUpdate()
+    {
+        if (currentPlanet != null)
+            landingOrientationVector = -new Vector3(currentPlanet.transform.position.x - transform.position.x, currentPlanet.transform.position.y - transform.position.y, currentPlanet.transform.position.z - transform.position.z);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -368,9 +375,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
     private void Landed()
     {
-        Vector3 direction = -new Vector3(currentPlanet.transform.position.x - transform.position.x, currentPlanet.transform.position.y - transform.position.y, currentPlanet.transform.position.z - transform.position.z);
-
-        transform.up = Vector3.Lerp(transform.up, direction, Time.deltaTime * shipOrientationSpeed);
+        transform.up = Vector3.Lerp(transform.up, landingOrientationVector, Time.deltaTime * shipOrientationSpeed);
         transform.SetParent(currentPlanet.transform);
 
         if (rb.velocity != Vector2.zero)
