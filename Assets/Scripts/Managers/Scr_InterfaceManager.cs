@@ -12,9 +12,7 @@ public class Scr_InterfaceManager : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private GameObject landingInterface;
-    [SerializeField] private GameObject landingInterfaceSpot;
     [SerializeField] private GameObject landingInterfaceShip;
-    [SerializeField] private GameObject landingInterfaceAngle;
 
     private bool questPanelActive;
     private bool playerShipWindowActive;
@@ -26,22 +24,22 @@ public class Scr_InterfaceManager : MonoBehaviour
     private Animator anim_PlayerShipWindow;
     private Animator anim_FadeImage;
 
+    private GameObject playerShip;
     private Scr_MainCamera mainCamera;
     private Scr_PlayerShipMovement playerShipMovement;
-    private Scr_PlayerShipDeathCheck playerShipDeathCheck;
 
     private void Start()
     {
+        playerShip = GameObject.Find("PlayerShip");
         anim_AstronautInterface = GameObject.Find("AstronautInterface").GetComponent<Animator>();
         anim_PlayerShipInterface = GameObject.Find("PlayerShipInterface").GetComponent<Animator>();
         anim_PlayerShipActions = GameObject.Find("PlayerShipActions").GetComponent<Animator>();
         anim_QuestPanel = GameObject.Find("QuestPanel").GetComponent<Animator>();
         anim_PlayerShipWindow = GameObject.Find("PlayerShipWindow").GetComponent<Animator>();
         anim_FadeImage = GameObject.Find("FadeImage").GetComponent<Animator>();
-
         mainCamera = GameObject.Find("MainCamera").GetComponent<Scr_MainCamera>();
-        playerShipMovement = GameObject.Find("PlayerShip").GetComponent<Scr_PlayerShipMovement>();
-        playerShipDeathCheck = GameObject.Find("PlayerShip").GetComponentInChildren<Scr_PlayerShipDeathCheck>();
+
+        playerShipMovement = playerShip.GetComponent<Scr_PlayerShipMovement>();
 
         anim_AstronautInterface.SetBool("Show", true);
         anim_FadeImage.SetBool("Fade", true);
@@ -103,17 +101,15 @@ public class Scr_InterfaceManager : MonoBehaviour
     {
         if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landing)
         {
-            landingInterfaceAngle.SetActive(true);
-            landingInterfaceShip.SetActive(true);
+            landingInterface.SetActive(true);
 
-            landingInterfaceAngle.transform.up = playerShipDeathCheck.playerShipToPlanetDirection;
-            landingInterfaceShip.transform.up = playerShipDeathCheck.playerShipDirection;
+            Vector3 direction = new Vector3(landingInterface.transform.position.x - playerShip.transform.position.x, landingInterface.transform.position.y - playerShip.transform.position.y, landingInterface.transform.position.z - playerShip.transform.position.z);
+
+            landingInterfaceShip.transform.up = direction;
         }
 
         else
-        {
-            landingInterfaceAngle.SetActive(false);
-            landingInterfaceShip.SetActive(false);
-        }
+            landingInterface.SetActive(false);
+
     }
 }

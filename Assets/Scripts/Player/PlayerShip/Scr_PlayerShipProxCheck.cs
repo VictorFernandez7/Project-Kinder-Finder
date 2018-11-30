@@ -44,7 +44,6 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
             asteroids.CopyTo(newAsteroids, 0);
 
             asteroids[asteroids.Length + 1] = collision.gameObject;
-
         }
     }
 
