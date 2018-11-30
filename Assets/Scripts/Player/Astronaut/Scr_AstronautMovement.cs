@@ -20,8 +20,12 @@ public class Scr_AstronautMovement : MonoBehaviour
     [SerializeField] private float precisionHeight;
     [SerializeField] private float speedJump;
     [SerializeField] private float gravity;
+
+    [Header("Collision Properties")]
     [SerializeField] private float distance;
-    [SerializeField] private float angleHight;
+    [SerializeField] private float astronautHeight;
+    [SerializeField] private float astronautWidth;
+    [SerializeField] private float maxAngle;
 
     [Header("References")]
     [SerializeField] private GameObject rayPointLeft;
@@ -45,10 +49,11 @@ public class Scr_AstronautMovement : MonoBehaviour
     [HideInInspector] public Vector3 vectorJump;
 
     private bool toJump;
-    private float timeAfterJump = 1f;
-    private float savedTimeAfterJump = 1f;
+    private float timeAfterJump = 0.5f;
+    private float savedTimeAfterJump = 0.5f;
     private float baseDistance;
     private float currentDistance;
+    private float timeAtAir;
     private Vector2 pointLeft;
     private Vector2 pointRight;
     private Vector2 movementVector;
@@ -58,6 +63,8 @@ public class Scr_AstronautMovement : MonoBehaviour
     private RaycastHit2D hitJL;
     private RaycastHit2D hitJR;
     private RaycastHit2D hitCentral;    
+    private RaycastHit2D hitAngleUp;
+    private RaycastHit2D hitAngleDown;
     private Scr_PlayerShipMovement playerShipMovement;
 
     public void Start()
@@ -87,13 +94,17 @@ public class Scr_AstronautMovement : MonoBehaviour
         {
             if (Input.GetButtonDown("Jump"))
             {
+                timeAtAir = 0;
                 vectorJump = (transform.position - currentPlanet.transform.position).normalized * speedJump;
                 jumping = true;
             }
         }
 
         else if (jumping)
-            vectorJump -= (transform.position - currentPlanet.transform.position).normalized * gravity * Time.deltaTime;
+        {
+            timeAtAir += Time.deltaTime * 5;
+            vectorJump -= (transform.position - currentPlanet.transform.position).normalized * gravity * timeAtAir * Time.deltaTime;
+        }
 
         transform.Translate(vectorJump, Space.World);
     }
@@ -104,74 +115,16 @@ public class Scr_AstronautMovement : MonoBehaviour
 
         if (canMove == true)
         {
-            hitCentral = Physics2D.Raycast(transform.position, (currentPlanet.transform.position - transform.position).normalized, Mathf.Infinity, collisionMask);
-           
-            if (hitCentral)
-                currentDistance = Vector3.Distance(transform.position, hitCentral.point);
-
-            if (!jumping && !keep)
-            {
-                if (currentDistance > (baseDistance + gravity))
-                    transform.Translate(transform.up * -gravity, Space.World);
-
-                else if (currentDistance < (baseDistance - gravity))
-                    transform.Translate(transform.up * gravity, Space.World);
-            }
-
-            else if((currentDistance > (baseDistance - precisionHeight)) && (currentDistance < (baseDistance + precisionHeight)) && toJump)
-            {
-                vectorJump = new Vector2(0f, 0f);
-                timeAfterJump = savedTimeAfterJump;
-                toJump = false;
-                jumping = false;
-            }
+            SnapToFloor();
 
             if (Input.GetButton("Horizontal") && Input.GetAxis("Horizontal") < 0f)
             {
-                hitL = Physics2D.Raycast(rayPointLeft.transform.position, -rayPointLeft.transform.up, Mathf.Infinity, collisionMask);
-                hitR = Physics2D.Raycast(rayPointRight.transform.position, -rayPointRight.transform.up, Mathf.Infinity, collisionMask);
-                hitJL = Physics2D.Raycast(rayPointLeft.transform.position + (-rayPointLeft.transform.up * angleHight), -rayPointLeft.transform.right, distance, collisionMask);               
-
-                Debug.DrawRay(rayPointLeft.transform.position + (-rayPointLeft.transform.up * angleHight), -rayPointRight.transform.right * distance, Color.red);
-
-                if (hitL)
-                    pointLeft = hitL.point;
-
-                if (hitR)
-                    pointRight = hitR.point;
-
-                Debug.DrawLine(rayPointLeft.transform.position, pointLeft, Color.yellow);
-                Debug.DrawLine(rayPointRight.transform.position, pointRight, Color.yellow);
-
-                if (faceRight)
-                    Flip();
-
-                if(!hitJL)
-                    Sprint(false);
+                MoveLeft();
             }
 
             else if (Input.GetButton("Horizontal") && Input.GetAxis("Horizontal") > 0f)
             {
-                hitL = Physics2D.Raycast(rayPointLeft.transform.position, -rayPointLeft.transform.up, Mathf.Infinity, collisionMask);
-                hitR = Physics2D.Raycast(rayPointRight.transform.position, -rayPointRight.transform.up, Mathf.Infinity, collisionMask);
-                hitJR = Physics2D.Raycast(rayPointRight.transform.position + (-rayPointRight.transform.up * angleHight), rayPointRight.transform.right, distance, collisionMask);
-
-                Debug.DrawRay(rayPointRight.transform.position + (-rayPointRight.transform.up * angleHight), rayPointRight.transform.right * distance, Color.red);
-
-                if (hitL)
-                    pointLeft = hitL.point;
-
-                if (hitR)
-                    pointRight = hitR.point;
-
-                Debug.DrawLine(rayPointLeft.transform.position, pointLeft, Color.yellow);
-                Debug.DrawLine(rayPointRight.transform.position, pointRight, Color.yellow);
-
-                if (!faceRight)
-                    Flip();
-
-                if(!hitJR)
-                    Sprint(true);
+                MoveRight();
             }
         }
         
@@ -204,6 +157,92 @@ public class Scr_AstronautMovement : MonoBehaviour
 
         if (collision.gameObject.tag == "Tool")
             closeToCollector = false;
+    }
+
+    private void SnapToFloor()
+    {
+        hitCentral = Physics2D.Raycast(transform.position, (currentPlanet.transform.position - transform.position).normalized, Mathf.Infinity, collisionMask);
+
+        if (hitCentral)
+            currentDistance = Vector3.Distance(transform.position, hitCentral.point);
+
+        if (!jumping && !keep)
+        {
+            if (currentDistance > (baseDistance + gravity))
+                transform.Translate(transform.up * -gravity, Space.World);
+
+            else if (currentDistance < (baseDistance - gravity))
+                transform.Translate(transform.up * gravity, Space.World);
+        }
+
+        else if ((currentDistance > (baseDistance - precisionHeight)) && (currentDistance < (baseDistance + precisionHeight)) && toJump)
+        {
+            vectorJump = new Vector2(0f, 0f);
+            timeAfterJump = savedTimeAfterJump;
+            toJump = false;
+            jumping = false;
+        }
+    }
+
+    private void MoveLeft()
+    {
+        float angle = 0;
+
+        hitL = Physics2D.Raycast(rayPointLeft.transform.position, -rayPointLeft.transform.up, Mathf.Infinity, collisionMask);
+        hitR = Physics2D.Raycast(rayPointRight.transform.position, -rayPointRight.transform.up, Mathf.Infinity, collisionMask);
+        hitJL = Physics2D.Raycast(transform.position + (transform.up * astronautWidth) + (-transform.right * astronautWidth), -transform.up, distance, collisionMask);
+        hitAngleUp = Physics2D.Raycast(transform.position + (-transform.up * 0.06f), -transform.right, 0.08f, collisionMask);
+        hitAngleDown = Physics2D.Raycast(transform.position + (-transform.up * 0.03f), -transform.right, 0.08f, collisionMask);
+
+        if (hitAngleUp && hitAngleDown)
+        {
+            Vector2 vectorAngle = (hitAngleUp.point - hitAngleDown.point);
+            angle = Vector2.Angle(vectorAngle, transform.right);
+        }
+
+        if (hitL)
+            pointLeft = hitL.point;
+
+        if (hitR)
+            pointRight = hitR.point;
+
+        if (faceRight)
+            Flip();
+
+        if (!hitJL && angle <= maxAngle)
+            Sprint(false);
+    }
+
+    private void MoveRight()
+    {
+        float angle = 0;
+
+        hitL = Physics2D.Raycast(rayPointLeft.transform.position, -rayPointLeft.transform.up, Mathf.Infinity, collisionMask);
+        hitR = Physics2D.Raycast(rayPointRight.transform.position, -rayPointRight.transform.up, Mathf.Infinity, collisionMask);
+        hitJR = Physics2D.Raycast(transform.position + (transform.up * astronautWidth) + (transform.right * astronautWidth), -transform.up, distance, collisionMask);
+        hitAngleUp = Physics2D.Raycast(transform.position + (-transform.up * 0.06f), transform.right, 0.08f, collisionMask);
+        hitAngleDown = Physics2D.Raycast(transform.position + (-transform.up * 0.03f), transform.right, 0.08f, collisionMask);
+
+        if (hitAngleUp && hitAngleDown)
+        {
+            Vector2 vectorAngle = (hitAngleUp.point - hitAngleDown.point);
+            angle = Vector2.Angle(vectorAngle, transform.right);
+        }
+
+        if (hitL)
+            pointLeft = hitL.point;
+
+        if (hitR)
+            pointRight = hitR.point;
+
+        Debug.DrawLine(rayPointLeft.transform.position, pointLeft, Color.yellow);
+        Debug.DrawLine(rayPointRight.transform.position, pointRight, Color.yellow);
+
+        if (!faceRight)
+            Flip();
+
+        if (!hitJR && angle <= maxAngle)
+            Sprint(true);
     }
 
     private void Move(bool right, float movement)
