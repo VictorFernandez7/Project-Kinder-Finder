@@ -11,6 +11,8 @@ public class Scr_InterfaceManager : MonoBehaviour
     [SerializeField] private KeyCode input_PlayerShipWindow;
 
     [Header("References")]
+    [SerializeField] private GameObject landingInterface;
+    [SerializeField] private GameObject landingInterfaceSpot;
     [SerializeField] private GameObject landingInterfaceShip;
     [SerializeField] private GameObject landingInterfaceAngle;
 

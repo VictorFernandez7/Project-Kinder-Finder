@@ -15,7 +15,7 @@ public class Scr_PlayerShipDeathCheck : MonoBehaviour
     [HideInInspector] public Vector3 playerShipToPlanetDirection;
 
     private float landingTime;
-    private float landingAngle;    
+    private float landingAngle;
     private GameObject currentPlanet;
     private Scr_PlayerShipStats playerShipStats;
     private Scr_PlayerShipMovement playerShipMovement;
