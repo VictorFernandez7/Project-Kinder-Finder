@@ -11,10 +11,11 @@ public class Scr_PlayerShipDeathCheck : MonoBehaviour
     [Header("Collision Parameters")]
     [SerializeField] private float deathVelocity;
 
+    [HideInInspector] public Vector3 playerShipDirection;
+    [HideInInspector] public Vector3 playerShipToPlanetDirection;
+
     private float landingTime;
-    private float landingAngle;
-    private Vector3 playerShipDirection;
-    private Vector3 playerShipToPlanetDirection;
+    private float landingAngle;    
     private GameObject currentPlanet;
     private Scr_PlayerShipStats playerShipStats;
     private Scr_PlayerShipMovement playerShipMovement;

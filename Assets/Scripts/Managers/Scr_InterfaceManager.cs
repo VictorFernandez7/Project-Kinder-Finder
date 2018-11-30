@@ -10,6 +10,10 @@ public class Scr_InterfaceManager : MonoBehaviour
     [SerializeField] private KeyCode input_QuestPanel;
     [SerializeField] private KeyCode input_PlayerShipWindow;
 
+    [Header("References")]
+    [SerializeField] private GameObject landingInterfaceShip;
+    [SerializeField] private GameObject landingInterfaceAngle;
+
     private bool questPanelActive;
     private bool playerShipWindowActive;
 
@@ -22,6 +26,7 @@ public class Scr_InterfaceManager : MonoBehaviour
 
     private Scr_MainCamera mainCamera;
     private Scr_PlayerShipMovement playerShipMovement;
+    private Scr_PlayerShipDeathCheck playerShipDeathCheck;
 
     private void Start()
     {
@@ -34,6 +39,7 @@ public class Scr_InterfaceManager : MonoBehaviour
 
         mainCamera = GameObject.Find("MainCamera").GetComponent<Scr_MainCamera>();
         playerShipMovement = GameObject.Find("PlayerShip").GetComponent<Scr_PlayerShipMovement>();
+        playerShipDeathCheck = GameObject.Find("PlayerShip").GetComponentInChildren<Scr_PlayerShipDeathCheck>();
 
         anim_AstronautInterface.SetBool("Show", true);
         anim_FadeImage.SetBool("Fade", true);
@@ -41,13 +47,14 @@ public class Scr_InterfaceManager : MonoBehaviour
 
     private void Update()
     {
-        CheckPlayerState();
+        CheckAstronautState();
+        LandingInterface();
 
         if (playerShipMovement.astronautOnBoard)
             CheckInputs();
     }
 
-    private void CheckPlayerState()
+    private void CheckAstronautState()
     {
         anim_PlayerShipActions.SetBool("Mining", mainCamera.mining);
 
@@ -88,5 +95,23 @@ public class Scr_InterfaceManager : MonoBehaviour
 
         else
             currentSelected.color = Color.black;
+    }
+
+    private void LandingInterface()
+    {
+        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landing)
+        {
+            landingInterfaceAngle.SetActive(true);
+            landingInterfaceShip.SetActive(true);
+
+            landingInterfaceAngle.transform.up = playerShipDeathCheck.playerShipToPlanetDirection;
+            landingInterfaceShip.transform.up = playerShipDeathCheck.playerShipDirection;
+        }
+
+        else
+        {
+            landingInterfaceAngle.SetActive(false);
+            landingInterfaceShip.SetActive(false);
+        }
     }
 }

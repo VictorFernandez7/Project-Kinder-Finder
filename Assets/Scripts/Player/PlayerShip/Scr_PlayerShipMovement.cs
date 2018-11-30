@@ -143,7 +143,8 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        landingOrientationVector = -new Vector3(currentPlanet.transform.position.x - transform.position.x, currentPlanet.transform.position.y - transform.position.y, currentPlanet.transform.position.z - transform.position.z);
+        if (currentPlanet != null)
+            landingOrientationVector = -new Vector3(currentPlanet.transform.position.x - transform.position.x, currentPlanet.transform.position.y - transform.position.y, currentPlanet.transform.position.z - transform.position.z);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
