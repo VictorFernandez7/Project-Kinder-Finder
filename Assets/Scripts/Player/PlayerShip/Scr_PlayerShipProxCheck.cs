@@ -31,7 +31,7 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
 
     private void Update()
     {
-        //CheckAsteroids();
+        CheckAsteroids();
 
         print(closestAsteroidDistance);
     }
