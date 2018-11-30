@@ -41,6 +41,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     [HideInInspector] public bool keep;
     [HideInInspector] public bool faceRight;
     [HideInInspector] public bool breathable;
+    [HideInInspector] public float velocity = 0;
     [HideInInspector] public Vector3 planetPosition;    
     [HideInInspector] public Quaternion planetRotation;
     [HideInInspector] public GameObject currentPlanet;
@@ -54,6 +55,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     private float baseDistance;
     private float currentDistance;
     private float timeAtAir;
+    private float inertialTime;
     private Vector2 pointLeft;
     private Vector2 pointRight;
     private Vector2 movementVector;
@@ -125,6 +127,11 @@ public class Scr_AstronautMovement : MonoBehaviour
             else if (Input.GetButton("Horizontal") && Input.GetAxis("Horizontal") > 0f)
             {
                 MoveRight();
+            }
+
+            else
+            {
+                velocity = 0;
             }
         }
         
