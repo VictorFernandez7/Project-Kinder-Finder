@@ -58,7 +58,14 @@ public class Scr_MapManager : MonoBehaviour
             MapControl();
 
         if (target != null)
-            mapIndicator.transform.position = target.transform.position + new Vector3(0f, ((target.transform.GetChild(1).GetComponent<Renderer>().bounds.size.x) / 2) + 10f, 0f);
+            mapIndicator.transform.position = target.transform.position + new Vector3(0f, ((target.transform.GetChild(0).GetComponent<Renderer>().bounds.size.x) / 2) + 10f, 0f);
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            Destroy(mapIndicator);
+            Destroy(directionIndicator);
+            indicatorActive = false;
+        }
     }
 
     private void MapActivation()

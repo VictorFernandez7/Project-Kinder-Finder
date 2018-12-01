@@ -121,7 +121,7 @@ public class Scr_Planet : MonoBehaviour
                 mapManager.currentTarget = this.gameObject;
                 mapManager.target = this.gameObject;
                 mapManager.waypointActive = true;
-                mapManager.mapIndicator.transform.position = transform.position + new Vector3(0f, ((transform.GetChild(1).GetComponent<Renderer>().bounds.size.x) / 2) + 10f, 0f);
+                mapManager.mapIndicator.transform.position = transform.position + new Vector3(0f, ((transform.GetChild(0).GetComponent<Renderer>().bounds.size.x) / 2) + 10f, 0f);
                 mapManager.indicatorActive = true;
             }
         }
