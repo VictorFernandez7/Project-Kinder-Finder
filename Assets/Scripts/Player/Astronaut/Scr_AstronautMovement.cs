@@ -41,7 +41,8 @@ public class Scr_AstronautMovement : MonoBehaviour
     [HideInInspector] public bool keep;
     [HideInInspector] public bool faceRight;
     [HideInInspector] public bool breathable;
-    [HideInInspector] public float velocity = 0;
+    [HideInInspector] public float velocity;
+    [HideInInspector] public float exponentialMultiplier;
     [HideInInspector] public Vector3 planetPosition;    
     [HideInInspector] public Quaternion planetRotation;
     [HideInInspector] public GameObject currentPlanet;
@@ -50,6 +51,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     [HideInInspector] public Vector3 vectorJump;
 
     private bool toJump;
+    private bool lastRight;
     private float timeAfterJump = 0.5f;
     private float savedTimeAfterJump = 0.5f;
     private float baseDistance;
@@ -104,7 +106,7 @@ public class Scr_AstronautMovement : MonoBehaviour
 
         else if (jumping)
         {
-            timeAtAir += Time.deltaTime * 5;
+            timeAtAir += Time.deltaTime * 10;
             vectorJump -= (transform.position - currentPlanet.transform.position).normalized * gravity * timeAtAir * Time.deltaTime;
         }
 
@@ -121,17 +123,29 @@ public class Scr_AstronautMovement : MonoBehaviour
 
             if (Input.GetButton("Horizontal") && Input.GetAxis("Horizontal") < 0f)
             {
-                MoveLeft();
+                MoveLeft(false);
+                lastRight = false;
             }
 
             else if (Input.GetButton("Horizontal") && Input.GetAxis("Horizontal") > 0f)
             {
-                MoveRight();
+                MoveRight(false);
+                lastRight = true;
+            }
+
+            else if(velocity > 0)
+            {
+                if (lastRight)
+                    MoveRight(true);
+                else
+                    MoveLeft(true);
+
             }
 
             else
             {
                 velocity = 0;
+                exponentialMultiplier = 1;
             }
         }
         
@@ -191,7 +205,7 @@ public class Scr_AstronautMovement : MonoBehaviour
         }
     }
 
-    private void MoveLeft()
+    private void MoveLeft(bool decelerating)
     {
         float angle = 0;
 
@@ -217,10 +231,10 @@ public class Scr_AstronautMovement : MonoBehaviour
             Flip();
 
         if (!hitJL && angle <= maxAngle)
-            Sprint(false);
+            Sprint(false, decelerating);
     }
 
-    private void MoveRight()
+    private void MoveRight(bool decelerating)
     {
         float angle = 0;
 
@@ -249,7 +263,7 @@ public class Scr_AstronautMovement : MonoBehaviour
             Flip();
 
         if (!hitJR && angle <= maxAngle)
-            Sprint(true);
+            Sprint(true, decelerating);
     }
 
     private void Move(bool right, float movement)
@@ -274,21 +288,52 @@ public class Scr_AstronautMovement : MonoBehaviour
 
         Debug.DrawRay(transform.position, movementVector, Color.red);
 
-        transform.Translate(movementVector * movement, Space.World);
+        if (velocity < movement)
+        {
+            velocity += 0.0005f * exponentialMultiplier;
+            exponentialMultiplier += 0.5f;
+
+            if (velocity >= movement)
+            {
+                velocity = movement;
+                exponentialMultiplier = 1;
+            }
+        }
+
+        else if (velocity > movement)
+        {
+            velocity -= 0.0005f * exponentialMultiplier;
+            exponentialMultiplier += 0.5f;
+
+            if(velocity <= movement)
+            {
+                velocity = movement;
+                exponentialMultiplier = 1;
+            }
+        }
+        
+
+        transform.Translate(movementVector * velocity, Space.World);
     }
 
-    private void Sprint(bool right)
+    private void Sprint(bool right, bool decelerating)
     {
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (!decelerating)
         {
-            Move(right, sprintSpeed);
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                Move(right, sprintSpeed);
 
-            if (!breathable)
-                GetComponent<Scr_AstronautStats>().currentOxygen -= 0.05f;
+                if (!breathable)
+                    GetComponent<Scr_AstronautStats>().currentOxygen -= 0.05f;
+            }
+
+            else
+                Move(right, walkingSpeed);
         }
 
         else
-            Move(right, walkingSpeed);
+            Move(right, 0);
     }
 
     private void Flip()
