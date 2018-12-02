@@ -79,6 +79,8 @@ public class Scr_AstronautMovement : MonoBehaviour
 
         hitCentral = Physics2D.Raycast(transform.position, (currentPlanet.transform.position - transform.position).normalized, Mathf.Infinity, collisionMask);
 
+        planetRotation = new Quaternion(0, 0, 0, 0);
+
         if (hitCentral)
             baseDistance = Vector3.Distance(transform.position, hitCentral.point);
     }
