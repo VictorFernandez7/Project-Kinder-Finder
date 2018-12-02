@@ -18,6 +18,7 @@ public class Scr_MapManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private Camera mapCamera;
     [SerializeField] private GameObject halo;
+    [SerializeField] private GameObject mapVisuals;
 
     [HideInInspector] public bool mapActive;
     [HideInInspector] public bool waypointActive;
@@ -47,6 +48,7 @@ public class Scr_MapManager : MonoBehaviour
 
         mapCanvas.SetActive(false);
         currentTarget = null;
+        mapVisuals.SetActive(true);
     }
 
     private void Update()
@@ -65,6 +67,8 @@ public class Scr_MapManager : MonoBehaviour
             Destroy(mapIndicator);
             Destroy(directionIndicator);
             indicatorActive = false;
+            waypointActive = false;
+            target = null;
         }
     }
 
@@ -79,7 +83,7 @@ public class Scr_MapManager : MonoBehaviour
             mapActive = !mapActive;
 
             if (mapActive)
-                Time.timeScale = 0.1f;
+                Time.timeScale = 0.01f;
 
             else if (!mapActive)
                 Time.timeScale = 1f;
