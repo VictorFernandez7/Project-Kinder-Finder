@@ -17,8 +17,8 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
     [SerializeField] private Sprite planetIcon;
     [SerializeField] private Sprite asteroidIcon;
 
-    private List<Scr_Asteroid> asteroids;
     private GameObject playerShip;
+    private List<Scr_Asteroid> asteroids;
 
     private void Start()
     {
@@ -29,7 +29,7 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
 
     private void Update()
     {
-        
+        UpdateAsteroidDistance();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -38,5 +38,27 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
         {
             asteroids.Add(new Scr_Asteroid(collision.name, Vector3.Distance(collision.transform.position, playerShip.transform.position),collision.transform.position));
         }
+    }
+
+    private void UpdateAsteroidDistance()
+    {
+        foreach (Scr_Asteroid asteroid in asteroids)
+        {
+            if (GameObject.Find(asteroid.name) != null)
+            {
+                asteroid.distanceToShip = Vector3.Distance(transform.position, GameObject.Find(asteroid.name).transform.position);
+
+                if (asteroid.distanceToShip <= asteroidCheckDistance)
+                {
+
+                }
+            }
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, asteroidCheckDistance);
     }
 }
