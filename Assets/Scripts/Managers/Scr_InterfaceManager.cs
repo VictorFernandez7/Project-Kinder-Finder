@@ -12,7 +12,8 @@ public class Scr_InterfaceManager : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private GameObject landingInterface;
-    [SerializeField] private GameObject landingInterfaceShip;
+    [SerializeField] private GameObject playerShipIcon;
+    [SerializeField] private GameObject angleIcon;
 
     private bool questPanelActive;
     private bool playerShipWindowActive;
@@ -103,13 +104,11 @@ public class Scr_InterfaceManager : MonoBehaviour
         {
             landingInterface.SetActive(true);
 
-            Vector3 direction = new Vector3(landingInterface.transform.position.x - playerShip.transform.position.x, landingInterface.transform.position.y - playerShip.transform.position.y, landingInterface.transform.position.z - playerShip.transform.position.z);
-
-            landingInterfaceShip.transform.up = direction;
+            playerShip.transform.up = playerShip.transform.up;
+            angleIcon.transform.up = mainCamera.transform.up;
         }
 
         else
             landingInterface.SetActive(false);
-
     }
 }

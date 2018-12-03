@@ -108,7 +108,6 @@ public class MusicManager : PersistentSingleton<MusicManager>
             m_backgroundMusic.Play();
 
         }
-        Debug.Log(audioName);
     }
 
     public  void         PlaySound             (string audioName)
