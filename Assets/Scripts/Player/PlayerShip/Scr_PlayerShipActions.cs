@@ -101,15 +101,15 @@ public class Scr_PlayerShipActions : MonoBehaviour
     {
         if (playerShipMovement.astronautOnBoard)
         {
-            if (Input.GetKeyDown(KeyCode.E) && !astronaut.activeInHierarchy && canExitShip)
+            if (Input.GetButtonDown("Interact") && !astronaut.activeInHierarchy && canExitShip)
                 DeployAstronaut();
 
-            if (Input.GetKeyDown(KeyCode.M))
+            if (Input.GetButtonDown("Map"))
                 mapVisuals.SetActive(true);
 
             if (closeToAsteroid)
             {
-                if (Input.GetKeyDown(KeyCode.Q))
+                if (Input.GetButtonDown("Interact"))
                 {
                     if (playerShipRb.isKinematic)
                         MiningState(false);

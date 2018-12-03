@@ -30,7 +30,6 @@ public class Scr_PlayerShipPrediction : MonoBehaviour
         currentPlanet = GetComponent<Scr_PlayerShipMovement>().currentPlanet;
 
         Prediction();
-        //PredictionLength();
     }
 
     private Vector3[] GeneratePredictionPoints()
@@ -55,6 +54,7 @@ public class Scr_PlayerShipPrediction : MonoBehaviour
             gravity = gravity * Time.fixedDeltaTime * Time.fixedDeltaTime;
             moveStep += gravity;
             currentPosition += moveStep + displacement;
+
             results[i] = currentPosition;
         }
 
@@ -69,18 +69,25 @@ public class Scr_PlayerShipPrediction : MonoBehaviour
         predictionLine.SetPositions(points);
         predictionLineMap.positionCount = points.Length;
         predictionLineMap.SetPositions(points);
-    }
 
-    private void PredictionLength()
-    {
-        if (currentPlanet != null)
-        {
-            float distance = Vector3.Distance(transform.position, currentPlanet.transform.position);
+        int pointStartFade = points.Length / 2;
+        int pointEndFade = points.Length-1;
 
-            predictionTime = 0;
-        }
+        Gradient gradient = new Gradient();
 
-        else
-            predictionTime = 6;
+        // Populate the color keys at the relative time 0 and 1 (0 and 100%)
+        GradientColorKey[] colorKey = new GradientColorKey[1];
+        colorKey[0].color = Color.white;
+        colorKey[0].time = 0.0f;
+
+        // Populate the alpha  keys at relative time 0 and 1  (0 and 100%)
+        GradientAlphaKey[] alphaKey = new GradientAlphaKey[2];
+        alphaKey[0].alpha = 1.0f;
+        alphaKey[0].time = pointStartFade/(float)points.Length;
+        alphaKey[1].alpha = 0.0f;
+        alphaKey[1].time = pointEndFade / (float)points.Length;
+
+        gradient.SetKeys(colorKey, alphaKey);
+        predictionLine.colorGradient = gradient;
     }
 }

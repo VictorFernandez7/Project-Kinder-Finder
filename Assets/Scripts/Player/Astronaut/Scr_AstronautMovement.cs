@@ -55,6 +55,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     private float timeAfterJump = 0.5f;
     private float savedTimeAfterJump = 0.5f;
     private float baseDistance;
+    private float currentAngle;
     private float currentDistance;
     private float timeAtAir;
     private float inertialTime;
@@ -98,7 +99,7 @@ public class Scr_AstronautMovement : MonoBehaviour
 
         if ((currentDistance > (baseDistance - precisionHeight)) && (currentDistance < (baseDistance + precisionHeight)))
         {
-            if (Input.GetButtonDown("Jump"))
+            if (Input.GetButtonDown("Jump") && currentAngle <= maxAngle)
             {
                 timeAtAir = 0;
                 vectorJump = (transform.position - currentPlanet.transform.position).normalized * speedJump;
@@ -119,8 +120,14 @@ public class Scr_AstronautMovement : MonoBehaviour
     {
         transform.rotation = Quaternion.LookRotation(transform.forward, (transform.position - currentPlanet.transform.position));
 
+        hitL = Physics2D.Raycast(rayPointLeft.transform.position, -rayPointLeft.transform.up, Mathf.Infinity, collisionMask);
+        hitR = Physics2D.Raycast(rayPointRight.transform.position, -rayPointRight.transform.up, Mathf.Infinity, collisionMask);
+
         if (canMove == true)
         {
+            currentAngle = Vector2.Angle((hitL.point - hitR.point), transform.right);
+            currentAngle = 180 - currentAngle;
+
             SnapToFloor();
 
             if (Input.GetButton("Horizontal") && Input.GetAxis("Horizontal") < 0f)
@@ -141,7 +148,6 @@ public class Scr_AstronautMovement : MonoBehaviour
                     MoveRight(true);
                 else
                     MoveLeft(true);
-
             }
 
             else
@@ -211,8 +217,6 @@ public class Scr_AstronautMovement : MonoBehaviour
     {
         float angle = 0;
 
-        hitL = Physics2D.Raycast(rayPointLeft.transform.position, -rayPointLeft.transform.up, Mathf.Infinity, collisionMask);
-        hitR = Physics2D.Raycast(rayPointRight.transform.position, -rayPointRight.transform.up, Mathf.Infinity, collisionMask);
         hitJL = Physics2D.Raycast(transform.position + (transform.up * astronautWidth) + (-transform.right * astronautWidth), -transform.up, distance, collisionMask);
         hitAngleUp = Physics2D.Raycast(transform.position + (-transform.up * 0.06f), -transform.right, 0.08f, collisionMask);
         hitAngleDown = Physics2D.Raycast(transform.position + (-transform.up * 0.03f), -transform.right, 0.08f, collisionMask);
@@ -240,8 +244,6 @@ public class Scr_AstronautMovement : MonoBehaviour
     {
         float angle = 0;
 
-        hitL = Physics2D.Raycast(rayPointLeft.transform.position, -rayPointLeft.transform.up, Mathf.Infinity, collisionMask);
-        hitR = Physics2D.Raycast(rayPointRight.transform.position, -rayPointRight.transform.up, Mathf.Infinity, collisionMask);
         hitJR = Physics2D.Raycast(transform.position + (transform.up * astronautWidth) + (transform.right * astronautWidth), -transform.up, distance, collisionMask);
         hitAngleUp = Physics2D.Raycast(transform.position + (-transform.up * 0.06f), transform.right, 0.08f, collisionMask);
         hitAngleDown = Physics2D.Raycast(transform.position + (-transform.up * 0.03f), transform.right, 0.08f, collisionMask);
@@ -322,7 +324,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     {
         if (!decelerating)
         {
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetButton("Boost"))
             {
                 Move(right, sprintSpeed);
 

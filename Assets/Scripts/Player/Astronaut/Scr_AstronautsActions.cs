@@ -47,7 +47,7 @@ public class Scr_AstronautsActions : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && astronautMovement.canEnterShip)
+        if (Input.GetButtonDown("Interact") && astronautMovement.canEnterShip)
         {
             if (emptyHands)
             {
@@ -72,7 +72,7 @@ public class Scr_AstronautsActions : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && astronautMovement.closeToCollector && astronautMovement.currentFuelCollector != null)
+        if (Input.GetButtonDown("Interact") && astronautMovement.closeToCollector && astronautMovement.currentFuelCollector != null)
         {
             if (emptyHands && !toolOnHands && astronautMovement.currentFuelCollector.GetComponent<Scr_Tool>().resourceAmount >= 0 && !astronautMovement.currentFuelCollector.GetComponent<Scr_Tool>().onHands)
             {
@@ -82,22 +82,22 @@ public class Scr_AstronautsActions : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetButtonDown("Tool1"))
         {
             HandTool(0);
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetButtonDown("Tool2"))
         {
             HandTool(1);
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        if (Input.GetButtonDown("Tool3"))
         {
             HandTool(2);
         }
 
-        if(Input.GetKeyDown(KeyCode.R))
+        if(Input.GetButtonDown("Interact"))
         {
             if (toolOnHands)
             {
