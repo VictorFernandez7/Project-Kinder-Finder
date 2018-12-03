@@ -4,12 +4,14 @@ using System;
 public class Scr_Asteroid: IComparable<Scr_Asteroid>
 {
     public string name;
+    public GameObject body;
     public float distanceToShip;
     public Vector3 currentPos;
 
-    public Scr_Asteroid (string newName, float newDistanceToShip, Vector3 newCurrentPos)
+    public Scr_Asteroid (string newName, GameObject newBody,float newDistanceToShip, Vector3 newCurrentPos)
     {
         name = newName;
+        body = newBody;
         distanceToShip = newDistanceToShip;
         currentPos = newCurrentPos;
     }

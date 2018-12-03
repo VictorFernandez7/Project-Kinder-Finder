@@ -30,13 +30,30 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
     private void Update()
     {
         UpdateAsteroidDistance();
+
+        print(asteroids.Count);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Asteroid"))
+            asteroids.Add(new Scr_Asteroid(collision.name, collision.gameObject, Vector3.Distance(collision.transform.position, playerShip.transform.position), collision.transform.position));
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Asteroid"))
         {
-            asteroids.Add(new Scr_Asteroid(collision.name, Vector3.Distance(collision.transform.position, playerShip.transform.position),collision.transform.position));
+            List<Scr_Asteroid> asteroidsToDelete = new List<Scr_Asteroid>();
+
+            foreach (Scr_Asteroid asteroid in asteroids)
+            {
+                if (asteroid.name == collision.name)
+                    asteroidsToDelete.Add(asteroid);
+            }
+
+            foreach (Scr_Asteroid asteroid in asteroidsToDelete)
+                asteroids.Remove(asteroid);
         }
     }
 
@@ -44,15 +61,10 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
     {
         foreach (Scr_Asteroid asteroid in asteroids)
         {
-            if (GameObject.Find(asteroid.name) != null)
-            {
-                asteroid.distanceToShip = Vector3.Distance(transform.position, GameObject.Find(asteroid.name).transform.position);
+            asteroid.distanceToShip = Vector3.Distance(transform.position, asteroid.body.transform.position);
 
-                if (asteroid.distanceToShip <= asteroidCheckDistance)
-                {
-
-                }
-            }
+            if (asteroid.distanceToShip <= asteroidCheckDistance)
+                ShowAsteroidInHUD(asteroid.body);
         }
     }
 
@@ -60,5 +72,10 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, asteroidCheckDistance);
+    }
+
+    private void ShowAsteroidInHUD(GameObject targetAsteroid)
+    {
+
     }
 }
