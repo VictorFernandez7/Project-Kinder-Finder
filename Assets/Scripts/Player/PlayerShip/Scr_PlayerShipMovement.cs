@@ -445,7 +445,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
                 {
                     playerShipEffects.thrusterParticles.Play();
 
-                    if (Input.GetKey(KeyCode.LeftShift))
+                    if (Input.GetButton("Boost"))
                     {
                         playerShipStats.FuelConsumption(true);
                         currentSpeed = boostSpeed;
