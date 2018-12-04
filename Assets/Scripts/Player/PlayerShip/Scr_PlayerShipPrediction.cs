@@ -9,10 +9,12 @@ public class Scr_PlayerShipPrediction : MonoBehaviour
 
     [Header("References")]
     [SerializeField] LineRenderer predictionLineMap;
+    [SerializeField] Scr_PlayerShipProxCheck proximityCheck;
 
     [HideInInspector] public LineRenderer predictionLine;
 
     private int pointNumber;
+    private int pointContact = 0;
     private Rigidbody2D rb;
     private Scr_PlanetManager planetManager;
     private GameObject currentPlanet;
@@ -57,7 +59,21 @@ public class Scr_PlayerShipPrediction : MonoBehaviour
 
             if (!contact)
             {
+                if (proximityCheck.asteroids.Count > 0)
+                {
+                    foreach (Scr_Asteroid asteroid in proximityCheck.asteroids)
+                    {
+                        if ((currentPosition.x < (asteroid.body.transform.position.x + asteroid.body.GetComponentInChildren<Renderer>().bounds.size.x / 2)) && (currentPosition.x > (asteroid.body.transform.position.x - asteroid.body.GetComponentInChildren<Renderer>().bounds.size.x / 2)) && (currentPosition.y > (asteroid.body.transform.position.y - asteroid.body.GetComponentInChildren<Renderer>().bounds.size.y / 2)) && (currentPosition.y < (asteroid.body.transform.position.y + asteroid.body.GetComponentInChildren<Renderer>().bounds.size.y / 2)))
+                        {
+                            pointContact = i;
+                            contact = true;
+                            break;
+                        }
 
+                        else
+                            pointContact = 0;
+                    }
+                }
             }
 
             results[i] = currentPosition;
@@ -76,7 +92,13 @@ public class Scr_PlayerShipPrediction : MonoBehaviour
         predictionLineMap.SetPositions(points);
 
         int pointStartFade = points.Length / 2;
-        int pointEndFade = points.Length-1;
+        int pointEndFade = points.Length - 1;  
+
+        if(pointContact != 0)
+        {
+            pointStartFade = pointContact - 5;
+            pointEndFade = pointContact;
+        }
 
         Gradient gradient = new Gradient();
 
