@@ -6,6 +6,9 @@ public class Scr_Vortex : MonoBehaviour
 {
     [Header("Vortex Paramaters")]
     [SerializeField] float vortexSize;
+    [SerializeField] float dyingSpeed;
+    [SerializeField] float minSize;
+    [SerializeField] float maxSize;
 
     [Header("Size 1 Vortex Paramaters")]
     [SerializeField] float range;
@@ -23,11 +26,14 @@ public class Scr_Vortex : MonoBehaviour
 
         vortexCollider = GetComponent<CircleCollider2D>();
         vortexParticles = GetComponentInChildren<ParticleSystem>();
+
+        vortexSize = Random.Range(minSize, maxSize);
     }
 
     private void Update()
     {
         UpdateParameters();
+        DyingProcess();
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -48,6 +54,14 @@ public class Scr_Vortex : MonoBehaviour
         main.startLifetime = lifeTime * vortexSize;
         emission.rateOverTime = particleAmount * vortexSize;
         vortexCollider.radius = (range * 3) * vortexSize;
+    }
+
+    private void DyingProcess()
+    {
+        if (vortexSize > 0)
+            vortexSize -= dyingSpeed * Time.deltaTime;
+        else
+            Destroy(gameObject);
     }
 
     private void OnDrawGizmos()
