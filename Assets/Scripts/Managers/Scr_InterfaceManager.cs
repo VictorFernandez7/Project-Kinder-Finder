@@ -104,8 +104,8 @@ public class Scr_InterfaceManager : MonoBehaviour
         {
             landingInterface.SetActive(true);
 
-            playerShip.transform.up = playerShip.transform.up;
-            angleIcon.transform.up = mainCamera.transform.up;
+            float angle = Vector2.SignedAngle((playerShipMovement.currentPlanet.transform.position - playerShip.transform.position), playerShip.transform.up);
+            playerShipIcon.transform.rotation = Quaternion.Euler(0, 0, angle);
         }
 
         else
