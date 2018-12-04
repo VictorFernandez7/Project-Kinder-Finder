@@ -38,6 +38,7 @@ public class Scr_PlayerShipPrediction : MonoBehaviour
         Vector3[] results = new Vector3[pointNumber];
         Vector3 moveStep = rb.velocity * Time.fixedDeltaTime;
         Vector3 currentPosition = transform.position;
+        bool contact = false;
 
         for (int i = 0; i < results.Length; ++i)
         {
@@ -50,10 +51,14 @@ public class Scr_PlayerShipPrediction : MonoBehaviour
                 gravity += gravityVectors;
                 displacement += planetManager.planets[j].GetComponent<Scr_Planet>().GetFutureDisplacement(currentPosition, i * Time.fixedDeltaTime);
             }
-
             gravity = gravity * Time.fixedDeltaTime * Time.fixedDeltaTime;
             moveStep += gravity;
             currentPosition += moveStep + displacement;
+
+            if (!contact)
+            {
+
+            }
 
             results[i] = currentPosition;
         }
