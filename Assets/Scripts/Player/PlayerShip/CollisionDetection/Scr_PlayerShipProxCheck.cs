@@ -30,7 +30,7 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
 
     private void Update()
     {
-        UpdateAsteroidDistance();
+        UpdateAsteroid();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -56,25 +56,32 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
         }
     }
 
-    private void UpdateAsteroidDistance()
+    private void UpdateAsteroid()
     {
         foreach (Scr_Asteroid asteroid in asteroids)
         {
+            asteroid.currentPos = asteroid.body.transform.position;
             asteroid.distanceToShip = Vector3.Distance(transform.position, asteroid.body.transform.position);
 
             if (asteroid.distanceToShip <= asteroidCheckDistance)
-                ShowAsteroidInHUD(asteroid.body);
+                DrawProximityLine(new Vector3(transform.position.x - asteroid.currentPos.x, transform.position.x - asteroid.currentPos.x, transform.position.x - asteroid.currentPos.x), asteroid.distanceToShip);
         }
     }
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, asteroidCheckDistance);
     }
 
-    private void ShowAsteroidInHUD(GameObject targetAsteroid)
+    private void DrawProximityLine(Vector3 direction, float distance)
     {
+        float lineWidth = distance / 2;
+        Vector3 centralPoint = direction.normalized * asteroidCheckDistance;
 
+        for (int i = 0; i < lineWidth; i++)
+        {
+            
+        }
     }
 }
