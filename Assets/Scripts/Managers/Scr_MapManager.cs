@@ -17,8 +17,8 @@ public class Scr_MapManager : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Camera mapCamera;
-    [SerializeField] private GameObject halo;
     [SerializeField] private GameObject mapVisuals;
+    [SerializeField] private TextMeshProUGUI distanceText;
 
     [HideInInspector] public bool mapActive;
     [HideInInspector] public bool waypointActive;
@@ -35,7 +35,6 @@ public class Scr_MapManager : MonoBehaviour
     private GameObject mainCanvas;
     private GameObject mapCanvas;
     private GameObject playerShip;
-    private TextMeshProUGUI distanceText;
 
     private void Start()
     {
@@ -43,8 +42,6 @@ public class Scr_MapManager : MonoBehaviour
         mainCamera = GameObject.Find("MainCamera").GetComponent<Camera>();
         mainCanvas = GameObject.Find("MainCanvas");
         mapCanvas = GameObject.Find("MapCanvas");
-
-        distanceText = halo.GetComponentInChildren<TextMeshProUGUI>();
 
         mapCanvas.SetActive(false);
         currentTarget = null;
@@ -121,7 +118,7 @@ public class Scr_MapManager : MonoBehaviour
 
     private void Halo()
     {
-        halo.transform.up = mainCamera.transform.up;
+        distanceText.transform.up = mainCamera.transform.up;
 
         if (currentTarget != null)
         {
@@ -159,13 +156,13 @@ public class Scr_MapManager : MonoBehaviour
             if (playerShip.GetComponent<Scr_PlayerShipMovement>().playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace)
             {
                 directionIndicator.GetComponent<SVGImage>().enabled = true;
-                halo.SetActive(true);
+                distanceText.gameObject.SetActive(true);
             }
 
             else
             {
                 directionIndicator.GetComponent<SVGImage>().enabled = false;
-                halo.SetActive(false);
+                distanceText.gameObject.SetActive(false);
             }
         }
     }

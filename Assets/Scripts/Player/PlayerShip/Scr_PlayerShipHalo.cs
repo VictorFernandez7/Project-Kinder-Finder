@@ -4,25 +4,28 @@ using UnityEngine;
 
 public class Scr_PlayerShipHalo : MonoBehaviour
 {
-
-    [SerializeField] private LineRenderer haloLine;
+    [Header("Halo Sttings")]
     [SerializeField] private float radius;
+    [SerializeField] private float width;
+    [SerializeField] private Color haloColor;
+
+    [Header("References")]
     [SerializeField] private Transform playership;
 
-    // Use this for initialization
-    void Start()
-    {
-        CreateOrbit();
+    private LineRenderer haloLine;
 
+    private void Start()
+    {
+        haloLine = GetComponent<LineRenderer>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        CreateOrbit();
+        HaloPoints();
+        HaloProperties();
     }
 
-    private void CreateOrbit()
+    private void HaloPoints()
     {
         int index = 0;
 
@@ -57,5 +60,13 @@ public class Scr_PlayerShipHalo : MonoBehaviour
         }
 
         haloLine.SetPosition(40, (new Vector3(1, 0, 0) * radius) + playership.position);
+    }
+
+    private void HaloProperties()
+    {
+        haloLine.startWidth = width;
+        haloLine.endWidth = width;
+        haloLine.startColor = haloColor;
+        haloLine.endColor = haloColor;
     }
 }
