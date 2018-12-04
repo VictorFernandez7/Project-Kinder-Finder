@@ -17,8 +17,9 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
     [SerializeField] private Sprite planetIcon;
     [SerializeField] private Sprite asteroidIcon;
 
+    [HideInInspector] public List<Scr_Asteroid> asteroids;
+
     private GameObject playerShip;
-    private List<Scr_Asteroid> asteroids;
 
     private void Start()
     {
@@ -30,8 +31,6 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
     private void Update()
     {
         UpdateAsteroidDistance();
-
-        print(asteroids.Count);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -70,7 +69,7 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.blue;
+        Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, asteroidCheckDistance);
     }
 
