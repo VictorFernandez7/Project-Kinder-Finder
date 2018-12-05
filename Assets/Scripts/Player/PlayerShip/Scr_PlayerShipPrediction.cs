@@ -37,6 +37,7 @@ public class Scr_PlayerShipPrediction : MonoBehaviour
     private Vector3[] GeneratePredictionPoints()
     {
         pointNumber = Mathf.RoundToInt(predictionTime / Time.fixedDeltaTime);
+        pointNumber = pointNumber / 2;
         Vector3[] results = new Vector3[pointNumber];
         Vector3 moveStep = rb.velocity * Time.fixedDeltaTime;
         Vector3 currentPosition = transform.position;

@@ -118,7 +118,7 @@ public class Scr_MapManager : MonoBehaviour
 
     private void Halo()
     {
-        distanceText.transform.up = mainCamera.transform.up;
+        distanceText.transform.rotation = Quaternion.LookRotation(Vector3.forward, mainCamera.transform.up);
 
         if (currentTarget != null)
         {
