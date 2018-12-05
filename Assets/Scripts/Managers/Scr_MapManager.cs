@@ -32,6 +32,7 @@ public class Scr_MapManager : MonoBehaviour
     private bool clampToScreen = true;
     private Camera mainCamera;
     private Vector3 dragOrigin;
+    private float distanceHUD;
     private GameObject mainCanvas;
     private GameObject mapCanvas;
     private GameObject playerShip;
@@ -46,6 +47,8 @@ public class Scr_MapManager : MonoBehaviour
         mapCanvas.SetActive(false);
         currentTarget = null;
         mapVisuals.SetActive(true);
+
+        distanceHUD = Vector3.Distance(distanceText.transform.position, playerShip.transform.position);
     }
 
     private void Update()
@@ -78,12 +81,25 @@ public class Scr_MapManager : MonoBehaviour
             mainCanvas.SetActive(mapActive);
             mapCanvas.SetActive(!mapActive);
             mapActive = !mapActive;
+        }
 
-            if (mapActive)
-                Time.timeScale = 0.01f;
+        if (mapActive)
+        {
+            Time.timeScale = 0f;
+            Time.fixedDeltaTime = Time.timeScale * 0.02f;
+            playerShip.GetComponent<Scr_PlayerShipPrediction>().enabled = false;
 
-            else if (!mapActive)
-                Time.timeScale = 1f;
+        }
+
+        else if (!mapActive)
+        {
+            Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
+            Time.timeScale += 0.25f * Time.unscaledDeltaTime;
+            Time.fixedDeltaTime = Time.timeScale * 0.02f;
+            if (Time.timeScale == 1)
+            {
+                playerShip.GetComponent<Scr_PlayerShipPrediction>().enabled = true;
+            }
         }
     }
 
@@ -118,7 +134,8 @@ public class Scr_MapManager : MonoBehaviour
 
     private void Halo()
     {
-        distanceText.transform.rotation = Quaternion.LookRotation(Vector3.forward, mainCamera.transform.up);
+        distanceText.transform.up = mainCamera.transform.up;
+        distanceText.transform.position = playerShip.transform. position + (mainCamera.transform.up * distanceHUD);
 
         if (currentTarget != null)
         {

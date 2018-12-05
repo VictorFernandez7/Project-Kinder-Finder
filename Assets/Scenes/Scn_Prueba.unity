@@ -944,11 +944,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &165178276 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1787057594449220, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
-    type: 2}
-  m_PrefabInternal: {fileID: 2035687052}
 --- !u!1001 &169703983
 Prefab:
   m_ObjectHideFlags: 0
@@ -5685,6 +5680,12 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc458ee511220854cbc76d1626ceae4f, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &907079080 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114402563492195678, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
+    type: 2}
+  m_PrefabInternal: {fileID: 2035687052}
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
 --- !u!1 &912198971
 GameObject:
   m_ObjectHideFlags: 0
@@ -8647,7 +8648,7 @@ Prefab:
         type: 2}
       propertyPath: halo
       value: 
-      objectReference: {fileID: 165178276}
+      objectReference: {fileID: 0}
     - target: {fileID: 114712919096783012, guid: 2ce6f7a61f5f65b4097800a914574e18,
         type: 2}
       propertyPath: directionIndicator
@@ -8665,6 +8666,11 @@ Prefab:
       propertyPath: mapVisuals
       value: 
       objectReference: {fileID: 469390124}
+    - target: {fileID: 114712919096783012, guid: 2ce6f7a61f5f65b4097800a914574e18,
+        type: 2}
+      propertyPath: distanceText
+      value: 
+      objectReference: {fileID: 907079080}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ce6f7a61f5f65b4097800a914574e18, type: 2}
   m_IsPrefabAsset: 0
@@ -10901,6 +10907,11 @@ Prefab:
       propertyPath: m_AnchoredPosition.y
       value: 0.1842041
       objectReference: {fileID: 0}
+    - target: {fileID: 224642912546148896, guid: 5c7e8f1f62be70143b2e0edf73736d31,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -59.593933
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c7e8f1f62be70143b2e0edf73736d31, type: 2}
   m_IsPrefabAsset: 0
@@ -13038,6 +13049,11 @@ Prefab:
     - target: {fileID: 1385244576953358, guid: 15c55cceacb93ea4bb7e3f3c7e160410, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114544141144842080, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
+        type: 2}
+      propertyPath: predictionTime
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15c55cceacb93ea4bb7e3f3c7e160410, type: 2}
