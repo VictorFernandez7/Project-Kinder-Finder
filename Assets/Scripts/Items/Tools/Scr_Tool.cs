@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Scr_Tool : MonoBehaviour {
+public class Scr_Tool : Scr_ToolBase {
 
     [Header("Tool Info")]
     [SerializeField] public string toolName;
@@ -44,9 +44,10 @@ public class Scr_Tool : MonoBehaviour {
         resourceAmount = 0;
         gasZone = null;
         recolectable = false;
+        name = toolName;
     }
 
-	void Update () {
+	public override void Update () {
         print(resourceAmount);
 
         if (placing)
@@ -76,7 +77,7 @@ public class Scr_Tool : MonoBehaviour {
         }
     }
 
-    public void UseTool()
+    public override void UseTool()
     {
         if (placeable)
         {
@@ -106,6 +107,11 @@ public class Scr_Tool : MonoBehaviour {
             astronautMovement.vectorJump = (astronaut.transform.position - astronautMovement.currentPlanet.transform.position).normalized * speedJetpack;
             astronautMovement.jumping = true;
         }
+    }
+
+    public override void Function()
+    {
+
     }
 
     public void RecoverTool()

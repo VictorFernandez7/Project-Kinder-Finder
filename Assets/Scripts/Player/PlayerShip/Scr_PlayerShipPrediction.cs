@@ -97,7 +97,7 @@ public class Scr_PlayerShipPrediction : MonoBehaviour
 
         if(pointContact != 0)
         {
-            pointStartFade = pointContact - 5;
+            pointStartFade = pointContact - 20;
             pointEndFade = pointContact;
         }
 
