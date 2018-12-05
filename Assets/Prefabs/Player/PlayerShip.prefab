@@ -228,7 +228,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1385244576953358
 GameObject:
   m_ObjectHideFlags: 1
@@ -1298,8 +1298,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 3
-  width: 0
-  haloColor: {r: 0, g: 0, b: 0, a: 0}
+  width: 0.1
+  haloColor: {r: 1, g: 1, b: 1, a: 0.50980395}
   playership: {fileID: 4030621875282276}
 --- !u!114 &114402563492195678
 MonoBehaviour:
@@ -1396,11 +1396,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -1427,6 +1427,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   predictionTime: 6
   predictionLineMap: {fileID: 120501272858494042}
+  proximityCheck: {fileID: 114779136795001458}
   predictionLine: {fileID: 0}
 --- !u!114 &114564075594853054
 MonoBehaviour:
