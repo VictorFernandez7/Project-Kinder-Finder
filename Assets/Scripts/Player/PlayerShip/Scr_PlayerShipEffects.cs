@@ -29,6 +29,7 @@ public class Scr_PlayerShipEffects : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform endOfShip;
     [SerializeField] public ParticleSystem thrusterParticles;
+    [SerializeField] public ParticleSystem takingOffDustParticles;
     [SerializeField] private GameObject dustParticles;
     [SerializeField] private ParticleSystem atmosphereParticles;
     [SerializeField] public ParticleSystem miningParticles;
@@ -129,10 +130,15 @@ public class Scr_PlayerShipEffects : MonoBehaviour
 
                 if (!dustParticles1.isPlaying)
                     dustParticles1.Play();
+
                 if (!dustParticles2.isPlaying)
                     dustParticles2.Play();
+
                 if (!thrusterParticles.isPlaying)
                     thrusterParticles.Play();
+
+                if (!takingOffDustParticles.isPlaying)
+                    takingOffDustParticles.Play();
 
                 var emission1 = dustParticles1.emission;
                 var emission2 = dustParticles2.emission;
@@ -149,6 +155,7 @@ public class Scr_PlayerShipEffects : MonoBehaviour
             GameObject currentDustParticles = GameObject.Find("DustParticles(Clone)");
 
             thrusterParticles.Stop();
+            takingOffDustParticles.Stop();
 
             Destroy(currentDustParticles);
         }
@@ -182,8 +189,10 @@ public class Scr_PlayerShipEffects : MonoBehaviour
 
                 if (!dustParticles1.isPlaying)
                     dustParticles1.Play();
+
                 if (!dustParticles2.isPlaying)
                     dustParticles2.Play();
+
                 if (!thrusterParticles.isPlaying)
                     thrusterParticles.Play();
 

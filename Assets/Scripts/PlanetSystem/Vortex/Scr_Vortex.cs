@@ -16,6 +16,8 @@ public class Scr_Vortex : MonoBehaviour
     [SerializeField] float particleAmount;
     [SerializeField] float lifeTime;
 
+    private bool checkDestroy = true;
+    private float checkDestroyTime = 0.25f;
     private GameObject playerShip;
     private ParticleSystem vortexParticles;
     private CircleCollider2D vortexCollider;
@@ -34,6 +36,11 @@ public class Scr_Vortex : MonoBehaviour
     {
         UpdateParameters();
         DyingProcess();
+
+        checkDestroyTime -= Time.deltaTime;
+
+        if (checkDestroyTime <= 0)
+            Destroy(gameObject);
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -43,6 +50,14 @@ public class Scr_Vortex : MonoBehaviour
             Vector3 direction = new Vector3(playerShip.transform.position.x - transform.position.x, playerShip.transform.position.y - transform.position.y, playerShip.transform.position.z - transform.position.z);
 
             playerShip.GetComponent<Rigidbody2D>().AddForce(-direction);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.gameObject.CompareTag("PlayerShip"))
+        {
+
         }
     }
 
