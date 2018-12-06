@@ -9,10 +9,11 @@ public class Scr_GasExtractor : Scr_ToolBase {
 
     [HideInInspector] public Camera mainCamera;
     [HideInInspector] public bool recolectable;
+    [HideInInspector] public int resourceLeft;
 
 
     private float savedExtractorTime;
-    private GameObject gosht;
+    private GameObject ghost;
     private GameObject gasZone;
     private GameObject astronaut;
     private RaycastHit2D hit;
@@ -48,6 +49,8 @@ public class Scr_GasExtractor : Scr_ToolBase {
         {
             recolectable = false;
         }
+
+        print(resourceAmount);
     }
 
     public override void UseTool()
@@ -58,11 +61,11 @@ public class Scr_GasExtractor : Scr_ToolBase {
 
             if (placing)
             {
-                gosht = Instantiate(gameObject);
+                ghost = Instantiate(gameObject);
             }
             else if (!placing)
             {
-                Destroy(gosht);
+                Destroy(ghost);
             }
         }
     }
@@ -70,46 +73,70 @@ public class Scr_GasExtractor : Scr_ToolBase {
     public override void Function()
     {
         savedExtractorTime -= Time.deltaTime;
+
         if (savedExtractorTime <= 0)
         {
             resourceAmount += 1;
-            gasZone.GetComponent<Scr_GasZone>().amount -= 1;
             savedExtractorTime = extractorTime;
+        }
+
+        gasZone.GetComponent<Scr_GasZone>().amount -= Time.deltaTime / extractorTime;
+
+        if(gasZone.GetComponent<Scr_GasZone>().amount <= 0 && resourceAmount != resourceLeft)
+        {
+            resourceAmount = resourceLeft;
         }
     }
 
     private void PutOnPlace()
     {
-        hit = Physics2D.Raycast(gosht.transform.position, (astronautMovement.currentPlanet.transform.position - transform.position).normalized, Mathf.Infinity, mask);
-        hitR = Physics2D.Raycast(gosht.transform.position + transform.right, (astronautMovement.currentPlanet.transform.position - gosht.transform.position).normalized, Mathf.Infinity, mask);
-        hitL = Physics2D.Raycast(gosht.transform.position - transform.right, (astronautMovement.currentPlanet.transform.position - gosht.transform.position).normalized, Mathf.Infinity, mask);
+        hit = Physics2D.Raycast(ghost.transform.position, (astronautMovement.currentPlanet.transform.position - transform.position).normalized, Mathf.Infinity, mask);
+        hitR = Physics2D.Raycast(ghost.transform.position + transform.right, (astronautMovement.currentPlanet.transform.position - ghost.transform.position).normalized, Mathf.Infinity, mask);
+        hitL = Physics2D.Raycast(ghost.transform.position - transform.right, (astronautMovement.currentPlanet.transform.position - ghost.transform.position).normalized, Mathf.Infinity, mask);
 
         float mouseposX = mainCamera.ScreenToWorldPoint(Input.mousePosition).x;
         float mouseposY = mainCamera.ScreenToWorldPoint(Input.mousePosition).y;
         mouseposX = Mathf.Clamp(mouseposX, astronaut.transform.position.x - 0.4f, astronaut.transform.position.x + 0.4f);
         mouseposY = Mathf.Clamp(mouseposY, astronaut.transform.position.y - 0.4f, astronaut.transform.position.y + 0.4f);
         Vector3 mousepos = new Vector3(mouseposX, mouseposY, 0f);
-        gosht.transform.position = astronautMovement.currentPlanet.transform.position + ((mousepos - astronautMovement.currentPlanet.transform.position).normalized * (Vector3.Distance(hit.point, astronautMovement.currentPlanet.transform.position) + GetComponent<Renderer>().bounds.size.y / 2));
-        gosht.transform.localRotation = Quaternion.LookRotation(gosht.transform.forward, Vector2.Perpendicular(hitL.point - hitR.point));
-        Color color = gosht.GetComponent<Renderer>().material.color;
-        color.g = 250;
-        color.b = 0;
-        color.r = 0;
-        color.a = 0.6f;
-        gosht.GetComponent<Renderer>().material.color = color;
+        ghost.transform.position = astronautMovement.currentPlanet.transform.position + ((mousepos - astronautMovement.currentPlanet.transform.position).normalized * (Vector3.Distance(hit.point, astronautMovement.currentPlanet.transform.position) + GetComponent<Renderer>().bounds.size.y / 2));
+        ghost.transform.localRotation = Quaternion.LookRotation(ghost.transform.forward, Vector2.Perpendicular(hitL.point - hitR.point));
 
-        if (Input.GetMouseButtonDown(0))
+        if (ghost.GetComponent<Scr_GasExtractor>().recolectable)
         {
-            transform.SetParent(null);
-            transform.position = gosht.transform.position;
-            transform.rotation = Quaternion.LookRotation(transform.forward, (transform.position - astronautMovement.currentPlanet.transform.position));
-            Destroy(gosht);
-            transform.SetParent(astronautMovement.currentPlanet.transform);
-            onHands = false;
-            placing = false;
-            astronaut.GetComponent<Scr_AstronautStats>().toolSlots[astronaut.GetComponent<Scr_AstronautsActions>().numberToolActive] = null;
-            astronaut.GetComponent<Scr_AstronautStats>().physicToolSlots[astronaut.GetComponent<Scr_AstronautsActions>().numberToolActive] = null;
-            astronaut.GetComponent<Scr_AstronautsActions>().BoolControl();
+            Color color = ghost.GetComponent<Renderer>().material.color;
+            color.g = 250;
+            color.b = 0;
+            color.r = 0;
+            color.a = 0.6f;
+            ghost.GetComponent<Renderer>().material.color = color;
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                transform.SetParent(null);
+                transform.position = ghost.transform.position;
+                transform.rotation = Quaternion.LookRotation(transform.forward, (transform.position - astronautMovement.currentPlanet.transform.position));
+                transform.SetParent(astronautMovement.currentPlanet.transform);
+                onHands = false;
+                placing = false;
+                astronaut.GetComponent<Scr_AstronautStats>().toolSlots[astronaut.GetComponent<Scr_AstronautsActions>().numberToolActive] = null;
+                astronaut.GetComponent<Scr_AstronautStats>().physicToolSlots[astronaut.GetComponent<Scr_AstronautsActions>().numberToolActive] = null;
+                astronaut.GetComponent<Scr_AstronautsActions>().BoolControl();
+                gasZone = ghost.GetComponent<Scr_GasExtractor>().gasZone;
+                resource = gasZone.GetComponent<Scr_GasZone>().currentResource;
+                resourceLeft = (int)gasZone.GetComponent<Scr_GasZone>().amount;
+                Destroy(ghost);
+            }
+        }
+
+        else
+        {
+            Color color = ghost.GetComponent<Renderer>().material.color;
+            color.g = 0;
+            color.b = 0;
+            color.r = 250;
+            color.a = 0.6f;
+            ghost.GetComponent<Renderer>().material.color = color;
         }
     }
 
@@ -138,7 +165,6 @@ public class Scr_GasExtractor : Scr_ToolBase {
     {
         if (collision.gameObject.tag == "GasZone")
         {
-            print("pedo");
             recolectable = true;
             gasZone = collision.gameObject;
             resource = gasZone.GetComponent<Scr_GasZone>().currentResource;
