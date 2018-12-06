@@ -50,7 +50,7 @@ public class Scr_GasZone : MonoBehaviour
 
     private void CheckAmount()
     {
-        if (amount <= 0 || Input.GetKey(KeyCode.Z))
+        if (amount <= 0 && gasParticles.particleCount <= 0)
             Destroy(gameObject);
     }
 
@@ -66,7 +66,7 @@ public class Scr_GasZone : MonoBehaviour
         var shape = gasParticles.shape;
 
         GetComponent<CircleCollider2D>().radius = zoneSize;
-        shape.radius = zoneSize * 10 * 2;
+        shape.radius = zoneSize * 20;
     }
 
     private void OnDrawGizmos()
