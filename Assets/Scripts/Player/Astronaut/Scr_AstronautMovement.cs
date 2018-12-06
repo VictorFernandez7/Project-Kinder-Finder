@@ -49,6 +49,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     [HideInInspector] public GameObject currentFuelCollector;
     [HideInInspector] public bool jumping;
     [HideInInspector] public Vector3 vectorJump;
+    [HideInInspector] public float timeAtAir;
 
     private bool toJump;
     private bool lastRight;
@@ -57,7 +58,6 @@ public class Scr_AstronautMovement : MonoBehaviour
     private float baseDistance;
     private float currentAngle;
     private float currentDistance;
-    private float timeAtAir;
     private float inertialTime;
     private Vector2 pointLeft;
     private Vector2 pointRight;
