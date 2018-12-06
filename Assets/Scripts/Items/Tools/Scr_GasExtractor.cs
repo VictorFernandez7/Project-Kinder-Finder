@@ -10,6 +10,7 @@ public class Scr_GasExtractor : Scr_ToolBase {
     [HideInInspector] public Camera mainCamera;
     [HideInInspector] public bool recolectable;
 
+
     private float savedExtractorTime;
     private GameObject gosht;
     private GameObject gasZone;
