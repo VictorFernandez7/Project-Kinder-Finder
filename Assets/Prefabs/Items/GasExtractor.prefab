@@ -9,33 +9,33 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1195437349475892}
+  m_RootGameObject: {fileID: 1724849047184002}
   m_IsPrefabAsset: 1
---- !u!1 &1195437349475892
+--- !u!1 &1724849047184002
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4973139478186694}
-  - component: {fileID: 33864911987385340}
-  - component: {fileID: 23596228882830610}
-  - component: {fileID: 114778378086120492}
-  - component: {fileID: 61754728592279684}
+  - component: {fileID: 4293397015116858}
+  - component: {fileID: 33070333168149914}
+  - component: {fileID: 23749522851092548}
+  - component: {fileID: 114264719937446698}
+  - component: {fileID: 61372628970544104}
   m_Layer: 0
-  m_Name: Tool
+  m_Name: GasExtractor
   m_TagString: Tool
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4973139478186694
+--- !u!4 &4293397015116858
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1195437349475892}
+  m_GameObject: {fileID: 1724849047184002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
@@ -43,12 +43,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23596228882830610
+--- !u!23 &23749522851092548
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1195437349475892}
+  m_GameObject: {fileID: 1724849047184002}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -78,19 +78,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33864911987385340
+--- !u!33 &33070333168149914
 MeshFilter:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1195437349475892}
+  m_GameObject: {fileID: 1724849047184002}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!61 &61754728592279684
+--- !u!61 &61372628970544104
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1195437349475892}
+  m_GameObject: {fileID: 1724849047184002}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -110,17 +110,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &114778378086120492
+--- !u!114 &114264719937446698
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1195437349475892}
+  m_GameObject: {fileID: 1724849047184002}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aada712cbdce29d44ae90e9a99e49089, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: 
   toolName: Gas Extractor
   mask:
     serializedVersion: 2

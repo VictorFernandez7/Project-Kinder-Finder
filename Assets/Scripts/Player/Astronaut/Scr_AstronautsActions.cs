@@ -74,10 +74,10 @@ public class Scr_AstronautsActions : MonoBehaviour
 
         if (Input.GetButtonDown("Interact") && astronautMovement.closeToCollector && astronautMovement.currentFuelCollector != null)
         {
-            if (emptyHands && !toolOnHands && astronautMovement.currentFuelCollector.GetComponent<Scr_Tool>().resourceAmount >= 0 && !astronautMovement.currentFuelCollector.GetComponent<Scr_Tool>().onHands)
+            if (emptyHands && !toolOnHands && astronautMovement.currentFuelCollector.GetComponent<Scr_ToolBase>().resourceAmount > 0 && !astronautMovement.currentFuelCollector.GetComponent<Scr_ToolBase>().onHands)
             {
-                astronautMovement.currentFuelCollector.GetComponent<Scr_Tool>().resourceAmount -= 1;
-                currentFuelBLock = Instantiate(astronautMovement.currentFuelCollector.GetComponent<Scr_Tool>().resource, pickPoint);
+                astronautMovement.currentFuelCollector.GetComponent<Scr_ToolBase>().resourceAmount -= 1;
+                currentFuelBLock = Instantiate(astronautMovement.currentFuelCollector.GetComponent<Scr_ToolBase>().resource, pickPoint);
                 emptyHands = false;
             }
         }
@@ -101,11 +101,11 @@ public class Scr_AstronautsActions : MonoBehaviour
         {
             if (toolOnHands)
             {
-                astronautStats.physicToolSlots[numberToolActive].GetComponent<Scr_Tool>().UseTool();
+                astronautStats.physicToolSlots[numberToolActive].GetComponent<Scr_ToolBase>().UseTool();
             }
-            else if (toolOnFloor != null)
+            else if (toolOnFloor != null && toolOnFloor.GetComponent<Scr_ToolBase>().resourceAmount <= 0)
             {
-                toolOnFloor.GetComponent<Scr_Tool>().RecoverTool();
+                toolOnFloor.GetComponent<Scr_ToolBase>().RecoverTool();
             }
         }
     }

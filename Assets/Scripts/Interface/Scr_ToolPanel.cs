@@ -120,7 +120,7 @@ public class Scr_ToolPanel : MonoBehaviour {
             if (astronautStats.toolSlots[i] == null)
                 textToolSlots[i].text = "Empty";
             else
-                textToolSlots[i].text = astronautStats.toolSlots[i].GetComponent<Scr_Tool>().toolName;
+                textToolSlots[i].text = astronautStats.toolSlots[i].GetComponent<Scr_ToolBase>().toolName;
         }
 
         for (int i = 0; i < playerShipStats.toolWarehouse.Length; i++)
@@ -128,7 +128,7 @@ public class Scr_ToolPanel : MonoBehaviour {
             if (playerShipStats.toolWarehouse[i] == null)
                 textToolWarehouse[i].text = "Empty";
             else
-                textToolWarehouse[i].text = playerShipStats.toolWarehouse[i].GetComponent<Scr_Tool>().toolName;
+                textToolWarehouse[i].text = playerShipStats.toolWarehouse[i].GetComponent<Scr_ToolBase>().toolName;
         }
     }
 }
