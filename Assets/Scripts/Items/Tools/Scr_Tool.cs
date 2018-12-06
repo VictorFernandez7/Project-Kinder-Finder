@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Scr_Tool : Scr_ToolBase {
+public class Scr_Tool : MonoBehaviour {
 
     [Header("Tool Info")]
     [SerializeField] public string toolName;
@@ -47,7 +47,7 @@ public class Scr_Tool : Scr_ToolBase {
         name = toolName;
     }
 
-	public override void Update () {
+	public void Update () {
         print(resourceAmount);
 
         if (placing)
@@ -77,7 +77,7 @@ public class Scr_Tool : Scr_ToolBase {
         }
     }
 
-    public override void UseTool()
+    public void UseTool()
     {
         if (placeable)
         {
@@ -109,7 +109,7 @@ public class Scr_Tool : Scr_ToolBase {
         }
     }
 
-    public override void Function()
+    public void Function()
     {
 
     }
