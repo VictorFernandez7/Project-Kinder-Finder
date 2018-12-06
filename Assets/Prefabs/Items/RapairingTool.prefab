@@ -9,33 +9,33 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1195437349475892}
+  m_RootGameObject: {fileID: 1403916284978548}
   m_IsPrefabAsset: 1
---- !u!1 &1195437349475892
+--- !u!1 &1403916284978548
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4973139478186694}
-  - component: {fileID: 33864911987385340}
-  - component: {fileID: 23596228882830610}
-  - component: {fileID: 114778378086120492}
-  - component: {fileID: 120982139196981936}
+  - component: {fileID: 4890305199519970}
+  - component: {fileID: 33009998986370586}
+  - component: {fileID: 23556870385252416}
+  - component: {fileID: 120572833524024826}
+  - component: {fileID: 114789529227905136}
   m_Layer: 0
-  m_Name: Tool 1
+  m_Name: RapairingTool
   m_TagString: Tool
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4973139478186694
+--- !u!4 &4890305199519970
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1195437349475892}
+  m_GameObject: {fileID: 1403916284978548}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.04, y: 0.08, z: 0.08}
@@ -43,12 +43,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23596228882830610
+--- !u!23 &23556870385252416
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1195437349475892}
+  m_GameObject: {fileID: 1403916284978548}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -78,49 +78,38 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33864911987385340
+--- !u!33 &33009998986370586
 MeshFilter:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1195437349475892}
+  m_GameObject: {fileID: 1403916284978548}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114778378086120492
+--- !u!114 &114789529227905136
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1195437349475892}
+  m_GameObject: {fileID: 1403916284978548}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aada712cbdce29d44ae90e9a99e49089, type: 3}
+  m_Script: {fileID: 11500000, guid: df4832523e4d5f14f81c2c3ce72417f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   toolName: Repairing Tool
-  mask:
-    serializedVersion: 2
-    m_Bits: 1024
+  resource: {fileID: 0}
+  resourceAmount: 0
+  onHands: 0
+  distance: 0.15
   masker:
     serializedVersion: 2
-    m_Bits: 0
-  placeable: 0
-  multitool: 1
-  jetpack: 0
-  distance: 0.08
-  speedJetpack: 0
-  extractorTime: 0
-  laser: {fileID: 120982139196981936}
-  onHands: 0
-  resourceAmount: 0
-  mainCamera: {fileID: 0}
-  recolectable: 0
-  resource: {fileID: 0}
---- !u!120 &120982139196981936
+    m_Bits: 13328
+--- !u!120 &120572833524024826
 LineRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1195437349475892}
+  m_GameObject: {fileID: 1403916284978548}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
