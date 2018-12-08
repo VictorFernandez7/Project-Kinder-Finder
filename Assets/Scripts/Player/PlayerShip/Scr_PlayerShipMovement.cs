@@ -60,9 +60,9 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [HideInInspector] public bool canRotateShip;
     [HideInInspector] public bool canControlShip;
     [HideInInspector] public bool landedOnce;
+    [HideInInspector] public Camera mainCamera;
     [HideInInspector] public GameObject currentPlanet;
     [HideInInspector] public Rigidbody2D rb;
-    [HideInInspector] public Camera mainCamera;
 
     private bool countDownToMove;
     private float maxSpeedSaved;
@@ -81,8 +81,8 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     private Scr_PlayerShipStats playerShipStats;
     private Scr_PlayerShipActions playerShipActions;
     private Scr_AstronautMovement astronautMovement;
-    private Scr_PlayerShipDeathCheck playerShipDeathCheck;
     private Scr_PlayerShipEffects playerShipEffects;
+    private Scr_PlayerShipDeathCheck playerShipDeathCheck;
     private Scr_PlayerShipPrediction playerShipPrediction;
 
     public enum PlayerShipState

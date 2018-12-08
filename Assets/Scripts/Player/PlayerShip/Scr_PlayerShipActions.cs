@@ -30,6 +30,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
 
     [HideInInspector] public bool startExitDelay;
     [HideInInspector] public bool closeToAsteroid;
+    [HideInInspector] public bool doingSpaceWalk;
     [HideInInspector] public GameObject currentAsteroid;
     [HideInInspector] public Vector3 laserHitPosition;
 
@@ -71,7 +72,18 @@ public class Scr_PlayerShipActions : MonoBehaviour
     {
         MiningSliderColor();
         CheckInputs();
+        Delay();
+        SpaceWalk();
+    }
 
+    private void FixedUpdate()
+    {
+        if (playerShipMovement.currentPlanet != null)
+            lastFramePlanetPosition = playerShipMovement.currentPlanet.transform.position;
+    }
+
+    private void Delay()
+    {
         if (playerShipMovement.astronautOnBoard)
         {
             if (startExitDelay)
@@ -89,12 +101,6 @@ public class Scr_PlayerShipActions : MonoBehaviour
                 }
             }
         }
-    }
-
-    private void FixedUpdate()
-    {
-        if (playerShipMovement.currentPlanet != null)
-            lastFramePlanetPosition = playerShipMovement.currentPlanet.transform.position;
     }
 
     private void CheckInputs()
@@ -267,6 +273,32 @@ public class Scr_PlayerShipActions : MonoBehaviour
             miningLaser.enabled = false;
 
             playerShipEffects.AttachedEffects(false);
+        }
+    }
+
+    private void SpaceWalk()
+    {
+        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace && !doingSpaceWalk)
+        {
+            if (Input.GetButtonDown("Interact"))
+            {
+                doingSpaceWalk = true;
+
+                astronaut.transform.position = spawnPoint.position;
+                playerShipMovement.astronautOnBoard = false;
+                playerShipMovement.canControlShip = false;
+
+                if (!mainCamera.mining)
+                    playerShipRb.velocity = Vector2.zero;
+
+                DistanceJoint2D joint = gameObject.AddComponent<DistanceJoint2D>();
+                joint.connectedBody = astronaut.GetComponent<Rigidbody2D>();
+                joint.maxDistanceOnly = true;
+                joint.enableCollision = true;
+                joint.distance = 1;
+
+                astronaut.SetActive(true);
+            }
         }
     }
 }

@@ -312,6 +312,7 @@ GameObject:
   - component: {fileID: 114544141144842080}
   - component: {fileID: 114778194997285574}
   - component: {fileID: 114564075594853054}
+  - component: {fileID: 232856494607649242}
   m_Layer: 0
   m_Name: PlayerShip
   m_TagString: PlayerShip
@@ -1586,9 +1587,9 @@ MonoBehaviour:
   canRotateShip: 0
   canControlShip: 1
   landedOnce: 0
+  mainCamera: {fileID: 0}
   currentPlanet: {fileID: 0}
   rb: {fileID: 0}
-  mainCamera: {fileID: 0}
 --- !u!114 &114767215190140938
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1814,6 +1815,7 @@ MonoBehaviour:
   getOutTheShipSound: {fileID: 0}
   startExitDelay: 0
   closeToAsteroid: 0
+  doingSpaceWalk: 0
   currentAsteroid: {fileID: 0}
   laserHitPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114947369718006980
@@ -39285,3 +39287,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!232 &232856494607649242
+DistanceJoint2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1452036844316726}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 0
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: 146.56873, y: 5.675454}
+  m_AutoConfigureDistance: 1
+  m_Distance: 0.9916293
+  m_MaxDistanceOnly: 0
