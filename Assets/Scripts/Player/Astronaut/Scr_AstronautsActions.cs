@@ -16,7 +16,6 @@ public class Scr_AstronautsActions : MonoBehaviour
     [SerializeField] private Transform spawnPoint;
     [SerializeField] public Transform pickPoint;
     [SerializeField] public Scr_ToolPanel toolPanel;
-    [SerializeField] public GameObject prefab;
 
     [Header("Audio")]
     [SerializeField] private AudioSource getIntoTheShipSound;

@@ -7,11 +7,12 @@ public class Scr_GasExtractor : Scr_ToolBase {
     [SerializeField] private float extractorTime;
     [SerializeField] private LayerMask mask;
 
+
     [HideInInspector] public Camera mainCamera;
     [HideInInspector] public bool recolectable;
     [HideInInspector] public int resourceLeft;
 
-
+    private Scr_ReferenceManager referenceManager;
     private float savedExtractorTime;
     private GameObject ghost;
     private GameObject gasZone;
@@ -28,6 +29,7 @@ public class Scr_GasExtractor : Scr_ToolBase {
         mainCamera = GameObject.Find("MainCamera").GetComponent<Camera>();
         astronautMovement = GameObject.Find("Astronaut").GetComponent<Scr_AstronautMovement>();
         astronaut = GameObject.Find("Astronaut");
+        referenceManager = GameObject.Find("ReferenceManager").GetComponent<Scr_ReferenceManager>();
 
         savedExtractorTime = extractorTime;
         resourceAmount = 0;
@@ -49,8 +51,6 @@ public class Scr_GasExtractor : Scr_ToolBase {
         {
             recolectable = false;
         }
-
-        print(resourceAmount);
     }
 
     public override void UseTool()
@@ -148,7 +148,7 @@ public class Scr_GasExtractor : Scr_ToolBase {
             {
                 if (astronaut.GetComponent<Scr_AstronautStats>().toolSlots[i] == null)
                 {
-                    astronaut.GetComponent<Scr_AstronautStats>().toolSlots[i] = astronaut.GetComponent<Scr_AstronautsActions>().prefab;
+                    astronaut.GetComponent<Scr_AstronautStats>().toolSlots[i] = referenceManager.GasExtractor;
                     astronaut.GetComponent<Scr_AstronautStats>().physicToolSlots[i] = gameObject;
                     transform.SetParent(null);
                     transform.position = astronaut.GetComponent<Scr_AstronautsActions>().pickPoint.position;

@@ -6,6 +6,7 @@ public class Scr_GasZone : MonoBehaviour
 {
     [Header("Gas Zone Type")]
     [SerializeField] private GasType gasType;
+    
 
     [Header("Resource Properties")]
     [SerializeField] public float amount;
@@ -14,13 +15,11 @@ public class Scr_GasZone : MonoBehaviour
     [Header("Particle Properties")]
     [SerializeField] private float initialEmission;
 
-    [Header("Resource References")]
-    [SerializeField] private GameObject fuelResource;
-
     [HideInInspector] public GameObject currentResource;
 
     private float initialAmount;
     private ParticleSystem gasParticles;
+    private Scr_ReferenceManager referenceManager;
 
     private enum GasType
     {
@@ -29,6 +28,8 @@ public class Scr_GasZone : MonoBehaviour
 
     private void Start()
     {
+        referenceManager = GameObject.Find("ReferenceManager").GetComponent<Scr_ReferenceManager>();
+
         gasParticles = GetComponentInChildren<ParticleSystem>();
 
         initialAmount = amount;
@@ -36,7 +37,7 @@ public class Scr_GasZone : MonoBehaviour
         switch (gasType)
         {
             case GasType.fuel:
-                currentResource = fuelResource;
+                currentResource = referenceManager.GasResources[0];
                 break;
         }
     }
