@@ -41,15 +41,15 @@ public class Scr_AstronautMovement : MonoBehaviour
     [HideInInspector] public bool keep;
     [HideInInspector] public bool faceRight;
     [HideInInspector] public bool breathable;
+    [HideInInspector] public bool jumping;
+    [HideInInspector] public float timeAtAir;
     [HideInInspector] public float velocity;
     [HideInInspector] public float exponentialMultiplier;
-    [HideInInspector] public Vector3 planetPosition;    
+    [HideInInspector] public Vector3 planetPosition;
+    [HideInInspector] public Vector3 vectorJump;
     [HideInInspector] public Quaternion planetRotation;
     [HideInInspector] public GameObject currentPlanet;
     [HideInInspector] public GameObject currentFuelCollector;
-    [HideInInspector] public bool jumping;
-    [HideInInspector] public Vector3 vectorJump;
-    [HideInInspector] public float timeAtAir;
 
     private bool toJump;
     private bool lastRight;
@@ -71,10 +71,12 @@ public class Scr_AstronautMovement : MonoBehaviour
     private RaycastHit2D hitAngleUp;
     private RaycastHit2D hitAngleDown;
     private Scr_PlayerShipMovement playerShipMovement;
+    private Scr_PlayerShipActions playerShipActions;
 
     public void Start()
     {
         playerShipMovement = GameObject.Find("PlayerShip").GetComponent<Scr_PlayerShipMovement>();
+        playerShipActions = GameObject.Find("PlayerShip").GetComponent<Scr_PlayerShipActions>();
 
         canMove = true;
 
@@ -87,6 +89,92 @@ public class Scr_AstronautMovement : MonoBehaviour
     }
 
     private void Update()
+    {
+        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed)
+            Jumping();
+
+        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace)
+            InSpaceMovement();
+    }
+
+    private void FixedUpdate()
+    {
+        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed)
+            PlanetMovement();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "PlayerShip")
+            canEnterShip = true;
+
+        if (collision.gameObject.tag == "Tool")
+        {
+            currentFuelCollector = collision.gameObject;
+            closeToCollector = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "PlayerShip")
+            canEnterShip = false;
+
+        if (collision.gameObject.tag == "Tool")
+            closeToCollector = false;
+    }
+
+    private void PlanetMovement()
+    {
+        transform.rotation = Quaternion.LookRotation(transform.forward, (transform.position - currentPlanet.transform.position));
+
+        hitL = Physics2D.Raycast(rayPointLeft.transform.position, -rayPointLeft.transform.up, Mathf.Infinity, collisionMask);
+        hitR = Physics2D.Raycast(rayPointRight.transform.position, -rayPointRight.transform.up, Mathf.Infinity, collisionMask);
+
+        if (canMove == true)
+        {
+            currentAngle = Vector2.Angle((hitL.point - hitR.point), transform.right);
+            currentAngle = 180 - currentAngle;
+
+            SnapToFloor();
+
+            if (Input.GetButton("Horizontal") && Input.GetAxis("Horizontal") < 0f)
+            {
+                MoveLeft(false);
+                lastRight = false;
+            }
+
+            else if (Input.GetButton("Horizontal") && Input.GetAxis("Horizontal") > 0f)
+            {
+                MoveRight(false);
+                lastRight = true;
+            }
+
+            else if (velocity > 0)
+            {
+                if (lastRight)
+                    MoveRight(true);
+                else
+                    MoveLeft(true);
+            }
+
+            else
+            {
+                velocity = 0;
+                exponentialMultiplier = 1;
+            }
+        }
+
+        if (onGround)
+        {
+            transform.position += (currentPlanet.transform.position - planetPosition);
+            planetPosition = currentPlanet.transform.position;
+            transform.RotateAround(currentPlanet.transform.position, Vector3.forward, currentPlanet.transform.rotation.eulerAngles.z - planetRotation.eulerAngles.z);
+            planetRotation = currentPlanet.transform.rotation;
+        }
+    }
+
+    private void Jumping()
     {
         if (jumping && !toJump)
         {
@@ -114,78 +202,6 @@ public class Scr_AstronautMovement : MonoBehaviour
         }
 
         transform.Translate(vectorJump, Space.World);
-    }
-
-    private void FixedUpdate()
-    {
-        transform.rotation = Quaternion.LookRotation(transform.forward, (transform.position - currentPlanet.transform.position));
-
-        hitL = Physics2D.Raycast(rayPointLeft.transform.position, -rayPointLeft.transform.up, Mathf.Infinity, collisionMask);
-        hitR = Physics2D.Raycast(rayPointRight.transform.position, -rayPointRight.transform.up, Mathf.Infinity, collisionMask);
-
-        if (canMove == true)
-        {
-            currentAngle = Vector2.Angle((hitL.point - hitR.point), transform.right);
-            currentAngle = 180 - currentAngle;
-
-            SnapToFloor();
-
-            if (Input.GetButton("Horizontal") && Input.GetAxis("Horizontal") < 0f)
-            {
-                MoveLeft(false);
-                lastRight = false;
-            }
-
-            else if (Input.GetButton("Horizontal") && Input.GetAxis("Horizontal") > 0f)
-            {
-                MoveRight(false);
-                lastRight = true;
-            }
-
-            else if(velocity > 0)
-            {
-                if (lastRight)
-                    MoveRight(true);
-                else
-                    MoveLeft(true);
-            }
-
-            else
-            {
-                velocity = 0;
-                exponentialMultiplier = 1;
-            }
-        }
-        
-        if (onGround)
-        {
-            transform.position += (currentPlanet.transform.position - planetPosition);
-            planetPosition = currentPlanet.transform.position;
-            transform.RotateAround(currentPlanet.transform.position, Vector3.forward, currentPlanet.transform.rotation.eulerAngles.z - planetRotation.eulerAngles.z);
-            planetRotation = currentPlanet.transform.rotation;
-        }
-
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "PlayerShip")
-            canEnterShip = true;
-
-        if (collision.gameObject.tag == "Tool")
-        {
-            currentFuelCollector = collision.gameObject;
-            closeToCollector = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "PlayerShip")
-            canEnterShip = false;
-
-        if (collision.gameObject.tag == "Tool")
-            closeToCollector = false;
     }
 
     private void SnapToFloor()
@@ -315,7 +331,6 @@ public class Scr_AstronautMovement : MonoBehaviour
                 exponentialMultiplier = 1;
             }
         }
-        
 
         transform.Translate(movementVector * velocity, Space.World);
     }
@@ -338,6 +353,14 @@ public class Scr_AstronautMovement : MonoBehaviour
 
         else
             Move(right, 0);
+    }
+
+    private void InSpaceMovement()
+    {
+        if (playerShipActions.doingSpaceWalk)
+        {
+
+        }
     }
 
     private void Flip()
