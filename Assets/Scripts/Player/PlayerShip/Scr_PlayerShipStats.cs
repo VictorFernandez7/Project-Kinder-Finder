@@ -41,7 +41,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
     [SerializeField] private AudioSource fuelAlarm;
 
     [SerializeField] public GameObject[] toolWarehouse;
-    [SerializeField] public GameObject[] toolWarehouseReferences;
+    [SerializeField] public Scr_ReferenceManager referenceManager;
 
     [HideInInspector] public int lastWarehouseEmpty;
     [HideInInspector] public bool warehouseFull;
@@ -95,20 +95,41 @@ public class Scr_PlayerShipStats : MonoBehaviour
 
         if (gasExtractor)
         {
-            toolWarehouse[0] = toolWarehouseReferences[0];
-            gasExtractor = false;
+            for(int i = 0; i < toolWarehouse.Length; i++)
+            {
+                if (toolWarehouse[i] == null)
+                {
+                    toolWarehouse[i] = referenceManager.GasExtractor;
+                    gasExtractor = false;
+                    break;
+                }
+            }
         }
 
         if (repairingTool)
         {
-            toolWarehouse[1] = toolWarehouseReferences[1];
-            repairingTool = false;
+            for (int i = 0; i < toolWarehouse.Length; i++)
+            {
+                if (toolWarehouse[i] == null)
+                {
+                    toolWarehouse[i] = referenceManager.RepairingTool;
+                    repairingTool = false;
+                    break;
+                }
+            }
         }
 
         if (jetpack)
         {
-            toolWarehouse[2] = toolWarehouseReferences[2];
-            jetpack = false;
+            for (int i = 0; i < toolWarehouse.Length; i++)
+            {
+                if (toolWarehouse[i] == null)
+                {
+                    toolWarehouse[2] = referenceManager.Jetpack;
+                    jetpack = false;
+                    break;
+                }
+            }
         }
     }
 
