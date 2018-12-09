@@ -44,7 +44,7 @@ public class MenuManager : MonoBehaviour
 
     // Use this for initialization
     void Start () {
-        MusicManager.Instance.PlayBackgroundMusic(FixedSound.TEMITA);
+        //<MusicManager.Instance.PlayBackgroundMusic(FixedSound.TEMITA);
 
     }
 	
