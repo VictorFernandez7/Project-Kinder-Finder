@@ -511,7 +511,7 @@ GameObject:
   - component: {fileID: 198935063272262492}
   - component: {fileID: 199652097243916808}
   m_Layer: 0
-  m_Name: StartsParticles
+  m_Name: StarParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1510,6 +1510,10 @@ MonoBehaviour:
   inSpaceThrusterPower: 1250
   landingThrusterPower: 1500
   attachedThrusterPower: 100
+  inSpaceEmission: 100
+  inPlanetEmission: 33.3
+  inSpaceSize: {x: 0.75, y: 0.75, z: 0.75}
+  inPlanetSize: {x: 0.25, y: 0.25, z: 0.25}
   landedThrusterMult: 250
   landedDustMult: 30
   color0: {r: 0.9078033, g: 1, b: 0, a: 1}
@@ -1524,6 +1528,7 @@ MonoBehaviour:
   atmosphereParticles: {fileID: 198678149364849852}
   miningParticles: {fileID: 198929548371070658}
   miningLight: {fileID: 108917598069573828}
+  starParticles: {fileID: 198935063272262492}
   warmingSlider: {fileID: 0}
 --- !u!114 &114602957055860766
 MonoBehaviour:

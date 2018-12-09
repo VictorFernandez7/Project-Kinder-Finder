@@ -18,6 +18,12 @@ public class Scr_PlayerShipEffects : MonoBehaviour
     [Header("Mining Effects")]
     [SerializeField] private float attachedThrusterPower;
 
+    [Header("Stars Effects")]
+    [SerializeField] private float inSpaceEmission;
+    [SerializeField] private float inPlanetEmission;
+    [SerializeField] private Vector3 inSpaceSize;
+    [SerializeField] private Vector3 inPlanetSize;
+
     [Header("Warming System")]
     [SerializeField] private float landedThrusterMult;
     [SerializeField] private float landedDustMult;
@@ -34,6 +40,7 @@ public class Scr_PlayerShipEffects : MonoBehaviour
     [SerializeField] private ParticleSystem atmosphereParticles;
     [SerializeField] public ParticleSystem miningParticles;
     [SerializeField] private Light miningLight;
+    [SerializeField] public ParticleSystem starParticles;
 
     [HideInInspector] public Slider warmingSlider;
 
@@ -52,6 +59,28 @@ public class Scr_PlayerShipEffects : MonoBehaviour
         warmingSlider.maxValue = playerShipMovement.warmingAmount;
 
         warmingSlider.gameObject.SetActive(false);
+    }
+
+    public void Update()
+    {
+        StarsParticles();
+    }
+
+    private void StarsParticles()
+    {
+        var emission = starParticles.emission;
+
+        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed || playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landing)
+        {
+            emission.rateOverTime = inPlanetEmission;
+            starParticles.gameObject.transform.localScale = Vector3.Lerp(starParticles.gameObject.transform.localScale, inPlanetSize, Time.deltaTime);
+        }
+
+        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace)
+        {
+            emission.rateOverTime = inSpaceEmission;
+            starParticles.gameObject.transform.localScale = Vector3.Lerp(starParticles.gameObject.transform.localScale, inSpaceSize, Time.deltaTime);
+        }
     }
 
     public void WarmingSliderColor()
