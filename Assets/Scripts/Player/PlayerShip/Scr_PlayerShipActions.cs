@@ -15,6 +15,10 @@ public class Scr_PlayerShipActions : MonoBehaviour
     [SerializeField] private Color powerColor50;
     [SerializeField] private Color powerColor75;
 
+    [Header("Space Walk")]
+    [SerializeField] private float maxCableLength;
+    [SerializeField] private float maxMiningCableLength;
+
     [Header("Deploy Values")]
     [SerializeField] private float deployDelay;
 
@@ -24,6 +28,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
     [SerializeField] private GameObject mapVisuals;
     [SerializeField] private Transform miningLaserStart;
     [SerializeField] private LineRenderer miningLaser;
+    [SerializeField] private LineRenderer cable;
 
     [Header("Audio")]
     [SerializeField] private AudioSource getOutTheShipSound;
@@ -44,6 +49,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
     private Vector3 lastFramePlanetPosition;
     private GameObject astronaut;
     private Rigidbody2D playerShipRb;
+    private Rigidbody2D astronautRb;
     private Scr_MainCamera mainCamera;
     private TextMeshProUGUI miningPowerText;
     private DistanceJoint2D spaceWalkCable;
@@ -63,6 +69,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
         playerShipPrediction = GetComponent<Scr_PlayerShipPrediction>();
         playerShipEffects = GetComponent<Scr_PlayerShipEffects>();
         playerShipRb = GetComponent<Rigidbody2D>();
+        astronautRb = astronaut.GetComponent<Rigidbody2D>();
         spaceWalkCable = GetComponent<DistanceJoint2D>();
         
         deployDelaySaved = deployDelay;
@@ -76,6 +83,9 @@ public class Scr_PlayerShipActions : MonoBehaviour
         CheckInputs();
         ExitShipControl();
         SpaceWalk();
+
+        if (doingSpaceWalk && currentAsteroid != null)
+            transform.up = currentAsteroid.transform.position - transform.position;
     }
 
     private void FixedUpdate()
@@ -297,9 +307,33 @@ public class Scr_PlayerShipActions : MonoBehaviour
                 if (!mainCamera.mining)
                     playerShipRb.velocity = Vector2.zero;
 
-                spaceWalkCable.enabled = true;
-
                 astronaut.SetActive(true);
+
+                spaceWalkCable.enabled = true;
+                spaceWalkCable.connectedBody = astronautRb;
+                
+                if (mainCamera.mining)
+                    spaceWalkCable.distance = maxMiningCableLength;
+                else
+                    spaceWalkCable.distance = maxCableLength;
+            }
+        }
+
+        if (doingSpaceWalk)
+        {
+            cable.SetPosition(0, transform.position);
+            cable.SetPosition(1, astronaut.transform.position);
+
+            if (Vector3.Distance(transform.position, astronaut.transform.position) < 1)
+            {
+                astronautRb.freezeRotation = false;
+                playerShipRb.isKinematic = false;
+            }
+
+            else
+            {
+                astronautRb.freezeRotation = true;
+                playerShipRb.isKinematic = true;
             }
         }
     }

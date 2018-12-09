@@ -48,26 +48,38 @@ public class Scr_AstronautsActions : MonoBehaviour
     {
         if (Input.GetButtonDown("Interact") && astronautMovement.canEnterShip)
         {
-            if (emptyHands)
+            if (playerShip.GetComponent<Scr_PlayerShipMovement>().playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed)
             {
-                //tocada audio
-                getIntoTheShipSound.Play();
+                if (emptyHands)
+                {
+                    //tocada audio
+                    getIntoTheShipSound.Play();
 
-                playerShip.GetComponent<Scr_PlayerShipMovement>().astronautOnBoard = true;
-                playerShip.GetComponent<Scr_PlayerShipActions>().startExitDelay = true;
-                playerShip.GetComponent<Scr_PlayerShipMovement>().canControlShip = true;
-                mainCamera.GetComponent<Scr_MainCamera>().followAstronaut = false;
-                astronautMovement.keep = true;
-                DestroyAllTools();
-                toolPanel.ReadNames();
-                gameObject.SetActive(false);
+                    playerShip.GetComponent<Scr_PlayerShipMovement>().astronautOnBoard = true;
+                    playerShip.GetComponent<Scr_PlayerShipActions>().startExitDelay = true;
+                    playerShip.GetComponent<Scr_PlayerShipMovement>().canControlShip = true;
+                    mainCamera.GetComponent<Scr_MainCamera>().followAstronaut = false;
+                    astronautMovement.keep = true;
+                    DestroyAllTools();
+                    toolPanel.ReadNames();
+                    gameObject.SetActive(false);
+                }
+
+                else
+                {
+                    playerShip.GetComponent<Scr_PlayerShipStats>().ReFuel(currentFuelBLock.GetComponent<Scr_FuelBlock>().fuelAmount);
+                    Destroy(currentFuelBLock);
+                    emptyHands = true;
+                }
             }
 
-            else
+            if (playerShip.GetComponent<Scr_PlayerShipMovement>().playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace)
             {
-                playerShip.GetComponent<Scr_PlayerShipStats>().ReFuel(currentFuelBLock.GetComponent<Scr_FuelBlock>().fuelAmount);
-                Destroy(currentFuelBLock);
-                emptyHands = true;
+                playerShip.GetComponent<Scr_PlayerShipMovement>().astronautOnBoard = true;
+                playerShip.GetComponent<Scr_PlayerShipMovement>().canControlShip = true;
+                playerShip.GetComponent<Scr_PlayerShipMovement>().canRotateShip = true;
+                playerShip.GetComponent<Scr_PlayerShipActions>().doingSpaceWalk = false;
+                gameObject.SetActive(false);
             }
         }
 
@@ -102,6 +114,7 @@ public class Scr_AstronautsActions : MonoBehaviour
             {
                 astronautStats.physicToolSlots[numberToolActive].GetComponent<Scr_ToolBase>().UseTool();
             }
+
             else if (toolOnFloor != null && toolOnFloor.GetComponent<Scr_ToolBase>().resourceAmount <= 0)
             {
                 toolOnFloor.GetComponent<Scr_ToolBase>().RecoverTool();
