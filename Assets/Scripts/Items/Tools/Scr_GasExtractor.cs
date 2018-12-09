@@ -1,17 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Scr_GasExtractor : Scr_ToolBase {
 
     [SerializeField] private float extractorTime;
     [SerializeField] private LayerMask mask;
+    [SerializeField] private GameObject resourceText;
 
 
     [HideInInspector] public Camera mainCamera;
     [HideInInspector] public bool recolectable;
     [HideInInspector] public int resourceLeft;
 
+    private TextMeshProUGUI text;
     private Scr_ReferenceManager referenceManager;
     private float savedExtractorTime;
     private GameObject ghost;
@@ -30,6 +33,9 @@ public class Scr_GasExtractor : Scr_ToolBase {
         astronautMovement = GameObject.Find("Astronaut").GetComponent<Scr_AstronautMovement>();
         astronaut = GameObject.Find("Astronaut");
         referenceManager = GameObject.Find("ReferenceManager").GetComponent<Scr_ReferenceManager>();
+        text = resourceText.GetComponent<TextMeshProUGUI>();
+
+        resourceText.SetActive(false);
 
         savedExtractorTime = extractorTime;
         resourceAmount = 0;
@@ -51,6 +57,9 @@ public class Scr_GasExtractor : Scr_ToolBase {
         {
             recolectable = false;
         }
+
+        if(!onHands)
+            text.text = resourceAmount.ToString();
     }
 
     public override void UseTool()
@@ -74,7 +83,7 @@ public class Scr_GasExtractor : Scr_ToolBase {
     {
         savedExtractorTime -= Time.deltaTime;
 
-        if (savedExtractorTime <= 0)
+        if (savedExtractorTime <= 0 && gasZone.GetComponent<Scr_GasZone>().amount > 0)
         {
             resourceAmount += 1;
             savedExtractorTime = extractorTime;
@@ -85,7 +94,7 @@ public class Scr_GasExtractor : Scr_ToolBase {
         if(gasZone.GetComponent<Scr_GasZone>().amount <= 0 && resourceAmount != resourceLeft)
         {
             resourceAmount = resourceLeft;
-        }
+        }  
     }
 
     private void PutOnPlace()
@@ -113,6 +122,7 @@ public class Scr_GasExtractor : Scr_ToolBase {
 
             if (Input.GetMouseButtonDown(0))
             {
+                resourceText.SetActive(true);
                 transform.SetParent(null);
                 transform.position = ghost.transform.position;
                 transform.rotation = Quaternion.LookRotation(transform.forward, (transform.position - astronautMovement.currentPlanet.transform.position));
@@ -148,6 +158,7 @@ public class Scr_GasExtractor : Scr_ToolBase {
             {
                 if (astronaut.GetComponent<Scr_AstronautStats>().toolSlots[i] == null)
                 {
+                    resourceText.SetActive(false);
                     astronaut.GetComponent<Scr_AstronautStats>().toolSlots[i] = referenceManager.GasExtractor;
                     astronaut.GetComponent<Scr_AstronautStats>().physicToolSlots[i] = gameObject;
                     transform.SetParent(null);

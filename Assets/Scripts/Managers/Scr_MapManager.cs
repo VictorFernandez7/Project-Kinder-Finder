@@ -30,6 +30,7 @@ public class Scr_MapManager : MonoBehaviour
     [HideInInspector] public RectTransform myRectTransform;
 
     private bool clampToScreen = true;
+    private bool slow;
     private Camera mainCamera;
     private Vector3 dragOrigin;
     private float distanceHUD;
@@ -83,24 +84,28 @@ public class Scr_MapManager : MonoBehaviour
             mapActive = !mapActive;
         }
 
-        if (mapActive)
+        else if (mapActive)
         {
+            playerShip.GetComponent<Scr_PlayerShipPrediction>().enabled = false;
             Time.timeScale = 0f;
             Time.fixedDeltaTime = Time.timeScale * 0.02f;
-            playerShip.GetComponent<Scr_PlayerShipPrediction>().enabled = false;
-
+            slow = true;
         }
 
-        else if (!mapActive)
+        else if (!mapActive && Time.timeScale < 1 && slow == true)
         {
             Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
             Time.timeScale += 0.25f * Time.unscaledDeltaTime;
             Time.fixedDeltaTime = Time.timeScale * 0.02f;
-            if (Time.timeScale == 1)
+            if (Time.timeScale >= 1 )
             {
+                Time.timeScale = 1;
                 playerShip.GetComponent<Scr_PlayerShipPrediction>().enabled = true;
+                slow = false;
             }
         }
+
+
     }
 
     private void MapControl()
