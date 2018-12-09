@@ -1360,8 +1360,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 3
-  width: 0.1
-  haloColor: {r: 1, g: 1, b: 1, a: 0.50980395}
+  width: 0.05
+  colorLerpSpeed: 0.75
+  colorChangeDelay: 1
+  activeHalo: {r: 1, g: 1, b: 1, a: 0.50980395}
+  notActiveHalo: {r: 1, g: 1, b: 1, a: 0}
   playership: {fileID: 4030621875282276}
 --- !u!114 &114402563492195678
 MonoBehaviour:
