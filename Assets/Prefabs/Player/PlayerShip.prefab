@@ -371,23 +371,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1519163700322740
-GameObject:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4863493895901964}
-  - component: {fileID: 33695177804542362}
-  - component: {fileID: 23641664422106706}
-  m_Layer: 0
-  m_Name: Visuals3D
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1636097369711360
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,6 +381,23 @@ GameObject:
   - component: {fileID: 4506538500878602}
   m_Layer: 0
   m_Name: Checks
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1722279495978908
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4806729986956890}
+  - component: {fileID: 33240578667316612}
+  - component: {fileID: 23513320156556394}
+  m_Layer: 0
+  m_Name: Visuals3D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -511,7 +511,7 @@ GameObject:
   - component: {fileID: 198935063272262492}
   - component: {fileID: 199652097243916808}
   m_Layer: 0
-  m_Name: StartsParticles
+  m_Name: StarParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -614,8 +614,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1479466309877052}
   m_LocalRotation: {x: -0, y: -0, z: -0.8433915, w: 0.53729963}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0.2}
-  m_LocalScale: {x: 0.5000003, y: 0.5000003, z: 0.5}
+  m_LocalPosition: {x: 0, y: -0.7, z: 0.2}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children: []
   m_Father: {fileID: 4197059671548110}
   m_RootOrder: 1
@@ -690,7 +690,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4863493895901964}
+  - {fileID: 4806729986956890}
   - {fileID: 4294356267724688}
   - {fileID: 4002629824080178}
   m_Father: {fileID: 4030621875282276}
@@ -729,9 +729,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1062961061777900}
-  m_LocalRotation: {x: -0, y: -0, z: -0.8433915, w: 0.53729963}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.50000054, y: 0.50000054, z: 0.5}
+  m_LocalRotation: {x: 0, y: 0, z: -0.8433915, w: 0.53729963}
+  m_LocalPosition: {x: 0.002, y: -0.2, z: 0}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children: []
   m_Father: {fileID: 4197059671548110}
   m_RootOrder: 0
@@ -843,19 +843,19 @@ Transform:
   m_Father: {fileID: 4197059671548110}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: -29.75}
---- !u!4 &4863493895901964
+--- !u!4 &4806729986956890
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1519163700322740}
-  m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: -0.07399988, z: -0.05}
-  m_LocalScale: {x: 0.72, y: 0.74556005, z: 0.7729921}
+  m_GameObject: {fileID: 1722279495978908}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0.202, z: 0}
+  m_LocalScale: {x: 22.923, y: 22.923, z: 22.923}
   m_Children: []
   m_Father: {fileID: 4314457420372490}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &4904641705211294
 Transform:
   m_ObjectHideFlags: 1
@@ -904,12 +904,12 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!23 &23641664422106706
+--- !u!23 &23513320156556394
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1519163700322740}
+  m_GameObject: {fileID: 1722279495978908}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -939,13 +939,13 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33695177804542362
+--- !u!33 &33240578667316612
 MeshFilter:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1519163700322740}
-  m_Mesh: {fileID: 4300000, guid: 6df67c15320e0ba429d7d23cd9c0b25b, type: 3}
+  m_GameObject: {fileID: 1722279495978908}
+  m_Mesh: {fileID: 4300000, guid: fa89a1e7ba970054a9fa9071e676ab6a, type: 3}
 --- !u!33 &33898153526554940
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -1000,7 +1000,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0000017881393, y: -0.1754365}
+  m_Offset: {x: 0.0000017881393, y: -0.18694305}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1011,7 +1011,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.30180317, y: 0.044525146}
+  m_Size: {x: 0.66147625, y: 0.06753826}
   m_EdgeRadius: 0
 --- !u!70 &70641367716897180
 CapsuleCollider2D:
@@ -1360,8 +1360,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 3
-  width: 0.1
-  haloColor: {r: 1, g: 1, b: 1, a: 0.50980395}
+  width: 0.05
+  colorLerpSpeed: 0.75
+  colorChangeDelay: 1
+  activeHalo: {r: 1, g: 1, b: 1, a: 0.50980395}
+  notActiveHalo: {r: 1, g: 1, b: 1, a: 0}
   playership: {fileID: 4030621875282276}
 --- !u!114 &114402563492195678
 MonoBehaviour:
@@ -1503,10 +1506,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dustMultiplier: 500
-  takingOffThrusterPower: 1750
-  inSpaceThrusterPower: 500
+  takingOffThrusterPower: 2000
+  inSpaceThrusterPower: 1250
   landingThrusterPower: 1500
   attachedThrusterPower: 100
+  inSpaceEmission: 100
+  inPlanetEmission: 33.3
+  inSpaceSize: {x: 0.75, y: 0.75, z: 0.75}
+  inPlanetSize: {x: 0.25, y: 0.25, z: 0.25}
   landedThrusterMult: 250
   landedDustMult: 30
   color0: {r: 0.9078033, g: 1, b: 0, a: 1}
@@ -1521,6 +1528,7 @@ MonoBehaviour:
   atmosphereParticles: {fileID: 198678149364849852}
   miningParticles: {fileID: 198929548371070658}
   miningLight: {fileID: 108917598069573828}
+  starParticles: {fileID: 198935063272262492}
   warmingSlider: {fileID: 0}
 --- !u!114 &114602957055860766
 MonoBehaviour:
@@ -39329,7 +39337,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.635}
+  m_AnchoredPosition: {x: 0, y: 0.974}
   m_SizeDelta: {x: 94.43353, y: 17.81416}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224665154131214556
@@ -39388,7 +39396,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.402}
+  m_AnchoredPosition: {x: 0, y: 0.774}
   m_SizeDelta: {x: 270.1812, y: 96.06943}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224895813184888646
