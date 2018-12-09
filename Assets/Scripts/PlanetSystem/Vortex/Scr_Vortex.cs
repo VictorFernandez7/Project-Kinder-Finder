@@ -5,6 +5,7 @@ using UnityEngine;
 public class Scr_Vortex : MonoBehaviour
 {
     [Header("Vortex Paramaters")]
+    [SerializeField] float creationDelay;
     [SerializeField] float vortexSize;
     [SerializeField] float dyingSpeed;
     [SerializeField] float minSize;
@@ -38,9 +39,13 @@ public class Scr_Vortex : MonoBehaviour
         DyingProcess();
 
         checkDestroyTime -= Time.deltaTime;
+        creationDelay -= Time.deltaTime;
 
         if (checkDestroyTime <= 0)
-            Destroy(gameObject);
+            checkDestroy = false;
+
+        if (creationDelay <= 0)
+            vortexParticles.Play();
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -55,9 +60,10 @@ public class Scr_Vortex : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.gameObject.CompareTag("PlayerShip"))
+        if (checkDestroy)
         {
-
+            if (!collision.gameObject.CompareTag("PlayerShip"))
+                Destroy(gameObject);
         }
     }
 
