@@ -74,7 +74,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
     {
         MiningSliderColor();
         CheckInputs();
-        Delay();
+        ExitShipControl();
         SpaceWalk();
     }
 
@@ -84,9 +84,9 @@ public class Scr_PlayerShipActions : MonoBehaviour
             lastFramePlanetPosition = playerShipMovement.currentPlanet.transform.position;
     }
 
-    private void Delay()
+    private void ExitShipControl()
     {
-        if (playerShipMovement.astronautOnBoard && playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace)
+        if (playerShipMovement.astronautOnBoard)
         {
             if (startExitDelay)
             {
@@ -104,7 +104,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
             }
         }
 
-        else
+        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace)
             canExitShip = false;
     }
 
