@@ -47,7 +47,6 @@ public class Scr_MapManager : MonoBehaviour
 
         mapCanvas.SetActive(false);
         currentTarget = null;
-        mapVisuals.SetActive(true);
 
         distanceHUD = Vector3.Distance(distanceText.transform.position, playerShip.transform.position);
     }
@@ -82,6 +81,7 @@ public class Scr_MapManager : MonoBehaviour
             mainCanvas.SetActive(mapActive);
             mapCanvas.SetActive(!mapActive);
             mapActive = !mapActive;
+            mapVisuals.SetActive(mapActive);
         }
 
         else if (mapActive)
@@ -104,8 +104,6 @@ public class Scr_MapManager : MonoBehaviour
                 slow = false;
             }
         }
-
-
     }
 
     private void MapControl()
