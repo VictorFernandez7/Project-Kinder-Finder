@@ -14,6 +14,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     [Header("Movement Properties")]
     [SerializeField] private float walkingSpeed;
     [SerializeField] private float sprintSpeed;
+    [SerializeField] private float spaceWalkSpeed;
     [SerializeField] private LayerMask collisionMask;
 
     [Header("Height Properties")]
@@ -63,6 +64,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     private Vector2 pointRight;
     private Vector2 movementVector;
     private Vector2 lastVector;
+    private Rigidbody2D astronautRb;
     private RaycastHit2D hitL;
     private RaycastHit2D hitR;
     private RaycastHit2D hitJL;
@@ -77,6 +79,8 @@ public class Scr_AstronautMovement : MonoBehaviour
     {
         playerShipMovement = GameObject.Find("PlayerShip").GetComponent<Scr_PlayerShipMovement>();
         playerShipActions = GameObject.Find("PlayerShip").GetComponent<Scr_PlayerShipActions>();
+
+        astronautRb = GetComponent<Rigidbody2D>();
 
         canMove = true;
 
@@ -359,7 +363,17 @@ public class Scr_AstronautMovement : MonoBehaviour
     {
         if (playerShipActions.doingSpaceWalk)
         {
+            if (Input.GetAxis("Horizontal") > 0f)
+                astronautRb.AddForce(new Vector2(spaceWalkSpeed, 0f));
 
+            else if (Input.GetAxis("Horizontal") < 0f)
+                astronautRb.AddForce(new Vector2(-spaceWalkSpeed, 0f));
+
+            if (Input.GetAxis("Vertical") > 0f)
+                astronautRb.AddForce(new Vector2(0, spaceWalkSpeed));
+
+            else if (Input.GetAxis("Vertical") < 0f)
+                astronautRb.AddForce(new Vector2(0f, -spaceWalkSpeed));
         }
     }
 
