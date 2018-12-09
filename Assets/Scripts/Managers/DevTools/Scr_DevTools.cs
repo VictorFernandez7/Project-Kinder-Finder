@@ -11,6 +11,7 @@ public class Scr_DevTools : MonoBehaviour
     [SerializeField] private KeyCode RS_key;
 
     private GameObject playerShip;
+    private bool devSlow; 
 
     private void Start()
     {
@@ -41,14 +42,20 @@ public class Scr_DevTools : MonoBehaviour
             Time.timeScale = slowAmount;
             Time.fixedDeltaTime = Time.timeScale * 0.02f;
             playerShip.GetComponent<Scr_PlayerShipPrediction>().enabled = false;
+            devSlow = true;
         }
 
-        else
+        else if(devSlow == true)
         {
             Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
             Time.timeScale += 0.25f * Time.unscaledDeltaTime;
             Time.fixedDeltaTime = Time.timeScale * 0.02f;
-            playerShip.GetComponent<Scr_PlayerShipPrediction>().enabled = true;
+            if (Time.timeScale >= 1)
+            {
+                Time.timeScale = 1;
+                playerShip.GetComponent<Scr_PlayerShipPrediction>().enabled = true;
+                devSlow = false;
+            }
         }
     }
 }
