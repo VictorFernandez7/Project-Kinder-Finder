@@ -46,6 +46,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
     private Rigidbody2D playerShipRb;
     private Scr_MainCamera mainCamera;
     private TextMeshProUGUI miningPowerText;
+    private DistanceJoint2D spaceWalkCable;
     private Scr_PlayerShipMovement playerShipMovement;
     private Scr_PlayerShipPrediction playerShipPrediction;
     private Scr_PlayerShipEffects playerShipEffects;
@@ -62,10 +63,11 @@ public class Scr_PlayerShipActions : MonoBehaviour
         playerShipPrediction = GetComponent<Scr_PlayerShipPrediction>();
         playerShipEffects = GetComponent<Scr_PlayerShipEffects>();
         playerShipRb = GetComponent<Rigidbody2D>();
-
+        spaceWalkCable = GetComponent<DistanceJoint2D>();
+        
         deployDelaySaved = deployDelay;
-
         miningSlider.maxValue = maxPower;
+        spaceWalkCable.enabled = false;
     }
 
     private void Update()
@@ -84,7 +86,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
 
     private void Delay()
     {
-        if (playerShipMovement.astronautOnBoard)
+        if (playerShipMovement.astronautOnBoard && playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace)
         {
             if (startExitDelay)
             {
@@ -101,6 +103,9 @@ public class Scr_PlayerShipActions : MonoBehaviour
                 }
             }
         }
+
+        else
+            canExitShip = false;
     }
 
     private void CheckInputs()
@@ -287,15 +292,12 @@ public class Scr_PlayerShipActions : MonoBehaviour
                 astronaut.transform.position = spawnPoint.position;
                 playerShipMovement.astronautOnBoard = false;
                 playerShipMovement.canControlShip = false;
+                playerShipMovement.canRotateShip = false;
 
                 if (!mainCamera.mining)
                     playerShipRb.velocity = Vector2.zero;
 
-                DistanceJoint2D joint = gameObject.AddComponent<DistanceJoint2D>();
-                joint.connectedBody = astronaut.GetComponent<Rigidbody2D>();
-                joint.maxDistanceOnly = true;
-                joint.enableCollision = true;
-                joint.distance = 1;
+                spaceWalkCable.enabled = true;
 
                 astronaut.SetActive(true);
             }

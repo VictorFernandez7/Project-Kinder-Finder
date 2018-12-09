@@ -84,7 +84,7 @@ public class Scr_AsteroidBehaviour : MonoBehaviour
     public void NotColoseToShip()
     {
         messageTextAnim.SetBool("CanAttach", false);
-        playerShipActions.closeToAsteroid = true;
+        playerShipActions.closeToAsteroid = false;
         playerShipActions.currentAsteroid = null;
     }
 
