@@ -15,6 +15,10 @@ public class Scr_PlayerShipActions : MonoBehaviour
     [SerializeField] private Color powerColor50;
     [SerializeField] private Color powerColor75;
 
+    [Header("Space Walk")]
+    [SerializeField] private float maxCableLength;
+    [SerializeField] private float maxMiningCableLength;
+
     [Header("Deploy Values")]
     [SerializeField] private float deployDelay;
 
@@ -79,6 +83,9 @@ public class Scr_PlayerShipActions : MonoBehaviour
         CheckInputs();
         ExitShipControl();
         SpaceWalk();
+
+        if (doingSpaceWalk && currentAsteroid != null)
+            transform.up = currentAsteroid.transform.position - transform.position;
     }
 
     private void FixedUpdate()
@@ -304,6 +311,11 @@ public class Scr_PlayerShipActions : MonoBehaviour
 
                 spaceWalkCable.enabled = true;
                 spaceWalkCable.connectedBody = astronautRb;
+                
+                if (mainCamera.mining)
+                    spaceWalkCable.distance = maxMiningCableLength;
+                else
+                    spaceWalkCable.distance = maxCableLength;
             }
         }
 

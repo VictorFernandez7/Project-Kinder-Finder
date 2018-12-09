@@ -78,6 +78,7 @@ public class Scr_AstronautsActions : MonoBehaviour
                 playerShip.GetComponent<Scr_PlayerShipMovement>().astronautOnBoard = true;
                 playerShip.GetComponent<Scr_PlayerShipMovement>().canControlShip = true;
                 playerShip.GetComponent<Scr_PlayerShipMovement>().canRotateShip = true;
+                playerShip.GetComponent<Scr_PlayerShipActions>().doingSpaceWalk = false;
                 gameObject.SetActive(false);
             }
         }

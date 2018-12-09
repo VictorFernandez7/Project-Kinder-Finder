@@ -14,7 +14,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     [Header("Movement Properties")]
     [SerializeField] private float walkingSpeed;
     [SerializeField] private float sprintSpeed;
-    [SerializeField] private float spaceWalkSpeed;
+    [Range(0.1f, 1f)] [SerializeField] private float spaceWalkSpeed;
     [SerializeField] private LayerMask collisionMask;
 
     [Header("Height Properties")]
