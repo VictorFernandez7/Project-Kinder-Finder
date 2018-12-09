@@ -18,7 +18,7 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
     [SerializeField] private Sprite asteroidIcon;
 
     [HideInInspector] public List<Scr_AsteroidClass> asteroids;
-    [HideInInspector] public List<Scr_AsteroidClass> planets;
+    [HideInInspector] public List<Scr_PlanetClass> planets;
 
     private GameObject playerShip;
     private CircleCollider2D trigger;
@@ -32,6 +32,8 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
         trigger = GetComponent<CircleCollider2D>();
 
         asteroids = new List<Scr_AsteroidClass>();
+        planets = new List<Scr_PlanetClass>();
+
         trigger.enabled = false;
     }
 
@@ -43,24 +45,47 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Asteroid") && playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace)
-            asteroids.Add(new Scr_AsteroidClass(collision.name, collision.gameObject, Vector3.Distance(collision.transform.position, playerShip.transform.position), collision.transform.position));
+        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace)
+        {
+            if (collision.gameObject.CompareTag("Asteroid"))
+                asteroids.Add(new Scr_AsteroidClass(collision.name, collision.gameObject, Vector3.Distance(collision.transform.position, playerShip.transform.position), collision.transform.position));
+            
+            else if (collision.gameObject.CompareTag("Planet"))
+                planets.Add(new Scr_PlanetClass(collision.name, collision.gameObject, Vector3.Distance(collision.transform.position, playerShip.transform.position), collision.transform.position));
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Asteroid") && playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace)
+        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace)
         {
-            List<Scr_AsteroidClass> asteroidsToDelete = new List<Scr_AsteroidClass>();
-
-            foreach (Scr_AsteroidClass asteroid in asteroids)
+            if (collision.gameObject.CompareTag("Asteroid"))
             {
-                if (asteroid.name == collision.name)
-                    asteroidsToDelete.Add(asteroid);
+                List<Scr_AsteroidClass> asteroidsToDelete = new List<Scr_AsteroidClass>();
+
+                foreach (Scr_AsteroidClass asteroid in asteroids)
+                {
+                    if (asteroid.name == collision.name)
+                        asteroidsToDelete.Add(asteroid);
+                }
+
+                foreach (Scr_AsteroidClass asteroid in asteroidsToDelete)
+                    asteroids.Remove(asteroid);
             }
 
-            foreach (Scr_AsteroidClass asteroid in asteroidsToDelete)
-                asteroids.Remove(asteroid);
+            else if (collision.gameObject.CompareTag("Planet"))
+            {
+                List<Scr_PlanetClass> planetsToDelete = new List<Scr_PlanetClass>();
+
+                foreach (Scr_PlanetClass planet in planets)
+                {
+                    if (planet.name == collision.name)
+                        planetsToDelete.Add(planet);
+                }
+
+                foreach (Scr_PlanetClass planet in planetsToDelete)
+                    planets.Remove(planet);
+            }
         }
     }
 
@@ -82,6 +107,15 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
 
             if (asteroid.distanceToShip <= asteroidCheckDistance)
                 DrawProximityLine(new Vector3(transform.position.x - asteroid.currentPos.x, transform.position.x - asteroid.currentPos.x, transform.position.x - asteroid.currentPos.x), asteroid.distanceToShip);
+        }
+
+        foreach (Scr_PlanetClass planet in planets)
+        {
+            planet.currentPos = planet.body.transform.position;
+            planet.distanceToShip = Vector3.Distance(transform.position, planet.body.transform.position);
+
+            if (planet.distanceToShip <= planetCheckDistance)
+                DrawProximityLine(new Vector3(transform.position.x - planet.currentPos.x, transform.position.x - planet.currentPos.x, transform.position.x - planet.currentPos.x), planet.distanceToShip);
         }
     }
 
