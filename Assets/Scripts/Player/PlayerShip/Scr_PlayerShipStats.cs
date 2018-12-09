@@ -41,10 +41,10 @@ public class Scr_PlayerShipStats : MonoBehaviour
     [SerializeField] private AudioSource fuelAlarm;
 
     [SerializeField] public GameObject[] toolWarehouse;
+    [SerializeField] public GameObject[] resourceWarehouse;
     [SerializeField] public Scr_ReferenceManager referenceManager;
 
     [HideInInspector] public int lastWarehouseEmpty;
-    [HideInInspector] public bool warehouseFull;
     [HideInInspector] public bool gasExtractor;
     [HideInInspector] public bool repairingTool;
     [HideInInspector] public bool jetpack;
