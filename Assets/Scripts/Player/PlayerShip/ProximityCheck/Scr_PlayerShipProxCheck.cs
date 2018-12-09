@@ -17,7 +17,8 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
     [SerializeField] private Sprite planetIcon;
     [SerializeField] private Sprite asteroidIcon;
 
-    [HideInInspector] public List<Scr_Asteroid> asteroids;
+    [HideInInspector] public List<Scr_AsteroidClass> asteroids;
+    [HideInInspector] public List<Scr_AsteroidClass> planets;
 
     private GameObject playerShip;
     private CircleCollider2D trigger;
@@ -30,7 +31,7 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
         playerShipMovement = playerShip.GetComponent<Scr_PlayerShipMovement>();
         trigger = GetComponent<CircleCollider2D>();
 
-        asteroids = new List<Scr_Asteroid>();
+        asteroids = new List<Scr_AsteroidClass>();
         trigger.enabled = false;
     }
 
@@ -43,22 +44,22 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Asteroid") && playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace)
-            asteroids.Add(new Scr_Asteroid(collision.name, collision.gameObject, Vector3.Distance(collision.transform.position, playerShip.transform.position), collision.transform.position));
+            asteroids.Add(new Scr_AsteroidClass(collision.name, collision.gameObject, Vector3.Distance(collision.transform.position, playerShip.transform.position), collision.transform.position));
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Asteroid") && playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace)
         {
-            List<Scr_Asteroid> asteroidsToDelete = new List<Scr_Asteroid>();
+            List<Scr_AsteroidClass> asteroidsToDelete = new List<Scr_AsteroidClass>();
 
-            foreach (Scr_Asteroid asteroid in asteroids)
+            foreach (Scr_AsteroidClass asteroid in asteroids)
             {
                 if (asteroid.name == collision.name)
                     asteroidsToDelete.Add(asteroid);
             }
 
-            foreach (Scr_Asteroid asteroid in asteroidsToDelete)
+            foreach (Scr_AsteroidClass asteroid in asteroidsToDelete)
                 asteroids.Remove(asteroid);
         }
     }
@@ -74,7 +75,7 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
 
     private void UpdateListStats()
     {
-        foreach (Scr_Asteroid asteroid in asteroids)
+        foreach (Scr_AsteroidClass asteroid in asteroids)
         {
             asteroid.currentPos = asteroid.body.transform.position;
             asteroid.distanceToShip = Vector3.Distance(transform.position, asteroid.body.transform.position);
