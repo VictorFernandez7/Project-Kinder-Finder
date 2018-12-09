@@ -42,13 +42,13 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Asteroid"))
+        if (collision.gameObject.CompareTag("Asteroid") && playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace)
             asteroids.Add(new Scr_Asteroid(collision.name, collision.gameObject, Vector3.Distance(collision.transform.position, playerShip.transform.position), collision.transform.position));
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Asteroid"))
+        if (collision.gameObject.CompareTag("Asteroid") && playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace)
         {
             List<Scr_Asteroid> asteroidsToDelete = new List<Scr_Asteroid>();
 

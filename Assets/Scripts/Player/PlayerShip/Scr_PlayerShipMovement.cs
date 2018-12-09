@@ -144,8 +144,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (currentPlanet != null)
-            landingOrientationVector = -new Vector3(currentPlanet.transform.position.x - transform.position.x, currentPlanet.transform.position.y - transform.position.y, currentPlanet.transform.position.z - transform.position.z);
+        UpdateShipRotationWhenLanded();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -169,11 +168,14 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Planet" && !dead)
+        if (playerShipState == PlayerShipState.landing || playerShipState == PlayerShipState.landed)
         {
-            onGround = false;
+            if (collision.gameObject.tag == "Planet" && !dead)
+            {
+                onGround = false;
 
-            playerShipActions.startExitDelay = false;
+                playerShipActions.startExitDelay = false;
+            }
         }
     }
 
@@ -221,7 +223,6 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         }
     }
 
-
     private void Timers()
     {
         if (countDownToMove)
@@ -237,6 +238,16 @@ public class Scr_PlayerShipMovement : MonoBehaviour
                 canControlShip = true;
                 countDownToMove = false;
             }
+        }
+    }
+
+    private void UpdateShipRotationWhenLanded()
+    {
+        if (currentPlanet != null && playerShipState == PlayerShipState.landed)
+        {
+            Vector3 currentRootation = new Vector3(transform.localRotation.x, transform.localRotation.y, transform.localRotation.y);
+            landingOrientationVector = -new Vector3(currentPlanet.transform.position.x - transform.position.x, currentPlanet.transform.position.y - transform.position.y, currentPlanet.transform.position.z - transform.position.z);
+            transform.localRotation = Quaternion.Euler(Vector3.Lerp(currentRootation, landingOrientationVector, Time.deltaTime * shipOrientationSpeed));
         }
     }
 
@@ -379,7 +390,6 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
     private void Landed()
     {
-        transform.up = Vector3.Lerp(transform.up, landingOrientationVector, Time.deltaTime * shipOrientationSpeed);
         transform.SetParent(currentPlanet.transform);
 
         if (rb.velocity != Vector2.zero)
