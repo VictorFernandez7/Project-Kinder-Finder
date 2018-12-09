@@ -54,6 +54,7 @@ public class Scr_PlayerShipPrediction : MonoBehaviour
                 gravity += gravityVectors;
                 displacement += planetManager.planets[j].GetComponent<Scr_Planet>().GetFutureDisplacement(currentPosition, i * Time.fixedDeltaTime);
             }
+
             gravity = gravity * Time.fixedDeltaTime * Time.fixedDeltaTime;
             moveStep += gravity;
             currentPosition += moveStep + displacement;
@@ -62,7 +63,7 @@ public class Scr_PlayerShipPrediction : MonoBehaviour
             {
                 if (proximityCheck.asteroids.Count > 0)
                 {
-                    foreach (Scr_Asteroid asteroid in proximityCheck.asteroids)
+                    foreach (Scr_AsteroidClass asteroid in proximityCheck.asteroids)
                     {
                         if ((currentPosition.x < (asteroid.body.transform.position.x + asteroid.body.GetComponentInChildren<Renderer>().bounds.size.x / 2)) && (currentPosition.x > (asteroid.body.transform.position.x - asteroid.body.GetComponentInChildren<Renderer>().bounds.size.x / 2)) && (currentPosition.y > (asteroid.body.transform.position.y - asteroid.body.GetComponentInChildren<Renderer>().bounds.size.y / 2)) && (currentPosition.y < (asteroid.body.transform.position.y + asteroid.body.GetComponentInChildren<Renderer>().bounds.size.y / 2)))
                         {
