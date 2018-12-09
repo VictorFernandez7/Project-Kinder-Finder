@@ -168,7 +168,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (playerShipState == PlayerShipState.landing || playerShipState == PlayerShipState.landed)
+        if (playerShipState == PlayerShipState.landing || playerShipState == PlayerShipState.landed || playerShipState == PlayerShipState.takingOff)
         {
             if (collision.gameObject.tag == "Planet" && !dead)
             {
