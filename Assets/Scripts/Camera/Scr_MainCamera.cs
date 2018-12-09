@@ -9,6 +9,7 @@ public class Scr_MainCamera : MonoBehaviour
     [SerializeField] private float zoomInSpace;
     [SerializeField] private float zoomInPlanet;
     [SerializeField] private float miningZoom;
+    [SerializeField] private float spaceWalkZoom;
     [SerializeField] private float zoomSpeed;
 
     [Header("Rotation Properties")]
@@ -31,12 +32,14 @@ public class Scr_MainCamera : MonoBehaviour
     private GameObject playerShip;
     private GameObject astronaut;
     private Scr_PlayerShipMovement playerShipMovement;
+    private Scr_PlayerShipActions playerShipActions;
     private CameraShakeInstance shakeInstance;
 
     private void Start()
     {
         playerShip = GameObject.Find("PlayerShip");
         playerShipMovement = playerShip.GetComponent<Scr_PlayerShipMovement>();
+        playerShipActions = playerShip.GetComponent<Scr_PlayerShipActions>();
         astronaut = GameObject.Find("Astronaut");
         mainCamera = GetComponent<Camera>();
         desiredUp = transform.up;
@@ -62,10 +65,10 @@ public class Scr_MainCamera : MonoBehaviour
     private void FollowTarget()
     {
         if (followAstronaut)
-            transform.position = new Vector3(astronaut.transform.position.x, astronaut.transform.position.y, -10);
+            transform.position = new Vector3(astronaut.transform.position.x, astronaut.transform.position.y, -100);
 
         else
-            transform.position = new Vector3(playerShip.transform.position.x, playerShip.transform.position.y, -10);
+            transform.position = new Vector3(playerShip.transform.position.x, playerShip.transform.position.y, -100);
     }
 
     Vector3 desiredUp;
@@ -89,6 +92,9 @@ public class Scr_MainCamera : MonoBehaviour
         {
             if (mining)
                 mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, miningZoom, Time.deltaTime * zoomSpeed);
+            
+            else if (playerShipActions.doingSpaceWalk)
+                mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, spaceWalkZoom, Time.deltaTime * zoomSpeed);
             
             else
                 mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, zoomInSpace, Time.deltaTime * zoomSpeed);
