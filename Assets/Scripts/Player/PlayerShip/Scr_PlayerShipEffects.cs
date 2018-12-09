@@ -7,13 +7,13 @@ public class Scr_PlayerShipEffects : MonoBehaviour
 {
     [Header("Taking Off Effects")]
     [Range(50, 500)] [SerializeField] private float dustMultiplier;
-    [Range(350, 2000)] [SerializeField] private float takingOffThrusterPower;
+    [Range(350, 4000)] [SerializeField] private float takingOffThrusterPower;
 
     [Header("In Space Effects")]
-    [Range(350, 750)] [SerializeField] private float inSpaceThrusterPower;
+    [Range(350, 2000)] [SerializeField] private float inSpaceThrusterPower;
 
     [Header("Landing Effects")]
-    [Range(350, 2000)] [SerializeField] private float landingThrusterPower;
+    [Range(350, 4000)] [SerializeField] private float landingThrusterPower;
 
     [Header("Mining Effects")]
     [SerializeField] private float attachedThrusterPower;
