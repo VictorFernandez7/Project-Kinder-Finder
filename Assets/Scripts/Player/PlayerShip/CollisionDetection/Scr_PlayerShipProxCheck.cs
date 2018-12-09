@@ -20,17 +20,24 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
     [HideInInspector] public List<Scr_Asteroid> asteroids;
 
     private GameObject playerShip;
+    private CircleCollider2D trigger;
+    private Scr_PlayerShipMovement playerShipMovement;
 
-    private void Start()
+    private void Awake()
     {
         playerShip = GameObject.Find("PlayerShip");
 
+        playerShipMovement = playerShip.GetComponent<Scr_PlayerShipMovement>();
+        trigger = GetComponent<CircleCollider2D>();
+
         asteroids = new List<Scr_Asteroid>();
+        trigger.enabled = false;
     }
 
     private void Update()
     {
-        UpdateAsteroid();
+        UpdateListStats();
+        ColliderActivation();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -56,7 +63,16 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
         }
     }
 
-    private void UpdateAsteroid()
+    private void ColliderActivation()
+    {
+        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed)
+            trigger.enabled = false;
+
+        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace)
+            trigger.enabled = true;
+    }
+
+    private void UpdateListStats()
     {
         foreach (Scr_Asteroid asteroid in asteroids)
         {
