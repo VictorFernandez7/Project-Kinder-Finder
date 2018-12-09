@@ -122,11 +122,12 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
     private void Update()
     {
-        PlayerShipStateCheck();
-        MessageTextManager();
-        playerShipEffects.OnGroundEffects();
         Timers();
         SpeedLimiter();
+        MessageTextManager();
+        PlayerShipStateCheck();
+
+        playerShipEffects.OnGroundEffects();
 
         if (playerShipState == PlayerShipState.inSpace)
         {
@@ -149,17 +150,20 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Planet" && !dead)
+        if (playerShipState == PlayerShipState.landing || playerShipState == PlayerShipState.landed)
         {
-            currentPlanet = collision.gameObject;
-            astronautMovement.currentPlanet = collision.gameObject;
+            if (collision.gameObject.tag == "Planet" && !dead)
+            {
+                currentPlanet = collision.gameObject;
+                astronautMovement.currentPlanet = collision.gameObject;
 
-            if (landedOnce)
-                countDownToMove = true;
+                if (landedOnce)
+                    countDownToMove = true;
 
-            onGround = true;
+                onGround = true;
 
-            playerShipActions.startExitDelay = true;
+                playerShipActions.startExitDelay = true;
+            }
         }
     }
 
