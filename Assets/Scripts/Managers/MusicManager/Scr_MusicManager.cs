@@ -2,135 +2,82 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MusicManager : PersistentSingleton<MusicManager>
-{	
-    private float m_musicVolume;
+public class Scr_MusicManager : PersistentSingleton<Scr_MusicManager>
+{
+    public enum SoundType { SOUND, MUSIC, MENU_SOUND, TEST_SOUND}
 
-    public float  MusicVolume
+    [System.Serializable]
+    public struct SoundData
     {
-        get
-        {
-            return m_musicVolume;
-        }
-
-        set
-        {
-            value = Mathf.Clamp(value, 0, 1);
-            m_backgroundMusic.volume = m_musicVolume;
-            m_musicVolume = value;
-        }
+        public SoundType soundType;
+        public List<AudioClip> clips;
     }
 
-    public float  MusicVolumeSave
+    [System.Serializable]
+    public struct VolumeSetting
     {
-        get
-        {
-            return m_musicVolume;
-        }
-
-        set
-        {
-            value = Mathf.Clamp(value, 0, 1);
-            m_backgroundMusic.volume = m_musicVolume;
-            PlayerPrefs.SetFloat(FixedPlayerPrefKeys.MUSIC_VOLUME, value);
-            m_musicVolume = value;
-        }
+        public SoundType soundType;
+        public float volume;
+        public bool isSingle;
     }
 
-    private float m_sfxVolume;
+    [SerializeField]
+    VolumeSettings soundSettings;
 
-    public float  SfxVolume
+    Dictionary<SoundType, AudioSource> audioSourceDictionary = new Dictionary<SoundType, AudioSource>();
+
+    Dictionary<SoundType, VolumeSetting> volumeDictionary;
+
+    public void PlaySound(SoundData soundData)
     {
-        get
+        float volume = 0;
+        if (volumeDictionary.ContainsKey(soundData.soundType))
+            volume = volumeDictionary[soundData.soundType].volume;
+        AudioClip clip = null;
+        if(soundData.clips.Count > 0)
         {
-            return m_sfxVolume;
+            int random = Random.Range(0, soundData.clips.Count);
+            clip = soundData.clips[random];
         }
-
-        set
+        AudioSource source = audioSourceDictionary[soundData.soundType];
+        if (volumeDictionary[soundData.soundType].isSingle)
         {
-            value = Mathf.Clamp(value, 0, 1);
-            m_sfxMusic.volume = m_sfxVolume;
-            m_sfxVolume = value;
+            source.clip = clip;
+            source.volume = volume;
+            source.Play();
         }
-    }
-
-    public float  SfxVolumeSave
-    {
-        get
+        else
         {
-            return m_sfxVolume;
-        }
-
-        set
-        {
-            value = Mathf.Clamp(value, 0, 1);
-            m_sfxMusic.volume = m_sfxVolume;
-            PlayerPrefs.SetFloat(FixedPlayerPrefKeys.SFX_VOLUME, value);
-            m_sfxVolume = value;
+            source.PlayOneShot(clip, volume);
         }
     }
  
-    public  override void Awake                ()
+    public  override void Awake ()
 	{
         base.Awake();
-        
-        m_soundFXDictionary      = new Dictionary<string, AudioClip>();
-        m_soundMusicDictionary   = new Dictionary<string, AudioClip>();
-
-        m_backgroundMusic = CreateAudioSource("Music", true);
-        m_sfxMusic        = CreateAudioSource("Sfx",   false);
-
-        MusicVolume        = PlayerPrefs.GetFloat(FixedPlayerPrefKeys.MUSIC_VOLUME, 0.5f);
-        SfxVolume          = PlayerPrefs.GetFloat(FixedPlayerPrefKeys.SFX_VOLUME  , 0.5f);
-
-        AudioClip[] audioSfxVector   = Resources.LoadAll<AudioClip>(FixedPaths.PATH_RESOURCE_SFX);
-
-        for (int i = 0; i < audioSfxVector.Length; i++)
+        Debug.Log("awakening sound system");
+        volumeDictionary = new Dictionary<SoundType, VolumeSetting>();
+        for (int i = 0; i < soundSettings.volumeSettings.Count; i++)
         {
-            m_soundFXDictionary.Add(audioSfxVector[i].name, audioSfxVector[i]);
+            volumeDictionary.Add(soundSettings.volumeSettings[i].soundType, soundSettings.volumeSettings[i]);
         }
-
-        audioSfxVector   = Resources.LoadAll<AudioClip>(FixedPaths.PATH_RESOURCE_MUSIC);
-
-        for (int i = 0; i < audioSfxVector.Length; i++)
-        {
-            m_soundMusicDictionary.Add(audioSfxVector[i].name, audioSfxVector[i]);
+        for (int i = 0; i < soundSettings.volumeSettings.Count; i++) {
+            audioSourceDictionary.Add(soundSettings.volumeSettings[i].soundType, CreateAudioSource(soundSettings.volumeSettings[i].soundType.ToString(), soundSettings.volumeSettings[i].isSingle));
         }
 	}
 
-       
-    public  void         PlayBackgroundMusic   (string audioName)
-	{
-		if (m_soundMusicDictionary.ContainsKey(audioName))
-        {
-            m_backgroundMusic.clip = m_soundMusicDictionary[audioName];
-            m_backgroundMusic.volume = m_musicVolume;
-            m_backgroundMusic.Play();
-
-        }
+    public  void         StopSound   (SoundType soundType)
+    {
+        if (audioSourceDictionary.ContainsKey(soundType))
+            audioSourceDictionary[soundType].Stop(); ;
     }
 
-    public  void         PlaySound             (string audioName)
-	{
-        if (m_soundFXDictionary.ContainsKey(audioName))
-        {
-            m_sfxMusic.clip = m_soundFXDictionary[audioName];
-            m_sfxMusic.volume = m_sfxVolume;
-            m_sfxMusic.Play();
-        }
-	}
-
-    public  void         StopBackgroundMusic   ()
-	{
-		if (m_backgroundMusic != null)
-			m_backgroundMusic.Stop();
-	}	
-                       
-    public  void         PauseBackgroundMusic  ()
-	{
-		if (m_backgroundMusic != null)
-			m_backgroundMusic.Pause();
-	}
+    public void PauseSound(SoundType soundType)
+    {
+        if (audioSourceDictionary.ContainsKey(soundType))
+            audioSourceDictionary[soundType].Pause(); ;
+    }
+    
 
     private AudioSource  CreateAudioSource     (string name, bool isLoop)
     {
@@ -142,12 +89,6 @@ public class MusicManager : PersistentSingleton<MusicManager>
         temporaryAudioHost.transform.SetParent(this.transform);
         return audioSource;
     }
-
-    private Dictionary<string, AudioClip> m_soundFXDictionary    = null;
-    [SerializeField]
-    public Dictionary<string, AudioClip> m_soundMusicDictionary = null;
-    private AudioSource                   m_backgroundMusic      = null;
-    private AudioSource                   m_sfxMusic             = null;
 
 }
 

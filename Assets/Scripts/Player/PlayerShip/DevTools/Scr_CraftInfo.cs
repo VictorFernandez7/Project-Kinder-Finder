@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public class Scr_CraftData
+[System.Serializable]
+public class Scr_CraftInfo
 {
     public string m_name;
 
@@ -12,14 +13,14 @@ public class Scr_CraftData
     public int m_iron;
 }
 
-public class Scr_CraftList : ScriptableObject
+public class Scr_CraftData : ScriptableObject
 {
-    public List<Scr_CraftData> craftList;
+    public List<Scr_CraftInfo> craftList;
 }
 
 public class Scr_CraftEditor : EditorWindow
 {
-    private Scr_CraftList inventoryItemList;
+    private Scr_CraftData inventoryItemList;
     private int viewIndex = 1;
 
     [MenuItem("Window/Craft Editor")]
@@ -30,17 +31,17 @@ public class Scr_CraftEditor : EditorWindow
 
     private void OnEnable()
     {
-        if (EditorPrefs.HasKey("ObjectPath"))
+        if (EditorPrefs.HasKey("objectPath"))
         {
             string ObjectPath = "Assets/Resources/Data/craftList.asset";
-            inventoryItemList = AssetDatabase.LoadAssetAtPath(ObjectPath, typeof(Scr_CraftList)) as Scr_CraftList;
+            inventoryItemList = AssetDatabase.LoadAssetAtPath(ObjectPath, typeof(Scr_CraftData)) as Scr_CraftData;
         }
 
         if (inventoryItemList == null)
         {
             viewIndex = 1;
 
-            Scr_CraftList asset = ScriptableObject.CreateInstance<Scr_CraftList>();
+            Scr_CraftData asset = ScriptableObject.CreateInstance<Scr_CraftData>();
             AssetDatabase.CreateAsset(asset, "Assets/Resources/Data/craftList.asset");
             AssetDatabase.SaveAssets();
 
@@ -48,13 +49,12 @@ public class Scr_CraftEditor : EditorWindow
 
             if (inventoryItemList)
             {
-                inventoryItemList.craftList = new List<Scr_CraftData>();
+                inventoryItemList.craftList = new List<Scr_CraftInfo>();
                 string relPath = AssetDatabase.GetAssetPath(inventoryItemList);
-                EditorPrefs.SetString("ObjectPath", relPath);
+                EditorPrefs.SetString("objectPath", relPath);
             }
         }
     }
-
     private void OnGUI()
     {
         GUILayout.Label("Craft Editor", EditorStyles.boldLabel);
@@ -98,14 +98,14 @@ public class Scr_CraftEditor : EditorWindow
 
         GUILayout.Space(60);
 
-        if (GUILayout.Button("+ Add Upgrade", GUILayout.ExpandWidth(false)))
+        if (GUILayout.Button("+ Add Craft", GUILayout.ExpandWidth(false)))
         {
             AddUpgrade();
         }
 
         GUILayout.Space(5);
 
-        if (GUILayout.Button("- Delete Upgrade", GUILayout.ExpandWidth(false)))
+        if (GUILayout.Button("- Delete Craft", GUILayout.ExpandWidth(false)))
         {
             DeleteUpgrade(viewIndex - 1);
         }
@@ -120,14 +120,14 @@ public class Scr_CraftEditor : EditorWindow
         else
         {
             GUILayout.Space(10);
-            GUILayout.Label("This Upgrade List is Empty.");
+            GUILayout.Label("This Craft List is Empty.");
         }
     }
 
     void AddUpgrade()
     {
-        Scr_CraftData newCraft = new Scr_CraftData();
-        newCraft.m_name = "New Upgrade";
+        Scr_CraftInfo newCraft = new Scr_CraftInfo();
+        newCraft.m_name = "New Craft";
         inventoryItemList.craftList.Add(newCraft);
         viewIndex = inventoryItemList.craftList.Count;
     }
@@ -141,8 +141,8 @@ public class Scr_CraftEditor : EditorWindow
     {
         GUILayout.Space(10);
         GUILayout.BeginHorizontal();
-        viewIndex = Mathf.Clamp(EditorGUILayout.IntField("Current Upgrade", viewIndex, GUILayout.ExpandWidth(false)), 1, inventoryItemList.craftList.Count);
-        EditorGUILayout.LabelField("of " + inventoryItemList.craftList.Count.ToString() + " Upgrades", "", GUILayout.ExpandWidth(false));
+        viewIndex = Mathf.Clamp(EditorGUILayout.IntField("Current Craft", viewIndex, GUILayout.ExpandWidth(false)), 1, inventoryItemList.craftList.Count);
+        EditorGUILayout.LabelField("of " + inventoryItemList.craftList.Count.ToString() + " Craft", "", GUILayout.ExpandWidth(false));
         GUILayout.EndHorizontal();
 
         string[] _choices = new string[inventoryItemList.craftList.Count];
@@ -164,3 +164,4 @@ public class Scr_CraftEditor : EditorWindow
         inventoryItemList.craftList[viewIndex - 1].m_iron = EditorGUILayout.IntField("Iron", inventoryItemList.craftList[viewIndex - 1].m_iron);
     }
 }
+
