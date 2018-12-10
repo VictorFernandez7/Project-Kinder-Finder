@@ -22,31 +22,26 @@ public class MenuManager : MonoBehaviour
         options.SetActive(goToOption);
 
         PlayerPrefs.GetFloat("MusicVolume", 0.5f);
-        if (!goToOption)
-        {
-            MusicManager.Instance.MusicVolumeSave = m_musicSlider.value;
-            MusicManager.Instance.SfxVolumeSave = m_sfxSlider.value;
-        }
+        //if (!goToOption)
+        //{
+        //    MusicManager.Instance.MusicVolumeSave = m_musicSlider.value;
+        //    MusicManager.Instance.SfxVolumeSave = m_sfxSlider.value;
+        //}
     }
 
-    public void OnMusicVolumeChange()
-    {
-        MusicManager.Instance.MusicVolume = m_musicSlider.value;
-    }
-    public void OnSFXVolumeChange()
-    {
-        MusicManager.Instance.SfxVolume = m_sfxSlider.value;
-    }
+   // public void OnMusicVolumeChange()
+   // {
+   //     MusicManager.Instance.MusicVolume = m_musicSlider.value;
+   // }
+   // public void OnSFXVolumeChange()
+   // {
+   //     MusicManager.Instance.SfxVolume = m_sfxSlider.value;
+   // }
     public void ExitGame()
     {
         Application.Quit();
     }
-
-    // Use this for initialization
-    void Start () {
-        //<MusicManager.Instance.PlayBackgroundMusic(FixedSound.TEMITA);
-
-    }
+    
 	
 	// Update is called once per frame
 	void Update () {

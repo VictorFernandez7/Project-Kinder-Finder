@@ -7,8 +7,15 @@ using UnityEditor;
 public class Scr_UpgradeData 
 {
     public string m_name;
+    public SVGImage m_icon;
+
+    [Header("Info")]
+    public string m_info;
 
     [Header("Requirements")]
+    public string m_requirements;
+
+    [Header("Resources")]
     public int m_fuel;
     public int m_iron;
 }
@@ -31,7 +38,7 @@ public class Scr_UpgradeEditor : EditorWindow
 
     private void OnEnable()
     {
-        if (EditorPrefs.HasKey("ObjectPath"))
+        if (EditorPrefs.HasKey("objectPath"))
         {
             string ObjectPath = "Assets/Resources/Data/UpgradeList.asset";
             inventoryItemList = AssetDatabase.LoadAssetAtPath(ObjectPath, typeof(Scr_UpgradeList)) as Scr_UpgradeList;
@@ -51,7 +58,7 @@ public class Scr_UpgradeEditor : EditorWindow
             {
                 inventoryItemList.UpgradeList = new List<Scr_UpgradeData>();
                 string relPath = AssetDatabase.GetAssetPath(inventoryItemList);
-                EditorPrefs.SetString("ObjectPath", relPath);
+                EditorPrefs.SetString("objectPath", relPath);
             }
         }
     }
@@ -156,10 +163,19 @@ public class Scr_UpgradeEditor : EditorWindow
         viewIndex = EditorGUILayout.Popup(_choicesIndex, _choices) + 1;
 
         GUILayout.Space(10);
-        inventoryItemList.UpgradeList[viewIndex - 1].m_name = EditorGUILayout.TextField("Name", inventoryItemList.UpgradeList[viewIndex - 1].m_name as string);
+        inventoryItemList.UpgradeList[viewIndex - 1].m_name = EditorGUILayout.TextField("Upgrade Name", inventoryItemList.UpgradeList[viewIndex - 1].m_name as string);
+
+        GUILayout.Space(10);
+        GUILayout.Label("Description");
+        inventoryItemList.UpgradeList[viewIndex - 1].m_info = EditorGUILayout.TextArea(inventoryItemList.UpgradeList[viewIndex - 1].m_info as string);
 
         GUILayout.Space(10);
         GUILayout.Label("Requirements");
+        inventoryItemList.UpgradeList[viewIndex - 1].m_requirements = EditorGUILayout.TextArea(inventoryItemList.UpgradeList[viewIndex - 1].m_requirements as string);
+
+
+        GUILayout.Space(10);
+        GUILayout.Label("Resources Needed");
 
         inventoryItemList.UpgradeList[viewIndex - 1].m_fuel = EditorGUILayout.IntField("Fuel", inventoryItemList.UpgradeList[viewIndex - 1].m_fuel);
         inventoryItemList.UpgradeList[viewIndex - 1].m_iron = EditorGUILayout.IntField("Iron", inventoryItemList.UpgradeList[viewIndex - 1].m_iron);
