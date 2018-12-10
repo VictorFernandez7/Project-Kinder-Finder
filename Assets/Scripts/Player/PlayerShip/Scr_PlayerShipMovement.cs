@@ -13,6 +13,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [SerializeField] private float takeOffDistance;
     [SerializeField] private float targetVelocity;
     [SerializeField] private float takingOffTime;
+    [SerializeField] private float bulletTime;
 
     [Header("Landed Parameters")]
     [SerializeField] private float canControlTimer;
@@ -65,10 +66,12 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [HideInInspector] public Rigidbody2D rb;
 
     private bool countDownToMove;
+    private bool slow;
     private float maxSpeedSaved;
     private float currentSpeed;
     private float canControlTimerSaved;
     private float checkingDistance;
+    private float initialBulletTime;
     private Slider speedSlider;
     private Slider limitSlider;
     private Vector3 landingOrientationVector;
@@ -118,11 +121,13 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         messageText.text = "";
         canControlShip = false;
         checkingDistance = 100f;
+        initialBulletTime = bulletTime;
     }
 
     private void Update()
     {
         Timers();
+        BulletTime();
         SpeedLimiter();
         MessageTextManager();
         PlayerShipStateCheck();
@@ -144,7 +149,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        UpdateShipRotationWhenLanded();
+        //UpdateShipRotationWhenLanded();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -241,12 +246,46 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         }
     }
 
+    private void BulletTime()
+    {/*
+        if (playerShipState == PlayerShipState.inSpace)
+        {
+            initialBulletTime -= Time.deltaTime;
+
+            if (initialBulletTime <= 0 && !slow)
+            {
+                Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
+
+                if (Time.timeScale == 1)
+                {
+                    Time.timeScale = 0f;
+                    Time.fixedDeltaTime = Time.timeScale * 0.02f;
+                }
+
+                Time.timeScale += 0.25f * Time.unscaledDeltaTime;
+                Time.fixedDeltaTime = Time.timeScale * 0.02f;
+
+                if (Time.timeScale >= 1)
+                {
+                    Time.timeScale = 1;
+                    playerShipPrediction.enabled = true;
+                    initialBulletTime = bulletTime;
+                    slow = true;
+                }
+            }
+        }
+
+        if (playerShipState == PlayerShipState.landed)
+            slow = false;
+            */
+    }
+
     private void UpdateShipRotationWhenLanded()
     {
         if (currentPlanet != null && playerShipState == PlayerShipState.landed)
         {
             Vector3 currentRootation = new Vector3(transform.localRotation.x, transform.localRotation.y, transform.localRotation.y);
-            landingOrientationVector = -new Vector3(currentPlanet.transform.position.x - transform.position.x, currentPlanet.transform.position.y - transform.position.y, currentPlanet.transform.position.z - transform.position.z);
+            landingOrientationVector = transform.position - currentPlanet.transform.position;
             transform.localRotation = Quaternion.Euler(Vector3.Lerp(currentRootation, landingOrientationVector, Time.deltaTime * shipOrientationSpeed));
         }
     }

@@ -97,6 +97,7 @@ public class Scr_MapManager : MonoBehaviour
             Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
             Time.timeScale += 0.25f * Time.unscaledDeltaTime;
             Time.fixedDeltaTime = Time.timeScale * 0.02f;
+
             if (Time.timeScale >= 1 )
             {
                 Time.timeScale = 1;
