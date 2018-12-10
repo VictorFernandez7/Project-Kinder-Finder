@@ -56,23 +56,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1238433231619372
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4657426298995060}
-  - component: {fileID: 33203110335363492}
-  - component: {fileID: 23997731812016888}
-  m_Layer: 0
-  m_Name: Visuals3D
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1254318391594626
 GameObject:
   m_ObjectHideFlags: 0
@@ -83,6 +66,23 @@ GameObject:
   - component: {fileID: 4024023934522912}
   m_Layer: 0
   m_Name: Particles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1266828812194762
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4476079072238040}
+  - component: {fileID: 33569292741188438}
+  - component: {fileID: 23506274154156688}
+  m_Layer: 0
+  m_Name: Visuals3D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -177,10 +177,10 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1635559910669824}
   m_LocalRotation: {x: -0, y: -0, z: 0.18168646, w: 0.98335654}
-  m_LocalPosition: {x: 144.873, y: 4.205, z: 0}
+  m_LocalPosition: {x: 144.873, y: 4.205, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4657426298995060}
+  - {fileID: 4476079072238040}
   - {fileID: 4590653716362036}
   - {fileID: 4080018639410374}
   - {fileID: 4024023934522912}
@@ -242,6 +242,19 @@ Transform:
   m_Father: {fileID: 4080018639410374}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4476079072238040
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1266828812194762}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -0, y: 0.0214, z: -0}
+  m_LocalScale: {x: 3.7010071, y: 3.7010071, z: 3.7010071}
+  m_Children: []
+  m_Father: {fileID: 4004395127091482}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &4590653716362036
 Transform:
   m_ObjectHideFlags: 1
@@ -270,19 +283,6 @@ Transform:
   m_Father: {fileID: 4024023934522912}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 3.52}
---- !u!4 &4657426298995060
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1238433231619372}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.07114, y: 0.07114, z: 0.07114}
-  m_Children: []
-  m_Father: {fileID: 4004395127091482}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4707779715405470
 Transform:
   m_ObjectHideFlags: 1
@@ -309,12 +309,12 @@ Transform:
   m_Father: {fileID: 4080018639410374}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23997731812016888
+--- !u!23 &23506274154156688
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1238433231619372}
+  m_GameObject: {fileID: 1266828812194762}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -324,7 +324,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 75dcc777f9763cc4fbf33d599e051a19, type: 2}
+  - {fileID: 2100000, guid: 8531fa8947628104fa185f92ac7ebce7, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -344,13 +344,13 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33203110335363492
+--- !u!33 &33569292741188438
 MeshFilter:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1238433231619372}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+  m_GameObject: {fileID: 1266828812194762}
+  m_Mesh: {fileID: 4300000, guid: 8531fa8947628104fa185f92ac7ebce7, type: 3}
 --- !u!50 &50578835625786104
 Rigidbody2D:
   serializedVersion: 4
@@ -407,7 +407,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9248ef4e94e9ef3439aba69f0e6b13fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuelCollector: {fileID: 0}
+  fuelCollector: {fileID: 1133261545983634, guid: 4e177f4dbd5a9fd4db989192344a7ac9,
+    type: 2}
   fuelBlock: {fileID: 1231448540965128, guid: 81cfcdd80a0ddd340bbde83adf93d86d, type: 2}
   spawnPoint: {fileID: 4412191580725764}
   pickPoint: {fileID: 4973946125739948}
@@ -445,7 +446,7 @@ MonoBehaviour:
   rayPointRight: {fileID: 1642608111972328}
   walkingParticles: {fileID: 198665950421681262}
   transforms: {fileID: 4080018639410374}
-  astronautVisuals: {fileID: 1238433231619372}
+  astronautVisuals: {fileID: 1266828812194762}
   onGround: 1
   canMove: 1
   canEnterShip: 0
