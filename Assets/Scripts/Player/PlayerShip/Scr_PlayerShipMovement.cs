@@ -127,7 +127,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     private void Update()
     {
         Timers();
-        BulletTime();
+        //BulletTime();
         SpeedLimiter();
         MessageTextManager();
         PlayerShipStateCheck();
@@ -247,7 +247,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     }
 
     private void BulletTime()
-    {/*
+    {
         if (playerShipState == PlayerShipState.inSpace)
         {
             initialBulletTime -= Time.deltaTime;
@@ -277,7 +277,6 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
         if (playerShipState == PlayerShipState.landed)
             slow = false;
-            */
     }
 
     private void UpdateShipRotationWhenLanded()
