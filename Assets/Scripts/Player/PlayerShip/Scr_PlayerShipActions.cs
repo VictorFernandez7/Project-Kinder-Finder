@@ -15,10 +15,6 @@ public class Scr_PlayerShipActions : MonoBehaviour
     [SerializeField] private Color powerColor50;
     [SerializeField] private Color powerColor75;
 
-    [Header("Space Walk")]
-    [SerializeField] private float maxCableLength;
-    [SerializeField] private float maxMiningCableLength;
-
     [Header("Deploy Values")]
     [SerializeField] private float deployDelay;
 
@@ -28,10 +24,10 @@ public class Scr_PlayerShipActions : MonoBehaviour
     [SerializeField] private GameObject mapVisuals;
     [SerializeField] private Transform miningLaserStart;
     [SerializeField] private LineRenderer miningLaser;
-    [SerializeField] private LineRenderer cable;
 
     [Header("Audio")]
     [SerializeField] private AudioSource getOutTheShipSound;
+    [SerializeField] private DistanceJoint2D spaceWalkCable;
 
     [HideInInspector] public bool startExitDelay;
     [HideInInspector] public bool closeToAsteroid;
@@ -52,7 +48,6 @@ public class Scr_PlayerShipActions : MonoBehaviour
     private Rigidbody2D astronautRb;
     private Scr_MainCamera mainCamera;
     private TextMeshProUGUI miningPowerText;
-    private DistanceJoint2D spaceWalkCable;
     private Scr_PlayerShipMovement playerShipMovement;
     private Scr_PlayerShipPrediction playerShipPrediction;
     private Scr_PlayerShipEffects playerShipEffects;
@@ -70,11 +65,9 @@ public class Scr_PlayerShipActions : MonoBehaviour
         playerShipEffects = GetComponent<Scr_PlayerShipEffects>();
         playerShipRb = GetComponent<Rigidbody2D>();
         astronautRb = astronaut.GetComponent<Rigidbody2D>();
-        spaceWalkCable = GetComponent<DistanceJoint2D>();
         
         deployDelaySaved = deployDelay;
         miningSlider.maxValue = maxPower;
-        spaceWalkCable.enabled = false;
     }
 
     private void Update()
@@ -309,21 +302,12 @@ public class Scr_PlayerShipActions : MonoBehaviour
 
                 astronaut.SetActive(true);
 
-                spaceWalkCable.enabled = true;
                 spaceWalkCable.connectedBody = astronautRb;
-                
-                if (mainCamera.mining)
-                    spaceWalkCable.distance = maxMiningCableLength;
-                else
-                    spaceWalkCable.distance = maxCableLength;
             }
         }
 
         if (doingSpaceWalk)
         {
-            cable.SetPosition(0, transform.position);
-            cable.SetPosition(1, astronaut.transform.position);
-
             if (Vector3.Distance(transform.position, astronaut.transform.position) < 1)
             {
                 astronautRb.freezeRotation = false;
