@@ -7,8 +7,12 @@ using UnityEditor;
 public class Scr_CraftInfo
 {
     public string m_name;
+    public SVGImage m_icon;
 
-    [Header("Requirements")]
+    [Header("Info")]
+    public string m_info;
+
+    [Header("Resources")]
     public int m_fuel;
     public int m_iron;
 }
@@ -156,6 +160,12 @@ public class Scr_CraftEditor : EditorWindow
 
         GUILayout.Space(10);
         inventoryItemList.craftList[viewIndex - 1].m_name = EditorGUILayout.TextField("Name", inventoryItemList.craftList[viewIndex - 1].m_name as string);
+
+
+        GUILayout.Space(10);
+        GUILayout.Label("Description");
+        inventoryItemList.craftList[viewIndex - 1].m_info = EditorGUILayout.TextArea(inventoryItemList.craftList[viewIndex - 1].m_info as string);
+
 
         GUILayout.Space(10);
         GUILayout.Label("Requirements");
