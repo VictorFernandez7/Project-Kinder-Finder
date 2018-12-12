@@ -348,23 +348,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1406162793710992
-GameObject:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4983661542671666}
-  - component: {fileID: 50896604193698710}
-  - component: {fileID: 232316577402030188}
-  m_Layer: 0
-  m_Name: Cable14
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1410340605461694
 GameObject:
   m_ObjectHideFlags: 1
@@ -797,6 +780,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4002629824080178}
   - component: {fileID: 120569968561257604}
+  - component: {fileID: 114424508944940850}
   m_Layer: 0
   m_Name: CableVisuals
   m_TagString: Untagged
@@ -828,7 +812,6 @@ Transform:
   - {fileID: 4861672871786104}
   - {fileID: 4322224668020928}
   - {fileID: 4489849768232500}
-  - {fileID: 4983661542671666}
   - {fileID: 4684335346899046}
   m_Father: {fileID: 4314457420372490}
   m_RootOrder: 2
@@ -1219,7 +1202,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4002629824080178}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4698117592869442
 Transform:
@@ -1350,19 +1333,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4017356604192030}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4983661542671666
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1406162793710992}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4002629824080178}
-  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23288249132632558
 MeshRenderer:
@@ -1715,26 +1685,6 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1527914987098848}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 0
---- !u!50 &50896604193698710
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1406162793710992}
   m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -2294,6 +2244,34 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &114424508944940850
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1983948007160584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a0e68b9dff73e94cbca8fba532bf512, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceJoint1: {fileID: 232373616965583960}
+  distanceJoint2: {fileID: 232132291625378108}
+  distanceJoint3: {fileID: 232593680973443914}
+  distanceJoint4: {fileID: 232745049114479276}
+  distanceJoint5: {fileID: 232381886883404162}
+  distanceJoint6: {fileID: 232301820583673762}
+  distanceJoint7: {fileID: 232789329867889900}
+  distanceJoint8: {fileID: 232358047929681280}
+  distanceJoint9: {fileID: 232074557417463072}
+  distanceJoint10: {fileID: 232278317655566006}
+  distanceJoint11: {fileID: 232542718289400030}
+  distanceJoint12: {fileID: 232769745957657146}
+  distanceJoint13: {fileID: 232609121074576050}
+  distanceJoint14: {fileID: 232185881875205012}
+  distanceJoint15: {fileID: 232277447533167302}
+  cableVisuals: {fileID: 120569968561257604}
+  printCable: 0
 --- !u!114 &114544141144842080
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2932,6 +2910,19 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 1}
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 2
@@ -40276,7 +40267,7 @@ DistanceJoint2D:
   m_Enabled: 1
   serializedVersion: 4
   m_EnableCollision: 1
-  m_ConnectedRigidBody: {fileID: 50896604193698710}
+  m_ConnectedRigidBody: {fileID: 50354470618518686}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 0
@@ -40331,24 +40322,6 @@ DistanceJoint2D:
   serializedVersion: 4
   m_EnableCollision: 1
   m_ConnectedRigidBody: {fileID: 50163910077589306}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_AutoConfigureConnectedAnchor: 0
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0, y: 0}
-  m_AutoConfigureDistance: 0
-  m_Distance: 1
-  m_MaxDistanceOnly: 0
---- !u!232 &232316577402030188
-DistanceJoint2D:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1406162793710992}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_EnableCollision: 1
-  m_ConnectedRigidBody: {fileID: 50354470618518686}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 0

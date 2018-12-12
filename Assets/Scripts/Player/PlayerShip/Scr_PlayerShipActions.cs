@@ -48,6 +48,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
     private Rigidbody2D astronautRb;
     private Scr_MainCamera mainCamera;
     private TextMeshProUGUI miningPowerText;
+    private Scr_CableVisuals cableVisuals;
     private Scr_PlayerShipMovement playerShipMovement;
     private Scr_PlayerShipPrediction playerShipPrediction;
     private Scr_PlayerShipEffects playerShipEffects;
@@ -62,6 +63,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
 
         playerShipMovement = GetComponent<Scr_PlayerShipMovement>();
         playerShipPrediction = GetComponent<Scr_PlayerShipPrediction>();
+        cableVisuals = GetComponentInChildren<Scr_CableVisuals>();
         playerShipEffects = GetComponent<Scr_PlayerShipEffects>();
         playerShipRb = GetComponent<Rigidbody2D>();
         astronautRb = astronaut.GetComponent<Rigidbody2D>();
@@ -312,12 +314,14 @@ public class Scr_PlayerShipActions : MonoBehaviour
             {
                 astronautRb.freezeRotation = false;
                 playerShipRb.isKinematic = false;
+                cableVisuals.printCable = false;
             }
 
             else
             {
                 astronautRb.freezeRotation = true;
                 playerShipRb.isKinematic = true;
+                cableVisuals.printCable = true;
             }
         }
     }

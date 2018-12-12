@@ -37,9 +37,6 @@ public class Scr_PlayerShipStats : MonoBehaviour
     [SerializeField] ParticleSystem deathParticles;
     [SerializeField] GameObject shipVisuals;
 
-    [Header("Audio")]
-    [SerializeField] private AudioSource fuelAlarm;
-
     [SerializeField] public GameObject[] toolWarehouse;
     [SerializeField] public GameObject[] resourceWarehouse;
     [SerializeField] public Scr_ReferenceManager referenceManager;
@@ -85,10 +82,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
         ShieldSliderColor();
 
         if (currentFuel < 100 && !alarm)
-        {
-            fuelAlarm.Play();
             alarm = true;
-        }
 
         if (currentShield < 0)
             Death();
@@ -151,7 +145,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
     public void RepairShield(float amount)
     {
         if (currentShield < maxShield)
-        currentShield += amount;
+            currentShield += amount;
     }
 
     private void FuelSliderColor()
