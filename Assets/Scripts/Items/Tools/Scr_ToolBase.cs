@@ -17,4 +17,8 @@ public abstract class Scr_ToolBase : MonoBehaviour
     public abstract void Function();
 
     public abstract void RecoverTool();
+
+    public abstract void OnMouseEnter();
+
+    public abstract void OnMouseExit();
 }

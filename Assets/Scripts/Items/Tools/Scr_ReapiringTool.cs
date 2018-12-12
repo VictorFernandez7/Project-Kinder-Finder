@@ -41,6 +41,16 @@ public class Scr_ReapiringTool : Scr_ToolBase {
         
     }
 
+    public override void OnMouseEnter()
+    {
+
+    }
+
+    public override void OnMouseExit()
+    {
+        
+    }
+
     private void Multitool()
     {
         hitLaser = Physics2D.Raycast(transform.position + (transform.up * 0.01f), transform.right, distance, masker);
