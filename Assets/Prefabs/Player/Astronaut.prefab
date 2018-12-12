@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 4004395127091482}
   - component: {fileID: 50578835625786104}
   - component: {fileID: 61289482788019356}
+  - component: {fileID: 70211833932815782}
   - component: {fileID: 114844797242794480}
   - component: {fileID: 114105366921904924}
   - component: {fileID: 114755716893654776}
@@ -177,7 +178,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1635559910669824}
   m_LocalRotation: {x: -0, y: -0, z: 0.18168646, w: 0.98335654}
-  m_LocalPosition: {x: 144.873, y: 4.205, z: -0.5}
+  m_LocalPosition: {x: 144.873, y: 4.205, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4476079072238040}
@@ -208,7 +209,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1237434967680266}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4973946125739948}
@@ -249,7 +250,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1266828812194762}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: 0.0214, z: -0}
+  m_LocalPosition: {x: 0, y: 0.068, z: -0.5}
   m_LocalScale: {x: 3.7010071, y: 3.7010071, z: 3.7010071}
   m_Children: []
   m_Father: {fileID: 4004395127091482}
@@ -383,7 +384,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.07}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -394,8 +395,23 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.09, y: 0.17}
+  m_Size: {x: 0.14, y: 0.32}
   m_EdgeRadius: 0
+--- !u!70 &70211833932815782
+CapsuleCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1635559910669824}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.00000016599697, y: 0.075317934}
+  m_Size: {x: 0.09000002, y: 0.2593636}
+  m_Direction: 0
 --- !u!114 &114105366921904924
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -407,13 +423,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9248ef4e94e9ef3439aba69f0e6b13fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuelCollector: {fileID: 1133261545983634, guid: 4e177f4dbd5a9fd4db989192344a7ac9,
-    type: 2}
-  fuelBlock: {fileID: 1231448540965128, guid: 81cfcdd80a0ddd340bbde83adf93d86d, type: 2}
   spawnPoint: {fileID: 4412191580725764}
   pickPoint: {fileID: 4973946125739948}
   toolPanel: {fileID: 0}
-  getIntoTheShipSound: {fileID: 0}
   emptyHands: 1
   toolOnHands: 0
   numberToolActive: 0
@@ -431,10 +443,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkingSpeed: 0.015
   sprintSpeed: 0.03
-  spaceWalkSpeed: 0.75
   collisionMask:
     serializedVersion: 2
     m_Bits: 1024
+  spaceWalkSpeed: 0.25
+  rotationDelay: 1
   precisionHeight: 0.06
   speedJump: 0.01
   gravity: 0.01

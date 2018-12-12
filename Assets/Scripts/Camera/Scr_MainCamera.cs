@@ -9,7 +9,6 @@ public class Scr_MainCamera : MonoBehaviour
     [SerializeField] private float zoomInSpace;
     [SerializeField] private float zoomInPlanet;
     [SerializeField] private float miningZoom;
-    [SerializeField] private float spaceWalkZoom;
     [SerializeField] private float zoomSpeed;
 
     [Header("Rotation Properties")]
@@ -94,8 +93,12 @@ public class Scr_MainCamera : MonoBehaviour
                 mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, miningZoom, Time.deltaTime * zoomSpeed);
             
             else if (playerShipActions.doingSpaceWalk)
-                mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, spaceWalkZoom, Time.deltaTime * zoomSpeed);
-            
+            {
+                float spaceWalkZoom = Vector3.Distance(astronaut.transform.position, playerShip.transform.position);
+
+                mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, spaceWalkZoom * 1.5f, Time.deltaTime * zoomSpeed * 2);
+            }
+
             else
                 mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, zoomInSpace, Time.deltaTime * zoomSpeed);
         }

@@ -48,11 +48,6 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [SerializeField] private Animator warmingSliderAnim;
     [SerializeField] private Animator messageTextAnim;
 
-    [Header("Audio")]
-    [SerializeField] private AudioSource thrusterOnSpaceSound;
-    [SerializeField] private AudioSource thrusterTakingOffSound;
-    [SerializeField] private AudioSource IASound;
-
     [HideInInspector] public bool astronautOnBoard;
     [HideInInspector] public bool onGround;
     [HideInInspector] public bool takingOff;
