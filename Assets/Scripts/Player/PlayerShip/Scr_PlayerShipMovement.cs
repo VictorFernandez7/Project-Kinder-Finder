@@ -439,9 +439,6 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         targetTakingOff = transform.position + new Vector3(0, takeOffDistance, 0);
 
         takingOff = true;
-
-        //tocada audio
-        thrusterTakingOffSound.Play();
     }
 
     private void Landing()
@@ -476,23 +473,8 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     {
         if (canControlShip && !onGround)
         {
-            //tocada audio
-            thrusterTakingOffSound.Stop();
-
             if (playerShipStats.currentFuel > 0)
             {
-                if (Input.GetMouseButtonDown(0))
-                {
-                    //tocada audio
-                    thrusterOnSpaceSound.Play();
-                }
-
-                else if (Input.GetMouseButtonUp(0))
-                {
-                    //tocada audio
-                    thrusterOnSpaceSound.Stop();
-                }
-
                 if (Input.GetMouseButton(0) && playerShipState == PlayerShipState.inSpace)
                 {
                     playerShipEffects.thrusterParticles.Play();
