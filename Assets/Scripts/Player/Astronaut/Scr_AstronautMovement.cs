@@ -116,6 +116,7 @@ public class Scr_AstronautMovement : MonoBehaviour
         {
             currentFuelCollector = collision.gameObject;
             closeToCollector = true;
+            GetComponent<Scr_AstronautsActions>().toolOnFloor = collision.gameObject;
         }
     }
 
@@ -125,7 +126,10 @@ public class Scr_AstronautMovement : MonoBehaviour
             canEnterShip = false;
 
         if (collision.gameObject.tag == "Tool")
+        {
             closeToCollector = false;
+            GetComponent<Scr_AstronautsActions>().toolOnFloor = null;
+        }
     }
 
     private void PlanetMovement()
