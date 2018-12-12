@@ -15,6 +15,9 @@ public class Scr_PlayerShipActions : MonoBehaviour
     [SerializeField] private Color powerColor50;
     [SerializeField] private Color powerColor75;
 
+    [Header("Space Walk Properties")]
+    [SerializeField] public float maxDistanceOfShip;
+
     [Header("Deploy Values")]
     [SerializeField] private float deployDelay;
 
@@ -24,9 +27,6 @@ public class Scr_PlayerShipActions : MonoBehaviour
     [SerializeField] private GameObject mapVisuals;
     [SerializeField] private Transform miningLaserStart;
     [SerializeField] private LineRenderer miningLaser;
-
-    [Header("Audio")]
-    [SerializeField] private AudioSource getOutTheShipSound;
     [SerializeField] private DistanceJoint2D spaceWalkCable;
 
     [HideInInspector] public bool startExitDelay;
@@ -48,6 +48,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
     private Rigidbody2D astronautRb;
     private Scr_MainCamera mainCamera;
     private TextMeshProUGUI miningPowerText;
+    private Scr_CableVisuals cableVisuals;
     private Scr_PlayerShipMovement playerShipMovement;
     private Scr_PlayerShipPrediction playerShipPrediction;
     private Scr_PlayerShipEffects playerShipEffects;
@@ -62,6 +63,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
 
         playerShipMovement = GetComponent<Scr_PlayerShipMovement>();
         playerShipPrediction = GetComponent<Scr_PlayerShipPrediction>();
+        cableVisuals = GetComponentInChildren<Scr_CableVisuals>();
         playerShipEffects = GetComponent<Scr_PlayerShipEffects>();
         playerShipRb = GetComponent<Rigidbody2D>();
         astronautRb = astronaut.GetComponent<Rigidbody2D>();
@@ -195,7 +197,6 @@ public class Scr_PlayerShipActions : MonoBehaviour
         astronaut.GetComponent<Scr_AstronautMovement>().planetPosition = lastFramePlanetPosition;
         astronaut.GetComponent<Scr_AstronautMovement>().onGround = true;
         playerShipMovement.mainCamera.GetComponent<Scr_MainCamera>().followAstronaut = true;
-        getOutTheShipSound.Play();
 
         for (int i = 0; i < astronaut.GetComponent<Scr_AstronautStats>().toolSlots.Length; i++)
         {
@@ -291,6 +292,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
             if (Input.GetButtonDown("Interact"))
             {
                 doingSpaceWalk = true;
+                cableVisuals.printCable = true;
 
                 astronaut.transform.position = spawnPoint.position;
                 playerShipMovement.astronautOnBoard = false;
@@ -320,5 +322,11 @@ public class Scr_PlayerShipActions : MonoBehaviour
                 playerShipRb.isKinematic = true;
             }
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireSphere(transform.position, maxDistanceOfShip);
     }
 }

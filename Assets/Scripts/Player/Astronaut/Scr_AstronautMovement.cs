@@ -14,8 +14,11 @@ public class Scr_AstronautMovement : MonoBehaviour
     [Header("Movement Properties")]
     [SerializeField] private float walkingSpeed;
     [SerializeField] private float sprintSpeed;
-    [Range(0.1f, 1f)] [SerializeField] private float spaceWalkSpeed;
     [SerializeField] private LayerMask collisionMask;
+
+    [Header("Space Walk Parameters")]
+    [Range(0.1f, 1f)] [SerializeField] private float spaceWalkSpeed;
+    [SerializeField] private float rotationDelay;
 
     [Header("Height Properties")]
     [SerializeField] private float precisionHeight;
@@ -60,6 +63,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     private float currentAngle;
     private float currentDistance;
     private float inertialTime;
+    private Camera mainCamera;
     private Vector2 pointLeft;
     private Vector2 pointRight;
     private Vector2 movementVector;
@@ -79,6 +83,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     {
         playerShipMovement = GameObject.Find("PlayerShip").GetComponent<Scr_PlayerShipMovement>();
         playerShipActions = GameObject.Find("PlayerShip").GetComponent<Scr_PlayerShipActions>();
+        mainCamera = GameObject.Find("MainCamera").GetComponent<Camera>();
 
         astronautRb = GetComponent<Rigidbody2D>();
 
@@ -367,17 +372,31 @@ public class Scr_AstronautMovement : MonoBehaviour
     {
         if (playerShipActions.doingSpaceWalk)
         {
-            if (Input.GetAxis("Horizontal") > 0f)
-                astronautRb.AddForce(new Vector2(spaceWalkSpeed, 0f));
+            Vector3 difference = (mainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position);
+            difference.Normalize();
+            float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0f, 0f, rotationZ - 90), rotationDelay);
 
-            else if (Input.GetAxis("Horizontal") < 0f)
-                astronautRb.AddForce(new Vector2(-spaceWalkSpeed, 0f));
+            if (Vector3.Distance(playerShipActions.gameObject.transform.position, transform.position) < playerShipActions.maxDistanceOfShip)
+            {
+                if (Input.GetAxis("Vertical") > 0f)
+                    astronautRb.AddForce(transform.up * spaceWalkSpeed);
 
-            if (Input.GetAxis("Vertical") > 0f)
-                astronautRb.AddForce(new Vector2(0, spaceWalkSpeed));
+                else if (Input.GetAxis("Vertical") < 0f)
+                    astronautRb.AddForce(-transform.up * spaceWalkSpeed);
 
-            else if (Input.GetAxis("Vertical") < 0f)
-                astronautRb.AddForce(new Vector2(0f, -spaceWalkSpeed));
+                if (Input.GetAxis("Horizontal") > 0f)
+                    astronautRb.AddForce(transform.right * spaceWalkSpeed);
+
+                else if (Input.GetAxis("Horizontal") < 0f)
+                    astronautRb.AddForce(-transform.right * spaceWalkSpeed);
+            }
+
+            else
+            {
+                transform.position = new Vector3(playerShipActions.transform.position.x, playerShipActions.transform.position.y, transform.position.z);
+                astronautRb.velocity = Vector2.zero;
+            }
         }
     }
 

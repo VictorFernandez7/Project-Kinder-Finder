@@ -11,26 +11,22 @@ using UnityEngine;
 public class Scr_AstronautsActions : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private GameObject fuelCollector;
-    [SerializeField] private GameObject fuelBlock;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] public Transform pickPoint;
     [SerializeField] public Scr_ToolPanel toolPanel;
-
-    [Header("Audio")]
-    [SerializeField] private AudioSource getIntoTheShipSound;
 
     [HideInInspector] public bool emptyHands;
     [HideInInspector] public bool toolOnHands;
     [HideInInspector] public int numberToolActive;
 
+    private float fuelAmount;
     public GameObject toolOnFloor;
     private GameObject mainCamera;
-    private float fuelAmount;
     private GameObject playerShip;
+    private GameObject currentFuelBLock;
+    private Scr_CableVisuals cableVisuals;
     private Scr_AstronautMovement astronautMovement;
     private Scr_AstronautStats astronautStats;
-    private GameObject currentFuelBLock;
 
     private void Start()
     {
@@ -39,8 +35,9 @@ public class Scr_AstronautsActions : MonoBehaviour
 
         astronautMovement = GetComponent<Scr_AstronautMovement>();
         astronautStats = GetComponent<Scr_AstronautStats>();
-        toolOnFloor = null;
+        cableVisuals = GetComponentInChildren<Scr_CableVisuals>();
 
+        toolOnFloor = null;
         emptyHands = true;
     }
 
@@ -52,9 +49,6 @@ public class Scr_AstronautsActions : MonoBehaviour
             {
                 if (emptyHands)
                 {
-                    //tocada audio
-                    getIntoTheShipSound.Play();
-
                     playerShip.GetComponent<Scr_PlayerShipMovement>().astronautOnBoard = true;
                     playerShip.GetComponent<Scr_PlayerShipActions>().startExitDelay = true;
                     playerShip.GetComponent<Scr_PlayerShipMovement>().canControlShip = true;
@@ -79,6 +73,7 @@ public class Scr_AstronautsActions : MonoBehaviour
                 playerShip.GetComponent<Scr_PlayerShipMovement>().canControlShip = true;
                 playerShip.GetComponent<Scr_PlayerShipMovement>().canRotateShip = true;
                 playerShip.GetComponent<Scr_PlayerShipActions>().doingSpaceWalk = false;
+                cableVisuals.printCable = false;
                 gameObject.SetActive(false);
             }
         }
@@ -171,13 +166,5 @@ public class Scr_AstronautsActions : MonoBehaviour
                 Destroy(astronautStats.physicToolSlots[i]);
             }
         }
-    }
-
-    void CollectFuel()
-    {
-        if (GameObject.Find("FuelBlock(Clone)") == null)
-            currentFuelBLock = Instantiate(fuelBlock, pickPoint.transform.position, pickPoint.transform.rotation);
-
-        emptyHands = false;
     }
 }
