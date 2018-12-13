@@ -18,9 +18,11 @@ public class Scr_AstronautsActions : MonoBehaviour
     [HideInInspector] public bool emptyHands;
     [HideInInspector] public bool toolOnHands;
     [HideInInspector] public int numberToolActive;
+    [HideInInspector] public GameObject toolOnFloor;
 
     private float fuelAmount;
-    public GameObject toolOnFloor;
+    private float holdInputTime;
+    private bool canInputAgain = true;
     private GameObject mainCamera;
     private GameObject playerShip;
     private GameObject currentFuelBLock;
@@ -45,40 +47,29 @@ public class Scr_AstronautsActions : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Interact") && astronautMovement.canEnterShip)
+        if (Input.GetButton("Interact"))
         {
-            if (playerShip.GetComponent<Scr_PlayerShipMovement>().playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed)
+            if (astronautMovement.canEnterShip)
             {
-                if (emptyHands)
-                {
-                    playerShip.GetComponent<Scr_PlayerShipMovement>().astronautOnBoard = true;
-                    playerShip.GetComponent<Scr_PlayerShipActions>().startExitDelay = true;
-                    playerShip.GetComponent<Scr_PlayerShipMovement>().canControlShip = true;
-                    mainCamera.GetComponent<Scr_MainCamera>().followAstronaut = false;
-                    astronautMovement.keep = true;
-                    DestroyAllTools();
-                    toolPanel.ReadNames();
-                    gameObject.SetActive(false);
-                }
+                holdInputTime -= Time.deltaTime;
 
-                else
+                if (holdInputTime <= 0 && canInputAgain)
                 {
-                    playerShip.GetComponent<Scr_PlayerShipStats>().ReFuel(currentFuelBLock.GetComponent<Scr_FuelBlock>().fuelAmount);
-                    Destroy(currentFuelBLock);
-                    emptyHands = true;
+                    canInputAgain = false;
+
+                    if (playerShip.GetComponent<Scr_PlayerShipMovement>().playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed)
+                        EnterShipFromPlanet();
+
+                    if (playerShip.GetComponent<Scr_PlayerShipMovement>().playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace)
+                        EnterShipFromSpace();
                 }
             }
+        }
 
-            if (playerShip.GetComponent<Scr_PlayerShipMovement>().playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace)
-            {
-                playerShip.GetComponent<Scr_PlayerShipMovement>().astronautOnBoard = true;
-                playerShip.GetComponent<Scr_PlayerShipMovement>().canControlShip = true;
-                playerShip.GetComponent<Scr_PlayerShipMovement>().canRotateShip = true;
-                playerShip.GetComponent<Scr_PlayerShipActions>().doingSpaceWalk = false;
-                cableVisuals.printCable = false;
-                planetManager.Gravity(true);
-                gameObject.SetActive(false);
-            }
+        else
+        {
+            canInputAgain = true;
+            holdInputTime = 1;
         }
 
         if (Input.GetButtonDown("Interact") && astronautMovement.closeToCollector && astronautMovement.currentFuelCollector != null)
@@ -93,32 +84,55 @@ public class Scr_AstronautsActions : MonoBehaviour
         }
 
         if (Input.GetButtonDown("Tool1"))
-        {
             HandTool(0);
-        }
 
         if (Input.GetButtonDown("Tool2"))
-        {
             HandTool(1);
-        }
 
         if (Input.GetButtonDown("Tool3"))
-        {
             HandTool(2);
-        }
 
-        if(Input.GetButtonDown("Interact"))
+        if (Input.GetButtonDown("Interact"))
         {
             if (toolOnHands)
-            {
                 astronautStats.physicToolSlots[numberToolActive].GetComponent<Scr_ToolBase>().UseTool();
-            }
 
             else if (toolOnFloor != null && toolOnFloor.GetComponent<Scr_ToolBase>().resourceAmount <= 0)
-            {
                 toolOnFloor.GetComponent<Scr_ToolBase>().RecoverTool();
-            }
         }
+    }
+    
+    private void EnterShipFromPlanet()
+    {
+        if (emptyHands)
+        {
+            playerShip.GetComponent<Scr_PlayerShipMovement>().astronautOnBoard = true;
+            playerShip.GetComponent<Scr_PlayerShipActions>().startExitDelay = true;
+            playerShip.GetComponent<Scr_PlayerShipMovement>().canControlShip = true;
+            mainCamera.GetComponent<Scr_MainCamera>().followAstronaut = false;
+            astronautMovement.keep = true;
+            DestroyAllTools();
+            toolPanel.ReadNames();
+            gameObject.SetActive(false);
+        }
+
+        else
+        {
+            playerShip.GetComponent<Scr_PlayerShipStats>().ReFuel(currentFuelBLock.GetComponent<Scr_FuelBlock>().fuelAmount);
+            Destroy(currentFuelBLock);
+            emptyHands = true;
+        }
+    }
+
+    private void EnterShipFromSpace()
+    {
+        playerShip.GetComponent<Scr_PlayerShipMovement>().astronautOnBoard = true;
+        playerShip.GetComponent<Scr_PlayerShipMovement>().canControlShip = true;
+        playerShip.GetComponent<Scr_PlayerShipMovement>().canRotateShip = true;
+        playerShip.GetComponent<Scr_PlayerShipActions>().doingSpaceWalk = false;
+        cableVisuals.printCable = false;
+        planetManager.Gravity(true);
+        gameObject.SetActive(false);
     }
 
     public void BoolControl()
@@ -147,9 +161,7 @@ public class Scr_AstronautsActions : MonoBehaviour
                 astronautStats.physicToolSlots[indice].SetActive(true);
 
             else if (astronautStats.physicToolSlots[indice].activeInHierarchy && emptyHands)
-            {
                 astronautStats.physicToolSlots[indice].SetActive(false);
-            }
 
             else if (toolOnHands && emptyHands)
             {
@@ -166,9 +178,7 @@ public class Scr_AstronautsActions : MonoBehaviour
         for (int i = 0; i < astronautStats.physicToolSlots.Length; i++)
         {
             if (astronautStats.physicToolSlots[i] != null)
-            {
                 Destroy(astronautStats.physicToolSlots[i]);
-            }
         }
     }
 }
