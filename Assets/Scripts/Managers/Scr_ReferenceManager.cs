@@ -6,6 +6,7 @@ public class Scr_ReferenceManager : MonoBehaviour {
 
     [Header("Resources")]
     public GameObject[] GasResources;
+    public GameObject[] BlockResources;
 
     [Header("Tools")]
     public GameObject GasExtractor;

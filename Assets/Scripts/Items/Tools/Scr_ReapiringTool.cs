@@ -5,30 +5,54 @@ using UnityEngine;
 public class Scr_ReapiringTool : Scr_ToolBase {
 
     [SerializeField] private float distance;
+    [SerializeField] private float angleLimit;
     [SerializeField] private LayerMask masker;
+    [SerializeField] private Color miningColor;
+    [SerializeField] private Color repairingColor;
+
+    [HideInInspector] public Camera mainCamera;
 
     private LineRenderer laser;
     private bool executingRepairingTool;
+    private bool miningMode;
     private RaycastHit2D hitLaser;
+    private Vector3 lastDirection;
 
-
-    // Use this for initialization
     void Start () {
         laser = GetComponent<LineRenderer>();
-	}
-	
-	// Update is called once per frame
-	public override void Update () {
-        if (executingRepairingTool)
+        mainCamera = GameObject.Find("MainCamera").GetComponent<Camera>();
+
+        miningMode = true;
+    }
+
+    public override void Update () {
+
+        if (Input.GetMouseButton(0))
         {
-            Multitool();
+            executingRepairingTool = true;
+            laser.enabled = executingRepairingTool;
+
+            if (executingRepairingTool)
+            {
+                Multitool(miningMode);
+            }
+        }
+
+        else
+        {
+            executingRepairingTool = false;
+            laser.enabled = executingRepairingTool;
+        }
+
+        if (Input.GetMouseButtonDown(2))
+        {
+            miningMode = !miningMode;
         }
     }
 
     public override void UseTool()
     {
-        executingRepairingTool = !executingRepairingTool;
-        laser.enabled = executingRepairingTool;
+
     }
 
     public override void Function()
@@ -51,20 +75,55 @@ public class Scr_ReapiringTool : Scr_ToolBase {
         
     }
 
-    private void Multitool()
+    private void Multitool(bool miningMode)
     {
-        hitLaser = Physics2D.Raycast(transform.position + (transform.up * 0.01f), transform.right, distance, masker);
+        if(miningMode == true)
+            laser.material.color = miningColor;
+
+        else
+            laser.material.color = repairingColor;
+
+        LaserPosition();
+        LaserFunction(miningMode);
+    }
+
+    private void LaserPosition()
+    {
+        Vector3 direction = (mainCamera.ScreenToWorldPoint(Input.mousePosition) - (transform.position + (transform.up * 0.01f)));
+        direction = new Vector3(direction.x, direction.y, 0).normalized;
+        hitLaser = Physics2D.Raycast(transform.position + (transform.up * 0.01f), direction, distance, masker);
 
         laser.SetPosition(0, transform.position + (transform.up * 0.01f));
 
-        if (hitLaser)
+        if (Vector3.Angle(transform.right, direction) < angleLimit)
         {
-            laser.SetPosition(1, hitLaser.point);
-        }
-        else
-        {
-            laser.SetPosition(1, (transform.position + (transform.up * 0.01f)) + transform.right * -distance);
+            if (hitLaser)
+                laser.SetPosition(1, hitLaser.point);
+
+            else
+                laser.SetPosition(1, (transform.position + (transform.up * 0.01f)) + (direction * distance));
+
+            lastDirection = direction;
         }
 
+        else if (Vector3.Angle(transform.right, lastDirection) < 90)
+            laser.SetPosition(1, (transform.position + (transform.up * 0.01f)) + (lastDirection * distance));
+
+        else
+            laser.SetPosition(1, transform.position);
+    }
+
+    private void LaserFunction(bool mode)
+    {
+        if (mode)
+        {
+            if (hitLaser)
+            {
+                if (hitLaser.collider.transform.CompareTag("Block"))
+                {
+                    hitLaser.collider.transform.gameObject.GetComponent<Scr_Block>().ResistanceTime -= Time.deltaTime;
+                }
+            }
+        }
     }
 }
