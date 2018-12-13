@@ -50,6 +50,8 @@ public class Scr_AsteroidBehaviour : MonoBehaviour
         move = true;
 
         messageText.text = message;
+
+        lastFrameRotationPivot = planet.transform.position;
     }
 
     private void Update()
@@ -69,9 +71,14 @@ public class Scr_AsteroidBehaviour : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, attachingDistance);
     }
 
+    Vector3 lastFrameRotationPivot;
+
     private void Orbit()
     {
-        transform.RotateAround(planet.transform.position, transform.right, Time.deltaTime * moveSpeed);
+        transform.position += (planet.transform.position - lastFrameRotationPivot);
+        lastFrameRotationPivot = planet.transform.position;
+
+        transform.RotateAround(planet.transform.position, Vector3.forward, Time.deltaTime * moveSpeed);
     }
 
     public void CloseToShip()

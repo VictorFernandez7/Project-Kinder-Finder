@@ -30,6 +30,7 @@ public class Scr_AsteroidStats : MonoBehaviour
     [SerializeField] private ParticleSystem deathParticles;
     [SerializeField] private MeshRenderer asteroidVisuals;
     [SerializeField] private GameObject asteroidCanvas;
+    [SerializeField] private GameObject asteroidCollider;
 
     [HideInInspector] public float currentPower;
     [HideInInspector] public bool mining;
@@ -40,12 +41,11 @@ public class Scr_AsteroidStats : MonoBehaviour
     private float resourceAmount;
     private float newCurrentPower;
     private float initialResourceZone;
-    private float initialColliderRadius;
+    private float initialColliderSize;
     private float resourceZoneMultiplier;
     private Vector3 initialScale;
     private GameObject playerShip;
     private Scr_MainCamera mainCamera;
-    private CircleCollider2D asteroidCollider;
     private Scr_PlayerShipStats playerShipStats;
     private Scr_PlayerShipActions playerShipActions;
     private Scr_PlayerShipEffects playerShipEffects;
@@ -60,12 +60,11 @@ public class Scr_AsteroidStats : MonoBehaviour
         playerShipStats = playerShip.GetComponent<Scr_PlayerShipStats>();
 
         asteroidBehaviour = GetComponent<Scr_AsteroidBehaviour>();
-        asteroidCollider = GetComponent<CircleCollider2D>();
 
         resourceAmount = 100;
         initialScale = asteroidVisuals.gameObject.transform.localScale;
         initialResourceZone = resourceZone;
-        initialColliderRadius = asteroidCollider.radius;
+        initialColliderSize = asteroidCollider.transform.localScale.x;
         resourceZoneMultiplier = (resourceZone - resistentZone) / 10;
     }
 
@@ -119,7 +118,7 @@ public class Scr_AsteroidStats : MonoBehaviour
             if (asteroidVisuals.gameObject.transform.localScale.x >= 0.2f * initialScale.x)
             {
                 asteroidVisuals.gameObject.transform.localScale = resourceAmount / 100 * initialScale;
-                asteroidCollider.radius = resourceAmount / 100 * initialColliderRadius;
+                asteroidCollider.transform.localScale = Vector3.one * (resourceAmount / 100 * initialColliderSize);
             }
 
             if (resourceZone > (resistentZone + (0.3f * (initialResourceZone - resistentZone))))
@@ -150,7 +149,7 @@ public class Scr_AsteroidStats : MonoBehaviour
         asteroidBehaviour.move = false;
         asteroidVisuals.enabled = false;
         asteroidCanvas.SetActive(false);
-        asteroidCollider.enabled = false;
+        asteroidCollider.SetActive(false);
 
         if (!deathParticles.isPlaying)
             deathParticles.Play();
