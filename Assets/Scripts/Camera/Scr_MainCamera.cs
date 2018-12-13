@@ -90,13 +90,16 @@ public class Scr_MainCamera : MonoBehaviour
         if (playerShipMovement.takingOff || playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace)
         {
             if (mining)
-                mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, miningZoom, Time.deltaTime * zoomSpeed);
-            
-            else if (playerShipActions.doingSpaceWalk)
             {
-                float spaceWalkZoom = Vector3.Distance(astronaut.transform.position, playerShip.transform.position);
+                if (playerShipActions.doingSpaceWalk)
+                {
+                    float spaceWalkZoom = Vector3.Distance(astronaut.transform.position, playerShip.transform.position);
+                    spaceWalkZoom = Mathf.Clamp(spaceWalkZoom, 1.5f, 6);
+                    mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, spaceWalkZoom * 1.5f, Time.deltaTime * zoomSpeed * 2);
+                }
 
-                mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, spaceWalkZoom * 1.5f, Time.deltaTime * zoomSpeed * 2);
+                else
+                    mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, miningZoom, Time.deltaTime * zoomSpeed);
             }
 
             else

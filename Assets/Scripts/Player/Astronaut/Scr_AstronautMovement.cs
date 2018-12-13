@@ -19,6 +19,8 @@ public class Scr_AstronautMovement : MonoBehaviour
     [Header("Space Walk Parameters")]
     [Range(0.1f, 1f)] [SerializeField] private float spaceWalkSpeed;
     [SerializeField] private float rotationDelay;
+    [SerializeField] private float attachDistance;
+    [SerializeField] private LayerMask asteroidMask;
 
     [Header("Height Properties")]
     [SerializeField] private float precisionHeight;
@@ -68,6 +70,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     private Vector2 pointRight;
     private Vector2 movementVector;
     private Vector2 lastVector;
+    private GameObject playerShip;
     private Rigidbody2D astronautRb;
     private RaycastHit2D hitL;
     private RaycastHit2D hitR;
@@ -81,11 +84,12 @@ public class Scr_AstronautMovement : MonoBehaviour
 
     public void Start()
     {
-        playerShipMovement = GameObject.Find("PlayerShip").GetComponent<Scr_PlayerShipMovement>();
-        playerShipActions = GameObject.Find("PlayerShip").GetComponent<Scr_PlayerShipActions>();
+        playerShip = GameObject.Find("PlayerShip");
         mainCamera = GameObject.Find("MainCamera").GetComponent<Camera>();
 
         astronautRb = GetComponent<Rigidbody2D>();
+        playerShipMovement = playerShip.GetComponent<Scr_PlayerShipMovement>();
+        playerShipActions = playerShip.GetComponent<Scr_PlayerShipActions>();
 
         canMove = true;
 
@@ -368,6 +372,8 @@ public class Scr_AstronautMovement : MonoBehaviour
             Move(right, 0);
     }
 
+    Vector3 playerShipPosition;
+
     private void InSpaceMovement()
     {
         if (playerShipActions.doingSpaceWalk)
@@ -377,8 +383,14 @@ public class Scr_AstronautMovement : MonoBehaviour
             float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0f, 0f, rotationZ - 90), rotationDelay);
 
-            if (Vector3.Distance(playerShipActions.gameObject.transform.position, transform.position) < playerShipActions.maxDistanceOfShip)
+            if (Vector3.Distance(playerShip.transform.position, transform.position) < playerShipActions.maxDistanceOfShip)
             {
+                if (mainCamera.GetComponent<Scr_MainCamera>().mining)
+                {
+                    transform.position += (playerShip.transform.position - playerShipPosition);
+                    playerShipPosition = playerShip.transform.position;
+                }
+
                 if (Input.GetAxis("Vertical") > 0f)
                     astronautRb.AddForce(transform.up * spaceWalkSpeed);
 
@@ -390,11 +402,27 @@ public class Scr_AstronautMovement : MonoBehaviour
 
                 else if (Input.GetAxis("Horizontal") < 0f)
                     astronautRb.AddForce(-transform.right * spaceWalkSpeed);
+
+                RaycastHit2D attachToAsteroid = Physics2D.Raycast(transform.position, -transform.up, attachDistance, asteroidMask);
+
+                Debug.DrawRay(transform.position, -transform.up * attachDistance, Color.red);
+
+                if (attachToAsteroid)
+                {
+                    
+
+                }
+
+                else
+                {
+                    
+
+                }
             }
 
             else
             {
-                transform.position = new Vector3(playerShipActions.transform.position.x, playerShipActions.transform.position.y, transform.position.z);
+                transform.position = new Vector3(playerShip.transform.position.x, playerShip.transform.position.y, transform.position.z);
                 astronautRb.velocity = Vector2.zero;
             }
         }
