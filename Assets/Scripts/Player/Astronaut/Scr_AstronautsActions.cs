@@ -27,11 +27,13 @@ public class Scr_AstronautsActions : MonoBehaviour
     private Scr_CableVisuals cableVisuals;
     private Scr_AstronautMovement astronautMovement;
     private Scr_AstronautStats astronautStats;
+    private Scr_PlanetManager planetManager;
 
     private void Start()
     {
         playerShip = GameObject.Find("PlayerShip");
         mainCamera = GameObject.Find("MainCamera");
+        planetManager = GameObject.Find("PlanetManager").GetComponent<Scr_PlanetManager>();
 
         astronautMovement = GetComponent<Scr_AstronautMovement>();
         astronautStats = GetComponent<Scr_AstronautStats>();
@@ -74,6 +76,7 @@ public class Scr_AstronautsActions : MonoBehaviour
                 playerShip.GetComponent<Scr_PlayerShipMovement>().canRotateShip = true;
                 playerShip.GetComponent<Scr_PlayerShipActions>().doingSpaceWalk = false;
                 cableVisuals.printCable = false;
+                planetManager.Gravity(true);
                 gameObject.SetActive(false);
             }
         }

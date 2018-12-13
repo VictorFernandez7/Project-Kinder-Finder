@@ -49,6 +49,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
     private Scr_MainCamera mainCamera;
     private TextMeshProUGUI miningPowerText;
     private Scr_CableVisuals cableVisuals;
+    private Scr_PlanetManager planetManager;
     private Scr_PlayerShipMovement playerShipMovement;
     private Scr_PlayerShipPrediction playerShipPrediction;
     private Scr_PlayerShipEffects playerShipEffects;
@@ -60,6 +61,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
         miningFill = GameObject.Find("MiningFill").GetComponent<Image>();
         miningPowerText = GameObject.Find("Power").GetComponent<TextMeshProUGUI>();
         mainCamera = GameObject.Find("MainCamera").GetComponent<Scr_MainCamera>();
+        planetManager = GameObject.Find("PlanetManager").GetComponent<Scr_PlanetManager>();
 
         playerShipMovement = GetComponent<Scr_PlayerShipMovement>();
         playerShipPrediction = GetComponent<Scr_PlayerShipPrediction>();
@@ -303,6 +305,8 @@ public class Scr_PlayerShipActions : MonoBehaviour
                     playerShipRb.velocity = Vector2.zero;
 
                 astronaut.SetActive(true);
+
+                planetManager.Gravity(false);
 
                 spaceWalkCable.connectedBody = astronautRb;
             }
