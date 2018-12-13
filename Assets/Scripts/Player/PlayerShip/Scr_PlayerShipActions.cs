@@ -37,9 +37,11 @@ public class Scr_PlayerShipActions : MonoBehaviour
 
     private float laserRange;
     private float deployDelaySaved;
+    private float holdInputTime = 1f;
     private bool canExitShip;
     private bool toolPanel;
     private bool doneOnce;
+    private bool canInputAgain = true;
     private Image miningFill;
     private Slider miningSlider;
     private Vector3 lastFramePlanetPosition;
@@ -49,6 +51,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
     private Scr_MainCamera mainCamera;
     private TextMeshProUGUI miningPowerText;
     private Scr_CableVisuals cableVisuals;
+    private Scr_PlanetManager planetManager;
     private Scr_PlayerShipMovement playerShipMovement;
     private Scr_PlayerShipPrediction playerShipPrediction;
     private Scr_PlayerShipEffects playerShipEffects;
@@ -60,6 +63,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
         miningFill = GameObject.Find("MiningFill").GetComponent<Image>();
         miningPowerText = GameObject.Find("Power").GetComponent<TextMeshProUGUI>();
         mainCamera = GameObject.Find("MainCamera").GetComponent<Scr_MainCamera>();
+        planetManager = GameObject.Find("PlanetManager").GetComponent<Scr_PlanetManager>();
 
         playerShipMovement = GetComponent<Scr_PlayerShipMovement>();
         playerShipPrediction = GetComponent<Scr_PlayerShipPrediction>();
@@ -76,8 +80,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
     {
         MiningSliderColor();
         CheckInputs();
-        ExitShipControl();
-        SpaceWalk();
+        //ExitShipControl();
 
         if (doingSpaceWalk && currentAsteroid != null)
             transform.up = currentAsteroid.transform.position - transform.position;
@@ -117,15 +120,34 @@ public class Scr_PlayerShipActions : MonoBehaviour
     {
         if (playerShipMovement.astronautOnBoard)
         {
-            if (Input.GetButtonDown("Interact") && !astronaut.activeInHierarchy && canExitShip)
-                DeployAstronaut();
+            if (Input.GetButton("Interact"))
+            {
+                holdInputTime -= Time.deltaTime;
+
+                if (holdInputTime <= 0 && canInputAgain)
+                {
+                    canInputAgain = false;
+
+                    if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed && !astronaut.activeInHierarchy && canExitShip)
+                        DeployAstronaut();
+
+                    if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace && !astronaut.activeInHierarchy && !doingSpaceWalk)
+                        SpaceWalk();
+                }
+            }
+
+            else
+            {
+                canInputAgain = true;
+                holdInputTime = 1;
+            }
 
             if (Input.GetButtonDown("Map"))
                 mapVisuals.SetActive(true);
 
             if (closeToAsteroid)
             {
-                if (Input.GetButtonDown("Interact"))
+                if (Input.GetButtonUp("Interact") && holdInputTime >= 0.5f)
                 {
                     if (playerShipRb.isKinematic)
                         MiningState(false);
@@ -287,26 +309,22 @@ public class Scr_PlayerShipActions : MonoBehaviour
 
     private void SpaceWalk()
     {
-        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace && !doingSpaceWalk)
-        {
-            if (Input.GetButtonDown("Interact"))
-            {
-                doingSpaceWalk = true;
-                cableVisuals.printCable = true;
+        doingSpaceWalk = true;
+        cableVisuals.printCable = true;
 
-                astronaut.transform.position = spawnPoint.position;
-                playerShipMovement.astronautOnBoard = false;
-                playerShipMovement.canControlShip = false;
-                playerShipMovement.canRotateShip = false;
+        astronaut.transform.position = spawnPoint.position;
+        playerShipMovement.astronautOnBoard = false;
+        playerShipMovement.canControlShip = false;
+        playerShipMovement.canRotateShip = false;
 
-                if (!mainCamera.mining)
-                    playerShipRb.velocity = Vector2.zero;
+        if (!mainCamera.mining)
+            playerShipRb.velocity = Vector2.zero;
 
-                astronaut.SetActive(true);
+        astronaut.SetActive(true);
 
-                spaceWalkCable.connectedBody = astronautRb;
-            }
-        }
+        planetManager.Gravity(false);
+
+        spaceWalkCable.connectedBody = astronautRb;
 
         if (doingSpaceWalk)
         {

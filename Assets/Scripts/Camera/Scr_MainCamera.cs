@@ -94,8 +94,8 @@ public class Scr_MainCamera : MonoBehaviour
                 if (playerShipActions.doingSpaceWalk)
                 {
                     float spaceWalkZoom = Vector3.Distance(astronaut.transform.position, playerShip.transform.position);
-                    spaceWalkZoom = Mathf.Clamp(spaceWalkZoom, 1.5f, 6);
-                    mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, spaceWalkZoom * 1.5f, Time.deltaTime * zoomSpeed * 2);
+                    spaceWalkZoom = Mathf.Clamp(spaceWalkZoom, 4, 7);
+                    mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, spaceWalkZoom, Time.deltaTime * zoomSpeed * 2);
                 }
 
                 else
