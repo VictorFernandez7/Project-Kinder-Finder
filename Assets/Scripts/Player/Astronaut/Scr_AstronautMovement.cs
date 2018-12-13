@@ -409,8 +409,11 @@ public class Scr_AstronautMovement : MonoBehaviour
 
                 if (attachToAsteroid)
                 {
-                    
-
+                    astronautRb.isKinematic = true;
+                    astronautRb.velocity = Vector2.zero;
+                    transform.rotation = Quaternion.Euler(attachToAsteroid.transform.position - transform.position);
+                    transform.SetParent(attachToAsteroid.transform);
+                    transform.position = attachToAsteroid.point;
                 }
 
                 else
