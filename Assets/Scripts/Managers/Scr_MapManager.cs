@@ -14,10 +14,12 @@ public class Scr_MapManager : MonoBehaviour
 
     [Header("Map Properties")]
     [SerializeField] private float distance;
+    [SerializeField] private Color onPlanetColor;
 
     [Header("References")]
     [SerializeField] private Camera mapCamera;
     [SerializeField] private GameObject mapVisuals;
+    [SerializeField] private GameObject indicator;
     [SerializeField] private TextMeshProUGUI distanceText;
 
     [HideInInspector] public bool mapActive;
@@ -31,6 +33,7 @@ public class Scr_MapManager : MonoBehaviour
 
     private bool clampToScreen = true;
     private bool slow;
+    private bool onPlanet;
     private Camera mainCamera;
     private Vector3 dragOrigin;
     private Vector2 velocity;
@@ -38,6 +41,7 @@ public class Scr_MapManager : MonoBehaviour
     private GameObject mainCanvas;
     private GameObject mapCanvas;
     private GameObject playerShip;
+    private GameObject onPlayerTarget;
 
     private void Start()
     {
@@ -60,17 +64,32 @@ public class Scr_MapManager : MonoBehaviour
         if (mapActive)
             MapControl();
 
+        if(playerShip.GetComponent<Scr_PlayerShipMovement>().currentPlanet != null && !onPlanet)
+        {
+            onPlayerTarget = Instantiate(indicator);
+            onPlayerTarget.GetComponent<SpriteRenderer>().color = onPlanetColor;
+            onPlayerTarget.transform.position = playerShip.GetComponent<Scr_PlayerShipMovement>().currentPlanet.transform.position + new Vector3(0f, ((playerShip.GetComponent<Scr_PlayerShipMovement>().currentPlanet.transform.GetChild(0).GetComponent<Renderer>().bounds.size.x) / 2) + 10f, -0.5f);
+            onPlanet = true;
+        }
+
+        else if(playerShip.GetComponent<Scr_PlayerShipMovement>().currentPlanet == null)
+        {
+            onPlanet = false;
+            Destroy(onPlayerTarget);
+        }
+
+
         if (target != null)
             mapIndicator.transform.position = target.transform.position + new Vector3(0f, ((target.transform.GetChild(0).GetComponent<Renderer>().bounds.size.x) / 2) + 10f, 0f);
+    }
 
-        if (Input.GetMouseButtonDown(1))
-        {
-            Destroy(mapIndicator);
-            Destroy(directionIndicator);
-            indicatorActive = false;
-            waypointActive = false;
-            target = null;
-        }
+    public void CancelWaypoint()
+    {
+        Destroy(mapIndicator);
+        Destroy(directionIndicator);
+        indicatorActive = false;
+        waypointActive = false;
+        target = null;
     }
 
     private void MapActivation()
