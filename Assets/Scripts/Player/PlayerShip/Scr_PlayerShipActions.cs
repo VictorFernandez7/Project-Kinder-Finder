@@ -28,6 +28,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
     [SerializeField] private Transform miningLaserStart;
     [SerializeField] private LineRenderer miningLaser;
     [SerializeField] private DistanceJoint2D spaceWalkCable;
+    [SerializeField] private Animator interactionIndicatorAnim;
 
     [HideInInspector] public bool startExitDelay;
     [HideInInspector] public bool closeToAsteroid;
@@ -80,7 +81,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
     {
         MiningSliderColor();
         CheckInputs();
-        //ExitShipControl();
+        ExitShipControl();
 
         if (doingSpaceWalk && currentAsteroid != null)
             transform.up = currentAsteroid.transform.position - transform.position;
@@ -123,10 +124,12 @@ public class Scr_PlayerShipActions : MonoBehaviour
             if (Input.GetButton("Interact"))
             {
                 holdInputTime -= Time.deltaTime;
+                interactionIndicatorAnim.gameObject.SetActive(true);
 
                 if (holdInputTime <= 0 && canInputAgain)
                 {
                     canInputAgain = false;
+                    interactionIndicatorAnim.gameObject.SetActive(false);
 
                     if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed && !astronaut.activeInHierarchy && canExitShip)
                         DeployAstronaut();
@@ -140,6 +143,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
             {
                 canInputAgain = true;
                 holdInputTime = 1;
+                interactionIndicatorAnim.gameObject.SetActive(false);
             }
 
             if (Input.GetButtonDown("Map"))
