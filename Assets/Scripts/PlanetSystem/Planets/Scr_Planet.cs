@@ -19,6 +19,8 @@ public class Scr_Planet : MonoBehaviour
     [SerializeField] private GameObject mapVisuals;
     [SerializeField] private GameObject rotationPivot;
 
+    [HideInInspector] public bool switchGravity;
+
     private double gravityConstant;
     private Vector3 lastFrameRotationPivot;
     private GameObject playerShip;
@@ -38,6 +40,7 @@ public class Scr_Planet : MonoBehaviour
 
         planetRb = GetComponent<Rigidbody2D>();
 
+        switchGravity = true;
         lastFrameRotationPivot = rotationPivot.transform.position;
         playerShipRb = playerShip.GetComponent<Rigidbody2D>();
         astronautRB = astronaut.GetComponent<Rigidbody2D>();
@@ -54,7 +57,7 @@ public class Scr_Planet : MonoBehaviour
 
         transform.Rotate(new Vector3(0f, 0f, rotationSpeed), Space.Self);
 
-        if (playerShip.GetComponent<Scr_PlayerShipMovement>().onGround == false)
+        if (playerShip.GetComponent<Scr_PlayerShipMovement>().onGround == false && switchGravity)
         {
             Vector3 translocation = transform.position;
             translocation = transform.position - translocation;

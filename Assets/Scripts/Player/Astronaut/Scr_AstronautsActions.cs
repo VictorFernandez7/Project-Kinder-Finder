@@ -84,6 +84,7 @@ public class Scr_AstronautsActions : MonoBehaviour
             {
                 astronautMovement.currentFuelCollector.GetComponent<Scr_ToolBase>().resourceAmount -= 1;
                 currentFuelBLock = Instantiate(astronautMovement.currentFuelCollector.GetComponent<Scr_ToolBase>().resource, pickPoint);
+                astronautMovement.currentFuelCollector.GetComponent<Scr_GasExtractor>().resourceLeft -= 1;
                 emptyHands = false;
             }
         }
