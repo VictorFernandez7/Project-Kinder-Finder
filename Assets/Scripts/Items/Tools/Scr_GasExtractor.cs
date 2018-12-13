@@ -144,9 +144,8 @@ public class Scr_GasExtractor : Scr_ToolBase {
                 playerCheck.SetActive(true);
                 transform.position = ghost.transform.position;
                 transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+                transform.rotation = Quaternion.Euler(new Vector3(0, 0, transform.rotation.z));
                 transform.rotation = Quaternion.LookRotation(transform.forward, (transform.position - astronautMovement.currentPlanet.transform.position));
-                if (transform.rotation.y != 0)
-                    transform.Rotate(new Vector3(0, -180, 0), Space.Self);
                 transform.SetParent(astronautMovement.currentPlanet.transform);
                 onHands = false;
                 placing = false;
@@ -216,7 +215,7 @@ public class Scr_GasExtractor : Scr_ToolBase {
                 remainingResources.text = "Remaining   " + (int)gasZone.GetComponent<Scr_GasZone>().amount;
         }
 
-        harvestedResources.text = "Harvested     " + resourceAmount;
+        harvestedResources.text = "Harvested    " + resourceAmount;
         harvestProcess.value = process / 3 * 100;
     }
 
