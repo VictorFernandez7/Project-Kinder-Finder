@@ -14,6 +14,7 @@ public class Scr_AstronautsActions : MonoBehaviour
     [SerializeField] private Transform spawnPoint;
     [SerializeField] public Transform pickPoint;
     [SerializeField] public Scr_ToolPanel toolPanel;
+    [SerializeField] private Animator interactionIndicatorAnim;
 
     [HideInInspector] public bool emptyHands;
     [HideInInspector] public bool toolOnHands;
@@ -30,6 +31,7 @@ public class Scr_AstronautsActions : MonoBehaviour
     private Scr_AstronautMovement astronautMovement;
     private Scr_AstronautStats astronautStats;
     private Scr_PlanetManager planetManager;
+    private Scr_PlayerShipActions playerShipActions;
 
     private void Start()
     {
@@ -40,6 +42,7 @@ public class Scr_AstronautsActions : MonoBehaviour
         astronautMovement = GetComponent<Scr_AstronautMovement>();
         astronautStats = GetComponent<Scr_AstronautStats>();
         cableVisuals = GetComponentInChildren<Scr_CableVisuals>();
+        playerShipActions = playerShip.GetComponent<Scr_PlayerShipActions>();
 
         toolOnFloor = null;
         emptyHands = true;
@@ -52,10 +55,12 @@ public class Scr_AstronautsActions : MonoBehaviour
             if (astronautMovement.canEnterShip)
             {
                 holdInputTime -= Time.deltaTime;
+                interactionIndicatorAnim.gameObject.SetActive(true);
 
                 if (holdInputTime <= 0 && canInputAgain)
                 {
                     canInputAgain = false;
+                    interactionIndicatorAnim.gameObject.SetActive(false);
 
                     if (playerShip.GetComponent<Scr_PlayerShipMovement>().playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed)
                         EnterShipFromPlanet();
@@ -70,6 +75,7 @@ public class Scr_AstronautsActions : MonoBehaviour
         {
             canInputAgain = true;
             holdInputTime = 1;
+            interactionIndicatorAnim.gameObject.SetActive(false);
         }
 
         if (Input.GetButtonDown("Interact") && astronautMovement.closeToCollector && astronautMovement.currentFuelCollector != null)
