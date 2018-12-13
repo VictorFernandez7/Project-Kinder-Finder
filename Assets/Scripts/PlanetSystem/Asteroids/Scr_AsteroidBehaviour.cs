@@ -93,7 +93,7 @@ public class Scr_AsteroidBehaviour : MonoBehaviour
         if (attached)
         {
             float currentDistance = Vector3.Distance(transform.position, playerShip.transform.position);
-            float attachingSpeed = currentDistance / 4;
+            float attachingSpeed = currentDistance / 6;
 
             messageTextAnim.SetBool("CanAttach", false);
             asteroidAnim.SetBool("Sliders", true);
