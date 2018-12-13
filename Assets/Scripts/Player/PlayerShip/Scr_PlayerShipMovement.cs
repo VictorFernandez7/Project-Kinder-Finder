@@ -47,6 +47,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [SerializeField] private Transform endOfShip;
     [SerializeField] private Animator warmingSliderAnim;
     [SerializeField] private Animator messageTextAnim;
+    [SerializeField] private Animator undercarriageAnim;
 
     [HideInInspector] public bool astronautOnBoard;
     [HideInInspector] public bool onGround;
@@ -432,14 +433,14 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     void TakingOff()
     {
         targetTakingOff = transform.position + new Vector3(0, takeOffDistance, 0);
-
+        undercarriageAnim.SetBool("PickUp", true);
         takingOff = true;
     }
 
     private void Landing()
     {
         transform.SetParent(currentPlanet.transform);
-
+        undercarriageAnim.SetBool("PickUp", false);
         landing = true;
     }
 
