@@ -33,6 +33,7 @@ public class Scr_MapManager : MonoBehaviour
     private bool slow;
     private Camera mainCamera;
     private Vector3 dragOrigin;
+    private Vector2 velocity;
     private float distanceHUD;
     private GameObject mainCanvas;
     private GameObject mapCanvas;
@@ -80,16 +81,20 @@ public class Scr_MapManager : MonoBehaviour
             mapCamera.gameObject.SetActive(!mapActive);
             mainCanvas.SetActive(mapActive);
             mapCanvas.SetActive(!mapActive);
+            playerShip.GetComponent<Scr_PlayerShipMovement>().canRotateShip = mapActive;
             mapActive = !mapActive;
             mapVisuals.SetActive(mapActive);
+
         }
 
         else if (mapActive)
         {
             playerShip.GetComponent<Scr_PlayerShipPrediction>().enabled = false;
+            playerShip.GetComponent<LineRenderer>().enabled = false;
             Time.timeScale = 0f;
             Time.fixedDeltaTime = Time.timeScale * 0.02f;
             slow = true;
+
         }
 
         else if (!mapActive && Time.timeScale < 1 && slow == true)
@@ -102,6 +107,7 @@ public class Scr_MapManager : MonoBehaviour
             {
                 Time.timeScale = 1;
                 playerShip.GetComponent<Scr_PlayerShipPrediction>().enabled = true;
+                playerShip.GetComponent<LineRenderer>().enabled = true;
                 slow = false;
             }
         }

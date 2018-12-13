@@ -125,5 +125,17 @@ public class Scr_ReapiringTool : Scr_ToolBase {
                 }
             }
         }
+
+        else
+        {
+            if (hitLaser)
+            {
+                if (hitLaser.collider.transform.CompareTag("PlayerShip"))
+                {
+                    if (hitLaser.collider.transform.gameObject.GetComponent<Scr_PlayerShipStats>().currentShield < hitLaser.collider.transform.gameObject.GetComponent<Scr_PlayerShipStats>().maxShield)
+                        hitLaser.collider.transform.gameObject.GetComponent<Scr_PlayerShipStats>().currentShield += Time.deltaTime;
+                }
+            }
+        }
     }
 }
