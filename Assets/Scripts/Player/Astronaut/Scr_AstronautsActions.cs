@@ -41,7 +41,7 @@ public class Scr_AstronautsActions : MonoBehaviour
 
         astronautMovement = GetComponent<Scr_AstronautMovement>();
         astronautStats = GetComponent<Scr_AstronautStats>();
-        cableVisuals = GetComponentInChildren<Scr_CableVisuals>();
+        cableVisuals = playerShip.GetComponentInChildren<Scr_CableVisuals>();
         playerShipActions = playerShip.GetComponent<Scr_PlayerShipActions>();
 
         toolOnFloor = null;

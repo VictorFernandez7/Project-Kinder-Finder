@@ -84,6 +84,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
         MiningSliderColor();
         CheckInputs();
         ExitShipControl();
+        ColliderUpdate();
 
         if (doingSpaceWalk && currentAsteroid != null)
             transform.up = currentAsteroid.transform.position - transform.position;
