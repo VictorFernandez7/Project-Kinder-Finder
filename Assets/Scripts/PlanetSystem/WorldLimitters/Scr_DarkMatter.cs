@@ -5,23 +5,37 @@ using UnityEngine;
 public class Scr_DarkMatter : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private BoxCollider2D boxCollider1;
-    [SerializeField] private BoxCollider2D boxCollider2;
+    [SerializeField] private BoxCollider2D warningTrigger;
+    [SerializeField] private BoxCollider2D deathTrigger;
+    [SerializeField] private GameObject visuals;
+
+    private Scr_PlayerShipStats playerShipStats;
+
+    private void Start()
+    {
+        playerShipStats = GameObject.Find("PlayerShip").GetComponent<Scr_PlayerShipStats>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("PlayerShip"))
+        if (collision.CompareTag("PlayerShip"))
         {
-            if (boxCollider1.enabled)
+            if (!visuals.activeInHierarchy)
             {
-                boxCollider1.enabled = false;
-                boxCollider2.enabled = true;
+                visuals.SetActive(true);
+                //Código Warning
             }
 
             else
-            {
+                playerShipStats.Death();
+        }
+    }
 
-            }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("PlayerShip"))
+        {
+            visuals.SetActive(false);
         }
     }
 }
