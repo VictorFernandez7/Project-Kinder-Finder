@@ -7,6 +7,9 @@ using UnityEditor;
 public class Scr_PlanetInfo
 {
     public string m_name;
+    public float m_temperature;
+    public bool m_oxygen;
+    public float m_gravity;
 }
 
 public class Scr_SystemData : ScriptableObject
@@ -232,5 +235,10 @@ public class Scr_PlanetEditor : EditorWindow
 
         GUILayout.Space(10);
         inventoryItemList.SystemList[viewSystem - 1].PlanetList[viewIndex - 1].m_name = EditorGUILayout.TextField("Name", inventoryItemList.SystemList[viewSystem - 1].PlanetList[viewIndex - 1].m_name as string);
+
+        GUILayout.Space(10);
+        inventoryItemList.SystemList[viewSystem - 1].PlanetList[viewIndex - 1].m_temperature = EditorGUILayout.FloatField("Temperature", inventoryItemList.SystemList[viewSystem - 1].PlanetList[viewIndex - 1].m_temperature);
+        inventoryItemList.SystemList[viewSystem - 1].PlanetList[viewIndex - 1].m_oxygen = EditorGUILayout.Toggle("Oxygen", inventoryItemList.SystemList[viewSystem - 1].PlanetList[viewIndex - 1].m_oxygen);
+        inventoryItemList.SystemList[viewSystem - 1].PlanetList[viewIndex - 1].m_gravity = EditorGUILayout.FloatField("Oxygen", inventoryItemList.SystemList[viewSystem - 1].PlanetList[viewIndex - 1].m_gravity);
     }
 }
