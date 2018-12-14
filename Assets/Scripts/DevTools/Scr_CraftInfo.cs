@@ -19,7 +19,7 @@ public class Scr_CraftInfo
 
 public class Scr_CraftData : ScriptableObject
 {
-    public List<Scr_CraftInfo> craftList;
+    public List<Scr_CraftInfo> CraftList;
 }
 
 public class Scr_CraftEditor : EditorWindow
@@ -37,7 +37,7 @@ public class Scr_CraftEditor : EditorWindow
     {
         if (EditorPrefs.HasKey("objectPath"))
         {
-            string ObjectPath = "Assets/Resources/Data/craftList.asset";
+            string ObjectPath = "Assets/Resources/Data/CraftList.asset";
             inventoryItemList = AssetDatabase.LoadAssetAtPath(ObjectPath, typeof(Scr_CraftData)) as Scr_CraftData;
         }
 
@@ -46,14 +46,14 @@ public class Scr_CraftEditor : EditorWindow
             viewIndex = 1;
 
             Scr_CraftData asset = ScriptableObject.CreateInstance<Scr_CraftData>();
-            AssetDatabase.CreateAsset(asset, "Assets/Resources/Data/craftList.asset");
+            AssetDatabase.CreateAsset(asset, "Assets/Resources/Data/CraftList.asset");
             AssetDatabase.SaveAssets();
 
             inventoryItemList = asset;
 
             if (inventoryItemList)
             {
-                inventoryItemList.craftList = new List<Scr_CraftInfo>();
+                inventoryItemList.CraftList = new List<Scr_CraftInfo>();
                 string relPath = AssetDatabase.GetAssetPath(inventoryItemList);
                 EditorPrefs.SetString("objectPath", relPath);
             }
@@ -96,7 +96,7 @@ public class Scr_CraftEditor : EditorWindow
 
         if (GUILayout.Button("Next ->", GUILayout.ExpandWidth(false)))
         {
-            if (viewIndex < inventoryItemList.craftList.Count)
+            if (viewIndex < inventoryItemList.CraftList.Count)
                 viewIndex += 1;
         }
 
@@ -116,7 +116,7 @@ public class Scr_CraftEditor : EditorWindow
 
         GUILayout.EndHorizontal();
 
-        if (inventoryItemList.craftList.Count > 0)
+        if (inventoryItemList.CraftList.Count > 0)
         {
             UpgradeListMenu();
         }
@@ -132,46 +132,46 @@ public class Scr_CraftEditor : EditorWindow
     {
         Scr_CraftInfo newCraft = new Scr_CraftInfo();
         newCraft.m_name = "New Craft";
-        inventoryItemList.craftList.Add(newCraft);
-        viewIndex = inventoryItemList.craftList.Count;
+        inventoryItemList.CraftList.Add(newCraft);
+        viewIndex = inventoryItemList.CraftList.Count;
     }
 
     void DeleteUpgrade(int index)
     {
-        inventoryItemList.craftList.RemoveAt(index);
+        inventoryItemList.CraftList.RemoveAt(index);
     }
 
     void UpgradeListMenu()
     {
         GUILayout.Space(10);
         GUILayout.BeginHorizontal();
-        viewIndex = Mathf.Clamp(EditorGUILayout.IntField("Current Craft", viewIndex, GUILayout.ExpandWidth(false)), 1, inventoryItemList.craftList.Count);
-        EditorGUILayout.LabelField("of " + inventoryItemList.craftList.Count.ToString() + " Craft", "", GUILayout.ExpandWidth(false));
+        viewIndex = Mathf.Clamp(EditorGUILayout.IntField("Current Craft", viewIndex, GUILayout.ExpandWidth(false)), 1, inventoryItemList.CraftList.Count);
+        EditorGUILayout.LabelField("of " + inventoryItemList.CraftList.Count.ToString() + " Craft", "", GUILayout.ExpandWidth(false));
         GUILayout.EndHorizontal();
 
-        string[] _choices = new string[inventoryItemList.craftList.Count];
-        for (int i = 0; i < inventoryItemList.craftList.Count; i++)
+        string[] _choices = new string[inventoryItemList.CraftList.Count];
+        for (int i = 0; i < inventoryItemList.CraftList.Count; i++)
         {
-            _choices[i] = inventoryItemList.craftList[i].m_name;
+            _choices[i] = inventoryItemList.CraftList[i].m_name;
         }
 
         int _choicesIndex = viewIndex - 1;
         viewIndex = EditorGUILayout.Popup(_choicesIndex, _choices) + 1;
 
         GUILayout.Space(10);
-        inventoryItemList.craftList[viewIndex - 1].m_name = EditorGUILayout.TextField("Name", inventoryItemList.craftList[viewIndex - 1].m_name as string);
+        inventoryItemList.CraftList[viewIndex - 1].m_name = EditorGUILayout.TextField("Name", inventoryItemList.CraftList[viewIndex - 1].m_name as string);
 
 
         GUILayout.Space(10);
         GUILayout.Label("Description");
-        inventoryItemList.craftList[viewIndex - 1].m_info = EditorGUILayout.TextArea(inventoryItemList.craftList[viewIndex - 1].m_info as string);
+        inventoryItemList.CraftList[viewIndex - 1].m_info = EditorGUILayout.TextArea(inventoryItemList.CraftList[viewIndex - 1].m_info as string);
 
 
         GUILayout.Space(10);
         GUILayout.Label("Requirements");
 
-        inventoryItemList.craftList[viewIndex - 1].m_fuel = EditorGUILayout.IntField("Fuel", inventoryItemList.craftList[viewIndex - 1].m_fuel);
-        inventoryItemList.craftList[viewIndex - 1].m_iron = EditorGUILayout.IntField("Iron", inventoryItemList.craftList[viewIndex - 1].m_iron);
+        inventoryItemList.CraftList[viewIndex - 1].m_fuel = EditorGUILayout.IntField("Fuel", inventoryItemList.CraftList[viewIndex - 1].m_fuel);
+        inventoryItemList.CraftList[viewIndex - 1].m_iron = EditorGUILayout.IntField("Iron", inventoryItemList.CraftList[viewIndex - 1].m_iron);
     }
 }
 
