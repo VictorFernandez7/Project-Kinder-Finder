@@ -73,7 +73,6 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     private Vector3 landingOrientationVector;
     private Vector3 targetTakingOff;
     private Vector3 targetLanding;
-    private TrailRenderer trailRenderer;
     private TextMeshProUGUI limiterText;
     private TextMeshProUGUI speedText;
     private TextMeshProUGUI messageText;
@@ -108,7 +107,6 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         playerShipEffects = GetComponent<Scr_PlayerShipEffects>();
         playerShipPrediction = GetComponent<Scr_PlayerShipPrediction>();
         playerShipDeathCheck = GetComponentInChildren<Scr_PlayerShipDeathCheck>();
-        trailRenderer = GetComponent<TrailRenderer>();
 
         canControlTimerSaved = canControlTimer;
         maxSpeedSaved = maxSpeed;
@@ -291,7 +289,6 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         {
             if (currentPlanet != null)
             {
-                trailRenderer.enabled = false;
                 playerShipPrediction.predictionTime = 0;
 
                 RaycastHit2D beginLandingHit = Physics2D.Raycast(endOfShip.position, -endOfShip.up, landDistance, planetLayer);
@@ -314,10 +311,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
                 landedOnce = true;
 
                 if (playerShipActions.currentAsteroid == null)
-                {
-                    trailRenderer.enabled = true;
                     playerShipPrediction.predictionTime = 6;
-                }
             }
 
             if (Input.GetKey(KeyCode.LeftShift) && playerShipState == PlayerShipState.landed && canControlShip)

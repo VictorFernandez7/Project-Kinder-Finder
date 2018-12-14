@@ -22,7 +22,7 @@ public class Scr_AstronautsActions : MonoBehaviour
     [HideInInspector] public GameObject toolOnFloor;
 
     private float fuelAmount;
-    private float holdInputTime;
+    private float holdInputTime = 0.9f;
     private bool canInputAgain = true;
     private GameObject mainCamera;
     private GameObject playerShip;
@@ -74,7 +74,7 @@ public class Scr_AstronautsActions : MonoBehaviour
         else
         {
             canInputAgain = true;
-            holdInputTime = 1;
+            holdInputTime = 0.9f;
             interactionIndicatorAnim.gameObject.SetActive(false);
         }
 

@@ -29,6 +29,8 @@ public class Scr_PlayerShipActions : MonoBehaviour
     [SerializeField] private LineRenderer miningLaser;
     [SerializeField] private DistanceJoint2D spaceWalkCable;
     [SerializeField] private Animator interactionIndicatorAnim;
+    [SerializeField] private BoxCollider2D landingCollider;
+    [SerializeField] private BoxCollider2D spaceCollider;
 
     [HideInInspector] public bool startExitDelay;
     [HideInInspector] public bool closeToAsteroid;
@@ -38,7 +40,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
 
     private float laserRange;
     private float deployDelaySaved;
-    private float holdInputTime = 1f;
+    private float holdInputTime = 0.9f;
     private bool canExitShip;
     private bool toolPanel;
     private bool doneOnce;
@@ -117,6 +119,21 @@ public class Scr_PlayerShipActions : MonoBehaviour
             canExitShip = false;
     }
 
+    private void ColliderUpdate()
+    {
+        if (doingSpaceWalk)
+        {
+            spaceCollider.enabled = true;
+            landingCollider.enabled = false;
+        }
+
+        else
+        {
+            spaceCollider.enabled = false;
+            landingCollider.enabled = true;
+        }
+    }
+
     private void CheckInputs()
     {
         if (playerShipMovement.astronautOnBoard)
@@ -142,7 +159,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
             else
             {
                 canInputAgain = true;
-                holdInputTime = 1;
+                holdInputTime = 0.9f;
                 interactionIndicatorAnim.gameObject.SetActive(false);
             }
 
