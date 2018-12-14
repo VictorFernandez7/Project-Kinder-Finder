@@ -39,6 +39,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     [SerializeField] private ParticleSystem walkingParticles;
     [SerializeField] private Transform transforms;
     [SerializeField] private GameObject astronautVisuals;
+    [SerializeField] private Animator astronautAnim;
 
     [HideInInspector] public bool onGround = true;
     [HideInInspector] public bool canMove;
@@ -114,6 +115,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     {
         if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed)
             PlanetMovement();
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -159,12 +161,16 @@ public class Scr_AstronautMovement : MonoBehaviour
             {
                 MoveLeft(false);
                 lastRight = false;
+
+                astronautAnim.SetBool("Moving", true);
             }
 
             else if (Input.GetButton("Horizontal") && Input.GetAxis("Horizontal") > 0f)
             {
                 MoveRight(false);
                 lastRight = true;
+
+                astronautAnim.SetBool("Moving", true);
             }
 
             else if (velocity > 0)
@@ -179,6 +185,8 @@ public class Scr_AstronautMovement : MonoBehaviour
             {
                 velocity = 0;
                 exponentialMultiplier = 1;
+
+                astronautAnim.SetBool("Moving", false);
             }
         }
 
@@ -286,7 +294,7 @@ public class Scr_AstronautMovement : MonoBehaviour
         {
             Vector2 vectorAngle = (hitAngleUp.point - hitAngleDown.point);
             angle = Vector2.Angle(vectorAngle, -transform.right);
-            print("right" + angle);
+            //print("right" + angle);
         }
 
         if (hitL)
