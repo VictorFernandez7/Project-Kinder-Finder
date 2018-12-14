@@ -22,7 +22,7 @@ public class Scr_AstronautsActions : MonoBehaviour
     [HideInInspector] public GameObject toolOnFloor;
 
     private float fuelAmount;
-    private float holdInputTime;
+    private float holdInputTime = 0.9f;
     private bool canInputAgain = true;
     private GameObject mainCamera;
     private GameObject playerShip;
@@ -41,7 +41,7 @@ public class Scr_AstronautsActions : MonoBehaviour
 
         astronautMovement = GetComponent<Scr_AstronautMovement>();
         astronautStats = GetComponent<Scr_AstronautStats>();
-        cableVisuals = GetComponentInChildren<Scr_CableVisuals>();
+        cableVisuals = playerShip.GetComponentInChildren<Scr_CableVisuals>();
         playerShipActions = playerShip.GetComponent<Scr_PlayerShipActions>();
 
         toolOnFloor = null;
@@ -74,7 +74,7 @@ public class Scr_AstronautsActions : MonoBehaviour
         else
         {
             canInputAgain = true;
-            holdInputTime = 1;
+            holdInputTime = 0.9f;
             interactionIndicatorAnim.gameObject.SetActive(false);
         }
 
@@ -137,6 +137,7 @@ public class Scr_AstronautsActions : MonoBehaviour
         playerShip.GetComponent<Scr_PlayerShipMovement>().canRotateShip = true;
         playerShip.GetComponent<Scr_PlayerShipActions>().doingSpaceWalk = false;
         cableVisuals.printCable = false;
+        cableVisuals.ResetCable();
         planetManager.Gravity(true);
         gameObject.SetActive(false);
     }
