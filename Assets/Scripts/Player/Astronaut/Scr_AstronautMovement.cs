@@ -197,6 +197,9 @@ public class Scr_AstronautMovement : MonoBehaviour
             transform.RotateAround(currentPlanet.transform.position, Vector3.forward, currentPlanet.transform.rotation.eulerAngles.z - planetRotation.eulerAngles.z);
             planetRotation = currentPlanet.transform.rotation;
         }
+
+        if (jumping)
+            astronautAnim.SetBool("Moving", false);
     }
 
     private void Jumping()
@@ -266,7 +269,7 @@ public class Scr_AstronautMovement : MonoBehaviour
         {
             Vector2 vectorAngle = (hitAngleUp.point - hitAngleDown.point);
             angle = Vector2.Angle(vectorAngle, transform.right);
-            print("left" + angle);
+            //print("left" + angle);
         }
 
         if (hitL)
