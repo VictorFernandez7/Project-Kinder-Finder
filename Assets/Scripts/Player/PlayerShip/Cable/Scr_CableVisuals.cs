@@ -45,6 +45,8 @@ public class Scr_CableVisuals : MonoBehaviour
     {
         if (printCable)
         {
+            cableVisuals.enabled = true;
+
             cable1.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
             cable2.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
             cable3.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
@@ -140,5 +142,41 @@ public class Scr_CableVisuals : MonoBehaviour
             cable28.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
             cableEnd.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
         }
+    }
+
+    public void ResetCable()
+    {
+        cableStart.transform.localPosition = Vector3.zero;
+        cable1.transform.localPosition = Vector3.zero;
+        cable2.transform.localPosition = Vector3.zero;
+        cable3.transform.localPosition = Vector3.zero;
+        cable4.transform.localPosition = Vector3.zero;
+        cable5.transform.localPosition = Vector3.zero;
+        cable6.transform.localPosition = Vector3.zero;
+        cable7.transform.localPosition = Vector3.zero;
+        cable8.transform.localPosition = Vector3.zero;
+        cable9.transform.localPosition = Vector3.zero;
+        cable10.transform.localPosition = Vector3.zero;
+        cable11.transform.localPosition = Vector3.zero;
+        cable12.transform.localPosition = Vector3.zero;
+        cable13.transform.localPosition = Vector3.zero;
+        cable14.transform.localPosition = Vector3.zero;
+        cable15.transform.localPosition = Vector3.zero;
+        cable16.transform.localPosition = Vector3.zero;
+        cable17.transform.localPosition = Vector3.zero;
+        cable18.transform.localPosition = Vector3.zero;
+        cable19.transform.localPosition = Vector3.zero;
+        cable20.transform.localPosition = Vector3.zero;
+        cable21.transform.localPosition = Vector3.zero;
+        cable22.transform.localPosition = Vector3.zero;
+        cable23.transform.localPosition = Vector3.zero;
+        cable24.transform.localPosition = Vector3.zero;
+        cable25.transform.localPosition = Vector3.zero;
+        cable26.transform.localPosition = Vector3.zero;
+        cable27.transform.localPosition = Vector3.zero;
+        cable28.transform.localPosition = Vector3.zero;
+        cableEnd.transform.localPosition = Vector3.zero;
+
+        cableVisuals.enabled = false;
     }
 }

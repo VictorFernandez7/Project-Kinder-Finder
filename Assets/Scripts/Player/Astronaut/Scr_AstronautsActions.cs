@@ -137,6 +137,7 @@ public class Scr_AstronautsActions : MonoBehaviour
         playerShip.GetComponent<Scr_PlayerShipMovement>().canRotateShip = true;
         playerShip.GetComponent<Scr_PlayerShipActions>().doingSpaceWalk = false;
         cableVisuals.printCable = false;
+        cableVisuals.ResetCable();
         planetManager.Gravity(true);
         gameObject.SetActive(false);
     }
