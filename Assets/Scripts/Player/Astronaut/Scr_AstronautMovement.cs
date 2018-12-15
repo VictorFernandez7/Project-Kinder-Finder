@@ -64,7 +64,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     private bool dettaching;
     private float timeAfterJump = 0.5f;
     private float savedTimeAfterJump = 0.5f;
-    private float timeDettaching = 0.5f;
+    private float timeDettaching = 1;
     private float baseDistance;
     private float currentAngle;
     private float currentDistance;
@@ -475,7 +475,7 @@ public class Scr_AstronautMovement : MonoBehaviour
                         if(timeDettaching <= 0)
                         {
                             attached = false;
-                            timeDettaching = 0.5f;
+                            timeDettaching = 1;
                             dettaching = false;
                         }
                     }
