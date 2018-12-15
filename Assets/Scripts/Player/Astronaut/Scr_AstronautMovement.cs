@@ -61,8 +61,10 @@ public class Scr_AstronautMovement : MonoBehaviour
     private bool toJump;
     private bool lastRight;
     private bool attached;
+    private bool dettaching;
     private float timeAfterJump = 0.5f;
     private float savedTimeAfterJump = 0.5f;
+    private float timeDettaching = 0.5f;
     private float baseDistance;
     private float currentAngle;
     private float currentDistance;
@@ -392,10 +394,13 @@ public class Scr_AstronautMovement : MonoBehaviour
     {
         if (playerShipActions.doingSpaceWalk)
         {
-            Vector3 difference = (mainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position);
-            difference.Normalize();
-            float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0f, 0f, rotationZ - 90), rotationDelay);
+            if (!attached)
+            {
+                Vector3 difference = (mainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position);
+                difference.Normalize();
+                float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0f, 0f, rotationZ - 90), rotationDelay);
+            }
 
             if (Vector3.Distance(playerShip.transform.position, transform.position) < playerShipActions.maxDistanceOfShip)
             {
@@ -414,6 +419,8 @@ public class Scr_AstronautMovement : MonoBehaviour
                     astronautRb.AddForce(-transform.right * spaceWalkSpeed);
 
                 RaycastHit2D attachToAsteroid = Physics2D.Raycast(transform.position, -transform.up, attachDistance, asteroidMask);
+                hitL = Physics2D.Raycast(rayPointLeft.transform.position, -rayPointLeft.transform.up, Mathf.Infinity, collisionMask);
+                hitR = Physics2D.Raycast(rayPointRight.transform.position, -rayPointRight.transform.up, Mathf.Infinity, collisionMask);
 
                 Debug.DrawRay(transform.position, -transform.up * attachDistance, Color.red);
 
@@ -421,8 +428,8 @@ public class Scr_AstronautMovement : MonoBehaviour
                 {
                     astronautRb.isKinematic = true;
                     astronautRb.velocity = Vector2.zero;
-                    transform.rotation = Quaternion.Euler(attachToAsteroid.transform.position - transform.position);
-                    transform.position = attachToAsteroid.point;
+                    transform.rotation = Quaternion.LookRotation(transform.forward, -Vector2.Perpendicular(hitL.point - hitR.point));
+                    transform.position = attachToAsteroid.point + (Vector2)transform.up * 0.05f;
                     transform.SetParent(attachToAsteroid.transform);
                     attached = true;
                 }
@@ -433,6 +440,29 @@ public class Scr_AstronautMovement : MonoBehaviour
                     {
                         transform.position += (playerShip.transform.position - playerShipPosition);
                         playerShipPosition = playerShip.transform.position;
+                    }
+                }
+
+                else if (attached)
+                {
+                    if (Input.GetButtonDown("Jump"))
+                    {
+                        astronautRb.isKinematic = false;
+                        transform.SetParent(null);
+                        astronautRb.AddForce(transform.up * spaceWalkSpeed * 2);
+                        dettaching = true;
+                    }
+
+                    if (dettaching)
+                    {
+                        timeDettaching -= Time.deltaTime;
+                        if(timeDettaching <= 0)
+                        {
+                            playerShipPosition = playerShip.transform.position;
+                            attached = false;
+                            timeDettaching = 0.5f;
+                            dettaching = false;
+                        }
                     }
                 }
             }
