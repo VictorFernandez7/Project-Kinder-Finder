@@ -80,7 +80,7 @@ public class Scr_GasExtractor : Scr_ToolBase {
 
             if (placing)
             {
-                ghost = Instantiate(gameObject);
+                ghost = Instantiate(gameObject, astronaut.transform.position, astronaut.transform.rotation);
             }
             else if (!placing)
             {
@@ -118,8 +118,8 @@ public class Scr_GasExtractor : Scr_ToolBase {
     private void PutOnPlace()
     {
         hit = Physics2D.Raycast(ghost.transform.position, (astronautMovement.currentPlanet.transform.position - transform.position).normalized, Mathf.Infinity, mask);
-        hitR = Physics2D.Raycast(ghost.transform.position + transform.right, (astronautMovement.currentPlanet.transform.position - ghost.transform.position).normalized, Mathf.Infinity, mask);
-        hitL = Physics2D.Raycast(ghost.transform.position - transform.right, (astronautMovement.currentPlanet.transform.position - ghost.transform.position).normalized, Mathf.Infinity, mask);
+        hitR = Physics2D.Raycast(ghost.transform.position + transform.right * 0.05f, (astronautMovement.currentPlanet.transform.position - ghost.transform.position).normalized, Mathf.Infinity, mask);
+        hitL = Physics2D.Raycast(ghost.transform.position - transform.right * 0.05f, (astronautMovement.currentPlanet.transform.position - ghost.transform.position).normalized, Mathf.Infinity, mask);
 
         float mouseposX = mainCamera.ScreenToWorldPoint(Input.mousePosition).x;
         float mouseposY = mainCamera.ScreenToWorldPoint(Input.mousePosition).y;
