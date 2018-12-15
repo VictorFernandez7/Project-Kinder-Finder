@@ -65,6 +65,11 @@ public class Scr_AsteroidBehaviour : MonoBehaviour
 
             ShipAttach();
         }
+
+        if (attached)
+        {
+            panel.SetActive(false);
+        }
     }
 
     private void OnDrawGizmos()
