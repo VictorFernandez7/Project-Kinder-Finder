@@ -449,16 +449,31 @@ public class Scr_AstronautMovement : MonoBehaviour
                     {
                         astronautRb.isKinematic = false;
                         transform.SetParent(null);
-                        astronautRb.AddForce(transform.up * spaceWalkSpeed * 2);
+
+                        if (mainCamera.GetComponent<Scr_MainCamera>().mining)
+                        {
+                            transform.position += (playerShip.transform.position - playerShipPosition);
+                            playerShipPosition = playerShip.transform.position;
+                        }
                         dettaching = true;
                     }
 
+                    else if(!dettaching)
+                        playerShipPosition = playerShip.transform.position;
+
                     if (dettaching)
                     {
+                        astronautRb.AddForce(transform.up * spaceWalkSpeed * 4); 
+
+                        if (mainCamera.GetComponent<Scr_MainCamera>().mining)
+                        {
+                            transform.position += (playerShip.transform.position - playerShipPosition);
+                            playerShipPosition = playerShip.transform.position;
+                        }
+
                         timeDettaching -= Time.deltaTime;
                         if(timeDettaching <= 0)
                         {
-                            playerShipPosition = playerShip.transform.position;
                             attached = false;
                             timeDettaching = 0.5f;
                             dettaching = false;

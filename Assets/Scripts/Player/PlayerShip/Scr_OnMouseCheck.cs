@@ -20,6 +20,11 @@ public class Scr_OnMouseCheck : MonoBehaviour {
     {
         fuelSlider.value = playerShip.GetComponent<Scr_PlayerShipStats>().currentFuel;
         shieldSlider.value = playerShip.GetComponent<Scr_PlayerShipStats>().currentShield;
+
+        if (playerShip.GetComponent<Scr_PlayerShipMovement>().astronautOnBoard)
+        {
+            panel.SetActive(false);
+        }
     }
 
     private void OnMouseEnter()
