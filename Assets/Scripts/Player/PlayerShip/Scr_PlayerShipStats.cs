@@ -20,7 +20,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
 
     [Header("Fuel Properties")]
     [SerializeField] public float currentFuel;
-    [SerializeField] private float maxFuel;
+    [SerializeField] public float maxFuel;
     [SerializeField] private float normalConsume;
     [SerializeField] private float boostConsume;
     [SerializeField] private Color fuelColor0;

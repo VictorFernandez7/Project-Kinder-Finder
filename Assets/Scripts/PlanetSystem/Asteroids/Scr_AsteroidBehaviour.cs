@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class Scr_AsteroidBehaviour : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class Scr_AsteroidBehaviour : MonoBehaviour
     [Header("References")]
     [SerializeField] public Animator messageTextAnim;
     [SerializeField] public Animator asteroidAnim;
+    [SerializeField] private GameObject panel;
 
     [HideInInspector] public bool attached;
     [HideInInspector] public bool closeToShip;
@@ -111,5 +113,18 @@ public class Scr_AsteroidBehaviour : MonoBehaviour
 
         else
             asteroidAnim.SetBool("Sliders", false);
+    }
+
+    private void OnMouseEnter()
+    {
+        if (!attached)
+        {
+            panel.SetActive(true);
+        }
+    }
+
+    private void OnMouseExit()
+    {
+        panel.SetActive(false);
     }
 }
