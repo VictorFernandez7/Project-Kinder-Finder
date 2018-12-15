@@ -309,7 +309,6 @@ public class Scr_PlayerShipActions : MonoBehaviour
             playerShipRb.velocity = Vector2.zero;
             playerShipRb.isKinematic = true;
             playerShipMovement.canControlShip = false;
-            GetComponent<TrailRenderer>().enabled = false;
             playerShipPrediction.predictionTime = 0;
             mainCamera.mining = true;
 
@@ -320,7 +319,6 @@ public class Scr_PlayerShipActions : MonoBehaviour
         {
             playerShipRb.isKinematic = false;
             playerShipMovement.canControlShip = true;
-            GetComponent<TrailRenderer>().enabled = true;
             playerShipPrediction.predictionTime = 6;
             mainCamera.mining = false;
             miningLaser.enabled = false;

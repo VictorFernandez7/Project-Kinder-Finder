@@ -60,6 +60,7 @@ public class Scr_AstronautMovement : MonoBehaviour
 
     private bool toJump;
     private bool lastRight;
+    private bool attached;
     private float timeAfterJump = 0.5f;
     private float savedTimeAfterJump = 0.5f;
     private float baseDistance;
@@ -398,11 +399,7 @@ public class Scr_AstronautMovement : MonoBehaviour
 
             if (Vector3.Distance(playerShip.transform.position, transform.position) < playerShipActions.maxDistanceOfShip)
             {
-                if (mainCamera.GetComponent<Scr_MainCamera>().mining)
-                {
-                    transform.position += (playerShip.transform.position - playerShipPosition);
-                    playerShipPosition = playerShip.transform.position;
-                }
+
 
                 if (Input.GetAxis("Vertical") > 0f)
                     astronautRb.AddForce(transform.up * spaceWalkSpeed);
@@ -420,19 +417,23 @@ public class Scr_AstronautMovement : MonoBehaviour
 
                 Debug.DrawRay(transform.position, -transform.up * attachDistance, Color.red);
 
-                if (attachToAsteroid)
+                if (attachToAsteroid && !attached)
                 {
                     astronautRb.isKinematic = true;
                     astronautRb.velocity = Vector2.zero;
                     transform.rotation = Quaternion.Euler(attachToAsteroid.transform.position - transform.position);
-                    transform.SetParent(attachToAsteroid.transform);
                     transform.position = attachToAsteroid.point;
+                    transform.SetParent(attachToAsteroid.transform);
+                    attached = true;
                 }
 
-                else
+                else if(!attached)
                 {
-                    
-
+                    if (mainCamera.GetComponent<Scr_MainCamera>().mining)
+                    {
+                        transform.position += (playerShip.transform.position - playerShipPosition);
+                        playerShipPosition = playerShip.transform.position;
+                    }
                 }
             }
 
