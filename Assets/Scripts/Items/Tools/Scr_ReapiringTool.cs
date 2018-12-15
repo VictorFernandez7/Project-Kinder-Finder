@@ -12,6 +12,7 @@ public class Scr_ReapiringTool : Scr_ToolBase {
 
     [HideInInspector] public Camera mainCamera;
 
+    private GameObject playerShip;
     private LineRenderer laser;
     private bool executingRepairingTool;
     private bool miningMode;
@@ -21,6 +22,7 @@ public class Scr_ReapiringTool : Scr_ToolBase {
     void Start () {
         laser = GetComponent<LineRenderer>();
         mainCamera = GameObject.Find("MainCamera").GetComponent<Camera>();
+        playerShip = GameObject.Find("PlayerShip");
 
         miningMode = true;
     }
@@ -132,8 +134,8 @@ public class Scr_ReapiringTool : Scr_ToolBase {
             {
                 if (hitLaser.collider.transform.CompareTag("PlayerShip"))
                 {
-                    if (hitLaser.collider.transform.gameObject.GetComponent<Scr_PlayerShipStats>().currentShield < hitLaser.collider.transform.gameObject.GetComponent<Scr_PlayerShipStats>().maxShield)
-                        hitLaser.collider.transform.gameObject.GetComponent<Scr_PlayerShipStats>().currentShield += Time.deltaTime;
+                    if (playerShip.GetComponent<Scr_PlayerShipStats>().currentShield < playerShip.GetComponent<Scr_PlayerShipStats>().maxShield)
+                        playerShip.GetComponent<Scr_PlayerShipStats>().currentShield += Time.deltaTime;
                 }
             }
         }
