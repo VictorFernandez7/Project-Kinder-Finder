@@ -26,17 +26,19 @@ public class Scr_InterfaceManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI warehousePanelText;
     [SerializeField] private GameObject craftingPanel;
     [SerializeField] private TextMeshProUGUI craftingPanelText;
+    [SerializeField] private GameObject ToolWarehousePanel;
+    [SerializeField] private Image ToolWarehousePanelIcon;
+    [SerializeField] private GameObject resourceWarehousePanel;
+    [SerializeField] private Image resourceWarehousePanelIcon;
 
     private bool questPanelActive;
     private bool playerShipWindowActive;
-
     private Animator anim_AstronautInterface;
     private Animator anim_PlayerShipInterface;
     private Animator anim_PlayerShipActions;
     private Animator anim_QuestPanel;
     private Animator anim_PlayerShipWindow;
     private Animator anim_FadeImage;
-
     private GameObject playerShip;
     private Scr_MainCamera mainCamera;
     private Scr_PlayerShipMovement playerShipMovement;
@@ -65,7 +67,7 @@ public class Scr_InterfaceManager : MonoBehaviour
         CheckAstronautState();
         LandingInterface();
         IndicatorManagement();
-        ChangeTopButtonColor();
+        ChangeButtonColor();
 
         if (playerShipMovement.astronautOnBoard)
             CheckInputs();
@@ -105,7 +107,7 @@ public class Scr_InterfaceManager : MonoBehaviour
         }
     }
 
-    private void ChangeTopButtonColor()
+    private void ChangeButtonColor()
     {
         if (upgradePanel.activeInHierarchy)
             upgradePanelText.color = Color.white;
@@ -124,6 +126,18 @@ public class Scr_InterfaceManager : MonoBehaviour
 
         else
             craftingPanelText.color = Color.black;
+
+        if (ToolWarehousePanel.activeInHierarchy)
+            ToolWarehousePanelIcon.color = Color.white;
+
+        else
+            ToolWarehousePanelIcon.color = Color.black;
+
+        if (resourceWarehousePanel.activeInHierarchy)
+            resourceWarehousePanelIcon.color = Color.white;
+
+        else
+            resourceWarehousePanelIcon.color = Color.black;
     }
 
     private void LandingInterface()
