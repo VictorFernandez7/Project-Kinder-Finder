@@ -5,8 +5,6 @@ using UnityEngine;
 public class Scr_DarkMatter : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private BoxCollider2D warningTrigger;
-    [SerializeField] private BoxCollider2D deathTrigger;
     [SerializeField] private GameObject visuals;
 
     private Scr_PlayerShipStats playerShipStats;
@@ -22,8 +20,9 @@ public class Scr_DarkMatter : MonoBehaviour
         {
             if (!visuals.activeInHierarchy)
             {
-                visuals.SetActive(true);
                 playerShipStats.inDanger = true;
+
+                Invoke("Temporal", 1f);
             }
 
             else
@@ -38,5 +37,10 @@ public class Scr_DarkMatter : MonoBehaviour
             visuals.SetActive(false);
             playerShipStats.inDanger = false;
         }
+    }
+
+    private void Temporal()
+    {
+        visuals.SetActive(true);
     }
 }
