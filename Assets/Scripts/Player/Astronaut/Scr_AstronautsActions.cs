@@ -81,13 +81,13 @@ public class Scr_AstronautsActions : MonoBehaviour
             interactionIndicatorAnim.gameObject.SetActive(false);
         }
 
-        if (Input.GetButtonDown("Interact") && astronautMovement.closeToCollector && astronautMovement.currentFuelCollector != null)
+        if (Input.GetButtonDown("Interact") && astronautMovement.closeToCollector && astronautMovement.extractor != null)
         {
-            if (emptyHands && !toolOnHands && astronautMovement.currentFuelCollector.GetComponent<Scr_ToolBase>().resourceAmount > 0 && !astronautMovement.currentFuelCollector.GetComponent<Scr_ToolBase>().onHands)
+            if (emptyHands && !toolOnHands && astronautMovement.extractor.GetComponent<Scr_ToolBase>().resourceAmount > 0 && !astronautMovement.extractor.GetComponent<Scr_ToolBase>().onHands)
             {
-                astronautMovement.currentFuelCollector.GetComponent<Scr_ToolBase>().resourceAmount -= 1;
-                currentResource = Instantiate(astronautMovement.currentFuelCollector.GetComponent<Scr_ToolBase>().resource, pickPoint);
-                astronautMovement.currentFuelCollector.GetComponent<Scr_ToolBase>().resourceLeft -= 1;
+                astronautMovement.extractor.GetComponent<Scr_ToolBase>().resourceAmount -= 1;
+                currentResource = Instantiate(astronautMovement.extractor.GetComponent<Scr_ToolBase>().resource, pickPoint);
+                astronautMovement.extractor.GetComponent<Scr_ToolBase>().resourceLeft -= 1;
                 emptyHands = false;
             }
         }
@@ -139,6 +139,18 @@ public class Scr_AstronautsActions : MonoBehaviour
     {
         if (currentResource.name == "Fuel")
             playerShip.GetComponent<Scr_PlayerShipStats>().ReFuel(currentResource.GetComponent<Scr_FuelBlock>().fuelAmount);
+
+        else if (currentResource.CompareTag("Resources"))
+        {
+            for (int i = 0; i < playerShip.GetComponent<Scr_PlayerShipStats>().resourceWarehouse.Length; i++)
+            {
+                if (playerShip.GetComponent<Scr_PlayerShipStats>().resourceWarehouse[i] == null)
+                {
+                    playerShip.GetComponent<Scr_PlayerShipStats>().resourceWarehouse[i] = currentResource.GetComponent<Scr_Resource>().resourceReference;
+                    break;
+                } 
+            }
+        }
 
         Destroy(currentResource);
         emptyHands = true;

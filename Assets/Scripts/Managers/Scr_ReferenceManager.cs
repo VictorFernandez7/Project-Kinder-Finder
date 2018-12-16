@@ -6,11 +6,11 @@ public class Scr_ReferenceManager : MonoBehaviour {
 
     [Header("Resources")]
     public GameObject[] GasResources;
-    public GameObject[] BlockResources;
-    public GameObject[] OreResources;
+    public GameObject[] SolidResources;
 
     [Header("Tools")]
     public GameObject GasExtractor;
+    public GameObject OreExtractor;
     public GameObject RepairingTool;
     public GameObject Jetpack;
 

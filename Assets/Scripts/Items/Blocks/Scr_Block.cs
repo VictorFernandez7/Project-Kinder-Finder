@@ -26,7 +26,7 @@ public class Scr_Block : MonoBehaviour {
         switch (blockType)
         {
             case BlockType.iron:
-                currentResource = referenceManager.BlockResources[0];
+                currentResource = referenceManager.SolidResources[0];
                 break;
         }
     }

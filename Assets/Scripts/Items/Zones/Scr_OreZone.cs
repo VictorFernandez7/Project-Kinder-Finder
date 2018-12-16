@@ -31,7 +31,7 @@ public class Scr_OreZone : MonoBehaviour {
         switch (oreType)
         {
             case OreType.iron:
-                currentResource = referenceManager.OreResources[0];
+                currentResource = referenceManager.SolidResources[0];
                 break;
         }
     }
