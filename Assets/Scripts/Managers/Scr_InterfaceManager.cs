@@ -17,7 +17,7 @@ public class Scr_InterfaceManager : MonoBehaviour
     [SerializeField] private Animator anim_TakingOffIcon;
     [SerializeField] private Animator anim_LandingIcon;
     [SerializeField] private Animator anim_FuelIcon;
-    [SerializeField] private Animator anim_CollisionIcon;
+    [SerializeField] private Animator anim_MiningIcon;
     [SerializeField] private Animator anim_DangerIcon;
     [SerializeField] private Animator anim_PlanetIcon;
 
@@ -148,5 +148,11 @@ public class Scr_InterfaceManager : MonoBehaviour
         
         else
             anim_PlanetIcon.SetBool("TurnOn", false);
+
+        if (mainCamera.mining)
+            anim_MiningIcon.SetBool("TurnOn", true);
+        
+        else
+            anim_MiningIcon.SetBool("TurnOn", false);
     }
 }
