@@ -10,6 +10,7 @@ public class Scr_MapManager : MonoBehaviour
     [SerializeField] float maxZoom;
     [SerializeField] float minZoom;
     [SerializeField] float zoomSpeed;
+    [SerializeField] float distanceFromCenter;
     [SerializeField] Vector2 clampBorderSize;
 
     [Header("Map Properties")]
@@ -62,7 +63,8 @@ public class Scr_MapManager : MonoBehaviour
         MapActivation();
 
         if (mapActive)
-            MapControl();
+            MapMovement();
+            //MapControl();
 
         if(playerShip.GetComponent<Scr_PlayerShipMovement>().currentPlanet != null && !onPlanet)
         {
@@ -132,6 +134,17 @@ public class Scr_MapManager : MonoBehaviour
         }
     }
 
+    private void MapMovement()
+    {
+        float distance = Vector2.Distance(mapCamera.ScreenToWorldPoint(Input.mousePosition), mapCamera.transform.position);
+
+        if(distance > distanceFromCenter)
+        {
+            mapCamera.transform.Translate((mapCamera.ScreenToWorldPoint(Input.mousePosition) - mapCamera.transform.position).normalized * 1.5f, Space.World);
+        }
+    }
+
+    /*
     private void MapControl()
     {
         float zoom = mapCamera.orthographicSize;
@@ -152,7 +165,7 @@ public class Scr_MapManager : MonoBehaviour
         Vector3 newPosition = new Vector3(mousePosition.x * dragSpeed, mousePosition.y * dragSpeed, 0f);
 
         mapCamera.transform.Translate(newPosition, Space.World);
-    }
+    }*/
 
     float totalDistance;
     float currentDistance;
