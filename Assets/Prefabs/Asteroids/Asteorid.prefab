@@ -586,7 +586,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1266836164466244}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 164.4, y: 16.1, z: 0}
+  m_LocalPosition: {x: 146.58911, y: 30, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4447744685472516}
@@ -1033,11 +1033,11 @@ MonoBehaviour:
   resistentZone: 0.5
   extractigResourceSpeed: 15
   deathSpeed: 25
-  deathForce: 250
+  deathForce: 175
   deathDamage: 25
   powerRegenSpeed: 40
-  steelAmount: 10
-  steelBlock: {fileID: 1587913126483098, guid: cfefb6ccd75627e43935b403f0219e50, type: 2}
+  ironAmount: 5
+  resourceBlock: {fileID: 0}
   explosionSlider: {fileID: 114085211472421256}
   resourceSlider: {fileID: 114894710302941922}
   resistentSlider: {fileID: 114362943953784978}
@@ -1048,6 +1048,7 @@ MonoBehaviour:
   asteroidVisuals: {fileID: 23929314591888260}
   asteroidCanvas: {fileID: 1575356383245936}
   asteroidCollider: {fileID: 1342798886510018}
+  resourceFeedback: {fileID: 114886841762170504}
   currentPower: 0
   mining: 0
   dead: 0
@@ -6970,7 +6971,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 1.48}
+  m_AnchoredPosition: {x: 0, y: 1.591}
   m_SizeDelta: {x: 3, y: 1.3755}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224481983141416872
@@ -7068,8 +7069,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 10, y: 0}
+  m_AnchoredPosition: {x: -2.4993973, y: 0}
+  m_SizeDelta: {x: 4.9997, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224672674676894842
 RectTransform:
@@ -7086,7 +7087,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.4026, y: 0.2}
+  m_AnchoredPosition: {x: 0.4026, y: 0.18580037}
   m_SizeDelta: {x: 16.1053, y: 11.5683}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224700186357619686
@@ -7234,6 +7235,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.4022, y: 0.1991987}
+  m_AnchoredPosition: {x: -0.4022, y: 0.185}
   m_SizeDelta: {x: 16.0863, y: 11.5992}
   m_Pivot: {x: 0.5, y: 0.5}
