@@ -189,6 +189,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
         collider2.enabled = false;
         fadeImage.SetBool("Fade", false);
         GetComponentInChildren<Scr_PlayerShipDeathCheck>().enabled = false;
+        GetComponent<Scr_PlayerShipPrediction>().enabled = false;
 
         Invoke("Respawn", respawnTime);
     }

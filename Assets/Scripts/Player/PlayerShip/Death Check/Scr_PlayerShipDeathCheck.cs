@@ -45,7 +45,7 @@ public class Scr_PlayerShipDeathCheck : MonoBehaviour
         }
 
         if (collision.gameObject.CompareTag("Asteroid"))
-            CheckVelocity();
+            playerShipStats.Death();
     }
 
     public void CheckLandingTime(bool reset)
