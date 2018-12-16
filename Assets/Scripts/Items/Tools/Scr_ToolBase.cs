@@ -9,6 +9,7 @@ public abstract class Scr_ToolBase : MonoBehaviour
     [HideInInspector] public GameObject resource;
     [HideInInspector] public int resourceAmount;
     [HideInInspector] public bool onHands;
+    [HideInInspector] public int resourceLeft;
 
     public abstract void Update();
 

@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using UnityEngine.UI;
 
-public class Scr_GasExtractor : Scr_ToolBase {
+public class Scr_OreExtractor : Scr_ToolBase {
 
     [SerializeField] private float extractorTime;
     [SerializeField] private LayerMask mask;
@@ -24,7 +24,7 @@ public class Scr_GasExtractor : Scr_ToolBase {
     private float savedExtractorTime;
     private float process;
     private GameObject ghost;
-    private GameObject gasZone;
+    private GameObject oreZone;
     private GameObject astronaut;
     private RaycastHit2D hit;
     private RaycastHit2D hitR;
@@ -33,7 +33,7 @@ public class Scr_GasExtractor : Scr_ToolBase {
     private bool placing;
     private bool showInterface;
 
-    void Start ()
+    void Start()
     {
         mainCamera = GameObject.Find("MainCamera").GetComponent<Camera>();
         astronautMovement = GameObject.Find("Astronaut").GetComponent<Scr_AstronautMovement>();
@@ -45,20 +45,20 @@ public class Scr_GasExtractor : Scr_ToolBase {
 
         savedExtractorTime = extractorTime;
         resourceAmount = 0;
-        gasZone = null;
+        oreZone = null;
         onHands = true;
         recolectable = false;
     }
-	
-	public override void Update ()
+
+    public override void Update()
     {
-        if(placing)
+        if (placing)
             PutOnPlace();
 
-        if (!onHands && gasZone != null && gasZone.GetComponent<Scr_GasZone>().amount > 0)
+        if (!onHands && oreZone != null && oreZone.GetComponent<Scr_OreZone>().amount > 0)
             Function();
 
-        if (gasZone == null)
+        if (oreZone == null)
         {
             recolectable = false;
         }
@@ -92,26 +92,26 @@ public class Scr_GasExtractor : Scr_ToolBase {
     {
         savedExtractorTime -= Time.deltaTime;
 
-        if (savedExtractorTime <= 0 && gasZone.GetComponent<Scr_GasZone>().amount > 0)
+        if (savedExtractorTime <= 0 && oreZone.GetComponent<Scr_OreZone>().amount > 0)
         {
             resourceAmount += 1;
             savedExtractorTime = extractorTime;
         }
 
 
-            gasZone.GetComponent<Scr_GasZone>().amount -= Time.deltaTime / extractorTime;
+        oreZone.GetComponent<Scr_OreZone>().amount -= Time.deltaTime / extractorTime;
 
-            if (process == 3)
-                process = 0;
+        if (process == 3)
+            process = 0;
 
-            process += Time.deltaTime;
-            process = Mathf.Clamp(process, 0, 3);
-        
+        process += Time.deltaTime;
+        process = Mathf.Clamp(process, 0, 3);
 
-        if (gasZone.GetComponent<Scr_GasZone>().amount <= 0 && resourceAmount != resourceLeft)
+
+        if (oreZone.GetComponent<Scr_OreZone>().amount <= 0 && resourceAmount != resourceLeft)
         {
             resourceAmount = resourceLeft;
-        }  
+        }
     }
 
     private void PutOnPlace()
@@ -128,7 +128,7 @@ public class Scr_GasExtractor : Scr_ToolBase {
         ghost.transform.position = astronautMovement.currentPlanet.transform.position + ((mousepos - astronautMovement.currentPlanet.transform.position).normalized * (Vector3.Distance(hit.point, astronautMovement.currentPlanet.transform.position) + GetComponentInChildren<Renderer>().bounds.size.y / 2));
         ghost.transform.localRotation = Quaternion.LookRotation(ghost.transform.forward, Vector2.Perpendicular(hitL.point - hitR.point));
 
-        if (ghost.GetComponent<Scr_GasExtractor>().recolectable)
+        if (ghost.GetComponent<Scr_OreExtractor>().recolectable)
         {
             Color color = ghost.GetComponentInChildren<Renderer>().material.color;
             color.g = 250;
@@ -151,9 +151,9 @@ public class Scr_GasExtractor : Scr_ToolBase {
                 astronaut.GetComponent<Scr_AstronautStats>().toolSlots[astronaut.GetComponent<Scr_AstronautsActions>().numberToolActive] = null;
                 astronaut.GetComponent<Scr_AstronautStats>().physicToolSlots[astronaut.GetComponent<Scr_AstronautsActions>().numberToolActive] = null;
                 astronaut.GetComponent<Scr_AstronautsActions>().BoolControl();
-                gasZone = ghost.GetComponent<Scr_GasExtractor>().gasZone;
-                resource = gasZone.GetComponent<Scr_GasZone>().currentResource;
-                resourceLeft = (int)gasZone.GetComponent<Scr_GasZone>().amount;
+                oreZone = ghost.GetComponent<Scr_OreExtractor>().oreZone;
+                resource = oreZone.GetComponent<Scr_OreZone>().currentResource;
+                resourceLeft = (int)oreZone.GetComponent<Scr_OreZone>().amount;
                 Destroy(ghost);
             }
         }
@@ -205,13 +205,13 @@ public class Scr_GasExtractor : Scr_ToolBase {
         resourceCanvas.SetActive(true);
         nameText.text = resource.name;
 
-        if (gasZone != null)
+        if (oreZone != null)
         {
-            if (gasZone.GetComponent<Scr_GasZone>().amount > 0)
-                remainingResources.text = "Remaining   " + ((int)gasZone.GetComponent<Scr_GasZone>().amount + 1);
+            if (oreZone.GetComponent<Scr_OreZone>().amount > 0)
+                remainingResources.text = "Remaining   " + ((int)oreZone.GetComponent<Scr_OreZone>().amount + 1);
 
             else
-                remainingResources.text = "Remaining   " + (int)gasZone.GetComponent<Scr_GasZone>().amount;
+                remainingResources.text = "Remaining   " + (int)oreZone.GetComponent<Scr_OreZone>().amount;
         }
 
         harvestedResources.text = "Harvested    " + resourceAmount;
@@ -220,20 +220,20 @@ public class Scr_GasExtractor : Scr_ToolBase {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "GasZone")
+        if (collision.gameObject.tag == "OreZone")
         {
             recolectable = true;
-            gasZone = collision.gameObject;
-            resource = gasZone.GetComponent<Scr_GasZone>().currentResource;
+            oreZone = collision.gameObject;
+            resource = oreZone.GetComponent<Scr_OreZone>().currentResource;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "GasZone")
+        if (collision.gameObject.tag == "OreZone")
         {
             recolectable = false;
-            gasZone = null;
+            oreZone = null;
         }
     }
 }
