@@ -20,17 +20,25 @@ public class Scr_InterfaceManager : MonoBehaviour
     [SerializeField] private Animator anim_MiningIcon;
     [SerializeField] private Animator anim_DangerIcon;
     [SerializeField] private Animator anim_PlanetIcon;
+    [SerializeField] private GameObject upgradePanel;
+    [SerializeField] private TextMeshProUGUI upgradePanelText;
+    [SerializeField] private GameObject warehousePanel;
+    [SerializeField] private TextMeshProUGUI warehousePanelText;
+    [SerializeField] private GameObject craftingPanel;
+    [SerializeField] private TextMeshProUGUI craftingPanelText;
+    [SerializeField] private GameObject ToolWarehousePanel;
+    [SerializeField] private Image ToolWarehousePanelIcon;
+    [SerializeField] private GameObject resourceWarehousePanel;
+    [SerializeField] private Image resourceWarehousePanelIcon;
 
     private bool questPanelActive;
     private bool playerShipWindowActive;
-
     private Animator anim_AstronautInterface;
     private Animator anim_PlayerShipInterface;
     private Animator anim_PlayerShipActions;
     private Animator anim_QuestPanel;
     private Animator anim_PlayerShipWindow;
     private Animator anim_FadeImage;
-
     private GameObject playerShip;
     private Scr_MainCamera mainCamera;
     private Scr_PlayerShipMovement playerShipMovement;
@@ -59,6 +67,7 @@ public class Scr_InterfaceManager : MonoBehaviour
         CheckAstronautState();
         LandingInterface();
         IndicatorManagement();
+        ChangeButtonColor();
 
         if (playerShipMovement.astronautOnBoard)
             CheckInputs();
@@ -98,13 +107,37 @@ public class Scr_InterfaceManager : MonoBehaviour
         }
     }
 
-    public void ChangeTextColor(TextMeshProUGUI currentSelected)
+    private void ChangeButtonColor()
     {
-        if (currentSelected.color == Color.black)
-            currentSelected.color = Color.white;
+        if (upgradePanel.activeInHierarchy)
+            upgradePanelText.color = Color.white;
 
         else
-            currentSelected.color = Color.black;
+            upgradePanelText.color = Color.black;
+
+        if (warehousePanel.activeInHierarchy)
+            warehousePanelText.color = Color.white;
+
+        else
+            warehousePanelText.color = Color.black;
+
+        if (craftingPanel.activeInHierarchy)
+            craftingPanelText.color = Color.white;
+
+        else
+            craftingPanelText.color = Color.black;
+
+        if (ToolWarehousePanel.activeInHierarchy)
+            ToolWarehousePanelIcon.color = Color.white;
+
+        else
+            ToolWarehousePanelIcon.color = Color.black;
+
+        if (resourceWarehousePanel.activeInHierarchy)
+            resourceWarehousePanelIcon.color = Color.white;
+
+        else
+            resourceWarehousePanelIcon.color = Color.black;
     }
 
     private void LandingInterface()
@@ -135,7 +168,7 @@ public class Scr_InterfaceManager : MonoBehaviour
         else
             anim_LandingIcon.SetBool("TurnOn", false);
 
-        if (playerShipStats.currentFuel <= (0.20f * playerShipStats.maxFuel))
+        if (playerShipStats.currentFuel <= (0.25f * playerShipStats.maxFuel))
             anim_FuelIcon.SetBool("TurnOn", true);
 
         else
