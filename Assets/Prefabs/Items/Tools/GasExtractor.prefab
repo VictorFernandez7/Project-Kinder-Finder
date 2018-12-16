@@ -933,6 +933,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89a1ae4ecb4221c4bb070c8bea67ed45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  extractorType: 1
+  scr_oreExtractor: {fileID: 0}
   scr_gasExtractor: {fileID: 114957479931784480}
 --- !u!114 &114957479931784480
 MonoBehaviour:
@@ -949,6 +951,7 @@ MonoBehaviour:
   resource: {fileID: 0}
   resourceAmount: 0
   onHands: 0
+  resourceLeft: 0
   extractorTime: 3
   mask:
     serializedVersion: 2
@@ -961,7 +964,6 @@ MonoBehaviour:
   playerCheck: {fileID: 1069482593711934}
   mainCamera: {fileID: 0}
   recolectable: 0
-  resourceLeft: 0
   playerNear: 0
 --- !u!222 &222108161439330924
 CanvasRenderer:

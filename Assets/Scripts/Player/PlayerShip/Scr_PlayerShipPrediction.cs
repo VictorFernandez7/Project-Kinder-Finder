@@ -59,7 +59,7 @@ public class Scr_PlayerShipPrediction : MonoBehaviour
             moveStep += gravity;
             currentPosition += moveStep + displacement;
 
-            if (!contact)
+      /*      if (!contact)
             {
                 if (proximityCheck.asteroids.Count > 0)
                 {
@@ -76,7 +76,7 @@ public class Scr_PlayerShipPrediction : MonoBehaviour
                             pointContact = 0;
                     }
                 }
-            }
+            }*/
 
             results[i] = currentPosition;
         }
