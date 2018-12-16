@@ -20,6 +20,12 @@ public class Scr_InterfaceManager : MonoBehaviour
     [SerializeField] private Animator anim_MiningIcon;
     [SerializeField] private Animator anim_DangerIcon;
     [SerializeField] private Animator anim_PlanetIcon;
+    [SerializeField] private GameObject upgradePanel;
+    [SerializeField] private TextMeshProUGUI upgradePanelText;
+    [SerializeField] private GameObject warehousePanel;
+    [SerializeField] private TextMeshProUGUI warehousePanelText;
+    [SerializeField] private GameObject craftingPanel;
+    [SerializeField] private TextMeshProUGUI craftingPanelText;
 
     private bool questPanelActive;
     private bool playerShipWindowActive;
@@ -59,6 +65,7 @@ public class Scr_InterfaceManager : MonoBehaviour
         CheckAstronautState();
         LandingInterface();
         IndicatorManagement();
+        ChangeTopButtonColor();
 
         if (playerShipMovement.astronautOnBoard)
             CheckInputs();
@@ -98,13 +105,25 @@ public class Scr_InterfaceManager : MonoBehaviour
         }
     }
 
-    public void ChangeTextColor(TextMeshProUGUI currentSelected)
+    private void ChangeTopButtonColor()
     {
-        if (currentSelected.color == Color.black)
-            currentSelected.color = Color.white;
+        if (upgradePanel.activeInHierarchy)
+            upgradePanelText.color = Color.white;
 
         else
-            currentSelected.color = Color.black;
+            upgradePanelText.color = Color.black;
+
+        if (warehousePanel.activeInHierarchy)
+            warehousePanelText.color = Color.white;
+
+        else
+            warehousePanelText.color = Color.black;
+
+        if (craftingPanel.activeInHierarchy)
+            craftingPanelText.color = Color.white;
+
+        else
+            craftingPanelText.color = Color.black;
     }
 
     private void LandingInterface()
@@ -135,7 +154,7 @@ public class Scr_InterfaceManager : MonoBehaviour
         else
             anim_LandingIcon.SetBool("TurnOn", false);
 
-        if (playerShipStats.currentFuel <= (0.20f * playerShipStats.maxFuel))
+        if (playerShipStats.currentFuel <= (0.25f * playerShipStats.maxFuel))
             anim_FuelIcon.SetBool("TurnOn", true);
 
         else
