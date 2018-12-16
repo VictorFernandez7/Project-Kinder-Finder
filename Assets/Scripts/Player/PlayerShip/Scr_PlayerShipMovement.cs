@@ -48,6 +48,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [SerializeField] private Animator warmingSliderAnim;
     [SerializeField] private Animator messageTextAnim;
     [SerializeField] private Animator undercarriageAnim;
+    [SerializeField] private CapsuleCollider2D mouseCheckTrigger;
 
     [HideInInspector] public bool astronautOnBoard;
     [HideInInspector] public bool onGround;

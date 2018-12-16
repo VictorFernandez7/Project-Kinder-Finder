@@ -31,6 +31,9 @@ public class Scr_PlayerShipStats : MonoBehaviour
     [Header("References")]
     [SerializeField] ParticleSystem deathParticles;
     [SerializeField] GameObject shipVisuals;
+    [SerializeField] BoxCollider2D collider1;
+    [SerializeField] BoxCollider2D collider2;
+    [SerializeField] Animator fadeImage;
 
     [SerializeField] public GameObject[] toolWarehouse;
     [SerializeField] public GameObject[] resourceWarehouse;
@@ -175,12 +178,18 @@ public class Scr_PlayerShipStats : MonoBehaviour
     public void Death()
     {
         playerShipMovement.canControlShip = false;
+        playerShipMovement.canRotateShip = false;
         playerShipMovement.dead = true;
         rb.isKinematic = true;
         rb.velocity = Vector3.zero;
         shipVisuals.gameObject.SetActive(false);
         deathParticles.Play();
         playerShipEffects.thrusterParticles.Stop();
+        collider1.enabled = false;
+        collider2.enabled = false;
+        fadeImage.SetBool("Fade", false);
+        GetComponentInChildren<Scr_PlayerShipDeathCheck>().enabled = false;
+        GetComponent<Scr_PlayerShipPrediction>().enabled = false;
 
         Invoke("Respawn", respawnTime);
     }

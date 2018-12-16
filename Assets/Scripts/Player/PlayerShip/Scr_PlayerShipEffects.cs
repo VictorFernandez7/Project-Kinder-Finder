@@ -134,6 +134,9 @@ public class Scr_PlayerShipEffects : MonoBehaviour
         var thrusterEmission = thrusterParticles.emission;
 
         thrusterEmission.rateOverTime = inSpaceThrusterPower;
+
+        if (GetComponent<Scr_PlayerShipStats>().currentFuel <= 0)
+            thrusterEmission.rateOverTime = 0;
     }
 
     public void TakingOffEffects(bool play)
