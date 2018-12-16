@@ -1,15 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEngine.Rendering.PostProcessing;
 using UnityEngine;
 
 public class Scr_Sun : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private CircleCollider2D warningTrigger;
-    [SerializeField] private CircleCollider2D deathTrigger;
+    [SerializeField] private PostProcessVolume postProcessVolume;
 
     private bool danger;
     private Scr_PlayerShipStats playerShipStats;
+
+    Vignette vignetteLayer;
+
+    Color redColor = Color.red;
+    float intensity = 0.8f;
 
     private void Start()
     {
@@ -22,10 +25,12 @@ public class Scr_Sun : MonoBehaviour
         {
             danger = true;
             playerShipStats.inDanger = true;
+
+            postProcessVolume.profile.TryGetSettings(out vignetteLayer);
+            vignetteLayer.intensity.value = 0.8f;
+            vignetteLayer.color.value = Color.red;
         }
 
-        if (collision.CompareTag("PlayerShip") && danger)
-            playerShipStats.Death();
 
     }
 
@@ -35,6 +40,10 @@ public class Scr_Sun : MonoBehaviour
         {
             playerShipStats.inDanger = false;
             danger = false;
+
+            postProcessVolume.profile.TryGetSettings(out vignetteLayer);
+            vignetteLayer.intensity.value = 0.25f;
+            vignetteLayer.color.value = Color.black;
         }
     }
 }
