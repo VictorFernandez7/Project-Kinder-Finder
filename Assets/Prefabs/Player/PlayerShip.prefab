@@ -245,7 +245,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1179959987047468
 GameObject:
   m_ObjectHideFlags: 1
@@ -774,7 +774,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1490911810987394
 GameObject:
   m_ObjectHideFlags: 1
@@ -2741,11 +2741,11 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1381225943975284}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.0001
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -3081,7 +3081,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0000017881393, y: -0.17856169}
+  m_Offset: {x: 0.0000017881393, y: -0.18481603}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3092,7 +3092,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4512655, y: 0.050775528}
+  m_Size: {x: 0.4512655, y: 0.0632842}
   m_EdgeRadius: 0
 --- !u!61 &61452028800751084
 BoxCollider2D:
@@ -3131,8 +3131,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.00362033, y: 0.22557127}
-  m_Size: {x: 0.72376466, y: 1.1239676}
+  m_Offset: {x: -0.0036203302, y: 0.32486454}
+  m_Size: {x: 0.7237648, y: 0.92538035}
   m_Direction: 0
 --- !u!70 &70641367716897180
 CapsuleCollider2D:
@@ -3146,8 +3146,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.02658391}
-  m_Size: {x: 0.35826775, y: 0.5089774}
+  m_Offset: {x: 0.000000013514832, y: 0.3189851}
+  m_Size: {x: 0.41635275, y: 0.89186007}
   m_Direction: 0
 --- !u!70 &70970584450276712
 CapsuleCollider2D:
@@ -3158,12 +3158,12 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.03771925}
-  m_Size: {x: 0.3208777, y: 0.45644093}
-  m_Direction: 0
+  m_Offset: {x: 5.476837e-10, y: 0.005667046}
+  m_Size: {x: 0.69920355, y: 0.2536631}
+  m_Direction: 1
 --- !u!95 &95156390952702918
 Animator:
   serializedVersion: 3
@@ -4071,7 +4071,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4124,6 +4124,7 @@ MonoBehaviour:
   warmingSliderAnim: {fileID: 95170297888001112}
   messageTextAnim: {fileID: 95209686538126738}
   undercarriageAnim: {fileID: 95156390952702918}
+  mouseCheckTrigger: {fileID: 70375290740719014}
   astronautOnBoard: 0
   onGround: 0
   takingOff: 0
@@ -4466,6 +4467,9 @@ MonoBehaviour:
   fuelColor75: {r: 0, g: 1, b: 0.09281945, a: 1}
   deathParticles: {fileID: 198544837972985684}
   shipVisuals: {fileID: 1037411504919446}
+  collider1: {fileID: 61120635698601538}
+  collider2: {fileID: 61452028800751084}
+  fadeImage: {fileID: 0}
   toolWarehouse:
   - {fileID: 0}
   - {fileID: 0}
@@ -4550,7 +4554,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -42252,7 +42256,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -42420,7 +42424,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
