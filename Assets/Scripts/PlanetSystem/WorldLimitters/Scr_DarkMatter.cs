@@ -23,7 +23,7 @@ public class Scr_DarkMatter : MonoBehaviour
             if (!visuals.activeInHierarchy)
             {
                 visuals.SetActive(true);
-                //Código Warning
+                playerShipStats.inDanger = true;
             }
 
             else
@@ -36,6 +36,7 @@ public class Scr_DarkMatter : MonoBehaviour
         if (collision.CompareTag("PlayerShip"))
         {
             visuals.SetActive(false);
+            playerShipStats.inDanger = false;
         }
     }
 }
