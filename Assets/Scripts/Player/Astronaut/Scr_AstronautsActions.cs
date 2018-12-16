@@ -26,7 +26,7 @@ public class Scr_AstronautsActions : MonoBehaviour
     private bool canInputAgain = true;
     private GameObject mainCamera;
     private GameObject playerShip;
-    private GameObject currentFuelBLock;
+    private GameObject currentResource;
     private Scr_CableVisuals cableVisuals;
     private Scr_AstronautMovement astronautMovement;
     private Scr_AstronautStats astronautStats;
@@ -52,7 +52,7 @@ public class Scr_AstronautsActions : MonoBehaviour
     {
         if (Input.GetButton("Interact"))
         {
-            if (astronautMovement.canEnterShip)
+            if (astronautMovement.canEnterShip && emptyHands)
             {
                 holdInputTime -= Time.deltaTime;
                 interactionIndicatorAnim.gameObject.SetActive(true);
@@ -69,6 +69,9 @@ public class Scr_AstronautsActions : MonoBehaviour
                         EnterShipFromSpace();
                 }
             }
+
+            else if(astronautMovement.canEnterShip)
+                IntroduceResource();
         }
 
         else
@@ -83,8 +86,8 @@ public class Scr_AstronautsActions : MonoBehaviour
             if (emptyHands && !toolOnHands && astronautMovement.currentFuelCollector.GetComponent<Scr_ToolBase>().resourceAmount > 0 && !astronautMovement.currentFuelCollector.GetComponent<Scr_ToolBase>().onHands)
             {
                 astronautMovement.currentFuelCollector.GetComponent<Scr_ToolBase>().resourceAmount -= 1;
-                currentFuelBLock = Instantiate(astronautMovement.currentFuelCollector.GetComponent<Scr_ToolBase>().resource, pickPoint);
-                astronautMovement.currentFuelCollector.GetComponent<Scr_GasExtractor>().resourceLeft -= 1;
+                currentResource = Instantiate(astronautMovement.currentFuelCollector.GetComponent<Scr_ToolBase>().resource, pickPoint);
+                astronautMovement.currentFuelCollector.GetComponent<Scr_ToolBase>().resourceLeft -= 1;
                 emptyHands = false;
             }
         }
@@ -110,8 +113,6 @@ public class Scr_AstronautsActions : MonoBehaviour
     
     private void EnterShipFromPlanet()
     {
-        if (emptyHands)
-        {
             playerShip.GetComponent<Scr_PlayerShipMovement>().astronautOnBoard = true;
             playerShip.GetComponent<Scr_PlayerShipActions>().startExitDelay = true;
             playerShip.GetComponent<Scr_PlayerShipMovement>().canControlShip = true;
@@ -120,14 +121,6 @@ public class Scr_AstronautsActions : MonoBehaviour
             DestroyAllTools();
             toolPanel.ReadNames();
             gameObject.SetActive(false);
-        }
-
-        else
-        {
-            playerShip.GetComponent<Scr_PlayerShipStats>().ReFuel(currentFuelBLock.GetComponent<Scr_FuelBlock>().fuelAmount);
-            Destroy(currentFuelBLock);
-            emptyHands = true;
-        }
     }
 
     private void EnterShipFromSpace()
@@ -140,6 +133,15 @@ public class Scr_AstronautsActions : MonoBehaviour
         cableVisuals.ResetCable();
         planetManager.Gravity(true);
         gameObject.SetActive(false);
+    }
+
+    private void IntroduceResource()
+    {
+        if (currentResource.name == "Fuel")
+            playerShip.GetComponent<Scr_PlayerShipStats>().ReFuel(currentResource.GetComponent<Scr_FuelBlock>().fuelAmount);
+
+        Destroy(currentResource);
+        emptyHands = true;
     }
 
     public void BoolControl()

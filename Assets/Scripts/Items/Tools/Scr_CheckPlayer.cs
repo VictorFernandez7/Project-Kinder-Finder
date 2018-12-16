@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Scr_CheckPlayer : MonoBehaviour {
 
-    [SerializeField] private Scr_GasExtractor scr_gasExtractor;
+    [SerializeField] private Scr_OreExtractor scr_oreExtractor;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Astronaut")
         {
-            scr_gasExtractor.playerNear = true;
+            scr_oreExtractor.playerNear = true;
         }
     }
 
@@ -18,7 +18,7 @@ public class Scr_CheckPlayer : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Astronaut")
         {
-            scr_gasExtractor.playerNear = false;
+            scr_oreExtractor.playerNear = false;
         }
     }
 }
