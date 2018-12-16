@@ -14,6 +14,12 @@ public class Scr_InterfaceManager : MonoBehaviour
     [SerializeField] private GameObject landingInterface;
     [SerializeField] private GameObject playerShipIcon;
     [SerializeField] private GameObject angleIcon;
+    [SerializeField] private Animator anim_TakingOffIcon;
+    [SerializeField] private Animator anim_LandingIcon;
+    [SerializeField] private Animator anim_FuelIcon;
+    [SerializeField] private Animator anim_CollisionIcon;
+    [SerializeField] private Animator anim_DangerIcon;
+    [SerializeField] private Animator anim_PlanetIcon;
 
     private bool questPanelActive;
     private bool playerShipWindowActive;
@@ -28,6 +34,7 @@ public class Scr_InterfaceManager : MonoBehaviour
     private GameObject playerShip;
     private Scr_MainCamera mainCamera;
     private Scr_PlayerShipMovement playerShipMovement;
+    private Scr_PlayerShipStats playerShipStats;
 
     private void Start()
     {
@@ -41,6 +48,7 @@ public class Scr_InterfaceManager : MonoBehaviour
         mainCamera = GameObject.Find("MainCamera").GetComponent<Scr_MainCamera>();
 
         playerShipMovement = playerShip.GetComponent<Scr_PlayerShipMovement>();
+        playerShipStats = playerShip.GetComponent<Scr_PlayerShipStats>();
 
         anim_AstronautInterface.SetBool("Show", true);
         anim_FadeImage.SetBool("Fade", true);
@@ -50,6 +58,7 @@ public class Scr_InterfaceManager : MonoBehaviour
     {
         CheckAstronautState();
         LandingInterface();
+        IndicatorManagement();
 
         if (playerShipMovement.astronautOnBoard)
             CheckInputs();
@@ -110,5 +119,34 @@ public class Scr_InterfaceManager : MonoBehaviour
 
         else
             landingInterface.SetActive(false);
+    }
+
+    private void IndicatorManagement()
+    {
+        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.takingOff)
+            anim_TakingOffIcon.SetBool("TurnOn", true);
+
+        else
+            anim_TakingOffIcon.SetBool("TurnOn", false);
+
+        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landing)
+            anim_LandingIcon.SetBool("TurnOn", true);
+
+        else
+            anim_LandingIcon.SetBool("TurnOn", false);
+
+        if (playerShipStats.currentFuel <= (0.20f * playerShipStats.maxFuel))
+            anim_FuelIcon.SetBool("TurnOn", true);
+
+        else
+            anim_FuelIcon.SetBool("TurnOn", false);
+
+        anim_DangerIcon.SetBool("TurnOn", playerShipStats.inDanger);
+
+        if (playerShipMovement.currentPlanet != null)
+            anim_PlanetIcon.SetBool("TurnOn", true);
+        
+        else
+            anim_PlanetIcon.SetBool("TurnOn", false);
     }
 }

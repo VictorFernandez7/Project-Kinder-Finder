@@ -40,6 +40,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
     [HideInInspector] public bool gasExtractor;
     [HideInInspector] public bool repairingTool;
     [HideInInspector] public bool jetpack;
+    [HideInInspector] public bool inDanger;
 
     private int numberOfSlotsWithTools;
     private bool alarm;
