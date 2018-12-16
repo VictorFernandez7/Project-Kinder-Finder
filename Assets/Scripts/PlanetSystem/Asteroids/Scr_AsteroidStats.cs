@@ -16,9 +16,9 @@ public class Scr_AsteroidStats : MonoBehaviour
     [SerializeField] public float deathDamage;
     [SerializeField] public float powerRegenSpeed;
 
-    [Header("Resources: Steel")]
-    [SerializeField] public float steelAmount;
-    [SerializeField] public GameObject steelBlock;
+    [Header("Resources: Iron")]
+    [SerializeField] public float ironAmount;
+    [SerializeField] public GameObject resourceBlock;
 
     [Header("References")]
     [SerializeField] private Slider explosionSlider;
@@ -31,6 +31,7 @@ public class Scr_AsteroidStats : MonoBehaviour
     [SerializeField] private MeshRenderer asteroidVisuals;
     [SerializeField] private GameObject asteroidCanvas;
     [SerializeField] private GameObject asteroidCollider;
+    [SerializeField] private TextMeshProUGUI resourceFeedback;
 
     [HideInInspector] public float currentPower;
     [HideInInspector] public bool mining;
@@ -97,6 +98,7 @@ public class Scr_AsteroidStats : MonoBehaviour
                 ExplosionZone();
 
             currentPower = Mathf.Clamp(currentPower, 0, 100);
+            resourceFeedback.text = "" + (int)((resourceAmount / 100) * ironAmount);
         }
     }
 
