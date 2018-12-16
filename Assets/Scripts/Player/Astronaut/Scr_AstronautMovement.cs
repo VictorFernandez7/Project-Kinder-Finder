@@ -56,7 +56,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     [HideInInspector] public Vector3 vectorJump;
     [HideInInspector] public Quaternion planetRotation;
     [HideInInspector] public GameObject currentPlanet;
-    [HideInInspector] public GameObject currentFuelCollector;
+    [HideInInspector] public GameObject extractor;
 
     private bool toJump;
     private bool lastRight;
@@ -128,7 +128,7 @@ public class Scr_AstronautMovement : MonoBehaviour
 
         if (collision.gameObject.tag == "Tool")
         {
-            currentFuelCollector = collision.gameObject;
+            extractor = collision.gameObject;
             closeToCollector = true;
             GetComponent<Scr_AstronautsActions>().toolOnFloor = collision.gameObject;
         }
