@@ -5,7 +5,7 @@ using UnityEngine;
 public class Scr_PlanetStats : MonoBehaviour {
 
     [Header("Data Requirements")]
-    [SerializeField] private Scr_SystemData planetData;
+    //[SerializeField] private Scr_SystemData planetData;
     [SerializeField] private int systemIndex;
     [SerializeField] private int planetIndex;
 
