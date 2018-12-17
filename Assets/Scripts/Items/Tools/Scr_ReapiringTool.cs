@@ -6,6 +6,7 @@ public class Scr_ReapiringTool : Scr_ToolBase {
 
     [SerializeField] private float distance;
     [SerializeField] private float angleLimit;
+    [SerializeField] private float repairingFactor;
     [SerializeField] private LayerMask masker;
     [SerializeField] private Color miningColor;
     [SerializeField] private Color repairingColor;
@@ -135,7 +136,7 @@ public class Scr_ReapiringTool : Scr_ToolBase {
                 if (hitLaser.collider.transform.CompareTag("PlayerShip"))
                 {
                     if (playerShip.GetComponent<Scr_PlayerShipStats>().currentShield < playerShip.GetComponent<Scr_PlayerShipStats>().maxShield)
-                        playerShip.GetComponent<Scr_PlayerShipStats>().currentShield += Time.deltaTime;
+                        playerShip.GetComponent<Scr_PlayerShipStats>().currentShield += Time.deltaTime * repairingFactor;
                 }
             }
         }
