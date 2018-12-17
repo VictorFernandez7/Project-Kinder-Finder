@@ -46,7 +46,6 @@ public class Scr_PlayerShipStats : MonoBehaviour
     [HideInInspector] public bool inDanger;
 
     private int numberOfSlotsWithTools;
-    private bool alarm;
     private Image fuelSliderFill;
     private Image shieldSliderFill;
     private Slider fuelSlider;
@@ -83,8 +82,11 @@ public class Scr_PlayerShipStats : MonoBehaviour
         FuelSliderColor();
         ShieldSliderColor();
 
-        if (currentFuel < 100 && !alarm)
-            alarm = true;
+        if (currentShield <= (0.1f * maxShield))
+            playerShipMovement.damaged = true;
+
+        else
+            playerShipMovement.damaged = false;
 
         if (currentShield < 0)
             Death();

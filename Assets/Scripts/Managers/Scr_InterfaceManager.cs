@@ -187,5 +187,11 @@ public class Scr_InterfaceManager : MonoBehaviour
         
         else
             anim_MiningIcon.SetBool("TurnOn", false);
+
+        if (playerShipStats.currentShield <= (0.25f * playerShipStats.maxShield) && playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed)
+            playerShipStats.inDanger = true;
+
+        else if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed)
+            playerShipStats.inDanger = false;
     }
 }
