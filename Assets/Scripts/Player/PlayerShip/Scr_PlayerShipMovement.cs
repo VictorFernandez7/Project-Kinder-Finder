@@ -42,6 +42,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [SerializeField] private string warmingMessage;
     [SerializeField] private string getInOutMessage;
     [SerializeField] private string takeOffMessage;
+    [SerializeField] private string damagedMessage;
 
     [Header("References")]
     [SerializeField] private Transform endOfShip;
@@ -58,6 +59,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [HideInInspector] public bool canRotateShip;
     [HideInInspector] public bool canControlShip;
     [HideInInspector] public bool landedOnce;
+    [HideInInspector] public bool damaged;
     [HideInInspector] public Camera mainCamera;
     [HideInInspector] public GameObject currentPlanet;
     [HideInInspector] public Rigidbody2D rb;
@@ -183,40 +185,50 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
     private void MessageTextManager()
     {
-        if (astronautMovement.canEnterShip)
+        if (damaged)
         {
-            if (!astronautOnBoard)
+            messageText.fontSize = 6;
+            messageText.text = damagedMessage;
+            messageTextAnim.SetBool("Show", true);
+        }
+
+        else
+        {
+            if (astronautMovement.canEnterShip)
             {
-                messageText.fontSize = 14;
-                messageText.text = getInOutMessage;
-                messageTextAnim.SetBool("Show", true);
+                if (!astronautOnBoard)
+                {
+                    messageText.fontSize = 14;
+                    messageText.text = getInOutMessage;
+                    messageTextAnim.SetBool("Show", true);
+                }
+
+                else
+                    messageTextAnim.SetBool("Show", false);
             }
 
             else
                 messageTextAnim.SetBool("Show", false);
-        }
 
-        else
-            messageTextAnim.SetBool("Show", false);
-
-        if (playerShipState == PlayerShipState.landed && astronautOnBoard)
-        {
-            messageTimer1 -= Time.deltaTime;
-
-            if (messageTimer1 <= 0)
+            if (playerShipState == PlayerShipState.landed && astronautOnBoard)
             {
-                messageText.fontSize = 6;
-                messageText.text = warmingMessage;
-                messageTextAnim.SetBool("Show", true);
+                messageTimer1 -= Time.deltaTime;
 
-                if (playerShipEffects.warmingSlider.value > 0)
+                if (messageTimer1 <= 0)
                 {
-                    messageTextAnim.SetBool("Show", false);
+                    messageText.fontSize = 6;
+                    messageText.text = warmingMessage;
+                    messageTextAnim.SetBool("Show", true);
 
-                    if (playerShipEffects.warmingSlider.value >= 0.9f * playerShipEffects.warmingSlider.maxValue)
+                    if (playerShipEffects.warmingSlider.value > 0)
                     {
-                        messageText.text = takeOffMessage;
-                        messageTextAnim.SetBool("Show", true);
+                        messageTextAnim.SetBool("Show", false);
+
+                        if (playerShipEffects.warmingSlider.value >= 0.9f * playerShipEffects.warmingSlider.maxValue)
+                        {
+                            messageText.text = takeOffMessage;
+                            messageTextAnim.SetBool("Show", true);
+                        }
                     }
                 }
             }
@@ -315,7 +327,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
                     playerShipPrediction.predictionTime = 6;
             }
 
-            if (Input.GetKey(KeyCode.LeftShift) && playerShipState == PlayerShipState.landed && canControlShip)
+            if (Input.GetKey(KeyCode.LeftShift) && playerShipState == PlayerShipState.landed && canControlShip && !damaged)
             {
                 playerShipEffects.warmingSlider.gameObject.SetActive(true);
                 playerShipEffects.warmingSlider.value += Time.deltaTime * warmingSpeed;
@@ -462,7 +474,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
     private void ShipControl()
     {
-        if (canControlShip && !onGround)
+        if (canControlShip && !onGround && !damaged)
         {
             if (playerShipStats.currentFuel > 0)
             {
