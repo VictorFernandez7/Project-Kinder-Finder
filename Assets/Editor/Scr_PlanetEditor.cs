@@ -3,27 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[System.Serializable]
-public class Scr_PlanetInfo
-{
-    public string m_name;
-    public float m_temperature;
-    public bool m_oxygen;
-    public float m_gravity;
-}
-
-public class Scr_SystemData : ScriptableObject
-{
-    public List<Scr_PlanetData> SystemList;
-}
-
-[System.Serializable]
-public class Scr_PlanetData
-{
-    public string m_name;
-    public List<Scr_PlanetInfo> PlanetList;
-}
-
 public class Scr_PlanetEditor : EditorWindow
 {
     private Scr_SystemData inventoryItemList;
@@ -132,7 +111,7 @@ public class Scr_PlanetEditor : EditorWindow
 
         if (GUILayout.Button("Next Planet ->", GUILayout.ExpandWidth(false)))
         {
-            if (viewIndex < inventoryItemList.SystemList[viewSystem -1].PlanetList.Count)
+            if (viewIndex < inventoryItemList.SystemList[viewSystem - 1].PlanetList.Count)
                 viewIndex += 1;
         }
 
@@ -172,7 +151,7 @@ public class Scr_PlanetEditor : EditorWindow
         viewIndex = inventoryItemList.SystemList[system].PlanetList.Count;
     }
 
-    void DeletePlanet(int system,int index)
+    void DeletePlanet(int system, int index)
     {
         inventoryItemList.SystemList[system].PlanetList.RemoveAt(index);
     }

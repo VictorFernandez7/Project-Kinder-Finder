@@ -40,6 +40,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     [SerializeField] private Transform transforms;
     [SerializeField] private GameObject astronautVisuals;
     [SerializeField] private Animator astronautAnim;
+    [SerializeField] private Scr_AstronautEffects astronautEffects;
 
     [HideInInspector] public bool onGround = true;
     [HideInInspector] public bool canMove;
@@ -404,8 +405,6 @@ public class Scr_AstronautMovement : MonoBehaviour
 
             if (Vector3.Distance(playerShip.transform.position, transform.position) < playerShipActions.maxDistanceOfShip)
             {
-
-
                 if (Input.GetAxis("Vertical") > 0f)
                     astronautRb.AddForce(transform.up * spaceWalkSpeed);
 

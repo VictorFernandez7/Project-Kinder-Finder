@@ -3,28 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[System.Serializable]
-public class Scr_UpgradeData 
-{
-    public string m_name;
-    public SVGImage m_icon;
-
-    [Header("Info")]
-    public string m_info;
-
-    [Header("Requirements")]
-    public string m_requirements;
-
-    [Header("Resources")]
-    public int m_fuel;
-    public int m_iron;
-}
-
-public class Scr_UpgradeList : ScriptableObject
-{
-    public List<Scr_UpgradeData> UpgradeList;
-}
-
 public class Scr_UpgradeEditor : EditorWindow
 {
     private Scr_UpgradeList inventoryItemList;
@@ -44,7 +22,7 @@ public class Scr_UpgradeEditor : EditorWindow
             inventoryItemList = AssetDatabase.LoadAssetAtPath(ObjectPath, typeof(Scr_UpgradeList)) as Scr_UpgradeList;
         }
 
-        if(inventoryItemList == null)
+        if (inventoryItemList == null)
         {
             viewIndex = 1;
 
@@ -90,9 +68,9 @@ public class Scr_UpgradeEditor : EditorWindow
         GUILayout.BeginHorizontal();
         GUILayout.Space(10);
 
-        if(GUILayout.Button("<- Prev", GUILayout.ExpandWidth(false)))
+        if (GUILayout.Button("<- Prev", GUILayout.ExpandWidth(false)))
         {
-            if(viewIndex > 1)
+            if (viewIndex > 1)
                 viewIndex -= 1;
         }
 
@@ -120,7 +98,7 @@ public class Scr_UpgradeEditor : EditorWindow
 
         GUILayout.EndHorizontal();
 
-        if(inventoryItemList.UpgradeList.Count > 0)
+        if (inventoryItemList.UpgradeList.Count > 0)
         {
             UpgradeListMenu();
         }
@@ -154,7 +132,7 @@ public class Scr_UpgradeEditor : EditorWindow
         GUILayout.EndHorizontal();
 
         string[] _choices = new string[inventoryItemList.UpgradeList.Count];
-        for(int i = 0; i < inventoryItemList.UpgradeList.Count; i++)
+        for (int i = 0; i < inventoryItemList.UpgradeList.Count; i++)
         {
             _choices[i] = inventoryItemList.UpgradeList[i].m_name;
         }
