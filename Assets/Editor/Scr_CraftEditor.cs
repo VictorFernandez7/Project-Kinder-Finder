@@ -3,25 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[System.Serializable]
-public class Scr_CraftInfo
-{
-    public string m_name;
-    public SVGImage m_icon;
-
-    [Header("Info")]
-    public string m_info;
-
-    [Header("Resources")]
-    public int m_fuel;
-    public int m_iron;
-}
-
-public class Scr_CraftData : ScriptableObject
-{
-    public List<Scr_CraftInfo> CraftList;
-}
-
 public class Scr_CraftEditor : EditorWindow
 {
     private Scr_CraftData inventoryItemList;
