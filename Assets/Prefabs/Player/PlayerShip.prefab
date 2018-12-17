@@ -341,8 +341,6 @@ GameObject:
   - component: {fileID: 70641367716897180}
   - component: {fileID: 70970584450276712}
   - component: {fileID: 114947369718006980}
-  - component: {fileID: 50923797314528700}
-  - component: {fileID: 114881678236710994}
   m_Layer: 13
   m_Name: DeathCheck
   m_TagString: PlayerShip
@@ -2976,26 +2974,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!50 &50923797314528700
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1216307119178300}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!50 &50926807006561250
 Rigidbody2D:
   serializedVersion: 4
@@ -4501,7 +4479,15 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  resourceWarehouse: []
+  resourceWarehouse:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   referenceManager: {fileID: 0}
   lastWarehouseEmpty: 0
   gasExtractor: 0
@@ -4564,21 +4550,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &114881678236710994
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1216307119178300}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32481fef81f2f5e4b9627bdd390f20ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panel: {fileID: 1171017813981268}
-  fuelSlider: {fileID: 114259427407584010}
-  shieldSlider: {fileID: 114760791055263000}
-  playerShip: {fileID: 1452036844316726}
 --- !u!114 &114906237113413980
 MonoBehaviour:
   m_ObjectHideFlags: 1
