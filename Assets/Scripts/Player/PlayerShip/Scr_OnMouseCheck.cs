@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Scr_OnMouseCheck : MonoBehaviour {
 
-    [SerializeField] private GameObject panel;
+    [SerializeField] public GameObject panel;
     [SerializeField] private Slider fuelSlider;
     [SerializeField] private Slider shieldSlider;
     [SerializeField] private GameObject playerShip;
