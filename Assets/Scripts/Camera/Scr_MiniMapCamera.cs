@@ -46,7 +46,7 @@ public class Scr_MiniMapCamera : MonoBehaviour
 
     private void FollowTarget()
     {
-        Vector3 followedTarget = new Vector3(currentTarget.transform.position.x, currentTarget.transform.position.y, -10);
+        Vector3 followedTarget = new Vector3(currentTarget.transform.position.x, currentTarget.transform.position.y, -100);
 
         transform.position = Vector3.Lerp(transform.position, followedTarget, Time.deltaTime * (currentTarget == playerShip ? followSpeed : (followSpeed * 25f)));
     }
