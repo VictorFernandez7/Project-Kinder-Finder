@@ -50,6 +50,13 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [SerializeField] private Animator messageTextAnim;
     [SerializeField] private Animator undercarriageAnim;
     [SerializeField] private CapsuleCollider2D mouseCheckTrigger;
+    [SerializeField] public Camera mainCamera;
+    [SerializeField] private TextMeshProUGUI limiterText;
+    [SerializeField] private TextMeshProUGUI speedText;
+    [SerializeField] private TextMeshProUGUI messageText;
+    [SerializeField] private Slider speedSlider;
+    [SerializeField] private Slider limitSlider;
+    [SerializeField] private Scr_AstronautMovement astronautMovement;
 
     [HideInInspector] public bool astronautOnBoard;
     [HideInInspector] public bool onGround;
@@ -60,7 +67,6 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [HideInInspector] public bool canControlShip;
     [HideInInspector] public bool landedOnce;
     [HideInInspector] public bool damaged;
-    [HideInInspector] public Camera mainCamera;
     [HideInInspector] public GameObject currentPlanet;
     [HideInInspector] public Rigidbody2D rb;
 
@@ -71,17 +77,12 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     private float canControlTimerSaved;
     private float checkingDistance;
     private float initialBulletTime;
-    private Slider speedSlider;
-    private Slider limitSlider;
+    
     private Vector3 landingOrientationVector;
     private Vector3 targetTakingOff;
-    private Vector3 targetLanding;
-    private TextMeshProUGUI limiterText;
-    private TextMeshProUGUI speedText;
-    private TextMeshProUGUI messageText;
+    private Vector3 targetLanding;    
     private Scr_PlayerShipStats playerShipStats;
     private Scr_PlayerShipActions playerShipActions;
-    private Scr_AstronautMovement astronautMovement;
     private Scr_PlayerShipEffects playerShipEffects;
     private Scr_PlayerShipDeathCheck playerShipDeathCheck;
     private Scr_PlayerShipPrediction playerShipPrediction;
@@ -95,15 +96,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     }
 
     private void Start()
-    {
-        mainCamera = GameObject.Find("MainCamera").GetComponent<Camera>();
-        limiterText = GameObject.Find("Limiter").GetComponent<TextMeshProUGUI>();
-        speedText = GameObject.Find("Speed").GetComponent<TextMeshProUGUI>();
-        messageText = GameObject.Find("MessageText").GetComponent<TextMeshProUGUI>();
-        astronautMovement = GameObject.Find("Astronaut").GetComponent<Scr_AstronautMovement>();
-        speedSlider = GameObject.Find("SpeedSlider").GetComponent<Slider>();
-        limitSlider = GameObject.Find("LimitSlider").GetComponent<Slider>();
-
+    {        
         rb = GetComponent<Rigidbody2D>();
         playerShipStats = GetComponent<Scr_PlayerShipStats>();
         playerShipActions = GetComponent<Scr_PlayerShipActions>();

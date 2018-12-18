@@ -41,18 +41,14 @@ public class Scr_PlayerShipEffects : MonoBehaviour
     [SerializeField] public ParticleSystem miningParticles;
     [SerializeField] private Light miningLight;
     [SerializeField] public ParticleSystem starParticles;
+    [SerializeField] public Slider warmingSlider;
+    [SerializeField] private Image warmingFill;
 
-    [HideInInspector] public Slider warmingSlider;
-
-    private Image warmingFill;
     private Scr_PlayerShipMovement playerShipMovement;
     private Scr_PlayerShipActions playerShipActions;
 
     private void Start()
     {
-        warmingSlider = GameObject.Find("WarmingSlider").GetComponent<Slider>();
-        warmingFill = GameObject.Find("WarmingFill").GetComponent<Image>();
-
         playerShipMovement = GetComponent<Scr_PlayerShipMovement>();
         playerShipActions = GetComponent<Scr_PlayerShipActions>();
 

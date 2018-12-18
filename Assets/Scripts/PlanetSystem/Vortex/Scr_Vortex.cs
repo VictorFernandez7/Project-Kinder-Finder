@@ -17,16 +17,16 @@ public class Scr_Vortex : MonoBehaviour
     [SerializeField] float particleAmount;
     [SerializeField] float lifeTime;
 
+    [Header("References")]
+    [SerializeField] private GameObject playerShip;
+
     private bool checkDestroy = true;
     private float checkDestroyTime = 0.25f;
-    private GameObject playerShip;
     private ParticleSystem vortexParticles;
     private CircleCollider2D vortexCollider;
 
     private void Start()
     {
-        playerShip = GameObject.Find("PlayerShip");
-
         vortexCollider = GetComponent<CircleCollider2D>();
         vortexParticles = GetComponentInChildren<ParticleSystem>();
 

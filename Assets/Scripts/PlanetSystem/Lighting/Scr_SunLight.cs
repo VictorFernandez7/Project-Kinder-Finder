@@ -4,12 +4,8 @@ using UnityEngine;
 
 public class Scr_SunLight : MonoBehaviour
 {
-    private GameObject playerShip;
-
-    private void Start()
-    {
-        playerShip = GameObject.Find("PlayerShip");
-    }
+    [Header("References")]
+    [SerializeField] private GameObject playerShip;
 
     private void Update()
     {

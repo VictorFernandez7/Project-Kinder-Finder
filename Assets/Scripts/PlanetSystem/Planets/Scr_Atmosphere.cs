@@ -4,12 +4,8 @@ using UnityEngine;
 
 public class Scr_Atmosphere : MonoBehaviour
 {
-    private Scr_PlayerShipMovement playerShipMovement;
-
-    private void Start()
-    {
-        playerShipMovement = GameObject.Find("PlayerShip").GetComponent<Scr_PlayerShipMovement>();
-    }
+    [Header("References")]
+    [SerializeField] private Scr_PlayerShipMovement playerShipMovement;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

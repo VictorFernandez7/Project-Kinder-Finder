@@ -3,12 +3,6 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(BoxCollider2D))]
-[RequireComponent(typeof(BoxCollider2D))]
-[RequireComponent(typeof(Scr_AstronautsActions))]
-[RequireComponent(typeof(Scr_AstronautStats))]
-
 public class Scr_AstronautMovement : MonoBehaviour
 {
     [Header("Movement Properties")]
@@ -41,6 +35,8 @@ public class Scr_AstronautMovement : MonoBehaviour
     [SerializeField] private GameObject astronautVisuals;
     [SerializeField] private Animator astronautAnim;
     [SerializeField] private Scr_AstronautEffects astronautEffects;
+    [SerializeField] private GameObject playerShip;
+    [SerializeField] private Camera mainCamera;
 
     [HideInInspector] public bool onGround = true;
     [HideInInspector] public bool canMove;
@@ -70,12 +66,10 @@ public class Scr_AstronautMovement : MonoBehaviour
     private float currentAngle;
     private float currentDistance;
     private float inertialTime;
-    private Camera mainCamera;
     private Vector2 pointLeft;
     private Vector2 pointRight;
     private Vector2 movementVector;
     private Vector2 lastVector;
-    private GameObject playerShip;
     private Rigidbody2D astronautRb;
     private RaycastHit2D hitL;
     private RaycastHit2D hitR;

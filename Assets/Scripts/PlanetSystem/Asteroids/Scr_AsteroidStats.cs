@@ -32,6 +32,8 @@ public class Scr_AsteroidStats : MonoBehaviour
     [SerializeField] private GameObject asteroidCanvas;
     [SerializeField] private GameObject asteroidCollider;
     [SerializeField] private TextMeshProUGUI resourceFeedback;
+    [SerializeField] private GameObject playerShip;
+    [SerializeField] private Scr_MainCamera mainCamera;
 
     [HideInInspector] public float currentPower;
     [HideInInspector] public bool mining;
@@ -44,9 +46,7 @@ public class Scr_AsteroidStats : MonoBehaviour
     private float initialResourceZone;
     private float initialColliderSize;
     private float resourceZoneMultiplier;
-    private Vector3 initialScale;
-    private GameObject playerShip;
-    private Scr_MainCamera mainCamera;
+    private Vector3 initialScale;    
     private Scr_PlayerShipStats playerShipStats;
     private Scr_PlayerShipActions playerShipActions;
     private Scr_PlayerShipEffects playerShipEffects;
@@ -54,8 +54,6 @@ public class Scr_AsteroidStats : MonoBehaviour
 
     private void Start()
     {
-        playerShip = GameObject.Find("PlayerShip");
-        mainCamera = GameObject.Find("MainCamera").GetComponent< Scr_MainCamera>();
         playerShipActions = playerShip.GetComponent<Scr_PlayerShipActions>();
         playerShipEffects = playerShip.GetComponent<Scr_PlayerShipEffects>();
         playerShipStats = playerShip.GetComponent<Scr_PlayerShipStats>();

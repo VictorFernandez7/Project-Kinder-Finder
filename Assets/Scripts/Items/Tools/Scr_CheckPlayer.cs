@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Scr_CheckPlayer : MonoBehaviour {
 
+    [Header("Extractor Properties")]
     [SerializeField] private ExtractorType extractorType;
-    [SerializeField] private Scr_OreExtractor scr_oreExtractor;
-    [SerializeField] private Scr_GasExtractor scr_gasExtractor;
+    [SerializeField] private Scr_OreExtractor oreExtractor;
+    [SerializeField] private Scr_GasExtractor gasExtractor;
 
     public enum ExtractorType
     {
@@ -16,19 +17,18 @@ public class Scr_CheckPlayer : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Astronaut")
+        if (collision.gameObject.tag == "Astronaut")
         {
             switch (extractorType)
             {
                 case ExtractorType.oreExtractor:
-                    scr_oreExtractor.playerNear = true;
+                    oreExtractor.playerNear = true;
                     break;
 
                 case ExtractorType.gasExtractor:
-                    scr_gasExtractor.playerNear = true;
+                    gasExtractor.playerNear = true;
                     break;
             }
-            
         }
     }
 
@@ -39,11 +39,11 @@ public class Scr_CheckPlayer : MonoBehaviour {
             switch (extractorType)
             {
                 case ExtractorType.oreExtractor:
-                    scr_oreExtractor.playerNear = false;
+                    oreExtractor.playerNear = false;
                     break;
 
                 case ExtractorType.gasExtractor:
-                    scr_gasExtractor.playerNear = false;
+                    gasExtractor.playerNear = false;
                     break;
             }
         }

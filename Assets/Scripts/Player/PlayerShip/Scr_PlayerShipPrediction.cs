@@ -10,19 +10,17 @@ public class Scr_PlayerShipPrediction : MonoBehaviour
     [Header("References")]
     [SerializeField] LineRenderer predictionLineMap;
     [SerializeField] Scr_PlayerShipProxCheck proximityCheck;
+    [SerializeField] private Scr_PlanetManager planetManager;
 
     [HideInInspector] public LineRenderer predictionLine;
 
     private int pointNumber;
     private int pointContact = 0;
     private Rigidbody2D rb;
-    private Scr_PlanetManager planetManager;
     private GameObject currentPlanet;
 
     private void Start()
     {
-        planetManager = GameObject.Find("PlanetManager").GetComponent<Scr_PlanetManager>();
-
         rb = GetComponent<Rigidbody2D>();
         predictionLine = GetComponent<LineRenderer>();
     }

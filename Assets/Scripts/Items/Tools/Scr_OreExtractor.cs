@@ -4,10 +4,13 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class Scr_OreExtractor : Scr_ToolBase {
-
+public class Scr_OreExtractor : Scr_ToolBase
+{
+    [Header("Ore Extractor Properties")]
     [SerializeField] private float extractorTime;
     [SerializeField] private LayerMask mask;
+
+    [Header("References")]
     [SerializeField] private GameObject resourceCanvas;
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI remainingResources;
@@ -19,8 +22,8 @@ public class Scr_OreExtractor : Scr_ToolBase {
     [HideInInspector] public bool recolectable;
     [HideInInspector] public bool playerNear;
 
-
-    private Scr_ReferenceManager referenceManager;
+    private bool placing;
+    private bool showInterface;
     private float savedExtractorTime;
     private float process;
     private GameObject ghost;
@@ -30,8 +33,7 @@ public class Scr_OreExtractor : Scr_ToolBase {
     private RaycastHit2D hitR;
     private RaycastHit2D hitL;
     private Scr_AstronautMovement astronautMovement;
-    private bool placing;
-    private bool showInterface;
+    private Scr_ReferenceManager referenceManager;
 
     void Start()
     {
@@ -59,16 +61,13 @@ public class Scr_OreExtractor : Scr_ToolBase {
             Function();
 
         if (oreZone == null)
-        {
             recolectable = false;
-        }
 
         if (!onHands && (showInterface || playerNear))
             Interface();
 
         else
             resourceCanvas.SetActive(false);
-
     }
 
     public override void UseTool()
@@ -78,13 +77,10 @@ public class Scr_OreExtractor : Scr_ToolBase {
             placing = !placing;
 
             if (placing)
-            {
                 ghost = Instantiate(gameObject, astronaut.transform.position, astronaut.transform.rotation);
-            }
+
             else if (!placing)
-            {
                 Destroy(ghost);
-            }
         }
     }
 
@@ -98,7 +94,6 @@ public class Scr_OreExtractor : Scr_ToolBase {
             savedExtractorTime = extractorTime;
         }
 
-
         oreZone.GetComponent<Scr_OreZone>().amount -= Time.deltaTime / extractorTime;
 
         if (process == 3)
@@ -107,11 +102,8 @@ public class Scr_OreExtractor : Scr_ToolBase {
         process += Time.deltaTime;
         process = Mathf.Clamp(process, 0, 3);
 
-
         if (oreZone.GetComponent<Scr_OreZone>().amount <= 0 && resourceAmount != resourceLeft)
-        {
             resourceAmount = resourceLeft;
-        }
     }
 
     private void PutOnPlace()

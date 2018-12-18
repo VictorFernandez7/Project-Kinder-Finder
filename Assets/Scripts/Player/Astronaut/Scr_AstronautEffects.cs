@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Scr_AstronautEffects : MonoBehaviour {
-
+public class Scr_AstronautEffects : MonoBehaviour
+{
     [Header("Sounds")]
-    public SoundDefinition steps;
+    [SerializeField] public SoundDefinition steps;
 }

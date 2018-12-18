@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Scr_ReferenceManager : MonoBehaviour {
-
+public class Scr_ReferenceManager : MonoBehaviour
+{
     [Header("Resources")]
-    public GameObject[] GasResources;
-    public GameObject[] SolidResources;
+    [SerializeField] public GameObject[] GasResources;
+    [SerializeField] public GameObject[] SolidResources;
 
     [Header("Tools")]
-    public GameObject GasExtractor;
-    public GameObject OreExtractor;
-    public GameObject RepairingTool;
-    public GameObject Jetpack;
+    [SerializeField] public GameObject GasExtractor;
+    [SerializeField] public GameObject OreExtractor;
+    [SerializeField] public GameObject RepairingTool;
+    [SerializeField] public GameObject Jetpack;
 
     private void Start()
     {

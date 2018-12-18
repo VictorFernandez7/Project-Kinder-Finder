@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.UI;
+﻿using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 
@@ -30,31 +28,23 @@ public class Scr_InterfaceManager : MonoBehaviour
     [SerializeField] private Image ToolWarehousePanelIcon;
     [SerializeField] private GameObject resourceWarehousePanel;
     [SerializeField] private Image resourceWarehousePanelIcon;
+    [SerializeField] private Animator anim_AstronautInterface;
+    [SerializeField] private Animator anim_PlayerShipInterface;
+    [SerializeField] private Animator anim_PlayerShipActions;
+    [SerializeField] private Animator anim_QuestPanel;
+    [SerializeField] private Animator anim_PlayerShipWindow;
+    [SerializeField] private Animator anim_FadeImage;
+    [SerializeField] private GameObject playerShip;
+    [SerializeField] private Scr_MainCamera mainCamera;
 
     private bool questPanelActive;
     private bool playerShipWindowActive;
-    private Animator anim_AstronautInterface;
-    private Animator anim_PlayerShipInterface;
-    private Animator anim_PlayerShipActions;
-    private Animator anim_QuestPanel;
-    private Animator anim_PlayerShipWindow;
-    private Animator anim_FadeImage;
-    private GameObject playerShip;
-    private Scr_MainCamera mainCamera;
+    
     private Scr_PlayerShipMovement playerShipMovement;
     private Scr_PlayerShipStats playerShipStats;
 
     private void Start()
     {
-        playerShip = GameObject.Find("PlayerShip");
-        anim_AstronautInterface = GameObject.Find("AstronautInterface").GetComponent<Animator>();
-        anim_PlayerShipInterface = GameObject.Find("PlayerShipInterface").GetComponent<Animator>();
-        anim_PlayerShipActions = GameObject.Find("PlayerShipActions").GetComponent<Animator>();
-        anim_QuestPanel = GameObject.Find("QuestPanel").GetComponent<Animator>();
-        anim_PlayerShipWindow = GameObject.Find("PlayerShipWindow").GetComponent<Animator>();
-        anim_FadeImage = GameObject.Find("FadeImage").GetComponent<Animator>();
-        mainCamera = GameObject.Find("MainCamera").GetComponent<Scr_MainCamera>();
-
         playerShipMovement = playerShip.GetComponent<Scr_PlayerShipMovement>();
         playerShipStats = playerShip.GetComponent<Scr_PlayerShipStats>();
 

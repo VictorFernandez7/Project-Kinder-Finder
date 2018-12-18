@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 
 public class Scr_MapManager : MonoBehaviour
@@ -22,6 +20,10 @@ public class Scr_MapManager : MonoBehaviour
     [SerializeField] private GameObject mapVisuals;
     [SerializeField] private GameObject indicator;
     [SerializeField] private TextMeshProUGUI distanceText;
+    [SerializeField] private GameObject mainCanvas;
+    [SerializeField] private GameObject mapCanvas;
+    [SerializeField] private GameObject playerShip;
+    [SerializeField] private Camera mainCamera;
 
     [HideInInspector] public bool mapActive;
     [HideInInspector] public bool waypointActive;
@@ -35,22 +37,13 @@ public class Scr_MapManager : MonoBehaviour
     private bool clampToScreen = true;
     private bool slow;
     private bool onPlanet;
-    private Camera mainCamera;
+    private float distanceHUD;
     private Vector3 dragOrigin;
     private Vector2 velocity;
-    private float distanceHUD;
-    private GameObject mainCanvas;
-    private GameObject mapCanvas;
-    private GameObject playerShip;
     private GameObject onPlayerTarget;
 
     private void Start()
     {
-        playerShip = GameObject.Find("PlayerShip");
-        mainCamera = GameObject.Find("MainCamera").GetComponent<Camera>();
-        mainCanvas = GameObject.Find("MainCanvas");
-        mapCanvas = GameObject.Find("MapCanvas");
-
         mapCanvas.SetActive(false);
         currentTarget = null;
 
@@ -66,7 +59,7 @@ public class Scr_MapManager : MonoBehaviour
             MapMovement();
             //MapControl();
 
-        if(playerShip.GetComponent<Scr_PlayerShipMovement>().currentPlanet != null && !onPlanet)
+        if (playerShip.GetComponent<Scr_PlayerShipMovement>().currentPlanet != null && !onPlanet)
         {
             onPlayerTarget = Instantiate(indicator);
             onPlayerTarget.GetComponent<SpriteRenderer>().color = onPlanetColor;
@@ -74,7 +67,7 @@ public class Scr_MapManager : MonoBehaviour
             onPlanet = true;
         }
 
-        else if(playerShip.GetComponent<Scr_PlayerShipMovement>().currentPlanet == null)
+        else if (playerShip.GetComponent<Scr_PlayerShipMovement>().currentPlanet == null)
         {
             onPlanet = false;
             Destroy(onPlayerTarget);
@@ -89,6 +82,7 @@ public class Scr_MapManager : MonoBehaviour
     {
         Destroy(mapIndicator);
         Destroy(directionIndicator);
+
         indicatorActive = false;
         waypointActive = false;
         target = null;
@@ -138,10 +132,8 @@ public class Scr_MapManager : MonoBehaviour
     {
         float distance = Vector2.Distance(mapCamera.ScreenToWorldPoint(Input.mousePosition), mapCamera.transform.position);
 
-        if(distance > distanceFromCenter)
-        {
+        if (distance > distanceFromCenter)
             mapCamera.transform.Translate((mapCamera.ScreenToWorldPoint(Input.mousePosition) - mapCamera.transform.position).normalized * 1.5f, Space.World);
-        }
     }
 
     /*

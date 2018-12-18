@@ -14,15 +14,13 @@ public class Scr_PlayerShipHalo : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Transform playership;
+    [SerializeField] private Scr_PlayerShipMovement playerShipMovement;
 
     private float initialTimerValue;
     private LineRenderer haloLine;
-    private Scr_PlayerShipMovement playerShipMovement;
 
     private void Start()
     {
-        playerShipMovement = GameObject.Find("PlayerShip").GetComponent<Scr_PlayerShipMovement>();
-
         haloLine = GetComponent<LineRenderer>();
         initialTimerValue = colorChangeDelay;
     }

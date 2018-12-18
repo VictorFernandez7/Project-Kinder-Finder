@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Scr_Orbit : MonoBehaviour {
-
+public class Scr_Orbit : MonoBehaviour
+{
+    [Header("References")]
     [SerializeField] private LineRenderer orbitLine;
     [SerializeField] private Transform planet;
     [SerializeField] private Transform pivot;
 
-    float magnitude;
+    private float magnitude;
 
-    void Start () {
+    void Start ()
+    {
         magnitude = (planet.position - pivot.position).magnitude;
         CreateOrbit();
     }

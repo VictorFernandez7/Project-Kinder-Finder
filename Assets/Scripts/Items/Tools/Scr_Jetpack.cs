@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Scr_Jetpack : Scr_ToolBase {
-
+public class Scr_Jetpack : Scr_ToolBase
+{
+    [Header("Jetpack Properties")]
     [SerializeField] private float speedJetpack;
     [SerializeField] private float timeCharge;
 
@@ -12,19 +13,22 @@ public class Scr_Jetpack : Scr_ToolBase {
     private float savedTimeCharge;
     private bool charge;
 
-    // Use this for initialization
-    void Start () {
-        astronautMovement = GameObject.Find("Astronaut").GetComponent<Scr_AstronautMovement>();
+    void Start ()
+    {
         astronaut = GameObject.Find("Astronaut");
+
+        astronautMovement = astronaut.GetComponent<Scr_AstronautMovement>();
+
         savedTimeCharge = timeCharge;
         charge = true;
     }
-	
-	// Update is called once per frame
-	public override void Update () {
+
+	public override void Update ()
+    {
         if (!charge)
         {
             savedTimeCharge -= Time.deltaTime;
+
             if(savedTimeCharge <= 0)
             {
                 charge = true;
@@ -44,23 +48,11 @@ public class Scr_Jetpack : Scr_ToolBase {
         }
     }
 
-    public override void Function()
-    {
-        
-    }
+    public override void Function() { }
 
-    public override void RecoverTool()
-    {
-        
-    }
+    public override void RecoverTool() { }
 
-    public override void OnMouseEnter()
-    {
+    public override void OnMouseEnter() { }
 
-    }
-
-    public override void OnMouseExit()
-    {
-        
-    }
+    public override void OnMouseExit() { }
 }

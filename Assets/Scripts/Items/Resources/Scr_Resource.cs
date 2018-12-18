@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Scr_Resource : MonoBehaviour {
-
+public class Scr_Resource : MonoBehaviour
+{
+    [Header("Resource Properties")]
     [SerializeField] private ResourceType resourceType;
-    [SerializeField] private int index;
+    [SerializeField] private int typeIndex;
 
     [HideInInspector] public GameObject resourceReference;
 
@@ -20,11 +21,11 @@ public class Scr_Resource : MonoBehaviour {
         switch (resourceType)
         {
             case ResourceType.gas:
-                resourceReference = GameObject.Find("ReferenceManager").GetComponent<Scr_ReferenceManager>().GasResources[index];
+                resourceReference = GameObject.Find("ReferenceManager").GetComponent<Scr_ReferenceManager>().GasResources[typeIndex];
                 break;
 
             case ResourceType.solid:
-                resourceReference = GameObject.Find("ReferenceManager").GetComponent<Scr_ReferenceManager>().SolidResources[index];
+                resourceReference = GameObject.Find("ReferenceManager").GetComponent<Scr_ReferenceManager>().SolidResources[typeIndex];
                 break;
         }
     }

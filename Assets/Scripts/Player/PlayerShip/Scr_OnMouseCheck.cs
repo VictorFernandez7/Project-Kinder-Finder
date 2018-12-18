@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Scr_OnMouseCheck : MonoBehaviour {
-
+public class Scr_OnMouseCheck : MonoBehaviour
+{
+    [Header("References")]
     [SerializeField] public GameObject panel;
     [SerializeField] private Slider fuelSlider;
     [SerializeField] private Slider shieldSlider;
