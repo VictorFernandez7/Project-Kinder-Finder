@@ -4,10 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class Scr_GasExtractor : Scr_ToolBase {
-
+public class Scr_GasExtractor : Scr_ToolBase
+{
+    [Header("Gas Extractor Parameters")]
     [SerializeField] private float extractorTime;
     [SerializeField] private LayerMask mask;
+
+    [Header("References")]
     [SerializeField] private GameObject resourceCanvas;
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI remainingResources;
@@ -18,7 +21,6 @@ public class Scr_GasExtractor : Scr_ToolBase {
     [HideInInspector] public Camera mainCamera;
     [HideInInspector] public bool recolectable;
     [HideInInspector] public bool playerNear;
-
 
     private Scr_ReferenceManager referenceManager;
     private float savedExtractorTime;
@@ -36,9 +38,10 @@ public class Scr_GasExtractor : Scr_ToolBase {
     void Start ()
     {
         mainCamera = GameObject.Find("MainCamera").GetComponent<Camera>();
-        astronautMovement = GameObject.Find("Astronaut").GetComponent<Scr_AstronautMovement>();
         astronaut = GameObject.Find("Astronaut");
         referenceManager = GameObject.Find("ReferenceManager").GetComponent<Scr_ReferenceManager>();
+
+        astronautMovement = astronaut.GetComponent<Scr_AstronautMovement>();
 
         resourceCanvas.SetActive(false);
         playerCheck.SetActive(false);
@@ -59,16 +62,13 @@ public class Scr_GasExtractor : Scr_ToolBase {
             Function();
 
         if (gasZone == null)
-        {
             recolectable = false;
-        }
 
         if (!onHands && (showInterface || playerNear))
             Interface();
 
         else
             resourceCanvas.SetActive(false);
-
     }
 
     public override void UseTool()
@@ -78,13 +78,10 @@ public class Scr_GasExtractor : Scr_ToolBase {
             placing = !placing;
 
             if (placing)
-            {
                 ghost = Instantiate(gameObject, astronaut.transform.position, astronaut.transform.rotation);
-            }
+
             else if (!placing)
-            {
                 Destroy(ghost);
-            }
         }
     }
 
@@ -98,20 +95,16 @@ public class Scr_GasExtractor : Scr_ToolBase {
             savedExtractorTime = extractorTime;
         }
 
+        gasZone.GetComponent<Scr_GasZone>().amount -= Time.deltaTime / extractorTime;
 
-            gasZone.GetComponent<Scr_GasZone>().amount -= Time.deltaTime / extractorTime;
+        if (process == 3)
+            process = 0;
 
-            if (process == 3)
-                process = 0;
-
-            process += Time.deltaTime;
-            process = Mathf.Clamp(process, 0, 3);
-        
+        process += Time.deltaTime;
+        process = Mathf.Clamp(process, 0, 3);
 
         if (gasZone.GetComponent<Scr_GasZone>().amount <= 0 && resourceAmount != resourceLeft)
-        {
             resourceAmount = resourceLeft;
-        }  
     }
 
     private void PutOnPlace()

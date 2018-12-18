@@ -3534,6 +3534,7 @@ MonoBehaviour:
   activeHalo: {r: 1, g: 1, b: 1, a: 0.50980395}
   notActiveHalo: {r: 1, g: 1, b: 1, a: 0}
   playership: {fileID: 4030621875282276}
+  playerShipMovement: {fileID: 0}
 --- !u!114 &114236856419511710
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4005,6 +4006,7 @@ MonoBehaviour:
   predictionTime: 4
   predictionLineMap: {fileID: 120501272858494042}
   proximityCheck: {fileID: 114779136795001458}
+  planetManager: {fileID: 0}
   predictionLine: {fileID: 0}
 --- !u!114 &114564075594853054
 MonoBehaviour:
@@ -4042,6 +4044,7 @@ MonoBehaviour:
   miningLight: {fileID: 108917598069573828}
   starParticles: {fileID: 198935063272262492}
   warmingSlider: {fileID: 0}
+  warmingFill: {fileID: 0}
 --- !u!114 &114602957055860766
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4157,6 +4160,13 @@ MonoBehaviour:
   messageTextAnim: {fileID: 95209686538126738}
   undercarriageAnim: {fileID: 95156390952702918}
   mouseCheckTrigger: {fileID: 70375290740719014}
+  mainCamera: {fileID: 0}
+  limiterText: {fileID: 0}
+  speedText: {fileID: 0}
+  messageText: {fileID: 0}
+  speedSlider: {fileID: 0}
+  limitSlider: {fileID: 0}
+  astronautMovement: {fileID: 0}
   astronautOnBoard: 0
   onGround: 0
   takingOff: 0
@@ -4166,7 +4176,6 @@ MonoBehaviour:
   canControlShip: 1
   landedOnce: 0
   damaged: 0
-  mainCamera: {fileID: 0}
   currentPlanet: {fileID: 0}
   rb: {fileID: 0}
 --- !u!114 &114726556538770880
@@ -4484,7 +4493,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnTime: 3
-  currentShield: 10
+  currentShield: 100
   maxShield: 100
   shieldColor0: {r: 0.027350426, g: 0, b: 1, a: 0}
   shieldColor25: {r: 0, g: 0.41091633, b: 1, a: 1}
@@ -4503,6 +4512,11 @@ MonoBehaviour:
   collider1: {fileID: 61120635698601538}
   collider2: {fileID: 61452028800751084}
   fadeImage: {fileID: 0}
+  fuelSliderFill: {fileID: 0}
+  shieldSliderFill: {fileID: 0}
+  fuelSlider: {fileID: 0}
+  shieldSlider: {fileID: 0}
+  referenceManager: {fileID: 0}
   toolWarehouse:
   - {fileID: 1239215430283492, guid: 8be2670d51deb35429ede33415fe43cd, type: 2}
   - {fileID: 0}
@@ -4521,7 +4535,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  referenceManager: {fileID: 0}
   lastWarehouseEmpty: 0
   gasExtractor: 0
   repairingTool: 0
@@ -4641,6 +4654,12 @@ MonoBehaviour:
   interactionIndicatorAnim: {fileID: 95768059161077384}
   landingCollider: {fileID: 61120635698601538}
   spaceCollider: {fileID: 61452028800751084}
+  astronaut: {fileID: 0}
+  miningSlider: {fileID: 0}
+  miningFill: {fileID: 0}
+  miningPowerText: {fileID: 0}
+  mainCamera: {fileID: 0}
+  planetManager: {fileID: 0}
   startExitDelay: 0
   closeToAsteroid: 0
   doingSpaceWalk: 0

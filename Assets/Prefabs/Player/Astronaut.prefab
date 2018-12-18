@@ -954,10 +954,10 @@ GameObject:
   - component: {fileID: 4004395127091482}
   - component: {fileID: 50578835625786104}
   - component: {fileID: 61289482788019356}
-  - component: {fileID: 70211833932815782}
   - component: {fileID: 114844797242794480}
   - component: {fileID: 114105366921904924}
   - component: {fileID: 114755716893654776}
+  - component: {fileID: 114544908541210520}
   m_Layer: 0
   m_Name: Astronaut
   m_TagString: Astronaut
@@ -2966,7 +2966,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: f36af30ed087f164fa8330118c45b6b6, type: 3}
+  - {fileID: 2100000, guid: 800b769640e497c43b1f874378b49e1b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3038,21 +3038,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.14, y: 0.32}
   m_EdgeRadius: 0
---- !u!70 &70211833932815782
-CapsuleCollider2D:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1635559910669824}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.00000016599697, y: 0.075317934}
-  m_Size: {x: 0.09000002, y: 0.2593636}
-  m_Direction: 0
 --- !u!95 &95729286543585278
 Animator:
   serializedVersion: 3
@@ -3090,6 +3075,18 @@ MonoBehaviour:
   toolOnHands: 0
   numberToolActive: 0
   toolOnFloor: {fileID: 0}
+--- !u!114 &114544908541210520
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1635559910669824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fff63e50c464ca459bedd18a4082f76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  steps: {fileID: 0}
 --- !u!114 &114755716893654776
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3105,7 +3102,7 @@ MonoBehaviour:
   sprintSpeed: 0.03
   collisionMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 5120
   spaceWalkSpeed: 0.25
   rotationDelay: 1
   attachDistance: 0.25
@@ -3118,13 +3115,14 @@ MonoBehaviour:
   distance: 0.1
   astronautHeight: 0.08
   astronautWidth: 0.08
-  maxAngle: 10
+  maxAngle: 50
   rayPointLeft: {fileID: 1705007326068512}
   rayPointRight: {fileID: 1642608111972328}
   walkingParticles: {fileID: 198665950421681262}
   transforms: {fileID: 4080018639410374}
   astronautVisuals: {fileID: 1723429103729512}
   astronautAnim: {fileID: 95729286543585278}
+  astronautEffects: {fileID: 0}
   onGround: 1
   canMove: 1
   canEnterShip: 0
@@ -3140,7 +3138,7 @@ MonoBehaviour:
   vectorJump: {x: 0, y: 0, z: 0}
   planetRotation: {x: -0, y: -0, z: 0.57485926, w: 0.8182523}
   currentPlanet: {fileID: 0}
-  currentFuelCollector: {fileID: 0}
+  extractor: {fileID: 0}
 --- !u!114 &114844797242794480
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3177,7 +3175,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: f36af30ed087f164fa8330118c45b6b6, type: 3}
+  - {fileID: 2100000, guid: 75dcc777f9763cc4fbf33d599e051a19, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

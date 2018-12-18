@@ -25,13 +25,13 @@ public class Scr_AsteroidBehaviour : MonoBehaviour
     [SerializeField] public Animator messageTextAnim;
     [SerializeField] public Animator asteroidAnim;
     [SerializeField] private GameObject panel;
+    [SerializeField] private GameObject playerShip;
 
     [HideInInspector] public bool attached;
     [HideInInspector] public bool closeToShip;
     [HideInInspector] public bool move;
 
     private Vector3 canvasPos;
-    private GameObject playerShip;
     private TextMeshProUGUI messageText;
     private Scr_PlayerShipActions playerShipActions;
     private Scr_AsteroidStats asteroidStats;
@@ -43,16 +43,12 @@ public class Scr_AsteroidBehaviour : MonoBehaviour
 
     private void Start()
     {
-        playerShip = GameObject.Find("PlayerShip");
-
         playerShipActions = playerShip.GetComponent<Scr_PlayerShipActions>();
         messageText = GetComponentInChildren<TextMeshProUGUI>();
         asteroidStats = GetComponent<Scr_AsteroidStats>();
 
         move = true;
-
         messageText.text = message;
-
         lastFrameRotationPivot = planet.transform.position;
     }
 
@@ -67,9 +63,7 @@ public class Scr_AsteroidBehaviour : MonoBehaviour
         }
 
         if (attached)
-        {
             panel.SetActive(false);
-        }
     }
 
     private void OnDrawGizmos()
@@ -123,9 +117,7 @@ public class Scr_AsteroidBehaviour : MonoBehaviour
     private void OnMouseEnter()
     {
         if (!attached)
-        {
             panel.SetActive(true);
-        }
     }
 
     private void OnMouseExit()

@@ -2,12 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(BoxCollider2D))]
-[RequireComponent(typeof(BoxCollider2D))]
-[RequireComponent(typeof(Scr_AstronautMovement))]
-[RequireComponent(typeof(Scr_AstronautStats))]
-
 public class Scr_AstronautsActions : MonoBehaviour
 {
     [Header("References")]
@@ -15,6 +9,9 @@ public class Scr_AstronautsActions : MonoBehaviour
     [SerializeField] public Transform pickPoint;
     [SerializeField] public Scr_ToolPanel toolPanel;
     [SerializeField] private Animator interactionIndicatorAnim;
+    [SerializeField] private Scr_PlanetManager planetManager;
+    [SerializeField] private GameObject mainCamera;
+    [SerializeField] private GameObject playerShip;
 
     [HideInInspector] public bool emptyHands;
     [HideInInspector] public bool toolOnHands;
@@ -24,21 +21,15 @@ public class Scr_AstronautsActions : MonoBehaviour
     private float fuelAmount;
     private float holdInputTime = 0.9f;
     private bool canInputAgain = true;
-    private GameObject mainCamera;
-    private GameObject playerShip;
+    
     private GameObject currentResource;
     private Scr_CableVisuals cableVisuals;
     private Scr_AstronautMovement astronautMovement;
     private Scr_AstronautStats astronautStats;
-    private Scr_PlanetManager planetManager;
     private Scr_PlayerShipActions playerShipActions;
 
     private void Start()
     {
-        playerShip = GameObject.Find("PlayerShip");
-        mainCamera = GameObject.Find("MainCamera");
-        planetManager = GameObject.Find("PlanetManager").GetComponent<Scr_PlanetManager>();
-
         astronautMovement = GetComponent<Scr_AstronautMovement>();
         astronautStats = GetComponent<Scr_AstronautStats>();
         cableVisuals = playerShip.GetComponentInChildren<Scr_CableVisuals>();

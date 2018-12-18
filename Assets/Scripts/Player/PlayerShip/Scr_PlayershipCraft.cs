@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Scr_PlayershipCraft : MonoBehaviour {
+public class Scr_PlayerShipCraft : MonoBehaviour {
 
     [SerializeField] private Dictionary<string, int> Resources = new Dictionary<string, int>();
 
@@ -31,15 +31,12 @@ public class Scr_PlayershipCraft : MonoBehaviour {
 
     private void CalculateResources()
     {
-        
         for (int i = 0; i < playerShipStats.resourceWarehouse.Length; i++)
         {
             List<string> keys = new List<string>(Resources.Keys);
 
             if (!playerShipStats.resourceWarehouse[i])
-            {
                 break;
-            }
 
             else
             {

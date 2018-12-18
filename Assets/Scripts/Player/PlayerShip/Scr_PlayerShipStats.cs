@@ -34,10 +34,13 @@ public class Scr_PlayerShipStats : MonoBehaviour
     [SerializeField] BoxCollider2D collider1;
     [SerializeField] BoxCollider2D collider2;
     [SerializeField] Animator fadeImage;
-
+    [SerializeField] private Image fuelSliderFill;
+    [SerializeField] private Image shieldSliderFill;
+    [SerializeField] private Slider fuelSlider;
+    [SerializeField] private Slider shieldSlider;
+    [SerializeField] public Scr_ReferenceManager referenceManager;
     [SerializeField] public GameObject[] toolWarehouse;
     [SerializeField] public GameObject[] resourceWarehouse;
-    [SerializeField] public Scr_ReferenceManager referenceManager;
 
     [HideInInspector] public int lastWarehouseEmpty;
     [HideInInspector] public bool gasExtractor;
@@ -45,22 +48,13 @@ public class Scr_PlayerShipStats : MonoBehaviour
     [HideInInspector] public bool jetpack;
     [HideInInspector] public bool inDanger;
 
-    private int numberOfSlotsWithTools;
-    private Image fuelSliderFill;
-    private Image shieldSliderFill;
-    private Slider fuelSlider;
-    private Slider shieldSlider;
+    private int numberOfSlotsWithTools;    
     private Rigidbody2D rb;
     private Scr_PlayerShipMovement playerShipMovement;
     private Scr_PlayerShipEffects playerShipEffects;
 
     private void Start()
     {
-        fuelSlider = GameObject.Find("FuelSlider").GetComponent<Slider>();
-        shieldSlider = GameObject.Find("ShieldSlider").GetComponent<Slider>();
-        fuelSliderFill = GameObject.Find("FuelFill").GetComponent<Image>();
-        shieldSliderFill = GameObject.Find("ShieldFill").GetComponent<Image>();
-
         playerShipMovement = GetComponent<Scr_PlayerShipMovement>();
         playerShipEffects = GetComponent<Scr_PlayerShipEffects>();
         rb = GetComponent<Rigidbody2D>();

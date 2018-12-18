@@ -34,7 +34,7 @@ public class Scr_UpgradeEditor : EditorWindow
 
             if (inventoryItemList)
             {
-                inventoryItemList.UpgradeList = new List<Scr_UpgradeData>();
+                inventoryItemList.UpgradeList = new List<Scr_UpgradeInfo>();
                 string relPath = AssetDatabase.GetAssetPath(inventoryItemList);
                 EditorPrefs.SetString("objectPath", relPath);
             }
@@ -112,7 +112,7 @@ public class Scr_UpgradeEditor : EditorWindow
 
     void AddUpgrade()
     {
-        Scr_UpgradeData newUpgrade = new Scr_UpgradeData();
+        Scr_UpgradeInfo newUpgrade = new Scr_UpgradeInfo();
         newUpgrade.m_name = "New Upgrade";
         inventoryItemList.UpgradeList.Add(newUpgrade);
         viewIndex = inventoryItemList.UpgradeList.Count;

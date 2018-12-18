@@ -31,6 +31,12 @@ public class Scr_PlayerShipActions : MonoBehaviour
     [SerializeField] private Animator interactionIndicatorAnim;
     [SerializeField] private BoxCollider2D landingCollider;
     [SerializeField] private BoxCollider2D spaceCollider;
+    [SerializeField] private GameObject astronaut;
+    [SerializeField] private Slider miningSlider;
+    [SerializeField] private Image miningFill;
+    [SerializeField] private TextMeshProUGUI miningPowerText;
+    [SerializeField] private Scr_MainCamera mainCamera;
+    [SerializeField] private Scr_PlanetManager planetManager;
 
     [HideInInspector] public bool startExitDelay;
     [HideInInspector] public bool closeToAsteroid;
@@ -45,29 +51,16 @@ public class Scr_PlayerShipActions : MonoBehaviour
     private bool toolPanel;
     private bool doneOnce;
     private bool canInputAgain = true;
-    private Image miningFill;
-    private Slider miningSlider;
     private Vector3 lastFramePlanetPosition;
-    private GameObject astronaut;
     private Rigidbody2D playerShipRb;
     private Rigidbody2D astronautRb;
-    private Scr_MainCamera mainCamera;
-    private TextMeshProUGUI miningPowerText;
     private Scr_CableVisuals cableVisuals;
-    private Scr_PlanetManager planetManager;
     private Scr_PlayerShipMovement playerShipMovement;
     private Scr_PlayerShipPrediction playerShipPrediction;
     private Scr_PlayerShipEffects playerShipEffects;
 
     private void Start()
     {
-        astronaut = GameObject.Find("Astronaut");
-        miningSlider = GameObject.Find("MiningSlider").GetComponent<Slider>();
-        miningFill = GameObject.Find("MiningFill").GetComponent<Image>();
-        miningPowerText = GameObject.Find("Power").GetComponent<TextMeshProUGUI>();
-        mainCamera = GameObject.Find("MainCamera").GetComponent<Scr_MainCamera>();
-        planetManager = GameObject.Find("PlanetManager").GetComponent<Scr_PlanetManager>();
-
         playerShipMovement = GetComponent<Scr_PlayerShipMovement>();
         playerShipPrediction = GetComponent<Scr_PlayerShipPrediction>();
         cableVisuals = GetComponentInChildren<Scr_CableVisuals>();

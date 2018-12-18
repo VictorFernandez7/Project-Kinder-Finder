@@ -9,18 +9,17 @@ public class Scr_MiniMapCamera : MonoBehaviour
     [SerializeField] private float zoomSpeed;
     [SerializeField] private float followSpeed;
 
+    [Header("References")]
+    [SerializeField] private GameObject playerShip;
+    [SerializeField] private GameObject mainCamera;
+
     private float zoomInPlanet;
     private Camera minimapCamera;
-    private GameObject mainCamera;
-    private GameObject playerShip;
     private GameObject currentTarget;
     private Scr_PlayerShipMovement playerShipMovement;
 
     private void Start()
     {
-        playerShip = GameObject.Find("PlayerShip");
-        mainCamera = GameObject.Find("MainCamera");
-
         minimapCamera = GetComponent<Camera>();
         playerShipMovement = playerShip.GetComponent<Scr_PlayerShipMovement>();
 

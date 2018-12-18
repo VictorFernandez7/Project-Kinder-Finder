@@ -11,7 +11,8 @@ public class Scr_PlanetStats : MonoBehaviour {
 
     private float radius;
 
-	void Start () {
+	void Start ()
+    {
         radius = GetComponentInChildren<Renderer>().bounds.size.x / 2;
 	}
 	

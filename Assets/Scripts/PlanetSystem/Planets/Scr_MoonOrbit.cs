@@ -6,7 +6,8 @@ public class Scr_MoonOrbit : MonoBehaviour
 {
     [SerializeField] private GameObject planet;
 
-	void Update () {
+	void Update ()
+    {
         transform.position = planet.transform.position;
 	}
 }

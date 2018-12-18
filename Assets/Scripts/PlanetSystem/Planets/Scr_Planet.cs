@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(EdgeCollider2D))]
-
 public class Scr_Planet : MonoBehaviour
 {
     [Header("Planet Properties")]
@@ -18,27 +15,22 @@ public class Scr_Planet : MonoBehaviour
     [SerializeField] private GameObject directionIndicator;
     [SerializeField] private GameObject mapVisuals;
     [SerializeField] private GameObject rotationPivot;
+    [SerializeField] private Scr_MapManager mapManager;
+    [SerializeField] private GameObject playerShip;
+    [SerializeField] private GameObject astronaut;
+    [SerializeField] private GameObject mainCanvas;
 
     [HideInInspector] public bool switchGravity;
 
     private double gravityConstant;
     private Vector3 lastFrameRotationPivot;
-    private GameObject playerShip;
-    private GameObject astronaut;
-    private GameObject mainCanvas;
     private GameObject lastTarget;
     private Rigidbody2D planetRb;
     private Rigidbody2D playerShipRb;
     private Rigidbody2D astronautRB;
-    private Scr_MapManager mapManager;
 
     private void Start()
     {
-        playerShip = GameObject.Find("PlayerShip");
-        astronaut = GameObject.Find("Astronaut");
-        mainCanvas = GameObject.Find("MainCanvas");
-        mapManager = GameObject.Find("MapManager").GetComponent<Scr_MapManager>();
-
         planetRb = GetComponent<Rigidbody2D>();
 
         switchGravity = true;

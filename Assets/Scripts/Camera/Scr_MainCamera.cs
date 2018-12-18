@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using EZCameraShake;
+﻿using EZCameraShake;
 using UnityEngine;
 
 public class Scr_MainCamera : MonoBehaviour
@@ -20,26 +18,26 @@ public class Scr_MainCamera : MonoBehaviour
     [SerializeField] private float roughness = 10f;
     [SerializeField] private float fadeOutTime = 5f;
 
+    [Header("References")]
+    [SerializeField] private GameObject playerShip;
+    [SerializeField] private GameObject astronaut;
+
     [HideInInspector] public bool followAstronaut = true;
     [HideInInspector] public bool smoothRotation = true;
     [HideInInspector] public bool mining;
 
-    private float angleDifference;
     private float zoomDistance;
+    private Vector3 desiredUp;
     private Camera mainCamera;
     private GameObject currentPlanet;
-    private GameObject playerShip;
-    private GameObject astronaut;
     private Scr_PlayerShipMovement playerShipMovement;
     private Scr_PlayerShipActions playerShipActions;
     private CameraShakeInstance shakeInstance;
 
     private void Start()
     {
-        playerShip = GameObject.Find("PlayerShip");
         playerShipMovement = playerShip.GetComponent<Scr_PlayerShipMovement>();
         playerShipActions = playerShip.GetComponent<Scr_PlayerShipActions>();
-        astronaut = GameObject.Find("Astronaut");
         mainCamera = GetComponent<Camera>();
         desiredUp = transform.up;
 
@@ -69,8 +67,6 @@ public class Scr_MainCamera : MonoBehaviour
         else
             transform.position = new Vector3(playerShip.transform.position.x, playerShip.transform.position.y, -100);
     }
-
-    Vector3 desiredUp;
 
     private void CameraRotation()
     {

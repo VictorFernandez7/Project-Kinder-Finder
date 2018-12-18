@@ -11,9 +11,6 @@ public class Scr_Sun : MonoBehaviour
 
     Vignette vignetteLayer;
 
-    Color redColor = Color.red;
-    float intensity = 0.8f;
-
     private void Start()
     {
         playerShipStats = GameObject.Find("PlayerShip").GetComponent<Scr_PlayerShipStats>();
@@ -30,8 +27,6 @@ public class Scr_Sun : MonoBehaviour
             vignetteLayer.intensity.value = 0.8f;
             vignetteLayer.color.value = Color.red;
         }
-
-
     }
 
     private void OnTriggerExit2D(Collider2D collision)

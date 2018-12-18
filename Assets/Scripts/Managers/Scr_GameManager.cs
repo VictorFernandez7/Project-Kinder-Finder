@@ -1,9 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Scr_GameManager : MonoBehaviour
 {
+    [Header("Game Start Conditions")]
+
+
     [Header("Vortex Spawn")]
     [SerializeField] private float ratio;
     [SerializeField] private float xMax;
@@ -12,17 +13,14 @@ public class Scr_GameManager : MonoBehaviour
     [Header("References")]
     [SerializeField] public GameObject initialPlanet;
     [SerializeField] public GameObject vortex;
+    [SerializeField] private GameObject astronaut;
+    [SerializeField] private GameObject playerShip;
 
     private float initialRatio;
     private Vector3 vortexPosition;
-    private GameObject astronaut;
-    private GameObject playerShip;
 
     private void Awake()
     {
-        astronaut = GameObject.Find("Astronaut");
-        playerShip = GameObject.Find("PlayerShip");
-
         astronaut.GetComponent<Scr_AstronautMovement>().currentPlanet = initialPlanet;
         astronaut.GetComponent<Scr_AstronautMovement>().planetPosition = initialPlanet.transform.position;
         playerShip.GetComponent<Scr_PlayerShipMovement>().currentPlanet = initialPlanet;

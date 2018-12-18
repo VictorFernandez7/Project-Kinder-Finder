@@ -4,17 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class Scr_ToolPanel : MonoBehaviour {
-
-    public bool[] slots;
-    public bool[] warehouses;
-
-    [Header("Script References")]
+public class Scr_ToolPanel : MonoBehaviour
+{
+    [Header("References")]
+    [SerializeField] public bool[] slots;
+    [SerializeField] public bool[] warehouses;
     [SerializeField] private Scr_PlayerShipStats playerShipStats;
     [SerializeField] private Scr_PlayerShipActions playerShipActions;
     [SerializeField] private Scr_AstronautStats astronautStats;
-
-    [Header("Text References")]
     [SerializeField] private TextMeshProUGUI[] textToolSlots;
     [SerializeField] private TextMeshProUGUI[] textToolWarehouse;
 
@@ -23,20 +20,20 @@ public class Scr_ToolPanel : MonoBehaviour {
     [HideInInspector] public int warehouseNumber;
     [HideInInspector] public int slotNumber;
 
-    // Use this for initialization
-    void Start () {
+    void Start ()
+    {
         boolControl();
         ReadNames();
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+	void Update ()
+    {
         ReadNames();
 	}
 
     private void boolControl()
     {
-        for(int i = 0; i < slots.Length; i++)
+        for (int i = 0; i < slots.Length; i++)
         {
             if (slots[i] == true)
             {
@@ -44,6 +41,7 @@ public class Scr_ToolPanel : MonoBehaviour {
                 slotNumber = i;
                 break;
             }
+
             slot = false;
         }
 
@@ -55,25 +53,25 @@ public class Scr_ToolPanel : MonoBehaviour {
                 warehouseNumber = i;
                 break;
             }
+
             warehouse = false;
         }
     }
 
     public void Slot(int indice)
     {
-        if(!slot && !warehouse)
-        {
+        if (!slot && !warehouse)
             slots[indice] = true;
-        }
+
         else if (slots[indice])
-        {
             slots[indice] = false;
-        }
+
         else if (slot)
         {
             slots[slotNumber] = false;
             slots[indice] = true;
         }
+
         else if (warehouse)
         {
             GameObject temporalObject = astronautStats.toolSlots[indice]; 
@@ -89,18 +87,17 @@ public class Scr_ToolPanel : MonoBehaviour {
     public void Warehouse(int indice)
     {
         if (!slot && !warehouse)
-        {
             warehouses[indice] = true;
-        }
+
         else if (warehouses[indice])
-        {
             warehouses[indice] = false;
-        }
+
         else if (warehouse)
         {
             warehouses[warehouseNumber] = false;
             warehouses[indice] = true;
         }
+
         else if (slot)
         {
             GameObject temporalObject = playerShipStats.toolWarehouse[indice];
@@ -119,6 +116,7 @@ public class Scr_ToolPanel : MonoBehaviour {
         {
             if (astronautStats.toolSlots[i] == null)
                 textToolSlots[i].text = "Empty";
+
             else
                 textToolSlots[i].text = astronautStats.toolSlots[i].GetComponent<Scr_ToolBase>().toolName;
         }
@@ -127,6 +125,7 @@ public class Scr_ToolPanel : MonoBehaviour {
         {
             if (playerShipStats.toolWarehouse[i] == null)
                 textToolWarehouse[i].text = "Empty";
+
             else
                 textToolWarehouse[i].text = playerShipStats.toolWarehouse[i].GetComponent<Scr_ToolBase>().toolName;
         }
