@@ -259,7 +259,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     {
         float angle = 0;
 
-        //hitJL = Physics2D.Raycast(transform.position + (transform.up * astronautWidth) + (-transform.right * astronautWidth), -transform.up, distance, collisionMask);
+        hitJL = Physics2D.Raycast(transform.position + (transform.up * astronautWidth) + (-transform.right * astronautWidth), -transform.up, distance, collisionMask);
         hitAngleUp = Physics2D.Raycast(transform.position + (-transform.up * 0.06f), -transform.right, 0.08f, collisionMask);
         hitAngleDown = Physics2D.Raycast(transform.position + (-transform.up * 0.03f), -transform.right, 0.08f, collisionMask);
 
@@ -267,7 +267,7 @@ public class Scr_AstronautMovement : MonoBehaviour
         {
             Vector2 vectorAngle = (hitAngleUp.point - hitAngleDown.point);
             angle = Vector2.Angle(vectorAngle, transform.right);
-            //print("left" + angle);
+            print("left" + angle);
         }
 
         if (hitL)
@@ -287,7 +287,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     {
         float angle = 0;
 
-        //hitJR = Physics2D.Raycast(transform.position + (transform.up * astronautWidth) + (transform.right * astronautWidth), -transform.up, distance, collisionMask);
+        hitJR = Physics2D.Raycast(transform.position + (transform.up * astronautWidth) + (transform.right * astronautWidth), -transform.up, distance, collisionMask);
         hitAngleUp = Physics2D.Raycast(transform.position + (-transform.up * 0.06f), transform.right, 0.08f, collisionMask);
         hitAngleDown = Physics2D.Raycast(transform.position + (-transform.up * 0.03f), transform.right, 0.08f, collisionMask);
 
@@ -295,7 +295,6 @@ public class Scr_AstronautMovement : MonoBehaviour
         {
             Vector2 vectorAngle = (hitAngleUp.point - hitAngleDown.point);
             angle = Vector2.Angle(vectorAngle, -transform.right);
-            //print("right" + angle);
         }
 
         if (hitL)
