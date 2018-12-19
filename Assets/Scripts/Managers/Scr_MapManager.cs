@@ -5,11 +5,10 @@ public class Scr_MapManager : MonoBehaviour
 {
     [Header("Map Properties")]
     [SerializeField] private float dragSpeed;
-    [SerializeField] float maxZoom;
-    [SerializeField] float minZoom;
-    [SerializeField] float zoomSpeed;
-    [SerializeField] float distanceFromCenter;
-    [SerializeField] Vector2 clampBorderSize;
+    [SerializeField] private float maxZoom;
+    [SerializeField] private float minZoom;
+    [SerializeField] private float zoomSpeed;
+    [SerializeField] private Vector2 clampBorderSize;
 
     [Header("Map Properties")]
     [SerializeField] private float distance;
@@ -54,10 +53,6 @@ public class Scr_MapManager : MonoBehaviour
     {
         Halo();
         MapActivation();
-
-        if (mapActive)
-            MapMovement();
-            //MapControl();
 
         if (playerShip.GetComponent<Scr_PlayerShipMovement>().currentPlanet != null && !onPlanet)
         {
@@ -128,36 +123,7 @@ public class Scr_MapManager : MonoBehaviour
         }
     }
 
-    private void MapMovement()
-    {
-        float distance = Vector2.Distance(mapCamera.ScreenToWorldPoint(Input.mousePosition), mapCamera.transform.position);
 
-        if (distance > distanceFromCenter)
-            mapCamera.transform.Translate((mapCamera.ScreenToWorldPoint(Input.mousePosition) - mapCamera.transform.position).normalized * 1.5f, Space.World);
-    }
-
-    /*
-    private void MapControl()
-    {
-        float zoom = mapCamera.orthographicSize;
-        zoom += Input.GetAxis("Mouse ScrollWheel") * -zoomSpeed;
-        zoom = Mathf.Clamp(zoom, minZoom, maxZoom);
-        mapCamera.orthographicSize = zoom;
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            dragOrigin = mapCamera.ScreenToViewportPoint(Input.mousePosition);
-            return;
-        }
-
-        if (!Input.GetMouseButton(0))
-            return;
-
-        Vector3 mousePosition = mapCamera.ScreenToViewportPoint(Input.mousePosition) - dragOrigin;
-        Vector3 newPosition = new Vector3(mousePosition.x * dragSpeed, mousePosition.y * dragSpeed, 0f);
-
-        mapCamera.transform.Translate(newPosition, Space.World);
-    }*/
 
     float totalDistance;
     float currentDistance;
