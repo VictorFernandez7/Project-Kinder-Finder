@@ -20,9 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4716615781731968}
   - component: {fileID: 20452384316129220}
-  - component: {fileID: 81670874916714628}
   - component: {fileID: 114350138147120712}
   - component: {fileID: 114007983477547528}
+  - component: {fileID: 114768127321597692}
   m_Layer: 11
   m_Name: MapCamera
   m_TagString: Untagged
@@ -83,13 +83,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &81670874916714628
-AudioListener:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1476974549256876}
-  m_Enabled: 0
 --- !u!114 &114007983477547528
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -164,3 +157,17 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &114768127321597692
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1476974549256876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b1ba65e6979054488ad621b66d236c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapManager: {fileID: 0}
+  distanceFromCenter: 0
+  mapCamera: {fileID: 20452384316129220}
