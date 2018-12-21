@@ -62,6 +62,11 @@ public class Scr_MapManager : MonoBehaviour
             onPlanet = true;
         }
 
+        else if (playerShip.GetComponent<Scr_PlayerShipMovement>().currentPlanet != null && onPlanet)
+        {
+            onPlayerTarget.transform.position = playerShip.GetComponent<Scr_PlayerShipMovement>().currentPlanet.transform.position + new Vector3(0f, ((playerShip.GetComponent<Scr_PlayerShipMovement>().currentPlanet.transform.GetChild(0).GetComponent<Renderer>().bounds.size.x) / 2) + 10f, -0.5f);
+        }
+
         else if (playerShip.GetComponent<Scr_PlayerShipMovement>().currentPlanet == null)
         {
             onPlanet = false;
