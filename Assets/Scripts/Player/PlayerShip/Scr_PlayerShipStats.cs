@@ -39,6 +39,8 @@ public class Scr_PlayerShipStats : MonoBehaviour
     [SerializeField] private Slider fuelSlider;
     [SerializeField] private Slider shieldSlider;
     [SerializeField] public Scr_ReferenceManager referenceManager;
+
+    [Header("Inventories")]
     [SerializeField] public GameObject[] toolWarehouse;
     [SerializeField] public GameObject[] resourceWarehouse;
 

@@ -271,7 +271,7 @@ public class Scr_AstronautMovement : MonoBehaviour
         {
             Vector2 vectorAngle = (hitAngleUp.point - hitAngleDown.point);
             angle = Vector2.Angle(vectorAngle, transform.right);
-            print("left" + angle);
+            //print("left" + angle);
         }
 
         if (hitL)
@@ -301,7 +301,7 @@ public class Scr_AstronautMovement : MonoBehaviour
         {
             Vector2 vectorAngle = (hitAngleUp.point - hitAngleDown.point);
             angle = Vector2.Angle(vectorAngle, -transform.right);
-            print("right" + angle);
+            //print("right" + angle);
         }
 
         if (hitL)
