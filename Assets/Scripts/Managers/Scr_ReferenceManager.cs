@@ -13,9 +13,4 @@ public class Scr_ReferenceManager : MonoBehaviour
     [SerializeField] public GameObject OreExtractor;
     [SerializeField] public GameObject RepairingTool;
     [SerializeField] public GameObject Jetpack;
-
-    private void Start()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
 }
