@@ -31336,6 +31336,8 @@ GameObject:
   - component: {fileID: 114544141144842080}
   - component: {fileID: 114778194997285574}
   - component: {fileID: 114564075594853054}
+  - component: {fileID: 557998429}
+  - component: {fileID: 8353760799380871181}
   m_Layer: 0
   m_Name: PlayerShip
   m_TagString: PlayerShip
@@ -31350,7 +31352,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1452036844316726}
-  m_LocalRotation: {x: -0, y: -0, z: 0.05241744, w: 0.9986253}
+  m_LocalRotation: {x: 0, y: 0, z: 0.052414354, w: 0.99862546}
   m_LocalPosition: {x: 146.097, y: 4.866, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -31689,7 +31691,7 @@ MonoBehaviour:
   referenceManager: {fileID: 0}
   toolWarehouse:
   - {fileID: 1239215430283492, guid: 8be2670d51deb35429ede33415fe43cd, type: 3}
-  - {fileID: 0}
+  - {fileID: 1238031769430186, guid: 8e98f6f64eacd0c42bb17fad700b9f46, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -31748,6 +31750,32 @@ MonoBehaviour:
   starParticles: {fileID: 198935063272262492}
   warmingSlider: {fileID: 114109521143006318}
   warmingFill: {fileID: 114640883589750958}
+--- !u!114 &557998429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452036844316726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 794c4a1c3b8183542a89c8cd072e5739, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  craftData: {fileID: 11400000, guid: 770fb382ff53c9546958f95b384040d8, type: 2}
+--- !u!114 &8353760799380871181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452036844316726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 122c3190425dd2a4487324fe27bc173f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeData: {fileID: 11400000, guid: d94b47f41f7db704198f38fb4230096b, type: 2}
 --- !u!1 &1461644405029842
 GameObject:
   m_ObjectHideFlags: 0

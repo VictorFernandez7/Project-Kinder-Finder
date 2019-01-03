@@ -15,8 +15,9 @@ public class Scr_UpgradeInfo
     public string m_requirements;
 
     [Header("Resources")]
-    public int m_fuel;
-    public int m_iron;
+    public Dictionary<string, int> Resources = new Dictionary<string, int>();
+
+    public bool activated;
 }
 
 public class Scr_UpgradeList : ScriptableObject
