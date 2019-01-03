@@ -116,6 +116,8 @@ public class Scr_UpgradeEditor : EditorWindow
         newUpgrade.m_name = "New Upgrade";
         inventoryItemList.UpgradeList.Add(newUpgrade);
         viewIndex = inventoryItemList.UpgradeList.Count;
+        inventoryItemList.UpgradeList[viewIndex - 1].Resources.Add("Iron", 0);
+        inventoryItemList.UpgradeList[viewIndex - 1].Resources.Add("Fuel", 0);
     }
 
     void DeleteUpgrade(int index)
@@ -155,7 +157,7 @@ public class Scr_UpgradeEditor : EditorWindow
         GUILayout.Space(10);
         GUILayout.Label("Resources Needed");
 
-        inventoryItemList.UpgradeList[viewIndex - 1].m_fuel = EditorGUILayout.IntField("Fuel", inventoryItemList.UpgradeList[viewIndex - 1].m_fuel);
-        inventoryItemList.UpgradeList[viewIndex - 1].m_iron = EditorGUILayout.IntField("Iron", inventoryItemList.UpgradeList[viewIndex - 1].m_iron);
+        inventoryItemList.UpgradeList[viewIndex - 1].Resources["Fuel"] = EditorGUILayout.IntField("Fuel", inventoryItemList.UpgradeList[viewIndex - 1].Resources["Fuel"]);
+        inventoryItemList.UpgradeList[viewIndex - 1].Resources["Iron"] = EditorGUILayout.IntField("Iron", inventoryItemList.UpgradeList[viewIndex - 1].Resources["Iron"]);
     }
 }

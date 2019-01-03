@@ -4,29 +4,38 @@ using UnityEngine;
 
 public class Scr_PlayerShipCraft : MonoBehaviour {
 
-    [SerializeField] private Dictionary<string, int> Resources = new Dictionary<string, int>();
+    [SerializeField] public Dictionary<string, int> Resources = new Dictionary<string, int>();
+    [SerializeField] private Scr_CraftData craftData;
 
     private Scr_PlayerShipStats playerShipStats;
 
     private void Start()
     {
         playerShipStats = GetComponent<Scr_PlayerShipStats>();
+
+        Resources.Add("Fuel", 0);
+        Resources.Add("Iron", 0);
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.V))
+        if (Input.GetKeyDown(KeyCode.V)) //Cuando se realiza el calculo
         {
-            Resources.Clear();
-            CalculateResources();
-
-            List<string> keyr = new List<string>(Resources.Keys);
-
-            foreach (string k in keyr)
-            {
-                Debug.Log(k + " " + Resources[k]);
-            }
+            InventoryInfo();
         }
+    }
+
+    public void InventoryInfo()
+    {
+        List<string> keyr = new List<string>(Resources.Keys);
+
+        foreach (string k in keyr)
+            Resources[k] = 0;
+
+        CalculateResources();
+
+        foreach (string k in keyr)
+            Debug.Log(k + " " + Resources[k]);
     }
 
     private void CalculateResources()
@@ -49,17 +58,8 @@ public class Scr_PlayerShipCraft : MonoBehaviour {
                             Resources[key] += 1;
                             break;
                         }
-
-                        else
-                        {
-                            Resources.Add(playerShipStats.resourceWarehouse[i].name, 1);
-                            break;
-                        }
                     }
                 }
-
-                else
-                    Resources.Add(playerShipStats.resourceWarehouse[i].name, 1);
             }
         }
     }
