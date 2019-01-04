@@ -8,6 +8,10 @@ public class Scr_InterfaceManager : MonoBehaviour
     [SerializeField] private KeyCode input_QuestPanel;
     [SerializeField] private KeyCode input_PlayerShipWindow;
 
+    [Header("PlayerShip Window")]
+    [SerializeField] private Color active;
+    [SerializeField] private Color notActive;
+
     [Header("References")]
     [SerializeField] private GameObject landingInterface;
     [SerializeField] private GameObject playerShipIcon;
@@ -100,34 +104,34 @@ public class Scr_InterfaceManager : MonoBehaviour
     private void ChangeButtonColor()
     {
         if (upgradePanel.activeInHierarchy)
-            upgradePanelText.color = Color.white;
+            upgradePanelText.color = active;
 
         else
-            upgradePanelText.color = Color.black;
+            upgradePanelText.color = notActive;
 
         if (warehousePanel.activeInHierarchy)
-            warehousePanelText.color = Color.white;
+            warehousePanelText.color = active;
 
         else
-            warehousePanelText.color = Color.black;
+            warehousePanelText.color = notActive;
 
         if (craftingPanel.activeInHierarchy)
-            craftingPanelText.color = Color.white;
+            craftingPanelText.color = active;
 
         else
-            craftingPanelText.color = Color.black;
+            craftingPanelText.color = notActive;
 
         if (ToolWarehousePanel.activeInHierarchy)
-            ToolWarehousePanelIcon.color = Color.white;
+            ToolWarehousePanelIcon.color = active;
 
         else
-            ToolWarehousePanelIcon.color = Color.black;
+            ToolWarehousePanelIcon.color = notActive;
 
         if (resourceWarehousePanel.activeInHierarchy)
-            resourceWarehousePanelIcon.color = Color.white;
+            resourceWarehousePanelIcon.color = active;
 
         else
-            resourceWarehousePanelIcon.color = Color.black;
+            resourceWarehousePanelIcon.color = notActive;
     }
 
     private void LandingInterface()
