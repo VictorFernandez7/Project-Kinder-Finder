@@ -151,6 +151,9 @@ public class Scr_CraftEditor : EditorWindow
         GUILayout.Label("Description");
         inventoryItemList.CraftList[viewIndex - 1].m_info = EditorGUILayout.TextArea(inventoryItemList.CraftList[viewIndex - 1].m_info as string);
 
+        GUILayout.Space(10);
+        GUILayout.Label("Type");
+        inventoryItemList.CraftList[viewIndex - 1].upgradeType = (UpgradeType)EditorGUILayout.EnumPopup(inventoryItemList.CraftList[viewIndex - 1].upgradeType);
 
         GUILayout.Space(10);
         GUILayout.Label("Requirements");

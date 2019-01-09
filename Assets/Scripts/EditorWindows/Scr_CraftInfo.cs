@@ -14,6 +14,15 @@ public class Scr_CraftInfo
     [Header("Resources")]
     public List<string> resourceNameList = new List<string>();
     public List<int> resourceAmountList = new List<int>();
+
+    public UpgradeType upgradeType;
+}
+
+public enum UpgradeType
+{
+    tools,
+    story,
+    spaceSuit
 }
 
 public class Scr_CraftData : ScriptableObject
