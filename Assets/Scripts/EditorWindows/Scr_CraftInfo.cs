@@ -12,7 +12,8 @@ public class Scr_CraftInfo
     public string m_info;
 
     [Header("Resources")]
-    public Dictionary<string, int> Resources = new Dictionary<string, int>();
+    public List<string> resourceNameList = new List<string>();
+    public List<int> resourceAmountList = new List<int>();
 }
 
 public class Scr_CraftData : ScriptableObject

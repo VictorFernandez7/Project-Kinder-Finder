@@ -13,6 +13,7 @@ public class Scr_PlayerShipLaboratory : MonoBehaviour
     private Scr_PlayerShipStats playerShipStats;
 
     private int resourceListIndex;
+    private int technologyIndex;
 
     private void Start()
     {
@@ -20,16 +21,10 @@ public class Scr_PlayerShipLaboratory : MonoBehaviour
         playerShipStats = GetComponent<Scr_PlayerShipStats>();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-
-        }
-    }
-
     public void TechnologyClic(int index)
     {
+        technologyIndex = index;
+
         if (!upgradeData.UpgradeList[index].activated)
         {
             playerShipCraft.InventoryInfo();
@@ -61,24 +56,24 @@ public class Scr_PlayerShipLaboratory : MonoBehaviour
             upgradeButton.interactable = false;
     }
 
-    public void UpgradeButton(int index)
+    public void UpgradeButton()
     {
         List<string> keyr = new List<string>(playerShipCraft.Resources.Keys);
 
         foreach (string k in keyr)
         {
-            for (int p = 0; p < upgradeData.UpgradeList[index].resourceNameList.Count; p++)
+            for (int p = 0; p < upgradeData.UpgradeList[technologyIndex].resourceNameList.Count; p++)
             {
-                if (upgradeData.UpgradeList[index].resourceNameList[p] == k)
+                if (upgradeData.UpgradeList[technologyIndex].resourceNameList[p] == k)
                 {
                     resourceListIndex = p;
                     break;
                 }
             }
 
-            if (upgradeData.UpgradeList[index].resourceAmountList[resourceListIndex] > 0)
+            if (upgradeData.UpgradeList[technologyIndex].resourceAmountList[resourceListIndex] > 0)
             {
-                for(int i = upgradeData.UpgradeList[index].resourceAmountList[resourceListIndex]; i > 0; i--)
+                for(int i = upgradeData.UpgradeList[technologyIndex].resourceAmountList[resourceListIndex]; i > 0; i--)
                 {
                     for (int j = playerShipStats.resourceWarehouse.Length - 1; j >= 0; j--)
                     {
@@ -95,8 +90,9 @@ public class Scr_PlayerShipLaboratory : MonoBehaviour
             }
         }
 
-        upgradeData.UpgradeList[index].activated = true;
-        GenerateRecipe(index); 
+        upgradeButton.interactable = false;
+        upgradeData.UpgradeList[technologyIndex].activated = true;
+        GenerateRecipe(technologyIndex); 
     }
 
     private void GenerateRecipe(int index)
