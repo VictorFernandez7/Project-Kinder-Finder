@@ -6,7 +6,6 @@ public class Scr_InterfaceManager : MonoBehaviour
 {
     [Header("Interface Inputs")]
     [SerializeField] private KeyCode input_QuestPanel;
-    [SerializeField] private KeyCode input_PlayerShipWindow;
 
     [Header("PlayerShip Window")]
     [SerializeField] private Color active;
@@ -75,6 +74,12 @@ public class Scr_InterfaceManager : MonoBehaviour
             CheckInputs();
     }
 
+    public void PlayerShipWindow()
+    {
+        playerShipWindowActive = !playerShipWindowActive;
+        anim_PlayerShipWindow.SetBool("Show", playerShipWindowActive);
+    }
+
     private void CheckAstronautState()
     {
         anim_PlayerShipActions.SetBool("Mining", mainCamera.mining);
@@ -100,12 +105,6 @@ public class Scr_InterfaceManager : MonoBehaviour
         {
             questPanelActive = !questPanelActive;
             anim_QuestPanel.SetBool("Show", questPanelActive);
-        }
-
-        if (Input.GetKeyDown(input_PlayerShipWindow))
-        {
-            playerShipWindowActive = !playerShipWindowActive;
-            anim_PlayerShipWindow.SetBool("Show", playerShipWindowActive);
         }
     }
 
