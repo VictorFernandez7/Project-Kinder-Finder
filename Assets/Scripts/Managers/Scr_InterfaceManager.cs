@@ -12,6 +12,10 @@ public class Scr_InterfaceManager : MonoBehaviour
     [SerializeField] private Color active;
     [SerializeField] private Color notActive;
 
+    [Header("Buttons")]
+    [SerializeField] private Color interactable;
+    [SerializeField] private Color notInteractable;
+
     [Header("References")]
     [SerializeField] private GameObject landingInterface;
     [SerializeField] private GameObject playerShipIcon;
@@ -40,6 +44,16 @@ public class Scr_InterfaceManager : MonoBehaviour
     [SerializeField] private Animator anim_FadeImage;
     [SerializeField] private GameObject playerShip;
     [SerializeField] private Scr_MainCamera mainCamera;
+    [SerializeField] private GameObject toolsRecipes;
+    [SerializeField] private Image toolsRecipesButton;
+    [SerializeField] private GameObject storyRecipes;
+    [SerializeField] private Image storyRecipesButton;
+    [SerializeField] private GameObject spaceSuitRecipes;
+    [SerializeField] private Image spaceSuitRecipesButton;
+    [SerializeField] private Button purchaseButton;
+    [SerializeField] private Image purchaseButtonImage;
+    [SerializeField] private Button craftButton;
+    [SerializeField] private Image craftButtonImage;
 
     private bool questPanelActive;
     private bool playerShipWindowActive;
@@ -132,6 +146,36 @@ public class Scr_InterfaceManager : MonoBehaviour
 
         else
             resourceWarehousePanelIcon.color = notActive;
+
+        if (toolsRecipes.activeInHierarchy)
+            toolsRecipesButton.color = active;
+
+        else
+            toolsRecipesButton.color = notActive;
+
+        if (storyRecipes.activeInHierarchy)
+            storyRecipesButton.color = active;
+
+        else
+            storyRecipesButton.color = notActive;
+
+        if (spaceSuitRecipes.activeInHierarchy)
+            spaceSuitRecipesButton.color = active;
+
+        else
+            spaceSuitRecipesButton.color = notActive;
+
+        if (purchaseButton.interactable)
+            purchaseButtonImage.color = interactable;
+
+        else
+            purchaseButtonImage.color = notInteractable;
+
+        if (craftButton.interactable)
+            craftButtonImage.color = interactable;
+
+        else
+            craftButtonImage.color = notInteractable;
     }
 
     private void LandingInterface()
