@@ -27,7 +27,7 @@ public class Scr_PlayerShipLaboratory : MonoBehaviour
     private void Start()
     {
         playerShipCraft = GetComponent<Scr_PlayerShipCraft>();
-        playerShipStats = GetComponent<Scr_PlayerShipStats>();
+        playerShipStats = GetComponentInParent<Scr_PlayerShipStats>();
     }
 
     public void TechnologyClic(int index)
@@ -68,22 +68,29 @@ public class Scr_PlayerShipLaboratory : MonoBehaviour
         titleText.text = upgradeData.UpgradeList[index].m_name;
         descriptionText.text = upgradeData.UpgradeList[index].m_info;
 
+        resource1Text.gameObject.SetActive(false);
+        resource2Text.gameObject.SetActive(false);
+        resource3Text.gameObject.SetActive(false);
+
         for (int i = 0; i < upgradeData.UpgradeList[index].resourceAmountList.Count; i++)
         {
             if (upgradeData.UpgradeList[index].resourceAmountList[i] > 0 && resourceTextIndex == 0)
             {
+                resource1Text.gameObject.SetActive(true);
                 resource1Text.text = upgradeData.UpgradeList[index].resourceNameList[i] + " " + playerShipCraft.Resources[keyr[i]] + "/" + upgradeData.UpgradeList[index].resourceAmountList[i].ToString();
                 resourceTextIndex += 1;
             }
 
             else if (upgradeData.UpgradeList[index].resourceAmountList[i] > 0 && resourceTextIndex == 1)
             {
+                resource2Text.gameObject.SetActive(true);
                 resource2Text.text = upgradeData.UpgradeList[index].resourceNameList[i] + " " + playerShipCraft.Resources[keyr[i]] + "/" + upgradeData.UpgradeList[index].resourceAmountList[i].ToString();
                 resourceTextIndex += 1;
             }
 
             else if (upgradeData.UpgradeList[index].resourceAmountList[i] > 0 && resourceTextIndex == 2)
             {
+                resource3Text.gameObject.SetActive(true);
                 resource3Text.text = upgradeData.UpgradeList[index].resourceNameList[i] + " " + playerShipCraft.Resources[keyr[i]] + "/" + upgradeData.UpgradeList[index].resourceAmountList[i].ToString();
             }
         }
