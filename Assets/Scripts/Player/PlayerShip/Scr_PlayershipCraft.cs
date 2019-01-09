@@ -24,7 +24,7 @@ public class Scr_PlayerShipCraft : MonoBehaviour {
 
     private void Start()
     {
-        playerShipStats = GetComponent<Scr_PlayerShipStats>();
+        playerShipStats = GetComponentInParent<Scr_PlayerShipStats>();
 
         Resources.Add("Fuel", 0);
         Resources.Add("Iron", 0);
