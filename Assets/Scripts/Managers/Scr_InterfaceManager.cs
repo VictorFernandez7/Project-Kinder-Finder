@@ -65,19 +65,31 @@ public class Scr_InterfaceManager : MonoBehaviour
 
     private void Update()
     {
-        CheckAstronautState();
         LandingInterface();
         IndicatorManagement();
         ChangeButtonColor();
 
         if (playerShipMovement.astronautOnBoard)
             CheckInputs();
+
+        if (!playerShipWindowActive)
+            CheckAstronautState();
     }
 
     public void PlayerShipWindow()
     {
         playerShipWindowActive = !playerShipWindowActive;
         anim_PlayerShipWindow.SetBool("Show", playerShipWindowActive);
+
+        if (playerShipWindowActive)
+        {
+            anim_AstronautInterface.SetBool("Show", false);
+        }
+
+        else
+        {
+            anim_AstronautInterface.SetBool("Show", true);            
+        }
     }
 
     private void CheckAstronautState()
