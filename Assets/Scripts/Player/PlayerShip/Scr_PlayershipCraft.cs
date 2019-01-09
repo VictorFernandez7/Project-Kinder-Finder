@@ -1,14 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Scr_PlayerShipCraft : MonoBehaviour {
 
+    [Header("References")]
     [SerializeField] public Dictionary<string, int> Resources = new Dictionary<string, int>();
     [SerializeField] private Scr_CraftData craftData;
-    [SerializeField] private GameObject[] buttonArray;
+    [SerializeField] private Button craftButton;
+
+    [Header("Info References")]
+    [SerializeField] private TextMeshProUGUI titleText;
+    [SerializeField] private TextMeshProUGUI descriptionText;
+    [SerializeField] private TextMeshProUGUI resource1Text;
+    [SerializeField] private TextMeshProUGUI resource2Text;
+    [SerializeField] private TextMeshProUGUI resource3Text;
 
     private Scr_PlayerShipStats playerShipStats;
+    private int resourceListIndex;
+    private int craftIndex;
 
     private void Start()
     {
@@ -63,5 +75,109 @@ public class Scr_PlayerShipCraft : MonoBehaviour {
                 }
             }
         }
+    }
+
+    private void CraftButtonActivation(int index)
+    {
+        InventoryInfo();
+
+        craftButton.interactable = true;
+
+        List<string> keyr = new List<string>(Resources.Keys);
+
+        foreach (string k in keyr)
+        {
+            for (int p = 0; p < craftData.CraftList[index].resourceNameList.Count; p++)
+            {
+                if (craftData.CraftList[index].resourceNameList[p] == k)
+                {
+                    resourceListIndex = p;
+                    break;
+                }
+            }
+
+            if (craftData.CraftList[index].resourceAmountList[resourceListIndex] > Resources[k])
+            {
+                craftButton.interactable = false;
+                break;
+            }
+        }
+    }
+
+    public void RecipeClick(int index)
+    {
+        int resourceTextIndex = 0;
+
+        craftIndex = index;
+
+        CraftButtonActivation(index);
+
+        List<string> keyr = new List<string>(Resources.Keys);
+
+        titleText.text = craftData.CraftList[index].m_name;
+        descriptionText.text = craftData.CraftList[index].m_info;
+        
+        for(int i = 0; i < craftData.CraftList[index].resourceAmountList.Count; i++)
+        {
+            if (craftData.CraftList[index].resourceAmountList[i] > 0 && resourceTextIndex == 0)
+            {
+                resource1Text.text = craftData.CraftList[index].resourceNameList[i] + " " + Resources[keyr[i]] + "/" + craftData.CraftList[index].resourceAmountList[i].ToString();
+                resourceTextIndex += 1;
+            }
+
+            else if (craftData.CraftList[index].resourceAmountList[i] > 0 && resourceTextIndex == 1)
+            {
+                resource2Text.text = craftData.CraftList[index].resourceNameList[i] + " " + Resources[keyr[i]] + "/" + craftData.CraftList[index].resourceAmountList[i].ToString();
+                resourceTextIndex += 1;
+            }
+
+            else if (craftData.CraftList[index].resourceAmountList[i] > 0 && resourceTextIndex == 2)
+            {
+                resource3Text.text = craftData.CraftList[index].resourceNameList[i] + " " + Resources[keyr[i]] + "/" + craftData.CraftList[index].resourceAmountList[i].ToString();
+            }
+        }
+    }
+
+    public void CraftButton()
+    {
+        List<string> keyr = new List<string>(Resources.Keys);
+
+        foreach (string k in keyr)
+        {
+            for (int p = 0; p < craftData.CraftList[craftIndex].resourceNameList.Count; p++)
+            {
+                if (craftData.CraftList[craftIndex].resourceNameList[p] == k)
+                {
+                    resourceListIndex = p;
+                    break;
+                }
+            }
+
+            if (craftData.CraftList[craftIndex].resourceAmountList[resourceListIndex] > 0)
+            {
+                for (int i = craftData.CraftList[craftIndex].resourceAmountList[resourceListIndex]; i > 0; i--)
+                {
+                    for (int j = playerShipStats.resourceWarehouse.Length - 1; j >= 0; j--)
+                    {
+                        if (playerShipStats.resourceWarehouse[j])
+                        {
+                            if (playerShipStats.resourceWarehouse[j].name == k)
+                            {
+                                playerShipStats.resourceWarehouse[j] = null;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        CraftButtonActivation(craftIndex);
+        GenerateCraft();
+    }
+
+    private void GenerateCraft()
+    {
+
     }
 }
