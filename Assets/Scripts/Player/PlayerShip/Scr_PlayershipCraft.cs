@@ -6,6 +6,7 @@ public class Scr_PlayerShipCraft : MonoBehaviour {
 
     [SerializeField] public Dictionary<string, int> Resources = new Dictionary<string, int>();
     [SerializeField] private Scr_CraftData craftData;
+    [SerializeField] private GameObject[] buttonArray;
 
     private Scr_PlayerShipStats playerShipStats;
 

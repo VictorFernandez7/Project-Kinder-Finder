@@ -115,8 +115,10 @@ public class Scr_CraftEditor : EditorWindow
         newCraft.m_name = "New Craft";
         inventoryItemList.CraftList.Add(newCraft);
         viewIndex = inventoryItemList.CraftList.Count;
-        inventoryItemList.CraftList[viewIndex - 1].Resources.Add("Fuel", 0);
-        inventoryItemList.CraftList[viewIndex - 1].Resources.Add("Iron", 0);
+        inventoryItemList.CraftList[viewIndex - 1].resourceNameList.Add("Fuel");
+        inventoryItemList.CraftList[viewIndex - 1].resourceAmountList.Add(0);
+        inventoryItemList.CraftList[viewIndex - 1].resourceNameList.Add("Iron");
+        inventoryItemList.CraftList[viewIndex - 1].resourceAmountList.Add(0);
     }
 
     void DeleteUpgrade(int index)
@@ -153,8 +155,8 @@ public class Scr_CraftEditor : EditorWindow
         GUILayout.Space(10);
         GUILayout.Label("Requirements");
 
-        inventoryItemList.CraftList[viewIndex - 1].Resources["Fuel"] = EditorGUILayout.IntField("Fuel", inventoryItemList.CraftList[viewIndex - 1].Resources["Fuel"]);
-        inventoryItemList.CraftList[viewIndex - 1].Resources["Iron"] = EditorGUILayout.IntField("Iron", inventoryItemList.CraftList[viewIndex - 1].Resources["Iron"]);
+        inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[0] = EditorGUILayout.IntField("Fuel", inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[0]);
+        inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[1] = EditorGUILayout.IntField("Iron", inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[1]);
     }
 }
 
