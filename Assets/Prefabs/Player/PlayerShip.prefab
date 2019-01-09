@@ -31336,8 +31336,6 @@ GameObject:
   - component: {fileID: 114544141144842080}
   - component: {fileID: 114778194997285574}
   - component: {fileID: 114564075594853054}
-  - component: {fileID: 557998429}
-  - component: {fileID: 8353760799380871181}
   m_Layer: 0
   m_Name: PlayerShip
   m_TagString: PlayerShip
@@ -31362,6 +31360,7 @@ Transform:
   - {fileID: 4017356604192030}
   - {fileID: 4197059671548110}
   - {fileID: 224786481839341160}
+  - {fileID: 3280274430527431840}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 6.0090003}
@@ -31750,32 +31749,6 @@ MonoBehaviour:
   starParticles: {fileID: 198935063272262492}
   warmingSlider: {fileID: 114109521143006318}
   warmingFill: {fileID: 114640883589750958}
---- !u!114 &557998429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1452036844316726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 794c4a1c3b8183542a89c8cd072e5739, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  craftData: {fileID: 11400000, guid: 770fb382ff53c9546958f95b384040d8, type: 2}
---- !u!114 &8353760799380871181
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1452036844316726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 122c3190425dd2a4487324fe27bc173f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  upgradeData: {fileID: 11400000, guid: d94b47f41f7db704198f38fb4230096b, type: 2}
 --- !u!1 &1461644405029842
 GameObject:
   m_ObjectHideFlags: 0
@@ -48827,3 +48800,74 @@ DistanceJoint2D:
   m_AutoConfigureDistance: 0
   m_Distance: 0.1
   m_MaxDistanceOnly: 0
+--- !u!1 &2183321174289255595
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3280274430527431840}
+  - component: {fileID: 5124853588495458427}
+  - component: {fileID: 4496484956120291977}
+  m_Layer: 0
+  m_Name: Rooms
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3280274430527431840
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2183321174289255595}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4030621875282276}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5124853588495458427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2183321174289255595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 794c4a1c3b8183542a89c8cd072e5739, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  craftData: {fileID: 0}
+  craftButton: {fileID: 0}
+  titleText: {fileID: 0}
+  descriptionText: {fileID: 0}
+  resource1Text: {fileID: 0}
+  resource2Text: {fileID: 0}
+  resource3Text: {fileID: 0}
+--- !u!114 &4496484956120291977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2183321174289255595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 122c3190425dd2a4487324fe27bc173f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeData: {fileID: 0}
+  upgradeButton: {fileID: 0}
+  buttonArray: []
+  titleText: {fileID: 0}
+  descriptionText: {fileID: 0}
+  resource1Text: {fileID: 0}
+  resource2Text: {fileID: 0}
+  resource3Text: {fileID: 0}
