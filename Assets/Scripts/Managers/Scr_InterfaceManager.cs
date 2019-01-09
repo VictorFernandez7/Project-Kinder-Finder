@@ -41,6 +41,7 @@ public class Scr_InterfaceManager : MonoBehaviour
     [SerializeField] private Animator anim_QuestPanel;
     [SerializeField] private Animator anim_PlayerShipWindow;
     [SerializeField] private Animator anim_FadeImage;
+    [SerializeField] private Animator anim_MiniMapPanel;
     [SerializeField] private GameObject playerShip;
     [SerializeField] private Scr_MainCamera mainCamera;    
     [SerializeField] private Button purchaseButton;
@@ -84,11 +85,13 @@ public class Scr_InterfaceManager : MonoBehaviour
         if (playerShipWindowActive)
         {
             anim_AstronautInterface.SetBool("Show", false);
+            anim_MiniMapPanel.SetBool("Show", false);
         }
 
         else
         {
-            anim_AstronautInterface.SetBool("Show", true);            
+            anim_AstronautInterface.SetBool("Show", true);      
+            anim_MiniMapPanel.SetBool("Show", true);
         }
     }
 
