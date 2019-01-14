@@ -62,6 +62,7 @@ public class Scr_InterfaceManager : MonoBehaviour
 
         anim_AstronautInterface.SetBool("Show", true);
         anim_FadeImage.SetBool("Fade", true);
+        anim_MiniMapPanel.SetBool("Show", true);
     }
 
     private void Update()
@@ -221,5 +222,15 @@ public class Scr_InterfaceManager : MonoBehaviour
 
         else if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed)
             playerShipStats.inDanger = false;
+    }
+
+    public void WorkShopCategoryActive(Image other)
+    {
+        other.color = active;
+    }
+
+    public void WorkShopCategoryNotActive(Image other)
+    {
+        other.color = notActive;
     }
 }
