@@ -63,7 +63,6 @@ public class Scr_InterfaceManager : MonoBehaviour
 
         anim_AstronautInterface.SetBool("Show", true);
         anim_FadeImage.SetBool("Fade", true);
-        anim_MiniMapPanel.SetBool("Show", true);
     }
 
     private void Update()
@@ -77,6 +76,12 @@ public class Scr_InterfaceManager : MonoBehaviour
 
         if (!playerShipWindowActive)
             CheckAstronautState();
+
+        if (playerShipWindowActive)
+            anim_MiniMapPanel.SetBool("Show", false);
+
+        else
+            anim_MiniMapPanel.SetBool("Show", true);
     }
 
     public void PlayerShipWindow()

@@ -101,7 +101,7 @@ public class Scr_Planet : MonoBehaviour
 
     private void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && mapManager.mapActive)
         {
             mapCamera.target = gameObject;
             mapCamera.focus = !mapCamera.focus;
