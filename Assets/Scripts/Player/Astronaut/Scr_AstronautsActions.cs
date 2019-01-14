@@ -128,10 +128,10 @@ public class Scr_AstronautsActions : MonoBehaviour
 
     private void IntroduceResource()
     {
-        if (currentResource.name == "Fuel")
-            playerShip.GetComponent<Scr_PlayerShipStats>().ReFuel(currentResource.GetComponent<Scr_FuelBlock>().fuelAmount);
+        /*if (currentResource.name == "Fuel")
+            playerShip.GetComponent<Scr_PlayerShipStats>().ReFuel(currentResource.GetComponent<Scr_FuelBlock>().fuelAmount);*/
 
-        else if (currentResource.CompareTag("Resources"))
+        if (currentResource.CompareTag("Resources"))
         {
             for (int i = 0; i < playerShip.GetComponent<Scr_PlayerShipStats>().resourceWarehouse.Length; i++)
             {

@@ -80,12 +80,14 @@ public class Scr_MapManager : MonoBehaviour
 
         if (mapCamera.GetComponent<Scr_MapCamera>().focus)
         {
-            // Desactivar Indicador de nave e indicador de planeta actual (el rojo y el verde)
+            onPlayerTarget.SetActive(false);
+            mapVisuals.SetActive(false);
         }
 
         else
         {
-            // Activarlos
+            onPlayerTarget.SetActive(true);
+            mapVisuals.SetActive(true);
         }
     }
 
