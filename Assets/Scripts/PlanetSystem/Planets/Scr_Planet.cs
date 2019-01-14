@@ -19,6 +19,7 @@ public class Scr_Planet : MonoBehaviour
     [SerializeField] private GameObject playerShip;
     [SerializeField] private GameObject astronaut;
     [SerializeField] private GameObject mainCanvas;
+    [SerializeField] private Scr_MapCamera mapCamera;
 
     [HideInInspector] public bool switchGravity;
 
@@ -98,37 +99,44 @@ public class Scr_Planet : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, maxClampDistance);
     }
 
-    void OnMouseOver()
+    private void OnMouseOver()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (mapManager.mapActive)
+            mapCamera.target = gameObject;
+            mapCamera.focus = !mapCamera.focus;
+            mapManager.canMove = !mapManager.canMove;
+        }
+    }
+
+    public void SetWaypoint()
+    {
+        if (mapManager.mapActive)
+        {
+            if (lastTarget != this.gameObject)
             {
-                if (lastTarget != this.gameObject)
+                if (mapManager.indicatorActive)
                 {
-                    if (mapManager.indicatorActive)
-                    {
-                        Destroy(mapManager.mapIndicator);
-                        Destroy(mapManager.directionIndicator);
-                    }
-
-                    mapManager.mapIndicator = Instantiate(mapIndicator);
-                    mapManager.directionIndicator = Instantiate(directionIndicator);
-                    mapManager.directionIndicator.transform.SetParent(mainCanvas.transform);
-                    mapManager.myRectTransform = mapManager.directionIndicator.GetComponent<RectTransform>();
-                    mapManager.currentTarget = this.gameObject;
-                    mapManager.target = this.gameObject;
-                    mapManager.waypointActive = true;
-                    mapManager.mapIndicator.transform.position = transform.position + new Vector3(0f, ((transform.GetChild(0).GetComponent<Renderer>().bounds.size.x) / 2) + 10f, 0f);
-                    mapManager.indicatorActive = true;
-                    lastTarget = this.gameObject;
+                    Destroy(mapManager.mapIndicator);
+                    Destroy(mapManager.directionIndicator);
                 }
 
-                else
-                {
-                    mapManager.CancelWaypoint();
-                    lastTarget = null;
-                }
+                mapManager.mapIndicator = Instantiate(mapIndicator);
+                mapManager.directionIndicator = Instantiate(directionIndicator);
+                mapManager.directionIndicator.transform.SetParent(mainCanvas.transform);
+                mapManager.myRectTransform = mapManager.directionIndicator.GetComponent<RectTransform>();
+                mapManager.currentTarget = this.gameObject;
+                mapManager.target = this.gameObject;
+                mapManager.waypointActive = true;
+                mapManager.mapIndicator.transform.position = transform.position + new Vector3(0f, ((transform.GetChild(0).GetComponent<Renderer>().bounds.size.x) / 2) + 10f, 0f);
+                mapManager.indicatorActive = true;
+                lastTarget = this.gameObject;
+            }
+
+            else
+            {
+                mapManager.CancelWaypoint();
+                lastTarget = null;
             }
         }
     }

@@ -25,6 +25,7 @@ public class Scr_MapManager : MonoBehaviour
     [SerializeField] private Camera mainCamera;
 
     [HideInInspector] public bool mapActive;
+    [HideInInspector] public bool canMove;
     [HideInInspector] public bool waypointActive;
     [HideInInspector] public bool indicatorActive;
     [HideInInspector] public GameObject target;
@@ -45,6 +46,7 @@ public class Scr_MapManager : MonoBehaviour
     {
         mapCanvas.SetActive(false);
         currentTarget = null;
+        canMove = true;
 
         distanceHUD = Vector3.Distance(distanceText.transform.position, playerShip.transform.position);
     }
@@ -72,7 +74,6 @@ public class Scr_MapManager : MonoBehaviour
             onPlanet = false;
             Destroy(onPlayerTarget);
         }
-
 
         if (target != null)
             mapIndicator.transform.position = target.transform.position + new Vector3(0f, ((target.transform.GetChild(0).GetComponent<Renderer>().bounds.size.x) / 2) + 10f, 0f);
@@ -127,8 +128,6 @@ public class Scr_MapManager : MonoBehaviour
             }
         }
     }
-
-
 
     float totalDistance;
     float currentDistance;
