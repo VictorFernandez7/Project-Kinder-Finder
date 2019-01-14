@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class Scr_ToolPanel : MonoBehaviour
+public class Scr_PlayerShipWarehouse : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] public bool[] slots;

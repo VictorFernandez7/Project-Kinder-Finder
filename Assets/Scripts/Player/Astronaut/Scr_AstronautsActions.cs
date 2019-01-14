@@ -7,7 +7,7 @@ public class Scr_AstronautsActions : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform spawnPoint;
     [SerializeField] public Transform pickPoint;
-    [SerializeField] public Scr_ToolPanel toolPanel;
+    [SerializeField] public Scr_PlayerShipWarehouse playerShipWarehouse;
     [SerializeField] private Animator interactionIndicatorAnim;
     [SerializeField] private Scr_PlanetManager planetManager;
     [SerializeField] private GameObject mainCamera;
@@ -110,7 +110,7 @@ public class Scr_AstronautsActions : MonoBehaviour
             mainCamera.GetComponent<Scr_MainCamera>().followAstronaut = false;
             astronautMovement.keep = true;
             DestroyAllTools();
-            toolPanel.ReadNames();
+            playerShipWarehouse.ReadNames();
             gameObject.SetActive(false);
     }
 
