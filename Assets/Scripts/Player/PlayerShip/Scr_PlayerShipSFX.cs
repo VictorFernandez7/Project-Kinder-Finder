@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerShipSFX : MonoBehaviour
+public class Scr_PlayerShipSFX : MonoBehaviour
 {
 
     [Header("Sounds")]
