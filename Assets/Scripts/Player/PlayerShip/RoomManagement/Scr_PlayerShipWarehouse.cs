@@ -150,6 +150,8 @@ public class Scr_PlayerShipWarehouse : MonoBehaviour
             playerShipStats.resourceWarehouse[resourceWarehouseNumber] = temporalObject;
             resourcesWarehouseSlots[resourceWarehouseNumber] = false;
         }
+
+        ControlResources();
     }
 
     //LECTURA DE TEXTOS
@@ -172,6 +174,15 @@ public class Scr_PlayerShipWarehouse : MonoBehaviour
 
             else
                 textToolWarehouse[i].text = playerShipStats.toolWarehouse[i].GetComponent<Scr_ToolBase>().toolName;
+        }
+
+        for(int i = 0; i < playerShipStats.resourceWarehouse.Length; i++)
+        {
+            if (playerShipStats.resourceWarehouse[i] == null)
+                textResourcesWarehouse[i].text = "Empty";
+
+            else
+                textResourcesWarehouse[i].text = playerShipStats.resourceWarehouse[i].name;
         }
     }
 
