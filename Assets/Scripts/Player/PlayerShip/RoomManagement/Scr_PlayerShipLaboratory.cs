@@ -10,6 +10,7 @@ public class Scr_PlayerShipLaboratory : MonoBehaviour
     [SerializeField] private Scr_UpgradeList upgradeData;
     [SerializeField] private Button upgradeButton;
     [SerializeField] public GameObject[] buttonArray;
+    [SerializeField] private Scr_CraftData craftData;
 
     [Header("Info References")]
     [SerializeField] private TextMeshProUGUI titleText;
@@ -28,6 +29,11 @@ public class Scr_PlayerShipLaboratory : MonoBehaviour
     {
         playerShipCraft = GetComponent<Scr_PlayerShipCraft>();
         playerShipStats = GetComponentInParent<Scr_PlayerShipStats>();
+
+        for (int i = 0; i < buttonArray.Length; i++)
+        {
+            buttonArray[i].GetComponentInChildren<TextMeshProUGUI>().text = craftData.CraftList[i].m_name;
+        }
     }
 
     public void TechnologyClic(int index)
@@ -41,13 +47,14 @@ public class Scr_PlayerShipLaboratory : MonoBehaviour
         {
             playerShipCraft.InventoryInfo();
 
+            upgradeButton.gameObject.SetActive(true);
             upgradeButton.interactable = true;
 
             foreach (string k in keyr)
             {
-                for(int p = 0; p < upgradeData.UpgradeList[index].resourceNameList.Count; p++)
+                for (int p = 0; p < upgradeData.UpgradeList[index].resourceNameList.Count; p++)
                 {
-                    if(upgradeData.UpgradeList[index].resourceNameList[p] == k)
+                    if (upgradeData.UpgradeList[index].resourceNameList[p] == k)
                     {
                         resourceListIndex = p;
                         break;
@@ -63,7 +70,7 @@ public class Scr_PlayerShipLaboratory : MonoBehaviour
         }
 
         else
-            upgradeButton.interactable = false;
+            upgradeButton.gameObject.SetActive(false);
 
         titleText.text = upgradeData.UpgradeList[index].m_name;
         descriptionText.text = upgradeData.UpgradeList[index].m_info;
@@ -131,6 +138,8 @@ public class Scr_PlayerShipLaboratory : MonoBehaviour
         }
 
         upgradeButton.interactable = false;
+        upgradeButton.gameObject.SetActive(false);
+
         upgradeData.UpgradeList[technologyIndex].activated = true;
         GenerateRecipe(technologyIndex); 
     }

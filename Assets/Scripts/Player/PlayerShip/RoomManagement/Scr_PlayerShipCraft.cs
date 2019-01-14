@@ -10,6 +10,7 @@ public class Scr_PlayerShipCraft : MonoBehaviour {
     [SerializeField] public Dictionary<string, int> Resources = new Dictionary<string, int>();
     [SerializeField] private Scr_CraftData craftData;
     [SerializeField] private Button craftButton;
+    [SerializeField] private GameObject craftInfoPanel;
 
     [Header("Info References")]
     [SerializeField] private TextMeshProUGUI titleText;
@@ -118,23 +119,32 @@ public class Scr_PlayerShipCraft : MonoBehaviour {
 
         titleText.text = craftData.CraftList[index].m_name;
         descriptionText.text = craftData.CraftList[index].m_info;
-        
-        for(int i = 0; i < craftData.CraftList[index].resourceAmountList.Count; i++)
+
+        resource1Text.gameObject.SetActive(false);
+        resource2Text.gameObject.SetActive(false);
+        resource3Text.gameObject.SetActive(false);
+
+        craftInfoPanel.SetActive(true);
+
+        for (int i = 0; i < craftData.CraftList[index].resourceAmountList.Count; i++)
         {
             if (craftData.CraftList[index].resourceAmountList[i] > 0 && resourceTextIndex == 0)
             {
+                resource1Text.gameObject.SetActive(true);
                 resource1Text.text = craftData.CraftList[index].resourceNameList[i] + " " + Resources[keyr[i]] + "/" + craftData.CraftList[index].resourceAmountList[i].ToString();
                 resourceTextIndex += 1;
             }
 
             else if (craftData.CraftList[index].resourceAmountList[i] > 0 && resourceTextIndex == 1)
             {
+                resource2Text.gameObject.SetActive(true);
                 resource2Text.text = craftData.CraftList[index].resourceNameList[i] + " " + Resources[keyr[i]] + "/" + craftData.CraftList[index].resourceAmountList[i].ToString();
                 resourceTextIndex += 1;
             }
 
             else if (craftData.CraftList[index].resourceAmountList[i] > 0 && resourceTextIndex == 2)
             {
+                resource3Text.gameObject.SetActive(true);
                 resource3Text.text = craftData.CraftList[index].resourceNameList[i] + " " + Resources[keyr[i]] + "/" + craftData.CraftList[index].resourceAmountList[i].ToString();
             }
         }
@@ -190,7 +200,5 @@ public class Scr_PlayerShipCraft : MonoBehaviour {
                 playerShipLaboratory.buttonArray[craftIndex].GetComponent<Scr_CraftingResultBase>().MakingImprovement();
                 break;
         }
-        
-        
     }
 }
