@@ -223,4 +223,14 @@ public class Scr_InterfaceManager : MonoBehaviour
         else if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed)
             playerShipStats.inDanger = false;
     }
+
+    public void WorkShopCategoryActive(Image other)
+    {
+        other.color = active;
+    }
+
+    public void WorkShopCategoryNotActive(Image other)
+    {
+        other.color = notActive;
+    }
 }
