@@ -9,12 +9,14 @@ public class Scr_MapCamera : MonoBehaviour
     [SerializeField] private float closeZoom;
     [SerializeField] private float zoomSpeed;
     [SerializeField] private float focusSpeed;
+    [SerializeField] private float XOffset;
 
     [Header("Map Movement")]
     [SerializeField] private float distanceFromCenter;
 
     [Header("References")]
     [SerializeField] private Scr_MapManager mapManager;
+    [SerializeField] private GameObject zoomPanel;
 
     [HideInInspector] public bool focus;
     [HideInInspector] public GameObject target;
@@ -47,6 +49,14 @@ public class Scr_MapCamera : MonoBehaviour
         mapCamera.orthographicSize = Mathf.Lerp(mapCamera.orthographicSize, focus ? closeZoom : farZoom, Time.deltaTime * zoomSpeed);
 
         if (focus)
-            mapCamera.transform.position = Vector3.Lerp(mapCamera.transform.position, new Vector3(target.transform.position.x, target.transform.position.y, mapCamera.transform.position.z), focusSpeed * Time.deltaTime);
+        {
+            mapCamera.transform.position = Vector3.Lerp(mapCamera.transform.position, new Vector3(target.transform.position.x + XOffset, target.transform.position.y, mapCamera.transform.position.z), focusSpeed * Time.deltaTime);
+
+            if (mapCamera.orthographicSize <= closeZoom + 1)
+                zoomPanel.SetActive(true);            
+        }
+
+        else
+            zoomPanel.SetActive(false);
     }
 }
