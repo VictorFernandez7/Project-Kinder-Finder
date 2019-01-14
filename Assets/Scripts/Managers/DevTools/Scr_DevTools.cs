@@ -69,9 +69,9 @@ public class Scr_DevTools : MonoBehaviour
 
     private void ResetTechnologies()
     {
-        for(int i = 0; i < upgradeData.upgradeList.Lenght; i++)
+        for(int i = 0; i < upgradeData.UpgradeList.Count; i++)
         {
-            upgradeData.upgradeList[i].activated = false;
+            upgradeData.UpgradeList[i].activated = false;
         }
     }
 }

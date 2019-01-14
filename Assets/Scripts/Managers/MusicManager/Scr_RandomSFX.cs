@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Scr_RandomSoundEffects : MonoBehaviour
+public class Scr_RandomSFX : MonoBehaviour
 {
     [Header("Sounds")]
     [SerializeField] private SoundDefinition analize;
