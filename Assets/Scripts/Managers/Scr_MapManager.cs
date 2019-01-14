@@ -77,6 +77,16 @@ public class Scr_MapManager : MonoBehaviour
 
         if (target != null)
             mapIndicator.transform.position = target.transform.position + new Vector3(0f, ((target.transform.GetChild(0).GetComponent<Renderer>().bounds.size.x) / 2) + 10f, 0f);
+
+        if (mapCamera.GetComponent<Scr_MapCamera>().focus)
+        {
+            // Desactivar Indicador de nave e indicador de planeta actual (el rojo y el verde)
+        }
+
+        else
+        {
+            // Activarlos
+        }
     }
 
     public void CancelWaypoint()
@@ -100,7 +110,6 @@ public class Scr_MapManager : MonoBehaviour
             playerShip.GetComponent<Scr_PlayerShipMovement>().canRotateShip = mapActive;
             mapActive = !mapActive;
             mapVisuals.SetActive(mapActive);
-
         }
 
         else if (mapActive)
