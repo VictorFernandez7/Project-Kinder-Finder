@@ -19,12 +19,14 @@ public class Scr_PlayerShipCraft : MonoBehaviour {
     [SerializeField] private TextMeshProUGUI resource3Text;
 
     private Scr_PlayerShipStats playerShipStats;
+    private Scr_PlayerShipLaboratory playerShipLaboratory;
     private int resourceListIndex;
     private int craftIndex;
 
     private void Start()
     {
         playerShipStats = GetComponentInParent<Scr_PlayerShipStats>();
+        playerShipLaboratory = GetComponent<Scr_PlayerShipLaboratory>();
 
         Resources.Add("Fuel", 0);
         Resources.Add("Iron", 0);
@@ -178,6 +180,17 @@ public class Scr_PlayerShipCraft : MonoBehaviour {
 
     private void GenerateCraft()
     {
+        switch (craftData.CraftList[craftIndex].craftResultType)
+        {
+            case CraftResultType.item:
+                playerShipLaboratory.buttonArray[craftIndex].GetComponent<Scr_CraftingResultBase>().ObjectGeneration();
+                break;
 
+            case CraftResultType.improvement:
+                playerShipLaboratory.buttonArray[craftIndex].GetComponent<Scr_CraftingResultBase>().MakingImprovement();
+                break;
+        }
+        
+        
     }
 }
