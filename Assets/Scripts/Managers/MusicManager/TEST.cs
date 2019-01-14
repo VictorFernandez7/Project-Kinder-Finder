@@ -6,7 +6,7 @@ public class TEST : MonoBehaviour {
 
 
     [SerializeField]
-    SoundDefinition sound;
+    SoundDefinition step;
 
     bool played = false;
     private void Start()
@@ -17,9 +17,8 @@ public class TEST : MonoBehaviour {
     void Update () {
         if (!played)
         {
-            Debug.Log(sound.Sound.soundType);
-            Scr_MusicManager.Instance.PlaySound(sound.Sound);
-            played = true;
+            //Scr_MusicManager.Instance.PlaySound(step.Sound);
+
         }
 	}
 }
