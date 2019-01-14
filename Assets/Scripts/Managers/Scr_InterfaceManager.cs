@@ -48,6 +48,7 @@ public class Scr_InterfaceManager : MonoBehaviour
     [SerializeField] private Image purchaseButtonImage;
     [SerializeField] private Button craftButton;
     [SerializeField] private Image craftButtonImage;
+    [SerializeField] private TextMeshProUGUI workshopCategoryNameText;
 
     private bool questPanelActive;
     private bool playerShipWindowActive;
@@ -232,5 +233,10 @@ public class Scr_InterfaceManager : MonoBehaviour
     public void WorkShopCategoryNotActive(Image other)
     {
         other.color = notActive;
+    }
+
+    public void WorkShopCategoryName(string name)
+    {
+        workshopCategoryNameText.text = name;
     }
 }

@@ -100,9 +100,9 @@ public class Scr_Planet : MonoBehaviour
 
     void OnMouseOver()
     {
-        if (mapManager.mapActive)
+        if (Input.GetMouseButtonDown(0))
         {
-            if (Input.GetMouseButtonDown(0))
+            if (mapManager.mapActive)
             {
                 if (lastTarget != this.gameObject)
                 {
