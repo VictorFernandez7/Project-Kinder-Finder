@@ -18,7 +18,7 @@ public class Scr_CraftEditor : EditorWindow
     {
         if (EditorPrefs.HasKey("objectPath"))
         {
-            string ObjectPath = "Assets/Resources/Data/CraftList.asset";
+            string ObjectPath = "Assets/Resources/Data/Data_CraftList.asset";
             inventoryItemList = AssetDatabase.LoadAssetAtPath(ObjectPath, typeof(Scr_CraftData)) as Scr_CraftData;
         }
 
@@ -27,7 +27,7 @@ public class Scr_CraftEditor : EditorWindow
             viewIndex = 1;
 
             Scr_CraftData asset = ScriptableObject.CreateInstance<Scr_CraftData>();
-            AssetDatabase.CreateAsset(asset, "Assets/Resources/Data/CraftList.asset");
+            AssetDatabase.CreateAsset(asset, "Assets/Resources/Data/Data_CraftList.asset");
             AssetDatabase.SaveAssets();
 
             inventoryItemList = asset;
@@ -85,21 +85,21 @@ public class Scr_CraftEditor : EditorWindow
 
         if (GUILayout.Button("+ Add Craft", GUILayout.ExpandWidth(false)))
         {
-            AddUpgrade();
+            AddCraft();
         }
 
         GUILayout.Space(5);
 
         if (GUILayout.Button("- Delete Craft", GUILayout.ExpandWidth(false)))
         {
-            DeleteUpgrade(viewIndex - 1);
+            DeleteCraft(viewIndex - 1);
         }
 
         GUILayout.EndHorizontal();
 
         if (inventoryItemList.CraftList.Count > 0)
         {
-            UpgradeListMenu();
+            CraftListMenu();
         }
 
         else
@@ -109,7 +109,7 @@ public class Scr_CraftEditor : EditorWindow
         }
     }
 
-    void AddUpgrade()
+    void AddCraft()
     {
         Scr_CraftInfo newCraft = new Scr_CraftInfo();
         newCraft.m_name = "New Craft";
@@ -121,12 +121,12 @@ public class Scr_CraftEditor : EditorWindow
         inventoryItemList.CraftList[viewIndex - 1].resourceAmountList.Add(0);
     }
 
-    void DeleteUpgrade(int index)
+    void DeleteCraft(int index)
     {
         inventoryItemList.CraftList.RemoveAt(index);
     }
 
-    void UpgradeListMenu()
+    void CraftListMenu()
     {
         GUILayout.Space(10);
         GUILayout.BeginHorizontal();
@@ -152,8 +152,12 @@ public class Scr_CraftEditor : EditorWindow
         inventoryItemList.CraftList[viewIndex - 1].m_info = EditorGUILayout.TextArea(inventoryItemList.CraftList[viewIndex - 1].m_info as string);
 
         GUILayout.Space(10);
-        GUILayout.Label("Type");
-        inventoryItemList.CraftList[viewIndex - 1].upgradeType = (UpgradeType)EditorGUILayout.EnumPopup(inventoryItemList.CraftList[viewIndex - 1].upgradeType);
+        GUILayout.Label("Craft Type");
+        inventoryItemList.CraftList[viewIndex - 1].craftType = (CraftType)EditorGUILayout.EnumPopup(inventoryItemList.CraftList[viewIndex - 1].craftType);
+
+        GUILayout.Space(10);
+        GUILayout.Label("Carft Result Type");
+        inventoryItemList.CraftList[viewIndex - 1].craftResultType = (CraftResultType)EditorGUILayout.EnumPopup(inventoryItemList.CraftList[viewIndex - 1].craftResultType);
 
         GUILayout.Space(10);
         GUILayout.Label("Requirements");

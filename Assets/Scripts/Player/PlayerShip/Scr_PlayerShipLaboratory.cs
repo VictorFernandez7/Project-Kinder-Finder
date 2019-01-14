@@ -9,7 +9,7 @@ public class Scr_PlayerShipLaboratory : MonoBehaviour
     [Header("References")]
     [SerializeField] private Scr_UpgradeList upgradeData;
     [SerializeField] private Button upgradeButton;
-    [SerializeField] private GameObject[] buttonArray;
+    [SerializeField] public GameObject[] buttonArray;
 
     [Header("Info References")]
     [SerializeField] private TextMeshProUGUI titleText;

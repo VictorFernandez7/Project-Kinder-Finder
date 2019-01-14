@@ -19,7 +19,7 @@ public class Scr_PlanetEditor : EditorWindow
     {
         if (EditorPrefs.HasKey("objectPath"))
         {
-            string ObjectPath = "Assets/Resources/Data/SystemList.asset";
+            string ObjectPath = "Assets/Resources/Data/Data_SystemList.asset";
             inventoryItemList = AssetDatabase.LoadAssetAtPath(ObjectPath, typeof(Scr_SystemData)) as Scr_SystemData;
         }
 
@@ -28,7 +28,7 @@ public class Scr_PlanetEditor : EditorWindow
             viewIndex = 1;
 
             Scr_SystemData asset = ScriptableObject.CreateInstance<Scr_SystemData>();
-            AssetDatabase.CreateAsset(asset, "Assets/Resources/Data/SystemList.asset");
+            AssetDatabase.CreateAsset(asset, "Assets/Resources/Data/Data_SystemList.asset");
             AssetDatabase.SaveAssets();
 
             inventoryItemList = asset;

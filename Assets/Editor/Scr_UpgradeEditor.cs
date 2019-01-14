@@ -18,7 +18,7 @@ public class Scr_UpgradeEditor : EditorWindow
     {
         if (EditorPrefs.HasKey("objectPath"))
         {
-            string ObjectPath = "Assets/Resources/Data/UpgradeList.asset";
+            string ObjectPath = "Assets/Resources/Data/Data_UpgradeList.asset";
             inventoryItemList = AssetDatabase.LoadAssetAtPath(ObjectPath, typeof(Scr_UpgradeList)) as Scr_UpgradeList;
         }
 
@@ -27,7 +27,7 @@ public class Scr_UpgradeEditor : EditorWindow
             viewIndex = 1;
 
             Scr_UpgradeList asset = ScriptableObject.CreateInstance<Scr_UpgradeList>();
-            AssetDatabase.CreateAsset(asset, "Assets/Resources/Data/UpgradeList.asset");
+            AssetDatabase.CreateAsset(asset, "Assets/Resources/Data/Data_UpgradeList.asset");
             AssetDatabase.SaveAssets();
 
             inventoryItemList = asset;
