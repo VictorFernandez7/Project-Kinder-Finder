@@ -28,7 +28,7 @@ public class Scr_MusicManager : PersistentSingleton<Scr_MusicManager>
 
     Dictionary<SoundType, VolumeSetting> volumeDictionary;
 
-    public void PlaySound(SoundData soundData)
+    public void PlayRandom(SoundData soundData)
     {
         float volume = 0;
         if (volumeDictionary.ContainsKey(soundData.soundType))
@@ -51,7 +51,32 @@ public class Scr_MusicManager : PersistentSingleton<Scr_MusicManager>
             source.PlayOneShot(clip, volume);
         }
     }
- 
+
+    public void PlaySound(SoundData soundData, int soundOrder)
+    {
+        float volume = 0;
+        if (volumeDictionary.ContainsKey(soundData.soundType))
+            volume = volumeDictionary[soundData.soundType].volume;
+
+
+        AudioClip clip = null;
+        if (soundData.clips.Count > 0)
+        {
+            clip = soundData.clips[soundOrder];
+        }
+        AudioSource source = audioSourceDictionary[soundData.soundType];
+        if (volumeDictionary[soundData.soundType].isSingle)
+        {
+            source.clip = clip;
+            source.volume = volume;
+            source.Play();
+        }
+        else
+        {
+            source.PlayOneShot(clip, volume);
+        }
+    }
+
     public  override void Awake ()
 	{
         base.Awake();
