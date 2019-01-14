@@ -16,7 +16,7 @@ public class Scr_MapCamera : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Scr_MapManager mapManager;
-    [SerializeField] private GameObject zoomPanel;
+    [SerializeField] private Animator zoomPanel;
 
     [HideInInspector] public bool focus;
     [HideInInspector] public GameObject target;
@@ -53,10 +53,10 @@ public class Scr_MapCamera : MonoBehaviour
             mapCamera.transform.position = Vector3.Lerp(mapCamera.transform.position, new Vector3(target.transform.position.x + XOffset, target.transform.position.y, mapCamera.transform.position.z), focusSpeed * Time.deltaTime);
 
             if (mapCamera.orthographicSize <= closeZoom + 1)
-                zoomPanel.SetActive(true);            
+                zoomPanel.SetBool("Show", true);            
         }
 
         else
-            zoomPanel.SetActive(false);
+            zoomPanel.SetBool("Show", false);
     }
 }
