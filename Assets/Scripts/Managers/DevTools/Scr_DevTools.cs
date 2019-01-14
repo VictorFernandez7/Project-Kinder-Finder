@@ -10,6 +10,11 @@ public class Scr_DevTools : MonoBehaviour
     [Header("ReloadScene")]
     [SerializeField] private KeyCode RS_key;
 
+    [Header("ResetTechnologies")]
+    [SerializeField] private KeyCode RT_key;
+
+    [SerializeField] private Scr_UpgradeList upgradeData; 
+
     private GameObject playerShip;
     private bool devSlow; 
 
@@ -33,6 +38,9 @@ public class Scr_DevTools : MonoBehaviour
 
         if (Input.GetKeyDown(RS_key))
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        if (Input.GetKeyDown(RT_key))
+            ResetTechnologies();
     }
 
     private void BulletTime(bool active)
@@ -56,6 +64,14 @@ public class Scr_DevTools : MonoBehaviour
                 playerShip.GetComponent<Scr_PlayerShipPrediction>().enabled = true;
                 devSlow = false;
             }
+        }
+    }
+
+    private void ResetTechnologies()
+    {
+        for(int i = 0; i < upgradeData.upgradeList.Lenght; i++)
+        {
+            upgradeData.upgradeList[i].activated = false;
         }
     }
 }
