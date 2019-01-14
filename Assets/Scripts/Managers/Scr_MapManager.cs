@@ -107,10 +107,13 @@ public class Scr_MapManager : MonoBehaviour
         {
             playerShip.GetComponent<Scr_PlayerShipPrediction>().enabled = false;
             playerShip.GetComponent<LineRenderer>().enabled = false;
-            Time.timeScale = 0f;
-            Time.fixedDeltaTime = Time.timeScale * 0.02f;
-            slow = true;
-
+            
+            if (playerShip.GetComponent<Scr_PlayerShipMovement>().playerShipState != Scr_PlayerShipMovement.PlayerShipState.landed)
+            {
+                Time.timeScale = 0f;
+                Time.fixedDeltaTime = Time.timeScale * 0.02f;
+                slow = true;
+            }
         }
 
         else if (!mapActive && Time.timeScale < 1 && slow == true)

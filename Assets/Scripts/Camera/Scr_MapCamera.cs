@@ -47,6 +47,6 @@ public class Scr_MapCamera : MonoBehaviour
         mapCamera.orthographicSize = Mathf.Lerp(mapCamera.orthographicSize, focus ? closeZoom : farZoom, Time.deltaTime * zoomSpeed);
 
         if (focus)
-            mapCamera.transform.position = Vector3.Lerp(mapCamera.transform.position, target.transform.position, focusSpeed * Time.deltaTime);
+            mapCamera.transform.position = Vector3.Lerp(mapCamera.transform.position, new Vector3(target.transform.position.x, target.transform.position.y, mapCamera.transform.position.z), focusSpeed * Time.deltaTime);
     }
 }
