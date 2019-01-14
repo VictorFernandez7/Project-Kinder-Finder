@@ -62,6 +62,7 @@ public class Scr_InterfaceManager : MonoBehaviour
 
         anim_AstronautInterface.SetBool("Show", true);
         anim_FadeImage.SetBool("Fade", true);
+        anim_MiniMapPanel.SetBool("Show", true);
     }
 
     private void Update()
