@@ -25,6 +25,7 @@ public class Scr_MapManager : MonoBehaviour
     [SerializeField] private Camera mainCamera;
 
     [HideInInspector] public bool mapActive;
+    [HideInInspector] public bool canMove;
     [HideInInspector] public bool waypointActive;
     [HideInInspector] public bool indicatorActive;
     [HideInInspector] public GameObject target;
@@ -45,6 +46,7 @@ public class Scr_MapManager : MonoBehaviour
     {
         mapCanvas.SetActive(false);
         currentTarget = null;
+        canMove = true;
 
         distanceHUD = Vector3.Distance(distanceText.transform.position, playerShip.transform.position);
     }
@@ -73,9 +75,18 @@ public class Scr_MapManager : MonoBehaviour
             Destroy(onPlayerTarget);
         }
 
-
         if (target != null)
             mapIndicator.transform.position = target.transform.position + new Vector3(0f, ((target.transform.GetChild(0).GetComponent<Renderer>().bounds.size.x) / 2) + 10f, 0f);
+
+        if (mapCamera.GetComponent<Scr_MapCamera>().focus)
+        {
+            // Desactivar Indicador de nave e indicador de planeta actual (el rojo y el verde)
+        }
+
+        else
+        {
+            // Activarlos
+        }
     }
 
     public void CancelWaypoint()
@@ -99,17 +110,19 @@ public class Scr_MapManager : MonoBehaviour
             playerShip.GetComponent<Scr_PlayerShipMovement>().canRotateShip = mapActive;
             mapActive = !mapActive;
             mapVisuals.SetActive(mapActive);
-
         }
 
         else if (mapActive)
         {
             playerShip.GetComponent<Scr_PlayerShipPrediction>().enabled = false;
             playerShip.GetComponent<LineRenderer>().enabled = false;
-            Time.timeScale = 0f;
-            Time.fixedDeltaTime = Time.timeScale * 0.02f;
-            slow = true;
-
+            
+            if (playerShip.GetComponent<Scr_PlayerShipMovement>().playerShipState != Scr_PlayerShipMovement.PlayerShipState.landed)
+            {
+                Time.timeScale = 0f;
+                Time.fixedDeltaTime = Time.timeScale * 0.02f;
+                slow = true;
+            }
         }
 
         else if (!mapActive && Time.timeScale < 1 && slow == true)
@@ -127,8 +140,6 @@ public class Scr_MapManager : MonoBehaviour
             }
         }
     }
-
-
 
     float totalDistance;
     float currentDistance;
