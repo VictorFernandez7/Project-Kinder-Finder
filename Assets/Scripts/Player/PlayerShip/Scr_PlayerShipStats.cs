@@ -63,9 +63,6 @@ public class Scr_PlayerShipStats : MonoBehaviour
 
         fuelSlider.maxValue = maxFuel;
         shieldSlider.maxValue = maxShield;
-
-        for (int i = 0; i < resourceWarehouse.Length; i++)
-            resourceWarehouse[i] = null;
     }
 
     private void Update()

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Scr_UpgradeInfo 
+public class Scr_UpgradeInfo
 {
     public string m_name;
     public SVGImage m_icon;
@@ -19,6 +19,8 @@ public class Scr_UpgradeInfo
     public List<int> resourceAmountList = new List<int>();
 
     public bool activated;
+
+    public List<int> recipeList = new List<int>(); 
 }
 
 public class Scr_UpgradeList : ScriptableObject
