@@ -145,7 +145,10 @@ public class Scr_PlayerShipLaboratory : MonoBehaviour
     }
 
     private void GenerateRecipe(int index)
-    {
-        buttonArray[index].SetActive(true);
+    { 
+        for(int i = 0; i < upgradeData.UpgradeList[technologyIndex].recipeList.Count; i++)
+        {
+            buttonArray[upgradeData.UpgradeList[technologyIndex].recipeList[i]].SetActive(true);
+        }
     }
 }

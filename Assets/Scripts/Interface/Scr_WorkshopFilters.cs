@@ -20,16 +20,21 @@ public class Scr_WorkshopFilters : MonoBehaviour
     {
         currentCategory = 1;
 
+        for(int i = 0; i < upgradeList.UpgradeList.Count; i++)
+        {
+            if (upgradeList.UpgradeList[i].activated)
+            {
+                for (int j = 0; j < upgradeList.UpgradeList[i].recipeList.Count; i++)
+                {
+                    playerShipLaboratory.buttonArray[upgradeList.UpgradeList[i].recipeList[j]].SetActive(true);
+                }
+            }
+        }
+
         for (int i = 0; i < playerShipLaboratory.buttonArray.Length; i++)
         {
-            if (craftData.CraftList[i].craftType == CraftType.tools)
-            {
-                if (upgradeList.UpgradeList[i].activated)
-                    playerShipLaboratory.buttonArray[i].SetActive(true);
-            }
-
-            else
-                playerShipLaboratory.buttonArray[i].SetActive(false);
+            if (craftData.CraftList[i].craftType != CraftType.tools)
+                playerShipLaboratory.buttonArray[i].SetActive(false); 
         }
     }
 
@@ -37,15 +42,20 @@ public class Scr_WorkshopFilters : MonoBehaviour
     {
         currentCategory = 2;
 
+        for (int i = 0; i < upgradeList.UpgradeList.Count; i++)
+        {
+            if (upgradeList.UpgradeList[i].activated)
+            {
+                for (int j = 0; j < upgradeList.UpgradeList[i].recipeList.Count; i++)
+                {
+                    playerShipLaboratory.buttonArray[upgradeList.UpgradeList[i].recipeList[j]].SetActive(true);
+                }
+            }
+        }
+
         for (int i = 0; i < playerShipLaboratory.buttonArray.Length; i++)
         {
-            if (craftData.CraftList[i].craftType == CraftType.story)
-            {
-                if (upgradeList.UpgradeList[i].activated)
-                    playerShipLaboratory.buttonArray[i].SetActive(true);
-            }
-
-            else
+            if (craftData.CraftList[i].craftType != CraftType.story)
                 playerShipLaboratory.buttonArray[i].SetActive(false);
         }
     }
@@ -54,15 +64,20 @@ public class Scr_WorkshopFilters : MonoBehaviour
     {
         currentCategory = 3;
 
+        for (int i = 0; i < upgradeList.UpgradeList.Count; i++)
+        {
+            if (upgradeList.UpgradeList[i].activated)
+            {
+                for (int j = 0; j < upgradeList.UpgradeList[i].recipeList.Count; i++)
+                {
+                    playerShipLaboratory.buttonArray[upgradeList.UpgradeList[i].recipeList[j]].SetActive(true);
+                }
+            }
+        }
+
         for (int i = 0; i < playerShipLaboratory.buttonArray.Length; i++)
         {
-            if (craftData.CraftList[i].craftType == CraftType.spaceSuit)
-            {
-                if (upgradeList.UpgradeList[i].activated)
-                    playerShipLaboratory.buttonArray[i].SetActive(true);
-            }
-
-            else
+            if (craftData.CraftList[i].craftType != CraftType.spaceSuit)
                 playerShipLaboratory.buttonArray[i].SetActive(false);
         }
     }

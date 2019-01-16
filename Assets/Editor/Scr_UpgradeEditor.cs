@@ -7,6 +7,7 @@ public class Scr_UpgradeEditor : EditorWindow
 {
     private Scr_UpgradeList inventoryItemList;
     private int viewIndex = 1;
+    private int recipeNum = 0;
 
     [MenuItem("Window/Upgrade Editor")]
     static void Init()
@@ -108,6 +109,22 @@ public class Scr_UpgradeEditor : EditorWindow
             GUILayout.Space(10);
             GUILayout.Label("This Upgrade List is Empty.");
         }
+
+        GUILayout.BeginHorizontal();
+
+        if (GUILayout.Button("+ Add Recipe", GUILayout.ExpandWidth(false)))
+        {
+            AddRecipe();
+        }
+
+        GUILayout.Space(5);
+
+        if (GUILayout.Button("- Remove Recipe", GUILayout.ExpandWidth(false)))
+        {
+            RemoveRecipe();
+        }
+
+        GUILayout.EndHorizontal();
     }
 
     void AddUpgrade()
@@ -125,6 +142,18 @@ public class Scr_UpgradeEditor : EditorWindow
     void DeleteUpgrade(int index)
     {
         inventoryItemList.UpgradeList.RemoveAt(index);
+    }
+
+    void AddRecipe()
+    {
+        inventoryItemList.UpgradeList[viewIndex - 1].recipeList.Add(0);
+        recipeNum += 1;
+    }
+
+    void RemoveRecipe()
+    {
+        inventoryItemList.UpgradeList[viewIndex - 1].recipeList.RemoveAt(recipeNum - 1);
+        recipeNum -= 1;
     }
 
     void UpgradeListMenu()
@@ -155,11 +184,18 @@ public class Scr_UpgradeEditor : EditorWindow
         GUILayout.Label("Requirements");
         inventoryItemList.UpgradeList[viewIndex - 1].m_requirements = EditorGUILayout.TextArea(inventoryItemList.UpgradeList[viewIndex - 1].m_requirements as string);
 
-
         GUILayout.Space(10);
         GUILayout.Label("Resources Needed");
 
         inventoryItemList.UpgradeList[viewIndex - 1].resourceAmountList[0] = EditorGUILayout.IntField("Fuel", inventoryItemList.UpgradeList[viewIndex - 1].resourceAmountList[0]);
         inventoryItemList.UpgradeList[viewIndex - 1].resourceAmountList[1] = EditorGUILayout.IntField("Iron", inventoryItemList.UpgradeList[viewIndex - 1].resourceAmountList[1]);
+
+        GUILayout.Space(10);
+        GUILayout.Label("Recipes Unlocked");
+
+        for (int i = 0; i < inventoryItemList.UpgradeList[viewIndex - 1].recipeList.Count; i++)
+        {
+            inventoryItemList.UpgradeList[viewIndex - 1].recipeList[i] = EditorGUILayout.IntField(i.ToString(), inventoryItemList.UpgradeList[viewIndex - 1].recipeList[i]);
+        }
     }
 }
