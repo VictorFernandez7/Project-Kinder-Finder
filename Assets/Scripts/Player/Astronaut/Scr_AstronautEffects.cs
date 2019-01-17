@@ -15,26 +15,31 @@ public class Scr_AstronautEffects : MonoBehaviour
     [SerializeField] private SoundDefinition mine;
     [SerializeField] private SoundDefinition stepOutOfShip;
     [SerializeField] private SoundDefinition repair;
+    [SerializeField] private SoundDefinition breathing;
 
-   /* void update()
-    
-    {
-        if ()
-        { 
-        Scr_MusicManager.Instance.PlaySound(steps.Sound, 0);
-        }
-        if ()
-        {
-            Scr_MusicManager.Instance.PlaySound(jump.Sound, 0);
-        }
-        if ()
-        {
-            Scr_MusicManager.Instance.PlaySound(stepOutOfShip.Sound, 0);
-        }
-        if ()
-        {
-            Scr_MusicManager.Instance.PlaySound(repair.Sound, 0);
-        }
-    }
-    */
+    /* void update()
+
+     {
+         if ()
+         { 
+         Scr_MusicManager.Instance.PlaySound(steps.Sound, 0);
+         }
+         if ()
+         {
+             Scr_MusicManager.Instance.PlaySound(jump.Sound, 0);
+         }
+         if ()
+         {
+             Scr_MusicManager.Instance.PlaySound(stepOutOfShip.Sound, 0);
+         }
+         if ()
+         {
+             Scr_MusicManager.Instance.PlaySound(repair.Sound, 0);
+         }
+                  if ()
+         {
+             Scr_MusicManager.Instance.PlaySound(breathing.Sound, 0);
+         }
+     }
+     */
 }
