@@ -16,6 +16,7 @@ public class Scr_AstronautEffects : MonoBehaviour
     [SerializeField] private SoundDefinition stepOutOfShip;
     [SerializeField] private SoundDefinition repair;
     [SerializeField] private SoundDefinition breathing;
+    [SerializeField] private SoundDefinition chatter;
 
     /* void update()
 
@@ -36,9 +37,13 @@ public class Scr_AstronautEffects : MonoBehaviour
          {
              Scr_MusicManager.Instance.PlaySound(repair.Sound, 0);
          }
-                  if ()
+         if ()
          {
              Scr_MusicManager.Instance.PlaySound(breathing.Sound, 0);
+         }
+         if ()
+         {
+             Scr_MusicManager.Instance.PlaySound(chatter.Sound, 0);
          }
      }
      */
