@@ -20,6 +20,7 @@ public class Scr_RandomSFX : MonoBehaviour
     [SerializeField] private SoundDefinition roboticAlarm;
     [SerializeField] private SoundDefinition sendMessage;
     [SerializeField] private SoundDefinition strangeNoise;
+    [SerializeField] private SoundDefinition alienChatter;
 
 
 
@@ -98,6 +99,10 @@ public class Scr_RandomSFX : MonoBehaviour
         if ()
         {
             Scr_MusicManager.Instance.PlayRandom(strangeNoise.Sound);
+        }
+                if ()
+        {
+            Scr_MusicManager.Instance.PlayRandom(alienChatter.Sound);
         }
     }
     */
