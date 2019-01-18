@@ -137,6 +137,8 @@ public class Scr_UpgradeEditor : EditorWindow
         inventoryItemList.UpgradeList[viewIndex - 1].resourceAmountList.Add(0);
         inventoryItemList.UpgradeList[viewIndex - 1].resourceNameList.Add("Iron");
         inventoryItemList.UpgradeList[viewIndex - 1].resourceAmountList.Add(0);
+        inventoryItemList.UpgradeList[viewIndex - 1].resourceNameList.Add("Copper");
+        inventoryItemList.UpgradeList[viewIndex - 1].resourceAmountList.Add(0);
     }
 
     void DeleteUpgrade(int index)
@@ -189,6 +191,7 @@ public class Scr_UpgradeEditor : EditorWindow
 
         inventoryItemList.UpgradeList[viewIndex - 1].resourceAmountList[0] = EditorGUILayout.IntField("Fuel", inventoryItemList.UpgradeList[viewIndex - 1].resourceAmountList[0]);
         inventoryItemList.UpgradeList[viewIndex - 1].resourceAmountList[1] = EditorGUILayout.IntField("Iron", inventoryItemList.UpgradeList[viewIndex - 1].resourceAmountList[1]);
+        inventoryItemList.UpgradeList[viewIndex - 1].resourceAmountList[2] = EditorGUILayout.IntField("Copper", inventoryItemList.UpgradeList[viewIndex - 1].resourceAmountList[2]);
 
         GUILayout.Space(10);
         GUILayout.Label("Recipes Unlocked");

@@ -2,53 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Scr_Planet : Scr_AstroBase
+public class Scr_Star : Scr_AstroBase
 {
     [Header("Planet Properties")]
     [SerializeField] private float movementSpeed;
     [SerializeField] float maxClampDistance;
     [SerializeField] float minClampDistance;
-    [SerializeField] [Range(-0.1f, 0.1f)]float rotationSpeed;
 
     [Header("References")]
-    [SerializeField] private GameObject mapIndicator;
-    [SerializeField] private GameObject directionIndicator;
-    [SerializeField] private GameObject mapVisuals;
-    [SerializeField] private GameObject rotationPivot;
-    [SerializeField] private Scr_MapManager mapManager;
     [SerializeField] private GameObject playerShip;
-    [SerializeField] private GameObject astronaut;
-    [SerializeField] private GameObject mainCanvas;
-    [SerializeField] private Scr_MapCamera mapCamera;
+    [SerializeField] private GameObject mapVisuals;
 
     private double gravityConstant;
-    private Vector3 lastFrameRotationPivot;
-    private GameObject lastTarget;
+    private Vector3 lastFrameRotationPivot = Vector3.zero;
     private Rigidbody2D planetRb;
     private Rigidbody2D playerShipRb;
-    private Rigidbody2D astronautRB;
 
     private void Start()
     {
         planetRb = GetComponent<Rigidbody2D>();
 
         switchGravity = true;
-        lastFrameRotationPivot = rotationPivot.transform.position;
         playerShipRb = playerShip.GetComponent<Rigidbody2D>();
-        astronautRB = astronaut.GetComponent<Rigidbody2D>();
         gravityConstant = 6.674 * (10 ^ -11);
         mapVisuals.SetActive(true);
     }
 
     public override void FixedUpdate()
     {
-        transform.position += (rotationPivot.transform.position - lastFrameRotationPivot);
-        lastFrameRotationPivot = rotationPivot.transform.position;
-
-        transform.RotateAround(lastFrameRotationPivot, Vector3.forward, movementSpeed * Time.fixedDeltaTime);
-
-        transform.Rotate(new Vector3(0f, 0f, rotationSpeed), Space.Self);
-
         if (playerShip.GetComponent<Scr_PlayerShipMovement>().onGround == false && switchGravity)
         {
             Vector3 translocation = transform.position;
@@ -95,47 +76,5 @@ public class Scr_Planet : Scr_AstroBase
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, minClampDistance);
         Gizmos.DrawWireSphere(transform.position, maxClampDistance);
-    }
-
-    private void OnMouseOver()
-    {
-        if (Input.GetMouseButtonDown(0) && mapManager.mapActive)
-        {
-            mapCamera.target = gameObject;
-            mapCamera.focus = !mapCamera.focus;
-            mapManager.canMove = !mapManager.canMove;
-        }
-    }
-
-    public void SetWaypoint()
-    {
-        if (mapManager.mapActive)
-        {
-            if (lastTarget != this.gameObject)
-            {
-                if (mapManager.indicatorActive)
-                {
-                    Destroy(mapManager.mapIndicator);
-                    Destroy(mapManager.directionIndicator);
-                }
-
-                mapManager.mapIndicator = Instantiate(mapIndicator);
-                mapManager.directionIndicator = Instantiate(directionIndicator);
-                mapManager.directionIndicator.transform.SetParent(mainCanvas.transform);
-                mapManager.myRectTransform = mapManager.directionIndicator.GetComponent<RectTransform>();
-                mapManager.currentTarget = this.gameObject;
-                mapManager.target = this.gameObject;
-                mapManager.waypointActive = true;
-                mapManager.mapIndicator.transform.position = transform.position + new Vector3(0f, ((transform.GetChild(0).GetComponent<Renderer>().bounds.size.x) / 2) + 10f, 0f);
-                mapManager.indicatorActive = true;
-                lastTarget = this.gameObject;
-            }
-
-            else
-            {
-                mapManager.CancelWaypoint();
-                lastTarget = null;
-            }
-        }
     }
 }

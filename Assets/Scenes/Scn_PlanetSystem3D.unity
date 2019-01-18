@@ -7308,6 +7308,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 441807389}
+  - component: {fileID: 441807391}
+  - component: {fileID: 441807390}
   m_Layer: 0
   m_Name: Pivot
   m_TagString: Untagged
@@ -7331,6 +7333,45 @@ Transform:
   m_Father: {fileID: 75527859}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &441807390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 441807388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11ecb863ad5f29641a38eb72e43f9c58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  switchGravity: 0
+  movementSpeed: 0
+  maxClampDistance: 43.11
+  minClampDistance: 34.63
+  playerShip: {fileID: 557998420}
+  mapVisuals: {fileID: 1312132494}
+--- !u!50 &441807391
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 441807388}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 50000
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!114 &458981208 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114147616669729342, guid: 6ee248eae7fc7574998196240b18bb9b,
@@ -13145,6 +13186,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1364721059764218, guid: 9a8ba96e098d44746a0aa42632ce3878,
         type: 3}
+    - target: {fileID: 114778194997285574, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
+        type: 3}
+      propertyPath: toolWarehouse.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114778194997285574, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
+        type: 3}
+      propertyPath: resourceWarehouse.Array.data[2]
+      value: 
+      objectReference: {fileID: 2918500654475464646, guid: b6e52706c38530445802607b730184e4,
+        type: 3}
     - target: {fileID: 4030621875282276, guid: 15c55cceacb93ea4bb7e3f3c7e160410, type: 3}
       propertyPath: m_LocalPosition.x
       value: 146.097
@@ -14844,6 +14896,11 @@ PrefabInstance:
       propertyPath: planets.Array.data[7]
       value: 
       objectReference: {fileID: 1594135070}
+    - target: {fileID: 114628998256130114, guid: 6ee248eae7fc7574998196240b18bb9b,
+        type: 3}
+      propertyPath: planets.Array.data[8]
+      value: 
+      objectReference: {fileID: 441807388}
     - target: {fileID: 114879436719918488, guid: 6ee248eae7fc7574998196240b18bb9b,
         type: 3}
       propertyPath: mapCamera
@@ -15120,12 +15177,6 @@ PrefabInstance:
       propertyPath: playerShipLaboratory
       value: 
       objectReference: {fileID: 8341025953851202310}
-    - target: {fileID: 5537282738638702955, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: upgradeList
-      value: 
-      objectReference: {fileID: 11400000, guid: 7f4aba37904d7444d96423b48b486f24,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ee248eae7fc7574998196240b18bb9b, type: 3}
 --- !u!114 &1776733534 stripped

@@ -47,6 +47,7 @@ MonoBehaviour:
   - {fileID: 1116605186558984, guid: 0ab54584d4e7bc149845553791765566, type: 3}
   SolidResources:
   - {fileID: 1364721059764218, guid: 9a8ba96e098d44746a0aa42632ce3878, type: 3}
+  - {fileID: 2918500654475464646, guid: b6e52706c38530445802607b730184e4, type: 3}
   GasExtractor: {fileID: 1724849047184002, guid: e2c8d13b1b127a941aef19b139e69791,
     type: 3}
   OreExtractor: {fileID: 1238031769430186, guid: 8e98f6f64eacd0c42bb17fad700b9f46,
@@ -163,6 +164,7 @@ MonoBehaviour:
   playerShip: {fileID: 0}
   mainCamera: {fileID: 0}
   mapActive: 0
+  canMove: 0
   waypointActive: 0
   indicatorActive: 0
   target: {fileID: 0}
@@ -251,6 +253,7 @@ MonoBehaviour:
   purchaseButtonImage: {fileID: 0}
   craftButton: {fileID: 0}
   craftButtonImage: {fileID: 0}
+  workshopCategoryNameText: {fileID: 0}
 --- !u!1 &1525737731890656
 GameObject:
   m_ObjectHideFlags: 0
@@ -297,6 +300,8 @@ MonoBehaviour:
   slowAmount: 0.05
   BT_key: 56
   RS_key: 57
+  RT_key: 0
+  upgradeData: {fileID: 0}
 --- !u!1 &1535065661933764
 GameObject:
   m_ObjectHideFlags: 0
@@ -377,6 +382,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planets:
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
