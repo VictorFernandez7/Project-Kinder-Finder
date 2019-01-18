@@ -31,6 +31,7 @@ public class Scr_PlayerShipCraft : MonoBehaviour {
 
         Resources.Add("Fuel", 0);
         Resources.Add("Iron", 0);
+        Resources.Add("Copper", 0);
     }
 
     private void Update()

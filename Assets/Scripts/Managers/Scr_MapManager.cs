@@ -80,13 +80,15 @@ public class Scr_MapManager : MonoBehaviour
 
         if (mapCamera.GetComponent<Scr_MapCamera>().focus)
         {
-            onPlayerTarget.SetActive(false);
+            if (onPlayerTarget)
+                onPlayerTarget.SetActive(false);
             mapVisuals.SetActive(false);
         }
 
         else
         {
-            onPlayerTarget.SetActive(true);
+            if(onPlayerTarget)
+                onPlayerTarget.SetActive(true);
             mapVisuals.SetActive(true);
         }
     }

@@ -119,6 +119,8 @@ public class Scr_CraftEditor : EditorWindow
         inventoryItemList.CraftList[viewIndex - 1].resourceAmountList.Add(0);
         inventoryItemList.CraftList[viewIndex - 1].resourceNameList.Add("Iron");
         inventoryItemList.CraftList[viewIndex - 1].resourceAmountList.Add(0);
+        inventoryItemList.CraftList[viewIndex - 1].resourceNameList.Add("Copper");
+        inventoryItemList.CraftList[viewIndex - 1].resourceAmountList.Add(0);
     }
 
     void DeleteCraft(int index)
@@ -164,6 +166,7 @@ public class Scr_CraftEditor : EditorWindow
 
         inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[0] = EditorGUILayout.IntField("Fuel", inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[0]);
         inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[1] = EditorGUILayout.IntField("Iron", inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[1]);
+        inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[2] = EditorGUILayout.IntField("Copper", inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[2]);
     }
 }
 

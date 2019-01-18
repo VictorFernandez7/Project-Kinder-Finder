@@ -48,9 +48,9 @@ public class Scr_PlayerShipPrediction : MonoBehaviour
 
             for (int j = 0; j < planetManager.planets.Length; ++j)
             {
-                Vector3 gravityVectors = (planetManager.planets[j].GetComponent<Scr_Planet>().GetFutureGravity(currentPosition, i * Time.fixedDeltaTime));
+                Vector3 gravityVectors = (planetManager.planets[j].GetComponent<Scr_AstroBase>().GetFutureGravity(currentPosition, i * Time.fixedDeltaTime));
                 gravity += gravityVectors;
-                displacement += planetManager.planets[j].GetComponent<Scr_Planet>().GetFutureDisplacement(currentPosition, i * Time.fixedDeltaTime);
+                displacement += planetManager.planets[j].GetComponent<Scr_AstroBase>().GetFutureDisplacement(currentPosition, i * Time.fixedDeltaTime);
             }
 
             gravity = gravity * Time.fixedDeltaTime * Time.fixedDeltaTime;

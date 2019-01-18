@@ -11,7 +11,7 @@ public class Scr_PlanetManager : MonoBehaviour
         {
             for (int i = 0; i < planets.Length; i++)
             {
-                planets[i].GetComponent<Scr_Planet>().switchGravity = true;
+                planets[i].GetComponent<Scr_AstroBase>().switchGravity = true;
             }
         }
 
@@ -19,7 +19,7 @@ public class Scr_PlanetManager : MonoBehaviour
         {
             for (int i = 0; i < planets.Length; i++)
             {
-                planets[i].GetComponent<Scr_Planet>().switchGravity = false;
+                planets[i].GetComponent<Scr_AstroBase>().switchGravity = false;
             }
         }
     }
