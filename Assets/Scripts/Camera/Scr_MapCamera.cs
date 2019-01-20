@@ -46,11 +46,11 @@ public class Scr_MapCamera : MonoBehaviour
 
     private void ZoomSystem()
     {
-        mapCamera.orthographicSize = Mathf.Lerp(mapCamera.orthographicSize, focus ? closeZoom : farZoom, Time.deltaTime * zoomSpeed);
+        mapCamera.orthographicSize = Mathf.Lerp(mapCamera.orthographicSize, focus ? closeZoom : farZoom, Time.unscaledDeltaTime * zoomSpeed);
 
         if (focus)
         {
-            mapCamera.transform.position = Vector3.Lerp(mapCamera.transform.position, new Vector3(target.transform.position.x + XOffset, target.transform.position.y, mapCamera.transform.position.z), focusSpeed * Time.deltaTime);
+            mapCamera.transform.position = Vector3.Lerp(mapCamera.transform.position, new Vector3(target.transform.position.x + XOffset, target.transform.position.y, mapCamera.transform.position.z), focusSpeed * Time.unscaledDeltaTime);
 
             if (mapCamera.orthographicSize <= closeZoom + 1)
                 zoomPanel.SetBool("Show", true);            
