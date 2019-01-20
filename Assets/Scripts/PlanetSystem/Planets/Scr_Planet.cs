@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Scr_Planet : Scr_AstroBase
 {
+    [Header("Planet Info")]
+    [SerializeField] public string planetName;
+    [SerializeField] public PlanetType planetType;
+    [SerializeField] public int planetTemperature;
+    [SerializeField] public bool planetOxygen;
+    [SerializeField] public bool planetGravity;
+
     [Header("Planet Properties")]
     [SerializeField] private float movementSpeed;
     [SerializeField] float maxClampDistance;
@@ -27,6 +34,14 @@ public class Scr_Planet : Scr_AstroBase
     private Rigidbody2D planetRb;
     private Rigidbody2D playerShipRb;
     private Rigidbody2D astronautRB;
+
+    public enum PlanetType
+    {
+        EarthLike,
+        Frozen,
+        Volcanic,
+        Arid
+    }
 
     private void Start()
     {
@@ -104,6 +119,7 @@ public class Scr_Planet : Scr_AstroBase
             mapCamera.target = gameObject;
             mapCamera.focus = !mapCamera.focus;
             mapManager.canMove = !mapManager.canMove;
+            mapManager.ChangePlanetInfo(planetName, planetType, planetTemperature, planetOxygen, planetGravity);
         }
     }
 

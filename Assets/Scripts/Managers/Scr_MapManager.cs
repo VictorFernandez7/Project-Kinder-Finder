@@ -3,7 +3,7 @@ using TMPro;
 
 public class Scr_MapManager : MonoBehaviour
 {
-    [Header("Map Properties")]
+    [Header("Map Input")]
     [SerializeField] private float dragSpeed;
     [SerializeField] private float maxZoom;
     [SerializeField] private float minZoom;
@@ -14,6 +14,12 @@ public class Scr_MapManager : MonoBehaviour
     [SerializeField] private float distance;
     [SerializeField] private Color onPlanetColor;
 
+    [Header("Map Info Panel")]
+    [SerializeField] Color earthLikeColor;
+    [SerializeField] Color frozenColor;
+    [SerializeField] Color volcanicColor;
+    [SerializeField] Color aridColor;
+
     [Header("References")]
     [SerializeField] private Camera mapCamera;
     [SerializeField] private GameObject mapVisuals;
@@ -23,6 +29,11 @@ public class Scr_MapManager : MonoBehaviour
     [SerializeField] private GameObject mapCanvas;
     [SerializeField] private GameObject playerShip;
     [SerializeField] private Camera mainCamera;
+    [SerializeField] private TextMeshProUGUI planetName;
+    [SerializeField] private TextMeshProUGUI planetType;
+    [SerializeField] private TextMeshProUGUI planetTemperature;
+    [SerializeField] private GameObject planetOxygen;
+    [SerializeField] private GameObject planetGravity;
 
     [HideInInspector] public bool mapActive;
     [HideInInspector] public bool canMove;
@@ -210,5 +221,30 @@ public class Scr_MapManager : MonoBehaviour
         directionIndicator.transform.rotation = Quaternion.Euler(0f, 0f, rotation_z + 90f - mainCamera.transform.rotation.eulerAngles.z);
 
         directionIndicator.transform.localPosition = -directionIndicator.transform.up * distance;
+    }
+
+    public void ChangePlanetInfo(string name, Scr_Planet.PlanetType type, int temperature, bool oxygen, bool gravity)
+    {
+        planetName.text = name;
+        planetType.text = type.ToString();
+        planetTemperature.text = temperature + " º";
+        planetOxygen.SetActive(oxygen);
+        planetGravity.SetActive(gravity);
+
+        switch (type)
+        {
+            case Scr_Planet.PlanetType.EarthLike:
+                planetType.color = earthLikeColor;
+                break;
+            case Scr_Planet.PlanetType.Frozen:
+                planetType.color = frozenColor;
+                break;
+            case Scr_Planet.PlanetType.Volcanic:
+                planetType.color = volcanicColor;
+                break;
+            case Scr_Planet.PlanetType.Arid:
+                planetType.color = aridColor;
+                break;
+        }
     }
 }
