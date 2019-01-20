@@ -13,13 +13,12 @@ public class Scr_Planet : Scr_AstroBase
 
     [Header("Planet Properties")]
     [SerializeField] private float movementSpeed;
-    [SerializeField] float maxClampDistance;
-    [SerializeField] float minClampDistance;
-    [SerializeField] [Range(-0.1f, 0.1f)]float rotationSpeed;
+    [SerializeField] private float maxClampDistance;
+    [SerializeField] private float minClampDistance;
+    [SerializeField] [Range(-0.1f, 0.1f)] private float rotationSpeed;
 
     [Header("References")]
-    [SerializeField] private GameObject mapIndicator;
-    [SerializeField] private GameObject directionIndicator;
+    [SerializeField] private GameObject mapIndicator;    
     [SerializeField] private GameObject mapVisuals;
     [SerializeField] private GameObject rotationPivot;
     [SerializeField] private Scr_MapManager mapManager;
@@ -30,7 +29,6 @@ public class Scr_Planet : Scr_AstroBase
 
     private double gravityConstant;
     private Vector3 lastFrameRotationPivot;
-    private GameObject lastTarget;
     private Rigidbody2D planetRb;
     private Rigidbody2D playerShipRb;
     private Rigidbody2D astronautRB;
@@ -120,38 +118,7 @@ public class Scr_Planet : Scr_AstroBase
             mapCamera.focus = !mapCamera.focus;
             mapManager.canMove = !mapManager.canMove;
             mapManager.ChangePlanetInfo(planetName, planetType, planetTemperature, planetOxygen, planetGravity);
-        }
-    }
-
-    public void SetWaypoint()
-    {
-        if (mapManager.mapActive)
-        {
-            if (lastTarget != this.gameObject)
-            {
-                if (mapManager.indicatorActive)
-                {
-                    Destroy(mapManager.mapIndicator);
-                    Destroy(mapManager.directionIndicator);
-                }
-
-                mapManager.mapIndicator = Instantiate(mapIndicator);
-                mapManager.directionIndicator = Instantiate(directionIndicator);
-                mapManager.directionIndicator.transform.SetParent(mainCanvas.transform);
-                mapManager.myRectTransform = mapManager.directionIndicator.GetComponent<RectTransform>();
-                mapManager.currentTarget = this.gameObject;
-                mapManager.target = this.gameObject;
-                mapManager.waypointActive = true;
-                mapManager.mapIndicator.transform.position = transform.position + new Vector3(0f, ((transform.GetChild(0).GetComponent<Renderer>().bounds.size.x) / 2) + 10f, 0f);
-                mapManager.indicatorActive = true;
-                lastTarget = this.gameObject;
-            }
-
-            else
-            {
-                mapManager.CancelWaypoint();
-                lastTarget = null;
-            }
+            mapManager.currentPlanet = gameObject;
         }
     }
 }

@@ -23,7 +23,7 @@ public class Scr_MapManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private Camera mapCamera;
     [SerializeField] private GameObject mapVisuals;
-    [SerializeField] private GameObject indicator;
+    [SerializeField] private GameObject mapIndicatorPrefab;
     [SerializeField] private TextMeshProUGUI distanceText;
     [SerializeField] private GameObject mainCanvas;
     [SerializeField] private GameObject mapCanvas;
@@ -34,6 +34,7 @@ public class Scr_MapManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI planetTemperature;
     [SerializeField] private GameObject planetOxygen;
     [SerializeField] private GameObject planetGravity;
+    [SerializeField] private GameObject directionIndicator;
 
     [HideInInspector] public bool mapActive;
     [HideInInspector] public bool canMove;
@@ -41,8 +42,9 @@ public class Scr_MapManager : MonoBehaviour
     [HideInInspector] public bool indicatorActive;
     [HideInInspector] public GameObject target;
     [HideInInspector] public GameObject currentTarget;
-    [HideInInspector] public GameObject directionIndicator;
-    [HideInInspector] public GameObject mapIndicator;
+    [HideInInspector] public GameObject currentPlanet;
+    [HideInInspector] public GameObject directionIndicatorClone;
+    [HideInInspector] public GameObject mapIndicatorClone;
     [HideInInspector] public RectTransform myRectTransform;
 
     private bool clampToScreen = true;
@@ -52,6 +54,7 @@ public class Scr_MapManager : MonoBehaviour
     private Vector3 dragOrigin;
     private Vector2 velocity;
     private GameObject onPlayerTarget;
+    private GameObject lastTarget;
 
     private void Start()
     {
@@ -69,7 +72,7 @@ public class Scr_MapManager : MonoBehaviour
 
         if (playerShip.GetComponent<Scr_PlayerShipMovement>().currentPlanet != null && !onPlanet)
         {
-            onPlayerTarget = Instantiate(indicator);
+            onPlayerTarget = Instantiate(mapIndicatorPrefab);
             onPlayerTarget.GetComponent<SpriteRenderer>().color = onPlanetColor;
             onPlayerTarget.transform.position = playerShip.GetComponent<Scr_PlayerShipMovement>().currentPlanet.transform.position + new Vector3(0f, ((playerShip.GetComponent<Scr_PlayerShipMovement>().currentPlanet.transform.GetChild(0).GetComponent<Renderer>().bounds.size.x) / 2) + 10f, -0.5f);
             onPlanet = true;
@@ -87,12 +90,13 @@ public class Scr_MapManager : MonoBehaviour
         }
 
         if (target != null)
-            mapIndicator.transform.position = target.transform.position + new Vector3(0f, ((target.transform.GetChild(0).GetComponent<Renderer>().bounds.size.x) / 2) + 10f, 0f);
+            mapIndicatorClone.transform.position = target.transform.position + new Vector3(0f, ((target.transform.GetChild(0).GetComponent<Renderer>().bounds.size.x) / 2) + 10f, 0f);
 
         if (mapCamera.GetComponent<Scr_MapCamera>().focus)
         {
             if (onPlayerTarget)
                 onPlayerTarget.SetActive(false);
+
             mapVisuals.SetActive(false);
         }
 
@@ -100,14 +104,15 @@ public class Scr_MapManager : MonoBehaviour
         {
             if(onPlayerTarget)
                 onPlayerTarget.SetActive(true);
+
             mapVisuals.SetActive(true);
         }
     }
 
     public void CancelWaypoint()
     {
-        Destroy(mapIndicator);
-        Destroy(directionIndicator);
+        Destroy(mapIndicatorClone);
+        Destroy(directionIndicatorClone);
 
         indicatorActive = false;
         waypointActive = false;
@@ -245,6 +250,38 @@ public class Scr_MapManager : MonoBehaviour
             case Scr_Planet.PlanetType.Arid:
                 planetType.color = aridColor;
                 break;
+        }
+    }
+
+    public void SetWaypoint()
+    {
+        if (mapActive)
+        {
+            if (lastTarget != currentPlanet)
+            {
+                if (indicatorActive)
+                {
+                    Destroy(mapIndicatorClone);
+                    Destroy(directionIndicatorClone);
+                }
+
+                mapIndicatorClone = Instantiate(mapIndicatorPrefab);
+                directionIndicatorClone = Instantiate(directionIndicator);
+                directionIndicatorClone.transform.SetParent(mainCanvas.transform);
+                myRectTransform = directionIndicatorClone.GetComponent<RectTransform>();
+                currentTarget = currentPlanet.gameObject;
+                target = currentPlanet.gameObject;
+                waypointActive = true;
+                mapIndicatorClone.transform.position = currentPlanet.transform.position + new Vector3(0f, ((currentPlanet.transform.GetChild(0).GetComponent<Renderer>().bounds.size.x) / 2) + 10f, 0f);
+                indicatorActive = true;
+                lastTarget = currentPlanet.gameObject;
+            }
+
+            else
+            {
+                CancelWaypoint();
+                lastTarget = null;
+            }
         }
     }
 }
