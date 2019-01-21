@@ -52,6 +52,8 @@ public class Scr_InterfaceManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI workshopCategoryNameText;
     [SerializeField] private GameObject pauseCanvas;
 
+    [HideInInspector] public bool gamePaused;
+
     private bool questPanelActive;
     private bool playerShipWindowActive;
     
@@ -248,12 +250,14 @@ public class Scr_InterfaceManager : MonoBehaviour
         {
             pauseCanvas.SetActive(true);
             Time.timeScale = 0;
+            gamePaused = true;
         }
 
         else
         {
             pauseCanvas.SetActive(false);
             Time.timeScale = 1;
+            gamePaused = false;
         }
     }
 

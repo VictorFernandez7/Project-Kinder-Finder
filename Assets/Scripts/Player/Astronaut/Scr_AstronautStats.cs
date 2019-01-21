@@ -12,6 +12,7 @@ public class Scr_AstronautStats : MonoBehaviour
     [SerializeField] public GameObject[] toolSlots;
     [SerializeField] public GameObject[] physicToolSlots;
     [SerializeField] private Slider oxygenSlider;
+    [SerializeField] public Animator anim_OxygenPanel;
 
     [HideInInspector] public float currentOxygen;
 
@@ -27,5 +28,7 @@ public class Scr_AstronautStats : MonoBehaviour
             currentOxygen -= 0.5f * Time.deltaTime;
 
         oxygenSlider.value = currentOxygen;
+
+
     }
 }

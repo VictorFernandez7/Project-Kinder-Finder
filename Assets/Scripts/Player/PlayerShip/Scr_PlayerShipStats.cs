@@ -29,11 +29,11 @@ public class Scr_PlayerShipStats : MonoBehaviour
     [SerializeField] private Color fuelColor75;
 
     [Header("References")]
-    [SerializeField] ParticleSystem deathParticles;
-    [SerializeField] GameObject shipVisuals;
-    [SerializeField] BoxCollider2D collider1;
-    [SerializeField] BoxCollider2D collider2;
-    [SerializeField] Animator fadeImage;
+    [SerializeField] private ParticleSystem deathParticles;
+    [SerializeField] private GameObject shipVisuals;
+    [SerializeField] private BoxCollider2D collider1;
+    [SerializeField] private BoxCollider2D collider2;
+    [SerializeField] private Animator fadeImage;
     [SerializeField] private Image fuelSliderFill;
     [SerializeField] private Image shieldSliderFill;
     [SerializeField] private Slider fuelSlider;
