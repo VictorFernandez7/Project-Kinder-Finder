@@ -1,11 +1,11 @@
-﻿using UnityEngine.UI;
+﻿using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 
 public class Scr_InterfaceManager : MonoBehaviour
 {
     [Header("Interface Inputs")]
-    [SerializeField] private KeyCode input_QuestPanel;
     [SerializeField] private KeyCode input_PauseMenu;
 
     [Header("PlayerShip Window")]
@@ -72,9 +72,7 @@ public class Scr_InterfaceManager : MonoBehaviour
         LandingInterface();
         IndicatorManagement();
         ChangeButtonColor();
-
-        if (playerShipMovement.astronautOnBoard)
-            CheckInputs();
+        CheckInputs();
 
         if (!playerShipWindowActive)
             CheckAstronautState();
@@ -125,12 +123,6 @@ public class Scr_InterfaceManager : MonoBehaviour
 
     private void CheckInputs()
     {
-        if (Input.GetKeyDown(input_QuestPanel))
-        {
-            questPanelActive = !questPanelActive;
-            anim_QuestPanel.SetBool("Show", questPanelActive);
-        }
-
         if (Input.GetKeyDown(input_PauseMenu))
             PauseGame(true);
     }
@@ -254,14 +246,19 @@ public class Scr_InterfaceManager : MonoBehaviour
     {
         if (pause)
         {
-            Time.timeScale = 0;
             pauseCanvas.SetActive(true);
+            Time.timeScale = 0;
         }
 
         else
         {
-            Time.timeScale = 1;
             pauseCanvas.SetActive(false);
+            Time.timeScale = 1;
         }
+    }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }
