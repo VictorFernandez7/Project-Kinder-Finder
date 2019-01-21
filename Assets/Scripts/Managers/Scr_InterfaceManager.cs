@@ -6,6 +6,7 @@ public class Scr_InterfaceManager : MonoBehaviour
 {
     [Header("Interface Inputs")]
     [SerializeField] private KeyCode input_QuestPanel;
+    [SerializeField] private KeyCode input_PauseMenu;
 
     [Header("PlayerShip Window")]
     [SerializeField] private Color active;
@@ -49,6 +50,7 @@ public class Scr_InterfaceManager : MonoBehaviour
     [SerializeField] private Button craftButton;
     [SerializeField] private Image craftButtonImage;
     [SerializeField] private TextMeshProUGUI workshopCategoryNameText;
+    [SerializeField] private GameObject pauseCanvas;
 
     private bool questPanelActive;
     private bool playerShipWindowActive;
@@ -128,6 +130,9 @@ public class Scr_InterfaceManager : MonoBehaviour
             questPanelActive = !questPanelActive;
             anim_QuestPanel.SetBool("Show", questPanelActive);
         }
+
+        if (Input.GetKeyDown(input_PauseMenu))
+            PauseGame(true);
     }
 
     private void ChangeButtonColor()
@@ -243,5 +248,20 @@ public class Scr_InterfaceManager : MonoBehaviour
     public void WorkShopCategoryName(string name)
     {
         workshopCategoryNameText.text = name;
+    }
+
+    public void PauseGame(bool pause)
+    {
+        if (pause)
+        {
+            Time.timeScale = 0;
+            pauseCanvas.SetActive(true);
+        }
+
+        else
+        {
+            Time.timeScale = 1;
+            pauseCanvas.SetActive(false);
+        }
     }
 }
