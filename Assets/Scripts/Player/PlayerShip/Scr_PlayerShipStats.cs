@@ -13,6 +13,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
     [Header("Shield Properties")]
     [SerializeField] public float currentShield;
     [SerializeField] public float maxShield;
+    [Range(0, 100)] [SerializeField] private float shieldAlertPercentage;
     [SerializeField] private Color shieldColor0;
     [SerializeField] private Color shieldColor25;
     [SerializeField] private Color shieldColor50;
@@ -21,6 +22,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
     [Header("Fuel Properties")]
     [SerializeField] public float currentFuel;
     [SerializeField] public float maxFuel;
+    [Range(0, 100)] [SerializeField] private float fuelAlertPercentage;
     [SerializeField] private float normalConsume;
     [SerializeField] private float boostConsume;
     [SerializeField] private Color fuelColor0;
@@ -29,16 +31,18 @@ public class Scr_PlayerShipStats : MonoBehaviour
     [SerializeField] private Color fuelColor75;
 
     [Header("References")]
-    [SerializeField] ParticleSystem deathParticles;
-    [SerializeField] GameObject shipVisuals;
-    [SerializeField] BoxCollider2D collider1;
-    [SerializeField] BoxCollider2D collider2;
-    [SerializeField] Animator fadeImage;
+    [SerializeField] private ParticleSystem deathParticles;
+    [SerializeField] private GameObject shipVisuals;
+    [SerializeField] private BoxCollider2D collider1;
+    [SerializeField] private BoxCollider2D collider2;
+    [SerializeField] private Animator fadeImage;
     [SerializeField] private Image fuelSliderFill;
     [SerializeField] private Image shieldSliderFill;
     [SerializeField] private Slider fuelSlider;
     [SerializeField] private Slider shieldSlider;
     [SerializeField] public Scr_ReferenceManager referenceManager;
+    [SerializeField] public Animator anim_FuelPanel;
+    [SerializeField] public Animator anim_ShieldPanel;
 
     [Header("Inventories")]
     [SerializeField] public GameObject[] toolWarehouse;
@@ -67,13 +71,30 @@ public class Scr_PlayerShipStats : MonoBehaviour
 
     private void Update()
     {
-        currentFuel = Mathf.Clamp(currentFuel, 0f, maxFuel);
-        currentShield = Mathf.Clamp(currentShield, 0f, maxShield);
-        fuelSlider.value = currentFuel;
-        shieldSlider.value = currentShield;
+        Fuel();
+        Shield();
+    }
 
+    private void Fuel()
+    {
         FuelSliderColor();
+
+        currentFuel = Mathf.Clamp(currentFuel, 0f, maxFuel);
+        fuelSlider.value = currentFuel;
+
+        if (currentFuel <= ((fuelAlertPercentage / 100) * maxFuel))
+            anim_FuelPanel.SetBool("Alert", true);
+
+        else
+            anim_FuelPanel.SetBool("Alert", false);
+    }
+
+    private void Shield()
+    {
         ShieldSliderColor();
+
+        currentShield = Mathf.Clamp(currentShield, 0f, maxShield);
+        shieldSlider.value = currentShield;
 
         if (currentShield <= (0.1f * maxShield))
             playerShipMovement.damaged = true;
@@ -81,47 +102,17 @@ public class Scr_PlayerShipStats : MonoBehaviour
         else
             playerShipMovement.damaged = false;
 
-        if (currentShield < 0)
-            Death();
 
-        if (gasExtractor)
+        if (currentShield <= ((shieldAlertPercentage / 100) * maxShield))
         {
-            for(int i = 0; i < toolWarehouse.Length; i++)
-            {
-                if (toolWarehouse[i] == null)
-                {
-                    toolWarehouse[i] = referenceManager.GasExtractor;
-                    gasExtractor = false;
-                    break;
-                }
-            }
+            anim_ShieldPanel.SetBool("Alert", true);
+
+            if (currentShield < 0)
+                Death();
         }
 
-        if (repairingTool)
-        {
-            for (int i = 0; i < toolWarehouse.Length; i++)
-            {
-                if (toolWarehouse[i] == null)
-                {
-                    toolWarehouse[i] = referenceManager.RepairingTool;
-                    repairingTool = false;
-                    break;
-                }
-            }
-        }
-
-        if (jetpack)
-        {
-            for (int i = 0; i < toolWarehouse.Length; i++)
-            {
-                if (toolWarehouse[i] == null)
-                {
-                    toolWarehouse[2] = referenceManager.Jetpack;
-                    jetpack = false;
-                    break;
-                }
-            }
-        }
+        else
+            anim_ShieldPanel.SetBool("Alert", false);
     }
 
     public void FuelConsumption(bool boost)

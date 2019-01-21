@@ -37,6 +37,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     [SerializeField] private Scr_AstronautEffects astronautEffects;
     [SerializeField] private GameObject playerShip;
     [SerializeField] private Camera mainCamera;
+    [SerializeField] private Scr_InterfaceManager interfaceManager;
 
     [HideInInspector] public bool onGround = true;
     [HideInInspector] public bool canMove;
@@ -102,7 +103,7 @@ public class Scr_AstronautMovement : MonoBehaviour
 
     private void Update()
     {
-        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed)
+        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed && !interfaceManager.gamePaused)
             Jumping();
 
         if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace)
@@ -215,6 +216,7 @@ public class Scr_AstronautMovement : MonoBehaviour
         {
             if (Input.GetButtonDown("Jump") && currentAngle <= maxAngle)
             {
+                print(interfaceManager.gamePaused);
                 timeAtAir = 0;
                 vectorJump = (transform.position - currentPlanet.transform.position).normalized * speedJump;
                 jumping = true;
