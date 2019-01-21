@@ -19,7 +19,7 @@ public class Scr_AstronautStats : MonoBehaviour
     [SerializeField] private Slider oxygenSlider;
     [SerializeField] private Slider healthSlider;
     [SerializeField] public Animator anim_OxygenPanel;
-    [SerializeField] public Animator animHealthPanel;
+    [SerializeField] public Animator anim_HealthPanel;
 
     [HideInInspector] public float currentOxygen;
     [HideInInspector] public float currentHealth;
@@ -59,6 +59,12 @@ public class Scr_AstronautStats : MonoBehaviour
 
     private void Health()
     {
+        healthSlider.value = currentHealth;
 
+        if (currentOxygen <= ((healthAlertPercentage / 100) * maxHealth))
+            anim_HealthPanel.SetBool("Alert", true);
+
+        else
+            anim_HealthPanel.SetBool("Alert", false);
     }
 }
