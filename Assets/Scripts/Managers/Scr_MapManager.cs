@@ -205,13 +205,13 @@ public class Scr_MapManager : MonoBehaviour
 
             if (playerShip.GetComponent<Scr_PlayerShipMovement>().playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace)
             {
-                directionIndicator.GetComponent<SVGImage>().enabled = true;
+                directionIndicatorClone.GetComponent<SVGImage>().enabled = true;
                 distanceText.gameObject.SetActive(true);
             }
 
             else
             {
-                directionIndicator.GetComponent<SVGImage>().enabled = false;
+                directionIndicatorClone.GetComponent<SVGImage>().enabled = false;
                 distanceText.gameObject.SetActive(false);
             }
         }
@@ -223,9 +223,9 @@ public class Scr_MapManager : MonoBehaviour
         difference.Normalize();
 
         float rotation_z = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-        directionIndicator.transform.rotation = Quaternion.Euler(0f, 0f, rotation_z + 90f - mainCamera.transform.rotation.eulerAngles.z);
+        directionIndicatorClone.transform.rotation = Quaternion.Euler(0f, 0f, rotation_z + 90f - mainCamera.transform.rotation.eulerAngles.z);
 
-        directionIndicator.transform.localPosition = -directionIndicator.transform.up * distance;
+        directionIndicatorClone.transform.localPosition = -directionIndicatorClone.transform.up * distance;
     }
 
     public void ChangePlanetInfo(string name, Scr_Planet.PlanetType type, int temperature, bool oxygen, bool gravity)
