@@ -33,6 +33,9 @@ public class Scr_AstronautStats : MonoBehaviour
     {
         Oxygen();
         Health();
+
+        if (Input.GetKey(KeyCode.G))
+            currentHealth -= 3 * Time.deltaTime;
     }
 
     private void InitialSet()
@@ -61,7 +64,7 @@ public class Scr_AstronautStats : MonoBehaviour
     {
         healthSlider.value = currentHealth;
 
-        if (currentOxygen <= ((healthAlertPercentage / 100) * maxHealth))
+        if (currentHealth <= ((healthAlertPercentage / 100) * maxHealth))
             anim_HealthPanel.SetBool("Alert", true);
 
         else
