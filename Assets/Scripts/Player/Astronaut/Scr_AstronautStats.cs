@@ -33,9 +33,6 @@ public class Scr_AstronautStats : MonoBehaviour
     {
         Oxygen();
         Health();
-
-        if (Input.GetKey(KeyCode.G))
-            currentHealth -= 3 * Time.deltaTime;
     }
 
     private void InitialSet()
