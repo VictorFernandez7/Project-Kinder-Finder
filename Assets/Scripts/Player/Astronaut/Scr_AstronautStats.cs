@@ -6,29 +6,59 @@ using UnityEngine.UI;
 public class Scr_AstronautStats : MonoBehaviour
 {
     [Header("Oxygen System")]
-    [SerializeField] private float oxygenCapacity;
+    [SerializeField] private float maxOxygen;
+    [Range(0, 100)] [SerializeField] private float oxygenAlertPercentage;
+
+    [Header("Health System")]
+    [SerializeField] private float maxHealth;
+    [Range(0, 100)] [SerializeField] private float healthAlertPercentage;
 
     [Header("References")]
     [SerializeField] public GameObject[] toolSlots;
     [SerializeField] public GameObject[] physicToolSlots;
     [SerializeField] private Slider oxygenSlider;
+    [SerializeField] private Slider healthSlider;
     [SerializeField] public Animator anim_OxygenPanel;
+    [SerializeField] public Animator animHealthPanel;
 
     [HideInInspector] public float currentOxygen;
+    [HideInInspector] public float currentHealth;
 
     private void Start()
     {
-        oxygenSlider.maxValue = oxygenCapacity;
-        currentOxygen = oxygenCapacity;
+        InitialSet();
     }
 
     private void Update()
     {
+        Oxygen();
+        Health();
+    }
+
+    private void InitialSet()
+    {
+        oxygenSlider.maxValue = maxOxygen;
+        healthSlider.maxValue = maxHealth;
+        currentOxygen = maxOxygen;
+        currentHealth = maxHealth;
+    }
+
+    private void Oxygen()
+    {
+        oxygenSlider.value = currentOxygen;
+
         if (GetComponent<Scr_AstronautMovement>().breathable == false)
             currentOxygen -= 0.5f * Time.deltaTime;
 
-        oxygenSlider.value = currentOxygen;
+        if (currentOxygen <= ((oxygenAlertPercentage / 100) * maxOxygen))
+            anim_OxygenPanel.SetBool("Alert", true);
 
+        else
+            anim_OxygenPanel.SetBool("Alert", false);
+    }
+
+    private void Health()
+    {
 
     }
 }
