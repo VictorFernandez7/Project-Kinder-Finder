@@ -161,7 +161,8 @@ MonoBehaviour:
   aridColor: {r: 0.86942905, g: 0.8773585, b: 0.7490655, a: 1}
   mapCamera: {fileID: 0}
   mapVisuals: {fileID: 0}
-  indicator: {fileID: 0}
+  mapIndicatorPrefab: {fileID: 1537797829338736, guid: d2431a6539bbcd045b900b661cb80386,
+    type: 3}
   distanceText: {fileID: 0}
   mainCanvas: {fileID: 0}
   mapCanvas: {fileID: 0}
@@ -172,6 +173,8 @@ MonoBehaviour:
   planetTemperature: {fileID: 0}
   planetOxygen: {fileID: 0}
   planetGravity: {fileID: 0}
+  directionIndicator: {fileID: 1950305335235828, guid: 1119c64b41cb07c41a19ca011a2d1f83,
+    type: 3}
   mapActive: 0
   canMove: 0
   waypointActive: 0
@@ -179,8 +182,8 @@ MonoBehaviour:
   target: {fileID: 0}
   currentTarget: {fileID: 0}
   currentPlanet: {fileID: 0}
-  directionIndicator: {fileID: 0}
-  mapIndicator: {fileID: 0}
+  directionIndicatorClone: {fileID: 0}
+  mapIndicatorClone: {fileID: 0}
   myRectTransform: {fileID: 0}
 --- !u!1 &1479319155501428
 GameObject:
@@ -227,6 +230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input_QuestPanel: 106
+  input_PauseMenu: 27
   active: {r: 1, g: 1, b: 1, a: 1}
   notActive: {r: 1, g: 1, b: 1, a: 0.39215687}
   interactable: {r: 0, g: 0.6627451, b: 0.12941177, a: 0.83137256}
@@ -264,6 +268,7 @@ MonoBehaviour:
   craftButton: {fileID: 0}
   craftButtonImage: {fileID: 0}
   workshopCategoryNameText: {fileID: 0}
+  pauseCanvas: {fileID: 0}
 --- !u!1 &1525737731890656
 GameObject:
   m_ObjectHideFlags: 0
