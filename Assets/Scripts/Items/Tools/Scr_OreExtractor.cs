@@ -35,8 +35,6 @@ public class Scr_OreExtractor : Scr_ToolBase
     private RaycastHit2D hitL;
     private Scr_AstronautMovement astronautMovement;
     private Scr_ReferenceManager referenceManager;
-    private Vector3 lastFramePosition;
-    private Quaternion planetRotation;
 
     void Start()
     {
@@ -53,7 +51,6 @@ public class Scr_OreExtractor : Scr_ToolBase
         oreZone = null;
         onHands = true;
         recolectable = false;
-        planetRotation = new Quaternion(0, 0, 0, 0);
     }
 
     public override void Update()
@@ -126,9 +123,9 @@ public class Scr_OreExtractor : Scr_ToolBase
         {
             ghost.SetActive(true);
             ghost.transform.position = astronautMovement.currentPlanet.transform.position + ((mousepos - astronautMovement.currentPlanet.transform.position).normalized * (Vector3.Distance(hit.point, astronautMovement.currentPlanet.transform.position) + GetComponentInChildren<Renderer>().bounds.size.y / 2));
-            ghost.transform.rotation = Quaternion.LookRotation(ghost.transform.forward, Vector2.Perpendicular(hitL.point - hitR.point));
-            lastFramePosition = astronautMovement.currentPlanet.transform.position;
-            planetRotation = astronautMovement.currentPlanet.transform.rotation;
+
+            if(Vector2.Perpendicular(ghost.transform.right) != Vector2.Perpendicular(hitL.point - hitR.point))
+                ghost.transform.rotation = Quaternion.LookRotation(ghost.transform.forward, Vector2.Perpendicular(hitL.point - hitR.point));
         }
 
         else
@@ -138,7 +135,7 @@ public class Scr_OreExtractor : Scr_ToolBase
 
         if (ghost)
         {
-            if (ghost.GetComponent<Scr_GasExtractor>().recolectable)
+            if (ghost.GetComponent<Scr_OreExtractor>().recolectable)
             {
                 Color color = ghost.GetComponentInChildren<Renderer>().material.color;
                 color.g = 250;
