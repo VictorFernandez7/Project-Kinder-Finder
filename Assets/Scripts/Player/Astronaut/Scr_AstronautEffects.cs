@@ -8,6 +8,7 @@ public class Scr_AstronautEffects : MonoBehaviour
     //lo renombré con SFX pero daba fallo el el script de movimiento.
     [Header("References")]
     [SerializeField] private Scr_AstronautMovement astronautMovement;
+    [SerializeField] private Scr_MusicManager musicManager;
 
     [Header("Sounds")]
     [SerializeField] private SoundDefinition steps;
@@ -18,33 +19,61 @@ public class Scr_AstronautEffects : MonoBehaviour
     [SerializeField] private SoundDefinition breathing;
     [SerializeField] private SoundDefinition chatter;
 
-    /* void update()
+    [HideInInspector] public bool breathingBool;
 
-     {
-         if ()
-         { 
-         Scr_MusicManager.Instance.PlaySound(steps.Sound, 0);
-         }
-         if ()
-         {
-             Scr_MusicManager.Instance.PlaySound(jump.Sound, 0);
-         }
-         if ()
-         {
-             Scr_MusicManager.Instance.PlaySound(stepOutOfShip.Sound, 0);
-         }
-         if ()
-         {
-             Scr_MusicManager.Instance.PlaySound(repair.Sound, 0);
-         }
-         if ()
-         {
-             Scr_MusicManager.Instance.PlaySound(breathing.Sound, 0);
-         }
-         if ()
-         {
-             Scr_MusicManager.Instance.PlaySound(chatter.Sound, 0);
-         }
-     }
-     */
+    private void Start()
+    {
+        breathingBool = true;
+    }
+
+    private void Update()
+    {
+
+        if (astronautMovement.walking && !musicManager.transform.GetChild(2).GetComponent<AudioSource>().isPlaying)
+        {
+            Scr_MusicManager.Instance.PlaySound(steps.Sound, 0);
+        }
+
+        else if (!astronautMovement.walking && musicManager.transform.GetChild(2).GetComponent<AudioSource>().isPlaying)
+        {
+            //Scr_MusicManager.Instance.StopSound(Scr_MusicManager.SoundType.LOOP_SOUNDS);
+        }
+
+        /*
+        if (breathingBool && !musicManager.transform.GetChild(2).GetComponent<AudioSource>().isPlaying)
+        {
+            Scr_MusicManager.Instance.PlaySound(jump.Sound, 0);
+        }
+
+        else if (!breathing && musicManager.transform.GetChild(2).GetComponent<AudioSource>().isPlaying)
+        {
+            Scr_MusicManager.Instance.StopSound(Scr_MusicManager.SoundType.LOOP_SOUNDS);
+        }
+
+        
+        if ()
+        {
+           Scr_MusicManager.Instance.PlaySound(stepOutOfShip.Sound, 0);
+        }
+
+        if ()
+        {
+           Scr_MusicManager.Instance.PlaySound(repair.Sound, 0);
+        }*/
+
+        if (breathingBool && !musicManager.transform.GetChild(2).GetComponent<AudioSource>().isPlaying)
+        {
+           Scr_MusicManager.Instance.PlaySound(breathing.Sound, 0);
+        }
+
+        else if (!breathingBool && musicManager.transform.GetChild(2).GetComponent<AudioSource>().isPlaying)
+        {
+           Scr_MusicManager.Instance.StopSound(Scr_MusicManager.SoundType.LOOP_SOUNDS);
+        }
+        /*
+       if ()
+       {
+           Scr_MusicManager.Instance.PlaySound(chatter.Sound, 0);
+       } */
+    }
 }

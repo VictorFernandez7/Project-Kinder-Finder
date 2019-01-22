@@ -116,6 +116,7 @@ public class Scr_AstronautsActions : MonoBehaviour
 
     private void EnterShipFromSpace()
     {
+        GetComponent<Scr_AstronautEffects>().breathingBool = false;
         playerShip.GetComponent<Scr_PlayerShipMovement>().astronautOnBoard = true;
         playerShip.GetComponent<Scr_PlayerShipMovement>().canControlShip = true;
         playerShip.GetComponent<Scr_PlayerShipMovement>().canRotateShip = true;
