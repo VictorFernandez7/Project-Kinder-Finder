@@ -9,7 +9,6 @@ public class Scr_OreZone : MonoBehaviour
 
     [Header("Resource Properties")]
     [SerializeField] public float amount;
-    [SerializeField] public float zoneSize;
 
     [Header("References")]
     [SerializeField] private Scr_ReferenceManager referenceManager;
@@ -38,23 +37,11 @@ public class Scr_OreZone : MonoBehaviour
     private void Update()
     {
         CheckAmount();
-        OreZoneSize();
     }
 
     private void CheckAmount()
     {
         if (amount <= 0)
             Destroy(gameObject);
-    }
-
-    private void OreZoneSize()
-    {
-        GetComponent<CircleCollider2D>().radius = zoneSize;
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, zoneSize);
     }
 }

@@ -267,6 +267,7 @@ Transform:
   - {fileID: 4469005594649378}
   - {fileID: 224762592493051098}
   - {fileID: 4691618031222612}
+  - {fileID: 6844685691728035610}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -336,6 +337,7 @@ MonoBehaviour:
   resourceLeft: 0
   extractorTime: 3
   maxApplicationDistance: 0.7
+  physicResourceImpulse: 1
   mask:
     serializedVersion: 2
     m_Bits: 1024
@@ -345,6 +347,7 @@ MonoBehaviour:
   harvestedResources: {fileID: 114356937474911938}
   harvestProcess: {fileID: 114354937142089520}
   playerCheck: {fileID: 1481173582867558}
+  spawnPoint: {fileID: 6844685691728035610}
   mainCamera: {fileID: 0}
   recolectable: 0
   playerNear: 0
@@ -1293,3 +1296,33 @@ RectTransform:
   m_AnchoredPosition: {x: 0.035003662, y: 0}
   m_SizeDelta: {x: -9.931, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &192207390884491145
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6844685691728035610}
+  m_Layer: 0
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6844685691728035610
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 192207390884491145}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.89, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4427760720308108}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
