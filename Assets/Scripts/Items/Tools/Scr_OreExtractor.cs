@@ -18,6 +18,7 @@ public class Scr_OreExtractor : Scr_ToolBase
     [SerializeField] private TextMeshProUGUI harvestedResources;
     [SerializeField] private Slider harvestProcess;
     [SerializeField] private GameObject playerCheck;
+    [SerializeField] private Transform spawnPoint;
 
     [HideInInspector] public Camera mainCamera;
     [HideInInspector] public bool recolectable;
@@ -91,6 +92,9 @@ public class Scr_OreExtractor : Scr_ToolBase
 
         if (savedExtractorTime <= 0 && oreZone.GetComponent<Scr_OreZone>().amount > 0)
         {
+            GameObject physicResource = Instantiate(resource, spawnPoint.position, spawnPoint.rotation);
+            //physicResource.transform.SetParent(astronautMovement.currentPlanet.transform);
+
             resourceAmount += 1;
             savedExtractorTime = extractorTime;
         }
@@ -109,7 +113,6 @@ public class Scr_OreExtractor : Scr_ToolBase
 
     private void PutOnPlace()
     {
-
         hitR = Physics2D.Raycast(ghost.transform.position + transform.right * 0.05f, (astronautMovement.currentPlanet.transform.position - ghost.transform.position).normalized, Mathf.Infinity, mask);
         hitL = Physics2D.Raycast(ghost.transform.position - transform.right * 0.05f, (astronautMovement.currentPlanet.transform.position - ghost.transform.position).normalized, Mathf.Infinity, mask);
 
