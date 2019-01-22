@@ -35,8 +35,6 @@ public class Scr_GasExtractor : Scr_ToolBase
     private Scr_AstronautMovement astronautMovement;
     private bool placing;
     private bool showInterface;
-    private Vector3 lastFramePosition;
-    private Quaternion planetRotation;
 
     void Start ()
     {
@@ -54,7 +52,6 @@ public class Scr_GasExtractor : Scr_ToolBase
         gasZone = null;
         onHands = true;
         recolectable = false;
-        planetRotation = new Quaternion(0, 0, 0, 0);
     }
 	
 	public override void Update ()
@@ -127,9 +124,9 @@ public class Scr_GasExtractor : Scr_ToolBase
         {
             ghost.SetActive(true);
             ghost.transform.position = astronautMovement.currentPlanet.transform.position + ((mousepos - astronautMovement.currentPlanet.transform.position).normalized * (Vector3.Distance(hit.point, astronautMovement.currentPlanet.transform.position) + GetComponentInChildren<Renderer>().bounds.size.y / 2));
-            ghost.transform.rotation = Quaternion.LookRotation(ghost.transform.forward, Vector2.Perpendicular(hitL.point - hitR.point));
-            lastFramePosition = astronautMovement.currentPlanet.transform.position;
-            planetRotation = astronautMovement.currentPlanet.transform.rotation;
+
+            if (Vector2.Perpendicular(ghost.transform.right) != Vector2.Perpendicular(hitL.point - hitR.point))
+                ghost.transform.rotation = Quaternion.LookRotation(ghost.transform.forward, Vector2.Perpendicular(hitL.point - hitR.point));
         }
 
         else

@@ -25,7 +25,8 @@ public class Scr_AstronautMovement : MonoBehaviour
     [SerializeField] private float distance;
     [SerializeField] private float astronautHeight;
     [SerializeField] private float astronautWidth;
-    [SerializeField] private float maxAngle;
+    [SerializeField] private float maxMovementAngle;
+    [SerializeField] private float minSlideAngle;
 
     [Header("References")]
     [SerializeField] private GameObject rayPointLeft;
@@ -113,8 +114,20 @@ public class Scr_AstronautMovement : MonoBehaviour
     private void FixedUpdate()
     {
         if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed)
-            PlanetMovement();
+        {
+            hitL = Physics2D.Raycast(rayPointLeft.transform.position, -rayPointLeft.transform.up, Mathf.Infinity, collisionMask);
+            hitR = Physics2D.Raycast(rayPointRight.transform.position, -rayPointRight.transform.up, Mathf.Infinity, collisionMask);
 
+            float angle = Vector2.Angle(hitR.point - hitL.point, transform.right);
+
+            Debug.Log(angle);
+
+            if (angle < minSlideAngle)
+                PlanetMovement();
+
+            else
+                SlideDown();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -142,12 +155,36 @@ public class Scr_AstronautMovement : MonoBehaviour
         }
     }
 
+    private void SlideDown()
+    {
+        if (hitL)
+            pointLeft = hitL.point;
+
+        if (hitR)
+            pointRight = hitR.point;
+
+        if(Vector3.Project(pointLeft, transform.up).magnitude > Vector3.Project(pointRight, transform.up).magnitude)    
+            movementVector = (pointLeft - pointRight).normalized;
+
+        else
+            movementVector = (pointRight - pointLeft).normalized;
+
+        velocity = 0.01f;
+
+        transform.Translate(movementVector * velocity, Space.World);
+
+        if (onGround)
+        {
+            transform.position += (currentPlanet.transform.position - planetPosition);
+            planetPosition = currentPlanet.transform.position;
+            transform.RotateAround(currentPlanet.transform.position, Vector3.forward, currentPlanet.transform.rotation.eulerAngles.z - planetRotation.eulerAngles.z);
+            planetRotation = currentPlanet.transform.rotation;
+        }
+    }
+
     private void PlanetMovement()
     {
         transform.rotation = Quaternion.LookRotation(transform.forward, (transform.position - currentPlanet.transform.position));
-
-        hitL = Physics2D.Raycast(rayPointLeft.transform.position, -rayPointLeft.transform.up, Mathf.Infinity, collisionMask);
-        hitR = Physics2D.Raycast(rayPointRight.transform.position, -rayPointRight.transform.up, Mathf.Infinity, collisionMask);
 
         if (canMove == true)
         {
@@ -214,7 +251,7 @@ public class Scr_AstronautMovement : MonoBehaviour
 
         if ((currentDistance > (baseDistance - precisionHeight)) && (currentDistance < (baseDistance + precisionHeight)))
         {
-            if (Input.GetButtonDown("Jump") && currentAngle <= maxAngle)
+            if (Input.GetButtonDown("Jump") && currentAngle <= maxMovementAngle)
             {
                 print(interfaceManager.gamePaused);
                 timeAtAir = 0;
@@ -285,7 +322,7 @@ public class Scr_AstronautMovement : MonoBehaviour
         if (faceRight)
             Flip();
 
-        if (!hitJL && angle <= maxAngle)
+        if (!hitJL && angle <= maxMovementAngle)
             Sprint(false, decelerating);
     }
 
@@ -318,7 +355,7 @@ public class Scr_AstronautMovement : MonoBehaviour
         if (!faceRight)
             Flip();
 
-        if (!hitJR && angle <= maxAngle)
+        if (!hitJR && angle <= maxMovementAngle)
             Sprint(true, decelerating);
     }
 
