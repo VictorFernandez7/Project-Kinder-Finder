@@ -119,9 +119,9 @@ public class Scr_AstronautMovement : MonoBehaviour
             hitL = Physics2D.Raycast(rayPointLeft.transform.position, -rayPointLeft.transform.up, Mathf.Infinity, collisionMask);
             hitR = Physics2D.Raycast(rayPointRight.transform.position, -rayPointRight.transform.up, Mathf.Infinity, collisionMask);
 
-            float angle = Vector2.Angle(hitR.point - hitL.point, transform.right);
+            float anglex = Vector2.Angle(hitR.point - hitL.point, transform.right);
 
-            if (angle < minSlideAngle || jumping)
+            if (anglex < minSlideAngle || jumping)
             {
                 PlanetMovement();
 
@@ -323,10 +323,7 @@ public class Scr_AstronautMovement : MonoBehaviour
         
         if(jumping)
             hitJL = Physics2D.Raycast(transform.position + (transform.up * astronautHeight) + (-transform.right * astronautWidth), -transform.up, distance, collisionMask);
-
-
-        if (!jumping)
-        {
+        
             hitAngleUp = Physics2D.Raycast(transform.position + (-transform.up * 0.06f), -transform.right, 0.08f, collisionMask);
             hitAngleDown = Physics2D.Raycast(transform.position + (-transform.up * 0.03f), -transform.right, 0.08f, collisionMask);
 
@@ -337,7 +334,10 @@ public class Scr_AstronautMovement : MonoBehaviour
                 Vector2 vectorAngle = (hitAngleUp.point - hitAngleDown.point);
                 angle = Vector2.Angle(vectorAngle, transform.right);
             }
+        
 
+        if (!jumping)
+        {
             if (hitL)
                 pointLeft = hitL.point;
 
@@ -347,7 +347,7 @@ public class Scr_AstronautMovement : MonoBehaviour
             if (faceRight)
                 Flip();
 
-            if (!hitJL && angle <= maxMovementAngle)
+            if ((!hitJL && jumping) || angle <= maxMovementAngle)
                 Sprint(false, decelerating);
         }
     }
@@ -356,11 +356,9 @@ public class Scr_AstronautMovement : MonoBehaviour
     {
         float angle = 0;
 
-        if(jumping)
+        if (jumping)
             hitJR = Physics2D.Raycast(transform.position + (transform.up * astronautHeight) + (transform.right * astronautWidth), -transform.up, distance, collisionMask);
 
-        if (!jumping)
-        {
             hitAngleUp = Physics2D.Raycast(transform.position + (-transform.up * 0.06f), transform.right, 0.08f, collisionMask);
             hitAngleDown = Physics2D.Raycast(transform.position + (-transform.up * 0.03f), transform.right, 0.08f, collisionMask);
 
@@ -370,6 +368,8 @@ public class Scr_AstronautMovement : MonoBehaviour
                 angle = Vector2.Angle(vectorAngle, -transform.right);
             }
 
+        if (!jumping)
+        {
             if (hitL)
                 pointLeft = hitL.point;
 
@@ -382,7 +382,7 @@ public class Scr_AstronautMovement : MonoBehaviour
             if (!faceRight)
                 Flip();
 
-            if (!hitJR && angle <= maxMovementAngle)
+            if ((!hitJR && jumping) || angle <= maxMovementAngle)
                 Sprint(true, decelerating);
         }
     }
