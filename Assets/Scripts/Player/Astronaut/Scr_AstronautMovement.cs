@@ -48,6 +48,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     [HideInInspector] public bool faceRight;
     [HideInInspector] public bool breathable;
     [HideInInspector] public bool jumping;
+    [HideInInspector] public bool walking;
     [HideInInspector] public float timeAtAir;
     [HideInInspector] public float velocity;
     [HideInInspector] public float exponentialMultiplier;
@@ -119,8 +120,6 @@ public class Scr_AstronautMovement : MonoBehaviour
             hitR = Physics2D.Raycast(rayPointRight.transform.position, -rayPointRight.transform.up, Mathf.Infinity, collisionMask);
 
             float angle = Vector2.Angle(hitR.point - hitL.point, transform.right);
-
-            Debug.Log(angle);
 
             if (angle < minSlideAngle)
                 PlanetMovement();
@@ -195,6 +194,7 @@ public class Scr_AstronautMovement : MonoBehaviour
 
             if (Input.GetButton("Horizontal") && Input.GetAxis("Horizontal") < 0f)
             {
+                walking = true;
                 MoveLeft(false);
                 lastRight = false;
 
@@ -203,6 +203,7 @@ public class Scr_AstronautMovement : MonoBehaviour
 
             else if (Input.GetButton("Horizontal") && Input.GetAxis("Horizontal") > 0f)
             {
+                walking = true;
                 MoveRight(false);
                 lastRight = true;
 
@@ -221,6 +222,7 @@ public class Scr_AstronautMovement : MonoBehaviour
             {
                 velocity = 0;
                 exponentialMultiplier = 1;
+                walking = false;
 
                 astronautAnim.SetBool("Moving", false);
             }
