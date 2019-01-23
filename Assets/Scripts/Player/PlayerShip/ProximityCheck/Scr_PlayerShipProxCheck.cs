@@ -37,6 +37,7 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
     {
         UpdateListStats();
         TriggerActivation();
+        IndicatorUpdate();
 
         print(indicators.Count);
     }
@@ -48,7 +49,7 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
             if (collision.gameObject.CompareTag("Asteroid"))
             {
                 asteroids.Add(new Scr_AsteroidClass(collision.name, collision.gameObject, Vector3.Distance(collision.transform.position, playerShip.transform.position), collision.transform.position));
-                CreateIndicator(collision);
+                CreateIndicator(collision.transform.parent.name);
             }
             
             else if (collision.gameObject.CompareTag("Planet"))
@@ -62,14 +63,12 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Asteroid"))
             {
-                DestroyAsteroid(collision);
-                DestroyIndicator(collision);
+                DestroyAsteroid(collision.transform.parent.name);
+                DestroyIndicator(collision.transform.parent.name);
             }
 
             else if (collision.gameObject.CompareTag("Planet"))
-            {
-                DestroyPlanet(collision);
-            }
+                DestroyPlanet(collision.transform.parent.name);
         }
     }
 
@@ -97,35 +96,38 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
         }
     }
 
-    private void CreateIndicator(Collider2D collision)
+    private void CreateIndicator(string collisionName)
     {
         GameObject indicatorClone = Instantiate(proximityIndicator);
         indicatorClone.transform.SetParent(playerShipCanvas.transform);
-        indicatorClone.name = collision.name;
+        indicatorClone.name = collisionName;
         indicators.Add(indicatorClone);
     }
 
-    private void DestroyIndicator(Collider2D collision)
+    private void DestroyIndicator(string collisionName)
     {
         List<GameObject> indicatorsToDelete = new List<GameObject>();
 
         foreach (GameObject indicator in indicators)
         {
-            if (indicator.name == collision.name)
+            if (indicator.name == collisionName)
                 indicatorsToDelete.Add(indicator);
         }
 
         foreach (GameObject indicator in indicatorsToDelete)
+        {
             indicators.Remove(indicator);
+            Destroy(indicator);
+        }
     }
 
-    private void DestroyAsteroid(Collider2D collision)
+    private void DestroyAsteroid(string collisionName)
     {
         List<Scr_AsteroidClass> asteroidsToDelete = new List<Scr_AsteroidClass>();
 
         foreach (Scr_AsteroidClass asteroid in asteroids)
         {
-            if (asteroid.name == collision.name)
+            if (asteroid.name == collisionName)
                 asteroidsToDelete.Add(asteroid);
         }
 
@@ -133,18 +135,41 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
             asteroids.Remove(asteroid);
     }
 
-    private void DestroyPlanet(Collider2D collision)
+    private void DestroyPlanet(string collisionName)
     {
         List<Scr_PlanetClass> planetsToDelete = new List<Scr_PlanetClass>();
 
         foreach (Scr_PlanetClass planet in planets)
         {
-            if (planet.name == collision.name)
+            if (planet.name == collisionName)
                 planetsToDelete.Add(planet);
         }
 
         foreach (Scr_PlanetClass planet in planetsToDelete)
             planets.Remove(planet);
+    }
+
+    private void IndicatorUpdate()
+    {
+        if (indicators.Count != 0)
+        {
+            for (int i = 0; i < indicators.Count; i++)
+            {
+                foreach (Scr_AsteroidClass asteroid in asteroids)
+                {
+                    if (asteroid.name == indicators[i].name)
+                    {
+                        //indicators[i].
+                    }
+                }
+            }
+
+            foreach (GameObject indicator in indicators)
+            {
+                if (Vector3.Distance(this.transform.position, indicator.transform.position) >= displayDistance)
+                    indicator.transform.position += (indicator.transform.position - this.transform.position).normalized;
+            }
+        }
     }
 
     private void OnDrawGizmos()
