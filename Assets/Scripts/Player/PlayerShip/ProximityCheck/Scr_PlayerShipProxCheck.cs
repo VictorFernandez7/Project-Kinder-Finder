@@ -12,7 +12,7 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameObject proximityIndicator;
     [SerializeField] private GameObject playerShip;
-    [SerializeField] private GameObject playerShipCanvas;
+    [SerializeField] private GameObject worldCanvas;
 
     [HideInInspector] public List<Scr_AsteroidClass> asteroids;
     [HideInInspector] public List<Scr_PlanetClass> planets;
@@ -37,9 +37,13 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
     {
         UpdateListStats();
         TriggerActivation();
-        IndicatorUpdate();
 
         print(indicators.Count);
+    }
+
+    private void FixedUpdate()
+    {
+        IndicatorUpdate();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -49,7 +53,7 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
             if (collision.gameObject.CompareTag("Asteroid"))
             {
                 asteroids.Add(new Scr_AsteroidClass(collision.name, collision.gameObject, Vector3.Distance(collision.transform.position, playerShip.transform.position), collision.transform.position));
-                CreateIndicator(collision.transform.parent.name);
+                CreateIndicator(collision.transform.parent.name, collision.transform.position);
             }
             
             else if (collision.gameObject.CompareTag("Planet"))
@@ -96,10 +100,10 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
         }
     }
 
-    private void CreateIndicator(string collisionName)
+    private void CreateIndicator(string collisionName, Vector3 collisionPosition)
     {
-        GameObject indicatorClone = Instantiate(proximityIndicator);
-        indicatorClone.transform.SetParent(playerShipCanvas.transform);
+        GameObject indicatorClone = Instantiate(proximityIndicator, collisionPosition, gameObject.transform.rotation);
+        indicatorClone.transform.SetParent(worldCanvas.transform);
         indicatorClone.name = collisionName;
         indicators.Add(indicatorClone);
     }
@@ -166,8 +170,7 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
 
             foreach (GameObject indicator in indicators)
             {
-                if (Vector3.Distance(this.transform.position, indicator.transform.position) >= displayDistance)
-                    indicator.transform.position += (indicator.transform.position - this.transform.position).normalized;
+                indicator.transform.position = ((indicator.transform.position - this.transform.position).normalized) * displayDistance + this.transform.position;
             }
         }
     }
