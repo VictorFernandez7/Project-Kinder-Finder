@@ -4,35 +4,31 @@ using UnityEngine;
 
 public class Scr_PlayerShipProxCheck : MonoBehaviour
 {
-    [Header("Proximity Parameters")]
-    [SerializeField] private float planetCheckDistance;
-    [SerializeField] private float asteroidCheckDistance;
-    [SerializeField] private float alertDistance;
-    [SerializeField] private string alertText;
-    [SerializeField] private Color normalColor;
-    [SerializeField] private Color alertColor;
+    [Header("Indicator Parameters")]
+    [SerializeField] private float displayDistance;
+    [SerializeField] private float minSize;
+    [SerializeField] private float maxSize;
 
     [Header("References")]
     [SerializeField] private GameObject proximityIndicator;
-    [SerializeField] private Sprite planetIcon;
-    [SerializeField] private Sprite asteroidIcon;
+    [SerializeField] private GameObject playerShip;
+    [SerializeField] private GameObject worldCanvas;
 
     [HideInInspector] public List<Scr_AsteroidClass> asteroids;
     [HideInInspector] public List<Scr_PlanetClass> planets;
 
-    private GameObject playerShip;
+    private List<GameObject> indicators;
     private CircleCollider2D trigger;
     private Scr_PlayerShipMovement playerShipMovement;
 
     private void Awake()
     {
-        playerShip = GameObject.Find("PlayerShip");
-
         playerShipMovement = playerShip.GetComponent<Scr_PlayerShipMovement>();
         trigger = GetComponent<CircleCollider2D>();
 
         asteroids = new List<Scr_AsteroidClass>();
         planets = new List<Scr_PlanetClass>();
+        indicators = new List<GameObject>();
 
         trigger.enabled = false;
     }
@@ -40,7 +36,12 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
     private void Update()
     {
         UpdateListStats();
-        ColliderActivation();
+        TriggerActivation();
+    }
+
+    private void FixedUpdate()
+    {
+        IndicatorUpdate();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -48,7 +49,10 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
         if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace)
         {
             if (collision.gameObject.CompareTag("Asteroid"))
-                asteroids.Add(new Scr_AsteroidClass(collision.name, collision.gameObject, Vector3.Distance(collision.transform.position, playerShip.transform.position), collision.transform.position));
+            {
+                asteroids.Add(new Scr_AsteroidClass(collision.transform.parent.name, collision.gameObject, Vector3.Distance(collision.transform.position, playerShip.transform.position), collision.transform.position));
+                CreateIndicator(collision.transform.parent.name, collision.transform.position);
+            }
             
             else if (collision.gameObject.CompareTag("Planet"))
                 planets.Add(new Scr_PlanetClass(collision.name, collision.gameObject, Vector3.Distance(collision.transform.position, playerShip.transform.position), collision.transform.position));
@@ -61,35 +65,16 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Asteroid"))
             {
-                List<Scr_AsteroidClass> asteroidsToDelete = new List<Scr_AsteroidClass>();
-
-                foreach (Scr_AsteroidClass asteroid in asteroids)
-                {
-                    if (asteroid.name == collision.name)
-                        asteroidsToDelete.Add(asteroid);
-                }
-
-                foreach (Scr_AsteroidClass asteroid in asteroidsToDelete)
-                    asteroids.Remove(asteroid);
+                DestroyAsteroid(collision.transform.parent.name);
+                DestroyIndicator(collision.transform.parent.name);
             }
 
             else if (collision.gameObject.CompareTag("Planet"))
-            {
-                List<Scr_PlanetClass> planetsToDelete = new List<Scr_PlanetClass>();
-
-                foreach (Scr_PlanetClass planet in planets)
-                {
-                    if (planet.name == collision.name)
-                        planetsToDelete.Add(planet);
-                }
-
-                foreach (Scr_PlanetClass planet in planetsToDelete)
-                    planets.Remove(planet);
-            }
+                DestroyPlanet(collision.transform.parent.name);
         }
     }
 
-    private void ColliderActivation()
+    private void TriggerActivation()
     {
         if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed)
             trigger.enabled = false;
@@ -104,35 +89,89 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
         {
             asteroid.currentPos = asteroid.body.transform.position;
             asteroid.distanceToShip = Vector3.Distance(transform.position, asteroid.body.transform.position);
-
-            if (asteroid.distanceToShip <= asteroidCheckDistance)
-                DrawProximityLine(new Vector3(transform.position.x - asteroid.currentPos.x, transform.position.x - asteroid.currentPos.x, transform.position.x - asteroid.currentPos.x), asteroid.distanceToShip);
         }
 
         foreach (Scr_PlanetClass planet in planets)
         {
             planet.currentPos = planet.body.transform.position;
             planet.distanceToShip = Vector3.Distance(transform.position, planet.body.transform.position);
+        }
+    }
 
-            if (planet.distanceToShip <= planetCheckDistance)
-                DrawProximityLine(new Vector3(transform.position.x - planet.currentPos.x, transform.position.x - planet.currentPos.x, transform.position.x - planet.currentPos.x), planet.distanceToShip);
+    private void CreateIndicator(string collisionName, Vector3 collisionPosition)
+    {
+        GameObject indicatorClone = Instantiate(proximityIndicator, collisionPosition, gameObject.transform.rotation);
+        indicatorClone.transform.SetParent(worldCanvas.transform);
+        indicatorClone.name = collisionName;
+        indicators.Add(indicatorClone);
+    }
+
+    private void DestroyIndicator(string collisionName)
+    {
+        List<GameObject> indicatorsToDelete = new List<GameObject>();
+
+        foreach (GameObject indicator in indicators)
+        {
+            if (indicator.name == collisionName)
+                indicatorsToDelete.Add(indicator);
+        }
+
+        foreach (GameObject indicator in indicatorsToDelete)
+        {
+            indicators.Remove(indicator);
+            Destroy(indicator);
+        }
+    }
+
+    private void DestroyAsteroid(string collisionName)
+    {
+        List<Scr_AsteroidClass> asteroidsToDelete = new List<Scr_AsteroidClass>();
+
+        foreach (Scr_AsteroidClass asteroid in asteroids)
+        {
+            if (asteroid.name == collisionName)
+                asteroidsToDelete.Add(asteroid);
+        }
+
+        foreach (Scr_AsteroidClass asteroid in asteroidsToDelete)
+            asteroids.Remove(asteroid);
+    }
+
+    private void DestroyPlanet(string collisionName)
+    {
+        List<Scr_PlanetClass> planetsToDelete = new List<Scr_PlanetClass>();
+
+        foreach (Scr_PlanetClass planet in planets)
+        {
+            if (planet.name == collisionName)
+                planetsToDelete.Add(planet);
+        }
+
+        foreach (Scr_PlanetClass planet in planetsToDelete)
+            planets.Remove(planet);
+    }
+
+    private void IndicatorUpdate()
+    {
+        if (indicators.Count != 0)
+        {
+            foreach (GameObject indicator in indicators)
+            {
+                foreach (Scr_AsteroidClass asteroid in asteroids)
+                {
+                    if (asteroid.name == indicator.name)
+                    {
+                        indicator.transform.position = ((asteroid.currentPos - this.transform.position).normalized) * displayDistance + this.transform.position;
+                        indicator.transform.localScale = ((trigger.radius - (Vector3.Distance(this.transform.position, asteroid.currentPos))) / 1000) * Vector3.one;
+                    }
+                }
+            }
         }
     }
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, asteroidCheckDistance);
-    }
-
-    private void DrawProximityLine(Vector3 direction, float distance)
-    {
-        float lineWidth = distance / 2;
-        Vector3 centralPoint = direction.normalized * asteroidCheckDistance;
-
-        for (int i = 0; i < lineWidth; i++)
-        {
-            
-        }
+        Gizmos.color = Color.black;
+        Gizmos.DrawWireSphere(transform.position, displayDistance);
     }
 }
