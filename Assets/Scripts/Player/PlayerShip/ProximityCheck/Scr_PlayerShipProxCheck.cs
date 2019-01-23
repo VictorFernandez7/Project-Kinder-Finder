@@ -52,7 +52,7 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Asteroid"))
             {
-                asteroids.Add(new Scr_AsteroidClass(collision.name, collision.gameObject, Vector3.Distance(collision.transform.position, playerShip.transform.position), collision.transform.position));
+                asteroids.Add(new Scr_AsteroidClass(collision.transform.parent.name, collision.gameObject, Vector3.Distance(collision.transform.position, playerShip.transform.position), collision.transform.position));
                 CreateIndicator(collision.transform.parent.name, collision.transform.position);
             }
             
@@ -157,20 +157,15 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
     {
         if (indicators.Count != 0)
         {
-            for (int i = 0; i < indicators.Count; i++)
+            foreach (GameObject indicator in indicators)
             {
                 foreach (Scr_AsteroidClass asteroid in asteroids)
                 {
-                    if (asteroid.name == indicators[i].name)
+                    if (asteroid.name == indicator.name)
                     {
-                        //indicators[i].
+                        indicator.transform.position = ((asteroid.currentPos - this.transform.position).normalized) * displayDistance + this.transform.position;
                     }
                 }
-            }
-
-            foreach (GameObject indicator in indicators)
-            {
-                indicator.transform.position = ((indicator.transform.position - this.transform.position).normalized) * displayDistance + this.transform.position;
             }
         }
     }
