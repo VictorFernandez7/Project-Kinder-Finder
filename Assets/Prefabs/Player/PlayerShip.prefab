@@ -26146,7 +26146,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1385244576953358}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.025, y: 0.25, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4751384832873188}
@@ -26168,7 +26168,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 7
+  m_Radius: 15
 --- !u!114 &114779136795001458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26181,9 +26181,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d8ec1128310b9845a859bd85b6a2b6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayDistance: 1
-  minSize: 0
-  maxSize: 0
+  displayDistance: 3
+  minSize: 0.01
+  maxSize: 0.02
   proximityIndicator: {fileID: 2594041932490874362, guid: 9546071f19ccc2041976afb1a9a9d7c8,
     type: 3}
   playerShip: {fileID: 1452036844316726}

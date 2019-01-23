@@ -37,8 +37,6 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
     {
         UpdateListStats();
         TriggerActivation();
-
-        print(indicators.Count);
     }
 
     private void FixedUpdate()
@@ -164,6 +162,7 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
                     if (asteroid.name == indicator.name)
                     {
                         indicator.transform.position = ((asteroid.currentPos - this.transform.position).normalized) * displayDistance + this.transform.position;
+                        indicator.transform.localScale = ((trigger.radius - (Vector3.Distance(this.transform.position, asteroid.currentPos))) / 1000) * Vector3.one;
                     }
                 }
             }
