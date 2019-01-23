@@ -26146,7 +26146,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1385244576953358}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.025, y: 0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4751384832873188}
@@ -26181,15 +26181,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d8ec1128310b9845a859bd85b6a2b6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planetCheckDistance: 20
-  asteroidCheckDistance: 10
-  alertDistance: 5
-  alertText: ALERT! COLLISION!
-  normalColor: {r: 1, g: 1, b: 1, a: 0}
-  alertColor: {r: 1, g: 1, b: 1, a: 1}
-  proximityIndicator: {fileID: 0}
-  planetIcon: {fileID: 21300000, guid: cbd03db166de0d440acf303427c9ca25, type: 3}
-  asteroidIcon: {fileID: 0}
+  displayDistance: 1
+  minSize: 0
+  maxSize: 0
+  proximityIndicator: {fileID: 2594041932490874362, guid: 9546071f19ccc2041976afb1a9a9d7c8,
+    type: 3}
+  playerShip: {fileID: 1452036844316726}
+  playerShipCanvas: {fileID: 1048168423302304}
 --- !u!1 &1400376001078654
 GameObject:
   m_ObjectHideFlags: 0
@@ -31695,8 +31693,8 @@ MonoBehaviour:
   toolWarehouse:
   - {fileID: 1239215430283492, guid: 8be2670d51deb35429ede33415fe43cd, type: 3}
   - {fileID: 1079533806625860, guid: c59e4326f7922f041925475f310aa8fc, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1238031769430186, guid: 8e98f6f64eacd0c42bb17fad700b9f46, type: 3}
+  - {fileID: 1724849047184002, guid: e2c8d13b1b127a941aef19b139e69791, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
