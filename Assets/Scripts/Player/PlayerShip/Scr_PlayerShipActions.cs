@@ -29,7 +29,6 @@ public class Scr_PlayerShipActions : MonoBehaviour
     [SerializeField] private LineRenderer miningLaser;
     [SerializeField] private DistanceJoint2D spaceWalkCable;
     [SerializeField] private Animator interactionIndicatorAnim;
-    [SerializeField] private BoxCollider2D landingCollider;
     [SerializeField] private BoxCollider2D spaceCollider;
     [SerializeField] private GameObject astronaut;
     [SerializeField] private Slider miningSlider;
@@ -116,16 +115,10 @@ public class Scr_PlayerShipActions : MonoBehaviour
     private void ColliderUpdate()
     {
         if (doingSpaceWalk)
-        {
             spaceCollider.enabled = true;
-            landingCollider.enabled = false;
-        }
 
         else
-        {
             spaceCollider.enabled = false;
-            landingCollider.enabled = true;
-        }
     }
 
     private void CheckInputs()
