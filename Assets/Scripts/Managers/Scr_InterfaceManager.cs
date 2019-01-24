@@ -125,10 +125,13 @@ public class Scr_InterfaceManager : MonoBehaviour
 
     private void AstronautInterfaceInfoUpdate()
     {
-        planetName.text = playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().planetName;
-        planetTemperature.text = playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().planetTemperature + " º";
-        planetOxygen.SetActive(playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().planetOxygen);
-        planetGravity.SetActive(playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().planetGravity);
+        if (playerShipMovement.currentPlanet != null)
+        {
+            planetName.text = playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().planetName;
+            planetTemperature.text = playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().planetTemperature + " º";
+            planetOxygen.SetActive(playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().planetOxygen);
+            planetGravity.SetActive(playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().planetGravity);
+        }
     }
 
     private void CheckAstronautState()
