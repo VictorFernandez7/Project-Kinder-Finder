@@ -51,6 +51,10 @@ public class Scr_InterfaceManager : MonoBehaviour
     [SerializeField] private Image craftButtonImage;
     [SerializeField] private TextMeshProUGUI workshopCategoryNameText;
     [SerializeField] private GameObject pauseCanvas;
+    [SerializeField] private TextMeshProUGUI planetName;
+    [SerializeField] private TextMeshProUGUI planetTemperature;
+    [SerializeField] private GameObject planetOxygen;
+    [SerializeField] private GameObject planetGravity;
 
     [HideInInspector] public bool gamePaused;
 
@@ -71,6 +75,8 @@ public class Scr_InterfaceManager : MonoBehaviour
 
     private void Update()
     {
+        PlayerShipWindowAvailable();
+        AstronautInterfaceInfoUpdate();
         LandingInterface();
         IndicatorManagement();
         ChangeButtonColor();
@@ -94,13 +100,37 @@ public class Scr_InterfaceManager : MonoBehaviour
         if (playerShipWindowActive)
         {
             anim_AstronautInterface.SetBool("Show", false);
+            anim_PlayerShipInterface.SetBool("Show", false);
+            anim_PlayerShipActions.SetBool("InsideShip", false);
             anim_MiniMapPanel.SetBool("Show", false);
         }
 
         else
         {
-            anim_AstronautInterface.SetBool("Show", true);      
+            anim_AstronautInterface.SetBool("Show", true);
+            anim_PlayerShipInterface.SetBool("Show", true);
+            anim_PlayerShipActions.SetBool("InsideShip", true);
             anim_MiniMapPanel.SetBool("Show", true);
+        }
+    }
+
+    private void PlayerShipWindowAvailable()
+    {
+        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed && playerShipMovement.astronautOnBoard)
+            anim_PlayerShipWindow.SetBool("Available", true);
+
+        else
+            anim_PlayerShipWindow.SetBool("Available", false);
+    }
+
+    private void AstronautInterfaceInfoUpdate()
+    {
+        if (playerShipMovement.currentPlanet != null)
+        {
+            planetName.text = playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().planetName;
+            planetTemperature.text = playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().planetTemperature + " º";
+            planetOxygen.SetActive(playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().planetOxygen);
+            planetGravity.SetActive(playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().planetGravity);
         }
     }
 
