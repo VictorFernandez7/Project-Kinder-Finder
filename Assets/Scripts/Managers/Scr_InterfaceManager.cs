@@ -71,6 +71,7 @@ public class Scr_InterfaceManager : MonoBehaviour
 
     private void Update()
     {
+        PlayerShipWindowAvailable();
         LandingInterface();
         IndicatorManagement();
         ChangeButtonColor();
@@ -102,6 +103,15 @@ public class Scr_InterfaceManager : MonoBehaviour
             anim_AstronautInterface.SetBool("Show", true);      
             anim_MiniMapPanel.SetBool("Show", true);
         }
+    }
+
+    private void PlayerShipWindowAvailable()
+    {
+        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed && playerShipMovement.astronautOnBoard)
+            anim_PlayerShipWindow.SetBool("Available", true);
+
+        else
+            anim_PlayerShipWindow.SetBool("Available", false);
     }
 
     private void CheckAstronautState()
