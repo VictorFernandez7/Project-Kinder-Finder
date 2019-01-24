@@ -6,8 +6,9 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
 {
     [Header("Indicator Parameters")]
     [SerializeField] private float displayDistance;
-    [SerializeField] private float minSize;
-    [SerializeField] private float maxSize;
+    [SerializeField] private float asteroidDistanceDetection;
+    [SerializeField] private float planetDistanceDetection;
+    [SerializeField] private float sizeDivider;
 
     [Header("References")]
     [SerializeField] private GameObject proximityIndicator;
@@ -162,7 +163,12 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
                     if (asteroid.name == indicator.name)
                     {
                         indicator.transform.position = ((asteroid.currentPos - this.transform.position).normalized) * displayDistance + this.transform.position;
-                        indicator.transform.localScale = ((trigger.radius - (Vector3.Distance(this.transform.position, asteroid.currentPos))) / 1000) * Vector3.one;
+
+                        if (asteroid.distanceToShip <= asteroidDistanceDetection)
+                            indicator.transform.localScale = ((asteroidDistanceDetection - asteroid.distanceToShip) / sizeDivider) * Vector3.one;
+
+                        else
+                            indicator.transform.localScale = Vector3.zero;
                     }
                 }
             }
