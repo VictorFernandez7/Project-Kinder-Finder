@@ -100,12 +100,16 @@ public class Scr_InterfaceManager : MonoBehaviour
         if (playerShipWindowActive)
         {
             anim_AstronautInterface.SetBool("Show", false);
+            anim_PlayerShipInterface.SetBool("Show", false);
+            anim_PlayerShipActions.SetBool("InsideShip", false);
             anim_MiniMapPanel.SetBool("Show", false);
         }
 
         else
         {
-            anim_AstronautInterface.SetBool("Show", true);      
+            anim_AstronautInterface.SetBool("Show", true);
+            anim_PlayerShipInterface.SetBool("Show", true);
+            anim_PlayerShipActions.SetBool("InsideShip", true);
             anim_MiniMapPanel.SetBool("Show", true);
         }
     }
