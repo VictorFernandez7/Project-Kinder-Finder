@@ -129,10 +129,8 @@ public class Scr_AstronautMovement : MonoBehaviour
                     MoveOnAir(lastRight);
             }
                 
-
             else
                 SlideDown();
-
 
             PlanetAttachment();
         }
@@ -173,11 +171,15 @@ public class Scr_AstronautMovement : MonoBehaviour
         if (hitR)
             pointRight = hitR.point;
 
-        if(Vector3.Project(pointLeft, transform.up).magnitude > Vector3.Project(pointRight, transform.up).magnitude)    
+        if(Vector3.Project(pointLeft, transform.up).magnitude > Vector3.Project(pointRight, transform.up).magnitude)
+        {
             movementVector = (pointLeft - pointRight).normalized;
+        }
 
         else
+        {
             movementVector = (pointRight - pointLeft).normalized;
+        }
 
         velocity += Vector3.Project((-transform.up * gravity), movementVector).magnitude / 2;
 
@@ -283,6 +285,12 @@ public class Scr_AstronautMovement : MonoBehaviour
 
     private void MoveOnAir(bool right)
     {
+        hitJL = Physics2D.Raycast(transform.position + (transform.up * astronautHeight) + (-transform.right * astronautWidth), -transform.up, distance, collisionMask);
+        hitJR = Physics2D.Raycast(transform.position + (transform.up * astronautHeight) + (transform.right * astronautWidth), -transform.up, distance, collisionMask);
+
+        if (hitJL || hitJR)
+            velocity = 0;
+
         if (right)
             movementVector = Vector2.Perpendicular((currentPlanet.transform.position - transform.position).normalized);
 
@@ -346,10 +354,10 @@ public class Scr_AstronautMovement : MonoBehaviour
 
             if (faceRight)
                 Flip();
-
-            if ((!hitJL && jumping) || angle <= maxMovementAngle)
-                Sprint(false, decelerating);
         }
+
+        if ((!hitJL && jumping) || angle <= maxMovementAngle)
+            Sprint(false, decelerating);
     }
 
     private void MoveRight(bool decelerating)
@@ -381,10 +389,10 @@ public class Scr_AstronautMovement : MonoBehaviour
 
             if (!faceRight)
                 Flip();
-
-            if ((!hitJR && jumping) || angle <= maxMovementAngle)
-                Sprint(true, decelerating);
         }
+
+        if ((!hitJR && jumping) || angle <= maxMovementAngle)
+            Sprint(true, decelerating);
     }
 
     private void Move(bool right, float movement)
