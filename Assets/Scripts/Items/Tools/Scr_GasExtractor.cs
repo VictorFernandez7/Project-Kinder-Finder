@@ -111,8 +111,8 @@ public class Scr_GasExtractor : Scr_ToolBase
     private void PutOnPlace()
     {
 
-        hitR = Physics2D.Raycast(ghost.transform.position + transform.right * 0.05f, (astronautMovement.currentPlanet.transform.position - ghost.transform.position).normalized, Mathf.Infinity, mask);
-        hitL = Physics2D.Raycast(ghost.transform.position - transform.right * 0.05f, (astronautMovement.currentPlanet.transform.position - ghost.transform.position).normalized, Mathf.Infinity, mask);
+        hitR = Physics2D.Raycast(ghost.transform.position + ghost.transform.right * 0.05f, (astronautMovement.currentPlanet.transform.position - ghost.transform.position).normalized, Mathf.Infinity, mask);
+        hitL = Physics2D.Raycast(ghost.transform.position - ghost.transform.right * 0.05f, (astronautMovement.currentPlanet.transform.position - ghost.transform.position).normalized, Mathf.Infinity, mask);
 
         float mouseposX = mainCamera.ScreenToWorldPoint(Input.mousePosition).x;
         float mouseposY = mainCamera.ScreenToWorldPoint(Input.mousePosition).y;
@@ -124,9 +124,7 @@ public class Scr_GasExtractor : Scr_ToolBase
         {
             ghost.SetActive(true);
             ghost.transform.position = astronautMovement.currentPlanet.transform.position + ((mousepos - astronautMovement.currentPlanet.transform.position).normalized * (Vector3.Distance(hit.point, astronautMovement.currentPlanet.transform.position) + GetComponentInChildren<Renderer>().bounds.size.y / 2));
-
-            if (Vector2.Perpendicular(ghost.transform.right) != Vector2.Perpendicular(hitL.point - hitR.point))
-                ghost.transform.rotation = Quaternion.LookRotation(ghost.transform.forward, Vector2.Perpendicular(hitL.point - hitR.point));
+            ghost.transform.rotation = Quaternion.LookRotation(ghost.transform.forward, Vector2.Perpendicular(hitL.point - hitR.point));
         }
 
         else
