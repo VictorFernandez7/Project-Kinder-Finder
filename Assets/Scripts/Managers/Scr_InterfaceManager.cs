@@ -51,6 +51,10 @@ public class Scr_InterfaceManager : MonoBehaviour
     [SerializeField] private Image craftButtonImage;
     [SerializeField] private TextMeshProUGUI workshopCategoryNameText;
     [SerializeField] private GameObject pauseCanvas;
+    [SerializeField] private TextMeshProUGUI planetName;
+    [SerializeField] private TextMeshProUGUI planetTemperature;
+    [SerializeField] private GameObject planetOxygen;
+    [SerializeField] private GameObject planetGravity;
 
     [HideInInspector] public bool gamePaused;
 
@@ -72,6 +76,7 @@ public class Scr_InterfaceManager : MonoBehaviour
     private void Update()
     {
         PlayerShipWindowAvailable();
+        AstronautInterfaceInfoUpdate();
         LandingInterface();
         IndicatorManagement();
         ChangeButtonColor();
@@ -112,6 +117,14 @@ public class Scr_InterfaceManager : MonoBehaviour
 
         else
             anim_PlayerShipWindow.SetBool("Available", false);
+    }
+
+    private void AstronautInterfaceInfoUpdate()
+    {
+        planetName.text = playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().planetName;
+        planetTemperature.text = playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().planetTemperature + " º";
+        planetOxygen.SetActive(playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().planetOxygen);
+        planetGravity.SetActive(playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().planetGravity);
     }
 
     private void CheckAstronautState()
