@@ -8,10 +8,12 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
     [SerializeField] private float displayDistance;
     [SerializeField] private float asteroidDistanceDetection;
     [SerializeField] private float planetDistanceDetection;
-    [SerializeField] private float sizeDivider;
+    [SerializeField] private float asteroidSizeDivider;
+    [SerializeField] private float planetSizeDivider;
 
     [Header("References")]
-    [SerializeField] private GameObject proximityIndicator;
+    [SerializeField] private GameObject asteroidIndicator;
+    [SerializeField] private GameObject planetIndicator;
     [SerializeField] private GameObject playerShip;
     [SerializeField] private GameObject worldCanvas;
 
@@ -42,7 +44,7 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
 
     private void FixedUpdate()
     {
-        IndicatorUpdate();
+        AsteroidIndicatorUpdate();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -101,7 +103,7 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
 
     private void CreateIndicator(string collisionName, Vector3 collisionPosition)
     {
-        GameObject indicatorClone = Instantiate(proximityIndicator, collisionPosition, gameObject.transform.rotation);
+        GameObject indicatorClone = Instantiate(asteroidIndicator, collisionPosition, gameObject.transform.rotation);
         indicatorClone.transform.SetParent(worldCanvas.transform);
         indicatorClone.name = collisionName;
         indicators.Add(indicatorClone);
@@ -152,7 +154,7 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
             planets.Remove(planet);
     }
 
-    private void IndicatorUpdate()
+    private void AsteroidIndicatorUpdate()
     {
         if (indicators.Count != 0)
         {
@@ -165,7 +167,30 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
                         indicator.transform.position = ((asteroid.currentPos - this.transform.position).normalized) * displayDistance + this.transform.position;
 
                         if (asteroid.distanceToShip <= asteroidDistanceDetection)
-                            indicator.transform.localScale = ((asteroidDistanceDetection - asteroid.distanceToShip) / sizeDivider) * Vector3.one;
+                            indicator.transform.localScale = ((asteroidDistanceDetection - asteroid.distanceToShip) / asteroidSizeDivider) * Vector3.one;
+
+                        else
+                            indicator.transform.localScale = Vector3.zero;
+                    }
+                }
+            }
+        }
+    }
+
+    private void PlanetIndicatorUpdate()
+    {
+        if (indicators.Count != 0)
+        {
+            foreach (GameObject indicator in indicators)
+            {
+                foreach (Scr_AsteroidClass asteroid in asteroids)
+                {
+                    if (asteroid.name == indicator.name)
+                    {
+                        indicator.transform.position = ((asteroid.currentPos - this.transform.position).normalized) * displayDistance + this.transform.position;
+
+                        if (asteroid.distanceToShip <= asteroidDistanceDetection)
+                            indicator.transform.localScale = ((asteroidDistanceDetection - asteroid.distanceToShip) / asteroidSizeDivider) * Vector3.one;
 
                         else
                             indicator.transform.localScale = Vector3.zero;
