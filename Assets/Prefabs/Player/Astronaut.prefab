@@ -6762,7 +6762,7 @@ MonoBehaviour:
   maxHealth: 100
   healthAlertPercentage: 25
   toolSlots:
-  - {fileID: 0}
+  - {fileID: 1238031769430186, guid: 8e98f6f64eacd0c42bb17fad700b9f46, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   physicToolSlots:
@@ -6827,7 +6827,8 @@ MonoBehaviour:
   distance: 0.1
   astronautHeight: 0.08
   astronautWidth: 0.08
-  maxAngle: 50
+  maxMovementAngle: 40
+  minSlideAngle: 40
   rayPointLeft: {fileID: 1705007326068512}
   rayPointRight: {fileID: 1642608111972328}
   walkingParticles: {fileID: 198665950421681262}
@@ -6846,6 +6847,7 @@ MonoBehaviour:
   faceRight: 1
   breathable: 0
   jumping: 0
+  walking: 0
   timeAtAir: 0
   velocity: 0
   exponentialMultiplier: 0
@@ -6861,12 +6863,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1635559910669824}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6fff63e50c464ca459bedd18a4082f76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   astronautMovement: {fileID: 0}
+  musicManager: {fileID: 0}
   steps: {fileID: 0}
   jump: {fileID: 0}
   mine: {fileID: 0}
@@ -6874,6 +6877,7 @@ MonoBehaviour:
   repair: {fileID: 0}
   breathing: {fileID: 0}
   chatter: {fileID: 0}
+  breathingBool: 0
 --- !u!1 &1637752389197576
 GameObject:
   m_ObjectHideFlags: 0
