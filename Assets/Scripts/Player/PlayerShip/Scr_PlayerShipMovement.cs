@@ -57,6 +57,8 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [SerializeField] private Slider speedSlider;
     [SerializeField] private Slider limitSlider;
     [SerializeField] private Scr_AstronautMovement astronautMovement;
+    [SerializeField] private GameObject leftLander;
+    [SerializeField] private GameObject rightLander;
 
     [HideInInspector] public bool astronautOnBoard;
     [HideInInspector] public bool onGround;
@@ -110,6 +112,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         speedSlider.maxValue = maxSpeedSaved;
         messageText.text = "";
         canControlShip = false;
+        onGround = true;
         checkingDistance = 100f;
         initialBulletTime = bulletTime;
     }
@@ -139,39 +142,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //UpdateShipRotationWhenLanded();
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (playerShipState == PlayerShipState.landing || playerShipState == PlayerShipState.landed)
-        {
-            if (collision.gameObject.tag == "Planet" && !dead)
-            {
-                currentPlanet = collision.gameObject;
-                astronautMovement.currentPlanet = collision.gameObject;
-
-                if (landedOnce)
-                    countDownToMove = true;
-
-                onGround = true;
-
-                playerShipActions.startExitDelay = true;
-            }
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (playerShipState == PlayerShipState.landing || playerShipState == PlayerShipState.landed || playerShipState == PlayerShipState.takingOff)
-        {
-            if (collision.gameObject.tag == "Planet" && !dead)
-            {
-                onGround = false;
-
-                playerShipActions.startExitDelay = false;
-            }
-        }
+        UpdateShipRotationWhenLanded();
     }
 
     float messageTimer1 = 2f;
@@ -281,11 +252,43 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
     private void UpdateShipRotationWhenLanded()
     {
+        RaycastHit2D leftLanderHit = Physics2D.Raycast(leftLander.transform.position, -transform.up, Mathf.Infinity, planetLayer);
+        RaycastHit2D rightLanderHit = Physics2D.Raycast(rightLander.transform.position, -transform.up, Mathf.Infinity, planetLayer);
+
+        Debug.DrawLine(leftLander.transform.position, leftLanderHit.point, Color.red);
+
+        if (playerShipState == PlayerShipState.landing)
+        {
+            if(Vector2.Distance(leftLander.transform.position, leftLanderHit.point) <= 0.03f)
+            {
+                currentPlanet = leftLanderHit.collider.gameObject;
+                astronautMovement.currentPlanet = leftLanderHit.collider.gameObject;
+
+                if (landedOnce)
+                    countDownToMove = true;
+
+                onGround = true;
+
+                playerShipActions.startExitDelay = true;
+            }
+
+            else if(Vector2.Distance(rightLander.transform.position, rightLanderHit.point) <= 0.03f)
+            {
+                currentPlanet = rightLanderHit.collider.gameObject;
+                astronautMovement.currentPlanet = rightLanderHit.collider.gameObject;
+
+                if (landedOnce)
+                    countDownToMove = true;
+
+                onGround = true;
+
+                playerShipActions.startExitDelay = true;
+            }
+        }
+        
         if (currentPlanet != null && playerShipState == PlayerShipState.landed)
         {
-            Vector3 currentRootation = new Vector3(transform.localRotation.x, transform.localRotation.y, transform.localRotation.y);
-            landingOrientationVector = transform.position - currentPlanet.transform.position;
-            transform.localRotation = Quaternion.Euler(Vector3.Lerp(currentRootation, landingOrientationVector, Time.deltaTime * shipOrientationSpeed));
+            transform.rotation = Quaternion.LookRotation(transform.forward, Vector2.Perpendicular(rightLanderHit.point - leftLanderHit.point));
         }
     }
 
@@ -435,6 +438,8 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         targetTakingOff = transform.position + new Vector3(0, takeOffDistance, 0);
         undercarriageAnim.SetBool("PickUp", true);
         takingOff = true;
+        onGround = false;
+        playerShipActions.startExitDelay = false;
     }
 
     private void Landing()
