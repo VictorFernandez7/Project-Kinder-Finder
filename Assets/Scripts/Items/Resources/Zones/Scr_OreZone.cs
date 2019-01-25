@@ -12,6 +12,7 @@ public class Scr_OreZone : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Scr_ReferenceManager referenceManager;
+    [SerializeField] private GameObject resourceVisuals;
 
     [HideInInspector] public GameObject currentResource;
 
@@ -42,6 +43,6 @@ public class Scr_OreZone : MonoBehaviour
     private void CheckAmount()
     {
         if (amount <= 0)
-            Destroy(gameObject);
+            Destroy(resourceVisuals);
     }
 }

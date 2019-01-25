@@ -13,11 +13,20 @@ public class Scr_Resource : MonoBehaviour
     [SerializeField] private float spawnImpulse;
     [SerializeField] private float maxSpawnAngle;
 
+    [Header("Raycast")]
+    [SerializeField] private float activationDelay;
+    [SerializeField] private float rayLength;
+    [SerializeField] private LayerMask collisionMask;
+
+    [Header("References")]
+    [SerializeField] private Transform rayOrigin1;
+    [SerializeField] private Transform rayOrigin2;
+
     [HideInInspector] public GameObject resourceReference;
 
     private bool emulatePhysics;
     private float spawnAngle;
-    private Rigidbody2D rb;
+    private Rigidbody rb;
     private Scr_PlayerShipMovement playerShipMovement;
 
     public enum ResourceType
@@ -29,7 +38,7 @@ public class Scr_Resource : MonoBehaviour
     private void Start()
     {
         playerShipMovement = GameObject.Find("PlayerShip").GetComponent<Scr_PlayerShipMovement>();
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody>();
 
         emulatePhysics = true;
 
@@ -37,20 +46,23 @@ public class Scr_Resource : MonoBehaviour
         InitialImpulse();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        if (emulatePhysics)
-        {
-            rb.AddForce((playerShipMovement.currentPlanet.transform.position - gameObject.transform.position).normalized * gravity);
-        }
-    }
+        activationDelay -= Time.deltaTime;
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Planet"))
+        if (activationDelay <= 0)
         {
-            emulatePhysics = false;
-            transform.SetParent(collision.transform);
+            RaycastHit2D hit1 = Physics2D.Raycast(rayOrigin1.position, -transform.up, rayLength, collisionMask);
+            RaycastHit2D hit2 = Physics2D.Raycast(rayOrigin1.position, -transform.up, rayLength, collisionMask);
+
+            if (hit1 && hit2)
+                rb.isKinematic = true;
+
+            else
+            {
+                rb.AddForce((playerShipMovement.currentPlanet.transform.position - gameObject.transform.position).normalized * gravity);
+                rb.isKinematic = false;
+            }
         }
     }
 
