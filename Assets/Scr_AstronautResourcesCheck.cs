@@ -8,17 +8,15 @@ public class Scr_AstronautResourcesCheck : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Resources")
-        {
+        if (collision.CompareTag("Resources"))
             resourceList.Add(collision.gameObject);
-        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Resources")
+        if (collision.CompareTag("Resources"))
         {
-            for(int i = 0; i < resourceList.Count; i++)
+            for (int i = 0; i < resourceList.Count; i++)
             {
                 if(resourceList[i].name == collision.gameObject.name)
                     resourceList.RemoveAt(i);
