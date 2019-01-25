@@ -67,4 +67,9 @@ public class Scr_AstronautStats : MonoBehaviour
         else
             anim_HealthPanel.SetBool("Alert", false);
     }
+
+    public void TakeDamaged(float damage)
+    {
+        currentHealth -= damage;
+    }
 }
