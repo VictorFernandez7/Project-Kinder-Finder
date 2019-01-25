@@ -37,7 +37,6 @@ public class Scr_AstronautMovement : MonoBehaviour
     [SerializeField] private Transform transforms;
     [SerializeField] private GameObject astronautVisuals;
     [SerializeField] private Animator astronautAnim;
-    [SerializeField] private Scr_AstronautEffects astronautEffects;
     [SerializeField] private GameObject playerShip;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private Scr_InterfaceManager interfaceManager;
@@ -84,6 +83,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     private Scr_PlayerShipMovement playerShipMovement;
     private Scr_PlayerShipActions playerShipActions;
     private Scr_AstronautStats astronautStats;
+    private Scr_AstronautEffects astronautEffects;
 
     public void Start()
     {
@@ -94,6 +94,7 @@ public class Scr_AstronautMovement : MonoBehaviour
         playerShipMovement = playerShip.GetComponent<Scr_PlayerShipMovement>();
         playerShipActions = playerShip.GetComponent<Scr_PlayerShipActions>();
         astronautStats = GetComponent<Scr_AstronautStats>();
+        astronautEffects = GetComponent<Scr_AstronautEffects>();
 
         canMove = true;
 
@@ -217,6 +218,7 @@ public class Scr_AstronautMovement : MonoBehaviour
             {
                 walking = true;
                 MoveLeft(false);
+                astronautEffects.MovementParticles(true);
 
                 if(!jumping)
                     lastRight = false;
@@ -228,8 +230,9 @@ public class Scr_AstronautMovement : MonoBehaviour
             {
                 walking = true;
                 MoveRight(false);
+                astronautEffects.MovementParticles(true);
 
-                if(!jumping)
+                if (!jumping)
                     lastRight = true;
 
                 astronautAnim.SetBool("Moving", true);
@@ -248,6 +251,7 @@ public class Scr_AstronautMovement : MonoBehaviour
                 velocity = 0;
                 exponentialMultiplier = 1;
                 walking = false;
+                astronautEffects.MovementParticles(false);
 
                 astronautAnim.SetBool("Moving", false);
             }

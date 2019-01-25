@@ -5,10 +5,12 @@ using UnityEngine;
 public class Scr_AstronautEffects : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private Scr_AstronautMovement astronautMovement;
-    [SerializeField] private Scr_MusicManager musicManager;
     [SerializeField] private ParticleSystem movingParticles;
+    [SerializeField] private ParticleSystemRenderer movingParticlesRenderer;
     [SerializeField] private ParticleSystem jumpParticles;
+    [SerializeField] private ParticleSystemRenderer jumpParticlesRenderer;
+    [SerializeField] private Scr_MusicManager musicManager;
+    [SerializeField] private Scr_PlayerShipMovement playerShipMovement;
 
     [Header("Sounds")]
     [SerializeField] private SoundDefinition steps;
@@ -21,14 +23,18 @@ public class Scr_AstronautEffects : MonoBehaviour
 
     [HideInInspector] public bool breathingBool;
 
+    private Scr_AstronautMovement astronautMovement;
+
     private void Start()
     {
+        astronautMovement = GetComponent<Scr_AstronautMovement>();
+
         breathingBool = true;
     }
 
     private void Update()
     {
-        SoundManager();
+        //SoundManager();
     }
 
     private void SoundManager()
@@ -83,10 +89,12 @@ public class Scr_AstronautEffects : MonoBehaviour
 
     public void MovementParticles(bool isMoving)
     {
-        if (isMoving)
+        movingParticlesRenderer.material = playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().particlesMaterial;
+
+        if (isMoving && !movingParticles.isPlaying)
             movingParticles.Play();
 
-        else
+        else if (movingParticles.isPlaying)
             movingParticles.Stop();
     }
 }
