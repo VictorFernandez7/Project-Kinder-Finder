@@ -87,7 +87,7 @@ public class Scr_AstronautsActions : MonoBehaviour
             if (toolOnHands)
                 astronautStats.physicToolSlots[numberToolActive].GetComponent<Scr_ToolBase>().UseTool();
 
-            else if(emptyHands && !toolOnHands)
+            else if(emptyHands && !toolOnHands && astronautResourcesCheck.resourceList.Count > 0)
             {
                 for(int i = 0; i < astronautResourcesCheck.resourceList.Count; i++)
                 {
