@@ -93,7 +93,7 @@ public class Scr_OreExtractor : Scr_ToolBase
         if (savedExtractorTime <= 0 && oreZone.GetComponent<Scr_OreZone>().amount > 0)
         {
             GameObject physicResource = Instantiate(resource, spawnPoint.position, spawnPoint.rotation);
-            //physicResource.transform.SetParent(astronautMovement.currentPlanet.transform);
+            physicResource.transform.SetParent(astronautMovement.currentPlanet.transform);
 
             resourceAmount += 1;
             savedExtractorTime = extractorTime;
@@ -130,9 +130,7 @@ public class Scr_OreExtractor : Scr_ToolBase
         }
 
         else
-        {
             ghost.SetActive(false);
-        }
 
         if (ghost)
         {
