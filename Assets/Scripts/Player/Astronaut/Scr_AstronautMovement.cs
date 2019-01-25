@@ -21,6 +21,10 @@ public class Scr_AstronautMovement : MonoBehaviour
     [Header("Height Properties")]
     [SerializeField] private float precisionHeight;
     [SerializeField] private float speedJump;
+    [Tooltip("Smaller value fall slower")]
+    [SerializeField] private float fallModifier;
+    [Tooltip("Smaller value drag less")]
+    [SerializeField] private float airDragModifier;
     [SerializeField] private float gravity;
 
     [Header("Collision Properties")]
@@ -282,7 +286,7 @@ public class Scr_AstronautMovement : MonoBehaviour
         else if (jumping)
         {
             timeAtAir += Time.deltaTime * 10;
-            vectorJump -= (transform.position - currentPlanet.transform.position).normalized * gravity * timeAtAir * Time.deltaTime;
+            vectorJump -= (transform.position - currentPlanet.transform.position).normalized * gravity * fallModifier * timeAtAir * Time.deltaTime;
         }
 
         transform.Translate(vectorJump, Space.World);
@@ -301,6 +305,9 @@ public class Scr_AstronautMovement : MonoBehaviour
 
         if (!right)
             movementVector = -Vector2.Perpendicular((currentPlanet.transform.position - transform.position).normalized);
+
+        if(velocity > 0)
+            velocity -= (airDragModifier / 1000);
 
         transform.Translate(movementVector * velocity, Space.World);
     }
@@ -359,10 +366,10 @@ public class Scr_AstronautMovement : MonoBehaviour
 
             if (faceRight)
                 Flip();
-        }
 
-        if ((!hitJL && jumping) || angle <= maxMovementAngle)
-            Sprint(false, decelerating);
+            if ((!hitJL && jumping) || angle <= maxMovementAngle)
+                Sprint(false, decelerating);
+        }
     }
 
     private void MoveRight(bool decelerating)
@@ -394,10 +401,10 @@ public class Scr_AstronautMovement : MonoBehaviour
 
             if (!faceRight)
                 Flip();
-        }
 
-        if ((!hitJR && jumping) || angle <= maxMovementAngle)
-            Sprint(true, decelerating);
+            if ((!hitJR && jumping) || angle <= maxMovementAngle)
+                Sprint(true, decelerating);
+        }
     }
 
     private void Move(bool right, float movement)
