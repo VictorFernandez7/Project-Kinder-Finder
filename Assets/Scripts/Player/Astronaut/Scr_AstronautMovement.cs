@@ -97,7 +97,7 @@ public class Scr_AstronautMovement : MonoBehaviour
 
         canMove = true;
 
-        hitCentral = Physics2D.Raycast(transform.position, (currentPlanet.transform.position - transform.position).normalized, Mathf.Infinity, collisionMask);
+        hitCentral = Physics2D.Raycast(transform.position, (playerShipMovement.currentPlanet.transform.position - transform.position).normalized, Mathf.Infinity, collisionMask);
 
         planetRotation = new Quaternion(0, 0, 0, 0);
 
