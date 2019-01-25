@@ -9,6 +9,7 @@ public class Scr_OreExtractor : Scr_ToolBase
     [Header("Ore Extractor Properties")]
     [SerializeField] private float extractorTime;
     [SerializeField] private float maxApplicationDistance;
+    [SerializeField] private float timeToActivate;
     [SerializeField] private LayerMask mask;
 
     [Header("References")]
@@ -26,6 +27,7 @@ public class Scr_OreExtractor : Scr_ToolBase
 
     private bool placing;
     private bool showInterface;
+    private bool deployed;
     private float savedExtractorTime;
     private float process;
     private GameObject ghost;
@@ -59,8 +61,13 @@ public class Scr_OreExtractor : Scr_ToolBase
         if (placing)
             PutOnPlace();
 
-        if (!onHands && oreZone != null && oreZone.GetComponent<Scr_OreZone>().amount > 0)
-            Function();
+        if (!onHands && oreZone != null && oreZone.GetComponent<Scr_OreZone>().amount > 0 && !deployed)
+        {
+            timeToActivate -= Time.deltaTime;
+
+            if (timeToActivate <= 0)
+                Function();
+        }
 
         if (oreZone == null)
             recolectable = false;
