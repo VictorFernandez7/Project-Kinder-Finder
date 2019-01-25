@@ -218,7 +218,6 @@ public class Scr_AstronautMovement : MonoBehaviour
             {
                 walking = true;
                 MoveLeft(false);
-                astronautEffects.MovementParticles(true);
 
                 if(!jumping)
                     lastRight = false;
@@ -230,7 +229,6 @@ public class Scr_AstronautMovement : MonoBehaviour
             {
                 walking = true;
                 MoveRight(false);
-                astronautEffects.MovementParticles(true);
 
                 if (!jumping)
                     lastRight = true;
@@ -251,7 +249,6 @@ public class Scr_AstronautMovement : MonoBehaviour
                 velocity = 0;
                 exponentialMultiplier = 1;
                 walking = false;
-                astronautEffects.MovementParticles(false);
 
                 astronautAnim.SetBool("Moving", false);
             }
