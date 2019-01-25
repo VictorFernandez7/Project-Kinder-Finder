@@ -35,6 +35,8 @@ public class Scr_PlayerShipEffects : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform endOfShip;
     [SerializeField] public ParticleSystem thrusterParticles;
+    [SerializeField] public ParticleSystem thrusterParticles2;
+    [SerializeField] public ParticleSystem thrusterParticles3;
     [SerializeField] public ParticleSystem takingOffDustParticles;
     [SerializeField] private GameObject dustParticles;
     [SerializeField] private ParticleSystem atmosphereParticles;
