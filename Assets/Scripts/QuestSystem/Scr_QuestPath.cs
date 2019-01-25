@@ -1,18 +1,14 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Scr_QuestPath : MonoBehaviour
+public class Scr_QuestPath 
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Scr_QuestEvent startEvent;
+    public Scr_QuestEvent endEvent;
 
-    // Update is called once per frame
-    void Update()
+    public Scr_QuestPath(Scr_QuestEvent from, Scr_QuestEvent to)
     {
-        
+        startEvent = from;
+        endEvent = to;
     }
 }
