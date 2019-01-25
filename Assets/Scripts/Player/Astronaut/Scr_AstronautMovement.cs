@@ -14,6 +14,8 @@ public class Scr_AstronautMovement : MonoBehaviour
     [Range(0.1f, 1f)] [SerializeField] private float spaceWalkSpeed;
     [SerializeField] private float rotationDelay;
     [SerializeField] private float attachDistance;
+    [SerializeField] private float collisionKnockBack;
+    [SerializeField] private float damageMultiplier;
     [SerializeField] private LayerMask asteroidMask;
 
     [Header("Height Properties")]
@@ -83,6 +85,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     private RaycastHit2D hitAngleDown;
     private Scr_PlayerShipMovement playerShipMovement;
     private Scr_PlayerShipActions playerShipActions;
+    private Scr_AstronautStats astronautStats;
 
     public void Start()
     {
@@ -92,6 +95,7 @@ public class Scr_AstronautMovement : MonoBehaviour
         astronautRb = GetComponent<Rigidbody2D>();
         playerShipMovement = playerShip.GetComponent<Scr_PlayerShipMovement>();
         playerShipActions = playerShip.GetComponent<Scr_PlayerShipActions>();
+        astronautStats = GetComponent<Scr_AstronautStats>();
 
         canMove = true;
 
@@ -146,6 +150,12 @@ public class Scr_AstronautMovement : MonoBehaviour
             extractor = collision.gameObject;
             closeToCollector = true;
             GetComponent<Scr_AstronautsActions>().toolOnFloor = collision.gameObject;
+        }
+
+        if(collision.gameObject.tag == "Asteroid" && !attached)
+        {
+            astronautRb.velocity = new Vector2(-astronautRb.velocity.x, -astronautRb.velocity.y) * collisionKnockBack;
+            astronautStats.TakeDamaged(astronautRb.velocity.magnitude * damageMultiplier);
         }
     }
 
