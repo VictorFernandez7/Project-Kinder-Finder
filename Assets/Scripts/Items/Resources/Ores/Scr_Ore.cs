@@ -5,6 +5,8 @@ using UnityEngine;
 public class Scr_Ore : MonoBehaviour
 {
     [Header("Ore Block Type")]
+    [SerializeField] private OreResourceType oreResourceType;
+    [SerializeField] private CrystalResourceType crystalResourceType;
     [SerializeField] private BlockType blockType;
 
     [Header("Resource Properties")]
@@ -17,15 +19,45 @@ public class Scr_Ore : MonoBehaviour
 
     private enum BlockType
     {
-        iron
+        Ore,
+        Crystal
+    }
+
+    private enum OreResourceType
+    {
+        Iron,
+        Copper
+    }
+
+    private enum CrystalResourceType
+    {
+        Crystal
     }
 
     private void Start()
     {
-        switch (blockType)
+        switch(blockType)
         {
-            case BlockType.iron:
-                currentResource = referenceManager.SolidResources[0];
+            case BlockType.Ore:
+                switch (oreResourceType)
+                {
+                    case OreResourceType.Iron:
+                        currentResource = referenceManager.SolidResources[0];
+                        break;
+
+                    case OreResourceType.Copper:
+                        currentResource = referenceManager.SolidResources[1];
+                        break;
+                }
+                break;
+
+            case BlockType.Crystal:
+                switch (crystalResourceType)
+                {
+                    case CrystalResourceType.Crystal:
+
+                        break;
+                }
                 break;
         }
     }

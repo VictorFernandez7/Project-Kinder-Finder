@@ -33,8 +33,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
     [Header("References")]
     [SerializeField] private ParticleSystem deathParticles;
     [SerializeField] private GameObject shipVisuals;
-    [SerializeField] private BoxCollider2D collider1;
-    [SerializeField] private BoxCollider2D collider2;
+    [SerializeField] private BoxCollider2D collider;
     [SerializeField] private Animator fadeImage;
     [SerializeField] private Image fuelSliderFill;
     [SerializeField] private Image shieldSliderFill;
@@ -174,8 +173,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
         shipVisuals.gameObject.SetActive(false);
         deathParticles.Play();
         playerShipEffects.thrusterParticles.Stop();
-        collider1.enabled = false;
-        collider2.enabled = false;
+        collider.enabled = false;
         fadeImage.SetBool("Fade", false);
         GetComponentInChildren<Scr_PlayerShipDeathCheck>().enabled = false;
         GetComponent<Scr_PlayerShipPrediction>().enabled = false;

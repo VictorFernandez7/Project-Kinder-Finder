@@ -471,6 +471,16 @@ public class Scr_AstronautMovement : MonoBehaviour
 
             if (Vector3.Distance(playerShip.transform.position, transform.position) < playerShipActions.maxDistanceOfShip)
             {
+                if (Input.GetKeyDown(KeyCode.A) && faceRight)
+                {
+                    Flip();
+                }
+
+                else if (Input.GetKeyDown(KeyCode.D) && !faceRight)
+                {
+                    Flip();
+                }
+
                 if (Input.GetAxis("Vertical") > 0f)
                     astronautRb.AddForce(transform.up * spaceWalkSpeed);
 
@@ -528,7 +538,7 @@ public class Scr_AstronautMovement : MonoBehaviour
 
                     if (dettaching)
                     {
-                        astronautRb.AddForce(transform.up * spaceWalkSpeed * 4); 
+                        astronautRb.AddForce(transform.up * spaceWalkSpeed * 2); 
 
                         if (mainCamera.GetComponent<Scr_MainCamera>().mining)
                         {
@@ -537,6 +547,7 @@ public class Scr_AstronautMovement : MonoBehaviour
                         }
 
                         timeDettaching -= Time.deltaTime;
+
                         if(timeDettaching <= 0)
                         {
                             attached = false;

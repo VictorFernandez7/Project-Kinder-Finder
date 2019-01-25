@@ -233,4 +233,17 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
             }
         }
     }
+
+    public void ClearInterface(bool active)
+    {
+        foreach (GameObject indicator in planetIndicators)
+        {
+            indicator.gameObject.SetActive(active);
+        }
+
+        foreach (GameObject indicator in asteroidIndicators)
+        {
+            indicator.gameObject.SetActive(active);
+        }
+    }
 }
