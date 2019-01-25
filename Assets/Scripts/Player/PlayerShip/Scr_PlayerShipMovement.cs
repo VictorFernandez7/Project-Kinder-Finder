@@ -74,6 +74,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
     private bool countDownToMove;
     private bool slow;
+    private bool takingOffSlow;
     private float maxSpeedSaved;
     private float currentSpeed;
     private float canControlTimerSaved;
@@ -120,7 +121,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     private void Update()
     {
         Timers();
-        //BulletTime();
+        BulletTime();
         SpeedLimiter();
         MessageTextManager();
         PlayerShipStateCheck();
@@ -219,35 +220,31 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
     private void BulletTime()
     {
-        if (playerShipState == PlayerShipState.inSpace)
+        if (currentPlanet == null && !takingOffSlow && !slow)
         {
-            initialBulletTime -= Time.deltaTime;
+            GetComponent<Scr_PlayerShipPrediction>().enabled = false;
+            GetComponent<LineRenderer>().enabled = false;
 
-            if (initialBulletTime <= 0 && !slow)
-            {
-                Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
-
-                if (Time.timeScale == 1)
-                {
-                    Time.timeScale = 0f;
-                    Time.fixedDeltaTime = Time.timeScale * 0.02f;
-                }
-
-                Time.timeScale += 0.25f * Time.unscaledDeltaTime;
-                Time.fixedDeltaTime = Time.timeScale * 0.02f;
-
-                if (Time.timeScale >= 1)
-                {
-                    Time.timeScale = 1;
-                    playerShipPrediction.enabled = true;
-                    initialBulletTime = bulletTime;
-                    slow = true;
-                }
-            }
+            Time.timeScale = 0f;
+            Time.fixedDeltaTime = Time.timeScale * 0.02f;
+            slow = true;
         }
 
-        if (playerShipState == PlayerShipState.landed)
-            slow = false;
+        else if (Time.timeScale < 1 && slow == true && !takingOffSlow)
+        {
+            Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
+            Time.timeScale += 0.25f * Time.unscaledDeltaTime;
+            Time.fixedDeltaTime = Time.timeScale * 0.02f;
+
+            if (Time.timeScale >= 1)
+            {
+                Time.timeScale = 1;
+                GetComponent<Scr_PlayerShipPrediction>().enabled = true;
+                GetComponent<LineRenderer>().enabled = true;
+                slow = false;
+                takingOffSlow = true;
+            }
+        }
     }
 
     private void UpdateShipRotationWhenLanded()
@@ -428,6 +425,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     private void Landed()
     {
         transform.SetParent(currentPlanet.transform);
+        takingOffSlow = false;
 
         if (rb.velocity != Vector2.zero)
             rb.velocity = Vector2.zero;
