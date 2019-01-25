@@ -277,7 +277,6 @@ public class Scr_AstronautMovement : MonoBehaviour
         {
             if (Input.GetButtonDown("Jump") && currentAngle <= maxMovementAngle)
             {
-                print(interfaceManager.gamePaused);
                 timeAtAir = 0;
                 vectorJump = (transform.position - currentPlanet.transform.position).normalized * speedJump;
                 jumping = true;
