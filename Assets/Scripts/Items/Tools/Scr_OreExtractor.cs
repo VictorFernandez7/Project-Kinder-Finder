@@ -16,7 +16,6 @@ public class Scr_OreExtractor : Scr_ToolBase
     [SerializeField] private GameObject resourceCanvas;
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI remainingResources;
-    [SerializeField] private TextMeshProUGUI harvestedResources;
     [SerializeField] private Slider harvestProcess;
     [SerializeField] private GameObject playerCheck;
     [SerializeField] private Transform spawnPoint;
@@ -119,13 +118,17 @@ public class Scr_OreExtractor : Scr_ToolBase
         process = Mathf.Clamp(process, 0, 3);
 
         if (oreZone.GetComponent<Scr_OreZone>().amount <= 0 && resourceAmount != resourceLeft)
+        {
+            GameObject physicResource = Instantiate(resource, spawnPoint.position, spawnPoint.rotation);
             resourceAmount = resourceLeft;
+        }
+            
     }
 
     private void PutOnPlace()
     {
-        hitR = Physics2D.Raycast(ghost.transform.position + ghost.transform.right * 0.05f, (astronautMovement.currentPlanet.transform.position - ghost.transform.position).normalized, Mathf.Infinity, mask);
-        hitL = Physics2D.Raycast(ghost.transform.position - ghost.transform.right * 0.05f, (astronautMovement.currentPlanet.transform.position - ghost.transform.position).normalized, Mathf.Infinity, mask);
+        hitR = Physics2D.Raycast(ghost.transform.position + transform.up * 0.1f + transform.right * 0.05f, (astronautMovement.currentPlanet.transform.position - ghost.transform.position).normalized, Mathf.Infinity, mask);
+        hitL = Physics2D.Raycast(ghost.transform.position + transform.up * 0.1f - transform.right * 0.05f, (astronautMovement.currentPlanet.transform.position - ghost.transform.position).normalized, Mathf.Infinity, mask);
 
         float mouseposX = mainCamera.ScreenToWorldPoint(Input.mousePosition).x;
         float mouseposY = mainCamera.ScreenToWorldPoint(Input.mousePosition).y;
@@ -137,7 +140,11 @@ public class Scr_OreExtractor : Scr_ToolBase
         {
             ghost.SetActive(true);
             ghost.transform.position = astronautMovement.currentPlanet.transform.position + ((mousepos - astronautMovement.currentPlanet.transform.position).normalized * (Vector3.Distance(hit.point, astronautMovement.currentPlanet.transform.position) + GetComponentInChildren<Renderer>().bounds.size.y / 2));
-            ghost.transform.rotation = Quaternion.LookRotation(ghost.transform.forward, Vector2.Perpendicular(hitL.point - hitR.point));
+            if(astronaut.GetComponent<Scr_AstronautMovement>().faceRight)
+                ghost.transform.rotation = Quaternion.LookRotation(ghost.transform.forward, Vector2.Perpendicular(hitR.point - hitL.point));
+
+            else
+                ghost.transform.rotation = Quaternion.LookRotation(ghost.transform.forward, Vector2.Perpendicular(hitL.point - hitR.point));
         }
 
         else
@@ -228,14 +235,13 @@ public class Scr_OreExtractor : Scr_ToolBase
 
         if (oreZone != null)
         {
-            if (oreZone.GetComponent<Scr_OreZone>().amount > 0)
-                remainingResources.text = "Remaining   " + ((int)oreZone.GetComponent<Scr_OreZone>().amount + 1);
+            if (oreZone.GetComponent<Scr_OreZone>().amount != oreZone.GetComponent<Scr_OreZone>().initialAmount && oreZone.GetComponent<Scr_OreZone>().amount >= 0)
+                remainingResources.text = ((int)oreZone.GetComponent<Scr_OreZone>().amount + 1) + " / " + ((int)oreZone.GetComponent<Scr_OreZone>().initialAmount);
 
             else
-                remainingResources.text = "Remaining   " + (int)oreZone.GetComponent<Scr_OreZone>().amount;
+                remainingResources.text = (int)oreZone.GetComponent<Scr_OreZone>().amount + " / " + ((int)oreZone.GetComponent<Scr_OreZone>().initialAmount);
         }
 
-       // harvestedResources.text = "Harvested    " + resourceAmount;
         harvestProcess.value = process / 3 * 100;
     }
 

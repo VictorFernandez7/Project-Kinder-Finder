@@ -15,8 +15,7 @@ public class Scr_OreZone : MonoBehaviour
     [SerializeField] private GameObject resourceVisuals;
 
     [HideInInspector] public GameObject currentResource;
-
-    private float initialAmount;
+    [HideInInspector] public float initialAmount;
 
     private enum OreType
     {
