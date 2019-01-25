@@ -10,6 +10,7 @@ public class Scr_AstronautsActions : MonoBehaviour
     [SerializeField] public Scr_PlayerShipWarehouse playerShipWarehouse;
     [SerializeField] private Animator interactionIndicatorAnim;
     [SerializeField] private Scr_PlanetManager planetManager;
+    [SerializeField] private Scr_AstronautResourcesCheck astronautResourcesCheck;
     [SerializeField] private GameObject mainCamera;
     [SerializeField] private GameObject playerShip;
 
@@ -72,17 +73,6 @@ public class Scr_AstronautsActions : MonoBehaviour
             interactionIndicatorAnim.gameObject.SetActive(false);
         }
 
-        if (Input.GetButtonDown("Interact") && astronautMovement.closeToCollector && astronautMovement.extractor != null)
-        {
-            if (emptyHands && !toolOnHands && astronautMovement.extractor.GetComponent<Scr_ToolBase>().resourceAmount > 0 && !astronautMovement.extractor.GetComponent<Scr_ToolBase>().onHands)
-            {
-                astronautMovement.extractor.GetComponent<Scr_ToolBase>().resourceAmount -= 1;
-                currentResource = Instantiate(astronautMovement.extractor.GetComponent<Scr_ToolBase>().resource, pickPoint);
-                astronautMovement.extractor.GetComponent<Scr_ToolBase>().resourceLeft -= 1;
-                emptyHands = false;
-            }
-        }
-
         if (Input.GetButtonDown("Tool1"))
             HandTool(0);
 
@@ -96,6 +86,25 @@ public class Scr_AstronautsActions : MonoBehaviour
         {
             if (toolOnHands)
                 astronautStats.physicToolSlots[numberToolActive].GetComponent<Scr_ToolBase>().UseTool();
+
+            else if(emptyHands && !toolOnHands)
+            {
+                for(int i = 0; i < astronautResourcesCheck.resourceList.Count; i++)
+                {
+                    if (i != 0)
+                    {
+                        if (Vector3.Project(astronautResourcesCheck.resourceList[i].transform.position, transform.up).magnitude > Vector3.Project(astronautResourcesCheck.resourceList[i - 1].transform.position, transform.up).magnitude)
+                            currentResource = astronautResourcesCheck.resourceList[i];
+                    }
+
+                    else
+                        currentResource = astronautResourcesCheck.resourceList[i];
+                }
+
+                currentResource.transform.position = pickPoint.position;
+                currentResource.transform.SetParent(pickPoint);
+                emptyHands = false;
+            }
 
             else if (toolOnFloor != null && toolOnFloor.GetComponent<Scr_ToolBase>().resourceAmount <= 0)
                 toolOnFloor.GetComponent<Scr_ToolBase>().RecoverTool();
@@ -129,9 +138,6 @@ public class Scr_AstronautsActions : MonoBehaviour
 
     private void IntroduceResource()
     {
-        /*if (currentResource.name == "Fuel")
-            playerShip.GetComponent<Scr_PlayerShipStats>().ReFuel(currentResource.GetComponent<Scr_FuelBlock>().fuelAmount);*/
-
         if (currentResource.CompareTag("Resources"))
         {
             for (int i = 0; i < playerShip.GetComponent<Scr_PlayerShipStats>().resourceWarehouse.Length; i++)
