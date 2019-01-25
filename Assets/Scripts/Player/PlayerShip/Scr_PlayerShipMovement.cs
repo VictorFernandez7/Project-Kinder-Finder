@@ -259,7 +259,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
         if (playerShipState == PlayerShipState.landing)
         {
-            if(Vector2.Distance(leftLander.transform.position, leftLanderHit.point) <= 0.03f)
+            if (Vector2.Distance(leftLander.transform.position, leftLanderHit.point) <= 0.03f)
             {
                 currentPlanet = leftLanderHit.collider.gameObject;
                 astronautMovement.currentPlanet = leftLanderHit.collider.gameObject;
@@ -272,7 +272,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
                 playerShipActions.startExitDelay = true;
             }
 
-            else if(Vector2.Distance(rightLander.transform.position, rightLanderHit.point) <= 0.03f)
+            else if (Vector2.Distance(rightLander.transform.position, rightLanderHit.point) <= 0.03f)
             {
                 currentPlanet = rightLanderHit.collider.gameObject;
                 astronautMovement.currentPlanet = rightLanderHit.collider.gameObject;
@@ -485,6 +485,9 @@ public class Scr_PlayerShipMovement : MonoBehaviour
                         playerShipStats.FuelConsumption(true);
                         currentSpeed = boostSpeed;
                         rb.AddForce(transform.up * currentSpeed * Time.fixedDeltaTime);
+
+                        playerShipEffects.thrusterParticles2.Play();
+                        playerShipEffects.thrusterParticles3.Play();
                     }
 
                     else
@@ -492,11 +495,28 @@ public class Scr_PlayerShipMovement : MonoBehaviour
                         playerShipStats.FuelConsumption(false);
                         currentSpeed = normalSpeed;
                         rb.AddForce(transform.up * currentSpeed * Time.fixedDeltaTime);
+
+                        playerShipEffects.thrusterParticles2.Stop();
+                        playerShipEffects.thrusterParticles3.Stop();
                     }
                 }
 
                 else if (playerShipState == PlayerShipState.inSpace)
+                {
                     playerShipEffects.thrusterParticles.Stop();
+
+                    playerShipEffects.thrusterParticles2.Stop();
+                    playerShipEffects.thrusterParticles3.Stop();
+                }
+            }
+
+            else
+                playerShipEffects.thrusterParticles.Stop();
+
+            if (Input.GetButtonDown("Boost"))
+            {
+                playerShipEffects.thrusterParticles2.Stop();
+                playerShipEffects.thrusterParticles3.Stop();
             }
         }
 
