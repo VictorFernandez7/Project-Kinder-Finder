@@ -11542,16 +11542,6 @@ PrefabInstance:
       propertyPath: worldCanvas
       value: 
       objectReference: {fileID: 1887139987}
-    - target: {fileID: 114564075594853054, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
-        type: 3}
-      propertyPath: windowOn
-      value: 
-      objectReference: {fileID: 2100000, guid: a86ca837b08576f45a12fea5a089f212, type: 2}
-    - target: {fileID: 114564075594853054, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
-        type: 3}
-      propertyPath: windowOff
-      value: 
-      objectReference: {fileID: 2100000, guid: 5b3f193611efb184c92e405ba191ee8a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15c55cceacb93ea4bb7e3f3c7e160410, type: 3}
 --- !u!114 &1523568854 stripped
@@ -13237,6 +13227,33 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1781220966}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1788477788 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4923803342526802460, guid: 4ebd81613b53d60479accdefa16de025,
+    type: 3}
+  m_PrefabInstance: {fileID: 4923803341024848704}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &1788477790
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1788477788}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!114 &1790293924 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114509386305985116, guid: 5c7e8f1f62be70143b2e0edf73736d31,
@@ -16448,11 +16465,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2032089469319074320, guid: 4ebd81613b53d60479accdefa16de025,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 2028569272}
+    - target: {fileID: 2032089469319074320, guid: 4ebd81613b53d60479accdefa16de025,
+        type: 3}
+      propertyPath: followDistance
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 4923803340772203558, guid: 4ebd81613b53d60479accdefa16de025,
         type: 3}
       propertyPath: m_Name
       value: Visuals
       objectReference: {fileID: 0}
+    - target: {fileID: 4923803340762689510, guid: 4ebd81613b53d60479accdefa16de025,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e38aafda00c1e1a469a45a109e1c88ab, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ebd81613b53d60479accdefa16de025, type: 3}
 --- !u!1 &5202181480121600254 stripped
