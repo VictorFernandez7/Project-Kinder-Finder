@@ -36,6 +36,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
     [SerializeField] private TextMeshProUGUI miningPowerText;
     [SerializeField] private Scr_MainCamera mainCamera;
     [SerializeField] private Scr_PlanetManager planetManager;
+    [SerializeField] private GameObject lineRenderer;
 
     [HideInInspector] public bool startExitDelay;
     [HideInInspector] public bool closeToAsteroid;
@@ -57,6 +58,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
     private Scr_PlayerShipMovement playerShipMovement;
     private Scr_PlayerShipPrediction playerShipPrediction;
     private Scr_PlayerShipEffects playerShipEffects;
+    private Scr_PlayerShipProxCheck playerShipProxCheck;
 
     private void Start()
     {
@@ -64,6 +66,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
         playerShipPrediction = GetComponent<Scr_PlayerShipPrediction>();
         cableVisuals = GetComponentInChildren<Scr_CableVisuals>();
         playerShipEffects = GetComponent<Scr_PlayerShipEffects>();
+        playerShipProxCheck = GetComponentInChildren<Scr_PlayerShipProxCheck>();
         playerShipRb = GetComponent<Rigidbody2D>();
         astronautRb = astronaut.GetComponent<Rigidbody2D>();
         
@@ -298,6 +301,8 @@ public class Scr_PlayerShipActions : MonoBehaviour
             playerShipMovement.canControlShip = false;
             playerShipPrediction.predictionTime = 0;
             mainCamera.mining = true;
+            lineRenderer.SetActive(false);
+            playerShipProxCheck.ClearInterface(false);
 
             playerShipEffects.AttachedEffects(true);
         }
@@ -309,6 +314,9 @@ public class Scr_PlayerShipActions : MonoBehaviour
             playerShipPrediction.predictionTime = 6;
             mainCamera.mining = false;
             miningLaser.enabled = false;
+            lineRenderer.SetActive(true);
+            playerShipProxCheck.ClearInterface(true);
+
 
             playerShipEffects.AttachedEffects(false);
         }
@@ -345,6 +353,15 @@ public class Scr_PlayerShipActions : MonoBehaviour
             {
                 astronautRb.freezeRotation = true;
                 playerShipRb.isKinematic = true;
+            }
+        }
+
+        for (int i = 0; i < astronaut.GetComponent<Scr_AstronautStats>().toolSlots.Length; i++)
+        {
+            if (astronaut.GetComponent<Scr_AstronautStats>().toolSlots[i] != null)
+            {
+                astronaut.GetComponent<Scr_AstronautStats>().physicToolSlots[i] = Instantiate(astronaut.GetComponent<Scr_AstronautStats>().toolSlots[i], astronautPickUp);
+                astronaut.GetComponent<Scr_AstronautStats>().physicToolSlots[i].SetActive(false);
             }
         }
     }
