@@ -45,7 +45,6 @@ public class Scr_AstronautMovement : MonoBehaviour
     [HideInInspector] public bool onGround = true;
     [HideInInspector] public bool canMove;
     [HideInInspector] public bool canEnterShip;
-    [HideInInspector] public bool closeToCollector;
     [HideInInspector] public bool keep;
     [HideInInspector] public bool faceRight;
     [HideInInspector] public bool breathable;
@@ -58,7 +57,6 @@ public class Scr_AstronautMovement : MonoBehaviour
     [HideInInspector] public Vector3 vectorJump;
     [HideInInspector] public Quaternion planetRotation;
     [HideInInspector] public GameObject currentPlanet;
-    [HideInInspector] public GameObject extractor;
 
     private bool toJump;
     private bool lastRight;
@@ -147,8 +145,6 @@ public class Scr_AstronautMovement : MonoBehaviour
 
         if (collision.gameObject.tag == "Tool")
         {
-            extractor = collision.gameObject;
-            closeToCollector = true;
             GetComponent<Scr_AstronautsActions>().toolOnFloor = collision.gameObject;
         }
 
@@ -166,7 +162,6 @@ public class Scr_AstronautMovement : MonoBehaviour
 
         if (collision.gameObject.tag == "Tool")
         {
-            closeToCollector = false;
             GetComponent<Scr_AstronautsActions>().toolOnFloor = null;
         }
     }
