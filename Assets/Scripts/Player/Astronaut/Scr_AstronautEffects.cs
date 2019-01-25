@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Scr_AstronautEffects : MonoBehaviour
 {
-
-    //lo renombré con SFX pero daba fallo el el script de movimiento.
     [Header("References")]
-    [SerializeField] private Scr_AstronautMovement astronautMovement;
+    [SerializeField] private ParticleSystem movingParticles;
+    [SerializeField] private ParticleSystemRenderer movingParticlesRenderer;
+    [SerializeField] private ParticleSystem jumpParticles;
+    [SerializeField] private ParticleSystemRenderer jumpParticlesRenderer;
     [SerializeField] private Scr_MusicManager musicManager;
+    [SerializeField] private Scr_PlayerShipMovement playerShipMovement;
 
     [Header("Sounds")]
     [SerializeField] private SoundDefinition steps;
@@ -21,14 +23,22 @@ public class Scr_AstronautEffects : MonoBehaviour
 
     [HideInInspector] public bool breathingBool;
 
+    private Scr_AstronautMovement astronautMovement;
+
     private void Start()
     {
+        astronautMovement = GetComponent<Scr_AstronautMovement>();
+
         breathingBool = true;
     }
 
     private void Update()
     {
+        //SoundManager();
+    }
 
+    private void SoundManager()
+    {
         if (astronautMovement.walking && !musicManager.transform.GetChild(2).GetComponent<AudioSource>().isPlaying)
         {
             Scr_MusicManager.Instance.PlaySound(steps.Sound, 0);
@@ -63,17 +73,28 @@ public class Scr_AstronautEffects : MonoBehaviour
 
         if (breathingBool && !musicManager.transform.GetChild(2).GetComponent<AudioSource>().isPlaying)
         {
-           Scr_MusicManager.Instance.PlaySound(breathing.Sound, 0);
+            Scr_MusicManager.Instance.PlaySound(breathing.Sound, 0);
         }
 
         else if (!breathingBool && musicManager.transform.GetChild(2).GetComponent<AudioSource>().isPlaying)
         {
-           Scr_MusicManager.Instance.StopSound(Scr_MusicManager.SoundType.LOOP_SOUNDS);
+            Scr_MusicManager.Instance.StopSound(Scr_MusicManager.SoundType.LOOP_SOUNDS);
         }
         /*
        if ()
        {
            Scr_MusicManager.Instance.PlaySound(chatter.Sound, 0);
        } */
+    }
+
+    public void MovementParticles(bool isMoving)
+    {
+        movingParticlesRenderer.material = playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().particlesMaterial;
+
+        if (isMoving && !movingParticles.isPlaying)
+            movingParticles.Play();
+
+        else if (movingParticles.isPlaying)
+            movingParticles.Stop();
     }
 }

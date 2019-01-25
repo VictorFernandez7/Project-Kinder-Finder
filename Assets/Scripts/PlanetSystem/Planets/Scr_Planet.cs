@@ -16,6 +16,8 @@ public class Scr_Planet : Scr_AstroBase
     [SerializeField] private float maxClampDistance;
     [SerializeField] private float minClampDistance;
     [SerializeField] [Range(-0.1f, 0.1f)] private float rotationSpeed;
+    [SerializeField] public float particleMultiplier;
+    [SerializeField] public Material particlesMaterial;
 
     [Header("References")]
     [SerializeField] private GameObject mapIndicator;    
