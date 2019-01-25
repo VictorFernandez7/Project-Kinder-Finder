@@ -79,7 +79,11 @@ public class Scr_OreExtractor : Scr_ToolBase
             placing = !placing;
 
             if (placing)
+            {
                 ghost = Instantiate(gameObject, astronaut.transform.position, astronaut.transform.rotation);
+                ghost.transform.GetChild(1).gameObject.SetActive(true);
+                ghost.transform.GetChild(2).gameObject.SetActive(false);
+            }
 
             else if (!placing)
                 Destroy(ghost);
@@ -160,6 +164,9 @@ public class Scr_OreExtractor : Scr_ToolBase
                     oreZone = ghost.GetComponent<Scr_OreExtractor>().oreZone;
                     resource = oreZone.GetComponent<Scr_OreZone>().currentResource;
                     resourceLeft = (int)oreZone.GetComponent<Scr_OreZone>().amount;
+                    transform.GetChild(1).gameObject.SetActive(false);
+                    transform.GetChild(2).gameObject.SetActive(false);
+                    transform.GetChild(0).gameObject.SetActive(true);
                     Destroy(ghost);
                 }
             }
@@ -221,7 +228,7 @@ public class Scr_OreExtractor : Scr_ToolBase
                 remainingResources.text = "Remaining   " + (int)oreZone.GetComponent<Scr_OreZone>().amount;
         }
 
-        harvestedResources.text = "Harvested    " + resourceAmount;
+       // harvestedResources.text = "Harvested    " + resourceAmount;
         harvestProcess.value = process / 3 * 100;
     }
 
