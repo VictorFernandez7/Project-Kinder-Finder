@@ -258,8 +258,7 @@ public class Scr_AstronautMovement : MonoBehaviour
             }
         }
 
-        if (jumping)
-            astronautAnim.SetBool("Moving", false);
+        astronautAnim.SetBool("OnGround", onGround);
     }
 
     private void Jumping()
