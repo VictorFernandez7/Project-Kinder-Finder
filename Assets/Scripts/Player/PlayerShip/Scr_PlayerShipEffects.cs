@@ -32,6 +32,10 @@ public class Scr_PlayerShipEffects : MonoBehaviour
     [SerializeField] private Color color50;
     [SerializeField] private Color color75;
 
+    [Header("Dynamic Materials")]
+    [SerializeField] private Material windowOn;
+    [SerializeField] private Material windowOff;
+
     [Header("References")]
     [SerializeField] private Transform endOfShip;
     [SerializeField] public ParticleSystem thrusterParticles;
@@ -45,14 +49,17 @@ public class Scr_PlayerShipEffects : MonoBehaviour
     [SerializeField] public ParticleSystem starParticles;
     [SerializeField] public Slider warmingSlider;
     [SerializeField] private Image warmingFill;
+    [SerializeField] private MeshRenderer meshRenderer;
 
     private Scr_PlayerShipMovement playerShipMovement;
     private Scr_PlayerShipActions playerShipActions;
+    private Material windowMaterialSlot;
 
     private void Start()
     {
         playerShipMovement = GetComponent<Scr_PlayerShipMovement>();
         playerShipActions = GetComponent<Scr_PlayerShipActions>();
+        windowMaterialSlot = meshRenderer.materials[5];
 
         warmingSlider.maxValue = playerShipMovement.warmingAmount;
 
@@ -62,6 +69,16 @@ public class Scr_PlayerShipEffects : MonoBehaviour
     public void Update()
     {
         StarsParticles();
+        WindowMaterials();
+    }
+
+    private void WindowMaterials()
+    {
+        if (playerShipMovement.astronautOnBoard)
+            windowMaterialSlot = windowOn;
+
+        else
+            windowMaterialSlot = windowOff;
     }
 
     private void StarsParticles()
