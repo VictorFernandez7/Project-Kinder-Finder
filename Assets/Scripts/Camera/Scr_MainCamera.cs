@@ -8,6 +8,7 @@ public class Scr_MainCamera : MonoBehaviour
     [SerializeField] private float zoomInPlanet;
     [SerializeField] private float miningZoom;
     [SerializeField] private float zoomSpeed;
+    [SerializeField] private float spaceWalkZoom;
 
     [Header("Rotation Properties")]
     [SerializeField] private float shipRotationSpeed;
@@ -98,8 +99,13 @@ public class Scr_MainCamera : MonoBehaviour
                     mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, miningZoom, Time.deltaTime * zoomSpeed);
             }
 
+            else if(playerShipActions.doingSpaceWalk)
+                mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, spaceWalkZoom, Time.deltaTime * zoomSpeed);
+
             else
                 mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, zoomInSpace, Time.deltaTime * zoomSpeed);
+
+
         }
 
         if (playerShipMovement.landing || playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed)
