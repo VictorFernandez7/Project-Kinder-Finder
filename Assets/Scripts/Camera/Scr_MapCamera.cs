@@ -13,6 +13,7 @@ public class Scr_MapCamera : MonoBehaviour
 
     [Header("Map Movement")]
     [SerializeField] private float distanceFromCenter;
+    [SerializeField] private float movementSpeed;
 
     [Header("References")]
     [SerializeField] private Scr_MapManager mapManager;
@@ -41,7 +42,7 @@ public class Scr_MapCamera : MonoBehaviour
         float distance = Vector2.Distance(mapCamera.ScreenToWorldPoint(Input.mousePosition), mapCamera.transform.position);
 
         if (distance > distanceFromCenter)
-            mapCamera.transform.Translate((mapCamera.ScreenToWorldPoint(Input.mousePosition) - mapCamera.transform.position).normalized * 1.5f, Space.World);
+            mapCamera.transform.Translate((mapCamera.ScreenToWorldPoint(Input.mousePosition) - mapCamera.transform.position).normalized * movementSpeed, Space.World);
     }
 
     private void ZoomSystem()
