@@ -6,37 +6,54 @@ public class Scr_IAMovement : MonoBehaviour
 {
     [Header("Movement Parameters")]
     [SerializeField] private float rotationSpeed;
-    [Tooltip("Distance from the ship from which the IA will follow the astronaut.")]
+    [Tooltip("Distance to the ship from which the IA will follow the astronaut.")]
     [SerializeField] private float distanceFormShip;
     [Tooltip("Movement speed depends on the distance between GameObjects, this is a multiplicator.")]
     [Range(0, 3)] [SerializeField] private float astronautFollowMult;
     [Tooltip("Movement speed depends on the distance between GameObjects, this is a multiplicator.")]
     [Range(0, 3)] [SerializeField] private float playerShipFollowMult;
 
+    [Header("Interaction Parameters")]
+    [SerializeField] private float delay;
+
     [Header("References")]
     [SerializeField] private GameObject astronaut;
     [SerializeField] private Transform astronautSpot;
     [SerializeField] private GameObject playerShip;
     [SerializeField] private Transform playerShipSpot;
+    [SerializeField] private Scr_PlayerShipMovement playerShipMovement;
 
+    private bool follow;
     private float desiredSpeed;
+    private float savedDelay;
     private Vector3 desiredRotation;
     private Transform target;
+    private Animator anim;
+
+    private void Start()
+    {
+        anim = GetComponentInChildren<Animator>();
+
+        follow = true;
+        savedDelay = delay;
+    }
 
     private void Update()
     {
         CheckPlanet();
-        CheckDistance();        
+        CheckDistance();
+        Interactions();
     }
 
     private void FixedUpdate()
     {
-        FollowTarget();
+        if (follow)
+            FollowTarget();
     }
 
     private void CheckPlanet()
     {
-        transform.SetParent(playerShip.GetComponent<Scr_PlayerShipMovement>().currentPlanet.transform);
+        transform.SetParent(playerShipMovement.currentPlanet.transform);
     }
 
     private void CheckDistance()
@@ -71,6 +88,20 @@ public class Scr_IAMovement : MonoBehaviour
         {
             transform.position = Vector3.Lerp(transform.position, target.position, Time.deltaTime * desiredSpeed);
             transform.rotation = Quaternion.LookRotation(transform.forward, desiredRotation);
+        }
+    }
+
+    private void Interactions()
+    {
+        anim.SetBool("OnBoard", playerShipMovement.astronautOnBoard);
+        
+        if (playerShipMovement.astronautOnBoard)
+        {
+            savedDelay -= Time.deltaTime;
+            follow = false;
+
+            if (savedDelay <= 0)
+                Destroy(gameObject);
         }
     }
 }
