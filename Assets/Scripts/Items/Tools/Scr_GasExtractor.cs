@@ -15,7 +15,6 @@ public class Scr_GasExtractor : Scr_ToolBase
     [SerializeField] private GameObject resourceCanvas;
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI remainingResources;
-    [SerializeField] private TextMeshProUGUI harvestedResources;
     [SerializeField] private Slider harvestProcess;
     [SerializeField] private GameObject playerCheck;
 
