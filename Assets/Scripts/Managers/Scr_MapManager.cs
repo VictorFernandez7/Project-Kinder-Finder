@@ -5,9 +5,6 @@ public class Scr_MapManager : MonoBehaviour
 {
     [Header("Map Input")]
     [SerializeField] private float dragSpeed;
-    [SerializeField] private float maxZoom;
-    [SerializeField] private float minZoom;
-    [SerializeField] private float zoomSpeed;
     [SerializeField] private Vector2 clampBorderSize;
 
     [Header("Map Properties")]
@@ -102,7 +99,7 @@ public class Scr_MapManager : MonoBehaviour
 
         else
         {
-            if(onPlayerTarget)
+            if (onPlayerTarget)
                 onPlayerTarget.SetActive(true);
 
             mapVisuals.SetActive(true);

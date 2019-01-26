@@ -1939,6 +1939,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 206442797}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &226132252 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114495895391105956, guid: 5c7e8f1f62be70143b2e0edf73736d31,
+    type: 3}
+  m_PrefabInstance: {fileID: 367471064}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &228191696 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4792884631884954, guid: a5cdee0d6f6ee1747a656eec7515ded3,
@@ -6191,6 +6203,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &668284635 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114664142504918182, guid: 5c7e8f1f62be70143b2e0edf73736d31,
+    type: 3}
+  m_PrefabInstance: {fileID: 367471064}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &672503365
 GameObject:
   m_ObjectHideFlags: 0
@@ -7303,6 +7327,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 20452384316129220, guid: bc458ee511220854cbc76d1626ceae4f,
+        type: 3}
+      propertyPath: orthographic size
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 114768127321597692, guid: bc458ee511220854cbc76d1626ceae4f,
         type: 3}
       propertyPath: mapManager
@@ -7332,6 +7361,16 @@ PrefabInstance:
         type: 3}
       propertyPath: focusSpeed
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114768127321597692, guid: bc458ee511220854cbc76d1626ceae4f,
+        type: 3}
+      propertyPath: farZoom
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 114768127321597692, guid: bc458ee511220854cbc76d1626ceae4f,
+        type: 3}
+      propertyPath: movementSpeed
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc458ee511220854cbc76d1626ceae4f, type: 3}
@@ -8689,6 +8728,18 @@ RectTransform:
   m_AnchoredPosition: {x: -477, y: -576}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1153455445 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114329482756006156, guid: 5c7e8f1f62be70143b2e0edf73736d31,
+    type: 3}
+  m_PrefabInstance: {fileID: 367471064}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1173024964
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12882,6 +12933,21 @@ PrefabInstance:
       propertyPath: planetGravity
       value: 
       objectReference: {fileID: 1260928139}
+    - target: {fileID: 114879436719918488, guid: 6ee248eae7fc7574998196240b18bb9b,
+        type: 3}
+      propertyPath: maxZoom
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 114879436719918488, guid: 6ee248eae7fc7574998196240b18bb9b,
+        type: 3}
+      propertyPath: onPlanetColor.a
+      value: 0.5882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 114879436719918488, guid: 6ee248eae7fc7574998196240b18bb9b,
+        type: 3}
+      propertyPath: zoom
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 4376699906163190, guid: 6ee248eae7fc7574998196240b18bb9b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -13121,6 +13187,26 @@ PrefabInstance:
       propertyPath: planetGravity
       value: 
       objectReference: {fileID: 367471067}
+    - target: {fileID: 114846125738718472, guid: 6ee248eae7fc7574998196240b18bb9b,
+        type: 3}
+      propertyPath: tool1Icon
+      value: 
+      objectReference: {fileID: 226132252}
+    - target: {fileID: 114846125738718472, guid: 6ee248eae7fc7574998196240b18bb9b,
+        type: 3}
+      propertyPath: tool2Icon
+      value: 
+      objectReference: {fileID: 1153455445}
+    - target: {fileID: 114846125738718472, guid: 6ee248eae7fc7574998196240b18bb9b,
+        type: 3}
+      propertyPath: tool3Icon
+      value: 
+      objectReference: {fileID: 668284635}
+    - target: {fileID: 114846125738718472, guid: 6ee248eae7fc7574998196240b18bb9b,
+        type: 3}
+      propertyPath: astronaut
+      value: 
+      objectReference: {fileID: 2028569272}
     - target: {fileID: 114654213014132760, guid: 6ee248eae7fc7574998196240b18bb9b,
         type: 3}
       propertyPath: initialPlanet
