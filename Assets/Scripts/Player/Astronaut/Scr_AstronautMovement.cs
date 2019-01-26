@@ -34,6 +34,10 @@ public class Scr_AstronautMovement : MonoBehaviour
     [SerializeField] private float maxMovementAngle;
     [SerializeField] private float minSlideAngle;
 
+    [Header("Animation Properties")]
+    [SerializeField] private float walkSpeed;
+    [SerializeField] private float runSpeed;
+
     [Header("References")]
     [SerializeField] private GameObject rayPointLeft;
     [SerializeField] private GameObject rayPointRight;
@@ -41,6 +45,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     [SerializeField] private Transform transforms;
     [SerializeField] private GameObject astronautVisuals;
     [SerializeField] private Animator astronautAnim;
+    [SerializeField] private Animator bodyAnim;
     [SerializeField] private GameObject playerShip;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private Scr_InterfaceManager interfaceManager;
@@ -149,9 +154,7 @@ public class Scr_AstronautMovement : MonoBehaviour
             canEnterShip = true;
 
         if (collision.gameObject.tag == "Tool")
-        {
             GetComponent<Scr_AstronautsActions>().toolOnFloor = collision.gameObject;
-        }
 
         if(collision.gameObject.tag == "Asteroid" && !attached)
         {
@@ -166,30 +169,22 @@ public class Scr_AstronautMovement : MonoBehaviour
             canEnterShip = false;
 
         if (collision.gameObject.tag == "Tool")
-        {
             GetComponent<Scr_AstronautsActions>().toolOnFloor = null;
-        }
     }
 
     private void SlideDown()
     {
-        astronautAnim.SetBool("Moving", false);
-
         if (hitL)
             pointLeft = hitL.point;
 
         if (hitR)
             pointRight = hitR.point;
 
-        if(Vector3.Project(pointLeft, transform.up).magnitude > Vector3.Project(pointRight, transform.up).magnitude)
-        {
+        if (Vector3.Project(pointLeft, transform.up).magnitude > Vector3.Project(pointRight, transform.up).magnitude)
             movementVector = (pointLeft - pointRight).normalized;
-        }
 
         else
-        {
             movementVector = (pointRight - pointLeft).normalized;
-        }
 
         velocity += Vector3.Project((-transform.up * gravity), movementVector).magnitude / 2;
 
@@ -227,6 +222,12 @@ public class Scr_AstronautMovement : MonoBehaviour
                     lastRight = false;
 
                 astronautAnim.SetBool("Moving", true);
+
+                if (onGround)
+                    bodyAnim.SetBool("Moving", true);
+
+                else
+                    bodyAnim.SetBool("Moving", false);
             }
 
             else if (Input.GetButton("Horizontal") && Input.GetAxis("Horizontal") > 0f)
@@ -238,6 +239,12 @@ public class Scr_AstronautMovement : MonoBehaviour
                     lastRight = true;
 
                 astronautAnim.SetBool("Moving", true);
+
+                if (onGround)
+                    bodyAnim.SetBool("Moving", true);
+
+                else
+                    bodyAnim.SetBool("Moving", false);
             }
 
             else if (velocity > 0)
@@ -255,6 +262,7 @@ public class Scr_AstronautMovement : MonoBehaviour
                 walking = false;
 
                 astronautAnim.SetBool("Moving", false);
+                bodyAnim.SetBool("Moving", false);
             }
         }
 
@@ -454,6 +462,7 @@ public class Scr_AstronautMovement : MonoBehaviour
             {
                 Move(right, sprintSpeed);
                 astronautAnim.SetFloat("Speed", 2);
+                bodyAnim.SetFloat("Speed", runSpeed);
 
                 if (!breathable)
                     GetComponent<Scr_AstronautStats>().currentOxygen -= 0.05f;
@@ -463,6 +472,7 @@ public class Scr_AstronautMovement : MonoBehaviour
             {
                 Move(right, walkingSpeed);
                 astronautAnim.SetFloat("Speed", 1);
+                bodyAnim.SetFloat("Speed", walkSpeed);
             }
         }
 
@@ -487,14 +497,10 @@ public class Scr_AstronautMovement : MonoBehaviour
             if (Vector3.Distance(playerShip.transform.position, transform.position) < playerShipActions.maxDistanceOfShip)
             {
                 if (Input.GetKeyDown(KeyCode.A) && faceRight)
-                {
                     Flip();
-                }
 
                 else if (Input.GetKeyDown(KeyCode.D) && !faceRight)
-                {
                     Flip();
-                }
 
                 if (Input.GetAxis("Vertical") > 0f)
                     astronautRb.AddForce(transform.up * spaceWalkSpeed);
@@ -545,6 +551,7 @@ public class Scr_AstronautMovement : MonoBehaviour
                             transform.position += (playerShip.transform.position - playerShipPosition);
                             playerShipPosition = playerShip.transform.position;
                         }
+
                         dettaching = true;
                     }
 
@@ -563,7 +570,7 @@ public class Scr_AstronautMovement : MonoBehaviour
 
                         timeDettaching -= Time.deltaTime;
 
-                        if(timeDettaching <= 0)
+                        if (timeDettaching <= 0)
                         {
                             attached = false;
                             timeDettaching = 1;
