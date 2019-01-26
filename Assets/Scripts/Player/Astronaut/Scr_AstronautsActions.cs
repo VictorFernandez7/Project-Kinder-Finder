@@ -13,6 +13,8 @@ public class Scr_AstronautsActions : MonoBehaviour
     [SerializeField] private Scr_AstronautResourcesCheck astronautResourcesCheck;
     [SerializeField] private GameObject mainCamera;
     [SerializeField] private GameObject playerShip;
+    [SerializeField] private GameObject lantern;
+    [SerializeField] private Scr_SunLight sunLight;
 
     [HideInInspector] public bool emptyHands;
     [HideInInspector] public bool toolOnHands;
@@ -62,7 +64,7 @@ public class Scr_AstronautsActions : MonoBehaviour
                 }
             }
 
-            else if(astronautMovement.canEnterShip)
+            else if (astronautMovement.canEnterShip)
                 IntroduceResource();
         }
 
@@ -87,9 +89,9 @@ public class Scr_AstronautsActions : MonoBehaviour
             if (toolOnHands)
                 astronautStats.physicToolSlots[numberToolActive].GetComponent<Scr_ToolBase>().UseTool();
 
-            else if(emptyHands && !toolOnHands && astronautResourcesCheck.resourceList.Count > 0)
+            else if (emptyHands && !toolOnHands && astronautResourcesCheck.resourceList.Count > 0)
             {
-                for(int i = 0; i < astronautResourcesCheck.resourceList.Count; i++)
+                for (int i = 0; i < astronautResourcesCheck.resourceList.Count; i++)
                 {
                     if (i != 0)
                     {
@@ -109,6 +111,8 @@ public class Scr_AstronautsActions : MonoBehaviour
             else if (toolOnFloor != null && toolOnFloor.GetComponent<Scr_ToolBase>().resourceAmount <= 0)
                 toolOnFloor.GetComponent<Scr_ToolBase>().RecoverTool();
         }
+
+        TurnOnLantern();
     }
     
     private void EnterShipFromPlanet()
@@ -199,5 +203,10 @@ public class Scr_AstronautsActions : MonoBehaviour
             if (astronautStats.physicToolSlots[i] != null)
                 Destroy(astronautStats.physicToolSlots[i]);
         }
+    }
+
+    private void TurnOnLantern()
+    {
+        lantern.SetActive(!sunLight.hitByLight);
     }
 }
