@@ -37,6 +37,8 @@ public class Scr_PlayerShipActions : MonoBehaviour
     [SerializeField] private Scr_MainCamera mainCamera;
     [SerializeField] private Scr_PlanetManager planetManager;
     [SerializeField] private GameObject lineRenderer;
+    [SerializeField] private GameObject IA;
+    [SerializeField] private Transform IAStpot;
 
     [HideInInspector] public bool startExitDelay;
     [HideInInspector] public bool closeToAsteroid;
@@ -231,6 +233,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
         astronaut.GetComponent<Scr_AstronautMovement>().planetPosition = lastFramePlanetPosition;
         astronaut.GetComponent<Scr_AstronautMovement>().onGround = true;
         playerShipMovement.mainCamera.GetComponent<Scr_MainCamera>().followAstronaut = true;
+        Instantiate(IA, IAStpot.position, IAStpot.rotation);
 
         for (int i = 0; i < astronaut.GetComponent<Scr_AstronautStats>().toolSlots.Length; i++)
         {

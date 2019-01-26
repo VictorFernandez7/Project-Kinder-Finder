@@ -16,14 +16,12 @@ public class Scr_IAMovement : MonoBehaviour
     [Header("Interaction Parameters")]
     [SerializeField] private float delay;
 
-    [Header("References")]
-    [SerializeField] private GameObject astronaut;
-    [SerializeField] private Transform astronautSpot;
-    [SerializeField] private GameObject playerShip;
-    [SerializeField] private Transform playerShipSpot;
-    [SerializeField] private Scr_PlayerShipMovement playerShipMovement;
+    private GameObject astronaut;
+    private Transform astronautSpot;
+    private GameObject playerShip;
+    private Transform playerShipSpot;
+    private Scr_PlayerShipMovement playerShipMovement;
 
-    private bool follow;
     private float desiredSpeed;
     private float savedDelay;
     private Vector3 desiredRotation;
@@ -32,10 +30,16 @@ public class Scr_IAMovement : MonoBehaviour
 
     private void Start()
     {
-        anim = GetComponentInChildren<Animator>();
+        astronaut = GameObject.Find("Astronaut");
+        astronautSpot = GameObject.Find("AstronautSpot").GetComponent<Transform>();
+        playerShip = GameObject.Find("PlayerShip");
+        playerShipSpot = GameObject.Find("PlayerShipSpot").GetComponent<Transform>();
 
-        follow = true;
+        anim = GetComponentInChildren<Animator>();
+        playerShipMovement = playerShip.GetComponent<Scr_PlayerShipMovement>();
+
         savedDelay = delay;
+        target = playerShipSpot;
     }
 
     private void Update()
@@ -47,8 +51,7 @@ public class Scr_IAMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (follow)
-            FollowTarget();
+        FollowTarget();
     }
 
     private void CheckPlanet()
@@ -98,7 +101,6 @@ public class Scr_IAMovement : MonoBehaviour
         if (playerShipMovement.astronautOnBoard)
         {
             savedDelay -= Time.deltaTime;
-            follow = false;
 
             if (savedDelay <= 0)
                 Destroy(gameObject);
