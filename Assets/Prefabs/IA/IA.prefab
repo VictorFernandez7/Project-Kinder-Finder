@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4923803342526802461}
   - component: {fileID: 2032089469319074320}
+  - component: {fileID: 1788477789}
   m_Layer: 0
   m_Name: IA
   m_TagString: Untagged
@@ -46,12 +47,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 1.5
   distanceFormShip: 2
-  astronautFollowSpeed: 1
-  playerShipFollowSpeed: 1
+  astronautFollowMult: 1
+  playerShipFollowMult: 0.5
   astronaut: {fileID: 0}
   astronautSpot: {fileID: 0}
   playerShip: {fileID: 0}
   playerShipSpot: {fileID: 0}
+--- !u!95 &1788477789
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4923803342526802460}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 749a19490ac630f44a563163ebe9edec, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &4923803340772104838
 PrefabInstance:
   m_ObjectHideFlags: 0
