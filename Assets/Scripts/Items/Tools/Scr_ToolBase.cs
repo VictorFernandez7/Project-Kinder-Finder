@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class Scr_ToolBase : MonoBehaviour
 {
     [SerializeField] public string toolName;
+    [SerializeField] public Sprite icon;
 
     [HideInInspector] public GameObject resource;
     [HideInInspector] public int resourceAmount;
