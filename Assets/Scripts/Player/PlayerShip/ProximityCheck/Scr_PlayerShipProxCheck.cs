@@ -16,6 +16,7 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
     [SerializeField] private GameObject planetIndicator;
     [SerializeField] private GameObject playerShip;
     [SerializeField] private GameObject worldCanvas;
+    [SerializeField] private GameObject halo;
 
     [HideInInspector] public List<Scr_AsteroidClass> asteroids;
     [HideInInspector] public List<Scr_PlanetClass> planets;
@@ -236,6 +237,8 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
 
     public void ClearInterface(bool active)
     {
+        halo.SetActive(active);
+
         foreach (GameObject indicator in planetIndicators)
         {
             indicator.gameObject.SetActive(active);

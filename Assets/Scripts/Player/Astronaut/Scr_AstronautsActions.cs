@@ -15,6 +15,7 @@ public class Scr_AstronautsActions : MonoBehaviour
     [SerializeField] private GameObject playerShip;
     [SerializeField] private GameObject lantern;
     [SerializeField] private Scr_SunLight sunLight;
+    [SerializeField] private Scr_PlayerShipProxCheck playerShipProxCheck;
 
     [HideInInspector] public bool emptyHands;
     [HideInInspector] public bool toolOnHands;
@@ -129,6 +130,7 @@ public class Scr_AstronautsActions : MonoBehaviour
 
     private void EnterShipFromSpace()
     {
+        playerShipProxCheck.ClearInterface(true);
         GetComponent<Scr_AstronautEffects>().breathingBool = false;
         playerShip.GetComponent<Scr_PlayerShipMovement>().astronautOnBoard = true;
         playerShip.GetComponent<Scr_PlayerShipMovement>().canControlShip = true;
