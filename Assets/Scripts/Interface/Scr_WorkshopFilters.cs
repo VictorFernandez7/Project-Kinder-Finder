@@ -11,11 +11,6 @@ public class Scr_WorkshopFilters : MonoBehaviour
 
     private int currentCategory = 1;
 
-    private void Start()
-    {
-        FilterTools();
-    }
-
     public void FilterTools()
     {
         currentCategory = 1;
@@ -24,7 +19,7 @@ public class Scr_WorkshopFilters : MonoBehaviour
         {
             if (upgradeList.UpgradeList[i].activated)
             {
-                for (int j = 0; j < upgradeList.UpgradeList[i].recipeList.Count; i++)
+                for (int j = 0; j < upgradeList.UpgradeList[i].recipeList.Count; j++)
                 {
                     playerShipLaboratory.buttonArray[upgradeList.UpgradeList[i].recipeList[j]].SetActive(true);
                 }
@@ -46,7 +41,7 @@ public class Scr_WorkshopFilters : MonoBehaviour
         {
             if (upgradeList.UpgradeList[i].activated)
             {
-                for (int j = 0; j < upgradeList.UpgradeList[i].recipeList.Count; i++)
+                for (int j = 0; j < upgradeList.UpgradeList[i].recipeList.Count; j++)
                 {
                     playerShipLaboratory.buttonArray[upgradeList.UpgradeList[i].recipeList[j]].SetActive(true);
                 }
@@ -68,7 +63,7 @@ public class Scr_WorkshopFilters : MonoBehaviour
         {
             if (upgradeList.UpgradeList[i].activated)
             {
-                for (int j = 0; j < upgradeList.UpgradeList[i].recipeList.Count; i++)
+                for (int j = 0; j < upgradeList.UpgradeList[i].recipeList.Count; j++)
                 {
                     playerShipLaboratory.buttonArray[upgradeList.UpgradeList[i].recipeList[j]].SetActive(true);
                 }
