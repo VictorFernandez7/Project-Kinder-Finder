@@ -18,8 +18,9 @@ public class Scr_GasZone : MonoBehaviour
     [SerializeField] private Scr_ReferenceManager referenceManager;
 
     [HideInInspector] public GameObject currentResource;
+    [HideInInspector] public float initialAmount;
 
-    private float initialAmount;
+
     private ParticleSystem gasParticles;
 
     private enum GasType

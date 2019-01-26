@@ -110,7 +110,6 @@ public class Scr_GasExtractor : Scr_ToolBase
 
     private void PutOnPlace()
     {
-
         hitR = Physics2D.Raycast(ghost.transform.position + ghost.transform.right * 0.05f, (astronautMovement.currentPlanet.transform.position - ghost.transform.position).normalized, Mathf.Infinity, mask);
         hitL = Physics2D.Raycast(ghost.transform.position - ghost.transform.right * 0.05f, (astronautMovement.currentPlanet.transform.position - ghost.transform.position).normalized, Mathf.Infinity, mask);
 
@@ -124,13 +123,16 @@ public class Scr_GasExtractor : Scr_ToolBase
         {
             ghost.SetActive(true);
             ghost.transform.position = astronautMovement.currentPlanet.transform.position + ((mousepos - astronautMovement.currentPlanet.transform.position).normalized * (Vector3.Distance(hit.point, astronautMovement.currentPlanet.transform.position) + GetComponentInChildren<Renderer>().bounds.size.y / 2));
-            ghost.transform.rotation = Quaternion.LookRotation(ghost.transform.forward, Vector2.Perpendicular(hitL.point - hitR.point));
+
+            if (astronaut.GetComponent<Scr_AstronautMovement>().faceRight)
+                ghost.transform.rotation = Quaternion.LookRotation(ghost.transform.forward, Vector2.Perpendicular(hitR.point - hitL.point));
+
+            else
+                ghost.transform.rotation = Quaternion.LookRotation(ghost.transform.forward, Vector2.Perpendicular(hitL.point - hitR.point));
         }
 
         else
-        {
             ghost.SetActive(false);
-        }
 
         if (ghost)
         {
@@ -214,14 +216,13 @@ public class Scr_GasExtractor : Scr_ToolBase
 
         if (gasZone != null)
         {
-            if (gasZone.GetComponent<Scr_GasZone>().amount > 0)
-                remainingResources.text = "Remaining   " + ((int)gasZone.GetComponent<Scr_GasZone>().amount + 1);
+            if (gasZone.GetComponent<Scr_GasZone>().amount != gasZone.GetComponent<Scr_GasZone>().initialAmount && gasZone.GetComponent<Scr_GasZone>().amount >= 0)
+                remainingResources.text = ((int)gasZone.GetComponent<Scr_GasZone>().amount + 1) + " / " + ((int)gasZone.GetComponent<Scr_GasZone>().initialAmount);
 
             else
-                remainingResources.text = "Remaining   " + (int)gasZone.GetComponent<Scr_GasZone>().amount;
+                remainingResources.text = (int)gasZone.GetComponent<Scr_GasZone>().amount + " / " + ((int)gasZone.GetComponent<Scr_GasZone>().initialAmount);
         }
 
-        harvestedResources.text = "Harvested    " + resourceAmount;
         harvestProcess.value = process / 3 * 100;
     }
 
