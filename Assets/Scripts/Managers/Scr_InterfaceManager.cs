@@ -55,6 +55,10 @@ public class Scr_InterfaceManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI planetTemperature;
     [SerializeField] private GameObject planetOxygen;
     [SerializeField] private GameObject planetGravity;
+    [SerializeField] private GameObject astronaut;
+    [SerializeField] private Image tool1Icon;
+    [SerializeField] private Image tool2Icon;
+    [SerializeField] private Image tool3Icon;
 
     [HideInInspector] public bool gamePaused;
 
@@ -90,6 +94,9 @@ public class Scr_InterfaceManager : MonoBehaviour
 
         else
             anim_MiniMapPanel.SetBool("Show", true);
+
+        if (astronaut)
+            ShowToolIcons();
     }
 
     public void PlayerShipWindow()
@@ -294,5 +301,35 @@ public class Scr_InterfaceManager : MonoBehaviour
     public void LoadMainMenu()
     {
         SceneManager.LoadScene(0);
+    }
+
+    private void ShowToolIcons()
+    {
+        if (astronaut.GetComponent<Scr_AstronautStats>().physicToolSlots[0])
+        {
+            tool1Icon.sprite = astronaut.GetComponent<Scr_AstronautStats>().physicToolSlots[0].GetComponent<Scr_ToolBase>().icon;
+            tool1Icon.gameObject.SetActive(true);
+        }
+
+        else
+            tool1Icon.gameObject.SetActive(false);
+
+        if (astronaut.GetComponent<Scr_AstronautStats>().physicToolSlots[1])
+        {
+            tool2Icon.sprite = astronaut.GetComponent<Scr_AstronautStats>().physicToolSlots[1].GetComponent<Scr_ToolBase>().icon;
+            tool2Icon.gameObject.SetActive(true);
+        }
+
+        else
+            tool2Icon.gameObject.SetActive(false);
+
+        if (astronaut.GetComponent<Scr_AstronautStats>().physicToolSlots[2])
+        {
+            tool3Icon.sprite = astronaut.GetComponent<Scr_AstronautStats>().physicToolSlots[2].GetComponent<Scr_ToolBase>().icon;
+            tool3Icon.gameObject.SetActive(true);
+        }
+
+        else
+            tool3Icon.gameObject.SetActive(false);
     }
 }
