@@ -112,6 +112,12 @@ public class Scr_PlayerShipStats : MonoBehaviour
 
         else
             anim_ShieldPanel.SetBool("Alert", false);
+
+        if (currentShield <= (0.25 * maxShield))
+            playerShipEffects.DamageParticleSet(true);
+
+        else
+            playerShipEffects.DamageParticleSet(false);
     }
 
     public void FuelConsumption(bool boost)
