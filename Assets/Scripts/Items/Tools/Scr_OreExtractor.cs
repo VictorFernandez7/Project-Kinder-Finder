@@ -140,7 +140,8 @@ public class Scr_OreExtractor : Scr_ToolBase
         {
             ghost.SetActive(true);
             ghost.transform.position = astronautMovement.currentPlanet.transform.position + ((mousepos - astronautMovement.currentPlanet.transform.position).normalized * (Vector3.Distance(hit.point, astronautMovement.currentPlanet.transform.position) + GetComponentInChildren<Renderer>().bounds.size.y / 2));
-            if(astronaut.GetComponent<Scr_AstronautMovement>().faceRight)
+
+            if (astronaut.GetComponent<Scr_AstronautMovement>().faceRight)
                 ghost.transform.rotation = Quaternion.LookRotation(ghost.transform.forward, Vector2.Perpendicular(hitR.point - hitL.point));
 
             else
