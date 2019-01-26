@@ -31682,6 +31682,7 @@ MonoBehaviour:
   thrusterParticles2: {fileID: 5342883320440907743}
   thrusterParticles3: {fileID: 4298087633295755985}
   takingOffDustParticles: {fileID: 198439528862557930}
+  damageParticles: {fileID: 198333808919146426}
   dustParticles: {fileID: 1247645789991328, guid: bbbbba65b8622bd4b990250ed90c558a,
     type: 3}
   atmosphereParticles: {fileID: 198678149364849852}
@@ -31854,7 +31855,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4106602957861086
 Transform:
   m_ObjectHideFlags: 0
@@ -31942,7 +31943,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -32702,7 +32703,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 20
+      scalar: 40
       minScalar: 10
       maxCurve:
         serializedVersion: 2

@@ -42,6 +42,7 @@ public class Scr_PlayerShipEffects : MonoBehaviour
     [SerializeField] public ParticleSystem thrusterParticles2;
     [SerializeField] public ParticleSystem thrusterParticles3;
     [SerializeField] public ParticleSystem takingOffDustParticles;
+    [SerializeField] public ParticleSystem damageParticles;
     [SerializeField] private GameObject dustParticles;
     [SerializeField] private ParticleSystem atmosphereParticles;
     [SerializeField] public ParticleSystem miningParticles;
@@ -51,9 +52,9 @@ public class Scr_PlayerShipEffects : MonoBehaviour
     [SerializeField] private Image warmingFill;
     [SerializeField] private MeshRenderer meshRenderer;
 
+    private Material windowMaterialSlot;
     private Scr_PlayerShipMovement playerShipMovement;
     private Scr_PlayerShipActions playerShipActions;
-    private Material windowMaterialSlot;
 
     private void Start()
     {
@@ -316,5 +317,14 @@ public class Scr_PlayerShipEffects : MonoBehaviour
             if (miningParticles.isPlaying)
                 miningParticles.Stop();
         }
+    }
+
+    public void DamageParticleSet(bool damage)
+    {
+        if (damage && !damageParticles.isPlaying)
+            damageParticles.Play();
+
+        else if (damageParticles.isPlaying)
+            damageParticles.Stop();
     }
 }
