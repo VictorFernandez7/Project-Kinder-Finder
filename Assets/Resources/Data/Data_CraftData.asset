@@ -13,9 +13,23 @@ MonoBehaviour:
   m_Name: Data_CraftData
   m_EditorClassIdentifier: 
   CraftList:
-  - m_name: ppp
+  - m_name: Idiomatic Adapter
     m_icon: {fileID: 0}
-    m_info: 
+    m_info: This piece of technology allows the player to gather information of every
+      foreign language that may appear in his journey and at certain point understand
+      them.
+    resourceNameList:
+    - Fuel
+    - Iron
+    - Copper
+    resourceAmountList: 000000000000000000000000
+    craftType: 1
+    craftResultType: 1
+  - m_name: Multitool
+    m_icon: {fileID: 0}
+    m_info: Hand tool that emits a laser that can switch between two modes, repairing
+      and mining laser. This mining laser is only effective with small ores that come
+      out of the ground.
     resourceNameList:
     - Fuel
     - Iron
@@ -23,9 +37,10 @@ MonoBehaviour:
     resourceAmountList: 000000000000000000000000
     craftType: 0
     craftResultType: 0
-  - m_name: pppjjkjk
+  - m_name: Jetpack
     m_icon: {fileID: 0}
-    m_info: 
+    m_info: This simple device allows the player to reach high areas such as mountains
+      or volcanos where unique resources can be found.
     resourceNameList:
     - Fuel
     - Iron
@@ -33,9 +48,10 @@ MonoBehaviour:
     resourceAmountList: 000000000000000000000000
     craftType: 0
     craftResultType: 0
-  - m_name: hgfjf
+  - m_name: Ore Extractor
     m_icon: {fileID: 0}
-    m_info: 
+    m_info: If this tool is deployed in areas with a resource under the ground the
+      player will be able to slowly extract said resource.
     resourceNameList:
     - Fuel
     - Iron
@@ -43,9 +59,11 @@ MonoBehaviour:
     resourceAmountList: 000000000000000000000000
     craftType: 0
     craftResultType: 0
-  - m_name: gfjfgjfgjn
+  - m_name: Gas Extractor
     m_icon: {fileID: 0}
-    m_info: 
+    m_info: It works in the same way as the ore extractor with the difference that
+      this tool needs to be deployed inside a gas cloud to function. Its main use
+      is the extraction of fuel for the spaceship.
     resourceNameList:
     - Fuel
     - Iron
@@ -53,9 +71,11 @@ MonoBehaviour:
     resourceAmountList: 000000000000000000000000
     craftType: 0
     craftResultType: 0
-  - m_name: fgjjmmmmm
+  - m_name: Liquid Extractor
     m_icon: {fileID: 0}
-    m_info: 
+    m_info: Throughout his adventure, the player will find planets with all kinds
+      of fluids formed by different resources. This device allows you to extract those
+      resources.
     resourceNameList:
     - Fuel
     - Iron
@@ -63,3 +83,63 @@ MonoBehaviour:
     resourceAmountList: 000000000000000000000000
     craftType: 0
     craftResultType: 0
+  - m_name: Oxygen Suit Upgrade
+    m_icon: {fileID: 0}
+    m_info: In non-respirable atmospheres, the astronaut will use the oxygen reserve
+      of his space suit to move around the planet. This improvement increases the
+      amount of oxygen stored in the suit.
+    resourceNameList:
+    - Fuel
+    - Iron
+    - Copper
+    resourceAmountList: 000000000000000000000000
+    craftType: 2
+    craftResultType: 1
+  - m_name: Toxicity Resistance Suit Upgrade
+    m_icon: {fileID: 0}
+    m_info: The space suit is not prepared for all kinds of environments. On certain
+      planets, the level of toxicity is too high for the suit and it needs to be improved
+      first.
+    resourceNameList:
+    - Fuel
+    - Iron
+    - Copper
+    resourceAmountList: 000000000000000000000000
+    craftType: 2
+    craftResultType: 1
+  - m_name: Low Temperature Suit Upgrade
+    m_icon: {fileID: 0}
+    m_info: Like the level of toxicity, the temperature can reach extreme levels in
+      which an adaptation to this environment is necessary. This improvement is optimal
+      to access frozen planets and moons.
+    resourceNameList:
+    - Fuel
+    - Iron
+    - Copper
+    resourceAmountList: 000000000000000000000000
+    craftType: 2
+    craftResultType: 1
+  - m_name: High Temperature Suit Upgrade
+    m_icon: {fileID: 0}
+    m_info: Like the level of toxicity, the temperature can reach extreme levels in
+      which an adaptation to this environment is necessary. This improvement is optimal
+      to access lava and fire planets that are close to the sun.
+    resourceNameList:
+    - Fuel
+    - Iron
+    - Copper
+    resourceAmountList: 000000000000000000000000
+    craftType: 2
+    craftResultType: 1
+  - m_name: Tool Slots Suit Upgrade
+    m_icon: {fileID: 0}
+    m_info: Tools are an essential aspect of the astronaut. Each time he leaves the
+      spaceship he must decide whichones he will take with him. This upgrade increases
+      the number of slots in the suit by two.
+    resourceNameList:
+    - Fuel
+    - Iron
+    - Copper
+    resourceAmountList: 000000000000000000000000
+    craftType: 2
+    craftResultType: 1
