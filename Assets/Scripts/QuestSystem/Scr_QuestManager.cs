@@ -19,7 +19,7 @@ public class Scr_QuestManager : MonoBehaviour
         //define the paths between the events
         quest.AddPath(a.GetId(), b.GetId());
         quest.AddPath(b.GetId(), c.GetId());
-        quest.AddPath(b.GetId(), d.GetId());
+        quest.AddPath(b.GetId(), e.GetId());
         quest.AddPath(c.GetId(), e.GetId());
         quest.AddPath(d.GetId(), e.GetId());
 
