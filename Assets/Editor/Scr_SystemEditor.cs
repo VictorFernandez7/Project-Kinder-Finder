@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public class Scr_PlanetEditor : EditorWindow
+public class Scr_SystemEditor : EditorWindow
 {
     private Scr_SystemData inventoryItemList;
     private int viewIndex = 1;
@@ -12,7 +12,7 @@ public class Scr_PlanetEditor : EditorWindow
     [MenuItem("Window/Planet Editor")]
     static void Init()
     {
-        EditorWindow.GetWindow(typeof(Scr_PlanetEditor));
+        EditorWindow.GetWindow(typeof(Scr_SystemEditor));
     }
 
     private void OnEnable()

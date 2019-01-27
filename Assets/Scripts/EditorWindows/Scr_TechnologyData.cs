@@ -23,7 +23,7 @@ public class Scr_UpgradeInfo
     public List<int> recipeList = new List<int>(); 
 }
 
-public class Scr_UpgradeList : ScriptableObject
+public class Scr_TechnologyData: ScriptableObject
 {
     public List<Scr_UpgradeInfo> UpgradeList;
 }

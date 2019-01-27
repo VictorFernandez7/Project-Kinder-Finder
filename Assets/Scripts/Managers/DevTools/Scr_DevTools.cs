@@ -13,7 +13,7 @@ public class Scr_DevTools : MonoBehaviour
     [Header("ResetTechnologies")]
     [SerializeField] private KeyCode RT_key;
 
-    [SerializeField] private Scr_UpgradeList upgradeData; 
+    [SerializeField] private Scr_TechnologyData upgradeData; 
 
     private GameObject playerShip;
     private bool devSlow; 

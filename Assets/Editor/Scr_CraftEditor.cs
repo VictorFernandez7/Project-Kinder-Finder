@@ -18,7 +18,7 @@ public class Scr_CraftEditor : EditorWindow
     {
         if (EditorPrefs.HasKey("objectPath"))
         {
-            string ObjectPath = "Assets/Resources/Data/Data_CraftList.asset";
+            string ObjectPath = "Assets/Resources/Data/Data_CraftData.asset";
             inventoryItemList = AssetDatabase.LoadAssetAtPath(ObjectPath, typeof(Scr_CraftData)) as Scr_CraftData;
         }
 
@@ -27,7 +27,7 @@ public class Scr_CraftEditor : EditorWindow
             viewIndex = 1;
 
             Scr_CraftData asset = ScriptableObject.CreateInstance<Scr_CraftData>();
-            AssetDatabase.CreateAsset(asset, "Assets/Resources/Data/Data_CraftList.asset");
+            AssetDatabase.CreateAsset(asset, "Assets/Resources/Data/Data_CraftData.asset");
             AssetDatabase.SaveAssets();
 
             inventoryItemList = asset;
