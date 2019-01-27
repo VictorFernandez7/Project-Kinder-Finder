@@ -149,12 +149,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragSpeed: -1
-  maxZoom: 300
-  minZoom: 100
-  zoomSpeed: 100
   clampBorderSize: {x: 20, y: 20}
   distance: 185
-  onPlanetColor: {r: 0, g: 0.415476, b: 0.9137255, a: 1}
+  onPlanetColor: {r: 0, g: 0.415476, b: 0.9137255, a: 0.5882353}
   earthLikeColor: {r: 0.091415405, g: 1, b: 0, a: 1}
   frozenColor: {r: 0, g: 0.9263358, b: 1, a: 1}
   volcanicColor: {r: 1, g: 0, b: 0.12717628, a: 1}
@@ -229,7 +226,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bed0b63bc21bc346b3b6978c02ad780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input_QuestPanel: 106
   input_PauseMenu: 27
   active: {r: 1, g: 1, b: 1, a: 1}
   notActive: {r: 1, g: 1, b: 1, a: 0.39215687}
@@ -269,6 +265,15 @@ MonoBehaviour:
   craftButtonImage: {fileID: 0}
   workshopCategoryNameText: {fileID: 0}
   pauseCanvas: {fileID: 0}
+  planetName: {fileID: 0}
+  planetTemperature: {fileID: 0}
+  planetOxygen: {fileID: 0}
+  planetGravity: {fileID: 0}
+  astronaut: {fileID: 0}
+  tool1Icon: {fileID: 0}
+  tool2Icon: {fileID: 0}
+  tool3Icon: {fileID: 0}
+  gamePaused: 0
 --- !u!1 &1525737731890656
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,8 +320,8 @@ MonoBehaviour:
   slowAmount: 0.05
   BT_key: 56
   RS_key: 57
-  RT_key: 0
-  upgradeData: {fileID: 0}
+  RT_key: 55
+  upgradeData: {fileID: 11400000, guid: bb2aa1a2df04cf747947a129c53f42fc, type: 2}
 --- !u!1 &1535065661933764
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,6 +355,7 @@ Transform:
   - {fileID: 4792561057616452}
   - {fileID: 4735408406466844}
   - {fileID: 4931440576078968}
+  - {fileID: 3557571129356036326}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -450,5 +456,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerShipLaboratory: {fileID: 0}
-  craftData: {fileID: 11400000, guid: a3920ac3aea1a064ea2930f647f10a3a, type: 2}
-  upgradeList: {fileID: 11400000, guid: 7f4aba37904d7444d96423b48b486f24, type: 2}
+  craftData: {fileID: 11400000, guid: 03667f2d13e951f408175272bb9198a5, type: 2}
+  upgradeList: {fileID: 11400000, guid: bb2aa1a2df04cf747947a129c53f42fc, type: 2}
+--- !u!1 &7912819845514592929
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3557571129356036326}
+  - component: {fileID: 8535330517517474695}
+  m_Layer: 0
+  m_Name: QuestManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3557571129356036326
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7912819845514592929}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4376699906163190}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8535330517517474695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7912819845514592929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a5a0cf88632cfd45a53aa6f2261e80c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
