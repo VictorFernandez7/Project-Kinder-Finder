@@ -7,7 +7,7 @@ using TMPro;
 public class Scr_PlayerShipLaboratory : MonoBehaviour
 { 
     [Header("References")]
-    [SerializeField] private Scr_UpgradeList upgradeData;
+    [SerializeField] private Scr_TechnologyData upgradeData;
     [SerializeField] private Button upgradeButton;
     [SerializeField] public GameObject[] buttonArray;
     [SerializeField] private Scr_CraftData craftData;
