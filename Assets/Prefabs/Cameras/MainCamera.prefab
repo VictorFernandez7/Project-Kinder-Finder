@@ -1,21 +1,11 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &100100000
-Prefab:
-  m_ObjectHideFlags: 1
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications: []
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1121680885597580}
-  m_IsPrefabAsset: 1
 --- !u!1 &1121680885597580
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4535685070600488}
@@ -33,11 +23,12 @@ GameObject:
   m_IsActive: 1
 --- !u!4 &4535685070600488
 Transform:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1121680885597580}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 146.1, y: 4.25, z: -100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -46,9 +37,10 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &20830875072148088
 Camera:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1121680885597580}
   m_Enabled: 1
   serializedVersion: 2
@@ -57,6 +49,7 @@ Camera:
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
+  m_GateFitMode: 2
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -72,7 +65,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 13623
+    m_Bits: 1324343
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -86,57 +79,18 @@ Camera:
   m_StereoSeparation: 0.022
 --- !u!81 &81628895320183484
 AudioListener:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1121680885597580}
   m_Enabled: 1
---- !u!114 &114082731975807612
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1121680885597580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sharedProfile: {fileID: 11400000, guid: 40613b5406b26de4b9e3cd4a0be37b2d, type: 2}
-  isGlobal: 1
-  blendDistance: 3.2
-  weight: 1
-  priority: 1
---- !u!114 &114460277530790754
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1121680885597580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6d9c95ff0f77494193dc1a11e141ee3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  zoomInSpace: 9
-  zoomInPlanet: 1.5
-  miningZoom: 5
-  zoomSpeed: 0.35
-  shipRotationSpeed: 0.35
-  astronautRotationSpeed: 5
-  magnitude: 0.25
-  roughness: 5
-  fadeOutTime: 12
-  playerShip: {fileID: 0}
-  astronaut: {fileID: 0}
-  followAstronaut: 1
-  smoothRotation: 0
-  mining: 0
 --- !u!114 &114635886535110026
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1121680885597580}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -190,3 +144,47 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &114082731975807612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121680885597580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 11400000, guid: 40613b5406b26de4b9e3cd4a0be37b2d, type: 2}
+  isGlobal: 1
+  blendDistance: 3.2
+  weight: 1
+  priority: 1
+--- !u!114 &114460277530790754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121680885597580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6d9c95ff0f77494193dc1a11e141ee3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoomInSpace: 9
+  zoomInPlanet: 1.5
+  miningZoom: 5
+  zoomSpeed: 0.35
+  spaceWalkZoom: 4
+  shipRotationSpeed: 0.35
+  astronautRotationSpeed: 5
+  magnitude: 0.25
+  roughness: 5
+  fadeOutTime: 12
+  playerShip: {fileID: 0}
+  astronaut: {fileID: 0}
+  followAstronaut: 1
+  smoothRotation: 0
+  mining: 0
