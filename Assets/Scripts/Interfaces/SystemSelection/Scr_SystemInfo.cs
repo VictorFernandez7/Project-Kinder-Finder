@@ -32,9 +32,9 @@ public class Scr_SystemInfo : MonoBehaviour
         planetType3.SetActive(aridPlanets);
         planetType4.SetActive(frozenPlanets);
 
-        planetType1Amount.text = "" + earthAmount;
-        planetType2Amount.text = "" + volcanicAmount;
-        planetType3Amount.text = "" + aridAmount;
-        planetType4Amount.text = "" + frozenAmount;
+        planetType1Amount.text = "x " + earthAmount;
+        planetType2Amount.text = "x " + volcanicAmount;
+        planetType3Amount.text = "x " + aridAmount;
+        planetType4Amount.text = "x " + frozenAmount;
     }
 }
