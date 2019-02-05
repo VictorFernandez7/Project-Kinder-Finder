@@ -11,6 +11,8 @@ public class Scr_Button : MonoBehaviour
     [SerializeField] public float xPos;
     [SerializeField] public float yPos;
     [SerializeField] public float zoom;
+    [SerializeField] public float zoomSpeed;
+    [SerializeField] public float movementSpeed;
 
     [Header("References")]
     [SerializeField] private Scr_SystemSelectionManager systemSelectionManager;
@@ -20,8 +22,7 @@ public class Scr_Button : MonoBehaviour
     private enum ButtonType
     {
         System,
-        Group,
-        Back
+        Group
     }
 
     private void Start()
@@ -40,6 +41,8 @@ public class Scr_Button : MonoBehaviour
         {
             systemSelectionManager.currentPos = new Vector3(transform.position.x + xPos, transform.position.y + yPos, -100);
             systemSelectionManager.currentZoom = zoom;
+            systemSelectionManager.currentZoomSpeed = zoomSpeed;
+            systemSelectionManager.currentMovementSpeed = movementSpeed;
 
             switch (buttonType)
             {
@@ -48,12 +51,8 @@ public class Scr_Button : MonoBehaviour
                     break;
                 case ButtonType.Group:
                     systemSelectionManager.interfaceLevel = Scr_SystemSelectionManager.InterfaceLevel.Group;
-                    break;
-                case ButtonType.Back:
-                    if (systemSelectionManager.interfaceLevel == Scr_SystemSelectionManager.InterfaceLevel.System)
-                        systemSelectionManager.interfaceLevel = Scr_SystemSelectionManager.InterfaceLevel.Group;
-                    else if (systemSelectionManager.interfaceLevel == Scr_SystemSelectionManager.InterfaceLevel.Group)
-                        systemSelectionManager.interfaceLevel = Scr_SystemSelectionManager.InterfaceLevel.Galaxy;
+                    systemSelectionManager.savedZoom = zoom;
+                    systemSelectionManager.savedPos = new Vector3(transform.position.x + xPos, transform.position.y + yPos, -100); ;
                     break;
             }
         }
