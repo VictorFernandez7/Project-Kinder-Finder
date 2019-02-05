@@ -19,8 +19,9 @@ public class Scr_Button : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Scr_SystemSelectionManager systemSelectionManager;
-    [SerializeField] private GameObject systemCanvas;
-    [SerializeField] private GameObject groupCanvas;
+    [SerializeField] private GameObject systemInfoPanel;
+    [SerializeField] private GameObject systemIndicator;
+    [SerializeField] private GameObject groupIndicator;
 
     private BoxCollider boxCollider;
 
@@ -45,11 +46,14 @@ public class Scr_Button : MonoBehaviour
         if (buttonType == ButtonType.Group)
         {
             PlanetActivation(true);
-            groupCanvas.SetActive(true);
+            groupIndicator.SetActive(true);
         }
 
         else if (buttonType == ButtonType.System)
+        {
             PlanetActivation(true);
+            systemIndicator.SetActive(true);
+        }
 
         if (Input.GetMouseButtonDown(0))
             ClickEvent();
@@ -60,11 +64,14 @@ public class Scr_Button : MonoBehaviour
         if (buttonType == ButtonType.Group)
         {
             PlanetActivation(false);
-            groupCanvas.SetActive(false);
+            groupIndicator.SetActive(false);
         }
 
         else if (buttonType == ButtonType.System)
+        {
             PlanetActivation(false);
+            systemIndicator.SetActive(false);
+        }
     }
 
     private void ClickEvent()
@@ -78,7 +85,7 @@ public class Scr_Button : MonoBehaviour
         {
             case ButtonType.System:
                 systemSelectionManager.interfaceLevel = Scr_SystemSelectionManager.InterfaceLevel.System;
-                systemCanvas.SetActive(true);
+                systemInfoPanel.SetActive(true);
                 break;
             case ButtonType.Group:
                 systemSelectionManager.interfaceLevel = Scr_SystemSelectionManager.InterfaceLevel.Group;
@@ -108,9 +115,9 @@ public class Scr_Button : MonoBehaviour
                 boxCollider.enabled = false;
 
             if (systemSelectionManager.interfaceLevel == Scr_SystemSelectionManager.InterfaceLevel.Group)
-                systemCanvas.SetActive(false);
+                systemInfoPanel.SetActive(false);
 
-            if (systemCanvas.activeInHierarchy)
+            if (systemInfoPanel.activeInHierarchy)
                 PlanetActivation(true);
         }
     }

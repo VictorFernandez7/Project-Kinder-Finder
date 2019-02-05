@@ -9,6 +9,7 @@ public class Scr_SystemSelectionManager : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Camera mainCamera;
+    [SerializeField] private GameObject titleText;
 
     [HideInInspector] public float currentZoom;
     [HideInInspector] public float savedZoom;
@@ -42,6 +43,12 @@ public class Scr_SystemSelectionManager : MonoBehaviour
     {
         UpdateCamera();
         CheckInput();
+
+        if (interfaceLevel == InterfaceLevel.Galaxy)
+            titleText.SetActive(true);
+
+        else
+            titleText.SetActive(false);
     }
 
     private void UpdateCamera()
