@@ -14,8 +14,12 @@ public class Scr_Button : MonoBehaviour
     [SerializeField] public float zoomSpeed;
     [SerializeField] public float movementSpeed;
 
+    [Header("Planet List")]
+    [SerializeField] private GameObject[] planets;
+
     [Header("References")]
     [SerializeField] private Scr_SystemSelectionManager systemSelectionManager;
+    [SerializeField] private GameObject systemCanvas;
 
     private BoxCollider boxCollider;
 
@@ -32,48 +36,77 @@ public class Scr_Button : MonoBehaviour
 
     private void Update()
     {
-        UpdateCollider();
+        UpdateComponents();
     }
 
     private void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            systemSelectionManager.currentPos = new Vector3(transform.position.x + xPos, transform.position.y + yPos, -100);
-            systemSelectionManager.currentZoom = zoom;
-            systemSelectionManager.currentZoomSpeed = zoomSpeed;
-            systemSelectionManager.currentMovementSpeed = movementSpeed;
+        if (buttonType == ButtonType.Group || buttonType == ButtonType.System)
+            PlanetActivation(true);
 
-            switch (buttonType)
-            {
-                case ButtonType.System:
-                    systemSelectionManager.interfaceLevel = Scr_SystemSelectionManager.InterfaceLevel.System;
-                    break;
-                case ButtonType.Group:
-                    systemSelectionManager.interfaceLevel = Scr_SystemSelectionManager.InterfaceLevel.Group;
-                    systemSelectionManager.savedZoom = zoom;
-                    systemSelectionManager.savedPos = new Vector3(transform.position.x + xPos, transform.position.y + yPos, -100); ;
-                    break;
-            }
-        }
+        if (Input.GetMouseButtonDown(0))
+            ClickEvent();
     }
 
-    private void UpdateCollider()
+    private void OnMouseExit()
     {
+        if (buttonType == ButtonType.Group || buttonType == ButtonType.System)
+            PlanetActivation(false);
+    }
+
+    private void ClickEvent()
+    {
+        systemSelectionManager.currentPos = new Vector3(transform.position.x + xPos, transform.position.y + yPos, -100);
+        systemSelectionManager.currentZoom = zoom;
+        systemSelectionManager.currentZoomSpeed = zoomSpeed;
+        systemSelectionManager.currentMovementSpeed = movementSpeed;
+
         switch (buttonType)
         {
             case ButtonType.System:
-                if (systemSelectionManager.interfaceLevel == Scr_SystemSelectionManager.InterfaceLevel.Group)
-                    boxCollider.enabled = true;
-                else
-                    boxCollider.enabled = false;
-                    break;
-            case ButtonType.Group:
-                if (systemSelectionManager.interfaceLevel == Scr_SystemSelectionManager.InterfaceLevel.Galaxy)
-                    boxCollider.enabled = true;
-                else
-                    boxCollider.enabled = false;
+                systemSelectionManager.interfaceLevel = Scr_SystemSelectionManager.InterfaceLevel.System;
+                systemCanvas.SetActive(true);
                 break;
+            case ButtonType.Group:
+                systemSelectionManager.interfaceLevel = Scr_SystemSelectionManager.InterfaceLevel.Group;
+                systemSelectionManager.savedZoom = zoom;
+                systemSelectionManager.savedPos = new Vector3(transform.position.x + xPos, transform.position.y + yPos, -100); ;
+                break;
+        }
+    }
+
+    private void UpdateComponents()
+    {
+        if (buttonType == ButtonType.Group)
+        {
+            if (systemSelectionManager.interfaceLevel == Scr_SystemSelectionManager.InterfaceLevel.Galaxy)
+                boxCollider.enabled = true;
+
+            else
+                boxCollider.enabled = false;
+        }
+
+        else if (buttonType == ButtonType.System)
+        {
+            if (systemSelectionManager.interfaceLevel == Scr_SystemSelectionManager.InterfaceLevel.Group)
+                boxCollider.enabled = true;
+
+            else
+                boxCollider.enabled = false;
+
+            if (systemSelectionManager.interfaceLevel == Scr_SystemSelectionManager.InterfaceLevel.Group)
+                systemCanvas.SetActive(false);
+
+            if (systemCanvas.activeInHierarchy)
+                PlanetActivation(true);
+        }
+    }
+
+    private void PlanetActivation(bool activate)
+    {
+        foreach (GameObject planet in planets)
+        {
+            planet.GetComponent<Scr_SimpleRotation>().enabled = activate;
         }
     }
 }

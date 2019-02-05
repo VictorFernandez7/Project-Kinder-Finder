@@ -2352,6 +2352,66 @@ RectTransform:
   m_AnchoredPosition: {x: 325, y: -297.285}
   m_SizeDelta: {x: 274.11, y: 92.19}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1735381871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2604481075446687768}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cbce18d18f2d65498dcb6dff98852f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 5
+  translationSpeed: 10
+  pivot: {fileID: 1241627944}
+--- !u!114 &904395086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2604481075547713977}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cbce18d18f2d65498dcb6dff98852f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 5
+  translationSpeed: 10
+  pivot: {fileID: 1241627944}
+--- !u!114 &1155654735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2604481075666795929}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cbce18d18f2d65498dcb6dff98852f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 5
+  translationSpeed: 10
+  pivot: {fileID: 1241627944}
+--- !u!114 &1138387428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2604481075791395654}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cbce18d18f2d65498dcb6dff98852f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 5
+  translationSpeed: 10
+  pivot: {fileID: 1241627944}
 --- !u!1 &2604481076595689435
 GameObject:
   m_ObjectHideFlags: 0
@@ -2398,7 +2458,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 65, y: 65, z: 1}
+  m_Size: {x: 65, y: 65, z: 20}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7538877381019465584
 MonoBehaviour:
@@ -2418,7 +2478,13 @@ MonoBehaviour:
   zoom: 40
   zoomSpeed: 1
   movementSpeed: 1
+  planets:
+  - {fileID: 2604481075446687768}
+  - {fileID: 2604481075666795929}
+  - {fileID: 2604481075547713977}
+  - {fileID: 2604481075791395654}
   systemSelectionManager: {fileID: 0}
+  systemCanvas: {fileID: 7227859235557902611}
 --- !u!1 &6249846469297753457
 GameObject:
   m_ObjectHideFlags: 0
@@ -2809,8 +2875,30 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 250
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 93a664e34cf889749aae5ec4ffef2328, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 54720641f1297664cb74525a0e3a8a93, type: 2}
+    - target: {fileID: 2300000, guid: 93a664e34cf889749aae5ec4ffef2328, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: ce4da7bbb81fd3743b1e6a62e1ca9bdb, type: 2}
+    - target: {fileID: 2300000, guid: 93a664e34cf889749aae5ec4ffef2328, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: cbedf8c46a00190429db2a3d7f4ec558, type: 2}
+    - target: {fileID: 2300000, guid: 93a664e34cf889749aae5ec4ffef2328, type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: 882bbd94dbb6eb74191e525b90797cc2, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93a664e34cf889749aae5ec4ffef2328, type: 3}
+--- !u!1 &2604481075446687768 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 93a664e34cf889749aae5ec4ffef2328,
+    type: 3}
+  m_PrefabInstance: {fileID: 2604481075446787768}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2604481075446920248 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 93a664e34cf889749aae5ec4ffef2328,
@@ -2824,10 +2912,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 536571093}
     m_Modifications:
-    - target: {fileID: 100000, guid: f96489aaa495fe74182375cb456f375b, type: 3}
-      propertyPath: m_Name
-      value: Planet4
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f96489aaa495fe74182375cb456f375b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -13.2
@@ -2884,8 +2968,30 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 250
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f96489aaa495fe74182375cb456f375b, type: 3}
+      propertyPath: m_Name
+      value: Planet3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: f96489aaa495fe74182375cb456f375b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: be7c861822e31e6498adc7eb585f1432, type: 2}
+    - target: {fileID: 2300000, guid: f96489aaa495fe74182375cb456f375b, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: fbcbb886022be3c4c97b79fd30d224d6, type: 2}
+    - target: {fileID: 2300000, guid: f96489aaa495fe74182375cb456f375b, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2d32618a39e516a4880949a87225b62c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f96489aaa495fe74182375cb456f375b, type: 3}
+--- !u!1 &2604481075547713977 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: f96489aaa495fe74182375cb456f375b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2604481075547617049}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2604481075547221401 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: f96489aaa495fe74182375cb456f375b,
@@ -2899,10 +3005,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 536571093}
     m_Modifications:
-    - target: {fileID: 100000, guid: f96489aaa495fe74182375cb456f375b, type: 3}
-      propertyPath: m_Name
-      value: Planet2
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f96489aaa495fe74182375cb456f375b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.5
@@ -2959,8 +3061,30 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 250
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f96489aaa495fe74182375cb456f375b, type: 3}
+      propertyPath: m_Name
+      value: Planet2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: f96489aaa495fe74182375cb456f375b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 979d5f09305128c4b82ed70ea84fdb44, type: 2}
+    - target: {fileID: 2300000, guid: f96489aaa495fe74182375cb456f375b, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: e5b30f72d842c864fa277deaf975f711, type: 2}
+    - target: {fileID: 2300000, guid: f96489aaa495fe74182375cb456f375b, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4e70c3edb5862064d9f4efd859d588d2, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f96489aaa495fe74182375cb456f375b, type: 3}
+--- !u!1 &2604481075666795929 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: f96489aaa495fe74182375cb456f375b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2604481075666828089}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2604481075667214777 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: f96489aaa495fe74182375cb456f375b,
@@ -2974,10 +3098,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 536571093}
     m_Modifications:
-    - target: {fileID: 100000, guid: f96489aaa495fe74182375cb456f375b, type: 3}
-      propertyPath: m_Name
-      value: Planet5
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f96489aaa495fe74182375cb456f375b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 18.1
@@ -3034,8 +3154,30 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 250
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f96489aaa495fe74182375cb456f375b, type: 3}
+      propertyPath: m_Name
+      value: Planet4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: f96489aaa495fe74182375cb456f375b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 35265bc91dbfe944cb3718697b3eb57d, type: 2}
+    - target: {fileID: 2300000, guid: f96489aaa495fe74182375cb456f375b, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: efc206ba0462e734eb6fd574646d6994, type: 2}
+    - target: {fileID: 2300000, guid: f96489aaa495fe74182375cb456f375b, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: ae6aa8559ac79a84eb1958f001f53d61, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f96489aaa495fe74182375cb456f375b, type: 3}
+--- !u!1 &2604481075791395654 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: f96489aaa495fe74182375cb456f375b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2604481075791298022}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2604481075791161190 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: f96489aaa495fe74182375cb456f375b,
