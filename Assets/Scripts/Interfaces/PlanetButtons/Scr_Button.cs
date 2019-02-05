@@ -20,6 +20,7 @@ public class Scr_Button : MonoBehaviour
     [Header("References")]
     [SerializeField] private Scr_SystemSelectionManager systemSelectionManager;
     [SerializeField] private GameObject systemCanvas;
+    [SerializeField] private GameObject groupCanvas;
 
     private BoxCollider boxCollider;
 
@@ -41,7 +42,13 @@ public class Scr_Button : MonoBehaviour
 
     private void OnMouseOver()
     {
-        if (buttonType == ButtonType.Group || buttonType == ButtonType.System)
+        if (buttonType == ButtonType.Group)
+        {
+            PlanetActivation(true);
+            groupCanvas.SetActive(true);
+        }
+
+        else if (buttonType == ButtonType.System)
             PlanetActivation(true);
 
         if (Input.GetMouseButtonDown(0))
@@ -50,7 +57,13 @@ public class Scr_Button : MonoBehaviour
 
     private void OnMouseExit()
     {
-        if (buttonType == ButtonType.Group || buttonType == ButtonType.System)
+        if (buttonType == ButtonType.Group)
+        {
+            PlanetActivation(false);
+            groupCanvas.SetActive(false);
+        }
+
+        else if (buttonType == ButtonType.System)
             PlanetActivation(false);
     }
 
