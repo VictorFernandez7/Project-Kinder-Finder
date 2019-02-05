@@ -61,16 +61,16 @@ public class Scr_SystemSelectionManager : MonoBehaviour
     {
         if (Input.GetKeyDown(backCode))
         {
-            if (interfaceLevel == Scr_SystemSelectionManager.InterfaceLevel.System)
+            if (interfaceLevel == InterfaceLevel.System)
             {
-                interfaceLevel = Scr_SystemSelectionManager.InterfaceLevel.Group;
+                interfaceLevel = InterfaceLevel.Group;
                 currentZoom = savedZoom;
                 currentPos = savedPos;
             }
 
-            else if (interfaceLevel == Scr_SystemSelectionManager.InterfaceLevel.Group)
+            else if (interfaceLevel == InterfaceLevel.Group)
             {
-                interfaceLevel = Scr_SystemSelectionManager.InterfaceLevel.Galaxy;
+                interfaceLevel = InterfaceLevel.Galaxy;
                 currentZoom = initialZoom;
                 currentPos = initialPos;
             }
