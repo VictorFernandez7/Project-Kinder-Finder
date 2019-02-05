@@ -9,6 +9,7 @@ public class Scr_SystemSelectionManager : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Camera mainCamera;
+    [SerializeField] private GameObject titleText;
 
     [HideInInspector] public float currentZoom;
     [HideInInspector] public float savedZoom;
@@ -42,6 +43,12 @@ public class Scr_SystemSelectionManager : MonoBehaviour
     {
         UpdateCamera();
         CheckInput();
+
+        if (interfaceLevel == InterfaceLevel.Galaxy)
+            titleText.SetActive(true);
+
+        else
+            titleText.SetActive(false);
     }
 
     private void UpdateCamera()
@@ -54,16 +61,16 @@ public class Scr_SystemSelectionManager : MonoBehaviour
     {
         if (Input.GetKeyDown(backCode))
         {
-            if (interfaceLevel == Scr_SystemSelectionManager.InterfaceLevel.System)
+            if (interfaceLevel == InterfaceLevel.System)
             {
-                interfaceLevel = Scr_SystemSelectionManager.InterfaceLevel.Group;
+                interfaceLevel = InterfaceLevel.Group;
                 currentZoom = savedZoom;
                 currentPos = savedPos;
             }
 
-            else if (interfaceLevel == Scr_SystemSelectionManager.InterfaceLevel.Group)
+            else if (interfaceLevel == InterfaceLevel.Group)
             {
-                interfaceLevel = Scr_SystemSelectionManager.InterfaceLevel.Galaxy;
+                interfaceLevel = InterfaceLevel.Galaxy;
                 currentZoom = initialZoom;
                 currentPos = initialPos;
             }
