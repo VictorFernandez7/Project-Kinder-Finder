@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Scr_SystemButton : MonoBehaviour
+public class Scr_SystemGroups : MonoBehaviour
 {
     [Header("Camera Parameters")]
     [SerializeField] public float xPos;
