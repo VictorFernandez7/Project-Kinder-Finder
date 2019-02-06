@@ -7,7 +7,6 @@ using TMPro;
 public class Scr_PlayerShipLaboratory : MonoBehaviour
 { 
     [Header("References")]
-    [SerializeField] private Scr_TechnologyData upgradeData;
     [SerializeField] private Button upgradeButton;
     [SerializeField] public GameObject[] buttonArray;
     [SerializeField] private Scr_CraftData craftData;
@@ -24,7 +23,7 @@ public class Scr_PlayerShipLaboratory : MonoBehaviour
 
     private int resourceListIndex;
     private int technologyIndex;
-
+    /*
     private void Start()
     {
         playerShipCraft = GetComponent<Scr_PlayerShipCraft>();
@@ -150,5 +149,5 @@ public class Scr_PlayerShipLaboratory : MonoBehaviour
         {
             buttonArray[upgradeData.UpgradeList[technologyIndex].recipeList[i]].SetActive(true);
         }
-    }
+    }*/
 }
