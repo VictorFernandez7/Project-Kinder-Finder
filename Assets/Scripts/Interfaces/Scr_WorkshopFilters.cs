@@ -7,7 +7,7 @@ public class Scr_WorkshopFilters : MonoBehaviour
     [Header("References")]
     [SerializeField] private Scr_PlayerShipLaboratory playerShipLaboratory;
     [SerializeField] private Scr_CraftData craftData;
-    [SerializeField] private Scr_TechnologyData upgradeList;
+    /*
 
     private int currentCategory = 1;
 
@@ -91,5 +91,5 @@ public class Scr_WorkshopFilters : MonoBehaviour
                 FilterSpaceSuit();
                 break;
         }
-    }
+    }*/
 }
