@@ -1,10 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEngine.SceneManagement;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Scr_LevelManager : Scr_PersistentSingleton<Scr_LevelManager>
 {
+    [Header("Select Key")]
+    [SerializeField] private KeyCode commandPanel;
+
+    [Header("References")]
+    [SerializeField] private GameObject commandCanvas;
+    [SerializeField] private TMP_InputField commandInputField;
+
+    private bool isActive;
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(commandPanel))
+            ActivateCommandPanel();
+    }
+
     public static void LoadMainMenu()
     {
         Scr_Levels.currentlyLoading = Scr_Levels.CurrentlyLoading.LoadingMenu;
@@ -35,5 +49,50 @@ public class Scr_LevelManager : Scr_PersistentSingleton<Scr_LevelManager>
     public static void QuitGame()
     {
         Application.Quit();
+    }
+
+    private void ActivateCommandPanel()
+    {
+        isActive = !isActive;
+        commandCanvas.SetActive(isActive);
+
+        if (isActive)
+            commandInputField.Select();
+    }
+
+    public void CheckCommands()
+    {
+        switch (commandInputField.text)
+        {
+            case "/MM":
+                LoadMainMenu();
+                break;
+            case "/SS":
+                LoadSystemSelection();
+                break;
+            case "/PS1":
+                LoadPlanetSystem(Scr_Levels.LevelToLoad.PlanetSystem1);
+                break;
+            case "/PS2":
+                LoadPlanetSystem(Scr_Levels.LevelToLoad.PlanetSystem2);
+                break;
+            case "/PS3":
+                LoadPlanetSystem(Scr_Levels.LevelToLoad.PlanetSystem3);
+                break;
+            case "/PS4":
+                LoadPlanetSystem(Scr_Levels.LevelToLoad.PlanetSystem4);
+                break;
+            case "/PS5":
+                LoadPlanetSystem(Scr_Levels.LevelToLoad.PlanetSystem5);
+                break;
+            case "/PS6":
+                LoadPlanetSystem(Scr_Levels.LevelToLoad.PlanetSystem6);
+                break;
+            case "/PS7":
+                LoadPlanetSystem(Scr_Levels.LevelToLoad.PlanetSystem7);
+                break;
+        }
+
+        commandInputField.text = "";
     }
 }
