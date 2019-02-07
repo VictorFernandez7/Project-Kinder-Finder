@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Scr_LevelData : MonoBehaviour
+[System.Serializable]
+public class Scr_LevelInfo
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public string m_name;
+    public int experienceNeeded;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public List<int> levelRewards = new List<int>();
+}
+
+public class Scr_LevelData : ScriptableObject
+{
+    public List<Scr_LevelInfo> LevelList;
 }
