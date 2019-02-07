@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Scr_SystemSelectionManager : MonoBehaviour
 {
@@ -10,11 +11,13 @@ public class Scr_SystemSelectionManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private Camera mainCamera;
     [SerializeField] private GameObject titleText;
+    [SerializeField] private TextMeshProUGUI travelFuelText;
 
     [HideInInspector] public float currentZoom;
     [HideInInspector] public float savedZoom;
     [HideInInspector] public float currentZoomSpeed;
     [HideInInspector] public float currentMovementSpeed;
+    [HideInInspector] public float travelFuelAmount;
     [HideInInspector] public Vector3 currentPos;
     [HideInInspector] public Vector3 savedPos;
     [HideInInspector] public InterfaceLevel interfaceLevel;
@@ -41,8 +44,9 @@ public class Scr_SystemSelectionManager : MonoBehaviour
 
     private void Update()
     {
-        UpdateCamera();
         CheckInput();
+        UpdateCamera();
+        UpdateTravelFuelAmountText();
 
         if (interfaceLevel == InterfaceLevel.Galaxy)
             titleText.SetActive(true);
@@ -75,5 +79,10 @@ public class Scr_SystemSelectionManager : MonoBehaviour
                 currentPos = initialPos;
             }
         }
+    }
+
+    private void UpdateTravelFuelAmountText()
+    {
+        travelFuelText.text = "x " + travelFuelAmount;
     }
 }
