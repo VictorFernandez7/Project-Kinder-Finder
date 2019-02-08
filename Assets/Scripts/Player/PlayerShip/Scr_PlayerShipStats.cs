@@ -48,6 +48,8 @@ public class Scr_PlayerShipStats : MonoBehaviour
     [SerializeField] public GameObject[] resourceWarehouse;
 
     [HideInInspector] public int lastWarehouseEmpty;
+    [HideInInspector] public int experience;
+    [HideInInspector] public int level;
     [HideInInspector] public bool gasExtractor;
     [HideInInspector] public bool repairingTool;
     [HideInInspector] public bool jetpack;
@@ -190,5 +192,10 @@ public class Scr_PlayerShipStats : MonoBehaviour
     private void Respawn()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void GetExperience (int amount)
+    {
+        experience += amount;
     }
 }
