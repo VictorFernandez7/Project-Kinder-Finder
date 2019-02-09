@@ -13,7 +13,10 @@ public class Scr_SimpleRotation : MonoBehaviour
 
     private void Update()
     {
-        transform.RotateAround(pivot.position, transform.up, Time.deltaTime * rotationSpeed);
-        transform.RotateAround(pivot.position, Vector3.forward, Time.deltaTime * translationSpeed);
+        if (rotationSpeed > 0)
+            transform.RotateAround(transform.position, transform.up, Time.deltaTime * rotationSpeed);
+
+        if (translationSpeed > 0)
+            transform.RotateAround(pivot.position, Vector3.forward, Time.deltaTime * translationSpeed);
     }
 }
