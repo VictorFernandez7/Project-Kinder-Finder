@@ -44,8 +44,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
     [SerializeField] public Animator anim_ShieldPanel;
     [SerializeField] public Scr_LevelData levelData;
 
-    [Header("Inventories")]
-    [SerializeField] public GameObject[] toolWarehouse;
+    [Header("Inventory")]
     [SerializeField] public GameObject[] resourceWarehouse;
 
     [HideInInspector] public int lastWarehouseEmpty;
@@ -55,8 +54,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
     [HideInInspector] public bool repairingTool;
     [HideInInspector] public bool jetpack;
     [HideInInspector] public bool inDanger;
-
-    private int numberOfSlotsWithTools;    
+  
     private Rigidbody2D rb;
     private Scr_PlayerShipMovement playerShipMovement;
     private Scr_PlayerShipEffects playerShipEffects;
