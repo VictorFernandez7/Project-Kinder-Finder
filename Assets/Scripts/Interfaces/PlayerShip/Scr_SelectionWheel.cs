@@ -14,13 +14,26 @@ public class Scr_SelectionWheel : MonoBehaviour
 
         transform.Rotate(Vector3.forward, -rotZ, Space.World);
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //LockMouse();
     }
 
     private void OnMouseUp()
     {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        //LockMouse();
+    }
+
+    private void LockMouse()
+    {
+        if (Cursor.visible)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
     }
 }
