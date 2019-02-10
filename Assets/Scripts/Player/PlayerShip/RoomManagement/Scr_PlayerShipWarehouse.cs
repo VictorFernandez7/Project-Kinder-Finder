@@ -7,6 +7,7 @@ using TMPro;
 public class Scr_PlayerShipWarehouse : MonoBehaviour
 {
     [Header("References")]
+    [SerializeField] public Dictionary<string, int> Resources = new Dictionary<string, int>();
     [SerializeField] public bool[] astronautSlots;
     [SerializeField] public bool[] warehouseSlots;
     [SerializeField] public bool[] resourcesWarehouseSlots;
@@ -28,12 +29,60 @@ public class Scr_PlayerShipWarehouse : MonoBehaviour
     {
         boolControl();
         ReadNames();
-	}
+
+        Resources.Add("Fuel", 0);
+        Resources.Add("Iron", 0);
+        Resources.Add("Copper", 0);
+    }
 
 	void Update ()
     {
         ReadNames();
-	}
+
+        if (Input.GetKeyDown(KeyCode.V)) //Cuando se realiza el calculo
+        {
+            InventoryInfo();
+        }
+    }
+
+    public void InventoryInfo()
+    {
+        List<string> keyr = new List<string>(Resources.Keys);
+
+        foreach (string k in keyr)
+            Resources[k] = 0;
+
+        CalculateResources();
+
+        foreach (string k in keyr)
+            Debug.Log(k + " " + Resources[k]);
+    }
+
+    private void CalculateResources()
+    {
+        for (int i = 0; i < playerShipStats.resourceWarehouse.Length; i++)
+        {
+            List<string> keys = new List<string>(Resources.Keys);
+
+            if (!playerShipStats.resourceWarehouse[i])
+                break;
+
+            else
+            {
+                if (Resources.Count != 0)
+                {
+                    foreach (string key in keys)
+                    {
+                        if (key == playerShipStats.resourceWarehouse[i].name)
+                        {
+                            Resources[key] += 1;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     //TOOL WAREHOUSE
 

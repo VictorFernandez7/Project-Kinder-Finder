@@ -42,6 +42,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
     [SerializeField] public Scr_ReferenceManager referenceManager;
     [SerializeField] public Animator anim_FuelPanel;
     [SerializeField] public Animator anim_ShieldPanel;
+    [SerializeField] public Scr_LevelData levelData;
 
     [Header("Inventories")]
     [SerializeField] public GameObject[] toolWarehouse;
@@ -197,5 +198,12 @@ public class Scr_PlayerShipStats : MonoBehaviour
     public void GetExperience (int amount)
     {
         experience += amount;
+
+        if(levelData.LevelList[level - 1].experienceNeeded < experience)
+        {
+            level += 1;
+            //animacion de subida de nivel
+            //activar los rewards del nivel
+        }
     }
 }
