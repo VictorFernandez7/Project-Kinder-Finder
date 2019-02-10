@@ -34,7 +34,7 @@ public class Scr_PlayerShipCraft : MonoBehaviour {
 
     private void Update()
     {
-        if (onRange && enableCraft)
+        if (onRange && enableCraft && Input.GetKeyDown(KeyCode.E))
             CraftItem();
     }
 
