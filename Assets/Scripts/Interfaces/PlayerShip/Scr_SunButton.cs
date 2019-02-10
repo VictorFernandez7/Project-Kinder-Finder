@@ -11,6 +11,7 @@ public class Scr_SunButton : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameObject planets;
     [SerializeField] private GameObject systems;
+    [SerializeField] private Animator anim;
 
     public enum Interfacelevel
     {
@@ -42,12 +43,10 @@ public class Scr_SunButton : MonoBehaviour
         switch (interfacelevel)
         {
             case Interfacelevel.SystemSelection:
-                systems.SetActive(true);
-                planets.SetActive(false);
+                anim.SetInteger("InterfaceLevel", 0);
                 break;
             case Interfacelevel.PlanetSelection:
-                systems.SetActive(false);
-                planets.SetActive(true);
+                anim.SetInteger("InterfaceLevel", 1);
                 break;
             case Interfacelevel.PlanetInfo:
                 break;

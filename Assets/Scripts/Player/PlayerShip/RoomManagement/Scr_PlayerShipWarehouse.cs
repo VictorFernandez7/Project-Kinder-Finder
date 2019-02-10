@@ -115,25 +115,16 @@ public class Scr_PlayerShipWarehouse : MonoBehaviour
     }
 
     //LECTURA DE TEXTOS
-
+    
     public void ReadNames()
     {
-        for (int i = 0; i < astronautStats.toolSlots.Count; i++)
-        {
-            if (astronautStats.toolSlots[i] == null)
-                textToolSlots[i].text = "Empty";
-
-            else
-                textToolSlots[i].text = astronautStats.toolSlots[i].GetComponent<Scr_ToolBase>().toolName;
-        }
-
-        for(int i = 0; i < playerShipStats.resourceWarehouse.Length; i++)
-        {
+        for (int i = 0; i < playerShipStats.resourceWarehouse.Length; i++)
+        {/*
             if (playerShipStats.resourceWarehouse[i] == null)
                 textResourcesWarehouse[i].text = "Empty";
 
             else
-                textResourcesWarehouse[i].text = playerShipStats.resourceWarehouse[i].name;
+                textResourcesWarehouse[i].text = playerShipStats.resourceWarehouse[i].name;*/
         }
     }
 }

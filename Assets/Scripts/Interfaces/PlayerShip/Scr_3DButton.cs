@@ -10,13 +10,15 @@ public class Scr_3DButton : MonoBehaviour
     [Header("Select System Number")]
     [Range(0, 7)] [SerializeField] private int systemNumber;
 
-    [Header("References")]
+    [Header("References (All)")]
     [SerializeField] private Scr_SunButton sunButton;
     [SerializeField] private GameObject indicator;
+
+    [Header("References (Planet)")]
     [SerializeField] private GameObject mainCamera;
     [SerializeField] private GameObject canvas;
 
-    [Header("Planet Systems")]
+    [Header("References (System)")]
     [SerializeField] private GameObject[] systems;
 
     private enum ButtonType
