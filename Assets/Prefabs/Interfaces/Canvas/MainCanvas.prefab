@@ -1761,7 +1761,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -3545,6 +3545,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 224219213209014480}
+  - component: {fileID: 389867656}
   m_Layer: 0
   m_Name: PlayerShipWindow
   m_TagString: Untagged
@@ -3563,8 +3564,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1709541189159905412}
   - {fileID: 224370267066117278}
+  - {fileID: 1709541189159905412}
   - {fileID: 224942528491175334}
   m_Father: {fileID: 224459451217361174}
   m_RootOrder: 3
@@ -3574,6 +3575,25 @@ RectTransform:
   m_AnchoredPosition: {x: 9.5, y: -13.499817}
   m_SizeDelta: {x: 19, y: 27}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &389867656
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1230000391279646}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 81dc6acfb0306c7429614d8ba7dc8e9f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1232901693286044
 GameObject:
   m_ObjectHideFlags: 0
@@ -4781,7 +4801,7 @@ RectTransform:
   m_Children:
   - {fileID: 150759026895496158}
   m_Father: {fileID: 224219213209014480}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12987,7 +13007,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -35447,7 +35467,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -51002,7 +51022,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 16777215
   m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -51070,11 +51090,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -55390,8 +55410,8 @@ GameObject:
   - component: {fileID: 1709541189159905412}
   - component: {fileID: 6523290047891268750}
   - component: {fileID: 5481268320395895601}
-  - component: {fileID: 5944475365767777676}
   - component: {fileID: 7542463443584331693}
+  - component: {fileID: 7323025602106277230}
   m_Layer: 0
   m_Name: OpenButton
   m_TagString: Untagged
@@ -55412,11 +55432,11 @@ RectTransform:
   m_Children:
   - {fileID: 742550841054612755}
   m_Father: {fileID: 224219213209014480}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -947, y: 406}
+  m_AnchoredPosition: {x: -1014, y: 406}
   m_SizeDelta: {x: 165.5, y: 165.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6523290047891268750
@@ -55456,32 +55476,6 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
---- !u!61 &5944475365767777676
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8730768645115748928}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 20.8, y: 72.79}
-  m_EdgeRadius: 0
 --- !u!95 &7542463443584331693
 Animator:
   serializedVersion: 3
@@ -55501,6 +55495,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7323025602106277230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8730768645115748928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34235bc9505123344b5fd7935c6e05d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerShipWindowAnim: {fileID: 0}
 --- !u!1 &8732032348952483291
 GameObject:
   m_ObjectHideFlags: 0
