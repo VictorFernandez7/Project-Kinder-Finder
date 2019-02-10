@@ -14,7 +14,8 @@ public class Scr_AstronautStats : MonoBehaviour
     [Range(0, 100)] [SerializeField] private float healthAlertPercentage;
 
     [Header("References")]
-    [SerializeField] public List<GameObject> toolSlots = new List<GameObject>();
+    [SerializeField] public GameObject[] toolSlots;
+    [SerializeField] public GameObject[] physicToolSlots;
     [SerializeField] private Slider oxygenSlider;
     [SerializeField] private Slider healthSlider;
     [SerializeField] public Animator anim_OxygenPanel;

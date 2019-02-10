@@ -234,6 +234,27 @@ public class Scr_PlayerShipActions : MonoBehaviour
         astronaut.GetComponent<Scr_AstronautMovement>().onGround = true;
         playerShipMovement.mainCamera.GetComponent<Scr_MainCamera>().followAstronaut = true;
         Instantiate(IA, IAStpot.position, IAStpot.rotation);
+
+        for (int i = 0; i < astronaut.GetComponent<Scr_AstronautStats>().toolSlots.Length; i++)
+        {
+            if (astronaut.GetComponent<Scr_AstronautStats>().toolSlots[i] != null)
+            {
+                astronaut.GetComponent<Scr_AstronautStats>().physicToolSlots[i] = Instantiate(astronaut.GetComponent<Scr_AstronautStats>().toolSlots[i], astronautPickUp);
+                astronaut.GetComponent<Scr_AstronautStats>().physicToolSlots[i].SetActive(false);
+            }
+        }
+    }
+
+    public void TakeTool(int warehouseNumber, int slotNumber)
+    {
+        astronaut.GetComponent<Scr_AstronautStats>().toolSlots[slotNumber] = GetComponent<Scr_PlayerShipStats>().toolWarehouse[warehouseNumber];
+        GetComponent<Scr_PlayerShipStats>().toolWarehouse[warehouseNumber] = null;
+    }
+
+    public void SaveTool(int slotNumber, int emptyWarehouse)
+    {
+        GetComponent<Scr_PlayerShipStats>().toolWarehouse[emptyWarehouse] = astronaut.GetComponent<Scr_AstronautStats>().toolSlots[slotNumber];
+        astronaut.GetComponent<Scr_AstronautStats>().toolSlots[slotNumber] = null;
     }
 
     private void MiningSliderColor()
@@ -337,6 +358,15 @@ public class Scr_PlayerShipActions : MonoBehaviour
             {
                 astronautRb.freezeRotation = true;
                 playerShipRb.isKinematic = true;
+            }
+        }
+
+        for (int i = 0; i < astronaut.GetComponent<Scr_AstronautStats>().toolSlots.Length; i++)
+        {
+            if (astronaut.GetComponent<Scr_AstronautStats>().toolSlots[i] != null)
+            {
+                astronaut.GetComponent<Scr_AstronautStats>().physicToolSlots[i] = Instantiate(astronaut.GetComponent<Scr_AstronautStats>().toolSlots[i], astronautPickUp);
+                astronaut.GetComponent<Scr_AstronautStats>().physicToolSlots[i].SetActive(false);
             }
         }
     }
