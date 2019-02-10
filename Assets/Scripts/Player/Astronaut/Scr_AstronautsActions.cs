@@ -76,10 +76,19 @@ public class Scr_AstronautsActions : MonoBehaviour
             interactionIndicatorAnim.gameObject.SetActive(false);
         }
 
+        if (Input.GetButtonDown("Tool1"))
+            HandTool(0);
+
+        if (Input.GetButtonDown("Tool2"))
+            HandTool(1);
+
+        if (Input.GetButtonDown("Tool3"))
+            HandTool(2);
+
         if (Input.GetButtonDown("Interact"))
         {
             if (toolOnHands)
-                astronautStats.toolSlots[numberToolActive].GetComponent<Scr_ToolBase>().UseTool();
+                astronautStats.physicToolSlots[numberToolActive].GetComponent<Scr_ToolBase>().UseTool();
 
             else if (emptyHands && !toolOnHands && astronautResourcesCheck.resourceList.Count > 0)
             {
@@ -114,6 +123,7 @@ public class Scr_AstronautsActions : MonoBehaviour
             playerShip.GetComponent<Scr_PlayerShipMovement>().canControlShip = true;
             mainCamera.GetComponent<Scr_MainCamera>().followAstronaut = false;
             astronautMovement.keep = true;
+            DestroyAllTools();
             playerShipWarehouse.ReadNames();
             gameObject.SetActive(false);
     }
@@ -150,7 +160,52 @@ public class Scr_AstronautsActions : MonoBehaviour
         emptyHands = true;
     }
 
-    //HACER SELECCION DE TOOL
+    public void BoolControl()
+    {
+        for (int i = 0; i < astronautStats.physicToolSlots.Length; i++)
+        {
+            if (astronautStats.physicToolSlots[i] != null)
+            {
+                if (astronautStats.physicToolSlots[i].activeInHierarchy)
+                {
+                    toolOnHands = true;
+                    numberToolActive = i;
+                    break;
+                }
+            }
+
+            toolOnHands = false;
+        }
+    }
+
+    private void HandTool(int indice)
+    {
+        if (astronautStats.physicToolSlots[indice] != null)
+        {
+            if (!toolOnHands && emptyHands)
+                astronautStats.physicToolSlots[indice].SetActive(true);
+
+            else if (astronautStats.physicToolSlots[indice].activeInHierarchy && emptyHands)
+                astronautStats.physicToolSlots[indice].SetActive(false);
+
+            else if (toolOnHands && emptyHands)
+            {
+                astronautStats.physicToolSlots[numberToolActive].SetActive(false);
+                astronautStats.physicToolSlots[indice].SetActive(true);
+            }
+        }
+
+        BoolControl();
+    }
+
+    private void DestroyAllTools()
+    {
+        for (int i = 0; i < astronautStats.physicToolSlots.Length; i++)
+        {
+            if (astronautStats.physicToolSlots[i] != null)
+                Destroy(astronautStats.physicToolSlots[i]);
+        }
+    }
 
     private void TurnOnLantern()
     {
