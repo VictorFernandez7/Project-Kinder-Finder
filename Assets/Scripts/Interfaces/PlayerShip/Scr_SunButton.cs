@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using UnityEngine;
 
-public class Scr_SunButton : MonoBehaviour, IPointerClickHandler
+public class Scr_SunButton : MonoBehaviour
 {
     [Header("Current Interface Level")]
     [SerializeField] public Interfacelevel interfacelevel;
@@ -22,18 +22,18 @@ public class Scr_SunButton : MonoBehaviour, IPointerClickHandler
     private void Update()
     {
         LevelCheck();
-    }
 
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        switch (interfacelevel)
+        if (Input.GetMouseButtonDown(1))
         {
-            case Interfacelevel.PlanetSelection:
-                interfacelevel = Interfacelevel.SystemSelection;
-                break;
-            case Interfacelevel.PlanetInfo:
-                interfacelevel = Interfacelevel.PlanetSelection;
-                break;
+            switch (interfacelevel)
+            {
+                case Interfacelevel.PlanetSelection:
+                    interfacelevel = Interfacelevel.SystemSelection;
+                    break;
+                case Interfacelevel.PlanetInfo:
+                    interfacelevel = Interfacelevel.PlanetSelection;
+                    break;
+            }
         }
     }
 
@@ -46,8 +46,8 @@ public class Scr_SunButton : MonoBehaviour, IPointerClickHandler
                 planets.SetActive(false);
                 break;
             case Interfacelevel.PlanetSelection:
-                systems.SetActive(true);
-                planets.SetActive(false);
+                systems.SetActive(false);
+                planets.SetActive(true);
                 break;
             case Interfacelevel.PlanetInfo:
                 break;

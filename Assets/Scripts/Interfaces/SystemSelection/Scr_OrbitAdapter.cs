@@ -19,7 +19,10 @@ public class Scr_OrbitAdapter : MonoBehaviour
 
     private void Update()
     {
-        lineRenderer.startWidth = mainCamera.orthographicSize * lineWidth;
-        lineRenderer.endWidth = mainCamera.orthographicSize * lineWidth;
+        if (mainCamera != null)
+        {
+            lineRenderer.startWidth = mainCamera.orthographicSize * lineWidth;
+            lineRenderer.endWidth = mainCamera.orthographicSize * lineWidth;
+        }        
     }
 }
