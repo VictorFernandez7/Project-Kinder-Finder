@@ -5,6 +5,7 @@ public class Scr_OpenButton : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 {
     [Header("References")]
     [SerializeField] private Animator playerShipWindowAnim;
+    [SerializeField] private Scr_InterfaceManager interfaceManager;
 
     private Animator openButtonAnim;
 
@@ -25,6 +26,7 @@ public class Scr_OpenButton : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnPointerClick(PointerEventData eventData)
     {
-
+        playerShipWindowAnim.SetBool("Show", true);
+        interfaceManager.PlayerShipWindow();
     }
 }

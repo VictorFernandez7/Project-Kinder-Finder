@@ -83,7 +83,6 @@ public class Scr_InterfaceManager : MonoBehaviour
         AstronautInterfaceInfoUpdate();
         LandingInterface();
         IndicatorManagement();
-        ChangeButtonColor();
         CheckInputs();
 
         if (!playerShipWindowActive)
@@ -161,51 +160,6 @@ public class Scr_InterfaceManager : MonoBehaviour
     {
         if (Input.GetKeyDown(input_PauseMenu))
             PauseGame(true);
-    }
-
-    private void ChangeButtonColor()
-    {
-        if (upgradePanel.activeInHierarchy)
-            upgradePanelText.color = active;
-
-        else
-            upgradePanelText.color = notActive;
-
-        if (warehousePanel.activeInHierarchy)
-            warehousePanelText.color = active;
-
-        else
-            warehousePanelText.color = notActive;
-
-        if (craftingPanel.activeInHierarchy)
-            craftingPanelText.color = active;
-
-        else
-            craftingPanelText.color = notActive;
-
-        if (ToolWarehousePanel.activeInHierarchy)
-            ToolWarehousePanelIcon.color = active;
-
-        else
-            ToolWarehousePanelIcon.color = notActive;
-
-        if (resourceWarehousePanel.activeInHierarchy)
-            resourceWarehousePanelIcon.color = active;
-
-        else
-            resourceWarehousePanelIcon.color = notActive;
-
-        if (purchaseButton.interactable)
-            purchaseButtonImage.color = interactable;
-
-        else
-            purchaseButtonImage.color = notInteractable;
-
-        if (craftButton.interactable)
-            craftButtonImage.color = interactable;
-
-        else
-            craftButtonImage.color = notInteractable;
     }
 
     private void LandingInterface()
