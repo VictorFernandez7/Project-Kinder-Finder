@@ -31592,22 +31592,7 @@ MonoBehaviour:
   referenceManager: {fileID: 0}
   anim_FuelPanel: {fileID: 0}
   anim_ShieldPanel: {fileID: 0}
-  toolWarehouse:
-  - {fileID: 1239215430283492, guid: 8be2670d51deb35429ede33415fe43cd, type: 3}
-  - {fileID: 1079533806625860, guid: c59e4326f7922f041925475f310aa8fc, type: 3}
-  - {fileID: 1238031769430186, guid: 8e98f6f64eacd0c42bb17fad700b9f46, type: 3}
-  - {fileID: 1724849047184002, guid: e2c8d13b1b127a941aef19b139e69791, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  levelData: {fileID: 0}
   resourceWarehouse:
   - {fileID: 1116605186558984, guid: 0ab54584d4e7bc149845553791765566, type: 3}
   - {fileID: 1364721059764218, guid: 9a8ba96e098d44746a0aa42632ce3878, type: 3}
@@ -48690,8 +48675,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3280274430527431840}
-  - component: {fileID: 6630019514505959738}
-  - component: {fileID: 8341025953851202310}
   - component: {fileID: 7760423348902016685}
   m_Layer: 0
   m_Name: RoomManagement
@@ -48714,57 +48697,6 @@ Transform:
   m_Father: {fileID: 4030621875282276}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6630019514505959738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2183321174289255595}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 794c4a1c3b8183542a89c8cd072e5739, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  craftData: {fileID: 11400000, guid: 03667f2d13e951f408175272bb9198a5, type: 2}
-  craftButton: {fileID: 0}
-  craftInfoPanel: {fileID: 0}
-  titleText: {fileID: 0}
-  descriptionText: {fileID: 0}
-  resource1Text: {fileID: 0}
-  resource2Text: {fileID: 0}
-  resource3Text: {fileID: 0}
---- !u!114 &8341025953851202310
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2183321174289255595}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 122c3190425dd2a4487324fe27bc173f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  upgradeButton: {fileID: 0}
-  buttonArray:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  craftData: {fileID: 11400000, guid: 03667f2d13e951f408175272bb9198a5, type: 2}
-  titleText: {fileID: 0}
-  descriptionText: {fileID: 0}
-  resource1Text: {fileID: 0}
-  resource2Text: {fileID: 0}
-  resource3Text: {fileID: 0}
 --- !u!114 &7760423348902016685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48777,8 +48709,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 029558f9818c274478e7ec56be4cf2f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  astronautSlots: 000000
-  warehouseSlots: 000000000000000000000000000000
   resourcesWarehouseSlots: 0000000000000000000000000000000000000000000000000000000000000000000000
   playerShipStats: {fileID: 114778194997285574}
   playerShipActions: {fileID: 114928841212499524}
