@@ -8,8 +8,6 @@ public class Scr_PlayerShipWarehouse : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] public Dictionary<string, int> Resources = new Dictionary<string, int>();
-    [SerializeField] public bool[] astronautSlots;
-    [SerializeField] public bool[] warehouseSlots;
     [SerializeField] public bool[] resourcesWarehouseSlots;
     [SerializeField] private Scr_PlayerShipStats playerShipStats;
     [SerializeField] private Scr_PlayerShipActions playerShipActions;
@@ -27,7 +25,6 @@ public class Scr_PlayerShipWarehouse : MonoBehaviour
 
     void Start ()
     {
-        boolControl();
         ReadNames();
 
         Resources.Add("Fuel", 0);
@@ -84,92 +81,6 @@ public class Scr_PlayerShipWarehouse : MonoBehaviour
         }
     }
 
-    //TOOL WAREHOUSE
-
-    private void boolControl()
-    {
-        for (int i = 0; i < astronautSlots.Length; i++)
-        {
-            if (astronautSlots[i] == true)
-            {
-                slot = true;
-                slotNumber = i;
-                break;
-            }
-
-            slot = false;
-        }
-
-        for (int i = 0; i < warehouseSlots.Length; i++)
-        {
-            if (warehouseSlots[i] == true)
-            {
-                warehouse = true;
-                warehouseNumber = i;
-                break;
-            }
-
-            warehouse = false;
-        }
-    }
-
-    public void Slot(int indice)
-    {
-        if (!slot && !warehouse)
-            astronautSlots[indice] = true;
-
-        else if (astronautSlots[indice])
-            astronautSlots[indice] = false;
-
-        else if (slot)
-        {
-            GameObject temporalObject = astronautStats.toolSlots[indice];
-            astronautStats.toolSlots[indice] = astronautStats.toolSlots[slotNumber];
-            astronautStats.toolSlots[slotNumber] = temporalObject;
-            ReadNames();
-            astronautSlots[slotNumber] = false;
-        }
-
-        else if (warehouse)
-        {
-            GameObject temporalObject = astronautStats.toolSlots[indice]; 
-            playerShipActions.TakeTool(warehouseNumber, indice);
-            playerShipStats.toolWarehouse[warehouseNumber] = temporalObject;
-            ReadNames();
-            warehouseSlots[warehouseNumber] = false;
-        }
-
-        boolControl();
-    }
-
-    public void Warehouse(int indice)
-    {
-        if (!slot && !warehouse)
-            warehouseSlots[indice] = true;
-
-        else if (warehouseSlots[indice])
-            warehouseSlots[indice] = false;
-
-        else if (warehouse)
-        {
-            GameObject temporalObject = playerShipStats.toolWarehouse[indice];
-            playerShipStats.toolWarehouse[indice] = playerShipStats.toolWarehouse[warehouseNumber];
-            playerShipStats.toolWarehouse[warehouseNumber] = temporalObject;
-            warehouseSlots[warehouseNumber] = false;
-        }
-
-        else if (slot)
-        {
-            GameObject temporalObject = playerShipStats.toolWarehouse[indice];
-            playerShipActions.SaveTool(slotNumber, indice);
-            astronautStats.toolSlots[slotNumber] = temporalObject;
-            ReadNames();
-            astronautSlots[slotNumber] = false;
-        }
-
-        boolControl();
-    }
-
     //RESOURCE WAREHOUSE
 
     public void ControlResources()
@@ -207,22 +118,13 @@ public class Scr_PlayerShipWarehouse : MonoBehaviour
 
     public void ReadNames()
     {
-        for (int i = 0; i < astronautStats.toolSlots.Length; i++)
+        for (int i = 0; i < astronautStats.toolSlots.Count; i++)
         {
             if (astronautStats.toolSlots[i] == null)
                 textToolSlots[i].text = "Empty";
 
             else
                 textToolSlots[i].text = astronautStats.toolSlots[i].GetComponent<Scr_ToolBase>().toolName;
-        }
-
-        for (int i = 0; i < playerShipStats.toolWarehouse.Length; i++)
-        {
-            if (playerShipStats.toolWarehouse[i] == null)
-                textToolWarehouse[i].text = "Empty";
-
-            else
-                textToolWarehouse[i].text = playerShipStats.toolWarehouse[i].GetComponent<Scr_ToolBase>().toolName;
         }
 
         for(int i = 0; i < playerShipStats.resourceWarehouse.Length; i++)
@@ -233,31 +135,5 @@ public class Scr_PlayerShipWarehouse : MonoBehaviour
             else
                 textResourcesWarehouse[i].text = playerShipStats.resourceWarehouse[i].name;
         }
-    }
-
-    //BUTTON RESET
-
-    public void ButtonReset()
-    {
-        for (int i = 0; i < astronautSlots.Length; i++)
-        {
-            astronautSlots[i] = false;
-        }
-
-        slot = false;
-
-        for (int i = 0; i < warehouseSlots.Length; i++)
-        {
-            warehouseSlots[i] = false;
-        }
-
-        warehouse = false;
-
-        for (int i = 0; i < resourcesWarehouseSlots.Length; i++)
-        {
-            resourcesWarehouseSlots[i] = false;
-        }
-
-        resourceWarehouse = false;
     }
 }
