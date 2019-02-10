@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Scr_WorkshopFilters : MonoBehaviour
-{
+{/*
     [Header("References")]
     [SerializeField] private Scr_PlayerShipLaboratory playerShipLaboratory;
     [SerializeField] private Scr_CraftData craftData;
-    /*
+    
 
     private int currentCategory = 1;
 
