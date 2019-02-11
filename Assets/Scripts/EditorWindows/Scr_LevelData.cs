@@ -6,6 +6,7 @@ using UnityEngine;
 public class Scr_LevelInfo
 {
     public string m_name;
+    public string levelTitle;
     public int experienceNeeded;
 
     public List<int> levelRewards = new List<int>();
