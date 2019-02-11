@@ -43,6 +43,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
     [SerializeField] public Animator anim_FuelPanel;
     [SerializeField] public Animator anim_ShieldPanel;
     [SerializeField] public Scr_LevelData levelData;
+    [SerializeField] public Scr_CraftData craftData;
 
     [Header("Inventory")]
     [SerializeField] public GameObject[] resourceWarehouse;
@@ -200,8 +201,13 @@ public class Scr_PlayerShipStats : MonoBehaviour
         if(levelData.LevelList[level - 1].experienceNeeded < experience)
         {
             level += 1;
+              
+            for(int i = 0; i < levelData.LevelList[level - 1].levelRewards.Count; i++)
+            {
+                craftData.CraftList[levelData.LevelList[level - 1].levelRewards[i]].crafteable = true;
+            }
+
             //animacion de subida de nivel
-            //activar los rewards del nivel
         }
     }
 }
