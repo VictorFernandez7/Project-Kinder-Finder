@@ -201,14 +201,24 @@ public class Scr_PlayerShipStats : MonoBehaviour
 
         if (levelData.LevelList[level - 1].experienceNeeded < experience)
         {
+            experience -= levelData.LevelList[level - 1].experienceNeeded;
             level += 1;
-              
-            for (int i = 0; i < levelData.LevelList[level - 1].levelRewards.Count; i++)
+
+            if (i < levelData.LevelList[level - 1].levelRewards.Count == 2)
             {
-                craftData.CraftList[levelData.LevelList[level - 1].levelRewards[i]].crafteable = true;
+                for (int i = 0; i < levelData.LevelList[level - 1].levelRewards.Count; i++)
+                {
+                    craftData.CraftList[levelData.LevelList[level - 1].levelRewards[i]].crafteable = true;
+                }
+
+                levelUpCanvas.UpdatePanelInfo(experience, levelData.LevelList[level].experienceNeeded, level, levelData.LevelList[level - 1].levelTitle, false, craftData.CraftList[levelData.LevelList[level - 1].levelRewards[0]].m_name, craftData.CraftList[levelData.LevelList[level - 1].levelRewards[0]].m_icon, craftData.CraftList[levelData.LevelList[level - 1].levelRewards[1]].m_name, craftData.CraftList[levelData.LevelList[level - 1].levelRewards[1]].m_icon);
             }
 
-            //levelUpCanvas.UpdatePanelInfo(experience, levelData.LevelList[level].experienceNeeded, level.ToString(), levelData.LevelList[level - 1].levelTitle);
+            else
+            {
+                craftData.CraftList[levelData.LevelList[level - 1].levelRewards[0]].crafteable = true;
+                levelUpCanvas.UpdatePanelInfo(experience, levelData.LevelList[level].experienceNeeded, level, levelData.LevelList[level - 1].levelTitle, false, craftData.CraftList[levelData.LevelList[level - 1].levelRewards[0]].m_name, craftData.CraftList[levelData.LevelList[level - 1].levelRewards[0]].m_icon, null, null);
+            }
         }
     }
 }

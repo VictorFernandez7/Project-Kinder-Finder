@@ -6,7 +6,7 @@ using UnityEngine;
 public class Scr_CraftInfo
 {
     public string m_name;
-    public SVGImage m_icon;
+    public Image m_icon;
 
     [Header("Info")]
     public string m_info;
