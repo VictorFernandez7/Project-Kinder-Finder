@@ -167,6 +167,7 @@ public class Scr_LevelEditor : EditorWindow
         viewIndex = EditorGUILayout.Popup(_choicesIndex, _choices) + 1;
 
         GUILayout.Space(10);
+        inventoryItemList.LevelList[viewIndex - 1].levelTitle = EditorGUILayout.TextField("Title", inventoryItemList.CraftList[viewIndex - 1].levelTitle as string);
         inventoryItemList.LevelList[viewIndex - 1].experienceNeeded = EditorGUILayout.IntField("ExperienceNeeded", inventoryItemList.LevelList[viewIndex - 1].experienceNeeded);
 
         GUILayout.Space(10);
