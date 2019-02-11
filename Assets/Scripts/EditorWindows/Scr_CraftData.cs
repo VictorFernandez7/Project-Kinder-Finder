@@ -17,6 +17,8 @@ public class Scr_CraftInfo
 
     public CraftType craftType;
     public CraftResultType craftResultType;
+
+    public bool crafteable;
 }
 
 public enum CraftType

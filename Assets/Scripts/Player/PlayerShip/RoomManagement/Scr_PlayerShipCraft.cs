@@ -167,6 +167,7 @@ public class Scr_PlayerShipCraft : MonoBehaviour {
             }
         }
 
+        craftData.CraftList[craftIndex].crafteable = false;
         GenerateCraft();
     }
 
