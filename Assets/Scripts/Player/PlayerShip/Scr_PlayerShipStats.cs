@@ -44,6 +44,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
     [SerializeField] public Animator anim_ShieldPanel;
     [SerializeField] public Scr_LevelData levelData;
     [SerializeField] public Scr_CraftData craftData;
+    [SerializeField] public Scr_LevelUpCanvas levelUpCanvas;
 
     [Header("Inventory")]
     [SerializeField] public GameObject[] resourceWarehouse;
@@ -198,16 +199,16 @@ public class Scr_PlayerShipStats : MonoBehaviour
     {
         experience += amount;
 
-        if(levelData.LevelList[level - 1].experienceNeeded < experience)
+        if (levelData.LevelList[level - 1].experienceNeeded < experience)
         {
             level += 1;
               
-            for(int i = 0; i < levelData.LevelList[level - 1].levelRewards.Count; i++)
+            for (int i = 0; i < levelData.LevelList[level - 1].levelRewards.Count; i++)
             {
                 craftData.CraftList[levelData.LevelList[level - 1].levelRewards[i]].crafteable = true;
             }
 
-            //animacion de subida de nivel
+            levelUpCanvas.UpdatePanelInfo(experience, levelData.LevelList[level].experienceNeeded, level.ToString(), levelData.LevelList[level - 1].levelTitle);
         }
     }
 }
