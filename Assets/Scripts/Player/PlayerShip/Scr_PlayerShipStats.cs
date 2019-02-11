@@ -208,7 +208,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
                 craftData.CraftList[levelData.LevelList[level - 1].levelRewards[i]].crafteable = true;
             }
 
-            levelUpCanvas.UpdatePanelInfo(experience, levelData.LevelList[level].experienceNeeded, level.ToString(), levelData.LevelList[level - 1].levelTitle);
+            //levelUpCanvas.UpdatePanelInfo(experience, levelData.LevelList[level].experienceNeeded, level.ToString(), levelData.LevelList[level - 1].levelTitle);
         }
     }
 }
