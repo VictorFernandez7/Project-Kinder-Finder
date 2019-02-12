@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.EventSystems;
+﻿using UnityEngine.EventSystems;
 using UnityEngine;
-using TMPro;
 
 public class Scr_MainButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
@@ -12,6 +9,7 @@ public class Scr_MainButton : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     [Header("References")]
     [SerializeField] private Animator filesAnim;
 
+    private bool filesActive;
     private Animator anim;
 
     private enum DesiredButton
@@ -29,7 +27,14 @@ public class Scr_MainButton : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        anim.SetBool("ShowText", true);
+        if (desiredButton == DesiredButton.Files)
+        {
+            if (!filesActive)
+                anim.SetBool("ShowText", true);
+        }
+
+        else
+            anim.SetBool("ShowText", true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -43,14 +48,12 @@ public class Scr_MainButton : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         {
             case DesiredButton.Warehouse:
                 filesAnim.SetBool("ShowButtons", false);
+                filesActive = false;
                 break;
             case DesiredButton.Files:
                 filesAnim.SetBool("ShowButtons", true);
-                break;
-            case DesiredButton.Planets:
-                break;
-            case DesiredButton.Treasure:
+                filesActive = true;
                 break;
         }
     }
-} 
+}

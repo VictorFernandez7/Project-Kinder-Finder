@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Scr_3DButton : MonoBehaviour
 {
@@ -10,16 +8,25 @@ public class Scr_3DButton : MonoBehaviour
     [Header("Select System Number")]
     [Range(0, 7)] [SerializeField] private int systemNumber;
 
+    [Header("Planet Panel")]
+    [SerializeField] private float delay;
+
     [Header("References (All)")]
     [SerializeField] private Scr_SunButton sunButton;
     [SerializeField] private GameObject indicator;
 
     [Header("References (Planet)")]
-    [SerializeField] private GameObject mainCamera;
-    [SerializeField] private GameObject canvas;
+    [SerializeField] private Transform cameraSpot;
+    [SerializeField] private Scr_PlanetPanel planetPanel;
 
     [Header("References (System)")]
+    [SerializeField] private Scr_FilesPanelAnimator filesPanelAnimator;
     [SerializeField] private GameObject[] systems;
+    [SerializeField] private GameObject[] planets;
+
+    private bool timerOn;
+    private float savedDelay;
+    private Scr_PlanetPanelInfo planetPanelInfo;
 
     private enum ButtonType
     {
@@ -27,10 +34,23 @@ public class Scr_3DButton : MonoBehaviour
         Planet
     }
 
+    private void Start()
+    {
+        planetPanelInfo = GetComponent<Scr_PlanetPanelInfo>();
+
+        savedDelay = delay;
+    }
+
     private void Update()
     {
         if (buttonType == ButtonType.Planet)
-            UpdateCanvasPosition();
+        {
+            DelayTimer();
+            CheckPanel();
+        }
+
+        if (buttonType == ButtonType.System)
+            CheckAnimation();
     }
 
     private void OnMouseOver()
@@ -41,7 +61,7 @@ public class Scr_3DButton : MonoBehaviour
         {
             if (buttonType == ButtonType.System)
             {
-                sunButton.interfacelevel = Scr_SunButton.Interfacelevel.PlanetSelection;
+                sunButton.interfaceLevel = Scr_SunButton.InterfaceLevel.PlanetSelection;
 
                 for (int i = 0; i < systems.Length; i++)
                 {
@@ -54,7 +74,13 @@ public class Scr_3DButton : MonoBehaviour
             }
 
             else if (buttonType == ButtonType.Planet)
-                sunButton.interfacelevel = Scr_SunButton.Interfacelevel.PlanetInfo;
+            {
+                sunButton.interfaceLevel = Scr_SunButton.InterfaceLevel.PlanetInfo;
+
+                planetPanel.UpdatePanelInfo(planetPanelInfo.planetName, planetPanelInfo.highTemp, planetPanelInfo.lowTemp, planetPanelInfo.toxic, planetPanelInfo.jetpack, planetPanelInfo.res1, planetPanelInfo.res2, planetPanelInfo.res3, planetPanelInfo.res4, planetPanelInfo.res5, planetPanelInfo.history);
+                sunButton.targetCameraPos = cameraSpot.position;
+                timerOn = true;
+            }
         }
     }
 
@@ -63,10 +89,43 @@ public class Scr_3DButton : MonoBehaviour
         indicator.SetActive(false);
     }
 
-    private void UpdateCanvasPosition()
+    private void CheckPanel()
     {
-        Vector3 desiredUp = mainCamera.transform.up;
+        if (Input.GetMouseButtonDown(1) && sunButton.planetPanel.activeInHierarchy)
+            sunButton.planetPanel.SetActive(false);
+    }
 
-        canvas.transform.rotation = Quaternion.Euler(desiredUp);
+    private void DelayTimer()
+    {
+        if (timerOn)
+        {
+            savedDelay -= Time.deltaTime;
+
+            if (savedDelay <= 0)
+            {
+                sunButton.planetPanel.SetActive(true);
+                savedDelay = delay;
+                timerOn = false;
+            }
+        }
+    }
+
+    private void CheckAnimation()
+    {
+        if (filesPanelAnimator.animationPlaying)
+        {
+            for (int i = 0; i < planets.Length; i++)
+            {
+                planets[i].GetComponent<Scr_SimpleRotation>().enabled = false;
+            }
+        }
+
+        else
+        {
+            for (int i = 0; i < planets.Length; i++)
+            {
+                planets[i].GetComponent<Scr_SimpleRotation>().enabled = true;
+            }
+        }
     }
 }
