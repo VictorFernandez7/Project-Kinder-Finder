@@ -20,7 +20,7 @@ public class Scr_3DButton : MonoBehaviour
     [SerializeField] private Scr_PlanetPanel planetPanel;
 
     [Header("References (System)")]
-    [SerializeField] private Animator anim;
+    [SerializeField] private Scr_FilesPanelAnimator filesPanelAnimator;
     [SerializeField] private GameObject[] systems;
     [SerializeField] private GameObject[] planets;
 
@@ -112,7 +112,7 @@ public class Scr_3DButton : MonoBehaviour
 
     private void CheckAnimation()
     {
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Anim_SystemToPlanet") || anim.GetCurrentAnimatorStateInfo(0).IsName("Anim_PlanetToSystem"))
+        if (filesPanelAnimator.animationPlaying)
         {
             for (int i = 0; i < planets.Length; i++)
             {
