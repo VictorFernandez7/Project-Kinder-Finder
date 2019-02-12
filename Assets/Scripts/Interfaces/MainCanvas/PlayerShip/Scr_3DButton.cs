@@ -19,12 +19,14 @@ public class Scr_3DButton : MonoBehaviour
 
     [Header("References (Planet)")]
     [SerializeField] private Transform cameraSpot;
+    [SerializeField] private Scr_PlanetPanel planetPanel;
 
     [Header("References (System)")]
     [SerializeField] private GameObject[] systems;
 
     private bool timerOn;
     private float savedDelay;
+    private Scr_PlanetPanelInfo planetPanelInfo;
 
     private enum ButtonType
     {
@@ -34,6 +36,8 @@ public class Scr_3DButton : MonoBehaviour
 
     private void Start()
     {
+        planetPanelInfo = GetComponent<Scr_PlanetPanelInfo>();
+
         savedDelay = delay;
     }
 
@@ -70,6 +74,7 @@ public class Scr_3DButton : MonoBehaviour
             {
                 sunButton.interfaceLevel = Scr_SunButton.InterfaceLevel.PlanetInfo;
 
+                planetPanel.UpdatePanelInfo(planetPanelInfo.planetName, planetPanelInfo.highTemp, planetPanelInfo.lowTemp, planetPanelInfo.toxic, planetPanelInfo.jetpack, planetPanelInfo.res1, planetPanelInfo.res2, planetPanelInfo.res3, planetPanelInfo.res4, planetPanelInfo.res5, planetPanelInfo.history);
                 sunButton.targetCameraPos = cameraSpot.position;
                 timerOn = true;
             }
