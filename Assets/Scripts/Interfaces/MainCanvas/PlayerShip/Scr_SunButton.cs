@@ -10,11 +10,12 @@ public class Scr_SunButton : MonoBehaviour
 
     [Header("Camera Settings")]
     [SerializeField] private float cameraSpeed;
+    [SerializeField] private float xPositioning;
 
     [Header("References")]
+    [SerializeField] private Animator anim;
     [SerializeField] private GameObject planets;
     [SerializeField] private GameObject systems;
-    [SerializeField] private Animator anim;
     [SerializeField] private GameObject planetFilesCamera;
 
     [HideInInspector] public Vector3 targetCameraPos;
@@ -76,6 +77,12 @@ public class Scr_SunButton : MonoBehaviour
 
     private void CameraPosUpdate()
     {
-        planetFilesCamera.transform.position = Vector3.Lerp(planetFilesCamera.transform.position, targetCameraPos, Time.deltaTime * cameraSpeed);
+        Vector3 planetCameraPos = new Vector3(targetCameraPos.x + xPositioning, targetCameraPos.y, targetCameraPos.z);
+
+        if (interfaceLevel == InterfaceLevel.PlanetInfo)
+            planetFilesCamera.transform.position = Vector3.Lerp(planetFilesCamera.transform.position, planetCameraPos, Time.deltaTime * cameraSpeed);
+
+        else
+            planetFilesCamera.transform.position = Vector3.Lerp(planetFilesCamera.transform.position, targetCameraPos, Time.deltaTime * cameraSpeed);
     }
 }
