@@ -19,9 +19,6 @@ public class Scr_3DButton : MonoBehaviour
 
     [Header("References (Planet)")]
     [SerializeField] private Transform cameraSpot;
-    [SerializeField] private GameObject planetPanel;
-    [SerializeField] private GameObject planetCanvas;
-    [SerializeField] private GameObject planetFilesCamera;
 
     [Header("References (System)")]
     [SerializeField] private GameObject[] systems;
@@ -46,7 +43,6 @@ public class Scr_3DButton : MonoBehaviour
         {
             DelayTimer();
             CheckPanel();
-            UpdateCanvasRotation();
         }
     }
 
@@ -85,17 +81,10 @@ public class Scr_3DButton : MonoBehaviour
         indicator.SetActive(false);
     }
 
-    private void UpdateCanvasRotation()
-    {
-        Vector3 desiredUp = planetFilesCamera.transform.up;
-
-        planetCanvas.transform.rotation = Quaternion.Euler(desiredUp);
-    }
-
     private void CheckPanel()
     {
-        if (Input.GetMouseButtonDown(1) && planetPanel.activeInHierarchy)
-            planetPanel.SetActive(false);
+        if (Input.GetMouseButtonDown(1) && sunButton.planetPanel.activeInHierarchy)
+            sunButton.planetPanel.SetActive(false);
     }
 
     private void DelayTimer()
@@ -106,7 +95,7 @@ public class Scr_3DButton : MonoBehaviour
 
             if (savedDelay <= 0)
             {
-                planetPanel.SetActive(true);
+                sunButton.planetPanel.SetActive(true);
                 savedDelay = delay;
                 timerOn = false;
             }

@@ -13,9 +13,11 @@ public class Scr_SunButton : MonoBehaviour
     [SerializeField] private float xPositioning;
 
     [Header("References")]
+    [SerializeField] public GameObject planetPanel;
     [SerializeField] private Animator anim;
     [SerializeField] private GameObject planets;
     [SerializeField] private GameObject systems;
+    [SerializeField] private GameObject dragText;
     [SerializeField] private GameObject planetFilesCamera;
 
     [HideInInspector] public Vector3 targetCameraPos;
@@ -52,8 +54,10 @@ public class Scr_SunButton : MonoBehaviour
             case InterfaceLevel.PlanetSelection:
                 anim.SetInteger("InterfaceLevel", 1);
                 targetCameraPos = initialCameraPos;
+                dragText.SetActive(true);
                 break;
             case InterfaceLevel.PlanetInfo:
+                dragText.SetActive(false);
                 // panel show
                 break;
         }
