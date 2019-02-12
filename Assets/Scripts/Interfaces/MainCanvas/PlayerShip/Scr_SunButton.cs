@@ -6,50 +6,76 @@ using UnityEngine;
 public class Scr_SunButton : MonoBehaviour
 {
     [Header("Current Interface Level")]
-    [SerializeField] public Interfacelevel interfacelevel;
+    [SerializeField] public InterfaceLevel interfaceLevel;
+
+    [Header("Camera Settings")]
+    [SerializeField] private float cameraSpeed;
 
     [Header("References")]
     [SerializeField] private GameObject planets;
     [SerializeField] private GameObject systems;
     [SerializeField] private Animator anim;
+    [SerializeField] private GameObject planetFilesCamera;
 
-    public enum Interfacelevel
+    [HideInInspector] public Vector3 targetCameraPos;
+
+    private Vector3 initialCameraPos;
+
+    public enum InterfaceLevel
     {
         SystemSelection,
         PlanetSelection,
         PlanetInfo
     }
 
+    private void Start()
+    {
+        initialCameraPos = planetFilesCamera.transform.position;
+        targetCameraPos = initialCameraPos;
+    }
+
     private void Update()
     {
-        LevelCheck();
+        InputCheck();
+        CameraPosUpdate();
+        InterfaceLevelCheck();
+    }
 
+    private void InterfaceLevelCheck()
+    {
+        switch (interfaceLevel)
+        {
+            case InterfaceLevel.SystemSelection:
+                anim.SetInteger("InterfaceLevel", 0);
+                break;
+            case InterfaceLevel.PlanetSelection:
+                anim.SetInteger("InterfaceLevel", 1);
+                targetCameraPos = initialCameraPos;
+                break;
+            case InterfaceLevel.PlanetInfo:
+                // panel show
+                break;
+        }
+    }
+
+    private void InputCheck()
+    {
         if (Input.GetMouseButtonDown(1))
         {
-            switch (interfacelevel)
+            switch (interfaceLevel)
             {
-                case Interfacelevel.PlanetSelection:
-                    interfacelevel = Interfacelevel.SystemSelection;
+                case InterfaceLevel.PlanetSelection:
+                    interfaceLevel = InterfaceLevel.SystemSelection;
                     break;
-                case Interfacelevel.PlanetInfo:
-                    interfacelevel = Interfacelevel.PlanetSelection;
+                case InterfaceLevel.PlanetInfo:
+                    interfaceLevel = InterfaceLevel.PlanetSelection;
                     break;
             }
         }
     }
 
-    private void LevelCheck()
+    private void CameraPosUpdate()
     {
-        switch (interfacelevel)
-        {
-            case Interfacelevel.SystemSelection:
-                anim.SetInteger("InterfaceLevel", 0);
-                break;
-            case Interfacelevel.PlanetSelection:
-                anim.SetInteger("InterfaceLevel", 1);
-                break;
-            case Interfacelevel.PlanetInfo:
-                break;
-        }
+        planetFilesCamera.transform.position = Vector3.Lerp(planetFilesCamera.transform.position, targetCameraPos, Time.deltaTime * cameraSpeed);
     }
 }

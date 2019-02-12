@@ -15,8 +15,7 @@ public class Scr_3DButton : MonoBehaviour
     [SerializeField] private GameObject indicator;
 
     [Header("References (Planet)")]
-    [SerializeField] private GameObject mainCamera;
-    [SerializeField] private GameObject canvas;
+    [SerializeField] private Transform cameraSpot;
 
     [Header("References (System)")]
     [SerializeField] private GameObject[] systems;
@@ -27,12 +26,6 @@ public class Scr_3DButton : MonoBehaviour
         Planet
     }
 
-    private void Update()
-    {
-        if (buttonType == ButtonType.Planet)
-            UpdateCanvasPosition();
-    }
-
     private void OnMouseOver()
     {
         indicator.SetActive(true);
@@ -41,7 +34,7 @@ public class Scr_3DButton : MonoBehaviour
         {
             if (buttonType == ButtonType.System)
             {
-                sunButton.interfacelevel = Scr_SunButton.Interfacelevel.PlanetSelection;
+                sunButton.interfaceLevel = Scr_SunButton.InterfaceLevel.PlanetSelection;
 
                 for (int i = 0; i < systems.Length; i++)
                 {
@@ -54,19 +47,16 @@ public class Scr_3DButton : MonoBehaviour
             }
 
             else if (buttonType == ButtonType.Planet)
-                sunButton.interfacelevel = Scr_SunButton.Interfacelevel.PlanetInfo;
+            {
+                sunButton.interfaceLevel = Scr_SunButton.InterfaceLevel.PlanetInfo;
+
+                sunButton.targetCameraPos = cameraSpot.position;
+            }
         }
     }
 
     private void OnMouseExit()
     {
         indicator.SetActive(false);
-    }
-
-    private void UpdateCanvasPosition()
-    {
-        Vector3 desiredUp = mainCamera.transform.up;
-
-        canvas.transform.rotation = Quaternion.Euler(desiredUp);
     }
 }
