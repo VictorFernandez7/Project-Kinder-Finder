@@ -204,20 +204,20 @@ public class Scr_PlayerShipStats : MonoBehaviour
             experience -= levelData.LevelList[level - 1].experienceNeeded;
             level += 1;
 
-            if (i < levelData.LevelList[level - 1].levelRewards.Count == 2)
+            if (levelData.LevelList[level - 1].levelRewards.Count == 2)
             {
                 for (int i = 0; i < levelData.LevelList[level - 1].levelRewards.Count; i++)
                 {
                     craftData.CraftList[levelData.LevelList[level - 1].levelRewards[i]].crafteable = true;
                 }
 
-                levelUpCanvas.UpdatePanelInfo(experience, levelData.LevelList[level].experienceNeeded, level, levelData.LevelList[level - 1].levelTitle, false, craftData.CraftList[levelData.LevelList[level - 1].levelRewards[0]].m_name, craftData.CraftList[levelData.LevelList[level - 1].levelRewards[0]].m_icon, craftData.CraftList[levelData.LevelList[level - 1].levelRewards[1]].m_name, craftData.CraftList[levelData.LevelList[level - 1].levelRewards[1]].m_icon);
+                levelUpCanvas.UpdatePanelInfo(experience, levelData.LevelList[level].experienceNeeded, level.ToString(), levelData.LevelList[level - 1].levelTitle, false, craftData.CraftList[levelData.LevelList[level - 1].levelRewards[0]].m_name, craftData.CraftList[levelData.LevelList[level - 1].levelRewards[0]].m_icon, craftData.CraftList[levelData.LevelList[level - 1].levelRewards[1]].m_name, craftData.CraftList[levelData.LevelList[level - 1].levelRewards[1]].m_icon);
             }
 
             else
             {
                 craftData.CraftList[levelData.LevelList[level - 1].levelRewards[0]].crafteable = true;
-                levelUpCanvas.UpdatePanelInfo(experience, levelData.LevelList[level].experienceNeeded, level, levelData.LevelList[level - 1].levelTitle, false, craftData.CraftList[levelData.LevelList[level - 1].levelRewards[0]].m_name, craftData.CraftList[levelData.LevelList[level - 1].levelRewards[0]].m_icon, null, null);
+                levelUpCanvas.UpdatePanelInfo(experience, levelData.LevelList[level].experienceNeeded, level.ToString(), levelData.LevelList[level - 1].levelTitle, false, craftData.CraftList[levelData.LevelList[level - 1].levelRewards[0]].m_name, craftData.CraftList[levelData.LevelList[level - 1].levelRewards[0]].m_icon, null, null);
             }
         }
     }
