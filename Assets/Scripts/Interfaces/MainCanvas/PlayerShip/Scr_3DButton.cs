@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Scr_3DButton : MonoBehaviour
 {
@@ -22,7 +20,9 @@ public class Scr_3DButton : MonoBehaviour
     [SerializeField] private Scr_PlanetPanel planetPanel;
 
     [Header("References (System)")]
+    [SerializeField] private Animator anim;
     [SerializeField] private GameObject[] systems;
+    [SerializeField] private GameObject[] planets;
 
     private bool timerOn;
     private float savedDelay;
@@ -48,6 +48,9 @@ public class Scr_3DButton : MonoBehaviour
             DelayTimer();
             CheckPanel();
         }
+
+        if (buttonType == ButtonType.System)
+            CheckAnimation();
     }
 
     private void OnMouseOver()
@@ -103,6 +106,25 @@ public class Scr_3DButton : MonoBehaviour
                 sunButton.planetPanel.SetActive(true);
                 savedDelay = delay;
                 timerOn = false;
+            }
+        }
+    }
+
+    private void CheckAnimation()
+    {
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Anim_SystemToPlanet") || anim.GetCurrentAnimatorStateInfo(0).IsName("Anim_PlanetToSystem"))
+        {
+            for (int i = 0; i < planets.Length; i++)
+            {
+                planets[i].GetComponent<Scr_SimpleRotation>().enabled = false;
+            }
+        }
+
+        else
+        {
+            for (int i = 0; i < planets.Length; i++)
+            {
+                planets[i].GetComponent<Scr_SimpleRotation>().enabled = true;
             }
         }
     }
