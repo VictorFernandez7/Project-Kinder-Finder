@@ -7,14 +7,25 @@ public class Scr_MainMenuButton : MonoBehaviour
     [Header("Select Button")]
     [SerializeField] private MainMenuButton mainMenuButton;
 
+    [Header("Select Model")]
+    [SerializeField] private Model model;
+
     [Header("Internal References")]
     [SerializeField] private Animator canvasAnim;
     [SerializeField] private Transform cameraSpot;
     [SerializeField] private GameObject visuals;
     [SerializeField] private GameObject indicator;
     [SerializeField] private TextMeshProUGUI buttonText;
+
+    [Header("External References")]
     [SerializeField] private Scr_MainMenuManager mainMenuManager;
 
+    [Header("Model References")]
+    [SerializeField] private GameObject planet1;
+    [SerializeField] private GameObject planet2;
+    [SerializeField] private GameObject asteroid;
+
+    private bool blocked;
     private Scr_ButtonVisuals buttonVisuals;
 
     private enum MainMenuButton
@@ -33,45 +44,72 @@ public class Scr_MainMenuButton : MonoBehaviour
         Exit
     }
 
+    private enum Model
+    {
+        Planet1,
+        Planet2,
+        Asteroid
+    }
+
     private void Start()
     {
+        SetModel();
+        SetButtonName();
+
         buttonVisuals = GetComponentInChildren<Scr_ButtonVisuals>();
         GetComponent<SphereCollider>().radius = visuals.transform.localScale.x / 100;
         buttonText.enabled = false;
-
-        SetButtonName();
     }
 
     private void Update()
     {
         indicator.transform.LookAt(mainMenuManager.mainCamera.transform);
+
+        if ((mainMenuButton == MainMenuButton.Play || mainMenuButton == MainMenuButton.Settings || mainMenuButton == MainMenuButton.AboutUs))
+        {
+            if (mainMenuManager.mainMenuLevel == Scr_MainMenuManager.MainMenuLevel.Main)
+            {
+                buttonVisuals.rotate = true;
+                canvasAnim.SetBool("ShowText", false);
+                blocked = true;
+            }
+
+            else
+                blocked = false;
+        }
     }
 
     private void OnMouseOver()
     {
-        buttonText.enabled = true;
-        buttonVisuals.rotate = true;
-        canvasAnim.SetBool("ShowText", true);
-
-        if (Input.GetMouseButtonDown(0))
+        if (!blocked)
         {
-            mainMenuManager.currentCameraPos = cameraSpot.position;
+            buttonText.enabled = true;
+            buttonVisuals.rotate = true;
+            canvasAnim.SetBool("ShowText", true);
 
-            if (mainMenuButton == MainMenuButton.Play || mainMenuButton == MainMenuButton.Settings || mainMenuButton == MainMenuButton.AboutUs)
+            if (Input.GetMouseButtonDown(0))
             {
-                mainMenuManager.mainMenuLevel = Scr_MainMenuManager.MainMenuLevel.Main;
-                mainMenuManager.savedMainSpot = cameraSpot.position;
-            }
+                mainMenuManager.currentCameraPos = cameraSpot.position;
 
-            else
-                mainMenuManager.mainMenuLevel = Scr_MainMenuManager.MainMenuLevel.Secondary;
+                if (mainMenuButton == MainMenuButton.Play || mainMenuButton == MainMenuButton.Settings || mainMenuButton == MainMenuButton.AboutUs)
+                {
+                    mainMenuManager.mainMenuLevel = Scr_MainMenuManager.MainMenuLevel.Main;
+                    mainMenuManager.savedMainSpot = cameraSpot.position;
+                }
+
+                else
+                    mainMenuManager.mainMenuLevel = Scr_MainMenuManager.MainMenuLevel.Secondary;
+            }
         }
     }
 
     private void OnMouseExit()
     {
-        buttonVisuals.rotate = false;
-        canvasAnim.SetBool("ShowText", false);
+        if (!blocked)
+        {
+            buttonVisuals.rotate = false;
+            canvasAnim.SetBool("ShowText", false);
+        }
     }
 
     private void SetButtonName()
@@ -113,6 +151,31 @@ public class Scr_MainMenuButton : MonoBehaviour
                 break;
             case MainMenuButton.Exit:
                 buttonText.text = "EXIT";
+                break;
+        }
+    }
+
+    private void SetModel()
+    {
+        switch (model)
+        {
+            case Model.Planet1:
+                planet1.SetActive(true);
+                planet2.SetActive(false);
+                asteroid.SetActive(false);
+                visuals = planet1;
+                break;
+            case Model.Planet2:
+                planet1.SetActive(false);
+                planet2.SetActive(true);
+                asteroid.SetActive(false);
+                visuals = planet2;
+                break;
+            case Model.Asteroid:
+                planet1.SetActive(false);
+                planet2.SetActive(false);
+                asteroid.SetActive(true);
+                visuals = asteroid;
                 break;
         }
     }
