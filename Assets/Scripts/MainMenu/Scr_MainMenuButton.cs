@@ -4,28 +4,223 @@ using TMPro;
 
 public class Scr_MainMenuButton : MonoBehaviour
 {
-    [Header("References")]
-    [SerializeField] private GameObject visuals;
+    [Header("Select Button")]
+    [SerializeField] private MainMenuButton mainMenuButton;
+
+    [Header("Select Model")]
+    [SerializeField] private Model model;
+
+    [Header("Internal References")]
     [SerializeField] private Animator canvasAnim;
+    [SerializeField] private Transform cameraSpot;
+    [SerializeField] private GameObject visuals;
+    [SerializeField] private GameObject indicator;
     [SerializeField] private TextMeshProUGUI buttonText;
 
+    [Header("External References")]
+    [SerializeField] private Scr_MainMenuManager mainMenuManager;
+
+    [Header("Model References")]
+    [SerializeField] private GameObject planet1;
+    [SerializeField] private GameObject planet2;
+    [SerializeField] private GameObject asteroid;
+
+    private bool blocked;
     private Scr_ButtonVisuals buttonVisuals;
+
+    private enum MainMenuButton
+    {
+        Play,
+        ContinueGame,
+        NewGame,
+        LoadGame,
+        Settings,
+        AudioSettings,
+        VideoSettings,
+        GameSettings,
+        AboutUs,
+        Team,
+        RRSS,
+        Exit
+    }
+
+    private enum Model
+    {
+        Planet1,
+        Planet2,
+        Asteroid
+    }
 
     private void Start()
     {
-        buttonVisuals = GetComponentInChildren<Scr_ButtonVisuals>();
+        SetModel();
+        SetButtonName();
 
+        buttonVisuals = GetComponentInChildren<Scr_ButtonVisuals>();
         GetComponent<SphereCollider>().radius = visuals.transform.localScale.x / 100;
-        buttonText.color = Color.clear;
+        buttonText.enabled = false;
     }
 
-    private void OnMouseEnter()
+    private void Update()
     {
-        buttonVisuals.rotate = true;
+        indicator.transform.LookAt(mainMenuManager.mainCamera.transform);
+
+        if ((mainMenuButton == MainMenuButton.Play || mainMenuButton == MainMenuButton.Settings || mainMenuButton == MainMenuButton.AboutUs))
+        {
+            if (mainMenuManager.mainMenuLevel == Scr_MainMenuManager.MainMenuLevel.Main)
+            {
+                buttonVisuals.rotate = true;
+                canvasAnim.SetBool("ShowText", false);
+                blocked = true;
+            }
+
+            else
+            {
+                if (blocked)
+                {
+                    buttonVisuals.rotate = false;
+                    blocked = false;
+                }
+            }
+        }
+
+        else if (mainMenuButton == MainMenuButton.ContinueGame || mainMenuButton == MainMenuButton.NewGame || mainMenuButton == MainMenuButton.LoadGame || mainMenuButton == MainMenuButton.AudioSettings || mainMenuButton == MainMenuButton.VideoSettings || mainMenuButton == MainMenuButton.GameSettings || mainMenuButton == MainMenuButton.Team || mainMenuButton == MainMenuButton.RRSS)
+        {
+            if (mainMenuManager.mainMenuLevel == Scr_MainMenuManager.MainMenuLevel.Secondary)
+            {
+                buttonVisuals.rotate = true;
+                canvasAnim.SetBool("ShowText", false);
+                blocked = true;
+            }
+
+            else
+            {
+                if (blocked)
+                {
+                    buttonVisuals.rotate = false;
+                    blocked = false;
+                }
+            }
+        }
+    }
+
+    private void OnMouseOver()
+    {
+        if (!blocked)
+        {
+            buttonText.enabled = true;
+            buttonVisuals.rotate = true;
+            canvasAnim.SetBool("ShowText", true);
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                mainMenuManager.currentCameraPos = cameraSpot.position;
+
+                if (mainMenuButton == MainMenuButton.Play || mainMenuButton == MainMenuButton.Settings || mainMenuButton == MainMenuButton.AboutUs)
+                {
+                    mainMenuManager.mainMenuLevel = Scr_MainMenuManager.MainMenuLevel.Main;
+                    mainMenuManager.savedMainSpot = cameraSpot.position;
+
+                    switch (mainMenuButton)
+                    {
+                        case MainMenuButton.Play:
+                            mainMenuManager.playButtons.SetActive(true);
+                            mainMenuManager.settingsButtons.SetActive(false);
+                            mainMenuManager.aboutUsButtons.SetActive(false);
+                            break;
+                        case MainMenuButton.Settings:
+                            mainMenuManager.playButtons.SetActive(false);
+                            mainMenuManager.settingsButtons.SetActive(true);
+                            mainMenuManager.aboutUsButtons.SetActive(false);
+                            break;
+                        case MainMenuButton.AboutUs:
+                            mainMenuManager.playButtons.SetActive(false);
+                            mainMenuManager.settingsButtons.SetActive(false);
+                            mainMenuManager.aboutUsButtons.SetActive(true);
+                            break;
+                    }
+                }
+
+                else
+                    mainMenuManager.mainMenuLevel = Scr_MainMenuManager.MainMenuLevel.Secondary;
+            }
+        }
     }
 
     private void OnMouseExit()
     {
-        buttonVisuals.rotate = false;
+        if (!blocked)
+        {
+            buttonVisuals.rotate = false;
+            canvasAnim.SetBool("ShowText", false);
+        }
+    }
+
+    private void SetButtonName()
+    {
+        switch (mainMenuButton)
+        {
+            case MainMenuButton.Play:
+                buttonText.text = "PLAY";
+                break;
+            case MainMenuButton.ContinueGame:
+                buttonText.text = "CONTINUE";
+                break;
+            case MainMenuButton.NewGame:
+                buttonText.text = "NEW";
+                break;
+            case MainMenuButton.LoadGame:
+                buttonText.text = "LOAD";
+                break;
+            case MainMenuButton.Settings:
+                buttonText.text = "SETTINGS";
+                break;
+            case MainMenuButton.AudioSettings:
+                buttonText.text = "AUDIO";
+                break;
+            case MainMenuButton.VideoSettings:
+                buttonText.text = "VIDEO";
+                break;
+            case MainMenuButton.GameSettings:
+                buttonText.text = "GAME";
+                break;
+            case MainMenuButton.AboutUs:
+                buttonText.text = "ABOUT US";
+                break;
+            case MainMenuButton.Team:
+                buttonText.text = "TEAM";
+                break;
+            case MainMenuButton.RRSS:
+                buttonText.text = "RRSS";
+                break;
+            case MainMenuButton.Exit:
+                buttonText.text = "EXIT";
+                break;
+        }
+    }
+
+    private void SetModel()
+    {
+        switch (model)
+        {
+            case Model.Planet1:
+                planet1.SetActive(true);
+                planet2.SetActive(false);
+                asteroid.SetActive(false);
+                visuals = planet1;
+                break;
+            case Model.Planet2:
+                planet1.SetActive(false);
+                planet2.SetActive(true);
+                asteroid.SetActive(false);
+                visuals = planet2;
+                break;
+            case Model.Asteroid:
+                planet1.SetActive(false);
+                planet2.SetActive(false);
+                asteroid.SetActive(true);
+                visuals = asteroid;
+                break;
+        }
     }
 }
