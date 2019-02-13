@@ -12,9 +12,7 @@ public class Scr_PlayerShipWarehouse : MonoBehaviour
     [SerializeField] private Scr_PlayerShipStats playerShipStats;
     [SerializeField] private Scr_PlayerShipActions playerShipActions;
     [SerializeField] private Scr_AstronautStats astronautStats;
-    [SerializeField] private TextMeshProUGUI[] textToolSlots;
-    [SerializeField] private TextMeshProUGUI[] textToolWarehouse;
-    [SerializeField] private TextMeshProUGUI[] textResourcesWarehouse;
+    [SerializeField] private Image[] iconResourcesWarehouse;
 
     [HideInInspector] public bool slot;
     [HideInInspector] public bool warehouse;
@@ -119,12 +117,12 @@ public class Scr_PlayerShipWarehouse : MonoBehaviour
     public void ReadNames()
     {
         for (int i = 0; i < playerShipStats.resourceWarehouse.Length; i++)
-        {/*
+        {
             if (playerShipStats.resourceWarehouse[i] == null)
-                textResourcesWarehouse[i].text = "Empty";
+                iconResourcesWarehouse[i] = null;
 
             else
-                textResourcesWarehouse[i].text = playerShipStats.resourceWarehouse[i].name;*/
+                iconResourcesWarehouse[i]= playerShipStats.resourceWarehouse[i].GetComponent<Scr_Resource>().icon;
         }
     }
 }
