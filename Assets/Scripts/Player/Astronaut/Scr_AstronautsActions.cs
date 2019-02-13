@@ -16,6 +16,7 @@ public class Scr_AstronautsActions : MonoBehaviour
     [SerializeField] private GameObject lantern;
     [SerializeField] private Scr_SunLight sunLight;
     [SerializeField] private Scr_PlayerShipProxCheck playerShipProxCheck;
+    [SerializeField] private int maxResourcesCapacity;
 
     [HideInInspector] public bool emptyHands;
     [HideInInspector] public bool toolOnHands;
@@ -26,7 +27,7 @@ public class Scr_AstronautsActions : MonoBehaviour
     private float holdInputTime = 0.9f;
     private bool canInputAgain = true;
     
-    private GameObject currentResource;
+    private List<GameObject> currentResource = new List<GameObject>();
     private Scr_CableVisuals cableVisuals;
     private Scr_AstronautMovement astronautMovement;
     private Scr_AstronautStats astronautStats;
@@ -88,16 +89,24 @@ public class Scr_AstronautsActions : MonoBehaviour
                     if (i != 0)
                     {
                         if (Vector3.Project(astronautResourcesCheck.resourceList[i].transform.position, transform.up).magnitude > Vector3.Project(astronautResourcesCheck.resourceList[i - 1].transform.position, transform.up).magnitude)
-                            currentResource = astronautResourcesCheck.resourceList[i];
+                            currentResource.Add(astronautResourcesCheck.resourceList[i]);
                     }
 
                     else
-                        currentResource = astronautResourcesCheck.resourceList[i];
+                        currentResource.Add(astronautResourcesCheck.resourceList[i]);
                 }
 
-                currentResource.transform.position = pickPoint.position;
-                currentResource.transform.SetParent(pickPoint);
-                emptyHands = false;
+                if(currentResource.Count == 1)
+                {
+                    currentResource[0].transform.position = pickPoint.position;
+                    currentResource[0].transform.SetParent(pickPoint);
+                    emptyHands = false;
+                }
+
+                else if (currentResource.Count > 1 && currentResource.Count <= maxResourcesCapacity)
+                {
+                    //IA SLOTS
+                }
             }
 
             else if (toolOnFloor != null && toolOnFloor.GetComponent<Scr_ToolBase>().resourceAmount <= 0)
@@ -134,19 +143,22 @@ public class Scr_AstronautsActions : MonoBehaviour
 
     private void IntroduceResource()
     {
-        if (currentResource.CompareTag("Resources"))
+        for (int i = 0; i < currentResource.Count; i++)
         {
-            for (int i = 0; i < playerShip.GetComponent<Scr_PlayerShipStats>().resourceWarehouse.Length; i++)
+            if (currentResource[i].CompareTag("Resources"))
             {
-                if (playerShip.GetComponent<Scr_PlayerShipStats>().resourceWarehouse[i] == null)
+                for (int j = 0; j < playerShip.GetComponent<Scr_PlayerShipStats>().resourceWarehouse.Length; j++)
                 {
-                    playerShip.GetComponent<Scr_PlayerShipStats>().resourceWarehouse[i] = currentResource.GetComponent<Scr_Resource>().resourceReference;
-                    break;
-                } 
+                    if (playerShip.GetComponent<Scr_PlayerShipStats>().resourceWarehouse[j] == null)
+                    {
+                        playerShip.GetComponent<Scr_PlayerShipStats>().resourceWarehouse[j] = currentResource[i].GetComponent<Scr_Resource>().resourceReference;
+                        break;
+                    }
+                }
             }
+            currentResource.Clear();
         }
 
-        Destroy(currentResource);
         emptyHands = true;
     }
 

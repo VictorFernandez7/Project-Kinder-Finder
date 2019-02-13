@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Scr_Resource : MonoBehaviour
 {
     [Header("Resource Properties")]
     [SerializeField] private ResourceType resourceType;
     [SerializeField] private int typeIndex;
+    [SerializeField] public Image icon;
 
     [Header("Physics")]
     [SerializeField] private float gravity;
