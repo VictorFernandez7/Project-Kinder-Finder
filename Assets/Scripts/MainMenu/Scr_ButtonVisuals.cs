@@ -8,6 +8,7 @@ public class Scr_ButtonVisuals : MonoBehaviour
     [SerializeField] private Material[] planetMaterials;
 
     [Header("Rotation Parameters")]
+    [SerializeField] private bool alwaysRotate;
     [SerializeField] private bool randomRotation;
     [SerializeField] private float rotationSpeed;
 
@@ -17,6 +18,9 @@ public class Scr_ButtonVisuals : MonoBehaviour
     {
         RandomRotation();
         AsignMaterials();
+
+        if (alwaysRotate)
+            rotate = true;
     }
 
     private void Update()
