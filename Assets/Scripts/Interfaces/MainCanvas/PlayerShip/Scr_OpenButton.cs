@@ -27,6 +27,7 @@ public class Scr_OpenButton : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public void OnPointerClick(PointerEventData eventData)
     {
         playerShipWindowAnim.SetBool("Show", true);
+        openButtonAnim.SetBool("ShowText", false);
         interfaceManager.PlayerShipWindow();
     }
 }
