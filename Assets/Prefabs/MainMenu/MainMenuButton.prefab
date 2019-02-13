@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.9}
+  m_AnchoredPosition: {x: 2, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &832112130
@@ -106,10 +106,10 @@ RectTransform:
   m_Father: {fileID: 1783160806172022200}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -0.00000011920929, y: 0}
+  m_SizeDelta: {x: 22.5, y: 4.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8095845600966241059
 CanvasRenderer:
@@ -139,7 +139,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: PLAY
+  m_text: BUTTON TEXT
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_textAlignment: 514
+  m_textAlignment: 516
   m_isAlignmentEnumConverted: 1
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -208,10 +208,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 6758759597577072433}
-    characterCount: 4
+    characterCount: 11
     spriteCount: 0
-    spaceCount: 0
-    wordCount: 1
+    spaceCount: 1
+    wordCount: 2
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -302,7 +302,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0.9}
+  m_AnchoredPosition: {x: -2.004, y: 0}
   m_SizeDelta: {x: 2.5, y: 0.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &5570397609701851730
@@ -445,12 +445,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainMenuButton: 0
-  cameraSpeed: 1
   canvasAnim: {fileID: 4476582205398884924}
   cameraSpot: {fileID: 888236131997049316}
   visuals: {fileID: 5649513446166930413}
+  indicator: {fileID: 832112127}
   buttonText: {fileID: 6758759597577072433}
-  mainCamera: {fileID: 0}
+  mainMenuManager: {fileID: 0}
 --- !u!114 &7387122843684865004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -467,6 +467,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 35265bc91dbfe944cb3718697b3eb57d, type: 2}
   - {fileID: 2100000, guid: efc206ba0462e734eb6fd574646d6994, type: 2}
   - {fileID: 2100000, guid: ae6aa8559ac79a84eb1958f001f53d61, type: 2}
+  alwaysRotate: 0
   randomRotation: 1
   rotationSpeed: 7.5
   rotate: 0

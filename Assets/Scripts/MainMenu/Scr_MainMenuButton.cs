@@ -7,31 +7,27 @@ public class Scr_MainMenuButton : MonoBehaviour
     [Header("Select Button")]
     [SerializeField] private MainMenuButton mainMenuButton;
 
-    [Header("Camera Settings")]
-    [SerializeField] private float cameraSpeed;
-
     [Header("Internal References")]
     [SerializeField] private Animator canvasAnim;
     [SerializeField] private Transform cameraSpot;
     [SerializeField] private GameObject visuals;
+    [SerializeField] private GameObject indicator;
     [SerializeField] private TextMeshProUGUI buttonText;
+    [SerializeField] private Scr_MainMenuManager mainMenuManager;
 
-    [Header("External References")]
-    [SerializeField] private GameObject mainCamera;
-
-    private Vector3 initialCameraPos;
-    private Vector3 currentCameraPos;
     private Scr_ButtonVisuals buttonVisuals;
 
     private enum MainMenuButton
     {
-        MainScreenButton,
+        Play,
         ContinueGame,
         NewGame,
         LoadGame,
+        Settings,
         AudioSettings,
         VideoSettings,
         GameSettings,
+        AboutUs,
         Team,
         RRSS,
         Exit
@@ -40,16 +36,15 @@ public class Scr_MainMenuButton : MonoBehaviour
     private void Start()
     {
         buttonVisuals = GetComponentInChildren<Scr_ButtonVisuals>();
-
-        buttonText.enabled = false;
-        initialCameraPos = mainCamera.transform.position;
-        currentCameraPos = initialCameraPos;
         GetComponent<SphereCollider>().radius = visuals.transform.localScale.x / 100;
+        buttonText.enabled = false;
+
+        SetButtonName();
     }
 
     private void Update()
     {
-        CameraMovement();
+        indicator.transform.LookAt(mainMenuManager.mainCamera.transform);
     }
 
     private void OnMouseOver()
@@ -59,7 +54,18 @@ public class Scr_MainMenuButton : MonoBehaviour
         canvasAnim.SetBool("ShowText", true);
 
         if (Input.GetMouseButtonDown(0))
-            currentCameraPos = cameraSpot.position;
+        {
+            mainMenuManager.currentCameraPos = cameraSpot.position;
+
+            if (mainMenuButton == MainMenuButton.Play || mainMenuButton == MainMenuButton.Settings || mainMenuButton == MainMenuButton.AboutUs)
+            {
+                mainMenuManager.mainMenuLevel = Scr_MainMenuManager.MainMenuLevel.Main;
+                mainMenuManager.savedMainSpot = cameraSpot.position;
+            }
+
+            else
+                mainMenuManager.mainMenuLevel = Scr_MainMenuManager.MainMenuLevel.Secondary;
+        }
     }
 
     private void OnMouseExit()
@@ -68,8 +74,46 @@ public class Scr_MainMenuButton : MonoBehaviour
         canvasAnim.SetBool("ShowText", false);
     }
 
-    private void CameraMovement()
+    private void SetButtonName()
     {
-        mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, currentCameraPos, Time.deltaTime * cameraSpeed);
+        switch (mainMenuButton)
+        {
+            case MainMenuButton.Play:
+                buttonText.text = "PLAY";
+                break;
+            case MainMenuButton.ContinueGame:
+                buttonText.text = "CONTINUE";
+                break;
+            case MainMenuButton.NewGame:
+                buttonText.text = "NEW";
+                break;
+            case MainMenuButton.LoadGame:
+                buttonText.text = "LOAD";
+                break;
+            case MainMenuButton.Settings:
+                buttonText.text = "SETTINGS";
+                break;
+            case MainMenuButton.AudioSettings:
+                buttonText.text = "AUDIO";
+                break;
+            case MainMenuButton.VideoSettings:
+                buttonText.text = "VIDEO";
+                break;
+            case MainMenuButton.GameSettings:
+                buttonText.text = "GAME";
+                break;
+            case MainMenuButton.AboutUs:
+                buttonText.text = "ABOUT US";
+                break;
+            case MainMenuButton.Team:
+                buttonText.text = "TEAM";
+                break;
+            case MainMenuButton.RRSS:
+                buttonText.text = "RRSS";
+                break;
+            case MainMenuButton.Exit:
+                buttonText.text = "EXIT";
+                break;
+        }
     }
 }
