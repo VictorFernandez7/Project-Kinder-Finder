@@ -75,7 +75,32 @@ public class Scr_MainMenuButton : MonoBehaviour
             }
 
             else
-                blocked = false;
+            {
+                if (blocked)
+                {
+                    buttonVisuals.rotate = false;
+                    blocked = false;
+                }
+            }
+        }
+
+        else if (mainMenuButton == MainMenuButton.ContinueGame || mainMenuButton == MainMenuButton.NewGame || mainMenuButton == MainMenuButton.LoadGame || mainMenuButton == MainMenuButton.AudioSettings || mainMenuButton == MainMenuButton.VideoSettings || mainMenuButton == MainMenuButton.GameSettings || mainMenuButton == MainMenuButton.Team || mainMenuButton == MainMenuButton.RRSS)
+        {
+            if (mainMenuManager.mainMenuLevel == Scr_MainMenuManager.MainMenuLevel.Secondary)
+            {
+                buttonVisuals.rotate = true;
+                canvasAnim.SetBool("ShowText", false);
+                blocked = true;
+            }
+
+            else
+            {
+                if (blocked)
+                {
+                    buttonVisuals.rotate = false;
+                    blocked = false;
+                }
+            }
         }
     }
 
@@ -95,6 +120,25 @@ public class Scr_MainMenuButton : MonoBehaviour
                 {
                     mainMenuManager.mainMenuLevel = Scr_MainMenuManager.MainMenuLevel.Main;
                     mainMenuManager.savedMainSpot = cameraSpot.position;
+
+                    switch (mainMenuButton)
+                    {
+                        case MainMenuButton.Play:
+                            mainMenuManager.playButtons.SetActive(true);
+                            mainMenuManager.settingsButtons.SetActive(false);
+                            mainMenuManager.aboutUsButtons.SetActive(false);
+                            break;
+                        case MainMenuButton.Settings:
+                            mainMenuManager.playButtons.SetActive(false);
+                            mainMenuManager.settingsButtons.SetActive(true);
+                            mainMenuManager.aboutUsButtons.SetActive(false);
+                            break;
+                        case MainMenuButton.AboutUs:
+                            mainMenuManager.playButtons.SetActive(false);
+                            mainMenuManager.settingsButtons.SetActive(false);
+                            mainMenuManager.aboutUsButtons.SetActive(true);
+                            break;
+                    }
                 }
 
                 else
