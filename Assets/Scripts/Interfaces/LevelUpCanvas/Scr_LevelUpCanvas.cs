@@ -4,16 +4,12 @@ using TMPro;
 
 public class Scr_LevelUpCanvas : MonoBehaviour
 {
-    [Header("Panel Settings")]
-    [SerializeField] private bool closeTime;
-    [SerializeField] private float timeToShow;
-
     [Header("Panel References")]
     [SerializeField] private Slider expSlider;
-    [SerializeField] private GameObject content;
     [SerializeField] private TextMeshProUGUI experienceText;
     [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private TextMeshProUGUI titleText;
+    [SerializeField] private Animator anim;
 
     [Header("Unlock References")]
     [SerializeField] private GameObject unlock1;
@@ -23,25 +19,14 @@ public class Scr_LevelUpCanvas : MonoBehaviour
     [SerializeField] private TextMeshProUGUI unlock2Text;
     [SerializeField] private Image unlock2Image;
 
-    private float savedTimeToShow;
-
     private void Start()
     {
-        savedTimeToShow = timeToShow;
+        anim = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        if (content.activeInHierarchy && closeTime)
-        {
-            savedTimeToShow -= Time.deltaTime;
-
-            if (savedTimeToShow <= 0)
-            {
-                savedTimeToShow = timeToShow;
-                content.SetActive(false);
-            }
-        }
+        CheckInput();
     }
 
     public void UpdatePanelInfo(int currentExperience, int targetExperience, string newLevel, string newTitle, bool singleUnlock, string unlock1Name, Image unlock1Icon, string unlock2Name, Image unlock2Icon)
@@ -77,11 +62,12 @@ public class Scr_LevelUpCanvas : MonoBehaviour
         expSlider.maxValue = targetExperience;
         expSlider.value = currentExperience;
 
-        content.SetActive(true);
+        anim.SetBool("Show", true);
     }
 
-    public void ClosePanel()
+    private void CheckInput()
     {
-        content.SetActive(false);
+        if (Input.GetMouseButtonDown(0))
+            anim.SetBool("Show", false);
     }
 }
