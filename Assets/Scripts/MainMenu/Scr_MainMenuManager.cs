@@ -23,6 +23,7 @@ public class Scr_MainMenuManager : MonoBehaviour
     [SerializeField] public Animator mainButtonsAnim;
     [SerializeField] public Animator secondaryButtonsAnim;
     [SerializeField] public Animator settingsAnim;
+    [SerializeField] public Animator aboutUsAnim;
     [SerializeField] public Animator mainCanvasAnim;
     [SerializeField] public Transform initialCameraPos;
 
@@ -142,6 +143,10 @@ public class Scr_MainMenuManager : MonoBehaviour
                 settingsAnim.SetBool("Audio", false);
                 settingsAnim.SetBool("Video", false);
                 settingsAnim.SetBool("Game", false);
+
+                aboutUsAnim.SetBool("RRSS", false);
+                aboutUsAnim.SetBool("Team", false);
+                aboutUsAnim.SetBool("Contact", false);
             }
         }
     }
@@ -181,5 +186,20 @@ public class Scr_MainMenuManager : MonoBehaviour
     {
         Resolution resolution = resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+    }
+
+    public void OpenTwitter()
+    {
+        Application.OpenURL("https://twitter.com/human_horizon");
+    }
+
+    public void OpenInstagram()
+    {
+        Application.OpenURL("https://www.instagram.com/humanhorizongame/");
+    }
+
+    public void OpenTigSource()
+    {
+        Application.OpenURL("https://forums.tigsource.com/index.php?topic=66844.0");
     }
 }
