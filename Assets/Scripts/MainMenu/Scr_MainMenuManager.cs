@@ -19,11 +19,7 @@ public class Scr_MainMenuManager : MonoBehaviour
 
     [Header("References")]
     [SerializeField] public GameObject mainCamera;
-
-    [Header("Buttons References")]
-    [SerializeField] public GameObject playButtons;
-    [SerializeField] public GameObject settingsButtons;
-    [SerializeField] public GameObject aboutUsButtons;
+    [SerializeField] public Animator buttonsAnim;
 
     [Header("Settings References")]
     [SerializeField] public GameObject audioSettings;
@@ -117,9 +113,9 @@ public class Scr_MainMenuManager : MonoBehaviour
                 mainMenuLevel = MainMenuLevel.Initial;
                 currentCameraPos = initialCameraPos;
 
-                playButtons.SetActive(false);
-                settingsButtons.SetActive(false);
-                aboutUsButtons.SetActive(false);
+                buttonsAnim.SetBool("Play", false);
+                buttonsAnim.SetBool("Settings", false);
+                buttonsAnim.SetBool("AboutUs", false);
             }
 
             else if (mainMenuLevel == MainMenuLevel.Secondary)

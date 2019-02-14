@@ -645,6 +645,59 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &157932560
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 157932561}
+  - component: {fileID: 157932562}
+  m_Layer: 0
+  m_Name: SecondaryButtons
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &157932561
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157932560}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1615162452}
+  - {fileID: 579410861}
+  - {fileID: 1369672138}
+  m_Father: {fileID: 1144042229}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &157932562
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157932560}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 94350cd20d346f54bb3b8c390a474c8b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &187975190
 GameObject:
   m_ObjectHideFlags: 0
@@ -2198,7 +2251,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &579410861
 Transform:
   m_ObjectHideFlags: 0
@@ -2208,13 +2261,13 @@ Transform:
   m_GameObject: {fileID: 579410860}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.27, y: 1.84, z: 3}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 56815158}
   - {fileID: 1497946691}
   - {fileID: 503558729}
-  m_Father: {fileID: 1144042229}
-  m_RootOrder: 3
+  m_Father: {fileID: 157932561}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &588141161
 GameObject:
@@ -3519,9 +3572,7 @@ Transform:
   m_Children:
   - {fileID: 2087786422}
   - {fileID: 1007385487}
-  - {fileID: 1615162452}
-  - {fileID: 579410861}
-  - {fileID: 1369672138}
+  - {fileID: 157932561}
   m_Father: {fileID: 896207009}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4110,7 +4161,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1369672138
 Transform:
   m_ObjectHideFlags: 0
@@ -4120,13 +4171,13 @@ Transform:
   m_GameObject: {fileID: 1369672137}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.54, y: -0.88, z: 3}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 541726609}
   - {fileID: 839438519}
   - {fileID: 83114418}
-  m_Father: {fileID: 1144042229}
-  m_RootOrder: 4
+  m_Father: {fileID: 157932561}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1411802461
 GameObject:
@@ -9974,7 +10025,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1615162452
 Transform:
   m_ObjectHideFlags: 0
@@ -9984,13 +10035,13 @@ Transform:
   m_GameObject: {fileID: 1615162451}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.46, y: 1.06, z: 3}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1935597337}
   - {fileID: 1538341896}
   - {fileID: 703432377}
-  m_Father: {fileID: 1144042229}
-  m_RootOrder: 2
+  m_Father: {fileID: 157932561}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1629846313
 GameObject:
@@ -12921,6 +12972,51 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainMenuManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4890385461118956674, guid: 200fa2ba5e42b4e48837d87bf697e747,
+        type: 3}
+      propertyPath: soundFxSlider
+      value: 
+      objectReference: {fileID: 1647022592}
+    - target: {fileID: 4890385461118956674, guid: 200fa2ba5e42b4e48837d87bf697e747,
+        type: 3}
+      propertyPath: musicSlider
+      value: 
+      objectReference: {fileID: 251799497}
+    - target: {fileID: 4890385461118956674, guid: 200fa2ba5e42b4e48837d87bf697e747,
+        type: 3}
+      propertyPath: resolutionsDropdown
+      value: 
+      objectReference: {fileID: 2128166527}
+    - target: {fileID: 4890385461118956674, guid: 200fa2ba5e42b4e48837d87bf697e747,
+        type: 3}
+      propertyPath: graphicsDropdownLabel
+      value: 
+      objectReference: {fileID: 1814666374}
+    - target: {fileID: 4890385461118956674, guid: 200fa2ba5e42b4e48837d87bf697e747,
+        type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1776960942}
+    - target: {fileID: 4890385461118956674, guid: 200fa2ba5e42b4e48837d87bf697e747,
+        type: 3}
+      propertyPath: buttonsAnim
+      value: 
+      objectReference: {fileID: 157932562}
+    - target: {fileID: 4890385461118956674, guid: 200fa2ba5e42b4e48837d87bf697e747,
+        type: 3}
+      propertyPath: audioSettings
+      value: 
+      objectReference: {fileID: 1710109454}
+    - target: {fileID: 4890385461118956674, guid: 200fa2ba5e42b4e48837d87bf697e747,
+        type: 3}
+      propertyPath: videoSettings
+      value: 
+      objectReference: {fileID: 1721912914}
+    - target: {fileID: 4890385461118956674, guid: 200fa2ba5e42b4e48837d87bf697e747,
+        type: 3}
+      propertyPath: gameSettings
+      value: 
+      objectReference: {fileID: 496615188}
     - target: {fileID: 7948033691360687164, guid: 200fa2ba5e42b4e48837d87bf697e747,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12976,61 +13072,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4890385461118956674, guid: 200fa2ba5e42b4e48837d87bf697e747,
-        type: 3}
-      propertyPath: mainCamera
-      value: 
-      objectReference: {fileID: 1776960942}
-    - target: {fileID: 4890385461118956674, guid: 200fa2ba5e42b4e48837d87bf697e747,
-        type: 3}
-      propertyPath: playButtons
-      value: 
-      objectReference: {fileID: 1615162451}
-    - target: {fileID: 4890385461118956674, guid: 200fa2ba5e42b4e48837d87bf697e747,
-        type: 3}
-      propertyPath: settingsButtons
-      value: 
-      objectReference: {fileID: 579410860}
-    - target: {fileID: 4890385461118956674, guid: 200fa2ba5e42b4e48837d87bf697e747,
-        type: 3}
-      propertyPath: aboutUsButtons
-      value: 
-      objectReference: {fileID: 1369672137}
-    - target: {fileID: 4890385461118956674, guid: 200fa2ba5e42b4e48837d87bf697e747,
-        type: 3}
-      propertyPath: audioSettings
-      value: 
-      objectReference: {fileID: 1710109454}
-    - target: {fileID: 4890385461118956674, guid: 200fa2ba5e42b4e48837d87bf697e747,
-        type: 3}
-      propertyPath: videoSettings
-      value: 
-      objectReference: {fileID: 1721912914}
-    - target: {fileID: 4890385461118956674, guid: 200fa2ba5e42b4e48837d87bf697e747,
-        type: 3}
-      propertyPath: gameSettings
-      value: 
-      objectReference: {fileID: 496615188}
-    - target: {fileID: 4890385461118956674, guid: 200fa2ba5e42b4e48837d87bf697e747,
-        type: 3}
-      propertyPath: soundFxSlider
-      value: 
-      objectReference: {fileID: 1647022592}
-    - target: {fileID: 4890385461118956674, guid: 200fa2ba5e42b4e48837d87bf697e747,
-        type: 3}
-      propertyPath: musicSlider
-      value: 
-      objectReference: {fileID: 251799497}
-    - target: {fileID: 4890385461118956674, guid: 200fa2ba5e42b4e48837d87bf697e747,
-        type: 3}
-      propertyPath: resolutionsDropdown
-      value: 
-      objectReference: {fileID: 2128166527}
-    - target: {fileID: 4890385461118956674, guid: 200fa2ba5e42b4e48837d87bf697e747,
-        type: 3}
-      propertyPath: graphicsDropdownLabel
-      value: 
-      objectReference: {fileID: 1814666374}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 200fa2ba5e42b4e48837d87bf697e747, type: 3}
 --- !u!4 &7948033691360687164 stripped
