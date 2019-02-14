@@ -28,6 +28,7 @@ public class Scr_MainMenuManager : MonoBehaviour
     [HideInInspector] public Vector3 currentCameraPos;
     [HideInInspector] public MainMenuLevel mainMenuLevel;
 
+    private bool canControlInterface;
     private Vector3 initialCameraPos;
     private Resolution[] resolutions;
 
@@ -49,8 +50,13 @@ public class Scr_MainMenuManager : MonoBehaviour
 
     private void Update()
     {
-        CheckInput();
-        CameraMovement();
+        CheckIntro();
+
+        if (canControlInterface)
+        {
+            CheckInput();
+            CameraMovement();
+        }
     }
 
     private void Resolution()
@@ -99,6 +105,17 @@ public class Scr_MainMenuManager : MonoBehaviour
             case 5:
                 graphicsDropdownLabel.text = "Ultra";
                 break;
+        }
+    }
+
+    private void CheckIntro()
+    {
+        if (Input.anyKeyDown)
+        {
+            mainCanvasAnim.SetBool("Hide", true);
+            mainButtonsAnim.SetBool("Show", true);
+
+            canControlInterface = true;
         }
     }
 
