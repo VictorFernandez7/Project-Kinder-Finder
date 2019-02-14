@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Scr_PlayerShipWarehouse : MonoBehaviour
 {
@@ -118,16 +119,10 @@ public class Scr_PlayerShipWarehouse : MonoBehaviour
         for (int i = 0; i < playerShipStats.resourceWarehouse.Length; i++)
         {
             if (playerShipStats.resourceWarehouse[i] == null)
-                iconResourcesWarehouse[i].enabled = false;
+                iconResourcesWarehouse[i] = null;
 
             else
-            {
-                if (playerShipStats.resourceWarehouse[i].GetComponent<Scr_Resource>().icon)
-                {
-                    iconResourcesWarehouse[i].enabled = true;
-                    iconResourcesWarehouse[i].sprite = playerShipStats.resourceWarehouse[i].GetComponent<Scr_Resource>().icon;
-                }    
-            }
+                iconResourcesWarehouse[i]= playerShipStats.resourceWarehouse[i].GetComponent<Scr_Resource>().icon;
         }
     }
 }
