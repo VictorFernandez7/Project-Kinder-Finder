@@ -7,7 +7,8 @@ using TMPro;
 public class Scr_MainMenuManager : MonoBehaviour
 {
     [Header("Camera Settings")]
-    [SerializeField] private float cameraSpeed;
+    [SerializeField] private float introSpeed;
+    [SerializeField] private float menuSpeed;
 
     [Header("Audio References")]
     [SerializeField] private Slider soundFxSlider;
@@ -23,13 +24,13 @@ public class Scr_MainMenuManager : MonoBehaviour
     [SerializeField] public Animator secondaryButtonsAnim;
     [SerializeField] public Animator settingsAnim;
     [SerializeField] public Animator mainCanvasAnim;
+    [SerializeField] public Transform initialCameraPos;
 
     [HideInInspector] public Vector3 savedMainSpot;
     [HideInInspector] public Vector3 currentCameraPos;
     [HideInInspector] public MainMenuLevel mainMenuLevel;
 
     private bool canControlInterface;
-    private Vector3 initialCameraPos;
     private Resolution[] resolutions;
 
     public enum MainMenuLevel
@@ -41,8 +42,7 @@ public class Scr_MainMenuManager : MonoBehaviour
 
     private void Start()
     {
-        initialCameraPos = mainCamera.transform.position;
-        currentCameraPos = initialCameraPos;
+        currentCameraPos = mainCamera.transform.position;
 
         Graphics();
         Resolution();
@@ -50,13 +50,13 @@ public class Scr_MainMenuManager : MonoBehaviour
 
     private void Update()
     {
-        CheckIntro();
+        CameraMovement();
 
         if (canControlInterface)
-        {
             CheckInput();
-            CameraMovement();
-        }
+
+        else
+            CheckIntro();
     }
 
     private void Resolution()
@@ -115,6 +115,7 @@ public class Scr_MainMenuManager : MonoBehaviour
             mainCanvasAnim.SetBool("Hide", true);
             mainButtonsAnim.SetBool("Show", true);
 
+            currentCameraPos = initialCameraPos.position;
             canControlInterface = true;
         }
     }
@@ -126,7 +127,7 @@ public class Scr_MainMenuManager : MonoBehaviour
             if (mainMenuLevel == MainMenuLevel.Main)
             {
                 mainMenuLevel = MainMenuLevel.Initial;
-                currentCameraPos = initialCameraPos;
+                currentCameraPos = initialCameraPos.position;
 
                 secondaryButtonsAnim.SetBool("Play", false);
                 secondaryButtonsAnim.SetBool("Settings", false);
@@ -147,7 +148,7 @@ public class Scr_MainMenuManager : MonoBehaviour
 
     private void CameraMovement()
     {
-        mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, currentCameraPos, Time.deltaTime * cameraSpeed);
+        mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, currentCameraPos, Time.deltaTime * (canControlInterface ? menuSpeed : introSpeed));
     }
 
     public void OnSoundFxValueChanged()
