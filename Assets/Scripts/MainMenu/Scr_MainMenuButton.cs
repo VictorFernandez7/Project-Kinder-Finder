@@ -1,4 +1,4 @@
-﻿using UnityEngine.EventSystems;
+﻿using UnityEngine.SceneManagement;
 using UnityEngine;
 using TMPro;
 
@@ -41,6 +41,7 @@ public class Scr_MainMenuButton : MonoBehaviour
         AboutUs,
         Team,
         RRSS,
+        Contact,
         Exit
     }
 
@@ -141,6 +142,9 @@ public class Scr_MainMenuButton : MonoBehaviour
 
                     switch (mainMenuButton)
                     {
+                        case MainMenuButton.NewGame:
+                            Scr_LevelManager.LoadPlanetSystem(Scr_Levels.LevelToLoad.PlanetSystem1);
+                            break;
                         case MainMenuButton.AudioSettings:
                             mainMenuManager.settingsAnim.SetBool("Audio", true);
                             break;
@@ -149,6 +153,15 @@ public class Scr_MainMenuButton : MonoBehaviour
                             break;
                         case MainMenuButton.GameSettings:
                             mainMenuManager.settingsAnim.SetBool("Game", true);
+                            break;
+                        case MainMenuButton.RRSS:
+                            mainMenuManager.aboutUsAnim.SetBool("RRSS", true);
+                            break;
+                        case MainMenuButton.Team:
+                            mainMenuManager.aboutUsAnim.SetBool("Team", true);
+                            break;
+                        case MainMenuButton.Contact:
+                            mainMenuManager.aboutUsAnim.SetBool("Contact", true);
                             break;
                     }
                 }
@@ -201,6 +214,9 @@ public class Scr_MainMenuButton : MonoBehaviour
                 break;
             case MainMenuButton.RRSS:
                 buttonText.text = "RRSS";
+                break;
+            case MainMenuButton.Contact:
+                buttonText.text = "CONTACT";
                 break;
             case MainMenuButton.Exit:
                 buttonText.text = "EXIT";
