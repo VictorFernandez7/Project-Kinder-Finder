@@ -7,7 +7,8 @@ using TMPro;
 public class Scr_MainMenuManager : MonoBehaviour
 {
     [Header("Camera Settings")]
-    [SerializeField] private float cameraSpeed;
+    [SerializeField] private float introSpeed;
+    [SerializeField] private float menuSpeed;
 
     [Header("Audio References")]
     [SerializeField] private Slider soundFxSlider;
@@ -19,18 +20,17 @@ public class Scr_MainMenuManager : MonoBehaviour
 
     [Header("References")]
     [SerializeField] public GameObject mainCamera;
-    [SerializeField] public Animator buttonsAnim;
-
-    [Header("Settings References")]
-    [SerializeField] public GameObject audioSettings;
-    [SerializeField] public GameObject videoSettings;
-    [SerializeField] public GameObject gameSettings;
+    [SerializeField] public Animator mainButtonsAnim;
+    [SerializeField] public Animator secondaryButtonsAnim;
+    [SerializeField] public Animator settingsAnim;
+    [SerializeField] public Animator mainCanvasAnim;
+    [SerializeField] public Transform initialCameraPos;
 
     [HideInInspector] public Vector3 savedMainSpot;
     [HideInInspector] public Vector3 currentCameraPos;
     [HideInInspector] public MainMenuLevel mainMenuLevel;
 
-    private Vector3 initialCameraPos;
+    private bool canControlInterface;
     private Resolution[] resolutions;
 
     public enum MainMenuLevel
@@ -42,8 +42,7 @@ public class Scr_MainMenuManager : MonoBehaviour
 
     private void Start()
     {
-        initialCameraPos = mainCamera.transform.position;
-        currentCameraPos = initialCameraPos;
+        currentCameraPos = mainCamera.transform.position;
 
         Graphics();
         Resolution();
@@ -51,8 +50,13 @@ public class Scr_MainMenuManager : MonoBehaviour
 
     private void Update()
     {
-        CheckInput();
         CameraMovement();
+
+        if (canControlInterface)
+            CheckInput();
+
+        else
+            CheckIntro();
     }
 
     private void Resolution()
@@ -104,6 +108,18 @@ public class Scr_MainMenuManager : MonoBehaviour
         }
     }
 
+    private void CheckIntro()
+    {
+        if (Input.anyKeyDown)
+        {
+            mainCanvasAnim.SetBool("Hide", true);
+            mainButtonsAnim.SetBool("Show", true);
+
+            currentCameraPos = initialCameraPos.position;
+            canControlInterface = true;
+        }
+    }
+
     private void CheckInput()
     {
         if (Input.GetMouseButtonDown(1))
@@ -111,11 +127,11 @@ public class Scr_MainMenuManager : MonoBehaviour
             if (mainMenuLevel == MainMenuLevel.Main)
             {
                 mainMenuLevel = MainMenuLevel.Initial;
-                currentCameraPos = initialCameraPos;
+                currentCameraPos = initialCameraPos.position;
 
-                buttonsAnim.SetBool("Play", false);
-                buttonsAnim.SetBool("Settings", false);
-                buttonsAnim.SetBool("AboutUs", false);
+                secondaryButtonsAnim.SetBool("Play", false);
+                secondaryButtonsAnim.SetBool("Settings", false);
+                secondaryButtonsAnim.SetBool("AboutUs", false);
             }
 
             else if (mainMenuLevel == MainMenuLevel.Secondary)
@@ -123,16 +139,16 @@ public class Scr_MainMenuManager : MonoBehaviour
                 mainMenuLevel = MainMenuLevel.Main;
                 currentCameraPos = savedMainSpot;
 
-                audioSettings.SetActive(false);
-                videoSettings.SetActive(false);
-                gameSettings.SetActive(false);
+                settingsAnim.SetBool("Audio", false);
+                settingsAnim.SetBool("Video", false);
+                settingsAnim.SetBool("Game", false);
             }
         }
     }
 
     private void CameraMovement()
     {
-        mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, currentCameraPos, Time.deltaTime * cameraSpeed);
+        mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, currentCameraPos, Time.deltaTime * (canControlInterface ? menuSpeed : introSpeed));
     }
 
     public void OnSoundFxValueChanged()
