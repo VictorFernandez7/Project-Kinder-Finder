@@ -124,13 +124,13 @@ public class Scr_MainMenuButton : MonoBehaviour
                     switch (mainMenuButton)
                     {
                         case MainMenuButton.Play:
-                            mainMenuManager.buttonsAnim.SetBool("Play", true);
+                            mainMenuManager.secondaryButtonsAnim.SetBool("Play", true);
                             break;
                         case MainMenuButton.Settings:
-                            mainMenuManager.buttonsAnim.SetBool("Settings", true);
+                            mainMenuManager.secondaryButtonsAnim.SetBool("Settings", true);
                             break;
                         case MainMenuButton.AboutUs:
-                            mainMenuManager.buttonsAnim.SetBool("AboutUs", true);
+                            mainMenuManager.secondaryButtonsAnim.SetBool("AboutUs", true);
                             break;
                     }
                 }

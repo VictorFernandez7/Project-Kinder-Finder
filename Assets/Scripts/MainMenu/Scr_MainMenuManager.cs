@@ -19,8 +19,10 @@ public class Scr_MainMenuManager : MonoBehaviour
 
     [Header("References")]
     [SerializeField] public GameObject mainCamera;
-    [SerializeField] public Animator buttonsAnim;
+    [SerializeField] public Animator mainButtonsAnim;
+    [SerializeField] public Animator secondaryButtonsAnim;
     [SerializeField] public Animator settingsAnim;
+    [SerializeField] public Animator mainCanvasAnim;
 
     [HideInInspector] public Vector3 savedMainSpot;
     [HideInInspector] public Vector3 currentCameraPos;
@@ -109,9 +111,9 @@ public class Scr_MainMenuManager : MonoBehaviour
                 mainMenuLevel = MainMenuLevel.Initial;
                 currentCameraPos = initialCameraPos;
 
-                buttonsAnim.SetBool("Play", false);
-                buttonsAnim.SetBool("Settings", false);
-                buttonsAnim.SetBool("AboutUs", false);
+                secondaryButtonsAnim.SetBool("Play", false);
+                secondaryButtonsAnim.SetBool("Settings", false);
+                secondaryButtonsAnim.SetBool("AboutUs", false);
             }
 
             else if (mainMenuLevel == MainMenuLevel.Secondary)
