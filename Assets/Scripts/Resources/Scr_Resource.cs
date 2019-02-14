@@ -8,7 +8,7 @@ public class Scr_Resource : MonoBehaviour
     [Header("Resource Properties")]
     [SerializeField] private ResourceType resourceType;
     [SerializeField] private int typeIndex;
-    [SerializeField] public Image icon;
+    [SerializeField] public Sprite icon;
 
     [Header("Physics")]
     [SerializeField] private float gravity;
