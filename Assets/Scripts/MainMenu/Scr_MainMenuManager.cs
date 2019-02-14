@@ -25,6 +25,11 @@ public class Scr_MainMenuManager : MonoBehaviour
     [SerializeField] public GameObject settingsButtons;
     [SerializeField] public GameObject aboutUsButtons;
 
+    [Header("Settings References")]
+    [SerializeField] public GameObject audioSettings;
+    [SerializeField] public GameObject videoSettings;
+    [SerializeField] public GameObject gameSettings;
+
     [HideInInspector] public Vector3 savedMainSpot;
     [HideInInspector] public Vector3 currentCameraPos;
     [HideInInspector] public MainMenuLevel mainMenuLevel;
@@ -121,6 +126,10 @@ public class Scr_MainMenuManager : MonoBehaviour
             {
                 mainMenuLevel = MainMenuLevel.Main;
                 currentCameraPos = savedMainSpot;
+
+                audioSettings.SetActive(false);
+                videoSettings.SetActive(false);
+                gameSettings.SetActive(false);
             }
         }
     }
