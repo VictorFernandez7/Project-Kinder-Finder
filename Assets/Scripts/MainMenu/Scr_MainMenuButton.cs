@@ -1,4 +1,4 @@
-﻿using UnityEngine.EventSystems;
+﻿using UnityEngine.SceneManagement;
 using UnityEngine;
 using TMPro;
 
@@ -141,6 +141,9 @@ public class Scr_MainMenuButton : MonoBehaviour
 
                     switch (mainMenuButton)
                     {
+                        case MainMenuButton.NewGame:
+                            Scr_LevelManager.LoadPlanetSystem(Scr_Levels.LevelToLoad.PlanetSystem1);
+                            break;
                         case MainMenuButton.AudioSettings:
                             mainMenuManager.settingsAnim.SetBool("Audio", true);
                             break;
