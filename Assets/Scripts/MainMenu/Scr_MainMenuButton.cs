@@ -84,7 +84,7 @@ public class Scr_MainMenuButton : MonoBehaviour
             }
         }
 
-        else if (mainMenuButton == MainMenuButton.ContinueGame || mainMenuButton == MainMenuButton.NewGame || mainMenuButton == MainMenuButton.LoadGame || mainMenuButton == MainMenuButton.AudioSettings || mainMenuButton == MainMenuButton.VideoSettings || mainMenuButton == MainMenuButton.GameSettings || mainMenuButton == MainMenuButton.Team || mainMenuButton == MainMenuButton.RRSS)
+        else
         {
             if (mainMenuManager.mainMenuLevel == Scr_MainMenuManager.MainMenuLevel.Secondary)
             {
@@ -125,24 +125,33 @@ public class Scr_MainMenuButton : MonoBehaviour
                     {
                         case MainMenuButton.Play:
                             mainMenuManager.playButtons.SetActive(true);
-                            mainMenuManager.settingsButtons.SetActive(false);
-                            mainMenuManager.aboutUsButtons.SetActive(false);
                             break;
                         case MainMenuButton.Settings:
-                            mainMenuManager.playButtons.SetActive(false);
                             mainMenuManager.settingsButtons.SetActive(true);
-                            mainMenuManager.aboutUsButtons.SetActive(false);
                             break;
                         case MainMenuButton.AboutUs:
-                            mainMenuManager.playButtons.SetActive(false);
-                            mainMenuManager.settingsButtons.SetActive(false);
                             mainMenuManager.aboutUsButtons.SetActive(true);
                             break;
                     }
                 }
 
                 else
+                {
                     mainMenuManager.mainMenuLevel = Scr_MainMenuManager.MainMenuLevel.Secondary;
+
+                    switch (mainMenuButton)
+                    {
+                        case MainMenuButton.AudioSettings:
+                            mainMenuManager.audioSettings.SetActive(true);
+                            break;
+                        case MainMenuButton.VideoSettings:
+                            mainMenuManager.videoSettings.SetActive(true);
+                            break;
+                        case MainMenuButton.GameSettings:
+                            mainMenuManager.gameSettings.SetActive(true);
+                            break;
+                    }
+                }
             }
         }
     }
