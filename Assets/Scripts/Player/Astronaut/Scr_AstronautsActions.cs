@@ -6,6 +6,7 @@ public class Scr_AstronautsActions : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Transform spawnPoint;
+    [SerializeField] private Transform iaResourcePoint;
     [SerializeField] public Transform pickPoint;
     [SerializeField] public Scr_PlayerShipWarehouse playerShipWarehouse;
     [SerializeField] private Animator interactionIndicatorAnim;
@@ -105,7 +106,8 @@ public class Scr_AstronautsActions : MonoBehaviour
 
                 else if (currentResource.Count > 1 && currentResource.Count <= maxResourcesCapacity)
                 {
-                    //IA SLOTS
+                    currentResource[1].transform.position = iaResourcePoint.position;
+                    currentResource[1].transform.SetParent(iaResourcePoint);
                 }
             }
 
