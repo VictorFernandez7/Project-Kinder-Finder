@@ -11,6 +11,7 @@ public class Scr_ButtonVisuals : MonoBehaviour
     [SerializeField] private bool alwaysRotate;
     [SerializeField] private bool randomRotation;
     [SerializeField] private float rotationSpeed;
+    [SerializeField] private Transform scaledParent;
 
     [HideInInspector] public bool rotate;
 
@@ -18,15 +19,11 @@ public class Scr_ButtonVisuals : MonoBehaviour
     {
         RandomRotation();
         AsignMaterials();
-
-        if (alwaysRotate)
-            rotate = true;
     }
 
     private void Update()
     {
-        if (rotate)
-            PlanetRotation();
+        PlanetRotation(rotate, alwaysRotate);
     }
 
     private void RandomRotation()
@@ -43,9 +40,12 @@ public class Scr_ButtonVisuals : MonoBehaviour
         GetComponent<MeshRenderer>().materials = planetMaterials;
     }
 
-    private void PlanetRotation()
+    private void PlanetRotation(bool rotate, bool dontCheck)
     {
-        if (rotationSpeed > 0)
+        if (rotationSpeed > 0 && rotate && (scaledParent == null || scaledParent != null && scaledParent.localScale.x == 1))
+            transform.RotateAround(transform.position, transform.up, Time.deltaTime * rotationSpeed);
+        
+        if (dontCheck)
             transform.RotateAround(transform.position, transform.up, Time.deltaTime * rotationSpeed);
     }
 }
