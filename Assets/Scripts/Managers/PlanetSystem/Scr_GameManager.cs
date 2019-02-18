@@ -2,6 +2,10 @@
 
 public class Scr_GameManager : MonoBehaviour
 {
+    [Header("Experience Values")]
+    [SerializeField] public int sightedXP;
+    [SerializeField] public int exploredXP;
+
     [Header("Vortex Spawn")]
     [SerializeField] private float ratio;
     [SerializeField] private float xMax;

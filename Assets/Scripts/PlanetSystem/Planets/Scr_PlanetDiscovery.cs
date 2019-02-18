@@ -6,6 +6,8 @@ public class Scr_PlanetDiscovery : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private GameObject planet;
+    [SerializeField] private Scr_GameManager gameManager;
+    [SerializeField] private Scr_PlayerShipStats playerShipStats;
 
     [HideInInspector] public bool sighted;
     [HideInInspector] public bool explored;
@@ -26,11 +28,15 @@ public class Scr_PlanetDiscovery : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("PlayerShip"))
+        {
             sighted = true;
+            playerShipStats.GetExperience(gameManager.sightedXP);
+        }
     }
 
     public void PlanetExplored()
     {
         explored = true;
+        playerShipStats.GetExperience(gameManager.exploredXP);
     }
 }
