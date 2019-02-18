@@ -7,8 +7,11 @@ public class Scr_GameManager : MonoBehaviour
     [SerializeField] private float xMax;
     [SerializeField] private float yMax;
 
-    [Header("System Planets")]
+    [Header("Planet Info")]
     [SerializeField] public GameObject[] planets;
+
+    [Header("Exploration Info")]
+    [SerializeField] public GameObject[] planetsInfo;
 
     [Header("References")]
     [SerializeField] public GameObject initialPlanet;
