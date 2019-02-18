@@ -10,6 +10,10 @@ public class Scr_MapCamera : MonoBehaviour
     [SerializeField] private float minZoom;
     [SerializeField] private float wheelSpeed;
 
+    [Header("Camera Movement")]
+    [SerializeField] private bool inverted;
+    [SerializeField] private float dragSpeed;
+
     [Header("Focus Properties")]
     [SerializeField] private float focusZoom;
     [SerializeField] private float positionSpeed;
@@ -28,6 +32,7 @@ public class Scr_MapCamera : MonoBehaviour
     private float savedZoom;
     private float savedPosition;
     private Camera mapCamera;
+    private Vector3 dragOrigin;
 
     private void Start()
     {
@@ -50,7 +55,18 @@ public class Scr_MapCamera : MonoBehaviour
 
     private void MapMovement()
     {
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            dragOrigin = Input.mousePosition;
+            return;
+        }
+
+        if (!Input.GetMouseButton(0)) return;
+
+        Vector3 cameraPos = Camera.main.ScreenToViewportPoint(Input.mousePosition - dragOrigin);
+        Vector3 movementVector = new Vector3(cameraPos.x * dragSpeed, cameraPos.y * dragSpeed, 0);
+
+        transform.position += inverted ? movementVector : -movementVector;
     }
 
     private void ZoomSystem()
