@@ -60,7 +60,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 300
+  orthographic size: 7
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -164,11 +164,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b1ba65e6979054488ad621b66d236c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  farZoom: 300
-  closeZoom: 5
-  zoomSpeed: 5
-  focusSpeed: 2
-  distanceFromCenter: 200
+  initialZoom: 7
+  maxZoom: 100
+  minZoom: 7
+  zoomSpeed: 1
+  focusZoom: 7
+  focusSpeed: 1
+  xDifference: 0
   mapManager: {fileID: 0}
+  zoomPanel: {fileID: 0}
   focus: 0
   target: {fileID: 0}
