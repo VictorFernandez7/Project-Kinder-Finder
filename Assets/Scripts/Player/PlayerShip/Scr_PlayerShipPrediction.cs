@@ -10,7 +10,7 @@ public class Scr_PlayerShipPrediction : MonoBehaviour
     [Header("References")]
     [SerializeField] LineRenderer predictionLineMap;
     [SerializeField] Scr_PlayerShipProxCheck proximityCheck;
-    [SerializeField] private Scr_PlanetManager planetManager;
+    [SerializeField] private Scr_GameManager gameManager;
 
     [HideInInspector] public LineRenderer predictionLine;
 
@@ -46,11 +46,11 @@ public class Scr_PlayerShipPrediction : MonoBehaviour
             Vector3 gravity = new Vector3(0, 0, 0);
             Vector3 displacement = new Vector3(0, 0, 0);
 
-            for (int j = 0; j < planetManager.planets.Length; ++j)
+            for (int j = 0; j < gameManager.planets.Length; ++j)
             {
-                Vector3 gravityVectors = (planetManager.planets[j].GetComponent<Scr_AstroBase>().GetFutureGravity(currentPosition, i * Time.fixedDeltaTime));
+                Vector3 gravityVectors = (gameManager.planets[j].GetComponent<Scr_AstroBase>().GetFutureGravity(currentPosition, i * Time.fixedDeltaTime));
                 gravity += gravityVectors;
-                displacement += planetManager.planets[j].GetComponent<Scr_AstroBase>().GetFutureDisplacement(currentPosition, i * Time.fixedDeltaTime);
+                displacement += gameManager.planets[j].GetComponent<Scr_AstroBase>().GetFutureDisplacement(currentPosition, i * Time.fixedDeltaTime);
             }
 
             gravity = gravity * Time.fixedDeltaTime * Time.fixedDeltaTime;
