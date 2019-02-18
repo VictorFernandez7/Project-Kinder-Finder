@@ -2,13 +2,20 @@
 
 public class Scr_GameManager : MonoBehaviour
 {
+    [Header("Experience Values")]
+    [SerializeField] public int sightedXP;
+    [SerializeField] public int exploredXP;
+
     [Header("Vortex Spawn")]
     [SerializeField] private float ratio;
     [SerializeField] private float xMax;
     [SerializeField] private float yMax;
 
-    [Header("System Planets")]
+    [Header("Planet Info")]
     [SerializeField] public GameObject[] planets;
+
+    [Header("Exploration Info")]
+    [SerializeField] public GameObject[] planetsInfo;
 
     [Header("References")]
     [SerializeField] public GameObject initialPlanet;
