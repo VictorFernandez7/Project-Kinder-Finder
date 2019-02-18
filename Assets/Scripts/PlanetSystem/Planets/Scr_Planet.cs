@@ -27,6 +27,7 @@ public class Scr_Planet : Scr_AstroBase
     [SerializeField] private GameObject astronaut;
     [SerializeField] private GameObject mainCanvas;
     [SerializeField] private Scr_MapCamera mapCamera;
+    [SerializeField] public Renderer renderer;
 
     private double gravityConstant;
     private Vector3 lastFrameRotationPivot;

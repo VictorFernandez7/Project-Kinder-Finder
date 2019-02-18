@@ -71,13 +71,13 @@ public class Scr_MapManager : MonoBehaviour
         {
             onPlayerTarget = Instantiate(mapIndicatorPrefab);
             onPlayerTarget.GetComponent<SpriteRenderer>().color = onPlanetColor;
-            onPlayerTarget.transform.position = playerShip.GetComponent<Scr_PlayerShipMovement>().currentPlanet.transform.position + new Vector3(0f, ((playerShip.GetComponent<Scr_PlayerShipMovement>().currentPlanet.transform.GetChild(0).GetComponent<Renderer>().bounds.size.x) / 2) + 10f, -0.5f);
+            onPlayerTarget.transform.position = playerShip.GetComponent<Scr_PlayerShipMovement>().currentPlanet.transform.position + new Vector3(0f, ((playerShip.GetComponent<Scr_PlayerShipMovement>().currentPlanet.GetComponent<Scr_Planet>().renderer.bounds.size.x) / 2) + 10f, -0.5f);
             onPlanet = true;
         }
 
         else if (playerShip.GetComponent<Scr_PlayerShipMovement>().currentPlanet != null && onPlanet)
         {
-            onPlayerTarget.transform.position = playerShip.GetComponent<Scr_PlayerShipMovement>().currentPlanet.transform.position + new Vector3(0f, ((playerShip.GetComponent<Scr_PlayerShipMovement>().currentPlanet.transform.GetChild(0).GetComponent<Renderer>().bounds.size.x) / 2) + 10f, -0.5f);
+            onPlayerTarget.transform.position = playerShip.GetComponent<Scr_PlayerShipMovement>().currentPlanet.transform.position + new Vector3(0f, ((playerShip.GetComponent<Scr_PlayerShipMovement>().currentPlanet.GetComponent<Scr_Planet>().renderer.bounds.size.x) / 2) + 10f, -0.5f);
         }
 
         else if (playerShip.GetComponent<Scr_PlayerShipMovement>().currentPlanet == null)
@@ -87,7 +87,7 @@ public class Scr_MapManager : MonoBehaviour
         }
 
         if (target != null)
-            mapIndicatorClone.transform.position = target.transform.position + new Vector3(0f, ((target.transform.GetChild(0).GetComponent<Renderer>().bounds.size.x) / 2) + 10f, 0f);
+            mapIndicatorClone.transform.position = target.transform.position + new Vector3(0f, ((target.GetComponent<Scr_Planet>().renderer.bounds.size.x) / 2) + 10f, 0f);
 
         if (mapCamera.GetComponent<Scr_MapCamera>().focus)
         {
