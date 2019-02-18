@@ -10,7 +10,7 @@ public class Scr_AstronautsActions : MonoBehaviour
     [SerializeField] public Transform pickPoint;
     [SerializeField] public Scr_PlayerShipWarehouse playerShipWarehouse;
     [SerializeField] private Animator interactionIndicatorAnim;
-    [SerializeField] private Scr_PlanetManager planetManager;
+    [SerializeField] private Scr_GameManager gameManager;
     [SerializeField] private Scr_AstronautResourcesCheck astronautResourcesCheck;
     [SerializeField] private GameObject mainCamera;
     [SerializeField] private GameObject playerShip;
@@ -27,6 +27,7 @@ public class Scr_AstronautsActions : MonoBehaviour
     private float fuelAmount;
     private float holdInputTime = 0.9f;
     private bool canInputAgain = true;
+    private bool[] unlockedTools = new bool[5];
     
     private List<GameObject> currentResource = new List<GameObject>();
     private Scr_CableVisuals cableVisuals;
@@ -139,7 +140,7 @@ public class Scr_AstronautsActions : MonoBehaviour
         playerShip.GetComponent<Scr_PlayerShipActions>().doingSpaceWalk = false;
         cableVisuals.printCable = false;
         cableVisuals.ResetCable();
-        planetManager.Gravity(true);
+        gameManager.Gravity(true);
         gameObject.SetActive(false);
     }
 
@@ -165,6 +166,30 @@ public class Scr_AstronautsActions : MonoBehaviour
     }
 
    //HACER SELECCION DE TOOL
+   public void TakeTool (int index)
+    {
+        if (unlockedTools[index] && emptyHands)
+        {
+            if (toolOnHands)
+            {
+                astronautStats.toolSlots[numberToolActive].SetActive(false);
+            }
+
+            else
+            {
+                toolOnHands = true;
+            }
+
+            astronautStats.toolSlots[index].SetActive(true);
+            numberToolActive = index;
+        }
+    }
+
+    public void NoToolsOnHands()
+    {
+        astronautStats.toolSlots[numberToolActive].SetActive(false);
+        toolOnHands = false;
+    }
 
     private void TurnOnLantern()
     {

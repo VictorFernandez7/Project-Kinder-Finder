@@ -9,7 +9,6 @@ public class Scr_PlayerShipCraft : MonoBehaviour {
     [Header("References")]
     [SerializeField] private Scr_CraftData craftData;
     [SerializeField] private GameObject craftInfoPanel;
-    [SerializeField] private int craftIndex;
     [SerializeField] private Color enoughColor;
     [SerializeField] private Color notEnoughColor;
 
@@ -25,11 +24,15 @@ public class Scr_PlayerShipCraft : MonoBehaviour {
     private int resourceListIndex;
     private bool enableCraft;
     private bool onRange;
+    private int craftIndex;
+    private List<Scr_CraftInfo> crafteableTools = new List<Scr_CraftInfo>();
 
     private void Start()
     {
         playerShipStats = GetComponentInParent<Scr_PlayerShipStats>();
         playerShipWarehouse = GetComponentInParent<Scr_PlayerShipWarehouse>();
+
+        craftIndex = 0;
     }
 
     private void Update()
@@ -58,76 +61,87 @@ public class Scr_PlayerShipCraft : MonoBehaviour {
 
     public void PanelActive()
     {
-        int resourceTextIndex = 0;
+        crafteableTools.Clear();
 
-        List<string> keyr = new List<string>(playerShipWarehouse.Resources.Keys);
-
-        titleText.text = craftData.CraftList[craftIndex].m_name;
-        descriptionText.text = craftData.CraftList[craftIndex].m_info;
-
-        resource1Text.gameObject.SetActive(false);
-        resource2Text.gameObject.SetActive(false);
-        resource3Text.gameObject.SetActive(false);
-
-        craftInfoPanel.SetActive(true);
-
-        for (int i = 0; i < craftData.CraftList[craftIndex].resourceAmountList.Count; i++)
+        for(int i = 0; i < craftData.CraftList.Count; i++)
         {
-            if (craftData.CraftList[craftIndex].resourceAmountList[i] > 0 && resourceTextIndex == 0)
+            if (craftData.CraftList[i].crafteable)
+                crafteableTools.Add(craftData.CraftList[i]);
+        }
+
+        if (crafteableTools.Count > 0)
+        {
+            int resourceTextIndex = 0;
+
+            List<string> keyr = new List<string>(playerShipWarehouse.Resources.Keys);
+
+            titleText.text = craftData.CraftList[craftIndex].m_name;
+            descriptionText.text = craftData.CraftList[craftIndex].m_info;
+
+            resource1Text.gameObject.SetActive(false);
+            resource2Text.gameObject.SetActive(false);
+            resource3Text.gameObject.SetActive(false);
+
+            craftInfoPanel.SetActive(true);
+
+            for (int i = 0; i < craftData.CraftList[craftIndex].resourceAmountList.Count; i++)
             {
-                resource1Text.gameObject.SetActive(true);
-                resource1Text.text = craftData.CraftList[craftIndex].resourceNameList[i] + " " + playerShipWarehouse.Resources[keyr[i]] + "/" + craftData.CraftList[craftIndex].resourceAmountList[i].ToString();
-
-                if (playerShipWarehouse.Resources[keyr[i]] > craftData.CraftList[craftIndex].resourceAmountList[i])
+                if (craftData.CraftList[craftIndex].resourceAmountList[i] > 0 && resourceTextIndex == 0)
                 {
-                    resource1Text.color = enoughColor;
-                    enableCraft = true;
+                    resource1Text.gameObject.SetActive(true);
+                    resource1Text.text = craftData.CraftList[craftIndex].resourceNameList[i] + " " + playerShipWarehouse.Resources[keyr[i]] + "/" + craftData.CraftList[craftIndex].resourceAmountList[i].ToString();
+
+                    if (playerShipWarehouse.Resources[keyr[i]] > craftData.CraftList[craftIndex].resourceAmountList[i])
+                    {
+                        resource1Text.color = enoughColor;
+                        enableCraft = true;
+                    }
+
+                    else
+                    {
+                        resource1Text.color = notEnoughColor;
+                        enableCraft = false;
+                    }
+
+                    resourceTextIndex += 1;
                 }
 
-                else
+                else if (craftData.CraftList[craftIndex].resourceAmountList[i] > 0 && resourceTextIndex == 1)
                 {
-                    resource1Text.color = notEnoughColor;
-                    enableCraft = false;
+                    resource2Text.gameObject.SetActive(true);
+                    resource2Text.text = craftData.CraftList[craftIndex].resourceNameList[i] + " " + playerShipWarehouse.Resources[keyr[i]] + "/" + craftData.CraftList[craftIndex].resourceAmountList[i].ToString();
+
+                    if (playerShipWarehouse.Resources[keyr[i]] > craftData.CraftList[craftIndex].resourceAmountList[i])
+                    {
+                        resource2Text.color = enoughColor;
+                        enableCraft = true;
+                    }
+
+                    else
+                    {
+                        resource2Text.color = notEnoughColor;
+                        enableCraft = false;
+                    }
+
+                    resourceTextIndex += 1;
                 }
 
-                resourceTextIndex += 1;
-            }
-
-            else if (craftData.CraftList[craftIndex].resourceAmountList[i] > 0 && resourceTextIndex == 1)
-            {
-                resource2Text.gameObject.SetActive(true);
-                resource2Text.text = craftData.CraftList[craftIndex].resourceNameList[i] + " " + playerShipWarehouse.Resources[keyr[i]] + "/" + craftData.CraftList[craftIndex].resourceAmountList[i].ToString();
-
-                if (playerShipWarehouse.Resources[keyr[i]] > craftData.CraftList[craftIndex].resourceAmountList[i])
+                else if (craftData.CraftList[craftIndex].resourceAmountList[i] > 0 && resourceTextIndex == 2)
                 {
-                    resource2Text.color = enoughColor;
-                    enableCraft = true;
-                }
+                    resource3Text.gameObject.SetActive(true);
+                    resource3Text.text = craftData.CraftList[craftIndex].resourceNameList[i] + " " + playerShipWarehouse.Resources[keyr[i]] + "/" + craftData.CraftList[craftIndex].resourceAmountList[i].ToString();
 
-                else
-                {
-                    resource2Text.color = notEnoughColor;
-                    enableCraft = false;
-                }
+                    if (playerShipWarehouse.Resources[keyr[i]] > craftData.CraftList[craftIndex].resourceAmountList[i])
+                    {
+                        resource3Text.color = enoughColor;
+                        enableCraft = true;
+                    }
 
-                resourceTextIndex += 1;
-            }
-
-            else if (craftData.CraftList[craftIndex].resourceAmountList[i] > 0 && resourceTextIndex == 2)
-            {
-                resource3Text.gameObject.SetActive(true);
-                resource3Text.text = craftData.CraftList[craftIndex].resourceNameList[i] + " " + playerShipWarehouse.Resources[keyr[i]] + "/" + craftData.CraftList[craftIndex].resourceAmountList[i].ToString();
-
-                if (playerShipWarehouse.Resources[keyr[i]] > craftData.CraftList[craftIndex].resourceAmountList[i])
-                {
-                    resource3Text.color = enoughColor;
-                    enableCraft = true;
-                }
-
-                else
-                {
-                    resource3Text.color = notEnoughColor;
-                    enableCraft = false;
+                    else
+                    {
+                        resource3Text.color = notEnoughColor;
+                        enableCraft = false;
+                    }
                 }
             }
         }
