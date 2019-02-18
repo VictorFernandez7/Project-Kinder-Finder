@@ -24,6 +24,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [SerializeField] public float landDistance;
     [SerializeField] private float landingTime;
     [SerializeField] public LayerMask planetLayer;
+    [SerializeField] private float landingAccuracy;
 
     [Header("In Space Parameters")]
     [SerializeField] private float rotationDelay;
@@ -256,7 +257,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
         if (playerShipState == PlayerShipState.landing)
         {
-            if (Vector2.Distance(leftLander.transform.position, leftLanderHit.point) <= 0.03f)
+            if (Vector2.Distance(leftLander.transform.position, leftLanderHit.point) <= landingAccuracy)
             {
                 currentPlanet = leftLanderHit.collider.gameObject;
                 astronautMovement.currentPlanet = leftLanderHit.collider.gameObject;
@@ -269,7 +270,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
                 playerShipActions.startExitDelay = true;
             }
 
-            else if (Vector2.Distance(rightLander.transform.position, rightLanderHit.point) <= 0.03f)
+            else if (Vector2.Distance(rightLander.transform.position, rightLanderHit.point) <= landingAccuracy)
             {
                 currentPlanet = rightLanderHit.collider.gameObject;
                 astronautMovement.currentPlanet = rightLanderHit.collider.gameObject;
