@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class Scr_Star : Scr_AstroBase
 {
-    [Header("Planet Properties")]
+    [Header("Star Properties")]
     [SerializeField] private float movementSpeed;
-    [SerializeField] float maxClampDistance;
-    [SerializeField] float minClampDistance;
+    [SerializeField] private float maxClampDistance;
+    [SerializeField] private float minClampDistance;
 
     [Header("References")]
     [SerializeField] private GameObject playerShip;
-    [SerializeField] private GameObject mapVisuals;
 
     private double gravityConstant;
     private Vector3 lastFrameRotationPivot = Vector3.zero;
@@ -21,11 +20,10 @@ public class Scr_Star : Scr_AstroBase
     private void Start()
     {
         planetRb = GetComponent<Rigidbody2D>();
+        playerShipRb = playerShip.GetComponent<Rigidbody2D>();
 
         switchGravity = true;
-        playerShipRb = playerShip.GetComponent<Rigidbody2D>();
         gravityConstant = 6.674 * (10 ^ -11);
-        mapVisuals.SetActive(true);
     }
 
     public override void FixedUpdate()

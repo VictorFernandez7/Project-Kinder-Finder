@@ -20,8 +20,7 @@ public class Scr_Planet : Scr_AstroBase
     [SerializeField] public Material particlesMaterial;
 
     [Header("References")]
-    [SerializeField] private GameObject mapIndicator;    
-    [SerializeField] private GameObject mapVisuals;
+    [SerializeField] private GameObject mapIndicator;
     [SerializeField] private GameObject rotationPivot;
     [SerializeField] private Scr_MapManager mapManager;
     [SerializeField] private GameObject playerShip;
@@ -52,7 +51,6 @@ public class Scr_Planet : Scr_AstroBase
         playerShipRb = playerShip.GetComponent<Rigidbody2D>();
         astronautRB = astronaut.GetComponent<Rigidbody2D>();
         gravityConstant = 6.674 * (10 ^ -11);
-        mapVisuals.SetActive(true);
     }
 
     public override void FixedUpdate()

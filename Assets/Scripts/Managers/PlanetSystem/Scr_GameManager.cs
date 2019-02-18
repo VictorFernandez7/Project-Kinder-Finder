@@ -2,13 +2,13 @@
 
 public class Scr_GameManager : MonoBehaviour
 {
-    [Header("Game Start Conditions")]
-
-
     [Header("Vortex Spawn")]
     [SerializeField] private float ratio;
     [SerializeField] private float xMax;
     [SerializeField] private float yMax;
+
+    [Header("System Planets")]
+    [SerializeField] public GameObject[] planets;
 
     [Header("References")]
     [SerializeField] public GameObject initialPlanet;
@@ -44,6 +44,25 @@ public class Scr_GameManager : MonoBehaviour
             Instantiate(vortex, vortexPosition, transform.rotation);
 
             initialRatio = ratio;
+        }
+    }
+
+    public void Gravity(bool active)
+    {
+        if (active)
+        {
+            for (int i = 0; i < planets.Length; i++)
+            {
+                planets[i].GetComponent<Scr_AstroBase>().switchGravity = true;
+            }
+        }
+
+        else
+        {
+            for (int i = 0; i < planets.Length; i++)
+            {
+                planets[i].GetComponent<Scr_AstroBase>().switchGravity = false;
+            }
         }
     }
 }
