@@ -11,23 +11,29 @@ public class Scr_Planet : Scr_AstroBase
     [SerializeField] public List<Scr_ReferenceManager.ResourceName> resources;
     [SerializeField] public bool planetOxygen;
 
-    [Header("Planet Properties")]
+    [Header("Movement Properties")]
     [SerializeField] private float movementSpeed;
+    [SerializeField] [Range(-0.1f, 0.1f)] private float rotationSpeed;
+
+    [Header("Gravity Properties")]
     [SerializeField] private float maxClampDistance;
     [SerializeField] private float minClampDistance;
-    [SerializeField] [Range(-0.1f, 0.1f)] private float rotationSpeed;
+
+    [Header("Particle Properties")]
     [SerializeField] public float particleMultiplier;
     [SerializeField] public Material particlesMaterial;
 
-    [Header("References")]
+    [Header("Internal References")]
     [SerializeField] private GameObject mapIndicator;
+    [SerializeField] public Renderer renderer;
+
+    [Header("External References")]
     [SerializeField] private GameObject rotationPivot;
     [SerializeField] private Scr_MapManager mapManager;
     [SerializeField] private GameObject playerShip;
     [SerializeField] private GameObject astronaut;
     [SerializeField] private GameObject mainCanvas;
     [SerializeField] private Scr_MapCamera mapCamera;
-    [SerializeField] public Renderer renderer;
 
     private double gravityConstant;
     private Vector3 lastFrameRotationPivot;

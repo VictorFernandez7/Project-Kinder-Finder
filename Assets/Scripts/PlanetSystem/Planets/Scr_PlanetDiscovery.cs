@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Scr_PlanetDiscovery : MonoBehaviour
 {
+    [Header("Start Conditions")]
+    [SerializeField] private bool discovered;
+
     [Header("References")]
     [SerializeField] private GameObject planet;
     [SerializeField] private Scr_GameManager gameManager;
@@ -17,12 +20,11 @@ public class Scr_PlanetDiscovery : MonoBehaviour
     private void Start()
     {
         circleCollider = GetComponent<CircleCollider2D>();
-    }
 
-    private void Update()
-    {
-        circleCollider.enabled = !sighted;
-        planet.SetActive(sighted);
+        sighted = discovered;
+        explored = discovered;
+        planet.SetActive(discovered);
+        circleCollider.enabled = !discovered;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -30,6 +32,8 @@ public class Scr_PlanetDiscovery : MonoBehaviour
         if (collision.CompareTag("PlayerShip"))
         {
             sighted = true;
+            planet.SetActive(true);
+            circleCollider.enabled = false;
             playerShipStats.GetExperience(gameManager.sightedXP);
         }
     }

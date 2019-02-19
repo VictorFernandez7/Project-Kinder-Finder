@@ -108,20 +108,20 @@ MonoBehaviour:
   resources: 07000000
   planetOxygen: 1
   movementSpeed: 0.1
+  rotationSpeed: 0.0284
   maxClampDistance: 20.5
   minClampDistance: -7.5
-  rotationSpeed: 0.0284
   particleMultiplier: 1
   particlesMaterial: {fileID: 2100000, guid: 35265bc91dbfe944cb3718697b3eb57d, type: 2}
   mapIndicator: {fileID: 1537797829338736, guid: d2431a6539bbcd045b900b661cb80386,
     type: 3}
+  renderer: {fileID: 9077446662447302361}
   rotationPivot: {fileID: 0}
   mapManager: {fileID: 0}
   playerShip: {fileID: 0}
   astronaut: {fileID: 0}
   mainCanvas: {fileID: 0}
   mapCamera: {fileID: 0}
-  renderer: {fileID: 9077446662447302361}
 --- !u!1 &3024976862561513740
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,6 +161,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7218858026413106948}
+  - component: {fileID: 3243226107249110557}
+  - component: {fileID: 6874115940454997136}
   m_Layer: 0
   m_Name: DiscoveryTrigger
   m_TagString: Untagged
@@ -182,6 +184,40 @@ Transform:
   m_Father: {fileID: 9019866132927737870}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3243226107249110557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3243226107249110556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 337f284afac1f2c4587cfb38037c1ad2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  discovered: 0
+  planet: {fileID: 247211481212137527}
+  gameManager: {fileID: 0}
+  playerShipStats: {fileID: 0}
+  sighted: 0
+  explored: 0
+--- !u!58 &6874115940454997136
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3243226107249110556}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 40
 --- !u!1 &3656211511675415319
 GameObject:
   m_ObjectHideFlags: 0
