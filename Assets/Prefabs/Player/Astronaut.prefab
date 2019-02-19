@@ -5427,7 +5427,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2139447143
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10406,6 +10406,7 @@ GameObject:
   - component: {fileID: 114105366921904924}
   - component: {fileID: 114755716893654776}
   - component: {fileID: 114544908541210520}
+  - component: {fileID: 2028569279}
   m_Layer: 20
   m_Name: Astronaut
   m_TagString: Astronaut
@@ -10519,22 +10520,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9248ef4e94e9ef3439aba69f0e6b13fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxResourcesCapacity: 0
+  interactionIndicatorAnim: {fileID: 0}
+  pickPoint: {fileID: 4973946125739948}
   spawnPoint: {fileID: 0}
   iaResourcePoint: {fileID: 0}
-  pickPoint: {fileID: 4973946125739948}
-  playerShipWarehouse: {fileID: 0}
-  interactionIndicatorAnim: {fileID: 0}
-  gameManager: {fileID: 0}
-  astronautResourcesCheck: {fileID: 668643024586636418}
   mainCamera: {fileID: 0}
   playerShip: {fileID: 0}
   lantern: {fileID: 54107}
   sunLight: {fileID: 0}
+  gameManager: {fileID: 0}
+  playerShipWarehouse: {fileID: 0}
+  astronautResourcesCheck: {fileID: 668643024586636418}
   playerShipProxCheck: {fileID: 0}
-  maxResourcesCapacity: 0
+  numberToolActive: 0
   emptyHands: 1
   toolOnHands: 0
-  numberToolActive: 0
   toolOnFloor: {fileID: 0}
 --- !u!114 &114755716893654776
 MonoBehaviour:
@@ -10624,6 +10625,23 @@ MonoBehaviour:
   breathing: {fileID: 0}
   chatter: {fileID: 0}
   breathingBool: 0
+--- !u!114 &2028569279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635559910669824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7aef4b801a43784d884c946732afca0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
+  worldCanvas: {fileID: 0}
+  selectionWheel: {fileID: 5535329013337825719, guid: 71d0e1be0a775d04eb0c42061c3780df,
+    type: 3}
+  playerShipMovement: {fileID: 0}
 --- !u!1 &1642608111972328
 GameObject:
   m_ObjectHideFlags: 0
@@ -11316,9 +11334,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04a4146cdd04b7b45aaa7e52a1eddace, type: 3}
---- !u!95 &9188732813537462634 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 9500000, guid: 04a4146cdd04b7b45aaa7e52a1eddace,
+--- !u!1 &9188732813530184360 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100002, guid: 04a4146cdd04b7b45aaa7e52a1eddace,
     type: 3}
   m_PrefabInstance: {fileID: 9188732813530151946}
   m_PrefabAsset: {fileID: 0}
@@ -11328,9 +11346,9 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 9188732813530151946}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &9188732813530184360 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100002, guid: 04a4146cdd04b7b45aaa7e52a1eddace,
+--- !u!95 &9188732813537462634 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9500000, guid: 04a4146cdd04b7b45aaa7e52a1eddace,
     type: 3}
   m_PrefabInstance: {fileID: 9188732813530151946}
   m_PrefabAsset: {fileID: 0}

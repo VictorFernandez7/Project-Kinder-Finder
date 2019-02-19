@@ -4,24 +4,26 @@ using UnityEngine;
 
 public class Scr_AstronautsActions : MonoBehaviour
 {
+    [Header("Resources")]
+    [SerializeField] private int maxResourcesCapacity;
+
     [Header("References")]
+    [SerializeField] private Animator interactionIndicatorAnim;
+    [SerializeField] public Transform pickPoint;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private Transform iaResourcePoint;
-    [SerializeField] public Transform pickPoint;
-    [SerializeField] public Scr_PlayerShipWarehouse playerShipWarehouse;
-    [SerializeField] private Animator interactionIndicatorAnim;
-    [SerializeField] private Scr_GameManager gameManager;
-    [SerializeField] private Scr_AstronautResourcesCheck astronautResourcesCheck;
     [SerializeField] private GameObject mainCamera;
     [SerializeField] private GameObject playerShip;
     [SerializeField] private GameObject lantern;
     [SerializeField] private Scr_SunLight sunLight;
+    [SerializeField] private Scr_GameManager gameManager;
+    [SerializeField] public Scr_PlayerShipWarehouse playerShipWarehouse;
+    [SerializeField] private Scr_AstronautResourcesCheck astronautResourcesCheck;
     [SerializeField] private Scr_PlayerShipProxCheck playerShipProxCheck;
-    [SerializeField] private int maxResourcesCapacity;
 
+    [HideInInspector] public int numberToolActive;
     [HideInInspector] public bool emptyHands;
     [HideInInspector] public bool toolOnHands;
-    [HideInInspector] public int numberToolActive;
     [HideInInspector] public GameObject toolOnFloor;
 
     private float fuelAmount;
