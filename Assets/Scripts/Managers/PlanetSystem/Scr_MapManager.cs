@@ -28,9 +28,8 @@ public class Scr_MapManager : MonoBehaviour
     [SerializeField] private Camera mainCamera;
     [SerializeField] private TextMeshProUGUI planetName;
     [SerializeField] private TextMeshProUGUI planetType;
-    [SerializeField] private TextMeshProUGUI planetTemperature;
+    [SerializeField] private TextMeshProUGUI planetBlock;
     [SerializeField] private GameObject planetOxygen;
-    [SerializeField] private GameObject planetGravity;
     [SerializeField] private GameObject directionIndicator;
 
     [HideInInspector] public bool mapActive;
@@ -225,13 +224,12 @@ public class Scr_MapManager : MonoBehaviour
         directionIndicatorClone.transform.localPosition = -directionIndicatorClone.transform.up * distance;
     }
 
-    public void ChangePlanetInfo(string name, Scr_Planet.PlanetType type, int temperature, bool oxygen, bool gravity)
+    public void ChangePlanetInfo(string name, Scr_Planet.PlanetType type, Scr_Planet.BlockType block, bool oxygen)
     {
         planetName.text = name;
         planetType.text = type.ToString();
-        planetTemperature.text = temperature + " º";
+        planetBlock.text = block.ToString();
         planetOxygen.SetActive(oxygen);
-        planetGravity.SetActive(gravity);
 
         switch (type)
         {

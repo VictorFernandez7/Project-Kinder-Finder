@@ -7,27 +7,33 @@ public class Scr_Planet : Scr_AstroBase
     [Header("Planet Info")]
     [SerializeField] public string planetName;
     [SerializeField] public PlanetType planetType;
-    [SerializeField] public int planetTemperature;
+    [SerializeField] public BlockType blockType;
+    [SerializeField] public List<Scr_ReferenceManager.ResourceName> resources;
     [SerializeField] public bool planetOxygen;
-    [SerializeField] public bool planetGravity;
 
-    [Header("Planet Properties")]
+    [Header("Movement Properties")]
     [SerializeField] private float movementSpeed;
+    [SerializeField] [Range(-0.1f, 0.1f)] private float rotationSpeed;
+
+    [Header("Gravity Properties")]
     [SerializeField] private float maxClampDistance;
     [SerializeField] private float minClampDistance;
-    [SerializeField] [Range(-0.1f, 0.1f)] private float rotationSpeed;
+
+    [Header("Particle Properties")]
     [SerializeField] public float particleMultiplier;
     [SerializeField] public Material particlesMaterial;
 
-    [Header("References")]
+    [Header("Internal References")]
     [SerializeField] private GameObject mapIndicator;
+    [SerializeField] public Renderer renderer;
+
+    [Header("External References")]
     [SerializeField] private GameObject rotationPivot;
     [SerializeField] private Scr_MapManager mapManager;
     [SerializeField] private GameObject playerShip;
     [SerializeField] private GameObject astronaut;
     [SerializeField] private GameObject mainCanvas;
     [SerializeField] private Scr_MapCamera mapCamera;
-    [SerializeField] public Renderer renderer;
 
     private double gravityConstant;
     private Vector3 lastFrameRotationPivot;
@@ -41,6 +47,14 @@ public class Scr_Planet : Scr_AstroBase
         Frozen,
         Volcanic,
         Arid
+    }
+
+    public enum BlockType
+    {
+        None,
+        HighTemperature,
+        LowTemperature,
+        Toxic
     }
 
     private void Start()
@@ -118,7 +132,7 @@ public class Scr_Planet : Scr_AstroBase
             mapCamera.target = gameObject;
             mapCamera.focus = !mapCamera.focus;
             mapManager.canMove = !mapManager.canMove;
-            mapManager.ChangePlanetInfo(planetName, planetType, planetTemperature, planetOxygen, planetGravity);
+            mapManager.ChangePlanetInfo(planetName, planetType, blockType, planetOxygen);
             mapManager.currentPlanet = gameObject;
         }
     }

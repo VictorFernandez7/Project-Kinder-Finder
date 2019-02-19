@@ -104,15 +104,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4390908855545102462}
-  m_LocalRotation: {x: -0, y: -0, z: 0.29825377, w: 0.95448667}
+  m_LocalRotation: {x: 0, y: 0, z: 0.29825795, w: 0.95448536}
   m_LocalPosition: {x: -316.3, y: 454.6, z: 7.625}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.0000002, y: 1.0000002, z: 1}
   m_Children:
   - {fileID: 4390908856211400874}
   - {fileID: 4390908856533096777}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 34.706}
 --- !u!50 &4390908855545102461
 Rigidbody2D:
   serializedVersion: 4
@@ -147,26 +147,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   switchGravity: 0
-  planetName: Earth
-  planetType: 0
-  planetTemperature: 30
+  planetName: Turna
+  planetType: 3
+  blockType: 0
+  resources: 02000000
   planetOxygen: 1
-  planetGravity: 1
   movementSpeed: 0.1
+  rotationSpeed: 0.0284
   maxClampDistance: 16.5
   minClampDistance: -3.5
-  rotationSpeed: 0.0284
   particleMultiplier: 1
   particlesMaterial: {fileID: 2100000, guid: 35265bc91dbfe944cb3718697b3eb57d, type: 2}
   mapIndicator: {fileID: 1537797829338736, guid: d2431a6539bbcd045b900b661cb80386,
     type: 3}
+  renderer: {fileID: 4390908855305340205}
   rotationPivot: {fileID: 0}
   mapManager: {fileID: 0}
   playerShip: {fileID: 0}
   astronaut: {fileID: 0}
   mainCanvas: {fileID: 0}
   mapCamera: {fileID: 0}
-  renderer: {fileID: 4390908855305340205}
 --- !u!1 &4390908855813652233
 GameObject:
   m_ObjectHideFlags: 0
@@ -206,6 +206,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4390908856211400874}
+  - component: {fileID: 433357126258017583}
+  - component: {fileID: 53196247}
   m_Layer: 0
   m_Name: DiscoveryTrigger
   m_TagString: Untagged
@@ -227,6 +229,40 @@ Transform:
   m_Father: {fileID: 4390908855545102463}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &433357126258017583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4390908856211400877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 337f284afac1f2c4587cfb38037c1ad2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  discovered: 0
+  planet: {fileID: 4390908856533096776}
+  gameManager: {fileID: 0}
+  playerShipStats: {fileID: 0}
+  sighted: 0
+  explored: 0
+--- !u!58 &53196247
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4390908856211400877}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 30
 --- !u!1 &4390908856533096776
 GameObject:
   m_ObjectHideFlags: 0
