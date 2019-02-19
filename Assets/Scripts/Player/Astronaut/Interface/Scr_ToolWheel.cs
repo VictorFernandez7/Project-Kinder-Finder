@@ -1,9 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using TMPro;
 
 public class Scr_ToolWheel : MonoBehaviour
 {
-    [Header("References")]
+    [Header("Tools")]
     [SerializeField] public GameObject[] tools;
+
+    [Header("Texts")]
+    [SerializeField] public TextMeshProUGUI toolName;
+
+    [Header("Animators")]
+    [SerializeField] public Animator wheelAnim;
+    [SerializeField] public Animator toolsAnim;
 }
