@@ -9,15 +9,13 @@ public class Scr_AstronautInterface : MonoBehaviour
     [SerializeField] private Scr_ToolWheel toolWheel;
     [SerializeField] private Scr_PlayerShipMovement playerShipMovement;
 
-    private float minDistance;
+    private float minDistance = 100;
     private string selectedTool;
     private GameObject wheel;
 
     private void Update()
     {
         InputProcess();
-
-        minDistance = 100;
     }
 
     private void InputProcess()
@@ -30,32 +28,38 @@ public class Scr_AstronautInterface : MonoBehaviour
             wheel.transform.SetParent(worldCanvas.transform);
             worldCanvas.transform.SetParent(playerShipMovement.currentPlanet.transform);
             toolWheel = wheel.GetComponent<Scr_ToolWheel>();
+            toolWheel.wheelAnim.SetBool("Show", true);
+            minDistance = 100;
         }
 
         if (Input.GetMouseButton(1))
-            MouseMovement();
+            UpdateSelectedTool();
 
         if (Input.GetMouseButtonUp(1))
             SelectTool();
     }
 
-    private void MouseMovement()
+    private void UpdateSelectedTool()
     {
         wheel.transform.rotation = mainCamera.transform.rotation;
 
         for (int i = 0; i < toolWheel.tools.Length; i++)
         {
             if (Vector2.Distance(toolWheel.tools[i].transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition)) < minDistance)
+            {
+                minDistance = Vector2.Distance(toolWheel.tools[i].transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition));
                 selectedTool = toolWheel.tools[i].name;
+            }
         }
 
         minDistance = 100;
-
-        print(selectedTool);
+        //toolWheel.toolsAnim.SetBool(selectedTool, true);
+        toolWheel.toolName.text = selectedTool;
     }
 
     private void SelectTool()
     {
-        Destroy(wheel);
+        toolWheel.wheelAnim.SetBool("Show", false);
+        Destroy(wheel, 0.5f);
     }
 }
