@@ -13,4 +13,22 @@ public class Scr_ReferenceManager : MonoBehaviour
     [SerializeField] public GameObject OreExtractor;
     [SerializeField] public GameObject RepairingTool;
     [SerializeField] public GameObject Jetpack;
+
+    public enum ResourceName
+    {
+        Oxygen,
+        Fuel,
+        Carbon,
+        Silicon,
+        Helium,
+        Aerogel,
+        Iron,
+        Aluminium,
+        Magnetite,
+        Mercury,
+        Ceramic,
+        Termatite,
+        TechnologicalPart,
+        EnergyCore
+    }
 }

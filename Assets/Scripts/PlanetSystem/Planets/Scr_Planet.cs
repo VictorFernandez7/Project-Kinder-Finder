@@ -7,9 +7,9 @@ public class Scr_Planet : Scr_AstroBase
     [Header("Planet Info")]
     [SerializeField] public string planetName;
     [SerializeField] public PlanetType planetType;
-    [SerializeField] public int planetTemperature;
+    [SerializeField] public BlockType blockType;
+    [SerializeField] public List<Scr_ReferenceManager.ResourceName> resources;
     [SerializeField] public bool planetOxygen;
-    [SerializeField] public bool planetGravity;
 
     [Header("Planet Properties")]
     [SerializeField] private float movementSpeed;
@@ -41,6 +41,14 @@ public class Scr_Planet : Scr_AstroBase
         Frozen,
         Volcanic,
         Arid
+    }
+
+    public enum BlockType
+    {
+        None,
+        HighTemperature,
+        LowTemperature,
+        Toxic
     }
 
     private void Start()
@@ -118,7 +126,7 @@ public class Scr_Planet : Scr_AstroBase
             mapCamera.target = gameObject;
             mapCamera.focus = !mapCamera.focus;
             mapManager.canMove = !mapManager.canMove;
-            mapManager.ChangePlanetInfo(planetName, planetType, planetTemperature, planetOxygen, planetGravity);
+            mapManager.ChangePlanetInfo(planetName, planetType, blockType, planetOxygen);
             mapManager.currentPlanet = gameObject;
         }
     }

@@ -387,9 +387,9 @@ MonoBehaviour:
   switchGravity: 0
   planetName: Volcano
   planetType: 2
-  planetTemperature: 170
+  blockType: 1
+  resources: 0b000000
   planetOxygen: 1
-  planetGravity: 1
   movementSpeed: 0.1
   maxClampDistance: 20.5
   minClampDistance: -7.5
@@ -405,6 +405,67 @@ MonoBehaviour:
   mainCanvas: {fileID: 0}
   mapCamera: {fileID: 0}
   renderer: {fileID: 5640857353396495528}
+--- !u!68 &7994631600133205234
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5640857353398762088}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.009954041, y: 0.0010602773}
+  - {x: -0.009646871, y: 0.0020523681}
+  - {x: -0.009534668, y: 0.0031226273}
+  - {x: -0.008655823, y: 0.0050213113}
+  - {x: -0.007983928, y: 0.0058303173}
+  - {x: -0.007843832, y: 0.005886363}
+  - {x: -0.0072161662, y: 0.0066146823}
+  - {x: -0.00740566, y: 0.00670652}
+  - {x: -0.006509847, y: 0.00753288}
+  - {x: -0.005063802, y: 0.008782409}
+  - {x: -0.0041518146, y: 0.009315041}
+  - {x: -0.0033133342, y: 0.009644506}
+  - {x: -0.0032029012, y: 0.00977864}
+  - {x: -0.00302358, y: 0.009751978}
+  - {x: -0.0021009317, y: 0.00996083}
+  - {x: -0.0018704426, y: 0.01022404}
+  - {x: -0.0000018717448, y: 0.010417556}
+  - {x: 0.00083717855, y: 0.01117275}
+  - {x: 0.0023174845, y: 0.011278549}
+  - {x: 0.0030535075, y: 0.010974289}
+  - {x: 0.0037427775, y: 0.009690668}
+  - {x: 0.0041473387, y: 0.009529622}
+  - {x: 0.00499705, y: 0.008918228}
+  - {x: 0.0051181642, y: 0.008699498}
+  - {x: 0.005293559, y: 0.008607188}
+  - {x: 0.0074363197, y: 0.00669533}
+  - {x: 0.008702413, y: 0.004960612}
+  - {x: 0.009520365, y: 0.0030786286}
+  - {x: 0.009962687, y: 0.0010802816}
+  - {x: 0.009963806, y: -0.001078275}
+  - {x: 0.009510315, y: -0.0031097156}
+  - {x: 0.008670838, y: -0.0050182315}
+  - {x: 0.007398783, y: -0.0067287697}
+  - {x: 0.005894999, y: -0.00811612}
+  - {x: 0.004074544, y: -0.009160083}
+  - {x: 0.0020485027, y: -0.009811074}
+  - {x: -0.0000022176107, y: -0.010026232}
+  - {x: -0.0020854694, y: -0.009807994}
+  - {x: -0.0041294964, y: -0.009127037}
+  - {x: -0.0058917236, y: -0.008094551}
+  - {x: -0.007457072, y: -0.0067027}
+  - {x: -0.00870518, y: -0.004923978}
+  - {x: -0.009508891, y: -0.0031080195}
+  - {x: -0.009937175, y: -0.0011042939}
+  - {x: -0.0099474285, y: 0.0010783107}
 --- !u!1 &5640857353765407016
 GameObject:
   m_ObjectHideFlags: 0
@@ -504,6 +565,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f96489aaa495fe74182375cb456f375b, type: 3}
+--- !u!1 &5640857353398762088 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: f96489aaa495fe74182375cb456f375b,
+    type: 3}
+  m_PrefabInstance: {fileID: 5640857353398664392}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5640857353398789704 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: f96489aaa495fe74182375cb456f375b,

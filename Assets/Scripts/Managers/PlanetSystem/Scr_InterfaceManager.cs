@@ -131,9 +131,10 @@ public class Scr_InterfaceManager : MonoBehaviour
         if (playerShipMovement.currentPlanet != null)
         {
             planetName.text = playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().planetName;
-            planetTemperature.text = playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().planetTemperature + " º";
+
+            // Tipo planeta, block y oxígeno
+
             planetOxygen.SetActive(playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().planetOxygen);
-            planetGravity.SetActive(playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().planetGravity);
         }
     }
 
