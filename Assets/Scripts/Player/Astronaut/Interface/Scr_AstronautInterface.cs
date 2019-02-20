@@ -9,9 +9,18 @@ public class Scr_AstronautInterface : MonoBehaviour
     [SerializeField] private Scr_ToolWheel toolWheel;
     [SerializeField] private Scr_PlayerShipMovement playerShipMovement;
 
-    private float minDistance = 100;
+    private int toolIndex;
+    private float minDistance;
     private string selectedTool;
     private GameObject wheel;
+    private Scr_AstronautsActions astronautsActions;
+
+    private void Start()
+    {
+        astronautsActions = GetComponent<Scr_AstronautsActions>();
+
+        minDistance = 100;
+    }
 
     private void Update()
     {
@@ -62,6 +71,7 @@ public class Scr_AstronautInterface : MonoBehaviour
             {
                 minDistance = Vector2.Distance(toolWheel.tools[i].transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition));
                 selectedTool = toolWheel.tools[i].name;
+                toolIndex = i;
 
                 for (int j = 0; j < toolWheel.selectionSprites.Length; j++)
                 {
@@ -82,6 +92,13 @@ public class Scr_AstronautInterface : MonoBehaviour
     private void SelectTool()
     {
         toolWheel.wheelAnim.SetBool("Show", false);
+
+        if (toolIndex < 5)
+            astronautsActions.TakeTool(toolIndex);
+
+        else
+            astronautsActions.NoToolsOnHands();
+
         Destroy(wheel, 0.5f);
     }
 }
