@@ -6,6 +6,9 @@ public class Scr_ToolWheel : MonoBehaviour
     [Header("Tools")]
     [SerializeField] public GameObject[] tools;
 
+    [Header("Selection Sprites")]
+    [SerializeField] public GameObject[] selectionSprites;
+
     [Header("Texts")]
     [SerializeField] public TextMeshProUGUI toolName;
 

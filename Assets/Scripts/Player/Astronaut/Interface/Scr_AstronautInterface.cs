@@ -49,6 +49,15 @@ public class Scr_AstronautInterface : MonoBehaviour
             {
                 minDistance = Vector2.Distance(toolWheel.tools[i].transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition));
                 selectedTool = toolWheel.tools[i].name;
+
+                for (int j = 0; j < toolWheel.selectionSprites.Length; j++)
+                {
+                    if (j == i)
+                        toolWheel.selectionSprites[j].SetActive(true);
+
+                    else
+                        toolWheel.selectionSprites[j].SetActive(false);
+                }
             }
         }
 
