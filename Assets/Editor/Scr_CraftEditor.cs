@@ -62,8 +62,35 @@ public class Scr_CraftEditor : EditorWindow
         }
     }
 
+    void RefreshItemList()
+    {
+        int numberIndex = 0;
+
+        for(int i = 0; i < inventoryItemList.CraftList.Count; i++)
+        {
+            if(inventoryItemList.CraftList[i].resourceNameList.Count > inventoryItemList.CraftList[numberIndex].resourceNameList.Count)
+            {
+                numberIndex = i;
+            }
+        }
+
+        for(int i = 0; i < inventoryItemList.CraftList.Count; i++)
+        {
+            if(inventoryItemList.CraftList[i].resourceNameList.Count < inventoryItemList.CraftList[numberIndex].resourceNameList.Count)
+            {
+                for(int j = inventoryItemList.CraftList[i].resourceNameList.Count; j < inventoryItemList.CraftList[numberIndex].resourceNameList.Count; j++)
+                {
+                    inventoryItemList.CraftList[i].resourceNameList.Add(inventoryItemList.CraftList[numberIndex].resourceNameList[j]);
+                    inventoryItemList.CraftList[i].resourceAmountList.Add(0);
+                }
+            }
+        }
+    }
+
     void PrintTopMenu()
     {
+        RefreshItemList();
+
         GUILayout.BeginHorizontal();
         GUILayout.Space(10);
 
