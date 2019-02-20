@@ -9,9 +9,18 @@ public class Scr_AstronautInterface : MonoBehaviour
     [SerializeField] private Scr_ToolWheel toolWheel;
     [SerializeField] private Scr_PlayerShipMovement playerShipMovement;
 
-    private float minDistance = 100;
+    private int toolIndex;
+    private float minDistance;
     private string selectedTool;
     private GameObject wheel;
+    private Scr_AstronautsActions astronautsActions;
+
+    private void Start()
+    {
+        astronautsActions = GetComponent<Scr_AstronautsActions>();
+
+        minDistance = 100;
+    }
 
     private void Update()
     {
@@ -33,7 +42,22 @@ public class Scr_AstronautInterface : MonoBehaviour
         }
 
         if (Input.GetMouseButton(1))
-            UpdateSelectedTool();
+        {
+            wheel.transform.rotation = mainCamera.transform.rotation;
+
+            if (Vector2.Distance(wheel.transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition)) > 0.15f)
+                UpdateSelectedTool();
+
+            else
+            {
+                toolWheel.toolName.text = "";
+
+                for (int j = 0; j < toolWheel.selectionSprites.Length; j++)
+                {
+                    toolWheel.selectionSprites[j].SetActive(false);
+                }
+            }
+        }
 
         if (Input.GetMouseButtonUp(1))
             SelectTool();
@@ -41,14 +65,22 @@ public class Scr_AstronautInterface : MonoBehaviour
 
     private void UpdateSelectedTool()
     {
-        wheel.transform.rotation = mainCamera.transform.rotation;
-
         for (int i = 0; i < toolWheel.tools.Length; i++)
         {
             if (Vector2.Distance(toolWheel.tools[i].transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition)) < minDistance)
             {
                 minDistance = Vector2.Distance(toolWheel.tools[i].transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition));
                 selectedTool = toolWheel.tools[i].name;
+                toolIndex = i;
+
+                for (int j = 0; j < toolWheel.selectionSprites.Length; j++)
+                {
+                    if (j == i)
+                        toolWheel.selectionSprites[j].SetActive(true);
+
+                    else
+                        toolWheel.selectionSprites[j].SetActive(false);
+                }
             }
         }
 
@@ -60,6 +92,13 @@ public class Scr_AstronautInterface : MonoBehaviour
     private void SelectTool()
     {
         toolWheel.wheelAnim.SetBool("Show", false);
+
+        if (toolIndex < 5)
+            astronautsActions.TakeTool(toolIndex);
+
+        else
+            astronautsActions.NoToolsOnHands();
+
         Destroy(wheel, 0.5f);
     }
 }
