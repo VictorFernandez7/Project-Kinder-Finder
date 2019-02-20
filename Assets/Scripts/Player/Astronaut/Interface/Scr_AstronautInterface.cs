@@ -33,7 +33,22 @@ public class Scr_AstronautInterface : MonoBehaviour
         }
 
         if (Input.GetMouseButton(1))
-            UpdateSelectedTool();
+        {
+            wheel.transform.rotation = mainCamera.transform.rotation;
+
+            if (Vector2.Distance(wheel.transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition)) > 0.15f)
+                UpdateSelectedTool();
+
+            else
+            {
+                toolWheel.toolName.text = "";
+
+                for (int j = 0; j < toolWheel.selectionSprites.Length; j++)
+                {
+                    toolWheel.selectionSprites[j].SetActive(false);
+                }
+            }
+        }
 
         if (Input.GetMouseButtonUp(1))
             SelectTool();
@@ -41,8 +56,6 @@ public class Scr_AstronautInterface : MonoBehaviour
 
     private void UpdateSelectedTool()
     {
-        wheel.transform.rotation = mainCamera.transform.rotation;
-
         for (int i = 0; i < toolWheel.tools.Length; i++)
         {
             if (Vector2.Distance(toolWheel.tools[i].transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition)) < minDistance)
