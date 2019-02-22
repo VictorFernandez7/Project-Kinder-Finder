@@ -129,13 +129,7 @@ public class Scr_InterfaceManager : MonoBehaviour
     private void AstronautInterfaceInfoUpdate()
     {
         if (playerShipMovement.currentPlanet != null)
-        {
             planetName.text = playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().planetName;
-
-            // Tipo planeta, block y oxígeno
-
-            planetOxygen.SetActive(playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().planetOxygen);
-        }
     }
 
     private void CheckAstronautState()
