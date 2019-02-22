@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 using UnityEngine;
 
-public class Scr_Planet : Scr_AstroBase
+public class Scr_Planet : Scr_AstroBase, IPointerEnterHandler
 {
     [Header("Planet Info")]
     [SerializeField] public string planetName;
@@ -128,6 +129,7 @@ public class Scr_Planet : Scr_AstroBase
     private void OnMouseOver()
     {
         print("click");
+
         if (Input.GetMouseButtonDown(0) && mapManager.mapActive)
         {
             mapCamera.target = gameObject;
@@ -136,5 +138,9 @@ public class Scr_Planet : Scr_AstroBase
             mapManager.ChangePlanetInfo(planetName, planetType, blockType, planetOxygen);
             mapManager.currentPlanet = gameObject;
         }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
     }
 }
