@@ -362,7 +362,6 @@ public class Scr_AstronautMovement : MonoBehaviour
                 Vector2 vectorAngle = (hitAngleUp.point - hitAngleDown.point);
                 angle = Vector2.Angle(vectorAngle, transform.right) - 90;
             }
-        print(angle);
 
         if (!jumping)
         {

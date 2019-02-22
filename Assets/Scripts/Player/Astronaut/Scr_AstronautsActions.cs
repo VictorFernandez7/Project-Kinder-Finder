@@ -25,12 +25,12 @@ public class Scr_AstronautsActions : MonoBehaviour
     [HideInInspector] public bool emptyHands;
     [HideInInspector] public bool toolOnHands;
     [HideInInspector] public GameObject toolOnFloor;
+    [HideInInspector] public bool[] unlockedTools = new bool[5];
 
     private float fuelAmount;
     private float holdInputTime = 0.9f;
     private bool canInputAgain = true;
-    private bool[] unlockedTools = new bool[5];
-    
+
     private List<GameObject> currentResource = new List<GameObject>();
     private Scr_CableVisuals cableVisuals;
     private Scr_AstronautMovement astronautMovement;

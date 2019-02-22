@@ -7,6 +7,9 @@ using TMPro;
 public class Scr_PlayerShipCraft : MonoBehaviour {
 
     [Header("References")]
+    [SerializeField] private Scr_PlayerShipStats playerShipStats;
+    [SerializeField] private Scr_AstronautsActions astronautsActions;
+    [SerializeField] private Scr_PlayerShipWarehouse playerShipWarehouse;
     [SerializeField] private Scr_CraftData craftData;
     [SerializeField] private GameObject craftInfoPanel;
     [SerializeField] private Color enoughColor;
@@ -14,24 +17,18 @@ public class Scr_PlayerShipCraft : MonoBehaviour {
 
     [Header("Info References")]
     [SerializeField] private TextMeshProUGUI titleText;
-    [SerializeField] private TextMeshProUGUI descriptionText;
     [SerializeField] private TextMeshProUGUI resource1Text;
     [SerializeField] private TextMeshProUGUI resource2Text;
     [SerializeField] private TextMeshProUGUI resource3Text;
 
-    private Scr_PlayerShipStats playerShipStats;
-    private Scr_PlayerShipWarehouse playerShipWarehouse;
     private int resourceListIndex;
     private bool enableCraft;
     private bool onRange;
     private int craftIndex;
-    private List<Scr_CraftInfo> crafteableTools = new List<Scr_CraftInfo>();
+    private List<int> crafteableTools = new List<int>();
 
     private void Start()
     {
-        playerShipStats = GetComponentInParent<Scr_PlayerShipStats>();
-        playerShipWarehouse = GetComponentInParent<Scr_PlayerShipWarehouse>();
-
         craftIndex = 0;
     }
 
@@ -43,7 +40,7 @@ public class Scr_PlayerShipCraft : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Astronaut"))
         {
             PanelActive();
             onRange = true;
@@ -52,22 +49,24 @@ public class Scr_PlayerShipCraft : MonoBehaviour {
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Astronaut"))
         {
             craftInfoPanel.SetActive(false);
             onRange = false;
         }
     }
 
-    public void PanelActive()
+    private void PanelActive()
     {
         crafteableTools.Clear();
 
         for(int i = 0; i < craftData.CraftList.Count; i++)
         {
             if (craftData.CraftList[i].crafteable)
-                crafteableTools.Add(craftData.CraftList[i]);
+                crafteableTools.Add(i);
         }
+
+        print(craftData.CraftList[crafteableTools[craftIndex]].resourceNameList.Count);
 
         if (crafteableTools.Count > 0)
         {
@@ -75,8 +74,7 @@ public class Scr_PlayerShipCraft : MonoBehaviour {
 
             List<string> keyr = new List<string>(playerShipWarehouse.Resources.Keys);
 
-            titleText.text = craftData.CraftList[craftIndex].m_name;
-            descriptionText.text = craftData.CraftList[craftIndex].m_info;
+            titleText.text = craftData.CraftList[crafteableTools[craftIndex]].m_name;
 
             resource1Text.gameObject.SetActive(false);
             resource2Text.gameObject.SetActive(false);
@@ -84,14 +82,14 @@ public class Scr_PlayerShipCraft : MonoBehaviour {
 
             craftInfoPanel.SetActive(true);
 
-            for (int i = 0; i < craftData.CraftList[craftIndex].resourceAmountList.Count; i++)
+            for (int i = 0; i < craftData.CraftList[crafteableTools[craftIndex]].resourceAmountList.Count; i++)
             {
-                if (craftData.CraftList[craftIndex].resourceAmountList[i] > 0 && resourceTextIndex == 0)
+                if (craftData.CraftList[crafteableTools[craftIndex]].resourceAmountList[i] > 0 && resourceTextIndex == 0)
                 {
                     resource1Text.gameObject.SetActive(true);
-                    resource1Text.text = craftData.CraftList[craftIndex].resourceNameList[i] + " " + playerShipWarehouse.Resources[keyr[i]] + "/" + craftData.CraftList[craftIndex].resourceAmountList[i].ToString();
+                    resource1Text.text = craftData.CraftList[crafteableTools[craftIndex]].resourceNameList[i] + " " + playerShipWarehouse.Resources[keyr[i]] + "/" + craftData.CraftList[crafteableTools[craftIndex]].resourceAmountList[i].ToString();
 
-                    if (playerShipWarehouse.Resources[keyr[i]] > craftData.CraftList[craftIndex].resourceAmountList[i])
+                    if (playerShipWarehouse.Resources[keyr[i]] > craftData.CraftList[crafteableTools[craftIndex]].resourceAmountList[i])
                     {
                         resource1Text.color = enoughColor;
                         enableCraft = true;
@@ -106,12 +104,12 @@ public class Scr_PlayerShipCraft : MonoBehaviour {
                     resourceTextIndex += 1;
                 }
 
-                else if (craftData.CraftList[craftIndex].resourceAmountList[i] > 0 && resourceTextIndex == 1)
+                else if (craftData.CraftList[crafteableTools[craftIndex]].resourceAmountList[i] > 0 && resourceTextIndex == 1)
                 {
                     resource2Text.gameObject.SetActive(true);
-                    resource2Text.text = craftData.CraftList[craftIndex].resourceNameList[i] + " " + playerShipWarehouse.Resources[keyr[i]] + "/" + craftData.CraftList[craftIndex].resourceAmountList[i].ToString();
+                    resource2Text.text = craftData.CraftList[crafteableTools[craftIndex]].resourceNameList[i] + " " + playerShipWarehouse.Resources[keyr[i]] + "/" + craftData.CraftList[crafteableTools[craftIndex]].resourceAmountList[i].ToString();
 
-                    if (playerShipWarehouse.Resources[keyr[i]] > craftData.CraftList[craftIndex].resourceAmountList[i])
+                    if (playerShipWarehouse.Resources[keyr[i]] > craftData.CraftList[crafteableTools[craftIndex]].resourceAmountList[i])
                     {
                         resource2Text.color = enoughColor;
                         enableCraft = true;
@@ -126,12 +124,12 @@ public class Scr_PlayerShipCraft : MonoBehaviour {
                     resourceTextIndex += 1;
                 }
 
-                else if (craftData.CraftList[craftIndex].resourceAmountList[i] > 0 && resourceTextIndex == 2)
+                else if (craftData.CraftList[crafteableTools[craftIndex]].resourceAmountList[i] > 0 && resourceTextIndex == 2)
                 {
                     resource3Text.gameObject.SetActive(true);
-                    resource3Text.text = craftData.CraftList[craftIndex].resourceNameList[i] + " " + playerShipWarehouse.Resources[keyr[i]] + "/" + craftData.CraftList[craftIndex].resourceAmountList[i].ToString();
+                    resource3Text.text = craftData.CraftList[crafteableTools[craftIndex]].resourceNameList[i] + " " + playerShipWarehouse.Resources[keyr[i]] + "/" + craftData.CraftList[crafteableTools[craftIndex]].resourceAmountList[i].ToString();
 
-                    if (playerShipWarehouse.Resources[keyr[i]] > craftData.CraftList[craftIndex].resourceAmountList[i])
+                    if (playerShipWarehouse.Resources[keyr[i]] > craftData.CraftList[crafteableTools[craftIndex]].resourceAmountList[i])
                     {
                         resource3Text.color = enoughColor;
                         enableCraft = true;
@@ -153,18 +151,18 @@ public class Scr_PlayerShipCraft : MonoBehaviour {
 
         foreach (string k in keyr)
         {
-            for (int p = 0; p < craftData.CraftList[craftIndex].resourceNameList.Count; p++)
+            for (int p = 0; p < craftData.CraftList[crafteableTools[craftIndex]].resourceNameList.Count; p++)
             {
-                if (craftData.CraftList[craftIndex].resourceNameList[p] == k)
+                if (craftData.CraftList[crafteableTools[craftIndex]].resourceNameList[p] == k)
                 {
                     resourceListIndex = p;
                     break;
                 }
             }
 
-            if (craftData.CraftList[craftIndex].resourceAmountList[resourceListIndex] > 0)
+            if (craftData.CraftList[crafteableTools[craftIndex]].resourceAmountList[resourceListIndex] > 0)
             {
-                for (int i = craftData.CraftList[craftIndex].resourceAmountList[resourceListIndex]; i > 0; i--)
+                for (int i = craftData.CraftList[crafteableTools[craftIndex]].resourceAmountList[resourceListIndex]; i > 0; i--)
                 {
                     for (int j = playerShipStats.resourceWarehouse.Length - 1; j >= 0; j--)
                     {
@@ -181,21 +179,26 @@ public class Scr_PlayerShipCraft : MonoBehaviour {
             }
         }
 
-        craftData.CraftList[craftIndex].crafteable = false;
+        craftData.CraftList[crafteableTools[craftIndex]].crafteable = false;
         GenerateCraft();
     }
 
     private void GenerateCraft()
     {
-        switch (craftData.CraftList[craftIndex].craftResultType)
-        {
-            case CraftResultType.item:
-                GetComponent<Scr_CraftingResultBase>().ObjectGeneration();
-                break;
+       /* if(craftData.CraftList[crafteableTools[craftIndex]].craftType == CraftType.tools)
+            astronautsActions.unlockedTools[craftData.CraftList[crafteableTools[craftIndex]].ToolNum] = true;
 
-            case CraftResultType.improvement:
-                GetComponent<Scr_CraftingResultBase>().MakingImprovement();
-                break;
-        }
+        if(craftData.CraftList[crafteableTools[craftIndex]].craftType == CraftType.jetpack)
+
+        if(craftData.CraftList[crafteableTools[craftIndex]].craftType == CraftType.jumpCell)
+
+        if(craftData.CraftList[crafteableTools[craftIndex]].craftType == CraftType.miningLaser)
+
+        if(craftData.CraftList[crafteableTools[craftIndex]].craftType == CraftType.spaceship)
+
+        if (craftData.CraftList[crafteableTools[craftIndex]].craftType == CraftType.spacewalk)
+
+        if (craftData.CraftList[crafteableTools[craftIndex]].craftType == CraftType.suits)*/
+
     }
 }
