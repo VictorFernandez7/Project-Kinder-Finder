@@ -64,7 +64,7 @@ Camera:
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 2560
+    m_Bits: 3584
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -167,11 +167,15 @@ MonoBehaviour:
   initialZoom: 7
   maxZoom: 100
   minZoom: 7
-  zoomSpeed: 1
+  wheelSpeed: 35
+  inverted: 0
+  dragSpeed: 2
   focusZoom: 7
-  focusSpeed: 1
+  positionSpeed: 0
+  zoomSpeed: 1
   xDifference: 0
   mapManager: {fileID: 0}
   zoomPanel: {fileID: 0}
+  playerShip: {fileID: 0}
   focus: 0
   target: {fileID: 0}
