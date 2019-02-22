@@ -22,7 +22,7 @@ public class Scr_MapCamera : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Scr_MapManager mapManager;
-    [SerializeField] private Animator zoomPanel;
+    [SerializeField] private GameObject zoomPanel;
     [SerializeField] private GameObject playerShip;
 
     [HideInInspector] public bool focus;
@@ -63,7 +63,7 @@ public class Scr_MapCamera : MonoBehaviour
 
         if (!Input.GetMouseButton(0)) return;
 
-        Vector3 cameraPos = Camera.main.ScreenToViewportPoint(Input.mousePosition - dragOrigin);
+        Vector3 cameraPos = GetComponent<Camera>().ScreenToViewportPoint(Input.mousePosition - dragOrigin);
         Vector3 movementVector = new Vector3(cameraPos.x * dragSpeed, cameraPos.y * dragSpeed, 0);
 
         transform.position += inverted ? movementVector : -movementVector;
@@ -77,7 +77,8 @@ public class Scr_MapCamera : MonoBehaviour
             mapCamera.transform.position = Vector3.Lerp(mapCamera.transform.position, new Vector3(target.transform.position.x + xDifference, target.transform.position.y, mapCamera.transform.position.z), positionSpeed * Time.unscaledDeltaTime);
 
             if (mapCamera.orthographicSize <= focusZoom + 20)
-                zoomPanel.SetBool("Show", true);
+                //zoomPanel.SetBool("Show", true);
+                zoomPanel.SetActive(false);
         }
 
         else
@@ -86,7 +87,8 @@ public class Scr_MapCamera : MonoBehaviour
             currentZoom += Input.GetAxis("Mouse ScrollWheel") * -wheelSpeed;
             mapCamera.orthographicSize = currentZoom;
 
-            zoomPanel.SetBool("Show", false);
+            //zoomPanel.SetBool("Show", false);
+            zoomPanel.SetActive(true);
         }
     }
 }
