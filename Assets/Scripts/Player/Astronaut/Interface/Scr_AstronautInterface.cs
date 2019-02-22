@@ -51,6 +51,7 @@ public class Scr_AstronautInterface : MonoBehaviour
             else
             {
                 toolWheel.toolName.text = "";
+                toolIndex = 5;
 
                 for (int j = 0; j < toolWheel.selectionSprites.Length; j++)
                 {
