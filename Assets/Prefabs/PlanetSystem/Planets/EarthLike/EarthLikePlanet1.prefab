@@ -230,9 +230,9 @@ GameObject:
   - component: {fileID: 8574140482018142540}
   - component: {fileID: 9077446662447302361}
   - component: {fileID: 4278572024596898367}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Visuals
-  m_TagString: Untagged
+  m_TagString: Planet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -369,6 +369,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1202795727145696292}
   - component: {fileID: 1147113615518070251}
+  - component: {fileID: 3264543679423406714}
   m_Layer: 0
   m_Name: Atmosphere
   m_TagString: Untagged
@@ -407,6 +408,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 14
+--- !u!114 &3264543679423406714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6431248173288270620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07395d5405c1c6d408b4f6161647add1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerShipMovement: {fileID: 0}
 --- !u!1 &7520237367660773497
 GameObject:
   m_ObjectHideFlags: 0
