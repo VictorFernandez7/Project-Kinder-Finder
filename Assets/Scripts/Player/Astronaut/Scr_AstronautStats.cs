@@ -14,11 +14,11 @@ public class Scr_AstronautStats : MonoBehaviour
     [Range(0, 100)] [SerializeField] private float healthAlertPercentage;
 
     [Header("References")]
-    [SerializeField] public List<GameObject> toolSlots = new List<GameObject>();
     [SerializeField] private Slider oxygenSlider;
     [SerializeField] private Slider healthSlider;
     [SerializeField] public Animator anim_OxygenPanel;
     [SerializeField] public Animator anim_HealthPanel;
+    [SerializeField] public List<GameObject> toolSlots;
 
     [HideInInspector] public float currentOxygen;
     [HideInInspector] public float currentHealth;
@@ -26,6 +26,8 @@ public class Scr_AstronautStats : MonoBehaviour
     private void Start()
     {
         InitialSet();
+
+        toolSlots = new List<GameObject>();
     }
 
     private void Update()
