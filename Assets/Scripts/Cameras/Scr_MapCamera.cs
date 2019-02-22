@@ -71,7 +71,6 @@ public class Scr_MapCamera : MonoBehaviour
 
     private void ZoomSystem()
     {
-        print(focus);
         if (focus)
         {
             mapCamera.orthographicSize = Mathf.Lerp(mapCamera.orthographicSize, focusZoom, Time.unscaledDeltaTime * zoomSpeed);
