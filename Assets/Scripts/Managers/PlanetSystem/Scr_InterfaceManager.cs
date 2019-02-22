@@ -146,4 +146,9 @@ public class Scr_InterfaceManager : MonoBehaviour
             gamePaused = false;
         }
     }
+
+    public void Exit()
+    {
+        Scr_LevelManager.LoadMainMenu();
+    }
 }
