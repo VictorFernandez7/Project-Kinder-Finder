@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Scr_MusicManager : PersistentSingleton<Scr_MusicManager>
 {
-    public enum SoundType {SOUND, MUSIC, MENU_SOUND, LOOP_SOUNDS, TEST_SOUND}
+    public enum SoundType {SOUND1, SOUND2, SOUND3, MUSIC, MENU_SOUND, LOOP_SOUND1, LOOP_SOUND2}
 
     [System.Serializable]
     public struct SoundData
