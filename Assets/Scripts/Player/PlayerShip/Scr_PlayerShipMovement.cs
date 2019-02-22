@@ -259,9 +259,6 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         {
             if (Vector2.Distance(leftLander.transform.position, leftLanderHit.point) <= landingAccuracy)
             {
-                currentPlanet = leftLanderHit.collider.gameObject;
-                astronautMovement.currentPlanet = leftLanderHit.collider.gameObject;
-
                 if (landedOnce)
                     countDownToMove = true;
 
@@ -272,9 +269,6 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
             else if (Vector2.Distance(rightLander.transform.position, rightLanderHit.point) <= landingAccuracy)
             {
-                currentPlanet = rightLanderHit.collider.gameObject;
-                astronautMovement.currentPlanet = rightLanderHit.collider.gameObject;
-
                 if (landedOnce)
                     countDownToMove = true;
 
