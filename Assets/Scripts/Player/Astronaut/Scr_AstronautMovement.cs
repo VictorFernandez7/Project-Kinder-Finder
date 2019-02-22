@@ -351,17 +351,18 @@ public class Scr_AstronautMovement : MonoBehaviour
         if(jumping)
             hitJL = Physics2D.Raycast(transform.position + (transform.up * astronautHeight) + (-transform.right * astronautWidth), -transform.up, distance, collisionMask);
         
-            hitAngleUp = Physics2D.Raycast(transform.position + (-transform.up * 0.06f), -transform.right, 0.08f, collisionMask);
-            hitAngleDown = Physics2D.Raycast(transform.position + (-transform.up * 0.03f), -transform.right, 0.08f, collisionMask);
+            hitAngleUp = Physics2D.Raycast(transform.position + (-transform.up * 0.04f), -transform.right, 0.8f, collisionMask);
+            hitAngleDown = Physics2D.Raycast(transform.position + (-transform.up * 0.02f), -transform.right, 0.8f, collisionMask);
 
-            Debug.DrawLine(transform.position + (transform.up * astronautHeight) + (-transform.right * astronautWidth), hitJL.point, Color.red);
-
-            if (hitAngleUp && hitAngleDown)
+        //Debug.DrawLine(transform.position + (transform.up * astronautHeight) + (-transform.right * astronautWidth), hitJL.point, Color.red);
+        Debug.DrawLine(transform.position + (-transform.up * 0.06f), transform.position + (-transform.up * 0.03f), Color.blue);
+        Debug.DrawLine(hitAngleDown.point, hitAngleUp.point, Color.blue);
+        if (hitAngleUp && hitAngleDown)
             {
                 Vector2 vectorAngle = (hitAngleUp.point - hitAngleDown.point);
-                angle = Vector2.Angle(vectorAngle, transform.right);
+                angle = Vector2.Angle(vectorAngle, transform.right) - 90;
             }
-        
+        print(angle);
 
         if (!jumping)
         {
@@ -392,7 +393,7 @@ public class Scr_AstronautMovement : MonoBehaviour
             if (hitAngleUp && hitAngleDown)
             {
                 Vector2 vectorAngle = (hitAngleUp.point - hitAngleDown.point);
-                angle = Vector2.Angle(vectorAngle, -transform.right);
+                angle = Vector2.Angle(vectorAngle, -transform.right) - 90;
             }
 
         if (!jumping)
