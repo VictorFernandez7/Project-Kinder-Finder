@@ -16,8 +16,9 @@ public class Scr_CraftInfo
     public List<string> resourceNameList = new List<string>();
     public List<int> resourceAmountList = new List<int>();
 
-    public CraftType craftType;
-    public CraftResultType craftResultType;
+    public CraftType craftType = new CraftType();
+
+    public int ToolNum;
 
     public bool crafteable;
 }
@@ -25,14 +26,12 @@ public class Scr_CraftInfo
 public enum CraftType
 {
     tools,
-    story,
-    spaceSuit
-}
-
-public enum CraftResultType
-{
-    item,
-    improvement
+    suits,
+    spaceship,
+    jumpCell,
+    spacewalk,
+    jetpack,
+    miningLaser
 }
 
 public class Scr_CraftData : ScriptableObject

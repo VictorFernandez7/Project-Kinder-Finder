@@ -181,12 +181,13 @@ public class Scr_CraftEditor : EditorWindow
         inventoryItemList.CraftList[viewIndex - 1].m_info = EditorGUILayout.TextArea(inventoryItemList.CraftList[viewIndex - 1].m_info as string);
 
         GUILayout.Space(10);
-        GUILayout.Label("Craft Type");
-        inventoryItemList.CraftList[viewIndex - 1].craftType = (CraftType)EditorGUILayout.EnumPopup(inventoryItemList.CraftList[viewIndex - 1].craftType);
+        GUILayout.Label("Type");
+        inventoryItemList.CraftList[viewIndex - 1].craftType = (CraftType) EditorGUILayout.EnumPopup(inventoryItemList.CraftList[viewIndex - 1].craftType);
 
-        GUILayout.Space(10);
-        GUILayout.Label("Carft Result Type");
-        inventoryItemList.CraftList[viewIndex - 1].craftResultType = (CraftResultType)EditorGUILayout.EnumPopup(inventoryItemList.CraftList[viewIndex - 1].craftResultType);
+        if(inventoryItemList.CraftList[viewIndex - 1].craftType == CraftType.tools)
+        {
+            inventoryItemList.CraftList[viewIndex - 1].ToolNum = EditorGUILayout.IntField("Tool Number", inventoryItemList.CraftList[viewIndex - 1].ToolNum);
+        }
 
         GUILayout.Space(10);
         GUILayout.Label("Requirements");
