@@ -73,12 +73,12 @@ public class Scr_AstronautEffects : MonoBehaviour
 
         if (breathingBool && !musicManager.transform.GetChild(2).GetComponent<AudioSource>().isPlaying)
         {
-            Scr_MusicManager.Instance.PlaySound(breathing.Sound, 0);
+
         }
 
         else if (!breathingBool && musicManager.transform.GetChild(2).GetComponent<AudioSource>().isPlaying)
         {
-            Scr_MusicManager.Instance.StopSound(Scr_MusicManager.SoundType.LOOP_SOUNDS);
+
         }
         /*
        if ()
