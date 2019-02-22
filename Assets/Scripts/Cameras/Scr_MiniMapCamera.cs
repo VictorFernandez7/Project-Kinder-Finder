@@ -6,6 +6,7 @@ public class Scr_MiniMapCamera : MonoBehaviour
 {
     [Header("Minimap Parameters")]
     [SerializeField] private float zoomInSpace;
+    [SerializeField] private float zoomInPlanetMult;
     [SerializeField] private float zoomSpeed;
     [SerializeField] private float followSpeed;
 
@@ -53,7 +54,7 @@ public class Scr_MiniMapCamera : MonoBehaviour
     private void ZoomSystem()
     {
         if (playerShipMovement.currentPlanet != null)
-            zoomInPlanet = playerShipMovement.currentPlanet.transform.localScale.x * 6f;
+            zoomInPlanet = playerShipMovement.currentPlanet.transform.localScale.x * zoomInPlanetMult;
 
         if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed || playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landing)
             minimapCamera.orthographicSize = Mathf.Lerp(minimapCamera.orthographicSize, zoomInPlanet, Time.deltaTime * zoomSpeed);
