@@ -23,7 +23,7 @@ public class Scr_Button : MonoBehaviour
     [SerializeField] private GameObject systemIndicator;
     [SerializeField] private GameObject groupIndicator;
 
-    private BoxCollider boxCollider;
+    private CircleCollider2D circleCollider;
 
     private enum ButtonType
     {
@@ -33,7 +33,7 @@ public class Scr_Button : MonoBehaviour
 
     private void Start()
     {
-        boxCollider = GetComponent<BoxCollider>();
+        circleCollider = GetComponent<CircleCollider2D>();
     }
 
     private void Update()
@@ -100,19 +100,19 @@ public class Scr_Button : MonoBehaviour
         if (buttonType == ButtonType.Group)
         {
             if (systemSelectionManager.interfaceLevel == Scr_SystemSelectionManager.InterfaceLevel.Galaxy)
-                boxCollider.enabled = true;
+                circleCollider.enabled = true;
 
             else
-                boxCollider.enabled = false;
+                circleCollider.enabled = false;
         }
 
         else if (buttonType == ButtonType.System)
         {
             if (systemSelectionManager.interfaceLevel == Scr_SystemSelectionManager.InterfaceLevel.Group)
-                boxCollider.enabled = true;
+                circleCollider.enabled = true;
 
             else
-                boxCollider.enabled = false;
+                circleCollider.enabled = false;
 
             if (systemSelectionManager.interfaceLevel == Scr_SystemSelectionManager.InterfaceLevel.Group)
                 systemInfoPanel.SetActive(false);
