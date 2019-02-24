@@ -149,9 +149,27 @@ public class Scr_PlayerShipActions : MonoBehaviour
                     interactionIndicatorAnim.gameObject.SetActive(false);
 
                     if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed && !astronaut.activeInHierarchy && canExitShip)
-                        DeployAstronaut();
+                    {
+                        if (playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().blockType== Scr_Planet.BlockType.HighTemperature && !unlockedSuits[0])
+                        {
+                            //reaccion CANT GO HOT PLANET
+                        }
 
-                    if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace && !astronaut.activeInHierarchy && !doingSpaceWalk)
+                        else if (playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().blockType == Scr_Planet.BlockType.LowTemperature && !unlockedSuits[1])
+                        {
+                            //reaccion CANT GO COLD PLANET
+                        }
+
+                        else if (playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().blockType == Scr_Planet.BlockType.Toxic && !unlockedSuits[2])
+                        {
+                            //reaccion CANT GO TOXIC PLANET
+                        }
+
+                        else
+                            DeployAstronaut();
+                    }     
+
+                    if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace && !astronaut.activeInHierarchy && !doingSpaceWalk && unlockedSpaceWalk)
                         SpaceWalk();
                 }
             }
