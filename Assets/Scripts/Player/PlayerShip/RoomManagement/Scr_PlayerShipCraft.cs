@@ -181,7 +181,9 @@ public class Scr_PlayerShipCraft : MonoBehaviour {
             }
         }
 
-        craftData.CraftList[crafteableTools[craftIndex]].crafteable = false;
+        if(craftData.CraftList[crafteableTools[craftIndex]].craftType != CraftType.jumpCell)
+            craftData.CraftList[crafteableTools[craftIndex]].crafteable = false;
+
         GenerateCraft();
     }
 
