@@ -26,9 +26,20 @@ public class Scr_PlayerShipWarehouse : MonoBehaviour
     {
         ReadNames();
 
+        Resources.Add("Oxygen", 0);
         Resources.Add("Fuel", 0);
+        Resources.Add("Carbon", 0);
+        Resources.Add("Silicon", 0);
+        Resources.Add("Helium", 0);
+        Resources.Add("Airgel", 0);
         Resources.Add("Iron", 0);
-        Resources.Add("Copper", 0);
+        Resources.Add("Aluminum", 0);
+        Resources.Add("Magnetite", 0);
+        Resources.Add("Mercury", 0);
+        Resources.Add("Ceramics", 0);
+        Resources.Add("Thermatite", 0);
+        Resources.Add("Technology Rests", 0);
+        Resources.Add("Energetic Core", 0);
     }
 
 	void Update ()

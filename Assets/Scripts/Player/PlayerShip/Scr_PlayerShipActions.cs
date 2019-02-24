@@ -66,6 +66,14 @@ public class Scr_PlayerShipActions : MonoBehaviour
     private Scr_PlayerShipEffects playerShipEffects;
     private Scr_PlayerShipProxCheck playerShipProxCheck;
 
+    public enum Suit
+    {
+        SpaceSuit,
+        HotResistance,
+        ColdResistance,
+        ToxicResistance
+    }
+
     private void Start()
     {
         playerShipMovement = GetComponent<Scr_PlayerShipMovement>();
@@ -150,7 +158,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
 
                     if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed && !astronaut.activeInHierarchy && canExitShip)
                     {
-                        if (playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().blockType== Scr_Planet.BlockType.HighTemperature && !unlockedSuits[0])
+                        if (playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().blockType == Scr_Planet.BlockType.HighTemperature && !unlockedSuits[0])
                         {
                             //reaccion CANT GO HOT PLANET
                         }
@@ -166,8 +174,20 @@ public class Scr_PlayerShipActions : MonoBehaviour
                         }
 
                         else
-                            DeployAstronaut();
-                    }     
+                        {
+                            if (playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().blockType == Scr_Planet.BlockType.HighTemperature)
+                                DeployAstronaut(Suit.HotResistance);
+
+                            else if (playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().blockType == Scr_Planet.BlockType.LowTemperature)
+                                DeployAstronaut(Suit.ColdResistance);
+
+                            else if (playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().blockType == Scr_Planet.BlockType.Toxic)
+                                DeployAstronaut(Suit.ToxicResistance);
+
+                            else
+                                DeployAstronaut(Suit.SpaceSuit);
+                        }
+                    }
 
                     if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace && !astronaut.activeInHierarchy && !doingSpaceWalk && unlockedSpaceWalk)
                         SpaceWalk();
@@ -246,7 +266,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
         }
     }
 
-    private void DeployAstronaut()
+    private void DeployAstronaut(Suit suit)
     {
         astronaut.GetComponent<Scr_AstronautEffects>().breathingBool = true;
         astronaut.transform.position = spawnPoint.position;

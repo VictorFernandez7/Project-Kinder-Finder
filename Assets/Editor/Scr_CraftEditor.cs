@@ -142,11 +142,33 @@ public class Scr_CraftEditor : EditorWindow
         newCraft.m_name = "New Craft";
         inventoryItemList.CraftList.Add(newCraft);
         viewIndex = inventoryItemList.CraftList.Count;
+        inventoryItemList.CraftList[viewIndex - 1].resourceNameList.Add("Oxygen");
+        inventoryItemList.CraftList[viewIndex - 1].resourceAmountList.Add(0);
         inventoryItemList.CraftList[viewIndex - 1].resourceNameList.Add("Fuel");
+        inventoryItemList.CraftList[viewIndex - 1].resourceAmountList.Add(0);
+        inventoryItemList.CraftList[viewIndex - 1].resourceNameList.Add("Carbon");
+        inventoryItemList.CraftList[viewIndex - 1].resourceAmountList.Add(0);
+        inventoryItemList.CraftList[viewIndex - 1].resourceNameList.Add("Silicon");
+        inventoryItemList.CraftList[viewIndex - 1].resourceAmountList.Add(0);
+        inventoryItemList.CraftList[viewIndex - 1].resourceNameList.Add("Helium");
+        inventoryItemList.CraftList[viewIndex - 1].resourceAmountList.Add(0);
+        inventoryItemList.CraftList[viewIndex - 1].resourceNameList.Add("Airgel");
         inventoryItemList.CraftList[viewIndex - 1].resourceAmountList.Add(0);
         inventoryItemList.CraftList[viewIndex - 1].resourceNameList.Add("Iron");
         inventoryItemList.CraftList[viewIndex - 1].resourceAmountList.Add(0);
-        inventoryItemList.CraftList[viewIndex - 1].resourceNameList.Add("Copper");
+        inventoryItemList.CraftList[viewIndex - 1].resourceNameList.Add("Aluminum");
+        inventoryItemList.CraftList[viewIndex - 1].resourceAmountList.Add(0);
+        inventoryItemList.CraftList[viewIndex - 1].resourceNameList.Add("Magnetite");
+        inventoryItemList.CraftList[viewIndex - 1].resourceAmountList.Add(0);
+        inventoryItemList.CraftList[viewIndex - 1].resourceNameList.Add("Mercury");
+        inventoryItemList.CraftList[viewIndex - 1].resourceAmountList.Add(0);
+        inventoryItemList.CraftList[viewIndex - 1].resourceNameList.Add("Ceramics");
+        inventoryItemList.CraftList[viewIndex - 1].resourceAmountList.Add(0);
+        inventoryItemList.CraftList[viewIndex - 1].resourceNameList.Add("Thermatite");
+        inventoryItemList.CraftList[viewIndex - 1].resourceAmountList.Add(0);
+        inventoryItemList.CraftList[viewIndex - 1].resourceNameList.Add("Technology Rests");
+        inventoryItemList.CraftList[viewIndex - 1].resourceAmountList.Add(0);
+        inventoryItemList.CraftList[viewIndex - 1].resourceNameList.Add("Energetic Core");
         inventoryItemList.CraftList[viewIndex - 1].resourceAmountList.Add(0);
     }
 
@@ -197,9 +219,20 @@ public class Scr_CraftEditor : EditorWindow
         GUILayout.Space(10);
         GUILayout.Label("Requirements");
 
-        inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[0] = EditorGUILayout.IntField("Fuel", inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[0]);
-        inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[1] = EditorGUILayout.IntField("Iron", inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[1]);
-        inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[2] = EditorGUILayout.IntField("Copper", inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[2]);
+        inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[0] = EditorGUILayout.IntField("Oxygen", inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[0]);
+        inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[1] = EditorGUILayout.IntField("Fuel", inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[1]);
+        inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[2] = EditorGUILayout.IntField("Carbon", inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[2]);
+        inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[3] = EditorGUILayout.IntField("Silicon", inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[3]);
+        inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[4] = EditorGUILayout.IntField("Helium", inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[4]);
+        inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[5] = EditorGUILayout.IntField("Airgel", inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[5]);
+        inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[6] = EditorGUILayout.IntField("Iron", inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[6]);
+        inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[7] = EditorGUILayout.IntField("Aluminum", inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[7]);
+        inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[8] = EditorGUILayout.IntField("Magnetite", inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[8]);
+        inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[9] = EditorGUILayout.IntField("Mercury", inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[9]);
+        inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[10] = EditorGUILayout.IntField("Ceramics", inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[10]);
+        inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[11] = EditorGUILayout.IntField("Thermatite", inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[11]);
+        inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[12] = EditorGUILayout.IntField("Technology Rests", inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[12]);
+        inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[13] = EditorGUILayout.IntField("Energetic Core", inventoryItemList.CraftList[viewIndex - 1].resourceAmountList[13]);
     }
 }
 
