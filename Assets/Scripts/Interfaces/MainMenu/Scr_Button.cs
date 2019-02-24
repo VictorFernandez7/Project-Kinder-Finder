@@ -1,9 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Scr_Button : MonoBehaviour
 {
+    [Header("Blocked Status")]
+    [SerializeField] public bool beenDiscovered;
+
     [Header("Button Type")]
     [SerializeField] private ButtonType buttonType;
 
@@ -22,6 +23,8 @@ public class Scr_Button : MonoBehaviour
     [SerializeField] private GameObject systemInfoPanel;
     [SerializeField] private GameObject systemIndicator;
     [SerializeField] private GameObject groupIndicator;
+    [SerializeField] private GameObject discovered;
+    [SerializeField] private GameObject notDiscovered;
 
     private CircleCollider2D circleCollider;
 
@@ -39,38 +42,50 @@ public class Scr_Button : MonoBehaviour
     private void Update()
     {
         UpdateComponents();
+
+        if (buttonType == ButtonType.System)
+        {
+            discovered.SetActive(beenDiscovered);
+            notDiscovered.SetActive(!beenDiscovered);
+        }
     }
 
     private void OnMouseOver()
     {
-        if (buttonType == ButtonType.Group)
+        if (beenDiscovered)
         {
-            PlanetActivation(true);
-            groupIndicator.SetActive(true);
-        }
+            if (buttonType == ButtonType.Group)
+            {
+                PlanetActivation(true);
+                groupIndicator.SetActive(true);
+            }
 
-        else if (buttonType == ButtonType.System)
-        {
-            PlanetActivation(true);
-            systemIndicator.SetActive(true);
-        }
+            else if (buttonType == ButtonType.System)
+            {
+                PlanetActivation(true);
+                systemIndicator.SetActive(true);
+            }
 
-        if (Input.GetMouseButtonDown(0))
-            ClickEvent();
+            if (Input.GetMouseButtonDown(0))
+                ClickEvent();
+        }
     }
 
     private void OnMouseExit()
     {
-        if (buttonType == ButtonType.Group)
+        if (beenDiscovered)
         {
-            PlanetActivation(false);
-            groupIndicator.SetActive(false);
-        }
+            if (buttonType == ButtonType.Group)
+            {
+                PlanetActivation(false);
+                groupIndicator.SetActive(false);
+            }
 
-        else if (buttonType == ButtonType.System)
-        {
-            PlanetActivation(false);
-            systemIndicator.SetActive(false);
+            else if (buttonType == ButtonType.System)
+            {
+                PlanetActivation(false);
+                systemIndicator.SetActive(false);
+            }
         }
     }
 
