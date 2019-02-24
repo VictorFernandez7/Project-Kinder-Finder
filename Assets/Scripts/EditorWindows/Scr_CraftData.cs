@@ -19,6 +19,7 @@ public class Scr_CraftInfo
     public CraftType craftType = new CraftType();
 
     public int ToolNum;
+    public int SuitNum;
 
     public bool crafteable;
 }

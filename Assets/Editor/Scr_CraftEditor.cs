@@ -189,6 +189,11 @@ public class Scr_CraftEditor : EditorWindow
             inventoryItemList.CraftList[viewIndex - 1].ToolNum = EditorGUILayout.IntField("Tool Number", inventoryItemList.CraftList[viewIndex - 1].ToolNum);
         }
 
+        if (inventoryItemList.CraftList[viewIndex - 1].craftType == CraftType.suits)
+        {
+            inventoryItemList.CraftList[viewIndex - 1].SuitNum = EditorGUILayout.IntField("Suit Number", inventoryItemList.CraftList[viewIndex - 1].SuitNum);
+        }
+
         GUILayout.Space(10);
         GUILayout.Label("Requirements");
 
