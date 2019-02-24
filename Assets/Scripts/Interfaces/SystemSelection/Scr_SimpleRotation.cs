@@ -6,6 +6,7 @@ public class Scr_SimpleRotation : MonoBehaviour
 {
     [Header("Planet Parameters")]
     [SerializeField] private bool initialRandomRot;
+    [SerializeField] private bool rotateCanvas;
 
     [Header("References")]
     [SerializeField] private float rotationSpeed;
@@ -13,6 +14,8 @@ public class Scr_SimpleRotation : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Transform pivot;
+    [SerializeField] private GameObject planetCanvas;
+    [SerializeField] private GameObject mainCamera;
 
     private void Start()
     {
@@ -31,5 +34,8 @@ public class Scr_SimpleRotation : MonoBehaviour
 
         if (translationSpeed > 0)
             transform.RotateAround(pivot.position, Vector3.forward, Time.deltaTime * translationSpeed);
+
+        if (rotateCanvas)
+            planetCanvas.transform.rotation = mainCamera.transform.rotation;
     }
 }
