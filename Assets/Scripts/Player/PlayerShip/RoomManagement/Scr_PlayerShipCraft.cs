@@ -8,7 +8,9 @@ public class Scr_PlayerShipCraft : MonoBehaviour {
 
     [Header("References")]
     [SerializeField] private Scr_PlayerShipStats playerShipStats;
+    [SerializeField] private Scr_PlayerShipActions playerShipActions;
     [SerializeField] private Scr_AstronautsActions astronautsActions;
+    [SerializeField] private Scr_AstronautMovement astronautMovement;
     [SerializeField] private Scr_PlayerShipWarehouse playerShipWarehouse;
     [SerializeField] private Scr_CraftData craftData;
     [SerializeField] private GameObject craftInfoPanel;
@@ -185,20 +187,25 @@ public class Scr_PlayerShipCraft : MonoBehaviour {
 
     private void GenerateCraft()
     {
-       /* if(craftData.CraftList[crafteableTools[craftIndex]].craftType == CraftType.tools)
+        if(craftData.CraftList[crafteableTools[craftIndex]].craftType == CraftType.tools)
             astronautsActions.unlockedTools[craftData.CraftList[crafteableTools[craftIndex]].ToolNum] = true;
 
-        if(craftData.CraftList[crafteableTools[craftIndex]].craftType == CraftType.jetpack)
+        if (craftData.CraftList[crafteableTools[craftIndex]].craftType == CraftType.jetpack)
+            astronautMovement.unlockedJetpack = true;
 
-        if(craftData.CraftList[crafteableTools[craftIndex]].craftType == CraftType.jumpCell)
+        if (craftData.CraftList[crafteableTools[craftIndex]].craftType == CraftType.jumpCell)
+            playerShipWarehouse.unlockedJumpCell = true;
 
-        if(craftData.CraftList[crafteableTools[craftIndex]].craftType == CraftType.miningLaser)
+        if (craftData.CraftList[crafteableTools[craftIndex]].craftType == CraftType.miningLaser)
+            playerShipActions.unlockedMiningLaser = true;
 
-        if(craftData.CraftList[crafteableTools[craftIndex]].craftType == CraftType.spaceship)
+        if (craftData.CraftList[crafteableTools[craftIndex]].craftType == CraftType.spaceship)
+            playerShipActions.unlockedMultiJump = true;
 
         if (craftData.CraftList[crafteableTools[craftIndex]].craftType == CraftType.spacewalk)
+            playerShipActions.unlockedSpaceWalk = true;
 
-        if (craftData.CraftList[crafteableTools[craftIndex]].craftType == CraftType.suits)*/
-
+        if (craftData.CraftList[crafteableTools[craftIndex]].craftType == CraftType.suits)
+            playerShipActions.unlockedSuits[craftData.CraftList[crafteableTools[craftIndex]].SuitNum] = true;
     }
 }

@@ -17,6 +17,7 @@ public class Scr_PlayerShipWarehouse : MonoBehaviour
     [HideInInspector] public bool slot;
     [HideInInspector] public bool warehouse;
     [HideInInspector] public bool resourceWarehouse;
+    [HideInInspector] public bool unlockedJumpCell;
     [HideInInspector] public int warehouseNumber;
     [HideInInspector] public int resourceWarehouseNumber;
     [HideInInspector] public int slotNumber;
@@ -128,5 +129,10 @@ public class Scr_PlayerShipWarehouse : MonoBehaviour
             }
                 
         }
+    }
+
+    public void CreateJumpCell()
+    {
+
     }
 }

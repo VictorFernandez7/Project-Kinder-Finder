@@ -43,8 +43,12 @@ public class Scr_PlayerShipActions : MonoBehaviour
     [HideInInspector] public bool startExitDelay;
     [HideInInspector] public bool closeToAsteroid;
     [HideInInspector] public bool doingSpaceWalk;
+    [HideInInspector] public bool unlockedMiningLaser;
+    [HideInInspector] public bool unlockedMultiJump;
+    [HideInInspector] public bool unlockedSpaceWalk;
     [HideInInspector] public GameObject currentAsteroid;
     [HideInInspector] public Vector3 laserHitPosition;
+    [HideInInspector] public bool[] unlockedSuits = new bool[3];
 
     private float laserRange;
     private float deployDelaySaved;
@@ -71,7 +75,11 @@ public class Scr_PlayerShipActions : MonoBehaviour
         playerShipProxCheck = GetComponentInChildren<Scr_PlayerShipProxCheck>();
         playerShipRb = GetComponent<Rigidbody2D>();
         astronautRb = astronaut.GetComponent<Rigidbody2D>();
-        
+
+        unlockedMiningLaser = false;
+        unlockedMultiJump = false;
+        unlockedSpaceWalk = false;
+
         deployDelaySaved = deployDelay;
         miningSlider.maxValue = maxPower;
     }

@@ -202,7 +202,6 @@ public class Scr_PlayerShipStats : MonoBehaviour
         if (levelData.LevelList[level - 1].experienceNeeded < experience)
         {
             experience -= levelData.LevelList[level - 1].experienceNeeded;
-            level += 1;
 
             if (levelData.LevelList[level - 1].levelRewards.Count == 2)
             {
@@ -219,6 +218,8 @@ public class Scr_PlayerShipStats : MonoBehaviour
                 craftData.CraftList[levelData.LevelList[level - 1].levelRewards[0]].crafteable = true;
                 levelUpCanvas.UpdatePanelInfo(experience, levelData.LevelList[level].experienceNeeded, level.ToString(), levelData.LevelList[level - 1].levelTitle, false, craftData.CraftList[levelData.LevelList[level - 1].levelRewards[0]].m_name, craftData.CraftList[levelData.LevelList[level - 1].levelRewards[0]].m_icon, null, null);
             }
+
+            level += 1;
         }
     }
 }

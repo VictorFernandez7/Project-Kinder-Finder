@@ -27,6 +27,10 @@ public class Scr_AstronautMovement : MonoBehaviour
     [SerializeField] private float airDragModifier;
     [SerializeField] private float gravity;
 
+    [Header("Jetpack Properties")]
+    [SerializeField] private float speedJetpack;
+    [SerializeField] private float timeCharge;
+
     [Header("Collision Properties")]
     [SerializeField] private float distance;
     [SerializeField] private float astronautHeight;
@@ -58,6 +62,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     [HideInInspector] public bool breathable;
     [HideInInspector] public bool jumping;
     [HideInInspector] public bool walking;
+    [HideInInspector] public bool unlockedJetpack;
     [HideInInspector] public float timeAtAir;
     [HideInInspector] public float velocity;
     [HideInInspector] public float exponentialMultiplier;
@@ -69,7 +74,9 @@ public class Scr_AstronautMovement : MonoBehaviour
     private bool toJump;
     private bool lastRight;
     private bool attached;
-    private bool dettaching;
+    private bool dettaching; 
+    private bool charge;
+    private float savedTimeCharge;
     private float timeAfterJump = 0.5f;
     private float savedTimeAfterJump = 0.5f;
     private float timeDettaching = 1;
@@ -105,7 +112,11 @@ public class Scr_AstronautMovement : MonoBehaviour
         astronautStats = GetComponent<Scr_AstronautStats>();
         astronautEffects = GetComponent<Scr_AstronautEffects>();
 
+        savedTimeCharge = timeCharge;
+
+        charge = true;
         canMove = true;
+        unlockedJetpack = false;
 
         hitCentral = Physics2D.Raycast(transform.position, (playerShipMovement.currentPlanet.transform.position - transform.position).normalized, Mathf.Infinity, collisionMask);
 
@@ -118,7 +129,11 @@ public class Scr_AstronautMovement : MonoBehaviour
     private void Update()
     {
         if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed && !interfaceManager.gamePaused)
+        {
             Jumping();
+            Jetpacking();
+        }
+
 
         if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace)
             InSpaceMovement();
@@ -297,6 +312,28 @@ public class Scr_AstronautMovement : MonoBehaviour
         }
 
         transform.Translate(vectorJump, Space.World);
+    }
+
+    private void Jetpacking()
+    {
+        if (!charge)
+        {
+            savedTimeCharge -= Time.deltaTime;
+
+            if (savedTimeCharge <= 0)
+            {
+                charge = true;
+                savedTimeCharge = timeCharge;
+            }
+        }
+
+        else if (charge && Input.GetKeyDown(KeyCode.R) && unlockedJetpack)
+        {
+            vectorJump = (transform.position - currentPlanet.transform.position).normalized * speedJetpack;
+            jumping = true;
+            timeAtAir = 0;
+            charge = false;
+        }
     }
 
     private void MoveOnAir(bool right)
