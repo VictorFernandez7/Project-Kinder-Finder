@@ -42,6 +42,8 @@ public class Scr_LevelManager : Scr_PersistentSingleton<Scr_LevelManager>
     {
         Scr_Levels.currentlyLoading = Scr_Levels.CurrentlyLoading.LoadingLevel;
         Scr_Levels.levelToLoad = desiredLevel;
+        Scr_Levels.currentLevel = desiredLevel;
+        GalaxyCalculator(Scr_Levels.currentLevel);
         SceneManager.LoadScene(MenuStorage.loadingScreen);
     }
 
@@ -49,6 +51,40 @@ public class Scr_LevelManager : Scr_PersistentSingleton<Scr_LevelManager>
     {
         Scr_Levels.currentlyLoading = Scr_Levels.CurrentlyLoading.LoadingLevel;
         SceneManager.LoadScene(MenuStorage.loadingScreen);
+    }
+
+    private static void GalaxyCalculator(Scr_Levels.LevelToLoad currentLevel)
+    {
+        switch (currentLevel)
+        {
+            case Scr_Levels.LevelToLoad.PlanetSystem1:
+                Scr_Levels.currentGalaxy = Scr_Levels.Galaxies.Galaxy1;
+                break;
+
+            case Scr_Levels.LevelToLoad.PlanetSystem2:
+                Scr_Levels.currentGalaxy = Scr_Levels.Galaxies.Galaxy1;
+                break;
+
+            case Scr_Levels.LevelToLoad.PlanetSystem3:
+                Scr_Levels.currentGalaxy = Scr_Levels.Galaxies.Galaxy2;
+                break;
+
+            case Scr_Levels.LevelToLoad.PlanetSystem4:
+                Scr_Levels.currentGalaxy = Scr_Levels.Galaxies.Galaxy2;
+                break;
+
+            case Scr_Levels.LevelToLoad.PlanetSystem5:
+                Scr_Levels.currentGalaxy = Scr_Levels.Galaxies.Galaxy2;
+                break;
+
+            case Scr_Levels.LevelToLoad.PlanetSystem6:
+                Scr_Levels.currentGalaxy = Scr_Levels.Galaxies.Galaxy3;
+                break;
+
+            case Scr_Levels.LevelToLoad.PlanetSystem7:
+                Scr_Levels.currentGalaxy = Scr_Levels.Galaxies.Galaxy3;
+                break;
+        }
     }
 
     public static void QuitGame()

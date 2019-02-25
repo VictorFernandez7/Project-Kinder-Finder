@@ -9,6 +9,9 @@ public class Scr_Levels
     public static MenuToLoad menuToLoad;
     public static LevelToLoad levelToLoad;
 
+    public static LevelToLoad currentLevel;
+    public static Galaxies currentGalaxy;
+
     public enum CurrentlyLoading
     {
         LoadingMenu,
@@ -30,6 +33,13 @@ public class Scr_Levels
         PlanetSystem5,
         PlanetSystem6,
         PlanetSystem7
+    }
+
+    public enum Galaxies
+    {
+        Galaxy1,
+        Galaxy2,
+        Galaxy3
     }
 }
 

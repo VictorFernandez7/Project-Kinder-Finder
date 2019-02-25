@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Scr_RepairingTool : Scr_ToolBase
+public class Scr_MiningTool : Scr_ToolBase
 {
     [Header("Repairing Tool Parameters")]
     [SerializeField] private float distance;
     [SerializeField] private float angleLimit;
-    [SerializeField] private float repairingFactor;
     [SerializeField] private LayerMask masker;
-    [SerializeField] private Color repairingColor;
+    [SerializeField] private Color miningColor;
 
     [HideInInspector] public Camera mainCamera;
 
@@ -19,24 +18,24 @@ public class Scr_RepairingTool : Scr_ToolBase
     private RaycastHit2D hitLaser;
     private Vector3 lastDirection;
 
-    void Start ()
+    void Start()
     {
         mainCamera = GameObject.Find("MainCamera").GetComponent<Camera>();
         playerShip = GameObject.Find("PlayerShip");
 
         laser = GetComponent<LineRenderer>();
-        laser.material.color = repairingColor;
+        laser.material.color = miningColor;
     }
 
-    public override void Update () {
-
+    public override void Update()
+    {
         if (Input.GetMouseButton(0))
         {
             executingRepairingTool = true;
             laser.enabled = executingRepairingTool;
 
             if (executingRepairingTool)
-                RepairingTool();
+                MiningTool();
         }
 
         else
@@ -56,7 +55,7 @@ public class Scr_RepairingTool : Scr_ToolBase
 
     public override void OnMouseExit() { }
 
-    private void RepairingTool()
+    private void MiningTool()
     {
         LaserPosition();
         LaserFunction();
@@ -92,10 +91,9 @@ public class Scr_RepairingTool : Scr_ToolBase
     {
         if (hitLaser)
         {
-            if (hitLaser.collider.transform.CompareTag("PlayerShip"))
+            if (hitLaser.collider.transform.CompareTag("Block"))
             {
-                if (playerShip.GetComponent<Scr_PlayerShipStats>().currentShield < playerShip.GetComponent<Scr_PlayerShipStats>().maxShield)
-                    playerShip.GetComponent<Scr_PlayerShipStats>().currentShield += Time.deltaTime * repairingFactor;
+                hitLaser.collider.transform.gameObject.GetComponent<Scr_Ore>().resistanceTime -= Time.deltaTime;
             }
         }
     }
