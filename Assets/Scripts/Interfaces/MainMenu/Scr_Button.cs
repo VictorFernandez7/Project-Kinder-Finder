@@ -26,6 +26,7 @@ public class Scr_Button : MonoBehaviour
     [SerializeField] private GameObject discovered;
     [SerializeField] private GameObject notDiscovered;
 
+    private Animator anim;
     private CircleCollider2D circleCollider;
 
     private enum ButtonType
@@ -37,6 +38,9 @@ public class Scr_Button : MonoBehaviour
     private void Start()
     {
         circleCollider = GetComponent<CircleCollider2D>();
+
+        if (buttonType == ButtonType.Group)
+            anim = GetComponent<Animator>();
     }
 
     private void Update()
@@ -56,6 +60,7 @@ public class Scr_Button : MonoBehaviour
         {
             if (buttonType == ButtonType.Group)
             {
+                anim.SetBool("Zoom", true);
                 PlanetActivation(true);
                 groupIndicator.SetActive(true);
             }
@@ -77,6 +82,7 @@ public class Scr_Button : MonoBehaviour
         {
             if (buttonType == ButtonType.Group)
             {
+                anim.SetBool("Zoom", false);
                 PlanetActivation(false);
                 groupIndicator.SetActive(false);
             }
