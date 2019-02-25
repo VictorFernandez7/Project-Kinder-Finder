@@ -21,6 +21,7 @@ public class Scr_PlayerShipWarehouse : MonoBehaviour
     [HideInInspector] public int warehouseNumber;
     [HideInInspector] public int resourceWarehouseNumber;
     [HideInInspector] public int slotNumber;
+    [HideInInspector] public int jumpCellAmount;
 
     void Start ()
     {
@@ -140,10 +141,5 @@ public class Scr_PlayerShipWarehouse : MonoBehaviour
             }
                 
         }
-    }
-
-    public void CreateJumpCell()
-    {
-
     }
 }

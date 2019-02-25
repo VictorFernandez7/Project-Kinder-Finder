@@ -4,6 +4,11 @@ using TMPro;
 
 public class Scr_LevelManager : Scr_PersistentSingleton<Scr_LevelManager>
 {
+    [Header("Travel Values")]
+    [SerializeField] public static int travelCost0to1;
+    [SerializeField] public static int travelCost1to2;
+    [SerializeField] public static int travelCost0to2;
+
     [Header("Select Key")]
     [SerializeField] private KeyCode commandPanel;
 

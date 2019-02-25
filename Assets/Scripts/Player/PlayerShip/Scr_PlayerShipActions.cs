@@ -23,6 +23,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Transform spawnPoint;
+    [SerializeField] private Scr_PlayerShipWarehouse playerShipWarehouse;
     [SerializeField] private Transform astronautPickUp;
     [SerializeField] private GameObject mapVisuals;
     [SerializeField] private Transform miningLaserStart;
@@ -57,6 +58,8 @@ public class Scr_PlayerShipActions : MonoBehaviour
     private bool toolPanel;
     private bool doneOnce;
     private bool canInputAgain = true;
+    private int system = 0;
+    private int galaxy = 0;
     private Vector3 lastFramePlanetPosition;
     private Rigidbody2D playerShipRb;
     private Rigidbody2D astronautRb;
@@ -385,6 +388,69 @@ public class Scr_PlayerShipActions : MonoBehaviour
                 astronautRb.freezeRotation = true;
                 playerShipRb.isKinematic = true;
             }
+        }
+    }
+
+    public void JumpTravel(bool MultiJump, int destiny)
+    {
+        if (MultiJump)
+        {
+            switch (destiny)
+            {
+                case 0:
+                    if(galaxy != 0)
+                    {
+                        if((galaxy == 1 && playerShipWarehouse.jumpCellAmount >= Scr_LevelManager.travelCost0to1) || (galaxy == 2 && playerShipWarehouse.jumpCellAmount >= Scr_LevelManager.travelCost0to2))
+                        {
+                            if (galaxy == 1)
+                                playerShipWarehouse.jumpCellAmount -= Scr_LevelManager.travelCost0to1;
+
+                            else
+                                playerShipWarehouse.jumpCellAmount -= Scr_LevelManager.travelCost0to2;
+
+                            Scr_LevelManager.LoadPlanetSystem(Scr_Levels.LevelToLoad.PlanetSystem1);
+                        }
+                    }
+                    break;
+
+                case 1:
+                    if (galaxy != 1)
+                    {
+                        if ((galaxy == 0 && playerShipWarehouse.jumpCellAmount >= Scr_LevelManager.travelCost0to1) || (galaxy == 2 && playerShipWarehouse.jumpCellAmount >= Scr_LevelManager.travelCost1to2))
+                        {
+                            if (galaxy == 0)
+                                playerShipWarehouse.jumpCellAmount -= Scr_LevelManager.travelCost0to1;
+
+                            else
+                                playerShipWarehouse.jumpCellAmount -= Scr_LevelManager.travelCost1to2;
+
+                            Scr_LevelManager.LoadPlanetSystem(Scr_Levels.LevelToLoad.PlanetSystem4);
+                        }
+                    }
+                    break;
+
+                case 2:
+                    if (galaxy != 2)
+                    {
+                        if ((galaxy == 0 && playerShipWarehouse.jumpCellAmount >= Scr_LevelManager.travelCost0to2) || (galaxy == 1 && playerShipWarehouse.jumpCellAmount >= Scr_LevelManager.travelCost1to2))
+                        {
+                            if (galaxy == 0)
+                                playerShipWarehouse.jumpCellAmount -= Scr_LevelManager.travelCost0to2;
+
+                            else
+                                playerShipWarehouse.jumpCellAmount -= Scr_LevelManager.travelCost1to2;
+
+                            Scr_LevelManager.LoadPlanetSystem(Scr_Levels.LevelToLoad.PlanetSystem6);
+                        }
+                    }
+                    break;
+            }
+
+        }
+
+        else
+        {
+
         }
     }
 
