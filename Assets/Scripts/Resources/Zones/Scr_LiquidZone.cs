@@ -2,46 +2,45 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Scr_OreZone : MonoBehaviour
+public class Scr_LiquidZone : MonoBehaviour
 {
-    [Header("Ore Zone Type")]
-    [SerializeField] private OreType oreType;
+    [Header("Liquid Zone Type")]
+    [SerializeField] private LiquidType liquidType;
 
     [Header("Resource Properties")]
     [SerializeField] public float amount;
 
     [Header("References")]
     [SerializeField] private Scr_ReferenceManager referenceManager;
-    [SerializeField] private GameObject resourceVisuals;
 
     [HideInInspector] public GameObject currentResource;
     [HideInInspector] public float initialAmount;
 
-    private enum OreType
+    private enum LiquidType
     {
-        iron
+        Mercury
     }
 
-    private void Start()
+    void Start()
     {
         initialAmount = amount;
 
-        switch (oreType)
+        switch (liquidType)
         {
-            case OreType.iron:
-                currentResource = referenceManager.SolidResources[0];
+            case LiquidType.Mercury:
+                currentResource = referenceManager.GasResources[0];
                 break;
         }
     }
 
-    private void Update()
+    void Update()
     {
         CheckAmount();
     }
 
     private void CheckAmount()
     {
-        if (amount <= 0)
-            Destroy(resourceVisuals);
+        if (amount <= 0 /*&& gasParticles.particleCount <= 0*/)
+            Destroy(gameObject);
     }
 }
