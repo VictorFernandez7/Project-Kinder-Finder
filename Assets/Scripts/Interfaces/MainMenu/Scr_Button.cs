@@ -18,11 +18,11 @@ public class Scr_Button : MonoBehaviour
     [Header("Planet List")]
     [SerializeField] private GameObject[] planets;
 
-    [Header("References")]
+    [Header("References (All)")]
     [SerializeField] private Scr_SystemSelectionManager systemSelectionManager;
+
+    [Header("References (System)")]
     [SerializeField] private GameObject systemInfoPanel;
-    [SerializeField] private GameObject systemIndicator;
-    [SerializeField] private GameObject groupIndicator;
     [SerializeField] private GameObject discovered;
     [SerializeField] private GameObject notDiscovered;
 
@@ -32,14 +32,14 @@ public class Scr_Button : MonoBehaviour
     private enum ButtonType
     {
         System,
-        Group
+        Galaxy
     }
 
     private void Start()
     {
         circleCollider = GetComponent<CircleCollider2D>();
 
-        if (buttonType == ButtonType.Group)
+        if (buttonType == ButtonType.Galaxy)
             anim = GetComponent<Animator>();
     }
 
@@ -58,18 +58,14 @@ public class Scr_Button : MonoBehaviour
     {
         if (beenDiscovered)
         {
-            if (buttonType == ButtonType.Group)
+            if (buttonType == ButtonType.Galaxy)
             {
                 anim.SetBool("Zoom", true);
                 PlanetActivation(true);
-                groupIndicator.SetActive(true);
             }
 
             else if (buttonType == ButtonType.System)
-            {
                 PlanetActivation(true);
-                systemIndicator.SetActive(true);
-            }
 
             if (Input.GetMouseButtonDown(0))
                 ClickEvent();
@@ -80,18 +76,14 @@ public class Scr_Button : MonoBehaviour
     {
         if (beenDiscovered)
         {
-            if (buttonType == ButtonType.Group)
+            if (buttonType == ButtonType.Galaxy)
             {
                 anim.SetBool("Zoom", false);
                 PlanetActivation(false);
-                groupIndicator.SetActive(false);
             }
 
             else if (buttonType == ButtonType.System)
-            {
                 PlanetActivation(false);
-                systemIndicator.SetActive(false);
-            }
         }
     }
 
@@ -108,7 +100,7 @@ public class Scr_Button : MonoBehaviour
                 systemSelectionManager.interfaceLevel = Scr_SystemSelectionManager.InterfaceLevel.System;
                 systemInfoPanel.SetActive(true);
                 break;
-            case ButtonType.Group:
+            case ButtonType.Galaxy:
                 systemSelectionManager.interfaceLevel = Scr_SystemSelectionManager.InterfaceLevel.Group;
                 systemSelectionManager.savedZoom = zoom;
                 systemSelectionManager.savedPos = new Vector3(transform.position.x + xPos, transform.position.y + yPos, -100); ;
@@ -118,7 +110,7 @@ public class Scr_Button : MonoBehaviour
 
     private void UpdateComponents()
     {
-        if (buttonType == ButtonType.Group)
+        if (buttonType == ButtonType.Galaxy)
         {
             if (systemSelectionManager.interfaceLevel == Scr_SystemSelectionManager.InterfaceLevel.Galaxy)
                 circleCollider.enabled = true;
