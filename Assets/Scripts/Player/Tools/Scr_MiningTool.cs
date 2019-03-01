@@ -7,6 +7,7 @@ public class Scr_MiningTool : Scr_ToolBase
     [Header("Repairing Tool Parameters")]
     [SerializeField] private float distance;
     [SerializeField] private float angleLimit;
+    [SerializeField] private float miningSpeed;
     [SerializeField] private LayerMask masker;
     [SerializeField] private Color miningColor;
 
@@ -91,7 +92,7 @@ public class Scr_MiningTool : Scr_ToolBase
         {
             if (hitLaser.collider.transform.CompareTag("Block"))
             {
-                hitLaser.collider.transform.gameObject.GetComponent<Scr_Ore>().resistanceTime -= Time.deltaTime;
+                hitLaser.collider.transform.gameObject.GetComponent<Scr_Ore>().amount -= miningSpeed * Time.deltaTime;
             }
         }
     }

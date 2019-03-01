@@ -18,7 +18,9 @@ public class Scr_LiquidZone : MonoBehaviour
 
     private enum LiquidType
     {
-        Mercury
+        Fuel,
+        Mercury,
+        Termatite
     }
 
     void Start()
@@ -27,8 +29,16 @@ public class Scr_LiquidZone : MonoBehaviour
 
         switch (liquidType)
         {
+            case LiquidType.Fuel:
+                currentResource = referenceManager.Resources[1];
+                break;
+
             case LiquidType.Mercury:
-                currentResource = referenceManager.GasResources[0];
+                currentResource = referenceManager.Resources[9];
+                break;
+
+            case LiquidType.Termatite:
+                currentResource = referenceManager.Resources[11];
                 break;
         }
     }

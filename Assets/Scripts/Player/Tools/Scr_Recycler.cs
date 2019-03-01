@@ -93,7 +93,7 @@ public class Scr_Recycler : Scr_ToolBase
         {
             if (hitLaser.collider.transform.CompareTag("Block"))
             {
-                hitLaser.collider.transform.gameObject.GetComponent<Scr_Ore>().resistanceTime -= Time.deltaTime;
+                hitLaser.collider.transform.gameObject.GetComponent<Scr_Ore>().amount -= Time.deltaTime;
             }
         }
     }

@@ -10,12 +10,15 @@ public class Scr_Ore : MonoBehaviour
     [SerializeField] private BlockType blockType;
 
     [Header("Resource Properties")]
-    public float resistanceTime;
+    public float amount;
 
     [Header("References")]
     [SerializeField] private Scr_ReferenceManager referenceManager;
 
     [HideInInspector] public GameObject currentResource;
+
+    private float initalAmount;
+    private float rest = 1;
 
     private enum BlockType
     {
@@ -25,8 +28,15 @@ public class Scr_Ore : MonoBehaviour
 
     private enum OreResourceType
     {
+        Oxygen,
+        Fuel,
+        Carbon,
+        Silicon,
         Iron,
-        Copper
+        Aluminum,
+        Magnetite,
+        Ceramic,
+        Termatite
     }
 
     private enum CrystalResourceType
@@ -36,17 +46,47 @@ public class Scr_Ore : MonoBehaviour
 
     private void Start()
     {
+        initalAmount = amount;
+
         switch(blockType)
         {
             case BlockType.Ore:
                 switch (oreResourceType)
                 {
-                    case OreResourceType.Iron:
-                        currentResource = referenceManager.SolidResources[0];
+                    case OreResourceType.Oxygen:
+                        currentResource = referenceManager.Resources[0];
                         break;
 
-                    case OreResourceType.Copper:
-                        currentResource = referenceManager.SolidResources[1];
+                    case OreResourceType.Fuel:
+                        currentResource = referenceManager.Resources[1];
+                        break;
+
+                    case OreResourceType.Carbon:
+                        currentResource = referenceManager.Resources[2];
+                        break;
+
+                    case OreResourceType.Silicon:
+                        currentResource = referenceManager.Resources[3];
+                        break;
+
+                    case OreResourceType.Iron:
+                        currentResource = referenceManager.Resources[6];
+                        break;
+
+                    case OreResourceType.Aluminum:
+                        currentResource = referenceManager.Resources[7];
+                        break;
+
+                    case OreResourceType.Magnetite:
+                        currentResource = referenceManager.Resources[8];
+                        break;
+
+                    case OreResourceType.Ceramic:
+                        currentResource = referenceManager.Resources[10];
+                        break;
+
+                    case OreResourceType.Termatite:
+                        currentResource = referenceManager.Resources[11];
                         break;
                 }
                 break;
@@ -64,7 +104,14 @@ public class Scr_Ore : MonoBehaviour
 
     private void Update()
     {
-        if (resistanceTime <= 0)
+        if(amount <= (initalAmount - rest))
+        {
+            rest += 1;
+            GameObject resource = Instantiate(currentResource, transform.position, transform.rotation);
+            resource.transform.SetParent(transform.parent);
+        }
+
+        if (amount <= 0)
         {
             GameObject resource = Instantiate(currentResource, transform.position, transform.rotation);
             resource.transform.SetParent(transform.parent);
