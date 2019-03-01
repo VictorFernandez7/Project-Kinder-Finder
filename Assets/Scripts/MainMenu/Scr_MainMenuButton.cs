@@ -143,7 +143,7 @@ public class Scr_MainMenuButton : MonoBehaviour
                     switch (mainMenuButton)
                     {
                         case MainMenuButton.NewGame:
-                            Scr_LevelManager.LoadPlanetSystem(Scr_Levels.LevelToLoad.PlanetSystem1);
+                            NewGame();
                             break;
                         case MainMenuButton.AudioSettings:
                             mainMenuManager.settingsAnim.SetBool("Audio", true);
@@ -162,6 +162,12 @@ public class Scr_MainMenuButton : MonoBehaviour
                             break;
                         case MainMenuButton.Contact:
                             mainMenuManager.aboutUsAnim.SetBool("Contact", true);
+                            break;
+                        case MainMenuButton.LoadGame:
+                            LoadGame();
+                            break;
+                        case MainMenuButton.ContinueGame:
+                            ContinueGame();
                             break;
                     }
                 }
@@ -247,5 +253,20 @@ public class Scr_MainMenuButton : MonoBehaviour
                 visuals = asteroid;
                 break;
         }
+    }
+
+    private void ContinueGame()
+    {
+
+    }
+
+    private void LoadGame()
+    {
+
+    }
+
+    private void NewGame()
+    {
+        Scr_LevelManager.LoadPlanetSystem(Scr_Levels.LevelToLoad.PlanetSystem1);
     }
 }
