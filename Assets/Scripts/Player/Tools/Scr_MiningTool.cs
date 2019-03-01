@@ -13,7 +13,6 @@ public class Scr_MiningTool : Scr_ToolBase
     [HideInInspector] public Camera mainCamera;
 
     private bool executingRepairingTool;
-    private GameObject playerShip;
     private LineRenderer laser;
     private RaycastHit2D hitLaser;
     private Vector3 lastDirection;
@@ -21,7 +20,6 @@ public class Scr_MiningTool : Scr_ToolBase
     void Start()
     {
         mainCamera = GameObject.Find("MainCamera").GetComponent<Camera>();
-        playerShip = GameObject.Find("PlayerShip");
 
         laser = GetComponent<LineRenderer>();
         laser.material.color = miningColor;

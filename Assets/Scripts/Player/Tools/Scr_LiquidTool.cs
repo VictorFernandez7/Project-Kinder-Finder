@@ -4,7 +4,19 @@ using UnityEngine;
 
 public class Scr_LiquidTool : Scr_ToolBase
 {
-    public override void Update() { }
+    [Header("Tool Parameters")]
+    [SerializeField] private float extractionSpeed;
+
+    [HideInInspector] public bool onRange;
+    [HideInInspector] public GameObject zone;
+
+    private float amount;
+
+    public override void Update()
+    {
+        if (Input.GetMouseButton(0) && onRange)
+            ExtractLiquid();
+    }
 
     public override void UseTool() { }
 
@@ -15,4 +27,24 @@ public class Scr_LiquidTool : Scr_ToolBase
     public override void OnMouseEnter() { }
 
     public override void OnMouseExit() { }
+
+    private void ExtractLiquid()
+    {
+        if (resource == null)
+            resource = zone.GetComponent<Scr_LiquidZone>().currentResource;
+
+        else if(resource != zone.GetComponent<Scr_LiquidZone>().currentResource)
+        {
+            resource = zone.GetComponent<Scr_LiquidZone>().currentResource;
+            amount = 0;
+        }
+
+        amount += extractionSpeed * Time.deltaTime;
+        zone.GetComponent<Scr_LiquidZone>().amount -= extractionSpeed * Time.deltaTime;
+
+        if(amount >= 1)
+        {
+            //Create Resource
+        }
+    }
 }
