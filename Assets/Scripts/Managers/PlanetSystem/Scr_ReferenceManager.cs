@@ -2,17 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Scr_ReferenceManager : MonoBehaviour
+public class Scr_ReferenceManager : Scr_PersistentSingleton<Scr_ReferenceManager>
 {
     [Header("Resources")]
-    [SerializeField] public GameObject[] GasResources;
-    [SerializeField] public GameObject[] SolidResources;
-
-    [Header("Tools")]
-    [SerializeField] public GameObject GasExtractor;
-    [SerializeField] public GameObject OreExtractor;
-    [SerializeField] public GameObject RepairingTool;
-    [SerializeField] public GameObject Jetpack;
+    [SerializeField] public GameObject[] Resources;
 
     public enum ResourceName
     {

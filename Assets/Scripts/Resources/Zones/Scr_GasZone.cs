@@ -25,7 +25,10 @@ public class Scr_GasZone : MonoBehaviour
 
     private enum GasType
     {
-        fuel
+        Oxygen,
+        Fuel,
+        Helium,
+        Aerogel
     }
 
     private void Start()
@@ -36,8 +39,20 @@ public class Scr_GasZone : MonoBehaviour
 
         switch (gasType)
         {
-            case GasType.fuel:
-                currentResource = referenceManager.GasResources[0];
+            case GasType.Oxygen:
+                currentResource = referenceManager.Resources[0];
+                break;
+
+            case GasType.Fuel:
+                currentResource = referenceManager.Resources[1];
+                break;
+
+            case GasType.Helium:
+                currentResource = referenceManager.Resources[4];
+                break;
+
+            case GasType.Aerogel:
+                currentResource = referenceManager.Resources[5];
                 break;
         }
     }

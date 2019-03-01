@@ -73,11 +73,11 @@ public class Scr_Resource : MonoBehaviour
         switch (resourceType)
         {
             case ResourceType.gas:
-                resourceReference = GameObject.Find("ReferenceManager").GetComponent<Scr_ReferenceManager>().GasResources[typeIndex];
+                resourceReference = GameObject.Find("ReferenceManager").GetComponent<Scr_ReferenceManager>().Resources[typeIndex];
                 break;
 
             case ResourceType.solid:
-                resourceReference = GameObject.Find("ReferenceManager").GetComponent<Scr_ReferenceManager>().SolidResources[typeIndex];
+                resourceReference = GameObject.Find("ReferenceManager").GetComponent<Scr_ReferenceManager>().Resources[typeIndex];
                 break;
         }
     }
