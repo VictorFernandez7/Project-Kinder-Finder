@@ -3657,106 +3657,6 @@ Camera:
     type: 3}
   m_PrefabInstance: {fileID: 906815787}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &825139087 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 54107, guid: a7965b5f8a536a540b7c003202d37841,
-    type: 3}
-  m_PrefabInstance: {fileID: 1466912763}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &825139090
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 825139087}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6c2871f720b2af4e9210febdac74517, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Version: 1
-  shadowResolution: 512
-  shadowDimmer: 1
-  volumetricShadowDimmer: 1
-  shadowFadeDistance: 10000
-  contactShadows: 0
-  viewBiasMin: 0.2
-  viewBiasMax: 100
-  viewBiasScale: 1
-  normalBiasMin: 0.5
-  normalBiasMax: 0.5
-  normalBiasScale: 1
-  sampleBiasScale: 0
-  edgeLeakFixup: 1
-  edgeToleranceNormal: 1
-  edgeTolerance: 1
-  shadowCascadeCount: 4
-  shadowCascadeRatios:
-  - 0.05
-  - 0.2
-  - 0.3
-  shadowCascadeBorders:
-  - 0.2
-  - 0.2
-  - 0.2
-  - 0.2
-  shadowAlgorithm: 0
-  shadowVariant: 0
-  shadowPrecision: 0
-  shadowData:
-    format: 0
-    data: 
-  shadowDatas: []
---- !u!114 &825139091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 825139087}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 3
-  m_Version: 3
-  directionalIntensity: 3.1415927
-  punctualIntensity: 600
-  areaIntensity: 200
-  enableSpotReflector: 0
-  luxAtDistance: 1
-  m_InnerSpotPercent: 0
-  lightDimmer: 1
-  m_VolumetricDimmer: 1
-  lightUnit: 0
-  sunDiskSize: 1
-  sunHaloSize: 0.1
-  fadeDistance: 10000
-  affectDiffuse: 1
-  affectSpecular: 1
-  nonLightmappedOnly: 0
-  lightTypeExtent: 0
-  spotLightShape: 0
-  shapeWidth: 0.5
-  shapeHeight: 0.5
-  aspectRatio: 1
-  shapeRadius: 0
-  maxSmoothness: 0.99
-  applyRangeAttenuation: 1
-  useOldInspector: 0
-  useVolumetric: 1
-  featuresFoldout: 1
-  showAdditionalSettings: 0
-  displayLightIntensity: 10
-  displayAreaLightEmissiveMesh: 0
-  lightLayers: 1
-  shadowNearPlane: 0.1
-  shadowSoftness: 0.5
-  blockerSampleCount: 24
-  filterSampleCount: 16
-  minFilterSize: 0.00001
 --- !u!1001 &830094433
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5711,6 +5611,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5cdee0d6f6ee1747a656eec7515ded3, type: 3}
+--- !u!4 &1319566844 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1846707632, guid: 4ebd81613b53d60479accdefa16de025,
+    type: 3}
+  m_PrefabInstance: {fileID: 4923803341024848704}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1335331112
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6251,11 +6157,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114844797242794480, guid: a7965b5f8a536a540b7c003202d37841,
         type: 3}
-      propertyPath: toolSlots.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114844797242794480, guid: a7965b5f8a536a540b7c003202d37841,
-        type: 3}
       propertyPath: oxygenSlider
       value: 
       objectReference: {fileID: 142421623}
@@ -6345,6 +6246,11 @@ PrefabInstance:
       objectReference: {fileID: 2034162930}
     - target: {fileID: 114105366921904924, guid: a7965b5f8a536a540b7c003202d37841,
         type: 3}
+      propertyPath: iaResourcePoint
+      value: 
+      objectReference: {fileID: 1319566844}
+    - target: {fileID: 114105366921904924, guid: a7965b5f8a536a540b7c003202d37841,
+        type: 3}
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 719102038}
@@ -6358,6 +6264,11 @@ PrefabInstance:
       propertyPath: sunLight
       value: 
       objectReference: {fileID: 672503368}
+    - target: {fileID: 114105366921904924, guid: a7965b5f8a536a540b7c003202d37841,
+        type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1611353680}
     - target: {fileID: 114105366921904924, guid: a7965b5f8a536a540b7c003202d37841,
         type: 3}
       propertyPath: playerShipWarehouse
@@ -6385,56 +6296,6 @@ PrefabInstance:
       propertyPath: playerShipMovement
       value: 
       objectReference: {fileID: 557998426}
-    - target: {fileID: 54108, guid: a7965b5f8a536a540b7c003202d37841, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 54108, guid: a7965b5f8a536a540b7c003202d37841, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 54108, guid: a7965b5f8a536a540b7c003202d37841, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 54109, guid: a7965b5f8a536a540b7c003202d37841, type: 3}
-      propertyPath: m_Intensity
-      value: 0.7957747
-      objectReference: {fileID: 0}
-    - target: {fileID: 54109, guid: a7965b5f8a536a540b7c003202d37841, type: 3}
-      propertyPath: m_LightShadowCasterMode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188732813533362090, guid: a7965b5f8a536a540b7c003202d37841,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 75dcc777f9763cc4fbf33d599e051a19, type: 2}
-    - target: {fileID: 9188732813533362090, guid: a7965b5f8a536a540b7c003202d37841,
-        type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: fc23cb888856df745973f5a90afbe39e, type: 2}
-    - target: {fileID: 9188732813533362090, guid: a7965b5f8a536a540b7c003202d37841,
-        type: 3}
-      propertyPath: m_Materials.Array.data[2]
-      value: 
-      objectReference: {fileID: 2100000, guid: 018063633881f174c87cb15511f268d7, type: 2}
-    - target: {fileID: 9188732813533362090, guid: a7965b5f8a536a540b7c003202d37841,
-        type: 3}
-      propertyPath: m_Materials.Array.data[3]
-      value: 
-      objectReference: {fileID: 2100000, guid: 71510a282d85eba4497c454c9ba6f4d1, type: 2}
-    - target: {fileID: 9188732813533362090, guid: a7965b5f8a536a540b7c003202d37841,
-        type: 3}
-      propertyPath: m_Materials.Array.data[4]
-      value: 
-      objectReference: {fileID: 2100000, guid: f4b5f8bec75ba81459fb969e51d7a4c0, type: 2}
-    - target: {fileID: 9188732813533362090, guid: a7965b5f8a536a540b7c003202d37841,
-        type: 3}
-      propertyPath: m_Materials.Array.data[5]
-      value: 
-      objectReference: {fileID: 2100000, guid: 34250fa75522814489471e7f1510a295, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7965b5f8a536a540b7c003202d37841, type: 3}
 --- !u!4 &1466912764 stripped
@@ -7009,36 +6870,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5967977470487995661, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: f40e9e0b4306e8146b91c2d988bd6ac2, type: 2}
-    - target: {fileID: 5967977470487995661, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
-        type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: 2f76bc5f4da32c74896b99b9f3a11fe8, type: 2}
-    - target: {fileID: 5967977470487995661, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
-        type: 3}
-      propertyPath: m_Materials.Array.data[2]
-      value: 
-      objectReference: {fileID: 2100000, guid: 8c15776b7cb694842b7a0e5047b4843c, type: 2}
-    - target: {fileID: 5967977470487995661, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
-        type: 3}
-      propertyPath: m_Materials.Array.data[3]
-      value: 
-      objectReference: {fileID: 2100000, guid: da3ed68fd9c890843b00f9ead93a65d2, type: 2}
-    - target: {fileID: 5967977470487995661, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
-        type: 3}
-      propertyPath: m_Materials.Array.data[4]
-      value: 
-      objectReference: {fileID: 2100000, guid: ab540eef5520b5042bb06973c6dd2ae7, type: 2}
-    - target: {fileID: 5967977470487995661, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
-        type: 3}
-      propertyPath: m_Materials.Array.data[5]
-      value: 
-      objectReference: {fileID: 2100000, guid: 38816b5780632a048b86aab8e83075e7, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15c55cceacb93ea4bb7e3f3c7e160410, type: 3}
 --- !u!114 &1525140521 stripped
