@@ -428,7 +428,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
 
     public void JumpTravel(bool multiJump, Scr_Levels.Galaxies targetGalaxy, Scr_Levels.LevelToLoad targetSystem)
     {
-        if (multiJump)
+        if (multiJump && unlockedMultiJump)
         {
             switch (targetGalaxy)
             {

@@ -172,6 +172,6 @@ public class Scr_LevelEditor : EditorWindow
 
         GUILayout.Space(10);
         for(int i = 0; i < inventoryItemList.LevelList[viewIndex - 1].levelRewards.Count; i++)
-            inventoryItemList.LevelList[viewIndex - 1].levelRewards[i] = EditorGUILayout.IntField(i.ToString(), inventoryItemList.LevelList[viewIndex - 1].experienceNeeded);
+            inventoryItemList.LevelList[viewIndex - 1].levelRewards[i] = EditorGUILayout.IntField(i.ToString(), inventoryItemList.LevelList[viewIndex - 1].levelRewards[i]);
     }
 }
