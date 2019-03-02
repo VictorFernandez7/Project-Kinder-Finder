@@ -39,6 +39,10 @@ public class Scr_PlayerShipActions : MonoBehaviour
     [SerializeField] private Scr_GameManager gameManager;
     [SerializeField] private GameObject lineRenderer;
     [SerializeField] private GameObject IA;
+    [SerializeField] private GameObject normalSuit;
+    [SerializeField] private GameObject lowTemperatureSuit;
+    [SerializeField] private GameObject highTemperatureSuit;
+    [SerializeField] private GameObject toxicSuit;
     [SerializeField] private Transform IAStpot;
 
     [HideInInspector] public bool startExitDelay;
@@ -271,6 +275,37 @@ public class Scr_PlayerShipActions : MonoBehaviour
 
     private void DeployAstronaut(Suit suit)
     {
+        switch (suit)
+        {
+            case Suit.SpaceSuit:
+                normalSuit.SetActive(true);
+                highTemperatureSuit.SetActive(false);
+                lowTemperatureSuit.SetActive(false);
+                toxicSuit.SetActive(false);
+                break;
+
+            case Suit.HotResistance:
+                normalSuit.SetActive(false);
+                highTemperatureSuit.SetActive(true);
+                lowTemperatureSuit.SetActive(false);
+                toxicSuit.SetActive(false);
+                break;
+
+            case Suit.ColdResistance:
+                normalSuit.SetActive(false);
+                highTemperatureSuit.SetActive(false);
+                lowTemperatureSuit.SetActive(true);
+                toxicSuit.SetActive(false);
+                break;
+
+            case Suit.ToxicResistance:
+                normalSuit.SetActive(false);
+                highTemperatureSuit.SetActive(false);
+                lowTemperatureSuit.SetActive(false);
+                toxicSuit.SetActive(true);
+                break;
+        }
+
         astronaut.GetComponent<Scr_AstronautEffects>().breathingBool = true;
         astronaut.transform.position = spawnPoint.position;
         astronaut.SetActive(true);
