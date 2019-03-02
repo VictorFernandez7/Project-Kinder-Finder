@@ -43,18 +43,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b02534b15621e4846b7a733f3be46975, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GasResources:
+  Resources:
+  - {fileID: 1364721059764218, guid: 72ea6c9c91448fe4daa7138e4fd07ba1, type: 3}
   - {fileID: 1116605186558984, guid: 0ab54584d4e7bc149845553791765566, type: 3}
-  SolidResources:
+  - {fileID: 1364721059764218, guid: 97756459e9fc7af4c96c1b08dbf9065a, type: 3}
+  - {fileID: 1364721059764218, guid: ce7088b3706d5c9429fe44a3128fe74a, type: 3}
+  - {fileID: 1116605186558984, guid: 0ab54584d4e7bc149845553791765566, type: 3}
+  - {fileID: 1364721059764218, guid: 7470a8f9d1ad97d4facc7636f4deda18, type: 3}
   - {fileID: 1364721059764218, guid: 9a8ba96e098d44746a0aa42632ce3878, type: 3}
+  - {fileID: 1364721059764218, guid: fbdf86eb75884214ab6d4800442a47a6, type: 3}
+  - {fileID: 1364721059764218, guid: 0bf977b2d52af294997ed09db35b4aba, type: 3}
+  - {fileID: 1364721059764218, guid: 5bf95511952d5b441bef11aa28fe373d, type: 3}
   - {fileID: 2918500654475464646, guid: b6e52706c38530445802607b730184e4, type: 3}
-  GasExtractor: {fileID: 1724849047184002, guid: e2c8d13b1b127a941aef19b139e69791,
-    type: 3}
-  OreExtractor: {fileID: 1238031769430186, guid: 8e98f6f64eacd0c42bb17fad700b9f46,
-    type: 3}
-  RepairingTool: {fileID: 1239215430283492, guid: 8be2670d51deb35429ede33415fe43cd,
-    type: 3}
-  Jetpack: {fileID: 1079533806625860, guid: c59e4326f7922f041925475f310aa8fc, type: 3}
+  - {fileID: 1364721059764218, guid: 71dffa255e58b7a4bb7a4697b4edb23c, type: 3}
+  - {fileID: 1364721059764218, guid: 414adfcfce8a19a43a3b4da75b3edb65, type: 3}
+  - {fileID: 1364721059764218, guid: e20e511c1daec8e48a2dba048d9213da, type: 3}
 --- !u!1 &1015756977819562
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,6 +101,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca2048cc7dabe1b40a5d398f3ee19b63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sightedXP: 0
+  exploredXP: 0
   ratio: 5
   xMax: 700
   yMax: 500
@@ -108,6 +113,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  planetsInfo: []
   initialPlanet: {fileID: 0}
   vortex: {fileID: 1027720159310436, guid: 3e98098b7d0726f458bc2464314ea40e, type: 3}
   astronaut: {fileID: 0}
@@ -174,9 +180,8 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   planetName: {fileID: 0}
   planetType: {fileID: 0}
-  planetTemperature: {fileID: 0}
+  planetBlock: {fileID: 0}
   planetOxygen: {fileID: 0}
-  planetGravity: {fileID: 0}
   directionIndicator: {fileID: 1950305335235828, guid: 1119c64b41cb07c41a19ca011a2d1f83,
     type: 3}
   mapActive: 0
@@ -233,52 +238,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input_PauseMenu: 27
-  active: {r: 1, g: 1, b: 1, a: 1}
-  notActive: {r: 1, g: 1, b: 1, a: 0.39215687}
-  interactable: {r: 0, g: 0.6627451, b: 0.12941177, a: 0.83137256}
-  notInteractable: {r: 0, g: 0.24705882, b: 0.047058824, a: 0.83137256}
-  landingInterface: {fileID: 0}
-  playerShipIcon: {fileID: 0}
-  angleIcon: {fileID: 0}
-  anim_TakingOffIcon: {fileID: 0}
-  anim_LandingIcon: {fileID: 0}
-  anim_FuelIcon: {fileID: 0}
-  anim_MiningIcon: {fileID: 0}
-  anim_DangerIcon: {fileID: 0}
-  anim_PlanetIcon: {fileID: 0}
-  upgradePanel: {fileID: 0}
-  upgradePanelText: {fileID: 0}
-  warehousePanel: {fileID: 0}
-  warehousePanelText: {fileID: 0}
-  craftingPanel: {fileID: 0}
-  craftingPanelText: {fileID: 0}
-  ToolWarehousePanel: {fileID: 0}
-  ToolWarehousePanelIcon: {fileID: 0}
-  resourceWarehousePanel: {fileID: 0}
-  resourceWarehousePanelIcon: {fileID: 0}
   anim_AstronautInterface: {fileID: 0}
   anim_PlayerShipInterface: {fileID: 0}
   anim_PlayerShipActions: {fileID: 0}
-  anim_QuestPanel: {fileID: 0}
   anim_PlayerShipWindow: {fileID: 0}
   anim_FadeImage: {fileID: 0}
   anim_MiniMapPanel: {fileID: 0}
-  playerShip: {fileID: 0}
-  mainCamera: {fileID: 0}
-  purchaseButton: {fileID: 0}
-  purchaseButtonImage: {fileID: 0}
-  craftButton: {fileID: 0}
-  craftButtonImage: {fileID: 0}
-  workshopCategoryNameText: {fileID: 0}
+  landingInterface: {fileID: 0}
+  playerShipIcon: {fileID: 0}
   pauseCanvas: {fileID: 0}
-  planetName: {fileID: 0}
-  planetTemperature: {fileID: 0}
-  planetOxygen: {fileID: 0}
-  planetGravity: {fileID: 0}
+  playerShip: {fileID: 0}
+  angleIcon: {fileID: 0}
   astronaut: {fileID: 0}
-  tool1Icon: {fileID: 0}
-  tool2Icon: {fileID: 0}
-  tool3Icon: {fileID: 0}
+  mainCamera: {fileID: 0}
+  planetName: {fileID: 0}
   gamePaused: 0
 --- !u!1 &1525737731890656
 GameObject:

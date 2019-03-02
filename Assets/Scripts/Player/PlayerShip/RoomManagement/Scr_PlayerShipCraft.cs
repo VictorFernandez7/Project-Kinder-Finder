@@ -196,7 +196,7 @@ public class Scr_PlayerShipCraft : MonoBehaviour {
             astronautMovement.unlockedJetpack = true;
 
         if (craftData.CraftList[crafteableTools[craftIndex]].craftType == CraftType.jumpCell)
-            playerShipWarehouse.unlockedJumpCell = true;
+            playerShipWarehouse.jumpCellAmount += 1;           
 
         if (craftData.CraftList[crafteableTools[craftIndex]].craftType == CraftType.miningLaser)
             playerShipActions.unlockedMiningLaser = true;
