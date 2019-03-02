@@ -90,7 +90,7 @@ public class Scr_AstronautsActions : MonoBehaviour
 
             else if (emptyHands && !toolOnHands && astronautResourcesCheck.resourceList.Count > 0)
             {
-                for (int i = 0; i < astronautResourcesCheck.resourceList.Count; i++)
+                /*for (int i = 0; i < astronautResourcesCheck.resourceList.Count; i++)
                 {
                     if (i != 0)
                     {
@@ -100,11 +100,17 @@ public class Scr_AstronautsActions : MonoBehaviour
 
                     else
                         currentResource.Add(astronautResourcesCheck.resourceList[i]);
-                }
+                }*/
+                currentResource.Add(astronautResourcesCheck.resourceList[0]);
+                astronautResourcesCheck.resourceList.RemoveAt(0);
+
+                print(currentResource.Count);
 
                 if(currentResource.Count == 1)
                 {
                     currentResource[0].transform.position = pickPoint.position;
+                    currentResource[0].GetComponent<Scr_Resource>().onHands = true;
+                    currentResource[0].GetComponent<BoxCollider2D>().enabled = false;
                     currentResource[0].transform.SetParent(pickPoint);
                     emptyHands = false;
                 }
@@ -112,6 +118,7 @@ public class Scr_AstronautsActions : MonoBehaviour
                 else if (currentResource.Count > 1 && currentResource.Count <= maxResourcesCapacity)
                 {
                     currentResource[1].transform.position = iaResourcePoint.position;
+                    currentResource[1].GetComponent<Scr_Resource>().onHands = true;
                     currentResource[1].transform.SetParent(iaResourcePoint);
                 }
             }
