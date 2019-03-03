@@ -44,8 +44,6 @@ public class Scr_SystemSelectionManager : MonoBehaviour
 
     private void Update()
     {
-        print(interfaceLevel);
-
         CheckInput();
         UpdateCamera();
         UpdateTravelFuelAmountText();

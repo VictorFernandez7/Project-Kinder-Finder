@@ -45,6 +45,9 @@ public class Scr_Button : MonoBehaviour
 
         if (buttonType == ButtonType.Galaxy)
             anim = GetComponent<Animator>();
+
+        else if (buttonType == ButtonType.System)
+            anim = GetComponentInParent<Animator>();
     }
 
     private void Update()
@@ -62,7 +65,7 @@ public class Scr_Button : MonoBehaviour
     {
         if (buttonType == ButtonType.Galaxy)
         {
-            anim.SetBool("Zoom", true);
+            anim.SetBool("ZoomGalaxy", true);
             PlanetActivation(true);
 
             if (indicatorsAnim != null)
@@ -70,7 +73,10 @@ public class Scr_Button : MonoBehaviour
         }
 
         else if (buttonType == ButtonType.System)
+        {
+            anim.SetBool(targetSystem.ToString(), true);
             PlanetActivation(true);
+        }
 
         if (Input.GetMouseButtonDown(0))
             ClickEvent();
@@ -80,7 +86,7 @@ public class Scr_Button : MonoBehaviour
     {
         if (buttonType == ButtonType.Galaxy)
         {
-            anim.SetBool("Zoom", false);
+            anim.SetBool("ZoomGalaxy", false);
             PlanetActivation(false);
 
             if (indicatorsAnim != null)
@@ -88,7 +94,10 @@ public class Scr_Button : MonoBehaviour
         }
 
         else if (buttonType == ButtonType.System)
+        {
+            anim.SetBool(targetSystem.ToString(), false);
             PlanetActivation(false);
+        }
     }
 
     private void ClickEvent()
@@ -97,6 +106,9 @@ public class Scr_Button : MonoBehaviour
         systemSelectionManager.currentZoom = zoom;
         systemSelectionManager.currentZoomSpeed = zoomSpeed;
         systemSelectionManager.currentMovementSpeed = movementSpeed;
+
+        anim.SetBool("ZoomGalaxy", false);
+        anim.SetBool("ZoomSystem1", false);
 
         switch (buttonType)
         {
