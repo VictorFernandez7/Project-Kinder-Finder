@@ -31,7 +31,7 @@ public class Scr_AstronautsActions : MonoBehaviour
     private float holdInputTime = 0.9f;
     private bool canInputAgain = true;
 
-    private List<GameObject> currentResource = new List<GameObject>();
+    private GameObject currentResource;
     private Scr_CableVisuals cableVisuals;
     private Scr_AstronautMovement astronautMovement;
     private Scr_AstronautStats astronautStats;
@@ -90,41 +90,16 @@ public class Scr_AstronautsActions : MonoBehaviour
 
             else if (emptyHands && !toolOnHands && astronautResourcesCheck.resourceList.Count > 0)
             {
-                /*for (int i = 0; i < astronautResourcesCheck.resourceList.Count; i++)
-                {
-                    if (i != 0)
-                    {
-                        if (Vector3.Project(astronautResourcesCheck.resourceList[i].transform.position, transform.up).magnitude > Vector3.Project(astronautResourcesCheck.resourceList[i - 1].transform.position, transform.up).magnitude)
-                            currentResource.Add(astronautResourcesCheck.resourceList[i]);
-                    }
 
-                    else
-                        currentResource.Add(astronautResourcesCheck.resourceList[i]);
-                }*/
-                currentResource.Add(astronautResourcesCheck.resourceList[0]);
+                currentResource = astronautResourcesCheck.resourceList[0];
                 astronautResourcesCheck.resourceList.RemoveAt(0);
 
-                print(currentResource.Count);
-
-                if(currentResource.Count == 1)
-                {
-                    currentResource[0].transform.position = pickPoint.position;
-                    currentResource[0].GetComponent<Scr_Resource>().onHands = true;
-                    currentResource[0].GetComponent<BoxCollider2D>().enabled = false;
-                    currentResource[0].transform.SetParent(pickPoint);
-                    emptyHands = false;
-                }
-
-                else if (currentResource.Count > 1 && currentResource.Count <= maxResourcesCapacity)
-                {
-                    currentResource[1].transform.position = iaResourcePoint.position;
-                    currentResource[1].GetComponent<Scr_Resource>().onHands = true;
-                    currentResource[1].transform.SetParent(iaResourcePoint);
-                }
+                currentResource.transform.position = pickPoint.position;
+                currentResource.GetComponent<Scr_Resource>().onHands = true;
+                currentResource.GetComponent<BoxCollider2D>().enabled = false;
+                currentResource.transform.SetParent(pickPoint);
+                emptyHands = false;
             }
-
-            else if (toolOnFloor != null && toolOnFloor.GetComponent<Scr_ToolBase>().resourceAmount <= 0)
-                toolOnFloor.GetComponent<Scr_ToolBase>().RecoverTool();
         }
 
         TurnOnLantern();
@@ -157,22 +132,20 @@ public class Scr_AstronautsActions : MonoBehaviour
 
     private void IntroduceResource()
     {
-        for (int i = 0; i < currentResource.Count; i++)
+        if (currentResource.CompareTag("Resources"))
         {
-            if (currentResource[i].CompareTag("Resources"))
+            for (int j = 0; j < playerShip.GetComponent<Scr_PlayerShipStats>().resourceWarehouse.Length; j++)
             {
-                for (int j = 0; j < playerShip.GetComponent<Scr_PlayerShipStats>().resourceWarehouse.Length; j++)
+                if (playerShip.GetComponent<Scr_PlayerShipStats>().resourceWarehouse[j] == null)
                 {
-                    if (playerShip.GetComponent<Scr_PlayerShipStats>().resourceWarehouse[j] == null)
-                    {
-                        playerShip.GetComponent<Scr_PlayerShipStats>().resourceWarehouse[j] = currentResource[i].GetComponent<Scr_Resource>().resourceReference;
-                        break;
-                    }
+                    playerShip.GetComponent<Scr_PlayerShipStats>().resourceWarehouse[j] = currentResource.GetComponent<Scr_Resource>().resourceReference;
+                    break;
                 }
             }
-            currentResource.Clear();
         }
 
+        Destroy(currentResource);
+        currentResource = null;
         emptyHands = true;
     }
 
