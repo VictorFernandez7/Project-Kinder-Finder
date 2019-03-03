@@ -22,12 +22,13 @@ public class Scr_MainMenuManager : MonoBehaviour
     [SerializeField] public GameObject mainCamera;
     [SerializeField] public Animator mainButtonsAnim;
     [SerializeField] public Animator secondaryButtonsAnim;
+    [SerializeField] public Animator terciaryButtonsAnim;
     [SerializeField] public Animator settingsAnim;
     [SerializeField] public Animator aboutUsAnim;
     [SerializeField] public Animator mainCanvasAnim;
     [SerializeField] public Transform initialCameraPos;
 
-    [HideInInspector] public Vector3 savedMainSpot;
+    [HideInInspector] public Vector3 savedCamSpot;
     [HideInInspector] public Vector3 currentCameraPos;
     [HideInInspector] public MainMenuLevel mainMenuLevel;
 
@@ -38,7 +39,8 @@ public class Scr_MainMenuManager : MonoBehaviour
     {
         Initial,
         Main,
-        Secondary
+        Secondary,
+        Terciary
     }
 
     private void Start()
@@ -138,7 +140,7 @@ public class Scr_MainMenuManager : MonoBehaviour
             else if (mainMenuLevel == MainMenuLevel.Secondary)
             {
                 mainMenuLevel = MainMenuLevel.Main;
-                currentCameraPos = savedMainSpot;
+                currentCameraPos = savedCamSpot;
 
                 settingsAnim.SetBool("Audio", false);
                 settingsAnim.SetBool("Video", false);
@@ -147,6 +149,14 @@ public class Scr_MainMenuManager : MonoBehaviour
                 aboutUsAnim.SetBool("RRSS", false);
                 aboutUsAnim.SetBool("Team", false);
                 aboutUsAnim.SetBool("Contact", false);
+            }
+
+            else if (mainMenuLevel == MainMenuLevel.Terciary)
+            {
+                mainMenuLevel = MainMenuLevel.Main;
+                currentCameraPos = savedCamSpot;
+
+                terciaryButtonsAnim.SetBool("Load", false);
             }
         }
     }

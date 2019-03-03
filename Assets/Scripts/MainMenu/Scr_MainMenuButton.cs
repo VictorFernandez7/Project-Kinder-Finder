@@ -34,6 +34,9 @@ public class Scr_MainMenuButton : MonoBehaviour
         ContinueGame,
         NewGame,
         LoadGame,
+        Slot1,
+        Slot2,
+        Slot3,
         Settings,
         AudioSettings,
         VideoSettings,
@@ -85,6 +88,25 @@ public class Scr_MainMenuButton : MonoBehaviour
             }
         }
 
+        else if (mainMenuButton == MainMenuButton.LoadGame)
+        {
+            if (mainMenuManager.mainMenuLevel == Scr_MainMenuManager.MainMenuLevel.Terciary)
+            {
+                buttonVisuals.rotate = true;
+                canvasAnim.SetBool("ShowText", false);
+                blocked = true;
+            }
+
+            else
+            {
+                if (blocked)
+                {
+                    buttonVisuals.rotate = false;
+                    blocked = false;
+                }
+            }
+        }
+
         else
         {
             if (mainMenuManager.mainMenuLevel == Scr_MainMenuManager.MainMenuLevel.Secondary)
@@ -120,7 +142,7 @@ public class Scr_MainMenuButton : MonoBehaviour
                 if (mainMenuButton == MainMenuButton.Play || mainMenuButton == MainMenuButton.Settings || mainMenuButton == MainMenuButton.AboutUs)
                 {
                     mainMenuManager.mainMenuLevel = Scr_MainMenuManager.MainMenuLevel.Main;
-                    mainMenuManager.savedMainSpot = cameraSpot.position;
+                    mainMenuManager.savedCamSpot = cameraSpot.position;
 
                     switch (mainMenuButton)
                     {
@@ -132,6 +154,25 @@ public class Scr_MainMenuButton : MonoBehaviour
                             break;
                         case MainMenuButton.AboutUs:
                             mainMenuManager.secondaryButtonsAnim.SetBool("AboutUs", true);
+                            break;
+                    }
+                }
+
+                else if (mainMenuButton == MainMenuButton.LoadGame)
+                {
+                    mainMenuManager.mainMenuLevel = Scr_MainMenuManager.MainMenuLevel.Terciary;
+                    mainMenuManager.terciaryButtonsAnim.SetBool("Load", true);
+
+                    switch (mainMenuButton)
+                    {
+                        case MainMenuButton.Slot1:
+                            LoadSlot1();
+                            break;
+                        case MainMenuButton.Slot2:
+                            LoadSlot2();
+                            break;
+                        case MainMenuButton.Slot3:
+                            LoadSlot3();
                             break;
                     }
                 }
@@ -162,9 +203,6 @@ public class Scr_MainMenuButton : MonoBehaviour
                             break;
                         case MainMenuButton.Contact:
                             mainMenuManager.aboutUsAnim.SetBool("Contact", true);
-                            break;
-                        case MainMenuButton.LoadGame:
-                            LoadGame();
                             break;
                         case MainMenuButton.ContinueGame:
                             ContinueGame();
@@ -199,6 +237,15 @@ public class Scr_MainMenuButton : MonoBehaviour
                 break;
             case MainMenuButton.LoadGame:
                 buttonText.text = "LOAD";
+                break;
+            case MainMenuButton.Slot1:
+                buttonText.text = "Slot 1";
+                break;
+            case MainMenuButton.Slot2:
+                buttonText.text = "Slot 2";
+                break;
+            case MainMenuButton.Slot3:
+                buttonText.text = "Slot 3";
                 break;
             case MainMenuButton.Settings:
                 buttonText.text = "SETTINGS";
@@ -260,13 +307,23 @@ public class Scr_MainMenuButton : MonoBehaviour
 
     }
 
-    private void LoadGame()
+    private void NewGame()
+    {
+        Scr_LevelManager.LoadPlanetSystem(Scr_Levels.LevelToLoad.PlanetSystem1);
+    }
+
+    private void LoadSlot1()
     {
 
     }
 
-    private void NewGame()
+    private void LoadSlot2()
     {
-        Scr_LevelManager.LoadPlanetSystem(Scr_Levels.LevelToLoad.PlanetSystem1);
+
+    }
+
+    private void LoadSlot3()
+    {
+
     }
 }
