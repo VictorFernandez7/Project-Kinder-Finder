@@ -26,6 +26,9 @@ public class Scr_Button : MonoBehaviour
     [SerializeField] private GameObject discovered;
     [SerializeField] private GameObject notDiscovered;
 
+    [Header("References (Galaxy)")]
+    [SerializeField] private Animator indicatorsAnim;
+
     private Animator anim;
     private CircleCollider2D circleCollider;
 
@@ -62,6 +65,9 @@ public class Scr_Button : MonoBehaviour
             {
                 anim.SetBool("Zoom", true);
                 PlanetActivation(true);
+
+                if (indicatorsAnim != null)
+                    indicatorsAnim.SetBool("Show", true);
             }
 
             else if (buttonType == ButtonType.System)
@@ -80,6 +86,9 @@ public class Scr_Button : MonoBehaviour
             {
                 anim.SetBool("Zoom", false);
                 PlanetActivation(false);
+
+                if (indicatorsAnim != null)
+                    indicatorsAnim.SetBool("Show", false);
             }
 
             else if (buttonType == ButtonType.System)
