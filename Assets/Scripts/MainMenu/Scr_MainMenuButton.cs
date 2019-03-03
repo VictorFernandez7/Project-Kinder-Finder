@@ -88,6 +88,25 @@ public class Scr_MainMenuButton : MonoBehaviour
             }
         }
 
+        else if (mainMenuButton == MainMenuButton.LoadGame)
+        {
+            if (mainMenuManager.mainMenuLevel == Scr_MainMenuManager.MainMenuLevel.Terciary)
+            {
+                buttonVisuals.rotate = true;
+                canvasAnim.SetBool("ShowText", false);
+                blocked = true;
+            }
+
+            else
+            {
+                if (blocked)
+                {
+                    buttonVisuals.rotate = false;
+                    blocked = false;
+                }
+            }
+        }
+
         else
         {
             if (mainMenuManager.mainMenuLevel == Scr_MainMenuManager.MainMenuLevel.Secondary)

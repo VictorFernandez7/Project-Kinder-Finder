@@ -53,7 +53,6 @@ public class Scr_MainMenuManager : MonoBehaviour
 
     private void Update()
     {
-        print(mainMenuLevel);
         CameraMovement();
 
         if (canControlInterface)
