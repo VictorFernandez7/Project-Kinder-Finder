@@ -5,8 +5,13 @@ using UnityEngine;
 public class Scr_TrailAdapter : MonoBehaviour
 {
     [Header("Parent Parameters")]
-    [SerializeField] private GameObject parentObject;
-    [SerializeField] private float targetSize;
+    [SerializeField] private float targetSize1;
+    [SerializeField] private float targetSize2;
+
+    [Header("References")]
+    [SerializeField] private GameObject galaxy;
+    [SerializeField] private GameObject system;
+    [SerializeField] private Scr_SystemSelectionManager systemSelectionManager;
 
     private TrailRenderer trailRenderer;
 
@@ -17,13 +22,28 @@ public class Scr_TrailAdapter : MonoBehaviour
 
     private void Update()
     {
-        if (parentObject.transform.localScale.x == targetSize)
-            trailRenderer.emitting = true;
-
-        else
+        if (systemSelectionManager.interfaceLevel == Scr_SystemSelectionManager.InterfaceLevel.Initial)
         {
-            trailRenderer.Clear();
-            trailRenderer.emitting = false;
+            if (galaxy.transform.localScale.x == targetSize1)
+                trailRenderer.emitting = true;
+
+            else
+            {
+                trailRenderer.Clear();
+                trailRenderer.emitting = false;
+            }
+        }
+
+        else if (systemSelectionManager.interfaceLevel == Scr_SystemSelectionManager.InterfaceLevel.Galaxy)
+        {
+            if (system.transform.localScale.x == targetSize1)
+                trailRenderer.emitting = true;
+
+            else
+            {
+                trailRenderer.Clear();
+                trailRenderer.emitting = false;
+            }
         }
     }
 }

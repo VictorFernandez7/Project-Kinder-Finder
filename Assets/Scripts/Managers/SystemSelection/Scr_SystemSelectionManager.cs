@@ -27,8 +27,8 @@ public class Scr_SystemSelectionManager : MonoBehaviour
 
     public enum InterfaceLevel
     {
+        Initial,
         Galaxy,
-        Group,
         System
     }
 
@@ -44,6 +44,8 @@ public class Scr_SystemSelectionManager : MonoBehaviour
 
     private void Update()
     {
+        print(interfaceLevel);
+
         CheckInput();
         UpdateCamera();
         UpdateTravelFuelAmountText();
@@ -67,14 +69,14 @@ public class Scr_SystemSelectionManager : MonoBehaviour
         {
             if (interfaceLevel == InterfaceLevel.System)
             {
-                interfaceLevel = InterfaceLevel.Group;
+                interfaceLevel = InterfaceLevel.Galaxy;
                 currentZoom = savedZoom;
                 currentPos = savedPos;
             }
 
-            else if (interfaceLevel == InterfaceLevel.Group)
+            else if (interfaceLevel == InterfaceLevel.Galaxy)
             {
-                interfaceLevel = InterfaceLevel.Galaxy;
+                interfaceLevel = InterfaceLevel.Initial;
                 currentZoom = initialZoom;
                 currentPos = initialPos;
             }
