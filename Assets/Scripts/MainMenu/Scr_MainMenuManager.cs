@@ -22,6 +22,7 @@ public class Scr_MainMenuManager : MonoBehaviour
     [SerializeField] public GameObject mainCamera;
     [SerializeField] public Animator mainButtonsAnim;
     [SerializeField] public Animator secondaryButtonsAnim;
+    [SerializeField] public Animator terciaryButtonsAnim;
     [SerializeField] public Animator settingsAnim;
     [SerializeField] public Animator aboutUsAnim;
     [SerializeField] public Animator mainCanvasAnim;

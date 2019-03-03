@@ -34,6 +34,9 @@ public class Scr_MainMenuButton : MonoBehaviour
         ContinueGame,
         NewGame,
         LoadGame,
+        Slot1,
+        Slot2,
+        Slot3,
         Settings,
         AudioSettings,
         VideoSettings,
@@ -199,6 +202,15 @@ public class Scr_MainMenuButton : MonoBehaviour
                 break;
             case MainMenuButton.LoadGame:
                 buttonText.text = "LOAD";
+                break;
+            case MainMenuButton.Slot1:
+                buttonText.text = "Slot 1";
+                break;
+            case MainMenuButton.Slot2:
+                buttonText.text = "Slot 2";
+                break;
+            case MainMenuButton.Slot3:
+                buttonText.text = "Slot 3";
                 break;
             case MainMenuButton.Settings:
                 buttonText.text = "SETTINGS";
