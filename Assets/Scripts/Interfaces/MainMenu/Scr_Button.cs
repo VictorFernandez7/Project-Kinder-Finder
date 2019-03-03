@@ -7,6 +7,7 @@ public class Scr_Button : MonoBehaviour
 
     [Header("Button Type")]
     [SerializeField] private ButtonType buttonType;
+    [SerializeField] private Scr_Levels.LevelToLoad targetSystem;
 
     [Header("Camera Parameters")]
     [SerializeField] public float xPos;
@@ -20,6 +21,7 @@ public class Scr_Button : MonoBehaviour
 
     [Header("References (All)")]
     [SerializeField] private Scr_SystemSelectionManager systemSelectionManager;
+    [SerializeField] private Animator indicatorsAnim;
 
     [Header("References (System)")]
     [SerializeField] private GameObject systemInfoPanel;
@@ -41,6 +43,9 @@ public class Scr_Button : MonoBehaviour
 
         if (buttonType == ButtonType.Galaxy)
             anim = GetComponent<Animator>();
+
+        else if (buttonType == ButtonType.System)
+            anim = GetComponentInParent<Animator>();
     }
 
     private void Update()
@@ -56,34 +61,46 @@ public class Scr_Button : MonoBehaviour
 
     private void OnMouseOver()
     {
-        if (beenDiscovered)
+        if (buttonType == ButtonType.Galaxy)
         {
-            if (buttonType == ButtonType.Galaxy)
-            {
-                anim.SetBool("Zoom", true);
-                PlanetActivation(true);
-            }
+            anim.SetBool("ZoomGalaxy", true);
+            PlanetActivation(true);
 
-            else if (buttonType == ButtonType.System)
-                PlanetActivation(true);
-
-            if (Input.GetMouseButtonDown(0))
-                ClickEvent();
+            if (indicatorsAnim != null)
+                indicatorsAnim.SetBool("ShowAll", true);
         }
+
+        else if (buttonType == ButtonType.System)
+        {
+            anim.SetBool(targetSystem.ToString(), true);
+            PlanetActivation(true);
+
+            if (indicatorsAnim != null)
+                indicatorsAnim.SetBool(targetSystem.ToString(), true);
+        }
+
+        if (Input.GetMouseButtonDown(0))
+            ClickEvent();
     }
 
     private void OnMouseExit()
     {
-        if (beenDiscovered)
+        if (buttonType == ButtonType.Galaxy)
         {
-            if (buttonType == ButtonType.Galaxy)
-            {
-                anim.SetBool("Zoom", false);
-                PlanetActivation(false);
-            }
+            anim.SetBool("ZoomGalaxy", false);
+            PlanetActivation(false);
 
-            else if (buttonType == ButtonType.System)
-                PlanetActivation(false);
+            if (indicatorsAnim != null)
+                indicatorsAnim.SetBool("ShowAll", false);
+        }
+
+        else if (buttonType == ButtonType.System)
+        {
+            anim.SetBool(targetSystem.ToString(), false);
+            PlanetActivation(false);
+
+            if (indicatorsAnim != null)
+                indicatorsAnim.SetBool(targetSystem.ToString(), false);
         }
     }
 
@@ -94,6 +111,9 @@ public class Scr_Button : MonoBehaviour
         systemSelectionManager.currentZoomSpeed = zoomSpeed;
         systemSelectionManager.currentMovementSpeed = movementSpeed;
 
+        anim.SetBool("ZoomGalaxy", false);
+        anim.SetBool("ZoomSystem1", false);
+
         switch (buttonType)
         {
             case ButtonType.System:
@@ -101,7 +121,7 @@ public class Scr_Button : MonoBehaviour
                 systemInfoPanel.SetActive(true);
                 break;
             case ButtonType.Galaxy:
-                systemSelectionManager.interfaceLevel = Scr_SystemSelectionManager.InterfaceLevel.Group;
+                systemSelectionManager.interfaceLevel = Scr_SystemSelectionManager.InterfaceLevel.Galaxy;
                 systemSelectionManager.savedZoom = zoom;
                 systemSelectionManager.savedPos = new Vector3(transform.position.x + xPos, transform.position.y + yPos, -100); ;
                 break;
@@ -112,7 +132,7 @@ public class Scr_Button : MonoBehaviour
     {
         if (buttonType == ButtonType.Galaxy)
         {
-            if (systemSelectionManager.interfaceLevel == Scr_SystemSelectionManager.InterfaceLevel.Galaxy)
+            if (systemSelectionManager.interfaceLevel == Scr_SystemSelectionManager.InterfaceLevel.Initial)
                 circleCollider.enabled = true;
 
             else
@@ -121,13 +141,13 @@ public class Scr_Button : MonoBehaviour
 
         else if (buttonType == ButtonType.System)
         {
-            if (systemSelectionManager.interfaceLevel == Scr_SystemSelectionManager.InterfaceLevel.Group)
+            if (systemSelectionManager.interfaceLevel == Scr_SystemSelectionManager.InterfaceLevel.Galaxy)
                 circleCollider.enabled = true;
 
             else
                 circleCollider.enabled = false;
 
-            if (systemSelectionManager.interfaceLevel == Scr_SystemSelectionManager.InterfaceLevel.Group)
+            if (systemSelectionManager.interfaceLevel == Scr_SystemSelectionManager.InterfaceLevel.Galaxy)
                 systemInfoPanel.SetActive(false);
 
             if (systemInfoPanel.activeInHierarchy)

@@ -5,8 +5,10 @@ using UnityEngine;
 public class Scr_TrailAdapter : MonoBehaviour
 {
     [Header("Parent Parameters")]
-    [SerializeField] private GameObject parentObject;
     [SerializeField] private float targetSize;
+
+    [Header("References")]
+    [SerializeField] private GameObject targetParent;
 
     private TrailRenderer trailRenderer;
 
@@ -17,7 +19,7 @@ public class Scr_TrailAdapter : MonoBehaviour
 
     private void Update()
     {
-        if (parentObject.transform.localScale.x == targetSize)
+        if (targetParent.transform.localScale.x == targetSize)
             trailRenderer.emitting = true;
 
         else
