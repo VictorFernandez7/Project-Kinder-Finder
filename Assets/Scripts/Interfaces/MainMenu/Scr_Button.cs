@@ -7,6 +7,7 @@ public class Scr_Button : MonoBehaviour
 
     [Header("Button Type")]
     [SerializeField] private ButtonType buttonType;
+    [SerializeField] private Scr_Levels.LevelToLoad targetSystem;
 
     [Header("Camera Parameters")]
     [SerializeField] public float xPos;
