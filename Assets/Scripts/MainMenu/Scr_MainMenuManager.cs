@@ -29,6 +29,7 @@ public class Scr_MainMenuManager : MonoBehaviour
     [SerializeField] public Transform initialCameraPos;
 
     [HideInInspector] public Vector3 savedMainSpot;
+    [HideInInspector] public Vector3 savedSecondarySpot;
     [HideInInspector] public Vector3 currentCameraPos;
     [HideInInspector] public MainMenuLevel mainMenuLevel;
 
@@ -39,7 +40,8 @@ public class Scr_MainMenuManager : MonoBehaviour
     {
         Initial,
         Main,
-        Secondary
+        Secondary,
+        Terciary
     }
 
     private void Start()
@@ -148,6 +150,14 @@ public class Scr_MainMenuManager : MonoBehaviour
                 aboutUsAnim.SetBool("RRSS", false);
                 aboutUsAnim.SetBool("Team", false);
                 aboutUsAnim.SetBool("Contact", false);
+            }
+
+            else if (mainMenuLevel == MainMenuLevel.Terciary)
+            {
+                mainMenuLevel = MainMenuLevel.Secondary;
+                currentCameraPos = savedSecondarySpot;
+
+                terciaryButtonsAnim.SetBool("Load", false);
             }
         }
     }
