@@ -21,14 +21,12 @@ public class Scr_Button : MonoBehaviour
 
     [Header("References (All)")]
     [SerializeField] private Scr_SystemSelectionManager systemSelectionManager;
+    [SerializeField] private Animator indicatorsAnim;
 
     [Header("References (System)")]
     [SerializeField] private GameObject systemInfoPanel;
     [SerializeField] private GameObject discovered;
     [SerializeField] private GameObject notDiscovered;
-
-    [Header("References (Galaxy)")]
-    [SerializeField] private Animator indicatorsAnim;
 
     private Animator anim;
     private CircleCollider2D circleCollider;
@@ -69,13 +67,16 @@ public class Scr_Button : MonoBehaviour
             PlanetActivation(true);
 
             if (indicatorsAnim != null)
-                indicatorsAnim.SetBool("Show", true);
+                indicatorsAnim.SetBool("ShowAll", true);
         }
 
         else if (buttonType == ButtonType.System)
         {
             anim.SetBool(targetSystem.ToString(), true);
             PlanetActivation(true);
+
+            if (indicatorsAnim != null)
+                indicatorsAnim.SetBool(targetSystem.ToString(), true);
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -90,13 +91,16 @@ public class Scr_Button : MonoBehaviour
             PlanetActivation(false);
 
             if (indicatorsAnim != null)
-                indicatorsAnim.SetBool("Show", false);
+                indicatorsAnim.SetBool("ShowAll", false);
         }
 
         else if (buttonType == ButtonType.System)
         {
             anim.SetBool(targetSystem.ToString(), false);
             PlanetActivation(false);
+
+            if (indicatorsAnim != null)
+                indicatorsAnim.SetBool(targetSystem.ToString(), false);
         }
     }
 
