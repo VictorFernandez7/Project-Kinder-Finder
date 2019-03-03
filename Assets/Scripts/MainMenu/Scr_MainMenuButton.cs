@@ -123,7 +123,7 @@ public class Scr_MainMenuButton : MonoBehaviour
                 if (mainMenuButton == MainMenuButton.Play || mainMenuButton == MainMenuButton.Settings || mainMenuButton == MainMenuButton.AboutUs)
                 {
                     mainMenuManager.mainMenuLevel = Scr_MainMenuManager.MainMenuLevel.Main;
-                    mainMenuManager.savedMainSpot = cameraSpot.position;
+                    mainMenuManager.savedCamSpot = cameraSpot.position;
 
                     switch (mainMenuButton)
                     {
@@ -161,7 +161,6 @@ public class Scr_MainMenuButton : MonoBehaviour
                 else
                 {
                     mainMenuManager.mainMenuLevel = Scr_MainMenuManager.MainMenuLevel.Secondary;
-                    mainMenuManager.savedSecondarySpot = cameraSpot.position;
 
                     switch (mainMenuButton)
                     {

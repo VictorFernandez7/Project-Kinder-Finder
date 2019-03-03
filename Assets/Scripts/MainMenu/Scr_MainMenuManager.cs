@@ -28,8 +28,7 @@ public class Scr_MainMenuManager : MonoBehaviour
     [SerializeField] public Animator mainCanvasAnim;
     [SerializeField] public Transform initialCameraPos;
 
-    [HideInInspector] public Vector3 savedMainSpot;
-    [HideInInspector] public Vector3 savedSecondarySpot;
+    [HideInInspector] public Vector3 savedCamSpot;
     [HideInInspector] public Vector3 currentCameraPos;
     [HideInInspector] public MainMenuLevel mainMenuLevel;
 
@@ -54,6 +53,7 @@ public class Scr_MainMenuManager : MonoBehaviour
 
     private void Update()
     {
+        print(mainMenuLevel);
         CameraMovement();
 
         if (canControlInterface)
@@ -141,7 +141,7 @@ public class Scr_MainMenuManager : MonoBehaviour
             else if (mainMenuLevel == MainMenuLevel.Secondary)
             {
                 mainMenuLevel = MainMenuLevel.Main;
-                currentCameraPos = savedMainSpot;
+                currentCameraPos = savedCamSpot;
 
                 settingsAnim.SetBool("Audio", false);
                 settingsAnim.SetBool("Video", false);
@@ -154,8 +154,8 @@ public class Scr_MainMenuManager : MonoBehaviour
 
             else if (mainMenuLevel == MainMenuLevel.Terciary)
             {
-                mainMenuLevel = MainMenuLevel.Secondary;
-                currentCameraPos = savedSecondarySpot;
+                mainMenuLevel = MainMenuLevel.Main;
+                currentCameraPos = savedCamSpot;
 
                 terciaryButtonsAnim.SetBool("Load", false);
             }
