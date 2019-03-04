@@ -3,15 +3,18 @@ using UnityEngine;
 
 public class Scr_DevTools : MonoBehaviour
 {
-    [Header("BulletTime")]
+    [Header("Bullet Time")]
     [Range(0, 1)] [SerializeField] private float slowAmount;
     [SerializeField] private KeyCode BT_key;
 
-    [Header("ReloadScene")]
+    [Header("Reload Scene")]
     [SerializeField] private KeyCode RS_key;
 
-    [Header("ResetTechnologies")]
-    [SerializeField] private KeyCode RT_key; 
+    [Header("Reset Technologies")]
+    [SerializeField] private KeyCode RT_key;
+
+    [Header("Unlock Liquid Tool")]
+    [SerializeField] private KeyCode LT_key;
 
     private GameObject playerShip;
     private bool devSlow; 
