@@ -15,8 +15,14 @@ public class Scr_LevelManager : Scr_PersistentSingleton<Scr_LevelManager>
     [Header("References")]
     [SerializeField] private GameObject commandCanvas;
     [SerializeField] private TMP_InputField commandInputField;
+    [SerializeField] private Scr_AstronautsActions astronautsActions;
 
     private bool isActive;
+
+    private void Start()
+    {
+        astronautsActions = GameObject.Find("Astronaut").GetComponent<Scr_AstronautsActions>();
+    }
 
     private void Update()
     {
@@ -132,8 +138,36 @@ public class Scr_LevelManager : Scr_PersistentSingleton<Scr_LevelManager>
             case "/PS7":
                 LoadPlanetSystem(Scr_Levels.LevelToLoad.PlanetSystem7);
                 break;
+            case "/ULT":
+                UnlockTool(1);
+                break;
+            case "/UGT":
+                UnlockTool(2);
+                break;
+            case "/URPT":
+                UnlockTool(3);
+                break;
+            case "/URCT":
+                UnlockTool(4);
+                break;
+            case "/LALL":
+                LockTool();
+                break;
         }
 
         commandInputField.text = "";
+    }
+
+    private void UnlockTool(int index)
+    {
+        astronautsActions.unlockedTools[index] = true;
+    }
+
+    private void LockTool()
+    {
+        for(int i = 1; i < astronautsActions.unlockedTools.Length; i++)
+        {
+            astronautsActions.unlockedTools[i] = false;
+        }
     }
 }
