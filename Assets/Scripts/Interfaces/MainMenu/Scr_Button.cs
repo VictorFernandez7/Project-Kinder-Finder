@@ -46,6 +46,11 @@ public class Scr_Button : MonoBehaviour
 
         else if (buttonType == ButtonType.System)
             anim = GetComponentInParent<Animator>();
+
+        // Provisional:
+
+        if (this.gameObject.name == "Galaxy1")
+            ClickEvent();
     }
 
     private void Update()
