@@ -7,6 +7,9 @@ public class Scr_LiquidTool : Scr_ToolBase
     [Header("Tool Parameters")]
     [SerializeField] private float extractionSpeed;
 
+    [Header("References")]
+    [SerializeField] private Scr_PlayerShipMovement playerShipMovement;
+
     [HideInInspector] public bool onRange;
     [HideInInspector] public GameObject zone;
 
@@ -44,7 +47,9 @@ public class Scr_LiquidTool : Scr_ToolBase
 
         if(amount >= 1)
         {
-            //Create Resource
+            amount -= 1;
+            GameObject resources = Instantiate(resource, transform.position, transform.rotation);
+            resources.transform.SetParent(playerShipMovement.currentPlanet.transform);
         }
     }
 }
