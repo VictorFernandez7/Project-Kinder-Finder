@@ -9,6 +9,7 @@ public class Scr_TrailAdapter : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private GameObject targetParent;
+    [SerializeField] private Scr_SystemSelectionManager systemSelectionManager;
 
     private TrailRenderer trailRenderer;
 
@@ -19,13 +20,30 @@ public class Scr_TrailAdapter : MonoBehaviour
 
     private void Update()
     {
-        if (targetParent.transform.localScale.x == targetSize)
+        CheckState();
+    }
+
+    private void CheckState()
+    {
+        if (systemSelectionManager.interfaceLevel == Scr_SystemSelectionManager.InterfaceLevel.Initial || systemSelectionManager.interfaceLevel == Scr_SystemSelectionManager.InterfaceLevel.Galaxy)
+        {
+            if (targetParent.transform.localScale.x == targetSize)
+                trailRenderer.emitting = true;
+
+            else
+                StopEmitting();
+        }
+
+        else if (systemSelectionManager.interfaceLevel == Scr_SystemSelectionManager.InterfaceLevel.System && targetParent.transform.localScale.x == 1)
             trailRenderer.emitting = true;
 
         else
-        {
-            trailRenderer.Clear();
-            trailRenderer.emitting = false;
-        }
+            StopEmitting();
+    }
+
+    private void StopEmitting()
+    {
+        trailRenderer.Clear();
+        trailRenderer.emitting = false;
     }
 }
