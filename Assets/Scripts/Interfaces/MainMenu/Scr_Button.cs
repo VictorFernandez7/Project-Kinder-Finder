@@ -161,6 +161,9 @@ public class Scr_Button : MonoBehaviour
 
             if (panels.activeInHierarchy)
                 PlanetActivation(true);
+
+            else if (systemSelectionManager.interfaceLevel == Scr_SystemSelectionManager.InterfaceLevel.System)
+                PlanetActivation(false);
         }
     }
 
