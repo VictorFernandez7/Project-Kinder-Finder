@@ -24,9 +24,11 @@ public class Scr_Button : MonoBehaviour
     [SerializeField] private Animator indicatorsAnim;
 
     [Header("References (System)")]
-    [SerializeField] private GameObject systemInfoPanel;
+    [SerializeField] private GameObject panels;
     [SerializeField] private GameObject discovered;
+    [SerializeField] private GameObject discoveredPanel;
     [SerializeField] private GameObject notDiscovered;
+    [SerializeField] private GameObject notDiscoveredPanel;
 
     private Animator anim;
     private CircleCollider2D circleCollider;
@@ -60,7 +62,9 @@ public class Scr_Button : MonoBehaviour
         if (buttonType == ButtonType.System)
         {
             discovered.SetActive(beenDiscovered);
+            discoveredPanel.SetActive(beenDiscovered);
             notDiscovered.SetActive(!beenDiscovered);
+            notDiscoveredPanel.SetActive(!beenDiscovered);
         }
     }
 
@@ -123,7 +127,7 @@ public class Scr_Button : MonoBehaviour
         {
             case ButtonType.System:
                 systemSelectionManager.interfaceLevel = Scr_SystemSelectionManager.InterfaceLevel.System;
-                systemInfoPanel.SetActive(true);
+                panels.SetActive(true);
                 break;
             case ButtonType.Galaxy:
                 systemSelectionManager.interfaceLevel = Scr_SystemSelectionManager.InterfaceLevel.Galaxy;
@@ -153,9 +157,9 @@ public class Scr_Button : MonoBehaviour
                 circleCollider.enabled = false;
 
             if (systemSelectionManager.interfaceLevel == Scr_SystemSelectionManager.InterfaceLevel.Galaxy)
-                systemInfoPanel.SetActive(false);
+                panels.SetActive(false);
 
-            if (systemInfoPanel.activeInHierarchy)
+            if (panels.activeInHierarchy)
                 PlanetActivation(true);
         }
     }
