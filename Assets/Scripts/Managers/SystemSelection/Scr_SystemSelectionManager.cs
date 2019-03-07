@@ -36,8 +36,10 @@ public class Scr_SystemSelectionManager : MonoBehaviour
         initialZoom = mainCamera.orthographicSize;
         currentZoom = initialZoom;
         savedZoom = initialZoom;
-
+        savedPos = initialPos;
         currentPos = initialPos;
+
+        interfaceLevel = InterfaceLevel.Galaxy;
     }
 
     private void Update()
@@ -70,12 +72,12 @@ public class Scr_SystemSelectionManager : MonoBehaviour
                 currentPos = savedPos;
             }
 
-            else if (interfaceLevel == InterfaceLevel.Galaxy)
+            /*else if (interfaceLevel == InterfaceLevel.Galaxy)
             {
                 interfaceLevel = InterfaceLevel.Initial;
                 currentZoom = initialZoom;
                 currentPos = initialPos;
-            }
+            }*/
         }
     }
 
