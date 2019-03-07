@@ -59,7 +59,7 @@ public class Scr_Button : MonoBehaviour
 
         if (buttonType == ButtonType.System)
         {
-            panels.SetBool("Discovered", discovered);
+            panels.SetBool("Discovered", beenDiscovered);
             discovered.SetActive(beenDiscovered);
             notDiscovered.SetActive(!beenDiscovered);
         }
@@ -124,7 +124,7 @@ public class Scr_Button : MonoBehaviour
         {
             case ButtonType.System:
                 systemSelectionManager.interfaceLevel = Scr_SystemSelectionManager.InterfaceLevel.System;
-                panels.SetActive(true);
+                panels.SetBool("Show", true);
                 break;
             case ButtonType.Galaxy:
                 systemSelectionManager.interfaceLevel = Scr_SystemSelectionManager.InterfaceLevel.Galaxy;
@@ -154,9 +154,9 @@ public class Scr_Button : MonoBehaviour
                 circleCollider.enabled = false;
 
             if (systemSelectionManager.interfaceLevel == Scr_SystemSelectionManager.InterfaceLevel.Galaxy)
-                panels.SetActive(false);
+                panels.SetBool("Show", false);
 
-            if (panels.activeInHierarchy)
+            if (panels.GetBool("Show"))
                 PlanetActivation(true);
 
             else if (systemSelectionManager.interfaceLevel == Scr_SystemSelectionManager.InterfaceLevel.System)
