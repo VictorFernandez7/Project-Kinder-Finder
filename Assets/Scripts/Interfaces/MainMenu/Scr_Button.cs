@@ -24,11 +24,9 @@ public class Scr_Button : MonoBehaviour
     [SerializeField] private Animator indicatorsAnim;
 
     [Header("References (System)")]
-    [SerializeField] private GameObject panels;
+    [SerializeField] private Animator panels;
     [SerializeField] private GameObject discovered;
-    [SerializeField] private GameObject discoveredPanel;
     [SerializeField] private GameObject notDiscovered;
-    [SerializeField] private GameObject notDiscoveredPanel;
 
     private Animator anim;
     private CircleCollider2D circleCollider;
@@ -61,10 +59,9 @@ public class Scr_Button : MonoBehaviour
 
         if (buttonType == ButtonType.System)
         {
+            panels.SetBool("Discovered", discovered);
             discovered.SetActive(beenDiscovered);
-            discoveredPanel.SetActive(beenDiscovered);
             notDiscovered.SetActive(!beenDiscovered);
-            notDiscoveredPanel.SetActive(!beenDiscovered);
         }
     }
 
