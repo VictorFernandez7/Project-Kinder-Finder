@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 
 public class Scr_SystemSelectionManager : MonoBehaviour
@@ -11,6 +9,7 @@ public class Scr_SystemSelectionManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private Camera mainCamera;
     [SerializeField] private TextMeshProUGUI travelFuelText;
+    [SerializeField] private Animator travelHelp;
 
     [HideInInspector] public float currentZoom;
     [HideInInspector] public float savedZoom;
@@ -37,8 +36,10 @@ public class Scr_SystemSelectionManager : MonoBehaviour
         initialZoom = mainCamera.orthographicSize;
         currentZoom = initialZoom;
         savedZoom = initialZoom;
-
+        savedPos = initialPos;
         currentPos = initialPos;
+
+        interfaceLevel = InterfaceLevel.Galaxy;
     }
 
     private void Update()
@@ -46,6 +47,12 @@ public class Scr_SystemSelectionManager : MonoBehaviour
         CheckInput();
         UpdateCamera();
         UpdateTravelFuelAmountText();
+
+        if (interfaceLevel == InterfaceLevel.System)
+            travelHelp.SetBool("Show", true);
+
+        else
+            travelHelp.SetBool("Show", false);
     }
 
     private void UpdateCamera()
@@ -65,12 +72,12 @@ public class Scr_SystemSelectionManager : MonoBehaviour
                 currentPos = savedPos;
             }
 
-            else if (interfaceLevel == InterfaceLevel.Galaxy)
+            /*else if (interfaceLevel == InterfaceLevel.Galaxy)
             {
                 interfaceLevel = InterfaceLevel.Initial;
                 currentZoom = initialZoom;
                 currentPos = initialPos;
-            }
+            }*/
         }
     }
 

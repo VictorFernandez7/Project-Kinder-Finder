@@ -24,12 +24,12 @@ public class Scr_Button : MonoBehaviour
     [SerializeField] private Animator indicatorsAnim;
 
     [Header("References (System)")]
-    [SerializeField] private GameObject panels;
+    [SerializeField] private Animator panels;
     [SerializeField] private GameObject discovered;
-    [SerializeField] private GameObject discoveredPanel;
     [SerializeField] private GameObject notDiscovered;
-    [SerializeField] private GameObject notDiscoveredPanel;
 
+    private bool delayDone;
+    private float delay = 1;
     private Animator anim;
     private CircleCollider2D circleCollider;
 
@@ -48,24 +48,12 @@ public class Scr_Button : MonoBehaviour
 
         else if (buttonType == ButtonType.System)
             anim = GetComponentInParent<Animator>();
-
-        // Provisional:
-
-        if (this.gameObject.name == "Galaxy1")
-            ClickEvent();
     }
 
     private void Update()
     {
         UpdateComponents();
-
-        if (buttonType == ButtonType.System)
-        {
-            discovered.SetActive(beenDiscovered);
-            discoveredPanel.SetActive(beenDiscovered);
-            notDiscovered.SetActive(!beenDiscovered);
-            notDiscoveredPanel.SetActive(!beenDiscovered);
-        }
+        SystemButton();
     }
 
     private void OnMouseOver()
@@ -113,6 +101,33 @@ public class Scr_Button : MonoBehaviour
         }
     }
 
+    private void SystemButton()
+    {
+        if (buttonType == ButtonType.System)
+        {
+            panels.SetBool("Discovered", beenDiscovered);
+            discovered.SetActive(beenDiscovered);
+            notDiscovered.SetActive(!beenDiscovered);
+
+            if (systemSelectionManager.interfaceLevel == Scr_SystemSelectionManager.InterfaceLevel.Galaxy && !delayDone)
+            {
+                circleCollider.enabled = false;
+
+                delay -= Time.deltaTime;
+
+                if (delay <= 0)
+                {
+                    circleCollider.enabled = true;
+                    delayDone = true;
+                    delay = 1;
+                }
+            }
+
+            if (systemSelectionManager.interfaceLevel == Scr_SystemSelectionManager.InterfaceLevel.System && Input.GetMouseButtonDown(1))
+                delayDone = false;
+        }
+    }
+
     private void ClickEvent()
     {
         systemSelectionManager.currentPos = new Vector3(transform.position.x + xPos, transform.position.y + yPos, -100);
@@ -127,7 +142,7 @@ public class Scr_Button : MonoBehaviour
         {
             case ButtonType.System:
                 systemSelectionManager.interfaceLevel = Scr_SystemSelectionManager.InterfaceLevel.System;
-                panels.SetActive(true);
+                panels.SetBool("Show", true);
                 break;
             case ButtonType.Galaxy:
                 systemSelectionManager.interfaceLevel = Scr_SystemSelectionManager.InterfaceLevel.Galaxy;
@@ -157,9 +172,9 @@ public class Scr_Button : MonoBehaviour
                 circleCollider.enabled = false;
 
             if (systemSelectionManager.interfaceLevel == Scr_SystemSelectionManager.InterfaceLevel.Galaxy)
-                panels.SetActive(false);
+                panels.SetBool("Show", false);
 
-            if (panels.activeInHierarchy)
+            if (panels.GetBool("Show"))
                 PlanetActivation(true);
 
             else if (systemSelectionManager.interfaceLevel == Scr_SystemSelectionManager.InterfaceLevel.System)
