@@ -20,11 +20,7 @@ public class Scr_TravelGate : MonoBehaviour
 
     private void Update()
     {
-        if (systemSelectionManager.interfaceLevel == Scr_SystemSelectionManager.InterfaceLevel.System)
-            circleCollider.enabled = true;
-
-        else
-            circleCollider.enabled = false;
+        UpdateCollider();
     }
 
     private void OnMouseOver()
@@ -41,5 +37,14 @@ public class Scr_TravelGate : MonoBehaviour
     private void OnMouseExit()
     {
         travelGateCanvas.SetActive(false);
+    }
+
+    private void UpdateCollider()
+    {
+        if (systemSelectionManager.interfaceLevel == Scr_SystemSelectionManager.InterfaceLevel.System)
+            circleCollider.enabled = true;
+
+        else
+            circleCollider.enabled = false;
     }
 }
