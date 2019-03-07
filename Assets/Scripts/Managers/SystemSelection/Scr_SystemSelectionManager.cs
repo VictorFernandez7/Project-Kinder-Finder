@@ -10,7 +10,6 @@ public class Scr_SystemSelectionManager : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Camera mainCamera;
-    [SerializeField] private GameObject titleText;
     [SerializeField] private TextMeshProUGUI travelFuelText;
 
     [HideInInspector] public float currentZoom;
@@ -47,12 +46,6 @@ public class Scr_SystemSelectionManager : MonoBehaviour
         CheckInput();
         UpdateCamera();
         UpdateTravelFuelAmountText();
-
-        if (interfaceLevel == InterfaceLevel.Galaxy)
-            titleText.SetActive(true);
-
-        else
-            titleText.SetActive(false);
     }
 
     private void UpdateCamera()
