@@ -28,6 +28,8 @@ public class Scr_Button : MonoBehaviour
     [SerializeField] private GameObject discovered;
     [SerializeField] private GameObject notDiscovered;
 
+    private bool delayDone;
+    private float delay = 1;
     private Animator anim;
     private CircleCollider2D circleCollider;
 
@@ -51,13 +53,7 @@ public class Scr_Button : MonoBehaviour
     private void Update()
     {
         UpdateComponents();
-
-        if (buttonType == ButtonType.System)
-        {
-            panels.SetBool("Discovered", beenDiscovered);
-            discovered.SetActive(beenDiscovered);
-            notDiscovered.SetActive(!beenDiscovered);
-        }
+        SystemButton();
     }
 
     private void OnMouseOver()
@@ -102,6 +98,33 @@ public class Scr_Button : MonoBehaviour
 
             if (indicatorsAnim != null)
                 indicatorsAnim.SetBool(targetSystem.ToString(), false);
+        }
+    }
+
+    private void SystemButton()
+    {
+        if (buttonType == ButtonType.System)
+        {
+            panels.SetBool("Discovered", beenDiscovered);
+            discovered.SetActive(beenDiscovered);
+            notDiscovered.SetActive(!beenDiscovered);
+
+            if (systemSelectionManager.interfaceLevel == Scr_SystemSelectionManager.InterfaceLevel.Galaxy && !delayDone)
+            {
+                circleCollider.enabled = false;
+
+                delay -= Time.deltaTime;
+
+                if (delay <= 0)
+                {
+                    circleCollider.enabled = true;
+                    delayDone = true;
+                    delay = 1;
+                }
+            }
+
+            if (systemSelectionManager.interfaceLevel == Scr_SystemSelectionManager.InterfaceLevel.System && Input.GetMouseButtonDown(1))
+                delayDone = false;
         }
     }
 
