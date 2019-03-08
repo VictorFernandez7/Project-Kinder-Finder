@@ -46,8 +46,6 @@ public class Scr_AstronautsActions : MonoBehaviour
 
         toolOnFloor = null;
         emptyHands = true;
-
-        unlockedTools[0] = true;
     }
 
     private void Update()
