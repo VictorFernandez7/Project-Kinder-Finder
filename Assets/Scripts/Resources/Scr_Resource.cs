@@ -66,6 +66,7 @@ public class Scr_Resource : MonoBehaviour
 
                 else
                 {
+                    transform.rotation = Quaternion.LookRotation(transform.forward, -(playerShipMovement.currentPlanet.transform.position - gameObject.transform.position));
                     rb.AddForce((playerShipMovement.currentPlanet.transform.position - gameObject.transform.position).normalized * gravity);
                     rb.isKinematic = false;
                 }

@@ -92,6 +92,29 @@ public class Scr_PlayerShipWarehouse : MonoBehaviour
         }
     }
 
+    public void Refuel(int index)
+    {
+        if (!resourcesWarehouseSlots[index])
+        {
+            for(int i = 0; i < resourcesWarehouseSlots.Length; i++)
+            {
+                resourcesWarehouseSlots[i] = false;
+            }
+
+            resourcesWarehouseSlots[index] = true;
+        }
+
+        else if (resourcesWarehouseSlots[index])
+        {
+            if (playerShipStats.resourceWarehouse[index].name == "Fuel")
+            {
+                playerShipStats.currentFuel += 50;
+                playerShipStats.resourceWarehouse[index] = null;
+            }
+        }
+
+    }
+
     //RESOURCE WAREHOUSE
 
     public void ControlResources()
