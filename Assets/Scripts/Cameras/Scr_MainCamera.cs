@@ -7,6 +7,7 @@ public class Scr_MainCamera : MonoBehaviour
     [SerializeField] private float zoomInSpace;
     [SerializeField] private float zoomInPlanet;
     [SerializeField] private float miningZoom;
+    [SerializeField] private float craftZoom;
     [SerializeField] private float zoomSpeed;
 
     [Header("Rotation Properties")]
@@ -25,6 +26,8 @@ public class Scr_MainCamera : MonoBehaviour
     [HideInInspector] public bool followAstronaut = true;
     [HideInInspector] public bool smoothRotation = true;
     [HideInInspector] public bool mining;
+    [HideInInspector] public bool interacting;
+    [HideInInspector] public GameObject craftCenter;
 
     private float zoomDistance;
     private Vector3 desiredUp;
@@ -54,15 +57,21 @@ public class Scr_MainCamera : MonoBehaviour
         currentPlanet = playerShipMovement.currentPlanet;
         zoomDistance = playerShipMovement.landDistance;
 
-        FollowTarget();
         CameraZoom();
+        CameraPosition();
         CameraRotation();
     }
 
-    private void FollowTarget()
+    private void CameraPosition()
     {
         if (followAstronaut)
-            transform.position = new Vector3(astronaut.transform.position.x, astronaut.transform.position.y, -100);
+        {
+            if (interacting)
+                transform.position = new Vector3(craftCenter.transform.position.x, craftCenter.transform.position.y, -100);
+
+            else
+                transform.position = new Vector3(astronaut.transform.position.x, astronaut.transform.position.y, -100);
+        }
 
         else
             transform.position = new Vector3(playerShip.transform.position.x, playerShip.transform.position.y, -100);
