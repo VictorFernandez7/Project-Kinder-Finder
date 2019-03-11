@@ -306,6 +306,166 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!1 &501117001
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 501117002}
+  - component: {fileID: 501117004}
+  - component: {fileID: 501117003}
+  m_Layer: 0
+  m_Name: DialogText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &501117002
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501117001}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1411496195}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.0000121593475, y: -0.0000019073486}
+  m_SizeDelta: {x: 1288.8, y: 151.4}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &501117004
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501117001}
+  m_CullTransparentMesh: 0
+--- !u!114 &501117003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501117001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_text: New Text
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_outlineColor:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_textAlignment: 257
+  m_isAlignmentEnumConverted: 1
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_firstOverflowCharacterIndex: -1
+  m_linkedTextComponent: {fileID: 0}
+  m_isLinkedTextComponent: 0
+  m_isTextTruncated: 0
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_ignoreRectMaskCulling: 0
+  m_ignoreCulling: 1
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_firstVisibleCharacter: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_textInfo:
+    textComponent: {fileID: 501117003}
+    characterCount: 8
+    spriteCount: 0
+    spaceCount: 1
+    wordCount: 2
+    linkCount: 0
+    lineCount: 1
+    pageCount: 1
+    materialCount: 1
+  m_havePropertiesChanged: 0
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+  m_isInputParsingRequired: 0
+  m_inputSource: 0
+  m_hasFontAssetChanged: 0
+  m_subTextObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &517327769
 GameObject:
   m_ObjectHideFlags: 0
@@ -1114,6 +1274,81 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &1411496194
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1411496195}
+  - component: {fileID: 1411496197}
+  - component: {fileID: 1411496196}
+  m_Layer: 0
+  m_Name: DialogPanel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1411496195
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411496194}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 501117002}
+  m_Father: {fileID: 224118236298834160}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -101, y: -397}
+  m_SizeDelta: {x: 1351.8, y: 188.09998}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1411496197
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411496194}
+  m_CullTransparentMesh: 0
+--- !u!114 &1411496196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411496194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.8392157}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
 --- !u!1 &1509539404
 GameObject:
   m_ObjectHideFlags: 0
@@ -4245,6 +4480,7 @@ RectTransform:
   - {fileID: 224459451217361174}
   - {fileID: 224311894571426488}
   - {fileID: 224145407331620114}
+  - {fileID: 1411496195}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6674,6 +6910,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 65536
   stopNaNPropagation: 1
+  finalBlitToCameraTarget: 1
   antialiasingMode: 0
   temporalAntialiasing:
     jitterSpread: 0.75
@@ -7223,6 +7460,7 @@ GameObject:
   - component: {fileID: 224201917827188286}
   - component: {fileID: 222813188384215082}
   - component: {fileID: 114863938138281840}
+  - component: {fileID: 952843874}
   m_Layer: 0
   m_Name: PlayerShipSlot1
   m_TagString: Untagged
@@ -7245,10 +7483,10 @@ RectTransform:
   m_Father: {fileID: 224122350892158542}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 86.649994, y: -126.34192}
-  m_SizeDelta: {x: 125, y: 125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &222813188384215082
 CanvasRenderer:
@@ -7287,6 +7525,59 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &952843874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828677503724270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 114863938138281840}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: Refuel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &1842490505844476
 GameObject:
   m_ObjectHideFlags: 0
@@ -8364,9 +8655,9 @@ RectTransform:
   m_Father: {fileID: 8729261012450148938}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 125.149994, y: -667.6251}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &656479927948685939
@@ -8782,9 +9073,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &51068687324832972
 GameObject:
   m_ObjectHideFlags: 0
@@ -9198,9 +9492,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 2046277320077227890}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &89540896023489199
 GameObject:
   m_ObjectHideFlags: 0
@@ -9296,9 +9593,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 2060264430471058508}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &94490941658767609
 GameObject:
   m_ObjectHideFlags: 0
@@ -10706,9 +11006,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &213362331936865652
 GameObject:
   m_ObjectHideFlags: 0
@@ -10938,9 +11241,9 @@ RectTransform:
   m_Father: {fileID: 8729261012450148938}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 125.149994, y: -590.69104}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4950690360424917615
@@ -10991,6 +11294,7 @@ GameObject:
   - component: {fileID: 7482848889769307725}
   - component: {fileID: 6205272041600513307}
   - component: {fileID: 6513694399168824780}
+  - component: {fileID: 862279850}
   m_Layer: 0
   m_Name: PlayerShipSlot1 (10)
   m_TagString: Untagged
@@ -11013,10 +11317,10 @@ RectTransform:
   m_Father: {fileID: 224122350892158542}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 491.65, y: -261.34192}
-  m_SizeDelta: {x: 125, y: 125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6205272041600513307
 CanvasRenderer:
@@ -11055,6 +11359,59 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &862279850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234607795981364949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 6513694399168824780}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: Refuel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 10
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &245046359665049631
 GameObject:
   m_ObjectHideFlags: 0
@@ -11390,9 +11747,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &289933022668048456
 GameObject:
   m_ObjectHideFlags: 0
@@ -11491,9 +11851,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &300619352502531576
 GameObject:
   m_ObjectHideFlags: 0
@@ -11592,9 +11955,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &302100969100259019
 GameObject:
   m_ObjectHideFlags: 0
@@ -11767,9 +12133,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &322525289529017400
 GameObject:
   m_ObjectHideFlags: 0
@@ -11865,9 +12234,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 379000839500728762}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &332589763497773623
 GameObject:
   m_ObjectHideFlags: 0
@@ -12152,9 +12524,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &365138108310983059
 GameObject:
   m_ObjectHideFlags: 0
@@ -12253,9 +12628,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &365432146616114003
 GameObject:
   m_ObjectHideFlags: 0
@@ -12354,9 +12732,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &373061335430989801
 GameObject:
   m_ObjectHideFlags: 0
@@ -12594,9 +12975,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &408774492011554868
 GameObject:
   m_ObjectHideFlags: 0
@@ -13051,9 +13435,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &465672999793077639
 GameObject:
   m_ObjectHideFlags: 0
@@ -13147,9 +13534,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 8540209286244977048}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &467389340412629653
 GameObject:
   m_ObjectHideFlags: 0
@@ -13248,9 +13638,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &468189849074163370
 GameObject:
   m_ObjectHideFlags: 0
@@ -13349,9 +13742,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &479743647295037107
 GameObject:
   m_ObjectHideFlags: 0
@@ -13605,9 +14001,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 8165017759545467720}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &486466454560613142
 GameObject:
   m_ObjectHideFlags: 0
@@ -14403,9 +14802,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 2046277320077227890}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &576508218045387082
 GameObject:
   m_ObjectHideFlags: 0
@@ -14783,9 +15185,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 2060264430471058508}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &673523203059978087
 GameObject:
   m_ObjectHideFlags: 0
@@ -14879,9 +15284,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 6861420338768072622}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &673886242351346813
 GameObject:
   m_ObjectHideFlags: 0
@@ -15058,9 +15466,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &679947505836915966
 GameObject:
   m_ObjectHideFlags: 0
@@ -15717,9 +16128,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &737603587459812678
 GameObject:
   m_ObjectHideFlags: 0
@@ -16202,9 +16616,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 2452459444343373637}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &794609973122051379
 GameObject:
   m_ObjectHideFlags: 0
@@ -16303,9 +16720,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &797717170541474365
 GameObject:
   m_ObjectHideFlags: 0
@@ -16613,6 +17033,7 @@ GameObject:
   - component: {fileID: 8902158626913358882}
   - component: {fileID: 2865865901541909087}
   - component: {fileID: 6230867693496372046}
+  - component: {fileID: 1435981156}
   m_Layer: 0
   m_Name: PlayerShipSlot1 (29)
   m_TagString: Untagged
@@ -16635,10 +17056,10 @@ RectTransform:
   m_Father: {fileID: 224122350892158542}
   m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 221.65, y: -666.3419}
-  m_SizeDelta: {x: 125, y: 125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2865865901541909087
 CanvasRenderer:
@@ -16677,6 +17098,59 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &1435981156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870608313901423044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 6230867693496372046}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: Refuel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 29
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &906474935098518415
 GameObject:
   m_ObjectHideFlags: 0
@@ -17097,9 +17571,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &946494679239348406
 GameObject:
   m_ObjectHideFlags: 0
@@ -17207,9 +17684,9 @@ RectTransform:
   m_Father: {fileID: 8729261012450148938}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 125.149994, y: -821.49316}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7643430686273468607
@@ -17421,9 +17898,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &982823390519446334
 GameObject:
   m_ObjectHideFlags: 0
@@ -19227,9 +19707,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &1190431641413753264
 GameObject:
   m_ObjectHideFlags: 0
@@ -20195,9 +20678,9 @@ RectTransform:
   m_Father: {fileID: 8729261012450148938}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 125.149994, y: -282.95502}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3778116286413815527
@@ -20248,6 +20731,7 @@ GameObject:
   - component: {fileID: 7660159113175061062}
   - component: {fileID: 1932867253003079923}
   - component: {fileID: 377183267197957037}
+  - component: {fileID: 277495741}
   m_Layer: 0
   m_Name: PlayerShipSlot1 (22)
   m_TagString: Untagged
@@ -20270,10 +20754,10 @@ RectTransform:
   m_Father: {fileID: 224122350892158542}
   m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 221.65, y: -531.3419}
-  m_SizeDelta: {x: 125, y: 125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1932867253003079923
 CanvasRenderer:
@@ -20312,6 +20796,59 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &277495741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272422328162427262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 377183267197957037}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: Refuel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 22
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &1276476005409147428
 GameObject:
   m_ObjectHideFlags: 0
@@ -20406,9 +20943,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 6861420338768072622}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &1281392816821906301
 GameObject:
   m_ObjectHideFlags: 0
@@ -20507,9 +21047,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &1299812905808584141
 GameObject:
   m_ObjectHideFlags: 0
@@ -20521,6 +21064,7 @@ GameObject:
   - component: {fileID: 5044923809368326248}
   - component: {fileID: 7241222874052958881}
   - component: {fileID: 4961755473399641763}
+  - component: {fileID: 1943923940}
   m_Layer: 0
   m_Name: PlayerShipSlot1 (30)
   m_TagString: Untagged
@@ -20543,10 +21087,10 @@ RectTransform:
   m_Father: {fileID: 224122350892158542}
   m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 356.65, y: -666.3419}
-  m_SizeDelta: {x: 125, y: 125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7241222874052958881
 CanvasRenderer:
@@ -20585,6 +21129,59 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &1943923940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299812905808584141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 4961755473399641763}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: Refuel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 30
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &1302435731159925136
 GameObject:
   m_ObjectHideFlags: 0
@@ -20757,9 +21354,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &1322244643719131155
 GameObject:
   m_ObjectHideFlags: 0
@@ -20893,9 +21493,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &1331419388834210824
 GameObject:
   m_ObjectHideFlags: 0
@@ -21503,9 +22106,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 2207272785752357770}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &1418130172598752986
 GameObject:
   m_ObjectHideFlags: 0
@@ -22215,9 +22821,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &1457697261767400355
 GameObject:
   m_ObjectHideFlags: 0
@@ -22578,9 +23187,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &1490221957882722250
 GameObject:
   m_ObjectHideFlags: 0
@@ -22823,9 +23435,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &1507026173149082690
 GameObject:
   m_ObjectHideFlags: 0
@@ -23410,9 +24025,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &1583501312341686395
 GameObject:
   m_ObjectHideFlags: 0
@@ -23934,9 +24552,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 2001457891880252225}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &1661883301288069068
 GameObject:
   m_ObjectHideFlags: 0
@@ -24035,9 +24656,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &1670348586822996975
 GameObject:
   m_ObjectHideFlags: 0
@@ -24131,9 +24755,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 8540209286244977048}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &1673918938912050937
 GameObject:
   m_ObjectHideFlags: 0
@@ -24522,9 +25149,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 5302413712348072638}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &1705932380906920769
 GameObject:
   m_ObjectHideFlags: 0
@@ -24623,9 +25253,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &1706563241913404250
 GameObject:
   m_ObjectHideFlags: 0
@@ -24895,9 +25528,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 8540209286244977048}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &1746517432902161932
 GameObject:
   m_ObjectHideFlags: 0
@@ -24996,9 +25632,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &1749253053028071660
 GameObject:
   m_ObjectHideFlags: 0
@@ -25010,6 +25649,7 @@ GameObject:
   - component: {fileID: 1713389865482170271}
   - component: {fileID: 1835398058510481684}
   - component: {fileID: 8963548010758872616}
+  - component: {fileID: 251217113}
   m_Layer: 0
   m_Name: PlayerShipSlot1 (34)
   m_TagString: Untagged
@@ -25032,10 +25672,10 @@ RectTransform:
   m_Father: {fileID: 224122350892158542}
   m_RootOrder: 34
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 896.65, y: -666.3419}
-  m_SizeDelta: {x: 125, y: 125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1835398058510481684
 CanvasRenderer:
@@ -25074,6 +25714,59 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &251217113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1749253053028071660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 8963548010758872616}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: Refuel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 34
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &1756631784773907057
 GameObject:
   m_ObjectHideFlags: 0
@@ -25107,7 +25800,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: -5.799988}
+  m_AnchoredPosition: {x: 0, y: -5.7998047}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &1757045020282506101
@@ -25465,9 +26158,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &1843876328307769717
 GameObject:
   m_ObjectHideFlags: 0
@@ -25566,9 +26262,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &1844142039195060742
 GameObject:
   m_ObjectHideFlags: 0
@@ -25850,9 +26549,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &1879142482215541728
 GameObject:
   m_ObjectHideFlags: 0
@@ -26475,9 +27177,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &1977378745187971596
 GameObject:
   m_ObjectHideFlags: 0
@@ -26511,9 +27216,9 @@ RectTransform:
   m_Father: {fileID: 8729261012450148938}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 125.149994, y: -513.7571}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8103751572938081614
@@ -27065,6 +27770,7 @@ GameObject:
   - component: {fileID: 6311916870436707085}
   - component: {fileID: 2467615939308076082}
   - component: {fileID: 7239443108407533590}
+  - component: {fileID: 2079616788}
   m_Layer: 0
   m_Name: PlayerShipSlot1 (28)
   m_TagString: Untagged
@@ -27087,10 +27793,10 @@ RectTransform:
   m_Father: {fileID: 224122350892158542}
   m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 86.649994, y: -666.3419}
-  m_SizeDelta: {x: 125, y: 125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2467615939308076082
 CanvasRenderer:
@@ -27129,6 +27835,59 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &2079616788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2009571018015288073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 7239443108407533590}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: Refuel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 28
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &2019686593590332550
 GameObject:
   m_ObjectHideFlags: 0
@@ -27439,9 +28198,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 7333828254164283564}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &2044676806768557155
 GameObject:
   m_ObjectHideFlags: 0
@@ -27809,6 +28571,7 @@ GameObject:
   - component: {fileID: 1776567912360275407}
   - component: {fileID: 3809740314313546724}
   - component: {fileID: 3224021708587139044}
+  - component: {fileID: 553434437}
   m_Layer: 0
   m_Name: PlayerShipSlot1 (15)
   m_TagString: Untagged
@@ -27831,10 +28594,10 @@ RectTransform:
   m_Father: {fileID: 224122350892158542}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 221.65, y: -396.34192}
-  m_SizeDelta: {x: 125, y: 125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3809740314313546724
 CanvasRenderer:
@@ -27873,6 +28636,59 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &553434437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2077819629258014894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 3224021708587139044}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: Refuel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 15
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &2081994483082574858
 GameObject:
   m_ObjectHideFlags: 0
@@ -28044,6 +28860,7 @@ GameObject:
   - component: {fileID: 33290512262221320}
   - component: {fileID: 5338532864197963112}
   - component: {fileID: 4804484240320283941}
+  - component: {fileID: 1549112356}
   m_Layer: 0
   m_Name: PlayerShipSlot1 (5)
   m_TagString: Untagged
@@ -28066,10 +28883,10 @@ RectTransform:
   m_Father: {fileID: 224122350892158542}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 761.65, y: -126.34192}
-  m_SizeDelta: {x: 125, y: 125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5338532864197963112
 CanvasRenderer:
@@ -28108,6 +28925,59 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &1549112356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2082478396779512811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 4804484240320283941}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: Refuel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &2090257098125646505
 GameObject:
   m_ObjectHideFlags: 0
@@ -28330,6 +29200,7 @@ GameObject:
   - component: {fileID: 2590208198558835933}
   - component: {fileID: 5885426937368051196}
   - component: {fileID: 3472554728684725623}
+  - component: {fileID: 42992847}
   m_Layer: 0
   m_Name: PlayerShipSlot1 (33)
   m_TagString: Untagged
@@ -28352,10 +29223,10 @@ RectTransform:
   m_Father: {fileID: 224122350892158542}
   m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 761.65, y: -666.3419}
-  m_SizeDelta: {x: 125, y: 125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5885426937368051196
 CanvasRenderer:
@@ -28394,6 +29265,59 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &42992847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110965841077618727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 3472554728684725623}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: Refuel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 33
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &2111482520042734117
 GameObject:
   m_ObjectHideFlags: 0
@@ -28742,9 +29666,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &2139084363711442922
 GameObject:
   m_ObjectHideFlags: 0
@@ -29168,9 +30095,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &2165234195941151451
 GameObject:
   m_ObjectHideFlags: 0
@@ -29269,9 +30199,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &2187126253130291169
 GameObject:
   m_ObjectHideFlags: 0
@@ -29444,9 +30377,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &2203940032074402582
 GameObject:
   m_ObjectHideFlags: 0
@@ -29621,6 +30557,7 @@ GameObject:
   - component: {fileID: 1926620917472912253}
   - component: {fileID: 1003003992548111608}
   - component: {fileID: 6034553449815363554}
+  - component: {fileID: 1345027509}
   m_Layer: 0
   m_Name: PlayerShipSlot1 (24)
   m_TagString: Untagged
@@ -29643,10 +30580,10 @@ RectTransform:
   m_Father: {fileID: 224122350892158542}
   m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 491.65, y: -531.3419}
-  m_SizeDelta: {x: 125, y: 125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1003003992548111608
 CanvasRenderer:
@@ -29685,6 +30622,59 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &1345027509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2250422257287505273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 6034553449815363554}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: Refuel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 24
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &2272581187440862661
 GameObject:
   m_ObjectHideFlags: 0
@@ -29947,6 +30937,7 @@ GameObject:
   - component: {fileID: 1278919175114576943}
   - component: {fileID: 6974589642787084704}
   - component: {fileID: 3185168132961916559}
+  - component: {fileID: 1744240}
   m_Layer: 0
   m_Name: PlayerShipSlot1 (1)
   m_TagString: Untagged
@@ -29969,10 +30960,10 @@ RectTransform:
   m_Father: {fileID: 224122350892158542}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 221.65, y: -126.34192}
-  m_SizeDelta: {x: 125, y: 125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6974589642787084704
 CanvasRenderer:
@@ -30011,6 +31002,59 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &1744240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2281305293992957468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 3185168132961916559}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: Refuel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &2286995396842833944
 GameObject:
   m_ObjectHideFlags: 0
@@ -30864,9 +31908,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &2379694560317768069
 GameObject:
   m_ObjectHideFlags: 0
@@ -31072,9 +32119,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &2407319197521029502
 GameObject:
   m_ObjectHideFlags: 0
@@ -31229,6 +32279,7 @@ GameObject:
   - component: {fileID: 4307558019572731575}
   - component: {fileID: 4306781831184420851}
   - component: {fileID: 6031285612393276344}
+  - component: {fileID: 903966622}
   m_Layer: 0
   m_Name: PlayerShipSlot1 (20)
   m_TagString: Untagged
@@ -31251,10 +32302,10 @@ RectTransform:
   m_Father: {fileID: 224122350892158542}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 896.65, y: -396.34192}
-  m_SizeDelta: {x: 125, y: 125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4306781831184420851
 CanvasRenderer:
@@ -31293,6 +32344,59 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &903966622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2448701245014293104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 6031285612393276344}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: Refuel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 20
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &2452179060717631952
 GameObject:
   m_ObjectHideFlags: 0
@@ -31391,9 +32495,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &2457303173705291021
 GameObject:
   m_ObjectHideFlags: 0
@@ -32593,9 +33700,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 379000839500728762}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &2558619267535224922
 GameObject:
   m_ObjectHideFlags: 0
@@ -33237,6 +34347,7 @@ GameObject:
   - component: {fileID: 6659522257092529997}
   - component: {fileID: 1111860031090861707}
   - component: {fileID: 3948973332573226849}
+  - component: {fileID: 1126569755}
   m_Layer: 0
   m_Name: PlayerShipSlot1 (17)
   m_TagString: Untagged
@@ -33259,10 +34370,10 @@ RectTransform:
   m_Father: {fileID: 224122350892158542}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 491.65, y: -396.34192}
-  m_SizeDelta: {x: 125, y: 125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1111860031090861707
 CanvasRenderer:
@@ -33301,6 +34412,59 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &1126569755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2631250202999898465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 3948973332573226849}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: Refuel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 17
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &2636071773348711550
 GameObject:
   m_ObjectHideFlags: 0
@@ -33660,9 +34824,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &2680615466809527893
 GameObject:
   m_ObjectHideFlags: 0
@@ -33761,9 +34928,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &2691252147193998263
 GameObject:
   m_ObjectHideFlags: 0
@@ -34356,9 +35526,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &2741026641332718692
 GameObject:
   m_ObjectHideFlags: 0
@@ -34452,9 +35625,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 8464142857933869675}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &2746022078700861700
 GameObject:
   m_ObjectHideFlags: 0
@@ -34661,9 +35837,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &2774425292907136562
 GameObject:
   m_ObjectHideFlags: 0
@@ -35104,9 +36283,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 1012245522216096695}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &2885784330991232427
 GameObject:
   m_ObjectHideFlags: 0
@@ -35508,9 +36690,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 2060264430471058508}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &2904863736752114391
 GameObject:
   m_ObjectHideFlags: 0
@@ -35940,9 +37125,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &2935883890306722673
 GameObject:
   m_ObjectHideFlags: 0
@@ -36115,9 +37303,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &2968047672587051011
 GameObject:
   m_ObjectHideFlags: 0
@@ -36233,6 +37424,7 @@ GameObject:
   - component: {fileID: 4345078120204121408}
   - component: {fileID: 8092354138585164470}
   - component: {fileID: 1809844212223496558}
+  - component: {fileID: 1903153271}
   m_Layer: 0
   m_Name: PlayerShipSlot1 (4)
   m_TagString: Untagged
@@ -36255,10 +37447,10 @@ RectTransform:
   m_Father: {fileID: 224122350892158542}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 626.65, y: -126.34192}
-  m_SizeDelta: {x: 125, y: 125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8092354138585164470
 CanvasRenderer:
@@ -36297,6 +37489,59 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &1903153271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2969487619628463317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1809844212223496558}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: Refuel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &2988088381360153897
 GameObject:
   m_ObjectHideFlags: 0
@@ -36499,9 +37744,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &3004336424358339893
 GameObject:
   m_ObjectHideFlags: 0
@@ -36572,9 +37820,9 @@ RectTransform:
   m_Father: {fileID: 8729261012450148938}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 125.149994, y: -359.88904}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5725540401817346557
@@ -37041,9 +38289,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 8165017759545467720}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &3092366250957189936
 GameObject:
   m_ObjectHideFlags: 0
@@ -37345,6 +38596,7 @@ GameObject:
   - component: {fileID: 1742395801031248439}
   - component: {fileID: 9067064109647036811}
   - component: {fileID: 6534344354003175105}
+  - component: {fileID: 295507904}
   m_Layer: 0
   m_Name: PlayerShipSlot1 (16)
   m_TagString: Untagged
@@ -37367,10 +38619,10 @@ RectTransform:
   m_Father: {fileID: 224122350892158542}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 356.65, y: -396.34192}
-  m_SizeDelta: {x: 125, y: 125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9067064109647036811
 CanvasRenderer:
@@ -37409,6 +38661,59 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &295507904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3170953554120267515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 6534344354003175105}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: Refuel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 16
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &3173158088612071231
 GameObject:
   m_ObjectHideFlags: 0
@@ -37676,9 +38981,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 6861420338768072622}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &3194446772130415493
 GameObject:
   m_ObjectHideFlags: 0
@@ -38243,9 +39551,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 5302413712348072638}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &3278272438452994123
 GameObject:
   m_ObjectHideFlags: 0
@@ -38341,9 +39652,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 2452459444343373637}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &3281929087280834181
 GameObject:
   m_ObjectHideFlags: 0
@@ -38739,9 +40053,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 8165017759545467720}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &3297587069852999254
 GameObject:
   m_ObjectHideFlags: 0
@@ -38867,9 +40184,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 2100246816959410555}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &3324456713449412703
 GameObject:
   m_ObjectHideFlags: 0
@@ -38963,9 +40283,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 2001457891880252225}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &3333583319521436180
 GameObject:
   m_ObjectHideFlags: 0
@@ -39331,9 +40654,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &3398032658972107916
 GameObject:
   m_ObjectHideFlags: 0
@@ -39432,9 +40758,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &3405217034718743729
 GameObject:
   m_ObjectHideFlags: 0
@@ -39446,6 +40775,7 @@ GameObject:
   - component: {fileID: 1880503629354278892}
   - component: {fileID: 5406799435189035556}
   - component: {fileID: 5178256809026366409}
+  - component: {fileID: 1393871168}
   m_Layer: 0
   m_Name: PlayerShipSlot1 (13)
   m_TagString: Untagged
@@ -39468,10 +40798,10 @@ RectTransform:
   m_Father: {fileID: 224122350892158542}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 896.65, y: -261.34192}
-  m_SizeDelta: {x: 125, y: 125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5406799435189035556
 CanvasRenderer:
@@ -39510,6 +40840,59 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &1393871168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3405217034718743729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 5178256809026366409}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: Refuel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 13
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &3407391343851042887
 GameObject:
   m_ObjectHideFlags: 0
@@ -39603,9 +40986,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 4656684839156028513}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &3436658570594419103
 GameObject:
   m_ObjectHideFlags: 0
@@ -39813,9 +41199,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 8464142857933869675}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &3450302338552884838
 GameObject:
   m_ObjectHideFlags: 0
@@ -39914,9 +41303,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &3485061615737821666
 GameObject:
   m_ObjectHideFlags: 0
@@ -40015,9 +41407,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &3492927047996615753
 GameObject:
   m_ObjectHideFlags: 0
@@ -40422,9 +41817,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &3551122934873884710
 GameObject:
   m_ObjectHideFlags: 0
@@ -40906,9 +42304,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &3586042599558403581
 GameObject:
   m_ObjectHideFlags: 0
@@ -40942,9 +42343,9 @@ RectTransform:
   m_Father: {fileID: 8729261012450148938}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 125.149994, y: -436.82303}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2720074414710209331
@@ -41077,9 +42478,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 766003335154514741}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &3610457476079529337
 GameObject:
   m_ObjectHideFlags: 0
@@ -41387,9 +42791,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &3671818063479504438
 GameObject:
   m_ObjectHideFlags: 0
@@ -41488,9 +42895,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &3701597783165702672
 GameObject:
   m_ObjectHideFlags: 0
@@ -41589,9 +42999,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &3718429364381342980
 GameObject:
   m_ObjectHideFlags: 0
@@ -41907,9 +43320,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 7333828254164283564}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &3746673784671236106
 GameObject:
   m_ObjectHideFlags: 0
@@ -42003,9 +43419,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 2207272785752357770}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &3763964528045237386
 GameObject:
   m_ObjectHideFlags: 0
@@ -42467,9 +43886,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 8464142857933869675}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &3797329043740395062
 GameObject:
   m_ObjectHideFlags: 0
@@ -42742,9 +44164,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 2207272785752357770}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &3862347147182790222
 GameObject:
   m_ObjectHideFlags: 0
@@ -43444,9 +44869,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &4003350657060585312
 GameObject:
   m_ObjectHideFlags: 0
@@ -43545,9 +44973,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &4006739729716615018
 GameObject:
   m_ObjectHideFlags: 0
@@ -43746,9 +45177,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &4033138481304630355
 GameObject:
   m_ObjectHideFlags: 0
@@ -43956,9 +45390,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &4057050962539036553
 GameObject:
   m_ObjectHideFlags: 0
@@ -45627,9 +47064,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 5302413712348072638}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &4241126640048306498
 GameObject:
   m_ObjectHideFlags: 0
@@ -46155,9 +47595,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &4333685432547866954
 GameObject:
   m_ObjectHideFlags: 0
@@ -46169,6 +47612,7 @@ GameObject:
   - component: {fileID: 1629714499866835382}
   - component: {fileID: 7446960000378788258}
   - component: {fileID: 6791275967697090554}
+  - component: {fileID: 189426492}
   m_Layer: 0
   m_Name: PlayerShipSlot1 (21)
   m_TagString: Untagged
@@ -46191,10 +47635,10 @@ RectTransform:
   m_Father: {fileID: 224122350892158542}
   m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 86.649994, y: -531.3419}
-  m_SizeDelta: {x: 125, y: 125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7446960000378788258
 CanvasRenderer:
@@ -46233,6 +47677,59 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &189426492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4333685432547866954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 6791275967697090554}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: Refuel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 21
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &4341708908161532832
 GameObject:
   m_ObjectHideFlags: 0
@@ -46331,9 +47828,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &4361651612859969857
 GameObject:
   m_ObjectHideFlags: 0
@@ -47104,9 +48604,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &4479937720342093218
 GameObject:
   m_ObjectHideFlags: 0
@@ -47348,9 +48851,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &4491759456413078444
 GameObject:
   m_ObjectHideFlags: 0
@@ -47592,6 +49098,7 @@ GameObject:
   - component: {fileID: 7524791255391304444}
   - component: {fileID: 278981460092761974}
   - component: {fileID: 7512000414747798770}
+  - component: {fileID: 1741014522}
   m_Layer: 0
   m_Name: PlayerShipSlot1 (3)
   m_TagString: Untagged
@@ -47614,10 +49121,10 @@ RectTransform:
   m_Father: {fileID: 224122350892158542}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 491.65, y: -126.34192}
-  m_SizeDelta: {x: 125, y: 125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &278981460092761974
 CanvasRenderer:
@@ -47656,6 +49163,59 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &1741014522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4525250410538466222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 7512000414747798770}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: Refuel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &4526169644617187613
 GameObject:
   m_ObjectHideFlags: 0
@@ -48101,9 +49661,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 2207272785752357770}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &4565754454225690628
 GameObject:
   m_ObjectHideFlags: 0
@@ -48434,9 +49997,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 1012245522216096695}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &4592752220191230703
 GameObject:
   m_ObjectHideFlags: 0
@@ -48609,9 +50175,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &4603924940998329489
 GameObject:
   m_ObjectHideFlags: 0
@@ -48623,6 +50192,7 @@ GameObject:
   - component: {fileID: 4715624954794782245}
   - component: {fileID: 7498769593524738664}
   - component: {fileID: 6426563944675922781}
+  - component: {fileID: 680682415}
   m_Layer: 0
   m_Name: PlayerShipSlot1 (7)
   m_TagString: Untagged
@@ -48645,10 +50215,10 @@ RectTransform:
   m_Father: {fileID: 224122350892158542}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 86.649994, y: -261.34192}
-  m_SizeDelta: {x: 125, y: 125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7498769593524738664
 CanvasRenderer:
@@ -48687,6 +50257,59 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &680682415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4603924940998329489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 6426563944675922781}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: Refuel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 7
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &4608689720994480260
 GameObject:
   m_ObjectHideFlags: 0
@@ -49172,9 +50795,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &4634401668717680392
 GameObject:
   m_ObjectHideFlags: 0
@@ -49273,9 +50899,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &4646786928547387550
 GameObject:
   m_ObjectHideFlags: 0
@@ -50579,9 +52208,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &4765196426008346656
 GameObject:
   m_ObjectHideFlags: 0
@@ -50680,9 +52312,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &4775003690593178360
 GameObject:
   m_ObjectHideFlags: 0
@@ -50853,9 +52488,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &4828258808321190298
 GameObject:
   m_ObjectHideFlags: 0
@@ -50949,9 +52587,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 1012245522216096695}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &4837555318570300055
 GameObject:
   m_ObjectHideFlags: 0
@@ -51050,9 +52691,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &4849143874810395858
 GameObject:
   m_ObjectHideFlags: 0
@@ -51975,6 +53619,7 @@ GameObject:
   - component: {fileID: 6827652835870658629}
   - component: {fileID: 8434864568837247136}
   - component: {fileID: 7609329529229734378}
+  - component: {fileID: 409381683}
   m_Layer: 0
   m_Name: PlayerShipSlot1 (12)
   m_TagString: Untagged
@@ -51997,10 +53642,10 @@ RectTransform:
   m_Father: {fileID: 224122350892158542}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 761.65, y: -261.34192}
-  m_SizeDelta: {x: 125, y: 125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8434864568837247136
 CanvasRenderer:
@@ -52039,6 +53684,59 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &409381683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5002205305287052766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 7609329529229734378}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: Refuel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 12
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &5014900333872494263
 GameObject:
   m_ObjectHideFlags: 0
@@ -52165,9 +53863,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 379000839500728762}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &5047803268806929675
 GameObject:
   m_ObjectHideFlags: 0
@@ -52479,9 +54180,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 1012245522216096695}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &5101212582674286861
 GameObject:
   m_ObjectHideFlags: 0
@@ -52892,9 +54596,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 766003335154514741}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &5128759471655731815
 GameObject:
   m_ObjectHideFlags: 0
@@ -52993,9 +54700,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &5132349291170330797
 GameObject:
   m_ObjectHideFlags: 0
@@ -53123,9 +54833,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 2100246816959410555}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &5185013725050631113
 GameObject:
   m_ObjectHideFlags: 0
@@ -53224,9 +54937,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &5211801926251707016
 GameObject:
   m_ObjectHideFlags: 0
@@ -53433,9 +55149,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 379000839500728762}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &5240570762395900949
 GameObject:
   m_ObjectHideFlags: 0
@@ -53566,9 +55285,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 6861420338768072622}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &5271245438296863326
 GameObject:
   m_ObjectHideFlags: 0
@@ -54426,9 +56148,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &5371351411587224586
 GameObject:
   m_ObjectHideFlags: 0
@@ -54722,9 +56447,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &5411761026083775366
 GameObject:
   m_ObjectHideFlags: 0
@@ -55817,9 +57545,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &5496612630276911970
 GameObject:
   m_ObjectHideFlags: 0
@@ -55950,9 +57681,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 4656684839156028513}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &5529300227657255771
 GameObject:
   m_ObjectHideFlags: 0
@@ -56459,9 +58193,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &5579175013100788880
 GameObject:
   m_ObjectHideFlags: 0
@@ -56473,6 +58210,7 @@ GameObject:
   - component: {fileID: 103879684426368}
   - component: {fileID: 8883775458105224784}
   - component: {fileID: 9133454193468632544}
+  - component: {fileID: 1695357096}
   m_Layer: 0
   m_Name: PlayerShipSlot1 (6)
   m_TagString: Untagged
@@ -56495,10 +58233,10 @@ RectTransform:
   m_Father: {fileID: 224122350892158542}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 896.65, y: -126.34192}
-  m_SizeDelta: {x: 125, y: 125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8883775458105224784
 CanvasRenderer:
@@ -56537,6 +58275,59 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &1695357096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5579175013100788880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 9133454193468632544}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: Refuel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 6
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &5621520116251492347
 GameObject:
   m_ObjectHideFlags: 0
@@ -56845,9 +58636,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 766003335154514741}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &5674229950720700160
 GameObject:
   m_ObjectHideFlags: 0
@@ -57831,9 +59625,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &5832454350030397882
 GameObject:
   m_ObjectHideFlags: 0
@@ -58078,9 +59875,9 @@ RectTransform:
   m_Father: {fileID: 8729261012450148938}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 125.149994, y: -744.5591}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3927822818843010284
@@ -58536,9 +60333,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &5865030193281807111
 GameObject:
   m_ObjectHideFlags: 0
@@ -58737,9 +60537,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &5876957492761461816
 GameObject:
   m_ObjectHideFlags: 0
@@ -59144,6 +60947,7 @@ GameObject:
   - component: {fileID: 5323376025874337964}
   - component: {fileID: 2884175523384735339}
   - component: {fileID: 5756034325315482776}
+  - component: {fileID: 552007681}
   m_Layer: 0
   m_Name: PlayerShipSlot1 (8)
   m_TagString: Untagged
@@ -59166,10 +60970,10 @@ RectTransform:
   m_Father: {fileID: 224122350892158542}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 221.65, y: -261.34192}
-  m_SizeDelta: {x: 125, y: 125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2884175523384735339
 CanvasRenderer:
@@ -59208,6 +61012,59 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &552007681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5913163549729861543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 5756034325315482776}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: Refuel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 8
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &5926042686532253725
 GameObject:
   m_ObjectHideFlags: 0
@@ -59336,9 +61193,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 5302413712348072638}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &5943368066116361598
 GameObject:
   m_ObjectHideFlags: 0
@@ -59432,9 +61292,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 2001457891880252225}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &5948522701034791016
 GameObject:
   m_ObjectHideFlags: 0
@@ -59947,6 +61810,7 @@ GameObject:
   - component: {fileID: 958133567429825966}
   - component: {fileID: 1063295100576639932}
   - component: {fileID: 8870683010833019099}
+  - component: {fileID: 2043111069}
   m_Layer: 0
   m_Name: PlayerShipSlot1 (23)
   m_TagString: Untagged
@@ -59969,10 +61833,10 @@ RectTransform:
   m_Father: {fileID: 224122350892158542}
   m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 356.65, y: -531.3419}
-  m_SizeDelta: {x: 125, y: 125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1063295100576639932
 CanvasRenderer:
@@ -60011,6 +61875,59 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &2043111069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6002567790456977831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 8870683010833019099}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: Refuel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 23
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &6012775632541613441
 GameObject:
   m_ObjectHideFlags: 0
@@ -60252,9 +62169,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 4656684839156028513}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &6041521329934901565
 GameObject:
   m_ObjectHideFlags: 0
@@ -60266,6 +62186,7 @@ GameObject:
   - component: {fileID: 931936959175272524}
   - component: {fileID: 7049383195362859876}
   - component: {fileID: 5052731261504346504}
+  - component: {fileID: 1574013506}
   m_Layer: 0
   m_Name: PlayerShipSlot1 (14)
   m_TagString: Untagged
@@ -60288,10 +62209,10 @@ RectTransform:
   m_Father: {fileID: 224122350892158542}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 86.649994, y: -396.34192}
-  m_SizeDelta: {x: 125, y: 125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7049383195362859876
 CanvasRenderer:
@@ -60330,6 +62251,59 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &1574013506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6041521329934901565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 5052731261504346504}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: Refuel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 14
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &6044340844258556561
 GameObject:
   m_ObjectHideFlags: 0
@@ -61047,9 +63021,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &6127213718751284326
 GameObject:
   m_ObjectHideFlags: 0
@@ -61148,9 +63125,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &6140726155200160682
 GameObject:
   m_ObjectHideFlags: 0
@@ -61722,9 +63702,9 @@ RectTransform:
   m_Father: {fileID: 8729261012450148938}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 125.149994, y: -129.087}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7032670004305377887
@@ -62108,9 +64088,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &6281736995124718785
 GameObject:
   m_ObjectHideFlags: 0
@@ -62246,9 +64229,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &6312725331212404543
 GameObject:
   m_ObjectHideFlags: 0
@@ -62416,9 +64402,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 2046277320077227890}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &6349640169900455134
 GameObject:
   m_ObjectHideFlags: 0
@@ -62512,9 +64501,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 766003335154514741}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &6353715803991445639
 GameObject:
   m_ObjectHideFlags: 0
@@ -62749,6 +64741,7 @@ GameObject:
   - component: {fileID: 2505646583957500108}
   - component: {fileID: 4141859215894767224}
   - component: {fileID: 2674694630501370791}
+  - component: {fileID: 1820555651}
   m_Layer: 0
   m_Name: PlayerShipSlot1 (2)
   m_TagString: Untagged
@@ -62771,10 +64764,10 @@ RectTransform:
   m_Father: {fileID: 224122350892158542}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 356.65, y: -126.34192}
-  m_SizeDelta: {x: 125, y: 125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4141859215894767224
 CanvasRenderer:
@@ -62813,6 +64806,59 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &1820555651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6408910087006953757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 2674694630501370791}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: Refuel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &6414974451288133484
 GameObject:
   m_ObjectHideFlags: 0
@@ -63156,9 +65202,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &6492489640935495393
 GameObject:
   m_ObjectHideFlags: 0
@@ -63357,9 +65406,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &6522848859607422126
 GameObject:
   m_ObjectHideFlags: 0
@@ -63889,9 +65941,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &6599502510111794866
 GameObject:
   m_ObjectHideFlags: 0
@@ -63990,9 +66045,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &6604389322504240426
 GameObject:
   m_ObjectHideFlags: 0
@@ -64026,9 +66084,9 @@ RectTransform:
   m_Father: {fileID: 8729261012450148938}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 125.149994, y: -206.02101}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6624462184483463480
@@ -64446,9 +66504,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &6673967855999579693
 GameObject:
   m_ObjectHideFlags: 0
@@ -64720,9 +66781,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 2100246816959410555}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &6747348273195005062
 GameObject:
   m_ObjectHideFlags: 0
@@ -64816,9 +66880,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 7333828254164283564}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &6753121610513287768
 GameObject:
   m_ObjectHideFlags: 0
@@ -66885,9 +68952,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &6934532930808024472
 GameObject:
   m_ObjectHideFlags: 0
@@ -67090,9 +69160,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &6960231612529946387
 GameObject:
   m_ObjectHideFlags: 0
@@ -67843,9 +69916,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 8464142857933869675}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &7049675922561268251
 GameObject:
   m_ObjectHideFlags: 0
@@ -68228,9 +70304,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 8165017759545467720}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &7114039215219487495
 GameObject:
   m_ObjectHideFlags: 0
@@ -68900,9 +70979,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &7219418703042031910
 GameObject:
   m_ObjectHideFlags: 0
@@ -69143,9 +71225,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &7255333879003055471
 GameObject:
   m_ObjectHideFlags: 0
@@ -69313,9 +71398,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &7257899977056558300
 GameObject:
   m_ObjectHideFlags: 0
@@ -69734,9 +71822,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &7273669220735153821
 GameObject:
   m_ObjectHideFlags: 0
@@ -69977,9 +72068,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &7289799626938946995
 GameObject:
   m_ObjectHideFlags: 0
@@ -70065,6 +72159,7 @@ GameObject:
   - component: {fileID: 4036410470719540278}
   - component: {fileID: 319224457320368904}
   - component: {fileID: 5152248180138218710}
+  - component: {fileID: 1886414420}
   m_Layer: 0
   m_Name: PlayerShipSlot1 (31)
   m_TagString: Untagged
@@ -70087,10 +72182,10 @@ RectTransform:
   m_Father: {fileID: 224122350892158542}
   m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 491.65, y: -666.3419}
-  m_SizeDelta: {x: 125, y: 125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &319224457320368904
 CanvasRenderer:
@@ -70129,6 +72224,59 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &1886414420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7310030111876135415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 5152248180138218710}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: Refuel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 31
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &7349813012161089105
 GameObject:
   m_ObjectHideFlags: 0
@@ -70777,9 +72925,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &7453480504960899277
 GameObject:
   m_ObjectHideFlags: 0
@@ -71623,9 +73774,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &7610194839812088573
 GameObject:
   m_ObjectHideFlags: 0
@@ -71947,6 +74101,7 @@ GameObject:
   - component: {fileID: 5483183947321414283}
   - component: {fileID: 1214399175671927603}
   - component: {fileID: 3788511848584056999}
+  - component: {fileID: 1874712421}
   m_Layer: 0
   m_Name: PlayerShipSlot1 (32)
   m_TagString: Untagged
@@ -71969,10 +74124,10 @@ RectTransform:
   m_Father: {fileID: 224122350892158542}
   m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 626.65, y: -666.3419}
-  m_SizeDelta: {x: 125, y: 125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1214399175671927603
 CanvasRenderer:
@@ -72011,6 +74166,59 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &1874712421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7626973493770375181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 3788511848584056999}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: Refuel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 32
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &7644536755551788676
 GameObject:
   m_ObjectHideFlags: 0
@@ -72358,9 +74566,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &7679416625397152370
 GameObject:
   m_ObjectHideFlags: 0
@@ -72454,9 +74665,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 2452459444343373637}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &7689548049473391634
 GameObject:
   m_ObjectHideFlags: 0
@@ -72468,6 +74682,7 @@ GameObject:
   - component: {fileID: 6783764505221886402}
   - component: {fileID: 8778836361074358876}
   - component: {fileID: 283017705841894340}
+  - component: {fileID: 602881435}
   m_Layer: 0
   m_Name: PlayerShipSlot1 (18)
   m_TagString: Untagged
@@ -72490,10 +74705,10 @@ RectTransform:
   m_Father: {fileID: 224122350892158542}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 626.65, y: -396.34192}
-  m_SizeDelta: {x: 125, y: 125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8778836361074358876
 CanvasRenderer:
@@ -72532,6 +74747,59 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &602881435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7689548049473391634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 283017705841894340}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: Refuel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 18
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &7691534126763637785
 GameObject:
   m_ObjectHideFlags: 0
@@ -72932,9 +75200,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &7717632428384203583
 GameObject:
   m_ObjectHideFlags: 0
@@ -73028,9 +75299,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 7333828254164283564}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &7718228262343260437
 GameObject:
   m_ObjectHideFlags: 0
@@ -73662,9 +75936,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &7780942621544237619
 GameObject:
   m_ObjectHideFlags: 0
@@ -73763,9 +76040,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &7812475948864584008
 GameObject:
   m_ObjectHideFlags: 0
@@ -74041,9 +76321,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &7818887191664652288
 GameObject:
   m_ObjectHideFlags: 0
@@ -74238,9 +76521,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 4656684839156028513}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &7826883091694849012
 GameObject:
   m_ObjectHideFlags: 0
@@ -74718,9 +77004,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &7880190864845498191
 GameObject:
   m_ObjectHideFlags: 0
@@ -74888,9 +77177,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 2046277320077227890}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &7905301575840218347
 GameObject:
   m_ObjectHideFlags: 0
@@ -75063,9 +77355,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &7922828610111040742
 GameObject:
   m_ObjectHideFlags: 0
@@ -76047,6 +78342,7 @@ GameObject:
   - component: {fileID: 6197509676275243248}
   - component: {fileID: 8119138614683092521}
   - component: {fileID: 5430864099019454108}
+  - component: {fileID: 1176227984}
   m_Layer: 0
   m_Name: PlayerShipSlot1 (11)
   m_TagString: Untagged
@@ -76069,10 +78365,10 @@ RectTransform:
   m_Father: {fileID: 224122350892158542}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 626.65, y: -261.34192}
-  m_SizeDelta: {x: 125, y: 125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8119138614683092521
 CanvasRenderer:
@@ -76111,6 +78407,59 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &1176227984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7997414951291056137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 5430864099019454108}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: Refuel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 11
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &8003843176731154465
 GameObject:
   m_ObjectHideFlags: 0
@@ -76593,9 +78942,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &8063160734750362696
 GameObject:
   m_ObjectHideFlags: 0
@@ -77134,9 +79486,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &8122466485955378897
 GameObject:
   m_ObjectHideFlags: 0
@@ -77235,9 +79590,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &8130364977860394505
 GameObject:
   m_ObjectHideFlags: 0
@@ -77336,9 +79694,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &8130793490313650850
 GameObject:
   m_ObjectHideFlags: 0
@@ -77611,9 +79972,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &8170376338720341673
 GameObject:
   m_ObjectHideFlags: 0
@@ -77894,9 +80258,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &8197633332189317717
 GameObject:
   m_ObjectHideFlags: 0
@@ -77908,6 +80275,7 @@ GameObject:
   - component: {fileID: 5836981745698814608}
   - component: {fileID: 3980428833275146047}
   - component: {fileID: 2067511469924547078}
+  - component: {fileID: 1758974744}
   m_Layer: 0
   m_Name: PlayerShipSlot1 (27)
   m_TagString: Untagged
@@ -77930,10 +80298,10 @@ RectTransform:
   m_Father: {fileID: 224122350892158542}
   m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 896.65, y: -531.3419}
-  m_SizeDelta: {x: 125, y: 125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3980428833275146047
 CanvasRenderer:
@@ -77972,6 +80340,59 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &1758974744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8197633332189317717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 2067511469924547078}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: Refuel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 27
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &8212239284254693276
 GameObject:
   m_ObjectHideFlags: 0
@@ -78140,9 +80561,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &8249380221752934627
 GameObject:
   m_ObjectHideFlags: 0
@@ -78402,6 +80826,7 @@ GameObject:
   - component: {fileID: 1853275562022064497}
   - component: {fileID: 2070405670864602412}
   - component: {fileID: 2338599916250372637}
+  - component: {fileID: 1127711328}
   m_Layer: 0
   m_Name: PlayerShipSlot1 (26)
   m_TagString: Untagged
@@ -78424,10 +80849,10 @@ RectTransform:
   m_Father: {fileID: 224122350892158542}
   m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 761.65, y: -531.3419}
-  m_SizeDelta: {x: 125, y: 125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2070405670864602412
 CanvasRenderer:
@@ -78466,6 +80891,59 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &1127711328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8282931190470664470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 2338599916250372637}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: Refuel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 26
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &8297700930082415768
 GameObject:
   m_ObjectHideFlags: 0
@@ -78638,9 +81116,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &8313845252279665777
 GameObject:
   m_ObjectHideFlags: 0
@@ -78950,9 +81431,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &8345798869407572377
 GameObject:
   m_ObjectHideFlags: 0
@@ -80187,9 +82671,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &8510374149212565448
 GameObject:
   m_ObjectHideFlags: 0
@@ -80525,9 +83012,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &8580545007820150323
 GameObject:
   m_ObjectHideFlags: 0
@@ -80787,9 +83277,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &8592642545492881173
 GameObject:
   m_ObjectHideFlags: 0
@@ -80888,9 +83381,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &8600122139549756998
 GameObject:
   m_ObjectHideFlags: 0
@@ -80902,6 +83398,7 @@ GameObject:
   - component: {fileID: 8261296621916185972}
   - component: {fileID: 6646857518040875949}
   - component: {fileID: 8160102852855169113}
+  - component: {fileID: 784138727}
   m_Layer: 0
   m_Name: PlayerShipSlot1 (19)
   m_TagString: Untagged
@@ -80924,10 +83421,10 @@ RectTransform:
   m_Father: {fileID: 224122350892158542}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 761.65, y: -396.34192}
-  m_SizeDelta: {x: 125, y: 125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6646857518040875949
 CanvasRenderer:
@@ -80966,6 +83463,59 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &784138727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8600122139549756998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 8160102852855169113}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: Refuel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 19
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &8604387530962428745
 GameObject:
   m_ObjectHideFlags: 0
@@ -80977,6 +83527,7 @@ GameObject:
   - component: {fileID: 1403925887254229659}
   - component: {fileID: 5259491092497436597}
   - component: {fileID: 1542484392639528701}
+  - component: {fileID: 1000888081}
   m_Layer: 0
   m_Name: PlayerShipSlot1 (9)
   m_TagString: Untagged
@@ -80999,10 +83550,10 @@ RectTransform:
   m_Father: {fileID: 224122350892158542}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 356.65, y: -261.34192}
-  m_SizeDelta: {x: 125, y: 125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5259491092497436597
 CanvasRenderer:
@@ -81041,6 +83592,59 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &1000888081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8604387530962428745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1542484392639528701}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: Refuel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 9
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &8607036131215284786
 GameObject:
   m_ObjectHideFlags: 0
@@ -81594,9 +84198,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 2001457891880252225}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &8691801597035490083
 GameObject:
   m_ObjectHideFlags: 0
@@ -81947,9 +84554,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &8716554969504157936
 GameObject:
   m_ObjectHideFlags: 0
@@ -82048,9 +84658,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &8718133422179361230
 GameObject:
   m_ObjectHideFlags: 0
@@ -82359,9 +84972,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &8732882798972407447
 GameObject:
   m_ObjectHideFlags: 0
@@ -83090,9 +85706,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &8848226163767850397
 GameObject:
   m_ObjectHideFlags: 0
@@ -83186,9 +85805,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 2060264430471058508}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &8865105549892964243
 GameObject:
   m_ObjectHideFlags: 0
@@ -84655,9 +87277,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &8957831334833995343
 GameObject:
   m_ObjectHideFlags: 0
@@ -85306,9 +87931,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &9042771358335388446
 GameObject:
   m_ObjectHideFlags: 0
@@ -85407,9 +88035,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &9050894892022963500
 GameObject:
   m_ObjectHideFlags: 0
@@ -85508,9 +88139,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &9063288575527973002
 GameObject:
   m_ObjectHideFlags: 0
@@ -85609,9 +88243,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &9082790056768964806
 GameObject:
   m_ObjectHideFlags: 0
@@ -85899,9 +88536,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 7
   translationSpeed: 0
   pivot: {fileID: 0}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &9114680110903797770
 GameObject:
   m_ObjectHideFlags: 0
@@ -85913,6 +88553,7 @@ GameObject:
   - component: {fileID: 2725133964954180679}
   - component: {fileID: 744591149228541324}
   - component: {fileID: 2388408466952676511}
+  - component: {fileID: 527192592}
   m_Layer: 0
   m_Name: PlayerShipSlot1 (25)
   m_TagString: Untagged
@@ -85935,10 +88576,10 @@ RectTransform:
   m_Father: {fileID: 224122350892158542}
   m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 626.65, y: -531.3419}
-  m_SizeDelta: {x: 125, y: 125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &744591149228541324
 CanvasRenderer:
@@ -85977,6 +88618,59 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &527192592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9114680110903797770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 2388408466952676511}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: Refuel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 25
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &9119851723639979449
 GameObject:
   m_ObjectHideFlags: 0
@@ -86070,9 +88764,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 2452459444343373637}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &9123597127444719292
 GameObject:
   m_ObjectHideFlags: 0
@@ -86166,9 +88863,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 8540209286244977048}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &9135699288998587229
 GameObject:
   m_ObjectHideFlags: 0
@@ -86331,9 +89031,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRandomRot: 1
+  rotateCanvas: 0
   rotationSpeed: 5
   translationSpeed: 10
   pivot: {fileID: 2100246816959410555}
+  planetCanvas: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &9138056625954127706
 GameObject:
   m_ObjectHideFlags: 0
