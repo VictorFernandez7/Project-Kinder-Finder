@@ -6,13 +6,13 @@ public class Scr_AstronautInterface : MonoBehaviour
     [SerializeField] private Camera mainCamera;
     [SerializeField] private Transform worldCanvas;
     [SerializeField] private GameObject selectionWheel;
-    [SerializeField] private Scr_ToolWheel toolWheel;
     [SerializeField] private Scr_PlayerShipMovement playerShipMovement;
 
     private int toolIndex;
     private float minDistance;
     private string selectedTool;
     private GameObject wheel;
+    private Scr_ToolWheel toolWheel;
     private Scr_AstronautsActions astronautsActions;
 
     private void Start()
@@ -31,7 +31,7 @@ public class Scr_AstronautInterface : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1) && wheel == null)
         {
-            Vector3 desiredPos = new Vector3(mainCamera.ScreenToWorldPoint(Input.mousePosition).x, mainCamera.ScreenToWorldPoint(Input.mousePosition).y, 0);
+            Vector3 desiredPos = new Vector3(mainCamera.ScreenToWorldPoint(Input.mousePosition).x, mainCamera.ScreenToWorldPoint(Input.mousePosition).y, -50);
 
             wheel = Instantiate(selectionWheel, desiredPos, Quaternion.identity);
             wheel.transform.SetParent(worldCanvas.transform);
