@@ -81,12 +81,24 @@ public class Scr_MainCamera : MonoBehaviour
     {
         if (smoothRotation)
         {
-            Vector3 astronautUpVector = astronaut.transform.up;
-            Vector3 playerShipVectorUp = playerShip.transform.up;
+            if (interacting)
+            {
+                Vector3 craftCenterUp = craftCenter.transform.up;
 
-            desiredUp = Vector3.Lerp(desiredUp, followAstronaut ? astronautUpVector : playerShipVectorUp, Time.deltaTime * (followAstronaut ? astronautRotationSpeed : shipRotationSpeed));
+                desiredUp = Vector3.Lerp(desiredUp, craftCenterUp, Time.deltaTime);
 
-            transform.rotation = Quaternion.LookRotation(transform.forward, followAstronaut ? astronautUpVector : desiredUp);
+                transform.rotation = Quaternion.LookRotation(transform.forward,desiredUp);
+            }
+
+            else
+            {
+                Vector3 astronautUpVector = astronaut.transform.up;
+                Vector3 playerShipVectorUp = playerShip.transform.up;
+
+                desiredUp = Vector3.Lerp(desiredUp, followAstronaut ? astronautUpVector : playerShipVectorUp, Time.deltaTime * (followAstronaut ? astronautRotationSpeed : shipRotationSpeed));
+
+                transform.rotation = Quaternion.LookRotation(transform.forward, followAstronaut ? astronautUpVector : desiredUp);
+            }
         }
     }
 
@@ -119,7 +131,13 @@ public class Scr_MainCamera : MonoBehaviour
         }
 
         if (playerShipMovement.landing || playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed)
-            mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, zoomInPlanet, Time.deltaTime * zoomSpeed);
+        {
+            if (interacting)
+                mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, craftZoom, Time.deltaTime * zoomSpeed);
+
+            else
+                mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, zoomInPlanet, Time.deltaTime * zoomSpeed);
+        }
     }
 
     public void CameraShake()

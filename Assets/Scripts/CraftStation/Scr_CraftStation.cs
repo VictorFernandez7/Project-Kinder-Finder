@@ -9,7 +9,7 @@ public class Scr_CraftStation : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private GameObject interactPanel;
-    [SerializeField] private GameObject canvas;
+    [SerializeField] private GameObject visuals;
     [SerializeField] private Scr_MainCamera mainCamera;
 
     private bool onRange;
@@ -18,7 +18,7 @@ public class Scr_CraftStation : MonoBehaviour
 
     private void Start()
     {
-        interactText = interactPanel.GetComponent<TextMeshProUGUI>();
+        interactText = interactPanel.GetComponentInChildren<TextMeshProUGUI>();
         interactText.text = interactMessage;
     }
 
@@ -55,6 +55,6 @@ public class Scr_CraftStation : MonoBehaviour
         mainCamera.interacting = start;
 
         if (start)
-            mainCamera.craftCenter = canvas;
+            mainCamera.craftCenter = visuals;
     }
 }
