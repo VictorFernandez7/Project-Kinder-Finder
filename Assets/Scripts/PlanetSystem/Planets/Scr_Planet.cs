@@ -128,8 +128,6 @@ public class Scr_Planet : Scr_AstroBase, IPointerEnterHandler
 
     private void OnMouseOver()
     {
-        print("click");
-
         if (Input.GetMouseButtonDown(0) && mapManager.mapActive)
         {
             mapCamera.target = gameObject;

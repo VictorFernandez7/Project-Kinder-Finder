@@ -72,6 +72,8 @@ public class Scr_AstronautMovement : MonoBehaviour
     [HideInInspector] public GameObject currentPlanet;
 
     private bool toJump;
+    private bool canMoveRight = true;
+    private bool canMoveLeft = true;
     private bool lastRight;
     private bool attached;
     private bool dettaching; 
@@ -128,6 +130,23 @@ public class Scr_AstronautMovement : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetMouseButtonDown(1))
+        {
+            velocity = 0;
+            exponentialMultiplier = 1;
+            walking = false;
+
+            astronautAnim.SetBool("Moving", false);
+            bodyAnim.SetBool("Moving", false);
+
+            canMove = false;
+        }
+
+        else if (Input.GetMouseButtonUp(1))
+        {
+            canMove = true;
+        }
+
         if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed && !interfaceManager.gamePaused)
         {
             Jumping();
@@ -187,6 +206,28 @@ public class Scr_AstronautMovement : MonoBehaviour
             GetComponent<Scr_AstronautsActions>().toolOnFloor = null;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        velocity = 0;
+        exponentialMultiplier = 1;
+        walking = false;
+
+        astronautAnim.SetBool("Moving", false);
+        bodyAnim.SetBool("Moving", false);
+
+        if (lastRight)
+            canMoveRight = false;
+
+        else
+            canMoveLeft = false;
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        canMoveLeft = true;
+        canMoveRight = true;
+    }
+
     private void SlideDown()
     {
         if (hitL)
@@ -228,7 +269,7 @@ public class Scr_AstronautMovement : MonoBehaviour
 
             SnapToFloor();
 
-            if (Input.GetButton("Horizontal") && Input.GetAxis("Horizontal") < 0f)
+            if (Input.GetButton("Horizontal") && Input.GetAxis("Horizontal") < 0f && canMoveLeft)
             {
                 walking = true;
                 MoveLeft(false);
@@ -245,7 +286,7 @@ public class Scr_AstronautMovement : MonoBehaviour
                     bodyAnim.SetBool("Moving", false);
             }
 
-            else if (Input.GetButton("Horizontal") && Input.GetAxis("Horizontal") > 0f)
+            else if (Input.GetButton("Horizontal") && Input.GetAxis("Horizontal") > 0f && canMoveRight)
             {
                 walking = true;
                 MoveRight(false);
