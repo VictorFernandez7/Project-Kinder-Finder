@@ -13,6 +13,7 @@ public class Scr_NarrativeManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameObject panel;
     [SerializeField] private TextMeshProUGUI texts;
+    [SerializeField] private Scr_AstronautMovement astronautMovement;
 
     [HideInInspector] public bool onDialogue;
 
@@ -23,19 +24,20 @@ public class Scr_NarrativeManager : MonoBehaviour
     private void Start()
     {
         sentences = new Queue<string>();
+
+        if (step == 0)
+            StartDialogue(0);
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.H))
-            StartDialogue(0);
-
         if (Input.GetKeyDown(KeyCode.J) && onDialogue)
             DisplayNextSentence();
     }
 
     public void StartDialogue(int index)
     {
+        astronautMovement.Stop();
         panel.SetActive(true);
         onDialogue = true;
 
@@ -76,6 +78,7 @@ public class Scr_NarrativeManager : MonoBehaviour
     private void EndDialogue()
     {
         panel.SetActive(false);
+        astronautMovement.canMove = true;
     }
 }
 

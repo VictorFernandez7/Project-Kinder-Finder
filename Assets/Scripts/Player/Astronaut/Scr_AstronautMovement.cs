@@ -117,7 +117,6 @@ public class Scr_AstronautMovement : MonoBehaviour
         savedTimeCharge = timeCharge;
 
         charge = true;
-        canMove = true;
         unlockedJetpack = false;
 
         hitCentral = Physics2D.Raycast(transform.position, (playerShipMovement.currentPlanet.transform.position - transform.position).normalized, Mathf.Infinity, collisionMask);
@@ -132,14 +131,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
-            velocity = 0;
-            exponentialMultiplier = 1;
-            walking = false;
-
-            astronautAnim.SetBool("Moving", false);
-            bodyAnim.SetBool("Moving", false);
-
-            canMove = false;
+            Stop();
         }
 
         else if (Input.GetMouseButtonUp(1))
@@ -245,6 +237,18 @@ public class Scr_AstronautMovement : MonoBehaviour
         velocity += Vector3.Project((-transform.up * gravity), movementVector).magnitude / 2;
 
         transform.Translate(movementVector * velocity, Space.World);
+    }
+
+    public void Stop()
+    {
+        velocity = 0;
+        exponentialMultiplier = 1;
+        walking = false;
+
+        astronautAnim.SetBool("Moving", false);
+        bodyAnim.SetBool("Moving", false);
+
+        canMove = false;
     }
 
     private void PlanetAttachment()
