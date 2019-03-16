@@ -15,6 +15,7 @@ public class Scr_Wheel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     private bool mouseOver;
     private float minDistance;
+    private string selectedTool;
     private Animator anim;
 
     private void Start()
@@ -22,7 +23,7 @@ public class Scr_Wheel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         anim = GetComponent<Animator>();
 
         anim.SetBool("Show", false);
-        minDistance = 100;
+        ResetDistance();
     }
 
     private void Update()
@@ -30,13 +31,13 @@ public class Scr_Wheel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         MouseOverWheel();
     }
 
-    void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
+    public void OnPointerEnter(PointerEventData eventData)
     {
         mouseOver = true;
-        minDistance = 100;
+        ResetDistance();
     }
 
-    void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
+    public void OnPointerExit(PointerEventData eventData)
     {
         mouseOver = false;
     }
@@ -45,8 +46,13 @@ public class Scr_Wheel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     {
         anim.SetBool("Show", mouseOver);
 
-        if (Vector2.Distance(wheel.transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition)) > 0.15f && mouseOver)
+        if (mouseOver && Vector2.Distance(wheel.transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition)) > 0.2f)
+        {
             UpdateSelectedTool();
+
+            if (Input.GetMouseButtonDown(0))
+                ClickEvent();
+        }
 
         else
         {
@@ -64,6 +70,7 @@ public class Scr_Wheel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             if (Vector2.Distance(selectionIcons[i].transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition)) < minDistance)
             {
                 minDistance = Vector2.Distance(selectionIcons[i].transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition));
+                selectedTool = selectionIcons[i].name;
 
                 for (int j = 0; j < selectionSprites.Length; j++)
                 {
@@ -75,5 +82,17 @@ public class Scr_Wheel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                 }
             }
         }
+
+        ResetDistance();
+    }
+
+    private void ClickEvent()
+    {
+        print(selectedTool);
+    }
+
+    private void ResetDistance()
+    {
+        minDistance = 1000000;
     }
 }
