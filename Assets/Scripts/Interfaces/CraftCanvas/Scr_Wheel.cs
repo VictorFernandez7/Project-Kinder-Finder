@@ -1,4 +1,5 @@
 ﻿using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class Scr_Wheel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
@@ -9,34 +10,44 @@ public class Scr_Wheel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     [Header("Selection Sprites")]
     [SerializeField] public GameObject[] selectionSprites;
 
+    [Header("Color References")]
+    [SerializeField] private Color lockedColor;
+    [SerializeField] private Color unlockedColor;
+
     [Header("References")]
     [SerializeField] private Camera mainCamera;
     [SerializeField] private GameObject wheel;
 
+    [HideInInspector] public bool[] unlockedItems;
+
     private bool mouseOver;
     private float minDistance;
+    private string selectedTool;
     private Animator anim;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
 
+        unlockedItems = new bool[selectionIcons.Length];
         anim.SetBool("Show", false);
-        minDistance = 100;
+
+        ResetDistance();
     }
 
     private void Update()
     {
         MouseOverWheel();
+        UpdateSpriteColor();
     }
 
-    void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
+    public void OnPointerEnter(PointerEventData eventData)
     {
         mouseOver = true;
-        minDistance = 100;
+        ResetDistance();
     }
 
-    void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
+    public void OnPointerExit(PointerEventData eventData)
     {
         mouseOver = false;
     }
@@ -45,8 +56,13 @@ public class Scr_Wheel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     {
         anim.SetBool("Show", mouseOver);
 
-        if (Vector2.Distance(wheel.transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition)) > 0.15f && mouseOver)
+        if (mouseOver && Vector2.Distance(wheel.transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition)) > 0.2f)
+        {
             UpdateSelectedTool();
+
+            if (Input.GetMouseButtonDown(0))
+                ClickEvent();
+        }
 
         else
         {
@@ -63,17 +79,54 @@ public class Scr_Wheel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         {
             if (Vector2.Distance(selectionIcons[i].transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition)) < minDistance)
             {
-                minDistance = Vector2.Distance(selectionIcons[i].transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition));
-
-                for (int j = 0; j < selectionSprites.Length; j++)
+                if (unlockedItems[i] == true)
                 {
-                    if (j == i)
-                        selectionSprites[j].SetActive(true);
+                    minDistance = Vector2.Distance(selectionIcons[i].transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition));
+                    selectedTool = selectionIcons[i].name;
 
-                    else
-                        selectionSprites[j].SetActive(false);
+                    for (int j = 0; j < selectionSprites.Length; j++)
+                    {
+                        if (j == i)
+                            selectionSprites[j].SetActive(true);
+
+                        else
+                            selectionSprites[j].SetActive(false);
+                    }
+                }
+
+                else
+                {
+                    for (int k = 0; k < selectionSprites.Length; k++)
+                    {
+                        selectionSprites[k].SetActive(false);
+                    }
                 }
             }
+        }
+
+        ResetDistance();
+    }
+
+    private void ClickEvent()
+    {
+        if (selectedTool != null)
+            print(selectedTool);
+    }
+
+    private void ResetDistance()
+    {
+        minDistance = 1000000;
+    }
+
+    private void UpdateSpriteColor()
+    {
+        for (int i = 0; i < selectionIcons.Length; i++)
+        {
+            if (unlockedItems[i] == true)
+                selectionIcons[i].GetComponent<Image>().color = unlockedColor;
+
+            else
+                selectionIcons[i].GetComponent<Image>().color = lockedColor;
         }
     }
 }

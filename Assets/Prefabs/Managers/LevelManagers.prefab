@@ -114,10 +114,16 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   planetsInfo: []
+  shipCrafts: 00000000
+  toolCrafts: 0000000000
+  suitCrafts: 000000
   initialPlanet: {fileID: 0}
   vortex: {fileID: 1027720159310436, guid: 3e98098b7d0726f458bc2464314ea40e, type: 3}
   astronaut: {fileID: 0}
   playerShip: {fileID: 0}
+  shipWheel: {fileID: 0}
+  toolWheel: {fileID: 0}
+  suitWheel: {fileID: 0}
 --- !u!1 &1262807425421154
 GameObject:
   m_ObjectHideFlags: 0
@@ -380,7 +386,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 874abb15452fbcc478dafd171682b753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedText: 1
+  speedText: 0.01
+  dialogues:
+  - dialogTexts:
+    - Jack. We are out of fuel.
+    - We need to explorer the planet to get out of here.
+  - dialogTexts:
+    - 'Look there. '
+    - It seems to be a mining tool.
+    - Take it to harvest some resources.
   panel: {fileID: 0}
   texts: {fileID: 0}
-  onDialog: 0
+  astronautMovement: {fileID: 0}
+  onDialogue: 0

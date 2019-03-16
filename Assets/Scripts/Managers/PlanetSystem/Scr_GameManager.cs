@@ -17,11 +17,19 @@ public class Scr_GameManager : MonoBehaviour
     [Header("Exploration Info")]
     [SerializeField] public GameObject[] planetsInfo;
 
+    [Header("Crafting Info")]
+    [SerializeField] private bool[] shipCrafts; 
+    [SerializeField] private bool[] toolCrafts;
+    [SerializeField] private bool[] suitCrafts;
+
     [Header("References")]
     [SerializeField] public GameObject initialPlanet;
     [SerializeField] public GameObject vortex;
     [SerializeField] private GameObject astronaut;
     [SerializeField] private GameObject playerShip;
+    [SerializeField] private Scr_Wheel shipWheel;
+    [SerializeField] private Scr_Wheel toolWheel;
+    [SerializeField] private Scr_Wheel suitWheel;
 
     private float initialRatio;
     private Vector3 vortexPosition;
@@ -38,6 +46,10 @@ public class Scr_GameManager : MonoBehaviour
     private void Update()
     {
         VortexSpawn();
+
+        shipWheel.unlockedItems = shipCrafts;
+        toolWheel.unlockedItems = toolCrafts;
+        suitWheel.unlockedItems = suitCrafts;
     }
 
     private void VortexSpawn()
