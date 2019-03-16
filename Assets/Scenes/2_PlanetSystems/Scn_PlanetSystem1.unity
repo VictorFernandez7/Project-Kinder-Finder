@@ -2220,7 +2220,7 @@ PrefabInstance:
     - target: {fileID: 2644601241822850494, guid: 2ebe58c6a117aed458c59cafbfb42795,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -290.5
+      value: -290.50003
       objectReference: {fileID: 0}
     - target: {fileID: 4900355070320415597, guid: 2ebe58c6a117aed458c59cafbfb42795,
         type: 3}
@@ -3752,6 +3752,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 234030725}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &530992426 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 381890479249733015, guid: 2ebe58c6a117aed458c59cafbfb42795,
+    type: 3}
+  m_PrefabInstance: {fileID: 292020292}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8e1b7f178a4ab14b91c6a34bb262f97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &536191151 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1333791331805794, guid: 5c7e8f1f62be70143b2e0edf73736d31,
@@ -6123,6 +6135,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5cdee0d6f6ee1747a656eec7515ded3, type: 3}
+--- !u!114 &997806455 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5441553560832371051, guid: 2ebe58c6a117aed458c59cafbfb42795,
+    type: 3}
+  m_PrefabInstance: {fileID: 292020292}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8e1b7f178a4ab14b91c6a34bb262f97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1008343822 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7095690317340529912, guid: 5c7e8f1f62be70143b2e0edf73736d31,
@@ -10529,6 +10553,21 @@ PrefabInstance:
       propertyPath: playerShip
       value: 
       objectReference: {fileID: 557998420}
+    - target: {fileID: 114654213014132760, guid: 6ee248eae7fc7574998196240b18bb9b,
+        type: 3}
+      propertyPath: shipWheel
+      value: 
+      objectReference: {fileID: 1789772338}
+    - target: {fileID: 114654213014132760, guid: 6ee248eae7fc7574998196240b18bb9b,
+        type: 3}
+      propertyPath: toolWheel
+      value: 
+      objectReference: {fileID: 530992426}
+    - target: {fileID: 114654213014132760, guid: 6ee248eae7fc7574998196240b18bb9b,
+        type: 3}
+      propertyPath: suitWheel
+      value: 
+      objectReference: {fileID: 997806455}
     - target: {fileID: 4376699906163190, guid: 6ee248eae7fc7574998196240b18bb9b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -10645,21 +10684,6 @@ PrefabInstance:
       objectReference: {fileID: 694369697}
     - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
         type: 3}
-      propertyPath: dialogues.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[0].dialogTexts.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[1].dialogTexts.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
       propertyPath: panel
       value: 
       objectReference: {fileID: 1411496194}
@@ -10668,36 +10692,6 @@ PrefabInstance:
       propertyPath: texts
       value: 
       objectReference: {fileID: 501117003}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[0].dialogTexts.Array.data[0]
-      value: Jack. We are out of fuel.
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[0].dialogTexts.Array.data[1]
-      value: We need to explorer the planet to get out of here.
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: speedText
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[1].dialogTexts.Array.data[0]
-      value: 'Look there. '
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[1].dialogTexts.Array.data[1]
-      value: It seems to be a mining tool.
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[1].dialogTexts.Array.data[2]
-      value: Take it to harvest some resources.
-      objectReference: {fileID: 0}
     - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
         type: 3}
       propertyPath: astronautMovement
@@ -10792,6 +10786,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1781220966}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1789772338 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6224394709610731625, guid: 2ebe58c6a117aed458c59cafbfb42795,
+    type: 3}
+  m_PrefabInstance: {fileID: 292020292}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8e1b7f178a4ab14b91c6a34bb262f97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1790481829
 PrefabInstance:
   m_ObjectHideFlags: 0
