@@ -23,6 +23,7 @@ public class Scr_InterfaceManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI planetName;
 
     [HideInInspector] public bool gamePaused;
+    [HideInInspector] public bool interacting;
 
     private bool playerShipWindowActive;
     private Scr_PlayerShipMovement playerShipMovement;
@@ -44,14 +45,17 @@ public class Scr_InterfaceManager : MonoBehaviour
         LandingInterface();
         CheckInputs();
 
-        if (!playerShipWindowActive)
-            CheckAstronautState();
+        if (!interacting)
+        {
+            if (playerShipWindowActive)
+                anim_MiniMapPanel.SetBool("Show", false);
 
-        if (playerShipWindowActive)
-            anim_MiniMapPanel.SetBool("Show", false);
-
-        else
-            anim_MiniMapPanel.SetBool("Show", true);
+            else
+            {
+                CheckAstronautState();
+                anim_MiniMapPanel.SetBool("Show", true);
+            }
+        }
     }
 
     public void PlayerShipWindow()
@@ -60,20 +64,10 @@ public class Scr_InterfaceManager : MonoBehaviour
         anim_PlayerShipWindow.SetBool("Show", playerShipWindowActive);
 
         if (playerShipWindowActive)
-        {
-            anim_AstronautInterface.SetBool("Show", false);
-            anim_PlayerShipInterface.SetBool("Show", false);
-            anim_PlayerShipActions.SetBool("InsideShip", false);
-            anim_MiniMapPanel.SetBool("Show", false);
-        }
+            ClearInterface(true);
 
         else
-        {
-            anim_AstronautInterface.SetBool("Show", true);
-            anim_PlayerShipInterface.SetBool("Show", true);
-            anim_PlayerShipActions.SetBool("InsideShip", true);
-            anim_MiniMapPanel.SetBool("Show", true);
-        }
+            ClearInterface(false);
     }
 
     private void PlayerShipWindowAvailable()
@@ -128,6 +122,23 @@ public class Scr_InterfaceManager : MonoBehaviour
 
         else
             landingInterface.SetActive(false);
+    }
+
+    public void ClearInterface(bool clear)
+    {
+        if (interacting)
+        {
+            anim_AstronautInterface.SetBool("Show", !clear);
+            anim_MiniMapPanel.SetBool("Show", !clear);
+        }
+
+        else
+        {
+            anim_AstronautInterface.SetBool("Show", !clear);
+            anim_PlayerShipInterface.SetBool("Show", !clear);
+            anim_PlayerShipActions.SetBool("InsideShip", !clear);
+            anim_MiniMapPanel.SetBool("Show", !clear);
+        }
     }
 
     public void PauseGame(bool pause)
