@@ -651,6 +651,7 @@ MonoBehaviour:
   unlockedColor: {r: 0.023529412, g: 0.38039216, b: 0.5254902, a: 1}
   mainCamera: {fileID: 0}
   wheel: {fileID: 3495794562882316329}
+  infoPanel: {fileID: 0}
   unlockedItems: 000000
 --- !u!1 &1586958532761638941
 GameObject:
@@ -735,6 +736,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2644601241822850494}
+  - component: {fileID: 6253980377935134534}
   m_Layer: 0
   m_Name: InfoPanel
   m_TagString: Untagged
@@ -749,19 +751,39 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794633219208959227}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5565491533667366625}
-  m_Father: {fileID: 3044725278626057870}
-  m_RootOrder: 2
+  - {fileID: 6332394198421756855}
+  m_Father: {fileID: 4901353606428449299}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -290.5}
   m_SizeDelta: {x: 0, y: -730.51}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &6253980377935134534
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794633219208959227}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c8b8214be0495334ebb936035f4e8935, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2391036679234694590
 GameObject:
   m_ObjectHideFlags: 0
@@ -968,6 +990,7 @@ MonoBehaviour:
   unlockedColor: {r: 0.023529412, g: 0.38039216, b: 0.5254902, a: 1}
   mainCamera: {fileID: 0}
   wheel: {fileID: 349051281884843163}
+  infoPanel: {fileID: 0}
   unlockedItems: 00000000
 --- !u!1 &3044725278626057871
 GameObject:
@@ -998,7 +1021,6 @@ RectTransform:
   m_Children:
   - {fileID: 3072992153960054352}
   - {fileID: 1009305256054685541}
-  - {fileID: 2644601241822850494}
   m_Father: {fileID: 4901353606428449299}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1822,6 +1844,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 3044725278626057870}
+  - {fileID: 2644601241822850494}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2319,7 +2342,43 @@ MonoBehaviour:
   unlockedColor: {r: 0.023529412, g: 0.38039216, b: 0.5254902, a: 1}
   mainCamera: {fileID: 0}
   wheel: {fileID: 3084096580962372763}
+  infoPanel: {fileID: 0}
   unlockedItems: 0000000000
+--- !u!1 &5625596741211349158
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6332394198421756855}
+  m_Layer: 0
+  m_Name: PanelContent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6332394198421756855
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5625596741211349158}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2644601241822850494}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1448.8, y: 295.3}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5649783674087962966
 GameObject:
   m_ObjectHideFlags: 0

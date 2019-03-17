@@ -17,6 +17,7 @@ public class Scr_Wheel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     [Header("References")]
     [SerializeField] private Camera mainCamera;
     [SerializeField] private GameObject wheel;
+    [SerializeField] private Animator infoPanel;
 
     [HideInInspector] public bool[] unlockedItems;
 
@@ -60,7 +61,7 @@ public class Scr_Wheel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         {
             UpdateSelectedTool();
 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && selectedTool != null)
                 ClickEvent();
         }
 
@@ -109,8 +110,7 @@ public class Scr_Wheel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     private void ClickEvent()
     {
-        if (selectedTool != null)
-            print(selectedTool);
+        infoPanel.SetBool("Show", true);
     }
 
     private void ResetDistance()
