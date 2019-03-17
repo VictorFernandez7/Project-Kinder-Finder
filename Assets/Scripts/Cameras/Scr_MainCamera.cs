@@ -33,9 +33,9 @@ public class Scr_MainCamera : MonoBehaviour
     private Vector3 desiredUp;
     private Camera mainCamera;
     private GameObject currentPlanet;
+    private CameraShakeInstance shakeInstance;
     private Scr_PlayerShipMovement playerShipMovement;
     private Scr_PlayerShipActions playerShipActions;
-    private CameraShakeInstance shakeInstance;
 
     private void Start()
     {

@@ -138,14 +138,4 @@ public class Scr_Wheel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                 selectionIcons[i].GetComponent<Image>().color = lockedColor;
         }
     }
-
-    public void Open()
-    {
-
-    }
-
-    public void Close()
-    {
-
-    }
 }
