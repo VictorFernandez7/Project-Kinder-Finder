@@ -8,9 +8,11 @@ public class Scr_CraftStation : MonoBehaviour
     [SerializeField] private string interactMessage;
 
     [Header("References")]
+    [SerializeField] private Animator craftCanvasAnim;
     [SerializeField] private GameObject interactPanel;
     [SerializeField] private GameObject visuals;
     [SerializeField] private Scr_MainCamera mainCamera;
+    [SerializeField] private Scr_InterfaceManager interfaceManager;
 
     private bool onRange;
     private bool interacting;
@@ -47,12 +49,16 @@ public class Scr_CraftStation : MonoBehaviour
 
     private void OnTriggerEvent()
     {
-        interactPanel.SetActive(onRange);
+        interactPanel.SetActive(interacting ? false : onRange);        
     }
 
     private void Interact(bool start)
     {
+        interfaceManager.interacting = start;
+        interfaceManager.ClearInterface(start);
         mainCamera.interacting = start;
+        craftCanvasAnim.gameObject.SetActive(start);
+        craftCanvasAnim.SetBool("Show", start);
 
         if (start)
             mainCamera.craftCenter = visuals;

@@ -52,7 +52,7 @@ public class Scr_MainCamera : MonoBehaviour
         shakeInstance.DeleteOnInactive = true;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         currentPlanet = playerShipMovement.currentPlanet;
         zoomDistance = playerShipMovement.landDistance;
@@ -67,7 +67,10 @@ public class Scr_MainCamera : MonoBehaviour
         if (followAstronaut)
         {
             if (interacting)
-                transform.position = new Vector3(craftCenter.transform.position.x, craftCenter.transform.position.y, -100);
+            {
+                Vector3 targetPos = new Vector3(craftCenter.transform.position.x, craftCenter.transform.position.y, -100);
+                transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime);
+            }
 
             else
                 transform.position = new Vector3(astronaut.transform.position.x, astronaut.transform.position.y, -100);
@@ -133,7 +136,7 @@ public class Scr_MainCamera : MonoBehaviour
         if (playerShipMovement.landing || playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed)
         {
             if (interacting)
-                mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, craftZoom, Time.deltaTime * zoomSpeed);
+                mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, craftZoom, Time.deltaTime * (zoomSpeed * 3));
 
             else
                 mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, zoomInPlanet, Time.deltaTime * zoomSpeed);

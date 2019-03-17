@@ -17,12 +17,14 @@ public class Scr_Wheel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     [Header("References")]
     [SerializeField] private Camera mainCamera;
     [SerializeField] private GameObject wheel;
+    [SerializeField] private Animator infoPanel;
 
     [HideInInspector] public bool[] unlockedItems;
 
     private bool mouseOver;
     private float minDistance;
     private string selectedTool;
+    private string savedSelectedTool;
     private Animator anim;
 
     private void Start()
@@ -33,6 +35,8 @@ public class Scr_Wheel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         anim.SetBool("Show", false);
 
         ResetDistance();
+
+        infoPanel.SetBool("Show", false);
     }
 
     private void Update()
@@ -60,7 +64,7 @@ public class Scr_Wheel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         {
             UpdateSelectedTool();
 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && selectedTool != null && savedSelectedTool != selectedTool)
                 ClickEvent();
         }
 
@@ -109,8 +113,13 @@ public class Scr_Wheel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     private void ClickEvent()
     {
-        if (selectedTool != null)
-            print(selectedTool);
+        savedSelectedTool = selectedTool;
+
+        if (infoPanel.GetBool("Show"))
+            infoPanel.SetTrigger("Reload");
+
+        else
+            infoPanel.SetBool("Show", true);
     }
 
     private void ResetDistance()
@@ -128,5 +137,15 @@ public class Scr_Wheel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             else
                 selectionIcons[i].GetComponent<Image>().color = lockedColor;
         }
+    }
+
+    public void Open()
+    {
+
+    }
+
+    public void Close()
+    {
+
     }
 }
