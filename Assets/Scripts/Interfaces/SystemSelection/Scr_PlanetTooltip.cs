@@ -3,16 +3,18 @@ using TMPro;
 
 public class Scr_PlanetTooltip : MonoBehaviour
 {
+    [Header("Select System")]
+    [SerializeField] private Scr_Levels.LevelToLoad system;
+
     [Header("Select Planet Type")]
     [SerializeField] private Planet planet;
 
     [Header("References")]
-    [SerializeField] private GameObject mainCamera;
-    [SerializeField] private TextMeshProUGUI planetTypeText;
+    [SerializeField] private Camera mainCamera;
+    [SerializeField] private GameObject toolTip;
     [SerializeField] private Scr_SystemSelectionManager systemSelectionManager;
 
-    private GameObject planetType;
-
+    private TextMeshProUGUI tooltipText;
     private CircleCollider2D circleCollider;
 
     private enum Planet
@@ -26,32 +28,29 @@ public class Scr_PlanetTooltip : MonoBehaviour
 
     private void Start()
     {
+        tooltipText = toolTip.GetComponentInChildren<TextMeshProUGUI>();
         circleCollider = GetComponent<CircleCollider2D>();
-
-        planetType = planetTypeText.transform.parent.gameObject;
-
-        UpdatePlanetTypeText();
     }
 
     private void Update()
     {
         UpdateCollider();
-        UpdateCanvasRotation();
+
+        if (toolTip.activeInHierarchy)
+            ToolTipMovement();
     }
 
     private void OnMouseEnter()
     {
-        planetType.SetActive(true);
+        UpdateSize();
+        UpdatePlanetTypeText();
+
+        toolTip.SetActive(true);
     }
 
     private void OnMouseExit()
     {
-        planetType.SetActive(false);
-    }
-
-    private void UpdateCanvasRotation()
-    {
-        planetType.transform.rotation = mainCamera.transform.rotation;
+        toolTip.SetActive(false);
     }
 
     private void UpdateCollider()
@@ -63,27 +62,45 @@ public class Scr_PlanetTooltip : MonoBehaviour
             circleCollider.enabled = false;
     }
 
+    private void UpdateSize()
+    {
+        switch (system)
+        {
+            case Scr_Levels.LevelToLoad.PlanetSystem1:
+                toolTip.transform.localScale = 1.7f * Vector3.one;
+                break;
+            case Scr_Levels.LevelToLoad.PlanetSystem2:
+                toolTip.transform.localScale = 2.9f * Vector3.one;
+                break;
+        }
+    }
+
+    private void ToolTipMovement()
+    {
+        Vector3 targetPos = new Vector3(mainCamera.ScreenToWorldPoint(Input.mousePosition).x, mainCamera.ScreenToWorldPoint(Input.mousePosition).y, toolTip.transform.position.z);
+
+        toolTip.transform.position = targetPos;
+    }
+
     private void UpdatePlanetTypeText()
     {
         switch (planet)
         {
             case Planet.EarthLike:
-                planetTypeText.text = "Earth Like";
+                tooltipText.text = "Earth Like";
                 break;
             case Planet.Volcanic:
-                planetTypeText.text = "Volcanic";
+                tooltipText.text = "Volcanic";
                 break;
             case Planet.Frozen:
-                planetTypeText.text = "Frozen";
+                tooltipText.text = "Frozen";
                 break;
             case Planet.Arid:
-                planetTypeText.text = "Arid";
+                tooltipText.text = "Arid";
                 break;
             case Planet.Moon:
-                planetTypeText.text = "Moon";
+                tooltipText.text = "Moon";
                 break;
         }
-
-        planetType.SetActive(false);
     }
 }
