@@ -10,7 +10,7 @@ public class Scr_CraftStation : MonoBehaviour
     [Header("References")]
     [SerializeField] private Animator craftCanvasAnim;
     [SerializeField] private GameObject interactPanel;
-    [SerializeField] private GameObject visuals;
+    [SerializeField] private GameObject cameraSpot;
     [SerializeField] private Scr_MainCamera mainCamera;
     [SerializeField] private Scr_InterfaceManager interfaceManager;
 
@@ -57,10 +57,13 @@ public class Scr_CraftStation : MonoBehaviour
         interfaceManager.interacting = start;
         interfaceManager.ClearInterface(start);
         mainCamera.interacting = start;
-        craftCanvasAnim.gameObject.SetActive(start);
+
+        if (!craftCanvasAnim.gameObject.activeInHierarchy)
+            craftCanvasAnim.gameObject.SetActive(true);
+
         craftCanvasAnim.SetBool("Show", start);
 
         if (start)
-            mainCamera.craftCenter = visuals;
+            mainCamera.craftCenter = cameraSpot;
     }
 }
