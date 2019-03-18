@@ -60,7 +60,7 @@ public class Scr_Wheel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     {
         anim.SetBool("Show", mouseOver);
 
-        if (mouseOver && Vector2.Distance(wheel.transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition)) > 0.2f)
+        if (mouseOver && Vector2.Distance(wheel.transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition)) > 0.15f)
         {
             UpdateSelectedTool();
 
