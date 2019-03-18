@@ -50,7 +50,7 @@ public class Scr_LevelUpCanvas : MonoBehaviour
         else
         {
             unlock1.SetActive(true);
-            unlock2.SetActive(false);
+            unlock2.SetActive(true);
 
             unlock1Text.text = unlock1Name;
             unlock1Image = unlock1Icon;
