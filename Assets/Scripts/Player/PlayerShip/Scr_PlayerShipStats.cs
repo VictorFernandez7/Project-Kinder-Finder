@@ -39,6 +39,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
     [SerializeField] private Image shieldSliderFill;
     [SerializeField] private Slider fuelSlider;
     [SerializeField] private Slider shieldSlider;
+    [SerializeField] private Slider experienceSlider;
     [SerializeField] public Scr_ReferenceManager referenceManager;
     [SerializeField] public Animator anim_FuelPanel;
     [SerializeField] public Animator anim_ShieldPanel;
@@ -75,6 +76,9 @@ public class Scr_PlayerShipStats : MonoBehaviour
     {
         Fuel();
         Shield();
+
+        if (Input.GetKeyDown(KeyCode.L))
+            GetExperience(35);
     }
 
     private void Fuel()
@@ -199,27 +203,31 @@ public class Scr_PlayerShipStats : MonoBehaviour
     {
         experience += amount;
 
-        if (levelData.LevelList[level - 1].experienceNeeded < experience)
+        if (levelData.LevelList[level].experienceNeeded <= experience)
         {
-            experience -= levelData.LevelList[level - 1].experienceNeeded;
+            experience -= levelData.LevelList[level].experienceNeeded;
 
-            if (levelData.LevelList[level - 1].levelRewards.Count == 2)
+            levelUpCanvas.gameObject.SetActive(true);
+
+            if (levelData.LevelList[level].levelRewards.Count == 2)
             {
-                for (int i = 0; i < levelData.LevelList[level - 1].levelRewards.Count; i++)
+                for (int i = 0; i < levelData.LevelList[level].levelRewards.Count; i++)
                 {
-                    craftData.CraftList[levelData.LevelList[level - 1].levelRewards[i]].crafteable = true;
+                    craftData.CraftList[levelData.LevelList[level].levelRewards[i]].crafteable = true;
                 }
 
-                levelUpCanvas.UpdatePanelInfo(experience, levelData.LevelList[level].experienceNeeded, level.ToString(), levelData.LevelList[level - 1].levelTitle, false, craftData.CraftList[levelData.LevelList[level - 1].levelRewards[0]].m_name, craftData.CraftList[levelData.LevelList[level - 1].levelRewards[0]].m_icon, craftData.CraftList[levelData.LevelList[level - 1].levelRewards[1]].m_name, craftData.CraftList[levelData.LevelList[level - 1].levelRewards[1]].m_icon);
+                levelUpCanvas.UpdatePanelInfo(experience, levelData.LevelList[level + 1].experienceNeeded, (level + 1).ToString(), levelData.LevelList[level].levelTitle, false, craftData.CraftList[levelData.LevelList[level].levelRewards[0]].m_name, craftData.CraftList[levelData.LevelList[level].levelRewards[0]].m_icon, craftData.CraftList[levelData.LevelList[level].levelRewards[1]].m_name, craftData.CraftList[levelData.LevelList[level].levelRewards[1]].m_icon);
             }
 
             else
             {
-                craftData.CraftList[levelData.LevelList[level - 1].levelRewards[0]].crafteable = true;
-                levelUpCanvas.UpdatePanelInfo(experience, levelData.LevelList[level].experienceNeeded, level.ToString(), levelData.LevelList[level - 1].levelTitle, false, craftData.CraftList[levelData.LevelList[level - 1].levelRewards[0]].m_name, craftData.CraftList[levelData.LevelList[level - 1].levelRewards[0]].m_icon, null, null);
+                craftData.CraftList[levelData.LevelList[level].levelRewards[0]].crafteable = true;
+                levelUpCanvas.UpdatePanelInfo(experience, levelData.LevelList[level + 1].experienceNeeded, (level + 1).ToString(), levelData.LevelList[level].levelTitle, false, craftData.CraftList[levelData.LevelList[level].levelRewards[0]].m_name, craftData.CraftList[levelData.LevelList[level].levelRewards[0]].m_icon, null, null);
             }
 
             level += 1;
         }
+
+        experienceSlider.value = (float)experience / (float)levelData.LevelList[level].experienceNeeded;
     }
 }
