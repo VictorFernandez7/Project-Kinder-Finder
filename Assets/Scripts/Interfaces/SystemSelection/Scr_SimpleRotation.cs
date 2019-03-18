@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Scr_SimpleRotation : MonoBehaviour
 {
+    [Header("Discovered")]
+    [SerializeField] private bool discovered;
+
     [Header("Planet Parameters")]
     [SerializeField] private bool initialRandomRot;
     [SerializeField] private bool rotateCanvas;
@@ -35,7 +38,7 @@ public class Scr_SimpleRotation : MonoBehaviour
         if (translationSpeed > 0)
             transform.RotateAround(pivot.position, Vector3.forward, Time.deltaTime * translationSpeed);
 
-        if (rotateCanvas)
+        if (!discovered)
             planetCanvas.transform.rotation = mainCamera.transform.rotation;
     }
 }
