@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class Scr_Travel : MonoBehaviour
 {
-    [HideInInspector] public bool unlockedMultiJump;
+    [HideInInspector] public static bool unlockedMultiJump;
 
-    private Scr_PlayerShipWarehouse playerShipWarehouse;
+    private static Scr_PlayerShipWarehouse playerShipWarehouse;
 
     private void Start()
     {
-        playerShipWarehouse = GameObject.Find("RoomManagement").GetComponent<Scr_PlayerShipWarehouse>();
+        if (Scr_Levels.currentLevel == Scr_Levels.LevelToLoad.PlanetSystem1 || Scr_Levels.currentLevel == Scr_Levels.LevelToLoad.PlanetSystem2)
+            playerShipWarehouse = GameObject.Find("RoomManagement").GetComponent<Scr_PlayerShipWarehouse>();
     }
 
-    public void JumpTravel(bool multiJump, Scr_Levels.Galaxies targetGalaxy, Scr_Levels.LevelToLoad targetSystem)
+    public static void JumpTravel(bool multiJump, Scr_Levels.Galaxies targetGalaxy, Scr_Levels.LevelToLoad targetSystem)
     {
         if (multiJump && unlockedMultiJump)
         {
@@ -99,7 +100,6 @@ public class Scr_Travel : MonoBehaviour
                     }
                     break;
             }
-
         }
 
         else

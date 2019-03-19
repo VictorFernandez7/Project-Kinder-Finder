@@ -25,7 +25,8 @@ public class Scr_LevelManager : Scr_PersistentSingleton<Scr_LevelManager>
 
     private void Start()
     {
-        astronautsActions = GameObject.Find("Astronaut").GetComponent<Scr_AstronautsActions>();
+        if (Scr_Levels.currentLevel == Scr_Levels.LevelToLoad.PlanetSystem1 || Scr_Levels.currentLevel == Scr_Levels.LevelToLoad.PlanetSystem2)
+            astronautsActions = GameObject.Find("Astronaut").GetComponent<Scr_AstronautsActions>();
 
         galaxyInfo = new bool[2];
         system1Info = new bool[5];
