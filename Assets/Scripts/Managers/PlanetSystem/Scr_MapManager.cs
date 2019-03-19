@@ -117,18 +117,7 @@ public class Scr_MapManager : MonoBehaviour
 
     private void MapActivation()
     {
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            playerShip.GetComponent<Scr_PlayerShipMovement>().canControlShip = mapActive;
-            mapCamera.gameObject.SetActive(!mapActive);
-            mainCanvas.SetActive(mapActive);
-            mapCanvas.SetActive(!mapActive);
-            playerShip.GetComponent<Scr_PlayerShipMovement>().canRotateShip = mapActive;
-            mapActive = !mapActive;
-            mapVisuals.SetActive(mapActive);
-        }
-
-        else if (mapActive)
+        if (mapActive)
         {
             playerShip.GetComponent<Scr_PlayerShipPrediction>().enabled = false;
             playerShip.GetComponent<LineRenderer>().enabled = false;
@@ -278,5 +267,16 @@ public class Scr_MapManager : MonoBehaviour
                 lastTarget = null;
             }
         }
+    }
+
+    public void OpenMap()
+    {
+        playerShip.GetComponent<Scr_PlayerShipMovement>().canControlShip = mapActive;
+        mapCamera.gameObject.SetActive(!mapActive);
+        mainCanvas.SetActive(mapActive);
+        mapCanvas.SetActive(!mapActive);
+        playerShip.GetComponent<Scr_PlayerShipMovement>().canRotateShip = mapActive;
+        mapActive = !mapActive;
+        mapVisuals.SetActive(mapActive);
     }
 }
