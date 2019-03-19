@@ -946,16 +946,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   planetName: Placeholder
   highTemp: 1
-  lowTemp: 1
-  toxic: 1
-  jetpack: 1
-  res1: {fileID: 21300000, guid: eae220209062ebb409e56f4d3208648f, type: 3}
-  res2: {fileID: 21300000, guid: edf1aca16d6c7184e9dc50978d4542b4, type: 3}
-  res3: {fileID: 21300000, guid: 72737f3f4f5af64449bc638632c15a80, type: 3}
-  res4: {fileID: 21300000, guid: 0e435d29c8618604e9aac0493df78e92, type: 3}
-  res5: {fileID: 21300000, guid: 91c812355260d1c4c9ba11b78a9d01a2, type: 3}
-  history: This is the placeholder text about a placeholder story of a placeholder
-    planet wich exists in a placeholder galaxy.
+  lowTemp: 0
+  toxic: 0
+  jetpack: 0
+  res1: {fileID: 21300000, guid: 563374867cb3caf479c7c408fff19b69, type: 3}
+  res2: {fileID: 0}
+  res3: {fileID: 0}
+  res4: {fileID: 0}
+  res5: {fileID: 0}
+  history: 
 --- !u!1 &1268668326
 GameObject:
   m_ObjectHideFlags: 0
@@ -2159,11 +2158,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -10551,11 +10550,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -10953,9 +10952,9 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 2757500310247675767}
-    characterCount: 8
+    characterCount: 7
     spriteCount: 0
-    spaceCount: 1
+    spaceCount: 0
     wordCount: 1
     linkCount: 0
     lineCount: 1
@@ -11076,14 +11075,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   planetName: Placeholder
   highTemp: 1
-  lowTemp: 1
-  toxic: 1
-  jetpack: 1
-  res1: {fileID: 21300000, guid: eae220209062ebb409e56f4d3208648f, type: 3}
-  res2: {fileID: 21300000, guid: edf1aca16d6c7184e9dc50978d4542b4, type: 3}
-  res3: {fileID: 21300000, guid: 72737f3f4f5af64449bc638632c15a80, type: 3}
-  res4: {fileID: 21300000, guid: 0e435d29c8618604e9aac0493df78e92, type: 3}
-  res5: {fileID: 21300000, guid: 91c812355260d1c4c9ba11b78a9d01a2, type: 3}
+  lowTemp: 0
+  toxic: 0
+  jetpack: 0
+  res1: {fileID: 0}
+  res2: {fileID: 0}
+  res3: {fileID: 0}
+  res4: {fileID: 0}
+  res5: {fileID: 0}
   history: This is the placeholder text about a placeholder story of a placeholder
     planet wich exists in a placeholder galaxy.
 --- !u!1 &756827792433273808
@@ -11949,6 +11948,7 @@ GameObject:
   - component: {fileID: 7068359062393766847}
   - component: {fileID: 2681044937656834504}
   - component: {fileID: 2591524724244423931}
+  - component: {fileID: 3022642873002921951}
   m_Layer: 21
   m_Name: LowTemperature
   m_TagString: Untagged
@@ -11970,9 +11970,9 @@ RectTransform:
   m_Father: {fileID: 7246556378212297360}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 61.159996, y: -23.665}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 21.89, y: 21.889}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2681044937656834504
@@ -12012,6 +12012,18 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &3022642873002921951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006345693433567790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aef4c657f433af042b93f71eb17d738c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1012356801161713744
 GameObject:
   m_ObjectHideFlags: 0
@@ -12108,17 +12120,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planetName: Placeholder
-  highTemp: 1
-  lowTemp: 1
-  toxic: 1
-  jetpack: 1
-  res1: {fileID: 21300000, guid: eae220209062ebb409e56f4d3208648f, type: 3}
-  res2: {fileID: 21300000, guid: edf1aca16d6c7184e9dc50978d4542b4, type: 3}
-  res3: {fileID: 21300000, guid: 72737f3f4f5af64449bc638632c15a80, type: 3}
-  res4: {fileID: 21300000, guid: 0e435d29c8618604e9aac0493df78e92, type: 3}
-  res5: {fileID: 21300000, guid: 91c812355260d1c4c9ba11b78a9d01a2, type: 3}
-  history: This is the placeholder text about a placeholder story of a placeholder
-    planet wich exists in a placeholder galaxy.
+  highTemp: 0
+  lowTemp: 0
+  toxic: 0
+  jetpack: 0
+  res1: {fileID: 21300000, guid: 3567e5d8d8e68c946a44a51f982fb365, type: 3}
+  res2: {fileID: 0}
+  res3: {fileID: 0}
+  res4: {fileID: 0}
+  res5: {fileID: 0}
+  history: 
 --- !u!1 &1021743575834224659
 GameObject:
   m_ObjectHideFlags: 0
@@ -12900,6 +12911,7 @@ GameObject:
   - component: {fileID: 1988058370898312168}
   - component: {fileID: 2265719846014517318}
   - component: {fileID: 3859410604816687581}
+  - component: {fileID: 1789266715927089634}
   m_Layer: 21
   m_Name: Resource2
   m_TagString: Untagged
@@ -12916,14 +12928,14 @@ RectTransform:
   m_GameObject: {fileID: 1234582235856957626}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.78173196, y: 0.78173196, z: 0.78173196}
+  m_LocalScale: {x: 1.0984116, y: 1.0984116, z: 1.0984116}
   m_Children: []
   m_Father: {fileID: 5217809665091621023}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50.428, y: -28.61}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2265719846014517318
@@ -12963,6 +12975,18 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &1789266715927089634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234582235856957626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aef4c657f433af042b93f71eb17d738c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1238599679555603910
 GameObject:
   m_ObjectHideFlags: 0
@@ -14497,7 +14521,7 @@ GameObject:
   - component: {fileID: 7246556378212297360}
   - component: {fileID: 4684795614581911882}
   m_Layer: 21
-  m_Name: PlanetStats
+  m_Name: Blocks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14510,7 +14534,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1526862862047026581}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -14518,12 +14542,12 @@ RectTransform:
   - {fileID: 7068359062393766847}
   - {fileID: 6224725785017598420}
   - {fileID: 3196194069693521943}
-  m_Father: {fileID: 3575115069557012759}
-  m_RootOrder: 1
+  m_Father: {fileID: 4005073074522556881}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.02, y: 21.395039}
+  m_AnchoredPosition: {x: -165.38498, y: 79.64501}
   m_SizeDelta: {x: 154.76, y: 47.33}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4684795614581911882
@@ -14539,12 +14563,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
+    m_Left: 9
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 4
-  m_Spacing: -25
+  m_ChildAlignment: 3
+  m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -14560,6 +14584,7 @@ GameObject:
   - component: {fileID: 6224725785017598420}
   - component: {fileID: 8023107587379110548}
   - component: {fileID: 7998496667938888834}
+  - component: {fileID: 5296017502550752852}
   m_Layer: 21
   m_Name: Toxic
   m_TagString: Untagged
@@ -14581,9 +14606,9 @@ RectTransform:
   m_Father: {fileID: 7246556378212297360}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 93.6, y: -23.665}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 21.89, y: 21.889}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8023107587379110548
@@ -14623,6 +14648,18 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &5296017502550752852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1543696296233156518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aef4c657f433af042b93f71eb17d738c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1553083899258498861
 GameObject:
   m_ObjectHideFlags: 0
@@ -17893,14 +17930,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   planetName: Placeholder
   highTemp: 1
-  lowTemp: 1
-  toxic: 1
-  jetpack: 1
-  res1: {fileID: 21300000, guid: eae220209062ebb409e56f4d3208648f, type: 3}
-  res2: {fileID: 21300000, guid: edf1aca16d6c7184e9dc50978d4542b4, type: 3}
-  res3: {fileID: 21300000, guid: 72737f3f4f5af64449bc638632c15a80, type: 3}
-  res4: {fileID: 21300000, guid: 0e435d29c8618604e9aac0493df78e92, type: 3}
-  res5: {fileID: 21300000, guid: 91c812355260d1c4c9ba11b78a9d01a2, type: 3}
+  lowTemp: 0
+  toxic: 0
+  jetpack: 0
+  res1: {fileID: 21300000, guid: 563374867cb3caf479c7c408fff19b69, type: 3}
+  res2: {fileID: 0}
+  res3: {fileID: 0}
+  res4: {fileID: 0}
+  res5: {fileID: 0}
   history: This is the placeholder text about a placeholder story of a placeholder
     planet wich exists in a placeholder galaxy.
 --- !u!1 &2376361056566575335
@@ -17968,7 +18005,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Planet Stats
+  m_text: Planet Blocks
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -18037,7 +18074,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 7034203631132245422}
-    characterCount: 12
+    characterCount: 13
     spriteCount: 0
     spaceCount: 1
     wordCount: 2
@@ -18216,6 +18253,7 @@ GameObject:
   - component: {fileID: 4925310650071180190}
   - component: {fileID: 7800368446017311798}
   - component: {fileID: 1402667538424638290}
+  - component: {fileID: 8891168771508901852}
   m_Layer: 21
   m_Name: Resource5
   m_TagString: Untagged
@@ -18232,14 +18270,14 @@ RectTransform:
   m_GameObject: {fileID: 2423663249154434357}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.78173196, y: 0.78173196, z: 0.78173196}
+  m_LocalScale: {x: 1.0984116, y: 1.0984116, z: 1.0984116}
   m_Children: []
   m_Father: {fileID: 5217809665091621023}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 131.284, y: -28.61}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7800368446017311798
@@ -18279,6 +18317,18 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &8891168771508901852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2423663249154434357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aef4c657f433af042b93f71eb17d738c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2448701245014293104
 GameObject:
   m_ObjectHideFlags: 0
@@ -18811,15 +18861,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planetName: Placeholder
-  highTemp: 1
-  lowTemp: 1
-  toxic: 1
-  jetpack: 1
-  res1: {fileID: 21300000, guid: eae220209062ebb409e56f4d3208648f, type: 3}
-  res2: {fileID: 21300000, guid: edf1aca16d6c7184e9dc50978d4542b4, type: 3}
-  res3: {fileID: 21300000, guid: 72737f3f4f5af64449bc638632c15a80, type: 3}
-  res4: {fileID: 21300000, guid: 0e435d29c8618604e9aac0493df78e92, type: 3}
-  res5: {fileID: 21300000, guid: 91c812355260d1c4c9ba11b78a9d01a2, type: 3}
+  highTemp: 0
+  lowTemp: 0
+  toxic: 0
+  jetpack: 0
+  res1: {fileID: 21300000, guid: 29455c8bcfe4ae146b6c21b7bc81339d, type: 3}
+  res2: {fileID: 21300000, guid: 399bb9435c8c9e841ade403a95612b53, type: 3}
+  res3: {fileID: 0}
+  res4: {fileID: 0}
+  res5: {fileID: 0}
   history: This is the placeholder text about a placeholder story of a placeholder
     planet wich exists in a placeholder galaxy.
 --- !u!1 &2548879732097482610
@@ -19332,6 +19382,7 @@ GameObject:
   - component: {fileID: 3196194069693521943}
   - component: {fileID: 4553184665631731652}
   - component: {fileID: 3053029435239206172}
+  - component: {fileID: 6209128517904201232}
   m_Layer: 21
   m_Name: JetPack
   m_TagString: Untagged
@@ -19353,9 +19404,9 @@ RectTransform:
   m_Father: {fileID: 7246556378212297360}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 126.03999, y: -23.665}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 21.89, y: 21.889}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4553184665631731652
@@ -19395,6 +19446,18 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &6209128517904201232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2615710214074410251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aef4c657f433af042b93f71eb17d738c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2631250202999898465
 GameObject:
   m_ObjectHideFlags: 0
@@ -20530,6 +20593,7 @@ GameObject:
   - component: {fileID: 1054088115848884238}
   - component: {fileID: 4308087614405491250}
   - component: {fileID: 2680429783719492167}
+  - component: {fileID: 1352708852374260775}
   m_Layer: 21
   m_Name: Resource3
   m_TagString: Untagged
@@ -20546,14 +20610,14 @@ RectTransform:
   m_GameObject: {fileID: 3079708725186583141}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.78173196, y: 0.78173196, z: 0.78173196}
+  m_LocalScale: {x: 1.0984116, y: 1.0984116, z: 1.0984116}
   m_Children: []
   m_Father: {fileID: 5217809665091621023}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 77.38, y: -28.61}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4308087614405491250
@@ -20593,6 +20657,18 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &1352708852374260775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3079708725186583141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aef4c657f433af042b93f71eb17d738c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3079925189547927883
 GameObject:
   m_ObjectHideFlags: 0
@@ -22345,6 +22421,7 @@ GameObject:
   - component: {fileID: 4677300180791512781}
   - component: {fileID: 1474102940866306912}
   - component: {fileID: 39693532377134964}
+  - component: {fileID: 8336799566600280184}
   m_Layer: 21
   m_Name: HightTemperature
   m_TagString: Untagged
@@ -22366,9 +22443,9 @@ RectTransform:
   m_Father: {fileID: 7246556378212297360}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 28.72, y: -23.665}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 21.89, y: 21.889}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1474102940866306912
@@ -22408,6 +22485,18 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &8336799566600280184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3963333275770945799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aef4c657f433af042b93f71eb17d738c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3970046022849319274
 GameObject:
   m_ObjectHideFlags: 0
@@ -24804,14 +24893,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   planetName: Placeholder
   highTemp: 1
-  lowTemp: 1
-  toxic: 1
-  jetpack: 1
-  res1: {fileID: 21300000, guid: eae220209062ebb409e56f4d3208648f, type: 3}
-  res2: {fileID: 21300000, guid: edf1aca16d6c7184e9dc50978d4542b4, type: 3}
-  res3: {fileID: 21300000, guid: 72737f3f4f5af64449bc638632c15a80, type: 3}
-  res4: {fileID: 21300000, guid: 0e435d29c8618604e9aac0493df78e92, type: 3}
-  res5: {fileID: 21300000, guid: 91c812355260d1c4c9ba11b78a9d01a2, type: 3}
+  lowTemp: 0
+  toxic: 0
+  jetpack: 0
+  res1: {fileID: 21300000, guid: aa7bdb09cf737c442a2b9d38d1590255, type: 3}
+  res2: {fileID: 0}
+  res3: {fileID: 0}
+  res4: {fileID: 0}
+  res5: {fileID: 0}
   history: This is the placeholder text about a placeholder story of a placeholder
     planet wich exists in a placeholder galaxy.
 --- !u!1 &4557483034390867581
@@ -25444,6 +25533,7 @@ GameObject:
   - component: {fileID: 1205319710725115830}
   - component: {fileID: 1962275103206297548}
   - component: {fileID: 1112605616757512974}
+  - component: {fileID: 8693509136141704712}
   m_Layer: 21
   m_Name: Resource4
   m_TagString: Untagged
@@ -25460,14 +25550,14 @@ RectTransform:
   m_GameObject: {fileID: 4608689720994480260}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.78173196, y: 0.78173196, z: 0.78173196}
+  m_LocalScale: {x: 1.0984116, y: 1.0984116, z: 1.0984116}
   m_Children: []
   m_Father: {fileID: 5217809665091621023}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 104.332, y: -28.61}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1962275103206297548
@@ -25507,6 +25597,18 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &8693509136141704712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4608689720994480260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aef4c657f433af042b93f71eb17d738c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4627837708149573889
 GameObject:
   m_ObjectHideFlags: 0
@@ -26080,11 +26182,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -27543,7 +27645,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 116701521842963855}
-  - {fileID: 7246556378212297360}
+  - {fileID: 4005073074522556881}
   - {fileID: 6797885189540593707}
   - {fileID: 5217809665091621023}
   m_Father: {fileID: 7812706966964306242}
@@ -29180,15 +29282,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planetName: Placeholder
-  highTemp: 1
+  highTemp: 0
   lowTemp: 1
-  toxic: 1
-  jetpack: 1
-  res1: {fileID: 21300000, guid: eae220209062ebb409e56f4d3208648f, type: 3}
-  res2: {fileID: 21300000, guid: edf1aca16d6c7184e9dc50978d4542b4, type: 3}
-  res3: {fileID: 21300000, guid: 72737f3f4f5af64449bc638632c15a80, type: 3}
-  res4: {fileID: 21300000, guid: 0e435d29c8618604e9aac0493df78e92, type: 3}
-  res5: {fileID: 21300000, guid: 91c812355260d1c4c9ba11b78a9d01a2, type: 3}
+  toxic: 0
+  jetpack: 0
+  res1: {fileID: 21300000, guid: 93e2efb68ea1a8140b85c87979b75f59, type: 3}
+  res2: {fileID: 0}
+  res3: {fileID: 0}
+  res4: {fileID: 0}
+  res5: {fileID: 0}
   history: This is the placeholder text about a placeholder story of a placeholder
     planet wich exists in a placeholder galaxy.
 --- !u!1 &5555120884734901612
@@ -29287,17 +29389,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planetName: Placeholder
-  highTemp: 1
-  lowTemp: 1
+  highTemp: 0
+  lowTemp: 0
   toxic: 1
-  jetpack: 1
-  res1: {fileID: 21300000, guid: eae220209062ebb409e56f4d3208648f, type: 3}
-  res2: {fileID: 21300000, guid: edf1aca16d6c7184e9dc50978d4542b4, type: 3}
-  res3: {fileID: 21300000, guid: 72737f3f4f5af64449bc638632c15a80, type: 3}
-  res4: {fileID: 21300000, guid: 0e435d29c8618604e9aac0493df78e92, type: 3}
-  res5: {fileID: 21300000, guid: 91c812355260d1c4c9ba11b78a9d01a2, type: 3}
-  history: This is the placeholder text about a placeholder story of a placeholder
-    planet wich exists in a placeholder galaxy.
+  jetpack: 0
+  res1: {fileID: 0}
+  res2: {fileID: 0}
+  res3: {fileID: 0}
+  res4: {fileID: 0}
+  res5: {fileID: 0}
+  history: 
 --- !u!1 &5574780154016866383
 GameObject:
   m_ObjectHideFlags: 0
@@ -31359,6 +31460,7 @@ GameObject:
   - component: {fileID: 1601654794143830560}
   - component: {fileID: 5341039728168270605}
   - component: {fileID: 8614906490223130764}
+  - component: {fileID: 5777031359784000954}
   m_Layer: 21
   m_Name: Resource1
   m_TagString: Untagged
@@ -31375,14 +31477,14 @@ RectTransform:
   m_GameObject: {fileID: 6059570902707613588}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.78173196, y: 0.78173196, z: 0.7817321}
+  m_LocalScale: {x: 1.0984116, y: 1.0984116, z: 1.0984118}
   m_Children: []
   m_Father: {fileID: 5217809665091621023}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 23.476, y: -28.61}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5341039728168270605
@@ -31422,6 +31524,18 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &5777031359784000954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6059570902707613588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aef4c657f433af042b93f71eb17d738c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6099727696415741657
 GameObject:
   m_ObjectHideFlags: 0
@@ -33344,6 +33458,8 @@ MonoBehaviour:
   resource4Image: {fileID: 1112605616757512974}
   resource5Image: {fileID: 1402667538424638290}
   historyText: {fileID: 2636642272739732468}
+  blocks: {fileID: 1526862862047026581}
+  noneText: {fileID: 8741399927687516300}
 --- !u!1 &6790166654931152712
 GameObject:
   m_ObjectHideFlags: 0
@@ -33514,15 +33630,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planetName: Placeholder
-  highTemp: 1
+  highTemp: 0
   lowTemp: 1
-  toxic: 1
-  jetpack: 1
-  res1: {fileID: 21300000, guid: eae220209062ebb409e56f4d3208648f, type: 3}
-  res2: {fileID: 21300000, guid: edf1aca16d6c7184e9dc50978d4542b4, type: 3}
-  res3: {fileID: 21300000, guid: 72737f3f4f5af64449bc638632c15a80, type: 3}
-  res4: {fileID: 21300000, guid: 0e435d29c8618604e9aac0493df78e92, type: 3}
-  res5: {fileID: 21300000, guid: 91c812355260d1c4c9ba11b78a9d01a2, type: 3}
+  toxic: 0
+  jetpack: 0
+  res1: {fileID: 0}
+  res2: {fileID: 0}
+  res3: {fileID: 0}
+  res4: {fileID: 0}
+  res5: {fileID: 0}
   history: This is the placeholder text about a placeholder story of a placeholder
     planet wich exists in a placeholder galaxy.
 --- !u!1 &6815034927619674157
@@ -34014,15 +34130,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planetName: Placeholder
-  highTemp: 1
-  lowTemp: 1
-  toxic: 1
-  jetpack: 1
-  res1: {fileID: 21300000, guid: eae220209062ebb409e56f4d3208648f, type: 3}
-  res2: {fileID: 21300000, guid: edf1aca16d6c7184e9dc50978d4542b4, type: 3}
-  res3: {fileID: 21300000, guid: 72737f3f4f5af64449bc638632c15a80, type: 3}
-  res4: {fileID: 21300000, guid: 0e435d29c8618604e9aac0493df78e92, type: 3}
-  res5: {fileID: 21300000, guid: 91c812355260d1c4c9ba11b78a9d01a2, type: 3}
+  highTemp: 0
+  lowTemp: 0
+  toxic: 0
+  jetpack: 0
+  res1: {fileID: 21300000, guid: 3567e5d8d8e68c946a44a51f982fb365, type: 3}
+  res2: {fileID: 21300000, guid: 42905f6b5cd063046a15a09a326e7c65, type: 3}
+  res3: {fileID: 0}
+  res4: {fileID: 0}
+  res5: {fileID: 0}
   history: This is the placeholder text about a placeholder story of a placeholder
     planet wich exists in a placeholder galaxy.
 --- !u!1 &6900364255565029492
@@ -34571,17 +34687,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planetName: Placeholder
-  highTemp: 1
-  lowTemp: 1
-  toxic: 1
-  jetpack: 1
-  res1: {fileID: 21300000, guid: eae220209062ebb409e56f4d3208648f, type: 3}
-  res2: {fileID: 21300000, guid: edf1aca16d6c7184e9dc50978d4542b4, type: 3}
-  res3: {fileID: 21300000, guid: 72737f3f4f5af64449bc638632c15a80, type: 3}
-  res4: {fileID: 21300000, guid: 0e435d29c8618604e9aac0493df78e92, type: 3}
-  res5: {fileID: 21300000, guid: 91c812355260d1c4c9ba11b78a9d01a2, type: 3}
-  history: This is the placeholder text about a placeholder story of a placeholder
-    planet wich exists in a placeholder galaxy.
+  highTemp: 0
+  lowTemp: 0
+  toxic: 0
+  jetpack: 0
+  res1: {fileID: 21300000, guid: 42905f6b5cd063046a15a09a326e7c65, type: 3}
+  res2: {fileID: 0}
+  res3: {fileID: 0}
+  res4: {fileID: 0}
+  res5: {fileID: 0}
+  history: 
 --- !u!1 &7031851357765617145
 GameObject:
   m_ObjectHideFlags: 0
@@ -37567,15 +37682,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planetName: Placeholder
-  highTemp: 1
-  lowTemp: 1
-  toxic: 1
-  jetpack: 1
-  res1: {fileID: 21300000, guid: eae220209062ebb409e56f4d3208648f, type: 3}
-  res2: {fileID: 21300000, guid: edf1aca16d6c7184e9dc50978d4542b4, type: 3}
-  res3: {fileID: 21300000, guid: 72737f3f4f5af64449bc638632c15a80, type: 3}
-  res4: {fileID: 21300000, guid: 0e435d29c8618604e9aac0493df78e92, type: 3}
-  res5: {fileID: 21300000, guid: 91c812355260d1c4c9ba11b78a9d01a2, type: 3}
+  highTemp: 0
+  lowTemp: 0
+  toxic: 0
+  jetpack: 0
+  res1: {fileID: 21300000, guid: 61bddd7504818a447a7b0cddd3fc92fd, type: 3}
+  res2: {fileID: 0}
+  res3: {fileID: 0}
+  res4: {fileID: 0}
+  res5: {fileID: 0}
   history: This is the placeholder text about a placeholder story of a placeholder
     planet wich exists in a placeholder galaxy.
 --- !u!1 &7966741265654490864
@@ -38134,6 +38249,43 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!1 &8038825336112334635
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4005073074522556881}
+  m_Layer: 21
+  m_Name: PlanetBlocks
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4005073074522556881
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8038825336112334635}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 7246556378212297360}
+  - {fileID: 8509900855233341140}
+  m_Father: {fileID: 3575115069557012759}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 164.36497, y: -58.24996}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8058627356745622862
 GameObject:
   m_ObjectHideFlags: 0
@@ -40651,17 +40803,176 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planetName: Placeholder
-  highTemp: 1
-  lowTemp: 1
-  toxic: 1
-  jetpack: 1
-  res1: {fileID: 21300000, guid: eae220209062ebb409e56f4d3208648f, type: 3}
-  res2: {fileID: 21300000, guid: edf1aca16d6c7184e9dc50978d4542b4, type: 3}
-  res3: {fileID: 21300000, guid: 72737f3f4f5af64449bc638632c15a80, type: 3}
-  res4: {fileID: 21300000, guid: 0e435d29c8618604e9aac0493df78e92, type: 3}
-  res5: {fileID: 21300000, guid: 91c812355260d1c4c9ba11b78a9d01a2, type: 3}
-  history: This is the placeholder text about a placeholder story of a placeholder
-    planet wich exists in a placeholder galaxy.
+  highTemp: 0
+  lowTemp: 0
+  toxic: 0
+  jetpack: 0
+  res1: {fileID: 21300000, guid: 6fc0faf4ecc28614fa48b2c6f940da6d, type: 3}
+  res2: {fileID: 0}
+  res3: {fileID: 0}
+  res4: {fileID: 0}
+  res5: {fileID: 0}
+  history: 
+--- !u!1 &8741399927687516300
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8509900855233341140}
+  - component: {fileID: 699702159144178210}
+  - component: {fileID: 3105216283245440305}
+  m_Layer: 21
+  m_Name: NoneText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &8509900855233341140
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8741399927687516300}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4005073074522556881}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -203.4, y: 85.5}
+  m_SizeDelta: {x: 54.41, y: 13.67}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &699702159144178210
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8741399927687516300}
+  m_CullTransparentMesh: 0
+--- !u!114 &3105216283245440305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8741399927687516300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_text: None
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_outlineColor:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontSize: 8.3
+  m_fontSizeBase: 8.3
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 1
+  m_textAlignment: 513
+  m_isAlignmentEnumConverted: 1
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_firstOverflowCharacterIndex: -1
+  m_linkedTextComponent: {fileID: 0}
+  m_isLinkedTextComponent: 0
+  m_isTextTruncated: 0
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_ignoreRectMaskCulling: 0
+  m_ignoreCulling: 1
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_firstVisibleCharacter: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_textInfo:
+    textComponent: {fileID: 3105216283245440305}
+    characterCount: 4
+    spriteCount: 0
+    spaceCount: 0
+    wordCount: 1
+    linkCount: 0
+    lineCount: 1
+    pageCount: 1
+    materialCount: 1
+  m_havePropertiesChanged: 1
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+  m_isInputParsingRequired: 1
+  m_inputSource: 0
+  m_hasFontAssetChanged: 0
+  m_subTextObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &8865105549892964243
 GameObject:
   m_ObjectHideFlags: 0
@@ -41352,12 +41663,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
+    m_Left: 12
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 4
-  m_Spacing: -20
+  m_ChildAlignment: 3
+  m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
