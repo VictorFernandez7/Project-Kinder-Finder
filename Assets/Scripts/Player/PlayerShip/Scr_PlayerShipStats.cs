@@ -40,6 +40,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
     [SerializeField] private Slider fuelSlider;
     [SerializeField] private Slider shieldSlider;
     [SerializeField] private Slider experienceSlider;
+    [SerializeField] private Scr_GameManager gameManager;
     [SerializeField] public Scr_ReferenceManager referenceManager;
     [SerializeField] public Animator anim_FuelPanel;
     [SerializeField] public Animator anim_ShieldPanel;
@@ -225,9 +226,73 @@ public class Scr_PlayerShipStats : MonoBehaviour
                 levelUpCanvas.UpdatePanelInfo(experience, levelData.LevelList[level + 1].experienceNeeded, (level + 1).ToString(), levelData.LevelList[level].levelTitle, true, craftData.CraftList[levelData.LevelList[level].levelRewards[0]].m_name, craftData.CraftList[levelData.LevelList[level].levelRewards[0]].m_icon, null, null);
             }
 
+            UpdateCrafts();
             level += 1;
         }
 
         experienceSlider.value = (float)experience / (float)levelData.LevelList[level].experienceNeeded;
+    }
+
+    public void UpdateCrafts()
+    {
+        if (craftData.CraftList[1].crafteable)
+            gameManager.toolCrafts[1] = true;
+        else
+            gameManager.toolCrafts[1] = false;
+
+        if (craftData.CraftList[2].crafteable)
+            gameManager.toolCrafts[0] = true;
+        else
+            gameManager.toolCrafts[0] = false;
+
+        if (craftData.CraftList[3].crafteable)
+            gameManager.toolCrafts[2] = true;
+        else
+            gameManager.toolCrafts[2] = false;
+
+        if (craftData.CraftList[4].crafteable)
+            gameManager.toolCrafts[3] = true;
+        else
+            gameManager.toolCrafts[3] = false;
+
+        if (craftData.CraftList[8].crafteable)
+            gameManager.toolCrafts[4] = true;
+        else
+            gameManager.toolCrafts[4] = false;
+
+        if (craftData.CraftList[5].crafteable)
+            gameManager.suitCrafts[2] = true;
+        else
+            gameManager.suitCrafts[2] = false;
+
+        if (craftData.CraftList[6].crafteable)
+            gameManager.suitCrafts[1] = true;
+        else
+            gameManager.suitCrafts[1] = false;
+
+        if (craftData.CraftList[7].crafteable)
+            gameManager.suitCrafts[0] = true;
+        else
+            gameManager.suitCrafts[0] = false;
+
+        if (craftData.CraftList[9].crafteable)
+            gameManager.shipCrafts[0] = true;
+        else
+            gameManager.shipCrafts[0] = false;
+
+        if (craftData.CraftList[10].crafteable)
+            gameManager.shipCrafts[3] = true;
+        else
+            gameManager.shipCrafts[3] = false;
+
+        if (craftData.CraftList[11].crafteable)
+            gameManager.shipCrafts[2] = true;
+        else
+            gameManager.shipCrafts[2] = false;
+
+        if (craftData.CraftList[12].crafteable)
+            gameManager.shipCrafts[1] = true;
+        else
+            gameManager.shipCrafts[1] = false;
     }
 }

@@ -18,9 +18,9 @@ public class Scr_GameManager : MonoBehaviour
     [SerializeField] public GameObject[] planetsInfo;
 
     [Header("Crafting Info")]
-    [SerializeField] private bool[] shipCrafts; 
-    [SerializeField] private bool[] toolCrafts;
-    [SerializeField] private bool[] suitCrafts;
+    [SerializeField] public bool[] shipCrafts; 
+    [SerializeField] public bool[] toolCrafts;
+    [SerializeField] public bool[] suitCrafts;
 
     [Header("References")]
     [SerializeField] public GameObject initialPlanet;
