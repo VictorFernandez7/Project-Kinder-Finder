@@ -10372,7 +10372,6 @@ GameObject:
   - component: {fileID: 7676284698738678675}
   - component: {fileID: 384621438739360845}
   - component: {fileID: 8285832849720718748}
-  - component: {fileID: 5384842568514612725}
   m_Layer: 21
   m_Name: Planet3
   m_TagString: Untagged
@@ -10462,101 +10461,6 @@ MonoBehaviour:
   pivot: {fileID: 8165017759545467720}
   planetCanvas: {fileID: 0}
   mainCamera: {fileID: 0}
---- !u!96 &5384842568514612725
-TrailRenderer:
-  serializedVersion: 2
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 484111647562376525}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 0
-  m_ReflectionProbeUsage: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: ff5bd5a38b63df545bcea94500c517ea, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Time: 5
-  m_Parameters:
-    serializedVersion: 3
-    widthMultiplier: 1
-    widthCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    colorGradient:
-      serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
-      key2: {r: 0, g: 0, b: 0, a: 0}
-      key3: {r: 0, g: 0, b: 0, a: 0}
-      key4: {r: 0, g: 0, b: 0, a: 0}
-      key5: {r: 0, g: 0, b: 0, a: 0}
-      key6: {r: 0, g: 0, b: 0, a: 0}
-      key7: {r: 0, g: 0, b: 0, a: 0}
-      ctime0: 0
-      ctime1: 65535
-      ctime2: 0
-      ctime3: 0
-      ctime4: 0
-      ctime5: 0
-      ctime6: 0
-      ctime7: 0
-      atime0: 0
-      atime1: 65535
-      atime2: 0
-      atime3: 0
-      atime4: 0
-      atime5: 0
-      atime6: 0
-      atime7: 0
-      m_Mode: 0
-      m_NumColorKeys: 2
-      m_NumAlphaKeys: 2
-    numCornerVertices: 0
-    numCapVertices: 0
-    alignment: 0
-    textureMode: 0
-    shadowBias: 0.5
-    generateLightingData: 0
-  m_MinVertexDistance: 0.1
-  m_Autodestruct: 0
-  m_Emitting: 1
 --- !u!1 &512214193120524795
 GameObject:
   m_ObjectHideFlags: 0
@@ -10566,6 +10470,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4599681898877192483}
+  - component: {fileID: 629532664376227361}
   m_Layer: 21
   m_Name: PlanetCanvas
   m_TagString: Untagged
@@ -10594,6 +10499,14 @@ RectTransform:
   m_AnchoredPosition: {x: 0.0000048188826, y: -0.0000038146973}
   m_SizeDelta: {x: 246.09738, y: 219.46506}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &629532664376227361
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 512214193120524795}
+  m_CullTransparentMesh: 0
 --- !u!1 &518226643967587800
 GameObject:
   m_ObjectHideFlags: 0
@@ -11885,7 +11798,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 887ec39be9373e646bb0a3cf7ed8bc10, type: 2}
+  - {fileID: 2100000, guid: ff5bd5a38b63df545bcea94500c517ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14108,7 +14021,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 887ec39be9373e646bb0a3cf7ed8bc10, type: 2}
+  - {fileID: 2100000, guid: ff5bd5a38b63df545bcea94500c517ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15964,7 +15877,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 887ec39be9373e646bb0a3cf7ed8bc10, type: 2}
+  - {fileID: 2100000, guid: ff5bd5a38b63df545bcea94500c517ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -20698,7 +20611,6 @@ GameObject:
   - component: {fileID: 8968935549829309417}
   - component: {fileID: 910370550085645913}
   - component: {fileID: 2299685265148762671}
-  - component: {fileID: 1346225994438021515}
   m_Layer: 21
   m_Name: Planet1
   m_TagString: Untagged
@@ -20787,101 +20699,6 @@ MonoBehaviour:
   pivot: {fileID: 8165017759545467720}
   planetCanvas: {fileID: 0}
   mainCamera: {fileID: 0}
---- !u!96 &1346225994438021515
-TrailRenderer:
-  serializedVersion: 2
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3079925189547927883}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 0
-  m_ReflectionProbeUsage: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: ff5bd5a38b63df545bcea94500c517ea, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Time: 5
-  m_Parameters:
-    serializedVersion: 3
-    widthMultiplier: 1
-    widthCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    colorGradient:
-      serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
-      key2: {r: 0, g: 0, b: 0, a: 0}
-      key3: {r: 0, g: 0, b: 0, a: 0}
-      key4: {r: 0, g: 0, b: 0, a: 0}
-      key5: {r: 0, g: 0, b: 0, a: 0}
-      key6: {r: 0, g: 0, b: 0, a: 0}
-      key7: {r: 0, g: 0, b: 0, a: 0}
-      ctime0: 0
-      ctime1: 65535
-      ctime2: 0
-      ctime3: 0
-      ctime4: 0
-      ctime5: 0
-      ctime6: 0
-      ctime7: 0
-      atime0: 0
-      atime1: 65535
-      atime2: 0
-      atime3: 0
-      atime4: 0
-      atime5: 0
-      atime6: 0
-      atime7: 0
-      m_Mode: 0
-      m_NumColorKeys: 2
-      m_NumAlphaKeys: 2
-    numCornerVertices: 0
-    numCapVertices: 0
-    alignment: 0
-    textureMode: 0
-    shadowBias: 0.5
-    generateLightingData: 0
-  m_MinVertexDistance: 0.1
-  m_Autodestruct: 0
-  m_Emitting: 1
 --- !u!1 &3170953554120267515
 GameObject:
   m_ObjectHideFlags: 0
@@ -28735,6 +28552,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6017951725401448591}
+  - component: {fileID: 5553535071161225960}
   m_Layer: 21
   m_Name: PlanetCanvas
   m_TagString: Untagged
@@ -28763,6 +28581,14 @@ RectTransform:
   m_AnchoredPosition: {x: 0.0000048188826, y: -0.0000038146973}
   m_SizeDelta: {x: 246.09738, y: 219.46506}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &5553535071161225960
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5574780154016866383}
+  m_CullTransparentMesh: 0
 --- !u!1 &5575975908157805557
 GameObject:
   m_ObjectHideFlags: 0
@@ -31719,7 +31545,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 887ec39be9373e646bb0a3cf7ed8bc10, type: 2}
+  - {fileID: 2100000, guid: ff5bd5a38b63df545bcea94500c517ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -32572,7 +32398,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 887ec39be9373e646bb0a3cf7ed8bc10, type: 2}
+  - {fileID: 2100000, guid: ff5bd5a38b63df545bcea94500c517ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -33408,7 +33234,6 @@ GameObject:
   - component: {fileID: 2180778798748049014}
   - component: {fileID: 2105375055867066648}
   - component: {fileID: 6978950017695937363}
-  - component: {fileID: 8768003211255872653}
   m_Layer: 21
   m_Name: Planet2
   m_TagString: Untagged
@@ -33498,101 +33323,6 @@ MonoBehaviour:
   pivot: {fileID: 8165017759545467720}
   planetCanvas: {fileID: 0}
   mainCamera: {fileID: 0}
---- !u!96 &8768003211255872653
-TrailRenderer:
-  serializedVersion: 2
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7102598085665303398}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 0
-  m_ReflectionProbeUsage: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: ff5bd5a38b63df545bcea94500c517ea, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Time: 5
-  m_Parameters:
-    serializedVersion: 3
-    widthMultiplier: 1
-    widthCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    colorGradient:
-      serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
-      key2: {r: 0, g: 0, b: 0, a: 0}
-      key3: {r: 0, g: 0, b: 0, a: 0}
-      key4: {r: 0, g: 0, b: 0, a: 0}
-      key5: {r: 0, g: 0, b: 0, a: 0}
-      key6: {r: 0, g: 0, b: 0, a: 0}
-      key7: {r: 0, g: 0, b: 0, a: 0}
-      ctime0: 0
-      ctime1: 65535
-      ctime2: 0
-      ctime3: 0
-      ctime4: 0
-      ctime5: 0
-      ctime6: 0
-      ctime7: 0
-      atime0: 0
-      atime1: 65535
-      atime2: 0
-      atime3: 0
-      atime4: 0
-      atime5: 0
-      atime6: 0
-      atime7: 0
-      m_Mode: 0
-      m_NumColorKeys: 2
-      m_NumAlphaKeys: 2
-    numCornerVertices: 0
-    numCapVertices: 0
-    alignment: 0
-    textureMode: 0
-    shadowBias: 0.5
-    generateLightingData: 0
-  m_MinVertexDistance: 0.1
-  m_Autodestruct: 0
-  m_Emitting: 1
 --- !u!1 &7137457197244790124
 GameObject:
   m_ObjectHideFlags: 0
@@ -34814,6 +34544,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2345622962983223709}
+  - component: {fileID: 524112755772386417}
   m_Layer: 21
   m_Name: PlanetCanvas
   m_TagString: Untagged
@@ -34842,6 +34573,14 @@ RectTransform:
   m_AnchoredPosition: {x: 0.0000048188826, y: -0.0000038146973}
   m_SizeDelta: {x: 246.09738, y: 219.46506}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &524112755772386417
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7610799547144715161}
+  m_CullTransparentMesh: 0
 --- !u!1 &7623382348148816412
 GameObject:
   m_ObjectHideFlags: 0
@@ -38070,6 +37809,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5660452593522271764}
+  - component: {fileID: 3394668599098651715}
   m_Layer: 21
   m_Name: PlanetCanvas
   m_TagString: Untagged
@@ -38098,6 +37838,14 @@ RectTransform:
   m_AnchoredPosition: {x: 0.0000048188826, y: -0.0000038146973}
   m_SizeDelta: {x: 246.09738, y: 219.46506}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &3394668599098651715
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8522359974946771710}
+  m_CullTransparentMesh: 0
 --- !u!1 &8584290194422109557
 GameObject:
   m_ObjectHideFlags: 0
@@ -39975,6 +39723,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9213072334586025198}
+  - component: {fileID: 4527048700097792818}
   m_Layer: 21
   m_Name: PlanetCanvas
   m_TagString: Untagged
@@ -40003,6 +39752,14 @@ RectTransform:
   m_AnchoredPosition: {x: 0.0000048188826, y: -0.0000038146973}
   m_SizeDelta: {x: 246.09738, y: 219.46506}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &4527048700097792818
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8996996798858963251}
+  m_CullTransparentMesh: 0
 --- !u!1 &9042771358335388446
 GameObject:
   m_ObjectHideFlags: 0
