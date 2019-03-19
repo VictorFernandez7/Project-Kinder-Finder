@@ -30,7 +30,7 @@ public class Scr_TravelGate : MonoBehaviour
             travelGateCanvas.SetActive(true);
 
             if (Input.GetMouseButtonDown(0))
-                Scr_LevelManager.LoadPlanetSystem(targetGalaxy);
+                Scr_Travel.JumpTravel(false, Scr_Levels.Galaxies.Galaxy1, targetGalaxy);
         }
     }
 

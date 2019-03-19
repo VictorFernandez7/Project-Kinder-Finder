@@ -14,7 +14,6 @@ public class Scr_Craft : MonoBehaviour {
     [SerializeField] private Scr_PlayerShipWarehouse playerShipWarehouse;
     [SerializeField] private Scr_CraftData craftData;
     [SerializeField] private Scr_CraftInterface craftInterface;
-    [SerializeField] private Scr_Travel travel;
     [SerializeField] private GameObject rightPanel;
 
     private int resourceListIndex;
@@ -81,7 +80,7 @@ public class Scr_Craft : MonoBehaviour {
             playerShipActions.unlockedMiningLaser = true;
 
         if (craftData.CraftList[craftInterface.index].craftType == CraftType.spaceship)
-            travel.unlockedMultiJump = true;
+            Scr_Travel.unlockedMultiJump = true;
 
         if (craftData.CraftList[craftInterface.index].craftType == CraftType.spacewalk)
             playerShipActions.unlockedSpaceWalk = true;
