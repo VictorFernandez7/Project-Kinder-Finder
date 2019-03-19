@@ -16,6 +16,8 @@ public class Scr_PlanetPanel : MonoBehaviour
     [SerializeField] private Image resource4Image;
     [SerializeField] private Image resource5Image;
     [SerializeField] private TextMeshProUGUI historyText;
+    [SerializeField] private GameObject blocks;
+    [SerializeField] private GameObject noneText;
 
     private GameObject resource1;
     private GameObject resource2;
@@ -40,6 +42,18 @@ public class Scr_PlanetPanel : MonoBehaviour
         lowTemperatureImage.SetActive(lowTemp);
         toxicityImage.SetActive(toxic);
         jetpackImage.SetActive(jetpack);
+
+        if (!highTemp && !lowTemp && !toxic && !jetpack)
+        {
+            blocks.SetActive(false);
+            noneText.SetActive(true);
+        }
+
+        else
+        {
+            blocks.SetActive(true);
+            noneText.SetActive(false);
+        }
 
         if (res1 != null)
         {
