@@ -31,7 +31,7 @@ public class Scr_NarrativeManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.J) && onDialogue)
+        if (Input.GetMouseButtonDown(0) && onDialogue)
             DisplayNextSentence();
     }
 
@@ -78,7 +78,7 @@ public class Scr_NarrativeManager : MonoBehaviour
     private void EndDialogue()
     {
         panel.SetActive(false);
-        astronautMovement.canMove = true;
+        astronautMovement.MoveAgain();
     }
 }
 
