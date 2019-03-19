@@ -34,7 +34,7 @@ public class Scr_PlayerShipWarehouse : MonoBehaviour
         Resources.Add("Helium", 0);
         Resources.Add("Airgel", 0);
         Resources.Add("Iron", 0);
-        Resources.Add("Aluminum", 0);
+        Resources.Add("Aluminium", 0);
         Resources.Add("Magnetite", 0);
         Resources.Add("Mercury", 0);
         Resources.Add("Ceramics", 0);
