@@ -11,6 +11,9 @@ public class Scr_3DButton : MonoBehaviour
     [Header("Select System Number")]
     [Range(0, 7)] [SerializeField] private int systemNumber;
 
+    [Header("Select System Index")]
+    [SerializeField] private int systemIndex;
+
     [Header("Select Planet Index")]
     [SerializeField] private int planetIndex;
 
@@ -18,7 +21,7 @@ public class Scr_3DButton : MonoBehaviour
     [SerializeField] private float delay;
 
     [Header("References (All)")]
-    [SerializeField] private Scr_SunButton sunButton;
+    [SerializeField] private Scr_PlanetFilesPanel planetFilesPanel;
     [SerializeField] private GameObject indicator;
     [SerializeField] private GameObject notBlockedVisuals;
     [SerializeField] private GameObject blockedVisuals;
@@ -54,12 +57,12 @@ public class Scr_3DButton : MonoBehaviour
     private void Update()
     {
         UpdateVisuals();
+        CheckIfBlocked();
 
         if (buttonType == ButtonType.Planet)
         {
             DelayTimer();
             CheckPanel();
-            CheckIfBlocked();
         }
 
         if (buttonType == ButtonType.System)
@@ -76,7 +79,7 @@ public class Scr_3DButton : MonoBehaviour
             {
                 if (buttonType == ButtonType.System)
                 {
-                    sunButton.interfaceLevel = Scr_SunButton.InterfaceLevel.PlanetSelection;
+                    planetFilesPanel.interfaceLevel = Scr_PlanetFilesPanel.InterfaceLevel.PlanetSelection;
 
                     for (int i = 0; i < systems.Length; i++)
                     {
@@ -90,10 +93,10 @@ public class Scr_3DButton : MonoBehaviour
 
                 else if (buttonType == ButtonType.Planet)
                 {
-                    sunButton.interfaceLevel = Scr_SunButton.InterfaceLevel.PlanetInfo;
+                    planetFilesPanel.interfaceLevel = Scr_PlanetFilesPanel.InterfaceLevel.PlanetInfo;
 
                     planetPanel.UpdatePanelInfo(planetPanelInfo.planetName, planetPanelInfo.highTemp, planetPanelInfo.lowTemp, planetPanelInfo.toxic, planetPanelInfo.jetpack, planetPanelInfo.res1, planetPanelInfo.res2, planetPanelInfo.res3, planetPanelInfo.res4, planetPanelInfo.res5, planetPanelInfo.history);
-                    sunButton.targetCameraPos = cameraSpot.position;
+                    planetFilesPanel.targetCameraPos = cameraSpot.position;
                     timerOn = true;
                 }
             }
@@ -107,8 +110,8 @@ public class Scr_3DButton : MonoBehaviour
 
     private void CheckPanel()
     {
-        if (Input.GetMouseButtonDown(1) && sunButton.planetPanel.activeInHierarchy)
-            sunButton.planetPanel.SetActive(false);
+        if (Input.GetMouseButtonDown(1) && planetFilesPanel.planetPanel.activeInHierarchy)
+            planetFilesPanel.planetPanel.SetActive(false);
     }
 
     private void DelayTimer()
@@ -119,7 +122,7 @@ public class Scr_3DButton : MonoBehaviour
 
             if (savedDelay <= 0)
             {
-                sunButton.planetPanel.SetActive(true);
+                planetFilesPanel.planetPanel.SetActive(true);
                 savedDelay = delay;
                 timerOn = false;
             }
@@ -154,10 +157,34 @@ public class Scr_3DButton : MonoBehaviour
 
     private void CheckIfBlocked()
     {
-        if (gameManager.planetsInfo[planetIndex] == false)
-            isBlocked = true;
+        if (buttonType == ButtonType.Planet)
+        {
+            if (systemIndex == 0)
+            {
+                if (Scr_LevelManager.system1Info[planetIndex] == false)
+                    isBlocked = true;
 
-        else
-            isBlocked = false;
+                else
+                    isBlocked = false;
+            }
+
+            else
+            {
+                if (Scr_LevelManager.system2Info[planetIndex] == false)
+                    isBlocked = true;
+
+                else
+                    isBlocked = false;
+            }
+        }
+
+        else if (buttonType == ButtonType.System)
+        {
+            if (Scr_LevelManager.galaxyInfo[systemIndex] == false)
+                isBlocked = true;
+
+            else
+                isBlocked = false;
+        }
     }
 }

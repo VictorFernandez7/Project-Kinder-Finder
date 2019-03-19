@@ -15,13 +15,24 @@ public class Scr_LevelManager : Scr_PersistentSingleton<Scr_LevelManager>
     [Header("References")]
     [SerializeField] private GameObject commandCanvas;
     [SerializeField] private TMP_InputField commandInputField;
-    [SerializeField] private Scr_AstronautsActions astronautsActions;
+
+    [HideInInspector] public static bool[] galaxyInfo;
+    [HideInInspector] public static bool[] system1Info;
+    [HideInInspector] public static bool[] system2Info;
 
     private bool isActive;
+    private Scr_AstronautsActions astronautsActions;
 
     private void Start()
     {
         astronautsActions = GameObject.Find("Astronaut").GetComponent<Scr_AstronautsActions>();
+
+        galaxyInfo = new bool[2];
+        system1Info = new bool[5];
+        system2Info = new bool[8];
+
+        galaxyInfo[0] = true;
+        system1Info[1] = true;
     }
 
     private void Update()
