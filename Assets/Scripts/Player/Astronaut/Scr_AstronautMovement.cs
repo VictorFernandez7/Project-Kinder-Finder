@@ -248,7 +248,14 @@ public class Scr_AstronautMovement : MonoBehaviour
         astronautAnim.SetBool("Moving", false);
         bodyAnim.SetBool("Moving", false);
 
-        canMove = false;
+        canMoveLeft = false;
+        canMoveRight = false;
+    }
+
+    public void MoveAgain()
+    {
+        canMoveLeft = true;
+        canMoveRight = true;
     }
 
     private void PlanetAttachment()
