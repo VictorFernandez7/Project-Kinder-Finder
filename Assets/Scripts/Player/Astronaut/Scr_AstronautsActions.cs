@@ -17,9 +17,10 @@ public class Scr_AstronautsActions : MonoBehaviour
     [SerializeField] private GameObject lantern;
     [SerializeField] private Scr_SunLight sunLight;
     [SerializeField] private Scr_GameManager gameManager;
-    [SerializeField] public Scr_PlayerShipWarehouse playerShipWarehouse;
     [SerializeField] private Scr_AstronautResourcesCheck astronautResourcesCheck;
     [SerializeField] private Scr_PlayerShipProxCheck playerShipProxCheck;
+    [SerializeField] private Scr_NarrativeManager narrativeManager;
+    [SerializeField] public Scr_PlayerShipWarehouse playerShipWarehouse;
 
     [HideInInspector] public int numberToolActive;
     [HideInInspector] public bool emptyHands;
@@ -30,6 +31,8 @@ public class Scr_AstronautsActions : MonoBehaviour
     private float fuelAmount;
     private float holdInputTime = 0.9f;
     private bool canInputAgain = true;
+    private bool pickFirst;
+    private bool introduceFirst;
 
     private GameObject currentResource;
     private Scr_CableVisuals cableVisuals;
@@ -97,6 +100,12 @@ public class Scr_AstronautsActions : MonoBehaviour
                 currentResource.GetComponent<BoxCollider2D>().enabled = false;
                 currentResource.transform.SetParent(pickPoint);
                 emptyHands = false;
+
+                if (!pickFirst)
+                {
+                    narrativeManager.StartDialogue(6);
+                    pickFirst = true;
+                }
             }
         }
 
@@ -140,6 +149,12 @@ public class Scr_AstronautsActions : MonoBehaviour
                     break;
                 }
             }
+        }
+
+        if (!introduceFirst)
+        {
+            narrativeManager.StartDialogue(7);
+            introduceFirst = true;
         }
 
         Destroy(currentResource);

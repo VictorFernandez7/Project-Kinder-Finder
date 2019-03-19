@@ -136,7 +136,7 @@ public class Scr_AstronautMovement : MonoBehaviour
 
         else if (Input.GetMouseButtonUp(1))
         {
-            canMove = true;
+            MoveAgain();
         }
 
         if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed && !interfaceManager.gamePaused)

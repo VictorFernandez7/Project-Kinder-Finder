@@ -91,9 +91,10 @@ public class Scr_MiningTool : Scr_ToolBase
         if (hitLaser)
         {
             if (hitLaser.collider.transform.CompareTag("Block"))
-            {
                 hitLaser.collider.transform.gameObject.GetComponent<Scr_Ore>().amount -= miningSpeed * Time.deltaTime;
-            }
+
+            else if(hitLaser.collider.transform.CompareTag("Breakeable"))
+                hitLaser.collider.transform.gameObject.GetComponent<Scr_Breakeable>().amount -= miningSpeed * Time.deltaTime;
         }
     }
 }

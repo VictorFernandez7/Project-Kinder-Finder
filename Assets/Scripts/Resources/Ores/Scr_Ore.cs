@@ -14,6 +14,7 @@ public class Scr_Ore : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Scr_ReferenceManager referenceManager;
+    [SerializeField] private Scr_PlayerShipStats playerShipStats;
 
     [HideInInspector] public GameObject currentResource;
 
@@ -107,6 +108,7 @@ public class Scr_Ore : MonoBehaviour
         if(amount <= (initalAmount - rest))
         {
             rest += 1;
+            playerShipStats.GetExperience(20);
             GameObject resource = Instantiate(currentResource, transform.position, transform.rotation);
             resource.transform.SetParent(transform.parent);
         }

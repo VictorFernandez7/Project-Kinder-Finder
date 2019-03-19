@@ -101,8 +101,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca2048cc7dabe1b40a5d398f3ee19b63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sightedXP: 0
-  exploredXP: 0
+  sightedXP: 40
+  exploredXP: 80
   ratio: 5
   xMax: 700
   yMax: 500
@@ -113,7 +113,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  planetsInfo: 000000000000
   shipCrafts: 00000000
   toolCrafts: 0000000000
   suitCrafts: 000000
@@ -391,11 +390,23 @@ MonoBehaviour:
   dialogues:
   - dialogTexts:
     - Jack. We are out of fuel.
-    - We need to explorer the planet to get out of here.
+    - We need to explore the planet to get out of here.
   - dialogTexts:
     - 'Look there. '
     - It seems to be a mining tool.
     - Take it to harvest some resources.
+  - dialogTexts:
+    - Nice!!
+    - Now we can mine.
+    - You can spawn your tools with the right button of your personal controller.
+  - dialogTexts:
+    - Oh!!
+    - That door looks broken.
+    - Maybe you can break it with a laser.
+  - dialogTexts:
+    - Look there.
+    - Its an old technology station.
+    - Use it to craft new tools and upgrades for the ship.
   panel: {fileID: 0}
   texts: {fileID: 0}
   astronautMovement: {fileID: 0}
