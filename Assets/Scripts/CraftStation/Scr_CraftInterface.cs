@@ -12,14 +12,26 @@ public class Scr_CraftInterface : MonoBehaviour
     [SerializeField] private TextMeshProUGUI craftDescription;
     [SerializeField] private Image resource1Icon;
     [SerializeField] private TextMeshProUGUI resource1Amount;
+    [SerializeField] private GameObject resource2;
     [SerializeField] private Image resource2Icon;
     [SerializeField] private TextMeshProUGUI resource2Amount;
+    [SerializeField] private GameObject resource3;
     [SerializeField] private Image resource3Icon;
     [SerializeField] private TextMeshProUGUI resource3Amount;
+    [SerializeField] private Button craftButton;
+    
+    [Header("Interface Style")]
+    [SerializeField] private Color colorWithoutResources;
+    [SerializeField] private Color colorWithResources;
 
     [Header("References")]
     [SerializeField] private Scr_CraftData craftData;
     [SerializeField] private Scr_ReferenceManager referenceManager;
+    [SerializeField] private Scr_PlayerShipWarehouse playerShipWarehouse;
+
+    [HideInInspector] public int index;
+
+    private bool enableCraft;
 
     public enum TypeOfCraft
     {
@@ -30,8 +42,6 @@ public class Scr_CraftInterface : MonoBehaviour
 
     public void UpdateInfo(TypeOfCraft typeOfCraft, int id)
     {
-        int index = 0;
-
         switch (typeOfCraft)
         {
             case TypeOfCraft.Ship:
@@ -68,17 +78,18 @@ public class Scr_CraftInterface : MonoBehaviour
                 break;
         }
 
+        List<string> keyr = new List<string>(playerShipWarehouse.Resources.Keys);
 
         craftIcon = craftData.CraftList[index].m_icon;
         craftName.text = craftData.CraftList[index].m_name;
         craftDescription.text = craftData.CraftList[index].m_info;
 
-        resource2Icon.gameObject.SetActive(false);
-        resource2Amount.gameObject.SetActive(false);
-        resource3Icon.gameObject.SetActive(false);
-        resource3Amount.gameObject.SetActive(false);
+        resource2.SetActive(false);
+        resource3.SetActive(false);
 
         int res = 0;
+
+        playerShipWarehouse.InventoryInfo();
 
         for(int i = 0; i < craftData.CraftList[index].resourceNameList.Count; i++)
         {
@@ -86,26 +97,68 @@ public class Scr_CraftInterface : MonoBehaviour
             {
                 resource1Icon.sprite = referenceManager.Resources[i].GetComponent<Scr_Resource>().icon;
                 resource1Amount.text = "x " + craftData.CraftList[index].resourceAmountList[i];
+
+                if (playerShipWarehouse.Resources[keyr[i]] >= craftData.CraftList[index].resourceAmountList[i])
+                {
+                    resource1Amount.color = colorWithResources;
+                    enableCraft = true;
+                }
+
+                else
+                {
+                    resource1Amount.color = colorWithoutResources;
+                    enableCraft = false;
+                }
+
                 res += 1;
             }
 
             else if(res == 1 && craftData.CraftList[index].resourceAmountList[i] != 0)
             {
-                resource2Icon.gameObject.SetActive(true);
-                resource2Amount.gameObject.SetActive(true);
+                resource2.SetActive(true);
 
                 resource2Icon.sprite = referenceManager.Resources[i].GetComponent<Scr_Resource>().icon;
                 resource2Amount.text = "x " + craftData.CraftList[index].resourceAmountList[i];
+
+                if (playerShipWarehouse.Resources[keyr[i]] >= craftData.CraftList[index].resourceAmountList[i])
+                {
+                    resource2Amount.color = colorWithResources;
+                    enableCraft = true;
+                }
+
+                else
+                {
+                    resource2Amount.color = colorWithoutResources;
+                    enableCraft = false;
+                }
+
+                res += 1;
             }
 
             else if(res == 2 && craftData.CraftList[index].resourceAmountList[i] != 0)
             {
-                resource3Icon.gameObject.SetActive(true);
-                resource3Amount.gameObject.SetActive(true);
+                resource3.SetActive(true);
 
                 resource3Icon.sprite = referenceManager.Resources[i].GetComponent<Scr_Resource>().icon;
                 resource3Amount.text = "x " + craftData.CraftList[index].resourceAmountList[i];
+
+                if (playerShipWarehouse.Resources[keyr[i]] >= craftData.CraftList[index].resourceAmountList[i])
+                {
+                    resource3Amount.color = colorWithResources;
+                    enableCraft = true;
+                }
+
+                else
+                {
+                    resource3Amount.color = colorWithoutResources;
+                    enableCraft = false;
+                }
             }
         }
+
+        if (!enableCraft)
+            craftButton.interactable = false;
+        else
+            craftButton.interactable = true;
     }
 }

@@ -1171,6 +1171,7 @@ GameObject:
   - component: {fileID: 2644601241822850494}
   - component: {fileID: 6253980377935134534}
   - component: {fileID: 7799462635792413993}
+  - component: {fileID: 296346454064570044}
   m_Layer: 0
   m_Name: InfoPanel
   m_TagString: Untagged
@@ -1235,12 +1236,39 @@ MonoBehaviour:
   craftDescription: {fileID: 9064664878832084204}
   resource1Icon: {fileID: 1193762596916395071}
   resource1Amount: {fileID: 1796182767719260877}
+  resource2: {fileID: 3836887649513358234}
   resource2Icon: {fileID: 397082871417992404}
   resource2Amount: {fileID: 6018187393543479530}
+  resource3: {fileID: 9127037569326993736}
   resource3Icon: {fileID: 2004213683667677583}
   resource3Amount: {fileID: 435545951830088168}
+  craftButton: {fileID: 4124159062151466579}
+  colorWithoutResources: {r: 0.8584906, g: 0.01214843, b: 0.01214843, a: 1}
+  colorWithResources: {r: 1, g: 1, b: 1, a: 1}
   craftData: {fileID: 11400000, guid: 03667f2d13e951f408175272bb9198a5, type: 2}
   referenceManager: {fileID: 0}
+  playerShipWarehouse: {fileID: 0}
+  index: 0
+--- !u!114 &296346454064570044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794633219208959227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 794c4a1c3b8183542a89c8cd072e5739, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerShipStats: {fileID: 0}
+  playerShipActions: {fileID: 0}
+  astronautsActions: {fileID: 0}
+  astronautMovement: {fileID: 0}
+  playerShipWarehouse: {fileID: 0}
+  craftData: {fileID: 11400000, guid: 03667f2d13e951f408175272bb9198a5, type: 2}
+  craftInterface: {fileID: 7799462635792413993}
+  rightPanel: {fileID: 6254819814452193608}
 --- !u!1 &1935868315743775995
 GameObject:
   m_ObjectHideFlags: 0
@@ -5199,7 +5227,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2127038078886345708}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 296346454064570044}
+        m_MethodName: CraftItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &8864661030767063605
