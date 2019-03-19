@@ -1,9 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.EventSystems;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Scr_SunButton : MonoBehaviour
+public class Scr_PlanetFilesPanel : MonoBehaviour
 {
     [Header("Current Interface Level")]
     [SerializeField] public InterfaceLevel interfaceLevel;
@@ -15,8 +12,6 @@ public class Scr_SunButton : MonoBehaviour
     [Header("References")]
     [SerializeField] public GameObject planetPanel;
     [SerializeField] private Animator anim;
-    [SerializeField] private GameObject planets;
-    [SerializeField] private GameObject systems;
     [SerializeField] private GameObject dragText;
     [SerializeField] private GameObject planetFilesCamera;
 
@@ -58,7 +53,6 @@ public class Scr_SunButton : MonoBehaviour
                 break;
             case InterfaceLevel.PlanetInfo:
                 dragText.SetActive(false);
-                // panel show
                 break;
         }
     }
@@ -81,10 +75,11 @@ public class Scr_SunButton : MonoBehaviour
 
     private void CameraPosUpdate()
     {
-        Vector3 planetCameraPos = new Vector3(targetCameraPos.x + xPositioning, targetCameraPos.y, targetCameraPos.z);
-
         if (interfaceLevel == InterfaceLevel.PlanetInfo)
+        {
+            Vector3 planetCameraPos = new Vector3(targetCameraPos.x + xPositioning, targetCameraPos.y, targetCameraPos.z);
             planetFilesCamera.transform.position = Vector3.Lerp(planetFilesCamera.transform.position, planetCameraPos, Time.deltaTime * cameraSpeed);
+        }
 
         else
             planetFilesCamera.transform.position = Vector3.Lerp(planetFilesCamera.transform.position, targetCameraPos, Time.deltaTime * cameraSpeed);

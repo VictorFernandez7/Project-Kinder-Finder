@@ -45,6 +45,11 @@ public class Scr_PlanetDiscovery : MonoBehaviour
     {
         explored = true;
         playerShipStats.GetExperience(gameManager.exploredXP);
-        gameManager.planetsInfo[planetIndex] = true;
+
+        if (Scr_Levels.currentLevel == Scr_Levels.LevelToLoad.PlanetSystem1)
+            Scr_LevelManager.system1Info[planetIndex] = true;
+
+        else if (Scr_Levels.currentLevel == Scr_Levels.LevelToLoad.PlanetSystem2)
+            Scr_LevelManager.system2Info[planetIndex] = true;
     }
 }
