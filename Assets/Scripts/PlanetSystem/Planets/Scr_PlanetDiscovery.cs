@@ -5,6 +5,9 @@ using UnityEngine;
 public class Scr_PlanetDiscovery : MonoBehaviour
 {
     [Header("Start Conditions")]
+    [SerializeField] private int planetIndex;
+
+    [Header("Start Conditions")]
     [SerializeField] private bool discovered;
 
     [Header("References")]
@@ -42,5 +45,6 @@ public class Scr_PlanetDiscovery : MonoBehaviour
     {
         explored = true;
         playerShipStats.GetExperience(gameManager.exploredXP);
+        gameManager.planetsInfo[planetIndex] = true;
     }
 }

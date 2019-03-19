@@ -38,7 +38,7 @@ public class Scr_SimpleRotation : MonoBehaviour
         if (translationSpeed > 0)
             transform.RotateAround(pivot.position, Vector3.forward, Time.deltaTime * translationSpeed);
 
-        if (!discovered)
+        if (!discovered && rotateCanvas)
             planetCanvas.transform.rotation = mainCamera.transform.rotation;
     }
 }
