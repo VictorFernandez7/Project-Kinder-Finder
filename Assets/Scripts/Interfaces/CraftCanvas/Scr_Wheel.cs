@@ -18,14 +18,17 @@ public class Scr_Wheel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     [SerializeField] private Camera mainCamera;
     [SerializeField] private GameObject wheel;
     [SerializeField] private Animator infoPanel;
+    [SerializeField] private Scr_CraftInterface craftInterface;
 
     [HideInInspector] public bool[] unlockedItems;
 
+    private int craftIndex;
     private bool mouseOver;
     private float minDistance;
     private string selectedTool;
     private string savedSelectedTool;
     private Animator anim;
+    private Scr_CraftInterface.TypeOfCraft category;
 
     private void Start()
     {
@@ -60,7 +63,7 @@ public class Scr_Wheel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     {
         anim.SetBool("Show", mouseOver);
 
-        if (mouseOver && Vector2.Distance(wheel.transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition)) > 0.15f)
+        if (mouseOver && Vector2.Distance(wheel.transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition)) > 0.1f)
         {
             UpdateSelectedTool();
 
@@ -87,6 +90,7 @@ public class Scr_Wheel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                 {
                     minDistance = Vector2.Distance(selectionIcons[i].transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition));
                     selectedTool = selectionIcons[i].name;
+                    craftIndex = i;
 
                     for (int j = 0; j < selectionSprites.Length; j++)
                     {
@@ -120,6 +124,21 @@ public class Scr_Wheel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
         else
             infoPanel.SetBool("Show", true);
+
+        switch (this.name)
+        {
+            case "Ship":
+                category = Scr_CraftInterface.TypeOfCraft.Ship;
+                break;
+            case "Tools":
+                category = Scr_CraftInterface.TypeOfCraft.Tool;
+                break;
+            case "Suit":
+                category = Scr_CraftInterface.TypeOfCraft.Suit;
+                break;
+        }
+
+        craftInterface.UpdateInfo(category, craftIndex);
     }
 
     private void ResetDistance()
