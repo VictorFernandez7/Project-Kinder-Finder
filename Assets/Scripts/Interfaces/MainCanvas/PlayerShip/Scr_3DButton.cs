@@ -11,6 +11,9 @@ public class Scr_3DButton : MonoBehaviour
     [Header("Select System Number")]
     [Range(0, 7)] [SerializeField] private int systemNumber;
 
+    [Header("Select Planet Index")]
+    [SerializeField] private int planetIndex;
+
     [Header("Planet Panel")]
     [SerializeField] private float delay;
 
@@ -24,6 +27,7 @@ public class Scr_3DButton : MonoBehaviour
     [Header("References (Planet)")]
     [SerializeField] private Transform cameraSpot;
     [SerializeField] private Scr_PlanetPanel planetPanel;
+    [SerializeField] private Scr_GameManager gameManager;
 
     [Header("References (System)")]
     [SerializeField] private Scr_FilesPanelAnimator filesPanelAnimator;
@@ -49,12 +53,13 @@ public class Scr_3DButton : MonoBehaviour
 
     private void Update()
     {
-        CheckIfBlocked();
+        UpdateVisuals();
 
         if (buttonType == ButtonType.Planet)
         {
             DelayTimer();
             CheckPanel();
+            CheckIfBlocked();
         }
 
         if (buttonType == ButtonType.System)
@@ -140,10 +145,19 @@ public class Scr_3DButton : MonoBehaviour
         }
     }
 
-    private void CheckIfBlocked()
+    private void UpdateVisuals()
     {
         notBlockedVisuals.SetActive(!isBlocked);
         blockedVisuals.SetActive(isBlocked);
         blockedIndicator.SetActive(isBlocked);
+    }
+
+    private void CheckIfBlocked()
+    {
+        if (gameManager.planetsInfo[planetIndex] == false)
+            isBlocked = true;
+
+        else
+            isBlocked = false;
     }
 }
