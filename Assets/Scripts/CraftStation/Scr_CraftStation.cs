@@ -16,6 +16,7 @@ public class Scr_CraftStation : MonoBehaviour
 
     private bool onRange;
     private bool interacting;
+    private GameObject astronaut;
     private TextMeshProUGUI interactText;
 
     private void Start()
@@ -32,13 +33,22 @@ public class Scr_CraftStation : MonoBehaviour
         {
             interacting = !interacting;
             Interact(interacting);
+
+            if (interacting)
+                astronaut.GetComponent<Scr_AstronautMovement>().Stop();
+
+            else
+                astronaut.GetComponent<Scr_AstronautMovement>().MoveAgain();
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Astronaut"))
+        {
             onRange = true;
+            astronaut = collision.gameObject;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
