@@ -13,6 +13,7 @@ public class Scr_NarrativeManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameObject panel;
     [SerializeField] private TextMeshProUGUI texts;
+    [SerializeField] private TextMeshProUGUI speakerName;
     [SerializeField] private Scr_AstronautMovement astronautMovement;
 
     [HideInInspector] public bool onDialogue;
@@ -37,6 +38,7 @@ public class Scr_NarrativeManager : MonoBehaviour
 
     public void StartDialogue(int index)
     {
+        speakerName.text = dialogues[index].speaker;
         astronautMovement.Stop();
         panel.SetActive(true);
         onDialogue = true;
@@ -85,5 +87,6 @@ public class Scr_NarrativeManager : MonoBehaviour
 [System.Serializable]
 public class Dialogue
 {
+    public string speaker;
     [TextArea] public string[] dialogTexts;
 }
