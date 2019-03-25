@@ -184,9 +184,12 @@ public class Scr_AstronautsActions : MonoBehaviour
 
     public void NoToolsOnHands()
     {
-        astronautStats.toolSlots[numberToolActive].SetActive(false);
-        toolOnHands = false;
-        emptyHands = true;
+        if (emptyHands)
+        {
+            astronautStats.toolSlots[numberToolActive].SetActive(false);
+            toolOnHands = false;
+            emptyHands = true;
+        }
     }
 
     private void TurnOnLantern()
