@@ -38,6 +38,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
     [SerializeField] private Image fuelSliderFill;
     [SerializeField] private Image shieldSliderFill;
     [SerializeField] private Slider fuelSlider;
+    [SerializeField] private Slider fuelTankSlider;
     [SerializeField] private Slider shieldSlider;
     [SerializeField] private Slider experienceSlider;
     [SerializeField] private Scr_GameManager gameManager;
@@ -70,6 +71,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         fuelSlider.maxValue = maxFuel;
+        fuelTankSlider.maxValue = maxFuel;
         shieldSlider.maxValue = maxShield;
     }
 
@@ -82,12 +84,17 @@ public class Scr_PlayerShipStats : MonoBehaviour
             GetExperience(35);
     }
 
+    float sliderValue;
+
     private void Fuel()
     {
         FuelSliderColor();
 
+        sliderValue = Mathf.Lerp(sliderValue, currentFuel, Time.deltaTime);
+
         currentFuel = Mathf.Clamp(currentFuel, 0f, maxFuel);
         fuelSlider.value = currentFuel;
+        fuelTankSlider.value = sliderValue;
 
         if (currentFuel <= ((fuelAlertPercentage / 100) * maxFuel))
             anim_FuelPanel.SetBool("Alert", true);

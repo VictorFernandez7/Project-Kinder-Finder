@@ -31581,7 +31581,7 @@ MonoBehaviour:
   shieldColor25: {r: 0, g: 0.41091633, b: 1, a: 1}
   shieldColor50: {r: 0, g: 0.71046233, b: 1, a: 1}
   shieldColor75: {r: 0, g: 0.9171715, b: 1, a: 1}
-  currentFuel: 350
+  currentFuel: 0
   maxFuel: 350
   fuelAlertPercentage: 25
   normalConsume: 0.1
@@ -31597,6 +31597,7 @@ MonoBehaviour:
   fuelSliderFill: {fileID: 0}
   shieldSliderFill: {fileID: 0}
   fuelSlider: {fileID: 0}
+  fuelTankSlider: {fileID: 0}
   shieldSlider: {fileID: 0}
   experienceSlider: {fileID: 0}
   gameManager: {fileID: 0}
@@ -31607,7 +31608,7 @@ MonoBehaviour:
   craftData: {fileID: 11400000, guid: 03667f2d13e951f408175272bb9198a5, type: 2}
   levelUpCanvas: {fileID: 0}
   resourceWarehouse:
-  - {fileID: 2918500654475464646, guid: b6e52706c38530445802607b730184e4, type: 3}
+  - {fileID: 1364721059764218, guid: 1fb546f9cd3a6f7409edd26a134a62ad, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -48722,6 +48723,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 029558f9818c274478e7ec56be4cf2f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dragMask:
+    serializedVersion: 2
+    m_Bits: 0
   resourcesWarehouseSlots: 0000000000000000000000000000000000000000000000000000000000000000000000
   playerShipStats: {fileID: 114778194997285574}
   playerShipActions: {fileID: 114928841212499524}
