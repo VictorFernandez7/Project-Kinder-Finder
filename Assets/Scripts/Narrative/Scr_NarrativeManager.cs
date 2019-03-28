@@ -42,7 +42,7 @@ public class Scr_NarrativeManager : MonoBehaviour
         textIndex = index;
         astronautMovement.Stop();
         panelAnim.gameObject.SetActive(true);
-        panelAnim.SetBool("show", true);
+        panelAnim.SetBool("Show", true);
         onDialogue = true;
 
         sentences.Clear();
@@ -84,7 +84,7 @@ public class Scr_NarrativeManager : MonoBehaviour
 
     private void EndDialogue()
     {
-        panelAnim.SetBool("show", false);
+        panelAnim.SetBool("Show", false);
         astronautMovement.MoveAgain();
     }
 }
