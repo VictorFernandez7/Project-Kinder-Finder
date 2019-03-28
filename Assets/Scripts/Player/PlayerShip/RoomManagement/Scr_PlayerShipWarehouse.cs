@@ -1,11 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class Scr_PlayerShipWarehouse : MonoBehaviour
 {
+    [Header("Drag Values")]
+    [SerializeField] private LayerMask dragMask;
+
     [Header("References")]
     [SerializeField] public Dictionary<string, int> Resources = new Dictionary<string, int>();
     [SerializeField] public bool[] resourcesWarehouseSlots;
@@ -90,29 +91,6 @@ public class Scr_PlayerShipWarehouse : MonoBehaviour
                 }
             }
         }
-    }
-
-    public void Refuel(int index)
-    {
-        if (!resourcesWarehouseSlots[index])
-        {
-            for(int i = 0; i < resourcesWarehouseSlots.Length; i++)
-            {
-                resourcesWarehouseSlots[i] = false;
-            }
-
-            resourcesWarehouseSlots[index] = true;
-        }
-
-        else if (resourcesWarehouseSlots[index])
-        {
-            if (playerShipStats.resourceWarehouse[index].name == "Fuel")
-            {
-                playerShipStats.currentFuel += 50;
-                playerShipStats.resourceWarehouse[index] = null;
-            }
-        }
-
     }
 
     //RESOURCE WAREHOUSE
