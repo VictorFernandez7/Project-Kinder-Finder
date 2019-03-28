@@ -2824,7 +2824,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224752648345233166}
   - component: {fileID: 222730624374121296}
-  - component: {fileID: 114558764541490230}
+  - component: {fileID: 7891701638261143635}
   m_Layer: 0
   m_Name: FuelPanelVisuals
   m_TagString: Untagged
@@ -2844,12 +2844,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224999625209378756}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -0.000061035156, y: 0}
-  m_SizeDelta: {x: 185.1, y: 173.6}
+  m_SizeDelta: {x: 82.9, y: -48.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &222730624374121296
 CanvasRenderer:
@@ -2859,7 +2859,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1040459552986276}
   m_CullTransparentMesh: 0
---- !u!114 &114558764541490230
+--- !u!114 &7891701638261143635
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2868,7 +2868,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1040459552986276}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: ef8b96895a0ec4ba685178a052544251, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -2879,15 +2879,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 6b631968ef88f7e4287f50e54caa3c51, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
+  m_Sprite: {fileID: 21300000, guid: 253724a04ee1ec444b5535957b9a75e1, type: 3}
 --- !u!1 &1050584913814830
 GameObject:
   m_ObjectHideFlags: 0
@@ -6190,20 +6182,20 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1557669236349926}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224567809571073844}
   - {fileID: 224025458907998834}
   - {fileID: 224641006941100626}
-  m_Father: {fileID: 224999625209378756}
-  m_RootOrder: 1
+  m_Father: {fileID: 6871269997070026035}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -19.43}
-  m_SizeDelta: {x: 275.3, y: 52.5}
+  m_AnchoredPosition: {x: 5.6399994, y: 0.30999756}
+  m_SizeDelta: {x: 287.45, y: 233.99}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &114758437259890196
 MonoBehaviour:
@@ -6248,7 +6240,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -7317,8 +7309,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 6871269997070026035}
   - {fileID: 224752648345233166}
-  - {fileID: 224322714212243624}
   - {fileID: 148765619760371152}
   m_Father: {fileID: 224134413828395690}
   m_RootOrder: 0
@@ -38688,6 +38680,87 @@ MonoBehaviour:
   res5: {fileID: 0}
   history: This is the placeholder text about a placeholder story of a placeholder
     planet wich exists in a placeholder galaxy.
+--- !u!1 &7932542492975577040
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6871269997070026035}
+  - component: {fileID: 9010015057031366195}
+  - component: {fileID: 946326106209000222}
+  - component: {fileID: 1594536933649438389}
+  m_Layer: 0
+  m_Name: FuelPanelVisualsFill
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6871269997070026035
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7932542492975577040}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 224322714212243624}
+  m_Father: {fileID: 224999625209378756}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 19.8, y: 0}
+  m_SizeDelta: {x: 39.6, y: -59.19}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &9010015057031366195
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7932542492975577040}
+  m_CullTransparentMesh: 0
+--- !u!114 &946326106209000222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7932542492975577040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef8b96895a0ec4ba685178a052544251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 0b172ef0561f7c848b2fae1f5dce08b6, type: 3}
+--- !u!114 &1594536933649438389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7932542492975577040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1200242548, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowMaskGraphic: 0
 --- !u!1 &7966741265654490864
 GameObject:
   m_ObjectHideFlags: 0
