@@ -388,26 +388,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedText: 0.01
   dialogues:
-  - dialogTexts:
-    - Jack. We are out of fuel.
-    - We need to explore the planet to get out of here.
-  - dialogTexts:
-    - 'Look there. '
-    - It seems to be a mining tool.
-    - Take it to harvest some resources.
-  - dialogTexts:
-    - Nice!!
-    - Now we can mine.
-    - You can spawn your tools with the right button of your personal controller.
-  - dialogTexts:
-    - Oh!!
-    - That door looks broken.
-    - Maybe you can break it with a laser.
-  - dialogTexts:
-    - Look there.
-    - Its an old technology station.
-    - Use it to craft new tools and upgrades for the ship.
+  - speaks:
+    - speaker: Jack
+      dialogTexts: Where the hell we are!!
+    - speaker: IA
+      dialogTexts: We are at sector 038G at an unexplored system.
+    - speaker: Jack
+      dialogTexts: Shut up stupid machine.
+    - speaker: IA
+      dialogTexts: 'We are out of fuel. '
+    - speaker: IA
+      dialogTexts: I recommend you explore the planet to get out of here.
   panel: {fileID: 0}
   texts: {fileID: 0}
+  speakerName: {fileID: 0}
   astronautMovement: {fileID: 0}
   onDialogue: 0
