@@ -4523,6 +4523,10 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1885023576, guid: 5c7e8f1f62be70143b2e0edf73736d31, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8070539312780426825, guid: 5c7e8f1f62be70143b2e0edf73736d31,
         type: 3}
       propertyPath: playerShipStats
@@ -4533,10 +4537,6 @@ PrefabInstance:
       propertyPath: playerShipWarehouse
       value: 
       objectReference: {fileID: 7760423348902016685}
-    - target: {fileID: 1885023576, guid: 5c7e8f1f62be70143b2e0edf73736d31, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2373328587930896597, guid: 5c7e8f1f62be70143b2e0edf73736d31,
         type: 3}
       propertyPath: playerShipStats
@@ -4879,6 +4879,12 @@ PrefabInstance:
       objectReference: {fileID: 7760423348902016685}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c7e8f1f62be70143b2e0edf73736d31, type: 3}
+--- !u!95 &367471065 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7712076789524193380, guid: 5c7e8f1f62be70143b2e0edf73736d31,
+    type: 3}
+  m_PrefabInstance: {fileID: 367471064}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &370206071
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10817,12 +10823,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 367471064}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1411496194 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1411496194, guid: 5c7e8f1f62be70143b2e0edf73736d31,
-    type: 3}
-  m_PrefabInstance: {fileID: 367471064}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1422695080 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114082731975807612, guid: 86116cd5e148cdc41b2b039f4eb5b686,
@@ -11749,6 +11749,50 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerShip
       objectReference: {fileID: 0}
+    - target: {fileID: 4030621875282276, guid: 15c55cceacb93ea4bb7e3f3c7e160410, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -72.1229
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030621875282276, guid: 15c55cceacb93ea4bb7e3f3c7e160410, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -299.4019
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030621875282276, guid: 15c55cceacb93ea4bb7e3f3c7e160410, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030621875282276, guid: 15c55cceacb93ea4bb7e3f3c7e160410, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030621875282276, guid: 15c55cceacb93ea4bb7e3f3c7e160410, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030621875282276, guid: 15c55cceacb93ea4bb7e3f3c7e160410, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.05241744
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030621875282276, guid: 15c55cceacb93ea4bb7e3f3c7e160410, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9986253
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030621875282276, guid: 15c55cceacb93ea4bb7e3f3c7e160410, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030621875282276, guid: 15c55cceacb93ea4bb7e3f3c7e160410, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030621875282276, guid: 15c55cceacb93ea4bb7e3f3c7e160410, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030621875282276, guid: 15c55cceacb93ea4bb7e3f3c7e160410, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 6.0090003
+      objectReference: {fileID: 0}
     - target: {fileID: 114928841212499524, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
         type: 3}
       propertyPath: astronautPickUp
@@ -11804,6 +11848,41 @@ PrefabInstance:
       propertyPath: toxicSuit
       value: 
       objectReference: {fileID: 1997891736}
+    - target: {fileID: 114696350668254112, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
+        type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 719102042}
+    - target: {fileID: 114696350668254112, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
+        type: 3}
+      propertyPath: limiterText
+      value: 
+      objectReference: {fileID: 1977235559}
+    - target: {fileID: 114696350668254112, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
+        type: 3}
+      propertyPath: speedText
+      value: 
+      objectReference: {fileID: 128569009}
+    - target: {fileID: 114696350668254112, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
+        type: 3}
+      propertyPath: speedSlider
+      value: 
+      objectReference: {fileID: 762136135}
+    - target: {fileID: 114696350668254112, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
+        type: 3}
+      propertyPath: limitSlider
+      value: 
+      objectReference: {fileID: 1772302800}
+    - target: {fileID: 114696350668254112, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
+        type: 3}
+      propertyPath: astronautMovement
+      value: 
+      objectReference: {fileID: 2028569275}
+    - target: {fileID: 114544141144842080, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
+        type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1611353680}
     - target: {fileID: 114778194997285574, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
         type: 3}
       propertyPath: fadeImage
@@ -11870,85 +11949,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1364721059764218, guid: 1af7df2c87ca17047aa99c1f798a3ca9,
         type: 3}
-    - target: {fileID: 114696350668254112, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
-        type: 3}
-      propertyPath: mainCamera
-      value: 
-      objectReference: {fileID: 719102042}
-    - target: {fileID: 114696350668254112, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
-        type: 3}
-      propertyPath: limiterText
-      value: 
-      objectReference: {fileID: 1977235559}
-    - target: {fileID: 114696350668254112, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
-        type: 3}
-      propertyPath: speedText
-      value: 
-      objectReference: {fileID: 128569009}
-    - target: {fileID: 114696350668254112, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
-        type: 3}
-      propertyPath: speedSlider
-      value: 
-      objectReference: {fileID: 762136135}
-    - target: {fileID: 114696350668254112, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
-        type: 3}
-      propertyPath: limitSlider
-      value: 
-      objectReference: {fileID: 1772302800}
-    - target: {fileID: 114696350668254112, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
-        type: 3}
-      propertyPath: astronautMovement
-      value: 
-      objectReference: {fileID: 2028569275}
-    - target: {fileID: 4030621875282276, guid: 15c55cceacb93ea4bb7e3f3c7e160410, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -72.1229
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030621875282276, guid: 15c55cceacb93ea4bb7e3f3c7e160410, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -299.4019
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030621875282276, guid: 15c55cceacb93ea4bb7e3f3c7e160410, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030621875282276, guid: 15c55cceacb93ea4bb7e3f3c7e160410, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030621875282276, guid: 15c55cceacb93ea4bb7e3f3c7e160410, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030621875282276, guid: 15c55cceacb93ea4bb7e3f3c7e160410, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.05241744
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030621875282276, guid: 15c55cceacb93ea4bb7e3f3c7e160410, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9986253
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030621875282276, guid: 15c55cceacb93ea4bb7e3f3c7e160410, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030621875282276, guid: 15c55cceacb93ea4bb7e3f3c7e160410, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030621875282276, guid: 15c55cceacb93ea4bb7e3f3c7e160410, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030621875282276, guid: 15c55cceacb93ea4bb7e3f3c7e160410, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 6.0090003
-      objectReference: {fileID: 0}
-    - target: {fileID: 114544141144842080, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
-        type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 1611353680}
     - target: {fileID: 114779136795001458, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
         type: 3}
       propertyPath: worldCanvas
@@ -13472,29 +13472,9 @@ PrefabInstance:
       objectReference: {fileID: 694369697}
     - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
         type: 3}
-      propertyPath: dialogues.Array.size
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[5].dialogTexts.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[6].dialogTexts.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[7].dialogTexts.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: panel
+      propertyPath: panelAnim
       value: 
-      objectReference: {fileID: 1411496194}
+      objectReference: {fileID: 367471065}
     - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
         type: 3}
       propertyPath: texts
@@ -13502,60 +13482,14 @@ PrefabInstance:
       objectReference: {fileID: 501117003}
     - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
         type: 3}
-      propertyPath: astronautMovement
-      value: 
-      objectReference: {fileID: 2028569275}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[5].dialogTexts.Array.data[0]
-      value: There is a solid resource.
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[5].dialogTexts.Array.data[1]
-      value: That green color means that is a fuel ore.
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[5].dialogTexts.Array.data[2]
-      value: Use it to craft new tools and upgrades for the ship.
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[6].dialogTexts.Array.data[0]
-      value: You need to take the resources to the ship.
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[6].dialogTexts.Array.data[1]
-      value: I know that was tedious...
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[6].dialogTexts.Array.data[2]
-      value: But to get rewards you need to work.
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[7].dialogTexts.Array.data[0]
-      value: Insert enough fuel and refuel at the playership warehouse to launch out
-        of the planet.
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[7].dialogTexts.Array.data[1]
-      value: I know that was tedious...
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[7].dialogTexts.Array.data[2]
-      value: But to get rewards you need to work.
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
       propertyPath: speakerName
       value: 
       objectReference: {fileID: 842369324}
+    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
+        type: 3}
+      propertyPath: astronautMovement
+      value: 
+      objectReference: {fileID: 2028569275}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ee248eae7fc7574998196240b18bb9b, type: 3}
 --- !u!114 &1776733534 stripped
