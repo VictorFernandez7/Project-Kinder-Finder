@@ -19,7 +19,8 @@ public class Scr_NarrativeManager : MonoBehaviour
     [HideInInspector] public bool onDialogue;
 
     private int step = 0;
-    private int characterIndex = 0;
+    private int speakerIndex = 0;
+    private int textIndex = 0;
     private Queue<string> sentences;
 
     private void Start()
@@ -33,33 +34,36 @@ public class Scr_NarrativeManager : MonoBehaviour
     private void Update()
     {
         if (Input.GetMouseButtonDown(0) && onDialogue)
-            DisplayNextSentence();
+            DisplayNextSentence(textIndex);
     }
 
     public void StartDialogue(int index)
     {
-        speakerName.text = dialogues[index].speaker;
+        textIndex = index;
         astronautMovement.Stop();
         panel.SetActive(true);
         onDialogue = true;
 
         sentences.Clear();
 
-        foreach(string sentence in dialogues[index].dialogTexts)
+        for(int i = 0; i < dialogues[index].speaks.Length; i++)
         {
-            sentences.Enqueue(sentence);
+            sentences.Enqueue(dialogues[index].speaks[i].dialogTexts);
         }
 
-        DisplayNextSentence();
+        DisplayNextSentence(textIndex);
     }
 
-    public void DisplayNextSentence()
+    public void DisplayNextSentence(int index)
     {
-        if(sentences.Count == 0)
+        if (sentences.Count == 0)
         {
             EndDialogue();
             return;
         }
+
+        speakerName.text = dialogues[index].speaks[speakerIndex].speaker;
+        speakerIndex += 1;
 
         string sentence = sentences.Dequeue();
         StopAllCoroutines();
@@ -87,6 +91,12 @@ public class Scr_NarrativeManager : MonoBehaviour
 [System.Serializable]
 public class Dialogue
 {
+    public Speak[] speaks;
+}
+
+[System.Serializable]
+public class Speak
+{
     public string speaker;
-    [TextArea] public string[] dialogTexts;
+    [TextArea] public string dialogTexts;
 }
