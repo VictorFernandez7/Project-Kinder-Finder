@@ -5,14 +5,11 @@ using UnityEngine;
 public class Scr_Wheel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [Header("Selection Icons")]
-    [SerializeField] public GameObject[] selectionIcons;
+    [SerializeField] public GameObject[] unlockedIcons;
+    [SerializeField] public GameObject[] lockedIcons;
 
     [Header("Selection Sprites")]
     [SerializeField] public GameObject[] selectionSprites;
-
-    [Header("Color References")]
-    [SerializeField] private Color lockedColor;
-    [SerializeField] private Color unlockedColor;
 
     [Header("References")]
     [SerializeField] private Camera mainCamera;
@@ -34,18 +31,17 @@ public class Scr_Wheel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     {
         anim = GetComponent<Animator>();
 
-        unlockedItems = new bool[selectionIcons.Length];
+        unlockedItems = new bool[unlockedIcons.Length];
         anim.SetBool("Show", false);
+        infoPanel.SetBool("Show", false);
 
         ResetDistance();
-
-        infoPanel.SetBool("Show", false);
     }
 
     private void Update()
     {
+        CheckIfLocked();
         MouseOverWheel();
-        UpdateSpriteColor();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -57,6 +53,24 @@ public class Scr_Wheel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public void OnPointerExit(PointerEventData eventData)
     {
         mouseOver = false;
+    }
+
+    private void CheckIfLocked()
+    {
+        for (int i = 0; i < unlockedItems.Length; i++)
+        {
+            if (unlockedItems[i] == true)
+            {
+                unlockedIcons[i].SetActive(true);
+                lockedIcons[i].SetActive(false);
+            }
+
+            else
+            {
+                unlockedIcons[i].SetActive(false);
+                lockedIcons[i].SetActive(true);
+            }
+        }
     }
 
     private void MouseOverWheel()
@@ -82,14 +96,14 @@ public class Scr_Wheel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     private void UpdateSelectedTool()
     {
-        for (int i = 0; i < selectionIcons.Length; i++)
+        for (int i = 0; i < unlockedIcons.Length; i++)
         {
-            if (Vector2.Distance(selectionIcons[i].transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition)) < minDistance)
+            if (Vector2.Distance(unlockedIcons[i].transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition)) < minDistance)
             {
                 if (unlockedItems[i] == true)
                 {
-                    minDistance = Vector2.Distance(selectionIcons[i].transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition));
-                    selectedTool = selectionIcons[i].name;
+                    minDistance = Vector2.Distance(unlockedIcons[i].transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition));
+                    selectedTool = unlockedIcons[i].name;
                     craftIndex = i;
 
                     for (int j = 0; j < selectionSprites.Length; j++)
@@ -144,17 +158,5 @@ public class Scr_Wheel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     private void ResetDistance()
     {
         minDistance = 1000000;
-    }
-
-    private void UpdateSpriteColor()
-    {
-        for (int i = 0; i < selectionIcons.Length; i++)
-        {
-            if (unlockedItems[i] == true)
-                selectionIcons[i].GetComponent<Image>().color = unlockedColor;
-
-            else
-                selectionIcons[i].GetComponent<Image>().color = lockedColor;
-        }
     }
 }
