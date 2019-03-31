@@ -4,8 +4,11 @@ using TMPro;
 
 public class Scr_Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    [Header("Tooltip Type")]
+    [SerializeField] private bool staticTooltip;
+
     [Header("Type Tooltip Text")]
-    [SerializeField] private string tipText;
+    [TextArea] [SerializeField] public string tipText;
 
     [Header("Text Parameters")]
     [SerializeField] private float xPos;
@@ -15,7 +18,9 @@ public class Scr_Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     [Header("References")]
     [SerializeField] private GameObject tooltip;
     [SerializeField] private Camera mainCamera;
+    [SerializeField] private Transform tooltipPos;
 
+    private bool mouseOver;
     private TextMeshProUGUI tooltipText;
 
     private void Start()
@@ -25,27 +30,39 @@ public class Scr_Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     private void Update()
     {
-        if (tooltip.activeInHierarchy)
+        if (mouseOver)
             ToolTipMovement();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        mouseOver = true;
+
         tooltipText.text = tipText;
         tooltipText.fontSize = fontSize;
         tooltip.SetActive(true);
-        tooltipText.transform.localPosition = new Vector3(xPos, yPos, tooltip.transform.position.z);
+
+        if (!staticTooltip)
+            tooltipText.transform.localPosition = new Vector3(xPos, yPos, tooltip.transform.position.z);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        mouseOver = false;
+
         tooltip.SetActive(false);
     }
 
     private void ToolTipMovement()
     {
-        Vector3 targetPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, tooltip.transform.position.z);
+        if (!staticTooltip)
+        {
+            Vector3 targetPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, tooltip.transform.position.z);
 
-        tooltip.transform.position = targetPos;
+            tooltip.transform.position = targetPos;
+        }
+
+        else
+            tooltip.transform.position = tooltipPos.position;
     }
 }
