@@ -2500,10 +2500,10 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 8534991560609946960}
   - {fileID: 450217489452992284}
   - {fileID: 3969863669950183181}
   - {fileID: 3221257956199557965}
+  - {fileID: 8534991560609946960}
   m_Father: {fileID: 224166198170107452}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -16903,7 +16903,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2043607276}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -19986,7 +19986,7 @@ RectTransform:
   m_Children:
   - {fileID: 356184732}
   m_Father: {fileID: 2043607276}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -21556,7 +21556,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2043607276}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -41458,7 +41458,7 @@ PrefabInstance:
     - target: {fileID: 2943398064936830408, guid: 8f4b3db10d97c564d98a9a70d4ebf6b3,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2943398064936830408, guid: 8f4b3db10d97c564d98a9a70d4ebf6b3,
         type: 3}
@@ -41525,26 +41525,21 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 8920310611251622373, guid: 8f4b3db10d97c564d98a9a70d4ebf6b3,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9112786991509905167, guid: 8f4b3db10d97c564d98a9a70d4ebf6b3,
-        type: 3}
-      propertyPath: tipText
-      value: Drag fuel here to refuel the ship
-      objectReference: {fileID: 0}
-    - target: {fileID: 9112786991509905167, guid: 8f4b3db10d97c564d98a9a70d4ebf6b3,
-        type: 3}
-      propertyPath: fontSize
-      value: 25
-      objectReference: {fileID: 0}
     - target: {fileID: 9112786991509905167, guid: 8f4b3db10d97c564d98a9a70d4ebf6b3,
         type: 3}
       propertyPath: tooltip
       value: 
       objectReference: {fileID: 6259225119440298952}
+    - target: {fileID: 9112786991509905167, guid: 8f4b3db10d97c564d98a9a70d4ebf6b3,
+        type: 3}
+      propertyPath: staticTooltip
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 158771303401835942, guid: 8f4b3db10d97c564d98a9a70d4ebf6b3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -264
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f4b3db10d97c564d98a9a70d4ebf6b3, type: 3}
 --- !u!224 &8534991560609946960 stripped
