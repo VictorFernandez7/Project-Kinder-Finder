@@ -36,6 +36,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
     [SerializeField] private BoxCollider2D collider;
     [SerializeField] private Animator fadeImage;
     [SerializeField] private Image fuelSliderFill;
+    [SerializeField] private Image fuelTankSliderFill;
     [SerializeField] private Image shieldSliderFill;
     [SerializeField] private Slider fuelSlider;
     [SerializeField] private Slider fuelTankSlider;
@@ -168,6 +169,15 @@ public class Scr_PlayerShipStats : MonoBehaviour
             fuelSliderFill.color = Color.Lerp(fuelSliderFill.color, fuelColor25, Time.deltaTime * colorChangeSpeed);
         if (fuelSlider.value <= (0.25f * fuelSlider.maxValue))
             fuelSliderFill.color = Color.Lerp(fuelSliderFill.color, fuelColor0, Time.deltaTime * colorChangeSpeed);
+
+        if (fuelTankSlider.value >= (0.75f * fuelTankSlider.maxValue))
+            fuelTankSliderFill.color = Color.Lerp(fuelTankSliderFill.color, fuelColor75, Time.deltaTime * colorChangeSpeed);
+        if (fuelTankSlider.value <= (0.75f * fuelTankSlider.maxValue))
+            fuelTankSliderFill.color = Color.Lerp(fuelTankSliderFill.color, fuelColor50, Time.deltaTime * colorChangeSpeed);
+        if (fuelTankSlider.value <= (0.50f * fuelTankSlider.maxValue))
+            fuelTankSliderFill.color = Color.Lerp(fuelTankSliderFill.color, fuelColor25, Time.deltaTime * colorChangeSpeed);
+        if (fuelTankSlider.value <= (0.25f * fuelTankSlider.maxValue))
+            fuelTankSliderFill.color = Color.Lerp(fuelTankSliderFill.color, fuelColor0, Time.deltaTime * colorChangeSpeed);
     }
 
     private void ShieldSliderColor()

@@ -11,6 +11,7 @@ public class Scr_DragFuel : MonoBehaviour, IPointerDownHandler,IPointerUpHandler
     [Header("References")]
     [SerializeField] private Scr_PlayerShipStats playerShipStats;
     [SerializeField] private Scr_PlayerShipWarehouse playerShipWarehouse;
+    [SerializeField] private GameObject fuelSliderGlow;
 
     private bool dragging;
     private bool onRange;
@@ -33,13 +34,21 @@ public class Scr_DragFuel : MonoBehaviour, IPointerDownHandler,IPointerUpHandler
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("FuelTank"))
+        {
             onRange = true;
+
+            if (playerShipStats.resourceWarehouse[itemIndex].name == "Fuel")
+                fuelSliderGlow.SetActive(true);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("FuelTank"))
+        {
             onRange = false;
+            fuelSliderGlow.SetActive(false);
+        }
     }
 
     private void Update()
