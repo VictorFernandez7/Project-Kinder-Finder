@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Scr_DragFuel : MonoBehaviour, IPointerDownHandler,IPointerUpHandler
+public class Scr_DragFuel : MonoBehaviour, IPointerDownHandler,IPointerUpHandler, IPointerEnterHandler
 {
-    [Header("ItemValues")]
+    [Header("Display Tooltip?")]
+    [SerializeField] private bool displayTooltip;
+
+    [Header("Item Values")]
     [SerializeField] private int itemIndex;
 
     [Header("References")]
@@ -15,6 +18,12 @@ public class Scr_DragFuel : MonoBehaviour, IPointerDownHandler,IPointerUpHandler
 
     private bool dragging;
     private bool onRange;
+
+    private void Update()
+    {
+        if (dragging)
+            transform.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+    }
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -28,7 +37,12 @@ public class Scr_DragFuel : MonoBehaviour, IPointerDownHandler,IPointerUpHandler
 
         if (onRange && playerShipStats.resourceWarehouse[itemIndex].name == "Fuel")
             Refuel();
-        
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (displayTooltip)
+            GetComponentInChildren<Scr_Tooltip>().tipText = playerShipStats.resourceWarehouse[itemIndex].name;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -49,12 +63,6 @@ public class Scr_DragFuel : MonoBehaviour, IPointerDownHandler,IPointerUpHandler
             onRange = false;
             fuelSliderGlow.SetActive(false);
         }
-    }
-
-    private void Update()
-    {
-        if (dragging)
-            transform.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
     }
 
     private void Refuel()

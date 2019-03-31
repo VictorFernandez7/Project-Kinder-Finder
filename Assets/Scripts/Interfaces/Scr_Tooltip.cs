@@ -8,7 +8,7 @@ public class Scr_Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     [SerializeField] private bool staticTooltip;
 
     [Header("Type Tooltip Text")]
-    [TextArea] [SerializeField] private string tipText;
+    [TextArea] [SerializeField] public string tipText;
 
     [Header("Text Parameters")]
     [SerializeField] private float xPos;
@@ -20,6 +20,7 @@ public class Scr_Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     [SerializeField] private Camera mainCamera;
     [SerializeField] private Transform tooltipPos;
 
+    private bool mouseOver;
     private TextMeshProUGUI tooltipText;
 
     private void Start()
@@ -29,12 +30,14 @@ public class Scr_Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     private void Update()
     {
-        if (tooltip.activeInHierarchy)
+        if (mouseOver)
             ToolTipMovement();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        mouseOver = true;
+
         tooltipText.text = tipText;
         tooltipText.fontSize = fontSize;
         tooltip.SetActive(true);
@@ -45,6 +48,8 @@ public class Scr_Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        mouseOver = false;
+
         tooltip.SetActive(false);
     }
 
