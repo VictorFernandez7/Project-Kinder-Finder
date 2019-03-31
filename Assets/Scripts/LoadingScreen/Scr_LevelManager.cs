@@ -16,6 +16,8 @@ public class Scr_LevelManager : Scr_PersistentSingleton<Scr_LevelManager>
     [SerializeField] private GameObject commandCanvas;
     [SerializeField] private TMP_InputField commandInputField;
 
+    [HideInInspector] public static bool[] unlockedTools;
+
     [HideInInspector] public static bool[] galaxyInfo;
     [HideInInspector] public static bool[] system1Info;
     [HideInInspector] public static bool[] system2Info;
@@ -28,6 +30,7 @@ public class Scr_LevelManager : Scr_PersistentSingleton<Scr_LevelManager>
         if (Scr_Levels.currentLevel == Scr_Levels.LevelToLoad.PlanetSystem1 || Scr_Levels.currentLevel == Scr_Levels.LevelToLoad.PlanetSystem2)
             astronautsActions = GameObject.Find("Astronaut").GetComponent<Scr_AstronautsActions>();
 
+        unlockedTools = new bool[6];
         galaxyInfo = new bool[2];
         system1Info = new bool[5];
         system2Info = new bool[8];
