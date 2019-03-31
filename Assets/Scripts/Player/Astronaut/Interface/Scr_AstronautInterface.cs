@@ -66,12 +66,12 @@ public class Scr_AstronautInterface : MonoBehaviour
 
     private void UpdateSelectedTool()
     {
-        for (int i = 0; i < toolWheel.tools.Length; i++)
+        for (int i = 0; i < toolWheel.unlockedTools.Length; i++)
         {
-            if (Vector2.Distance(toolWheel.tools[i].transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition)) < minDistance)
+            if (Vector2.Distance(toolWheel.unlockedTools[i].transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition)) < minDistance)
             {
-                minDistance = Vector2.Distance(toolWheel.tools[i].transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition));
-                selectedTool = toolWheel.tools[i].name;
+                minDistance = Vector2.Distance(toolWheel.unlockedTools[i].transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition));
+                selectedTool = toolWheel.unlockedTools[i].name;
                 toolIndex = i;
 
                 for (int j = 0; j < toolWheel.selectionSprites.Length; j++)
