@@ -35,7 +35,6 @@ public class Scr_AstronautMovement : MonoBehaviour
     [SerializeField] private float distance;
     [SerializeField] private float astronautHeight;
     [SerializeField] private float astronautWidth;
-    [SerializeField] private float maxMovementAngle;
     [SerializeField] private float minSlideAngle;
 
     [Header("Animation Properties")]
@@ -61,7 +60,6 @@ public class Scr_AstronautMovement : MonoBehaviour
     [HideInInspector] public bool faceRight;
     [HideInInspector] public bool breathable;
     [HideInInspector] public bool jumping;
-    [HideInInspector] public bool walking;
     [HideInInspector] public bool unlockedJetpack;
     [HideInInspector] public float timeAtAir;
     [HideInInspector] public float velocity;
@@ -86,10 +84,8 @@ public class Scr_AstronautMovement : MonoBehaviour
     private float currentAngle;
     private float currentDistance;
     private float inertialTime;
-    private Vector2 pointLeft;
-    private Vector2 pointRight;
+    private float surfaceAngle;
     private Vector2 movementVector;
-    private Vector2 lastVector;
     private Rigidbody2D astronautRb;
     private RaycastHit2D hitL;
     private RaycastHit2D hitR;
@@ -131,7 +127,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
-            Stop();
+            Stop(true, true);
         }
 
         else if (Input.GetMouseButtonUp(1))
@@ -157,9 +153,9 @@ public class Scr_AstronautMovement : MonoBehaviour
             hitL = Physics2D.Raycast(rayPointLeft.transform.position, -rayPointLeft.transform.up, Mathf.Infinity, collisionMask);
             hitR = Physics2D.Raycast(rayPointRight.transform.position, -rayPointRight.transform.up, Mathf.Infinity, collisionMask);
 
-            float anglex = Vector2.Angle(hitR.point - hitL.point, transform.right);
+            surfaceAngle = Vector2.Angle(hitR.point - hitL.point, transform.right);
 
-            if (anglex < minSlideAngle || jumping)
+            if ((surfaceAngle < minSlideAngle) || jumping)
             {
                 PlanetMovement();
 
@@ -200,56 +196,46 @@ public class Scr_AstronautMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        velocity = 0;
-        exponentialMultiplier = 1;
-        walking = false;
-
-        astronautAnim.SetBool("Moving", false);
-        bodyAnim.SetBool("Moving", false);
-
-        if (lastRight)
-            canMoveRight = false;
-
-        else
-            canMoveLeft = false;
+        Stop(false, lastRight);
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        canMoveLeft = true;
-        canMoveRight = true;
+        MoveAgain();
     }
 
     private void SlideDown()
     {
-        if (hitL)
-            pointLeft = hitL.point;
-
-        if (hitR)
-            pointRight = hitR.point;
-
-        if (Vector3.Project(pointLeft, transform.up).magnitude > Vector3.Project(pointRight, transform.up).magnitude)
-            movementVector = (pointLeft - pointRight).normalized;
+        if (Vector3.Project(hitL.point, transform.up).magnitude > Vector3.Project(hitR.point, transform.up).magnitude)
+            movementVector = (hitL.point - hitR.point).normalized;
 
         else
-            movementVector = (pointRight - pointLeft).normalized;
+            movementVector = (hitR.point - hitL.point).normalized;
 
         velocity += Vector3.Project((-transform.up * gravity), movementVector).magnitude / 2;
 
         transform.Translate(movementVector * velocity, Space.World);
     }
 
-    public void Stop()
+    public void Stop(bool complete, bool right)
     {
         velocity = 0;
         exponentialMultiplier = 1;
-        walking = false;
 
         astronautAnim.SetBool("Moving", false);
         bodyAnim.SetBool("Moving", false);
 
-        canMoveLeft = false;
-        canMoveRight = false;
+        if (complete)
+        {
+            canMoveLeft = false;
+            canMoveRight = false;
+        }
+
+        else if(right)
+            canMoveRight = false;
+
+        else
+            canMoveLeft = false;
     }
 
     public void MoveAgain()
@@ -273,67 +259,186 @@ public class Scr_AstronautMovement : MonoBehaviour
 
     private void PlanetMovement()
     {
-        if (canMove == true)
+        SnapToFloor();
+
+        if (Input.GetButton("Horizontal") && Input.GetAxis("Horizontal") < 0f && canMoveLeft)
         {
-            currentAngle = Vector2.Angle((hitL.point - hitR.point), transform.right);
-            currentAngle = 180 - currentAngle;
+            MoveOnPlanet(false, false);
 
-            SnapToFloor();
+            if (!jumping)
+                lastRight = false;
 
-            if (Input.GetButton("Horizontal") && Input.GetAxis("Horizontal") < 0f && canMoveLeft)
+            if (onGround)
+                bodyAnim.SetBool("Moving", true);
+
+            else
+                bodyAnim.SetBool("Moving", false);
+        }
+
+        else if (Input.GetButton("Horizontal") && Input.GetAxis("Horizontal") > 0f && canMoveRight)
+        {
+            MoveOnPlanet(false, true);
+
+            if (!jumping)
+                lastRight = true;
+
+            if (onGround)
+                bodyAnim.SetBool("Moving", true);
+
+            else
+                bodyAnim.SetBool("Moving", false);
+        }
+
+        else if (velocity > 0)
+        {
+            if (lastRight)
+                MoveOnPlanet(true, true);
+            else
+                MoveOnPlanet(true, false);
+        }
+
+        else
+        {
+            velocity = 0;
+            exponentialMultiplier = 1;
+
+            astronautAnim.SetBool("Moving", false);
+            bodyAnim.SetBool("Moving", false);
+        }
+
+        astronautAnim.SetBool("OnGround", !jumping);
+    }
+
+        private void SnapToFloor()
+    {
+        hitCentral = Physics2D.Raycast(transform.position, (currentPlanet.transform.position - transform.position).normalized, Mathf.Infinity, collisionMask);
+
+        if (hitCentral)
+            currentDistance = Vector3.Distance(transform.position, hitCentral.point);
+
+        if (!jumping && !keep)
+        {
+            if (currentDistance > (baseDistance + gravity))
+                transform.Translate(transform.up * -gravity, Space.World);
+
+            else if (currentDistance < (baseDistance - gravity))
+                transform.Translate(transform.up * gravity, Space.World);
+        }
+
+        else if ((currentDistance > (baseDistance - precisionHeight)) && (currentDistance < (baseDistance + precisionHeight)) && toJump)
+        {
+            vectorJump = new Vector2(0f, 0f);
+            timeAfterJump = savedTimeAfterJump;
+            toJump = false;
+            jumping = false;
+        }
+    }
+
+    private void MoveOnPlanet(bool decelerating, bool right)
+    {
+        float nextStepAngle = 0;
+
+        if (!right)
+        {
+            hitAngleUp = Physics2D.Raycast(transform.position + (-transform.up * 0.03f), -transform.right, 0.8f, collisionMask);
+            hitAngleDown = Physics2D.Raycast(transform.position + (-transform.up * 0.05f), -transform.right, 0.8f, collisionMask);
+        }
+
+        else
+        {
+            hitAngleUp = Physics2D.Raycast(transform.position + (-transform.up * 0.03f), transform.right, 0.08f, collisionMask);
+            hitAngleDown = Physics2D.Raycast(transform.position + (-transform.up * 0.05f), transform.right, 0.08f, collisionMask);
+        }
+
+        if (hitAngleUp && hitAngleDown)
+        {
+            if(right)
+                nextStepAngle = Vector2.Angle(hitAngleUp.point - hitAngleDown.point, transform.right);
+
+            else
+                nextStepAngle = Vector2.Angle(hitAngleUp.point - hitAngleDown.point, -transform.right);
+        }
+
+        if (!jumping)
+        {
+            if ((faceRight && !right) || (!faceRight && right))
+                Flip();
+
+            if (nextStepAngle < minSlideAngle)
             {
-                walking = true;
-                MoveLeft(false);
-
-                if(!jumping)
-                    lastRight = false;
-
-                astronautAnim.SetBool("Moving", true);
-
-                if (onGround)
-                    bodyAnim.SetBool("Moving", true);
-
-                else
-                    bodyAnim.SetBool("Moving", false);
+                SprintOrWalk(right, decelerating);
+                MoveAgain();
             }
 
-            else if (Input.GetButton("Horizontal") && Input.GetAxis("Horizontal") > 0f && canMoveRight)
+            else
+                Stop(false, lastRight);
+        }
+    }
+
+    private void SprintOrWalk(bool right, bool decelerating)
+    {
+        astronautAnim.SetBool("Moving", true);
+
+        if (!decelerating)
+        {
+            if (Input.GetButton("Boost"))
             {
-                walking = true;
-                MoveRight(false);
+                Move(right, sprintSpeed);
+                astronautAnim.SetFloat("Speed", 2);
+                bodyAnim.SetFloat("Speed", runSpeed);
 
-                if (!jumping)
-                    lastRight = true;
-
-                astronautAnim.SetBool("Moving", true);
-
-                if (onGround)
-                    bodyAnim.SetBool("Moving", true);
-
-                else
-                    bodyAnim.SetBool("Moving", false);
-            }
-
-            else if (velocity > 0)
-            {
-                if (lastRight)
-                    MoveRight(true);
-                else
-                    MoveLeft(true);
+                if (!breathable)
+                    GetComponent<Scr_AstronautStats>().currentOxygen -= 0.05f;
             }
 
             else
             {
-                velocity = 0;
-                exponentialMultiplier = 1;
-                walking = false;
-
-                astronautAnim.SetBool("Moving", false);
-                bodyAnim.SetBool("Moving", false);
+                Move(right, walkingSpeed);
+                astronautAnim.SetFloat("Speed", 1);
+                bodyAnim.SetFloat("Speed", walkSpeed);
             }
         }
 
-        astronautAnim.SetBool("OnGround", !jumping);
+        else
+            Move(right, 0);
+    }
+
+    private void Move(bool right, float movement)
+    {
+        if (!jumping)
+        {
+            if (right)
+                movementVector = (hitR.point - hitL.point).normalized;
+
+            if (!right)
+                movementVector = (hitL.point - hitR.point).normalized;
+        }
+
+        if (velocity < movement)
+        {
+            velocity += 0.0005f * exponentialMultiplier;
+            exponentialMultiplier += 0.5f;
+
+            if (velocity >= movement)
+            {
+                velocity = movement;
+                exponentialMultiplier = 1;
+            }
+        }
+
+        else if (velocity > movement)
+        {
+            velocity -= 0.001f * exponentialMultiplier;
+            exponentialMultiplier += 1f;
+
+            if (velocity <= movement)
+            {
+                velocity = movement;
+                exponentialMultiplier = 1;
+            }
+        }
+
+        transform.Translate(movementVector * velocity, Space.World);
     }
 
     private void Jumping()
@@ -349,7 +454,7 @@ public class Scr_AstronautMovement : MonoBehaviour
 
         if ((currentDistance > (baseDistance - precisionHeight)) && (currentDistance < (baseDistance + precisionHeight)))
         {
-            if (Input.GetButtonDown("Jump") && currentAngle <= maxMovementAngle)
+            if (Input.GetButtonDown("Jump") && (surfaceAngle < minSlideAngle && surfaceAngle > -minSlideAngle))
             {
                 timeAtAir = 0;
                 vectorJump = (transform.position - currentPlanet.transform.position).normalized * speedJump;
@@ -406,167 +511,6 @@ public class Scr_AstronautMovement : MonoBehaviour
             velocity -= (airDragModifier / 1000);
 
         transform.Translate(movementVector * velocity, Space.World);
-    }
-
-    private void SnapToFloor()
-    {
-        hitCentral = Physics2D.Raycast(transform.position, (currentPlanet.transform.position - transform.position).normalized, Mathf.Infinity, collisionMask);
-
-        if (hitCentral)
-            currentDistance = Vector3.Distance(transform.position, hitCentral.point);
-
-        if (!jumping && !keep)
-        {
-            if (currentDistance > (baseDistance + gravity))
-                transform.Translate(transform.up * -gravity, Space.World);
-
-            else if (currentDistance < (baseDistance - gravity))
-                transform.Translate(transform.up * gravity, Space.World);
-        }
-
-        else if ((currentDistance > (baseDistance - precisionHeight)) && (currentDistance < (baseDistance + precisionHeight)) && toJump)
-        {
-            vectorJump = new Vector2(0f, 0f);
-            timeAfterJump = savedTimeAfterJump;
-            toJump = false;
-            jumping = false;
-        }
-    }
-
-    private void MoveLeft(bool decelerating)
-    {
-        float angle = 0;
-        
-        if(jumping)
-            hitJL = Physics2D.Raycast(transform.position + (transform.up * astronautHeight) + (-transform.right * astronautWidth), -transform.up, distance, collisionMask);
-        
-            hitAngleUp = Physics2D.Raycast(transform.position + (-transform.up * 0.04f), -transform.right, 0.8f, collisionMask);
-            hitAngleDown = Physics2D.Raycast(transform.position + (-transform.up * 0.02f), -transform.right, 0.8f, collisionMask);
-
-        //Debug.DrawLine(transform.position + (transform.up * astronautHeight) + (-transform.right * astronautWidth), hitJL.point, Color.red);
-        Debug.DrawLine(transform.position + (-transform.up * 0.06f), transform.position + (-transform.up * 0.03f), Color.blue);
-        Debug.DrawLine(hitAngleDown.point, hitAngleUp.point, Color.blue);
-        if (hitAngleUp && hitAngleDown)
-            {
-                Vector2 vectorAngle = (hitAngleUp.point - hitAngleDown.point);
-                angle = Vector2.Angle(vectorAngle, transform.right) - 90;
-            }
-
-        if (!jumping)
-        {
-            if (hitL)
-                pointLeft = hitL.point;
-
-            if (hitR)
-                pointRight = hitR.point;
-
-            if (faceRight)
-                Flip();
-
-            if ((!hitJL && jumping) || angle <= maxMovementAngle)
-                Sprint(false, decelerating);
-        }
-    }
-
-    private void MoveRight(bool decelerating)
-    {
-        float angle = 0;
-
-        if (jumping)
-            hitJR = Physics2D.Raycast(transform.position + (transform.up * astronautHeight) + (transform.right * astronautWidth), -transform.up, distance, collisionMask);
-
-            hitAngleUp = Physics2D.Raycast(transform.position + (-transform.up * 0.06f), transform.right, 0.08f, collisionMask);
-            hitAngleDown = Physics2D.Raycast(transform.position + (-transform.up * 0.03f), transform.right, 0.08f, collisionMask);
-
-            if (hitAngleUp && hitAngleDown)
-            {
-                Vector2 vectorAngle = (hitAngleUp.point - hitAngleDown.point);
-                angle = Vector2.Angle(vectorAngle, -transform.right) - 90;
-            }
-
-        if (!jumping)
-        {
-            if (hitL)
-                pointLeft = hitL.point;
-
-            if (hitR)
-                pointRight = hitR.point;
-
-            Debug.DrawLine(rayPointLeft.transform.position, pointLeft, Color.yellow);
-            Debug.DrawLine(rayPointRight.transform.position, pointRight, Color.yellow);
-
-            if (!faceRight)
-                Flip();
-
-            if ((!hitJR && jumping) || angle <= maxMovementAngle)
-                Sprint(true, decelerating);
-        }
-    }
-
-    private void Move(bool right, float movement)
-    {
-        if (!jumping)
-        {
-            if (right)
-                movementVector = (pointRight - pointLeft).normalized;
-
-            if (!right)
-                movementVector = (pointLeft - pointRight).normalized;
-        }
-
-        Debug.DrawRay(transform.position, movementVector, Color.red);
-
-        if (velocity < movement)
-        {
-            velocity += 0.0005f * exponentialMultiplier;
-            exponentialMultiplier += 0.5f;
-
-            if (velocity >= movement)
-            {
-                velocity = movement;
-                exponentialMultiplier = 1;
-            }
-        }
-
-        else if (velocity > movement)
-        {
-            velocity -= 0.001f * exponentialMultiplier;
-            exponentialMultiplier += 1f;
-
-            if(velocity <= movement)
-            {
-                velocity = movement;
-                exponentialMultiplier = 1;
-            }
-        }
-
-        transform.Translate(movementVector * velocity, Space.World);
-    }
-
-    private void Sprint(bool right, bool decelerating)
-    {
-        if (!decelerating)
-        {
-            if (Input.GetButton("Boost"))
-            {
-                Move(right, sprintSpeed);
-                astronautAnim.SetFloat("Speed", 2);
-                bodyAnim.SetFloat("Speed", runSpeed);
-
-                if (!breathable)
-                    GetComponent<Scr_AstronautStats>().currentOxygen -= 0.05f;
-            }
-
-            else
-            {
-                Move(right, walkingSpeed);
-                astronautAnim.SetFloat("Speed", 1);
-                bodyAnim.SetFloat("Speed", walkSpeed);
-            }
-        }
-
-        else
-            Move(right, 0);
     }
 
     Vector3 playerShipPosition;

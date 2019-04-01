@@ -7,6 +7,7 @@ public class Scr_AstronautInterface : MonoBehaviour
     [SerializeField] private Transform worldCanvas;
     [SerializeField] private GameObject selectionWheel;
     [SerializeField] private Scr_PlayerShipMovement playerShipMovement;
+    [SerializeField] private Scr_NarrativeManager narrativeManager;
 
     private int toolIndex;
     private float minDistance;
@@ -24,7 +25,8 @@ public class Scr_AstronautInterface : MonoBehaviour
 
     private void Update()
     {
-        InputProcess();
+        if(!narrativeManager.onDialogue)
+            InputProcess();
     }
 
     private void InputProcess()
