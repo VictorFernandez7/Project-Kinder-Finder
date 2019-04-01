@@ -39,12 +39,12 @@ public class Scr_AstronautEffects : MonoBehaviour
 
     private void SoundManager()
     {
-        if (astronautMovement.walking && !musicManager.transform.GetChild(2).GetComponent<AudioSource>().isPlaying)
+        if (!musicManager.transform.GetChild(2).GetComponent<AudioSource>().isPlaying)
         {
             Scr_MusicManager.Instance.PlaySound(steps.Sound, 0);
         }
 
-        else if (!astronautMovement.walking && musicManager.transform.GetChild(2).GetComponent<AudioSource>().isPlaying)
+        else if ( musicManager.transform.GetChild(2).GetComponent<AudioSource>().isPlaying)
         {
             //Scr_MusicManager.Instance.StopSound(Scr_MusicManager.SoundType.LOOP_SOUNDS);
         }

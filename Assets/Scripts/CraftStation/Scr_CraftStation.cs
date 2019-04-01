@@ -35,7 +35,7 @@ public class Scr_CraftStation : MonoBehaviour
             Interact(interacting);
 
             if (interacting)
-                astronaut.GetComponent<Scr_AstronautMovement>().Stop();
+                astronaut.GetComponent<Scr_AstronautMovement>().Stop(true, true);
 
             else
                 astronaut.GetComponent<Scr_AstronautMovement>().MoveAgain();
