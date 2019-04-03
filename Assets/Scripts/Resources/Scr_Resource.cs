@@ -28,6 +28,7 @@ public class Scr_Resource : MonoBehaviour
     [HideInInspector] public bool onHands;
 
     private bool emulatePhysics;
+    private bool isGrounded;
     private float spawnAngle;
     private Rigidbody2D rb;
     private Scr_PlayerShipMovement playerShipMovement;
@@ -52,17 +53,22 @@ public class Scr_Resource : MonoBehaviour
 
     private void FixedUpdate()
     {
+        print(rb.velocity);
+        
         if (!onHands)
         {
             activationDelay -= Time.deltaTime;
 
-            if (activationDelay <= 0)
+            if (activationDelay <= 0 && !isGrounded)
             {
                 RaycastHit2D hit1 = Physics2D.Raycast(rayOrigin1.position, -transform.up, rayLength, collisionMask);
                 RaycastHit2D hit2 = Physics2D.Raycast(rayOrigin1.position, -transform.up, rayLength, collisionMask);
 
                 if (hit1 && hit2)
+                {
                     rb.isKinematic = true;
+                    isGrounded = true;
+                }
 
                 else
                 {
@@ -71,6 +77,9 @@ public class Scr_Resource : MonoBehaviour
                     rb.isKinematic = false;
                 }
             }
+
+            else if (activationDelay <= 0)
+                rb.velocity = Vector3.zero;
         }
 
         else
