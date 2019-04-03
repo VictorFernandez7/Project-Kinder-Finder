@@ -10,6 +10,10 @@ public class Scr_NarrativeManager : MonoBehaviour
     [SerializeField] private float speedText;
     [SerializeField] private Dialogue[] dialogues;
 
+    [Header("Image References")]
+    [SerializeField] private GameObject jackImage;
+    [SerializeField] private GameObject iaImage;
+
     [Header("References")]
     [SerializeField] private Animator panelAnim;
     [SerializeField] private TextMeshProUGUI texts;
@@ -63,7 +67,21 @@ public class Scr_NarrativeManager : MonoBehaviour
             return;
         }
 
-        speakerName.text = dialogues[index].speaks[speakerIndex].speaker;
+        switch (dialogues[index].speaks[speakerIndex].speaker)
+        {
+            case speakerID.Jack:
+                speakerName.text = "Jack";
+                jackImage.SetActive(true);
+                iaImage.SetActive(false);
+                break;
+
+            case speakerID.IA:
+                speakerName.text = "IA";
+                jackImage.SetActive(false);
+                iaImage.SetActive(true);
+                break;
+        }
+
         speakerIndex += 1;
 
         string sentence = sentences.Dequeue();
@@ -84,6 +102,7 @@ public class Scr_NarrativeManager : MonoBehaviour
 
     private void EndDialogue()
     {
+        speakerIndex = 0;
         panelAnim.SetBool("Show", false);
         onDialogue = false;
         astronautMovement.MoveAgain();
@@ -99,6 +118,12 @@ public class Dialogue
 [System.Serializable]
 public class Speak
 {
-    public string speaker;
+    public speakerID speaker;
     [TextArea] public string dialogTexts;
+}
+
+public enum speakerID
+{
+    Jack,
+    IA
 }
