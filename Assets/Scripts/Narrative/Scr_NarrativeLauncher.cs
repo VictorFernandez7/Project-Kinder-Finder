@@ -8,13 +8,14 @@ public class Scr_NarrativeLauncher : MonoBehaviour
     [SerializeField] private Scr_NarrativeManager narrativeManager;
 
     [Header("Narrative Parameters")]
+    [SerializeField] private bool isSingleDialogue;
     [SerializeField] private int dialogIndex;
 
     private bool launched;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Astronaut") && !launched)
+        if (collision.CompareTag("Astronaut") && !launched && isSingleDialogue)
         {
             narrativeManager.StartDialogue(dialogIndex);
             launched = true;
