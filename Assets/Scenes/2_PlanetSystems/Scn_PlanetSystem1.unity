@@ -4709,11 +4709,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4768274543656946, guid: 9a432fe9269ce584b9335543eee539f2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.2310028
+      value: -2.225
       objectReference: {fileID: 0}
     - target: {fileID: 4768274543656946, guid: 9a432fe9269ce584b9335543eee539f2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.1340027
+      value: -7.116
       objectReference: {fileID: 0}
     - target: {fileID: 4768274543656946, guid: 9a432fe9269ce584b9335543eee539f2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4792,6 +4792,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61835272635921014, guid: 9a432fe9269ce584b9335543eee539f2,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0.020777823
+      objectReference: {fileID: 0}
+    - target: {fileID: 61835272635921014, guid: 9a432fe9269ce584b9335543eee539f2,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.13532025
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a432fe9269ce584b9335543eee539f2, type: 3}
@@ -6883,12 +6893,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a60e7e6b4b4eba4ea7f0df72b7e1791, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &864277039 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4080018639410374, guid: a7965b5f8a536a540b7c003202d37841,
-    type: 3}
-  m_PrefabInstance: {fileID: 1466912763}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &877417781 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4792884631884954, guid: a5cdee0d6f6ee1747a656eec7515ded3,
@@ -7212,6 +7216,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61835272635921014, guid: 9a432fe9269ce584b9335543eee539f2,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0.03293722
+      objectReference: {fileID: 0}
+    - target: {fileID: 61835272635921014, guid: 9a432fe9269ce584b9335543eee539f2,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.13913603
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a432fe9269ce584b9335543eee539f2, type: 3}
@@ -10067,10 +10081,10 @@ PrefabInstance:
       propertyPath: narrativeManager
       value: 
       objectReference: {fileID: 82026447227232181}
-    - target: {fileID: 7396735265541841200, guid: a7965b5f8a536a540b7c003202d37841,
+    - target: {fileID: 8916045706075454727, guid: a7965b5f8a536a540b7c003202d37841,
         type: 3}
-      propertyPath: m_RootOrder
-      value: 4
+      propertyPath: m_Range
+      value: 0.14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7965b5f8a536a540b7c003202d37841, type: 3}
@@ -11425,36 +11439,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca2048cc7dabe1b40a5d398f3ee19b63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1641310524
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1641310525}
-  m_Layer: 20
-  m_Name: Lantern
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1641310525
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1641310524}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 864277039}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1642929147 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4541298953251721424, guid: 2e2ee6a2f3deacd4684cadfa4a335475,
@@ -12326,24 +12310,19 @@ PrefabInstance:
       objectReference: {fileID: 694369697}
     - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
         type: 3}
-      propertyPath: dialogues.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[1].speaks.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[2].speaks.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
       propertyPath: dialogues.Array.data[3].speaks.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
+        type: 3}
+      propertyPath: jackImage
+      value: 
+      objectReference: {fileID: 1663141252}
+    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
+        type: 3}
+      propertyPath: iaImage
+      value: 
+      objectReference: {fileID: 1287028950}
     - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
         type: 3}
       propertyPath: panelAnim
@@ -12366,143 +12345,13 @@ PrefabInstance:
       objectReference: {fileID: 2028569275}
     - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
         type: 3}
-      propertyPath: dialogues.Array.data[0].speaks.Array.data[1].speaker
+      propertyPath: dialogues.Array.data[3].speaks.Array.data[5].speaker
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
         type: 3}
-      propertyPath: dialogues.Array.data[0].speaks.Array.data[3].speaker
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[0].speaks.Array.data[4].speaker
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: jackImage
-      value: 
-      objectReference: {fileID: 1663141252}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: iaImage
-      value: 
-      objectReference: {fileID: 1287028950}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[1].speaks.Array.data[0].dialogTexts
-      value: "I\u2019m detecting a fuel ore near."
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[1].speaks.Array.data[1].speaker
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[1].speaks.Array.data[1].dialogTexts
-      value: We need to find something to harvest it.
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[1].speaks.Array.data[2].dialogTexts
-      value: (Deep growl as a complaint)
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[1].speaks.Array.data[3].speaker
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[1].speaks.Array.data[3].dialogTexts
-      value: 'We are out of fuel. '
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[1].speaks.Array.data[4].speaker
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[1].speaks.Array.data[4].dialogTexts
-      value: I recommend you explore the planet to get out of here.
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[1].speaks.Array.data[0].speaker
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[2].speaks.Array.data[0].speaker
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[2].speaks.Array.data[0].dialogTexts
-      value: My sensors detect a crashed ship in front of us.
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[2].speaks.Array.data[1].speaker
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[2].speaks.Array.data[1].dialogTexts
-      value: There are high possibilities to found useful rests.
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[2].speaks.Array.data[2].dialogTexts
-      value: Whatever you say.
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[3].speaks.Array.data[0].speaker
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[3].speaks.Array.data[0].dialogTexts
-      value: Yeah baby. My luck comes back.
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[3].speaks.Array.data[1].speaker
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[3].speaks.Array.data[1].dialogTexts
-      value: 'That seams to be a mining tool. '
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[3].speaks.Array.data[2].dialogTexts
-      value: Astronauts use it to take probes from the ores.
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[3].speaks.Array.data[3].dialogTexts
-      value: "Don\u2019t spoil me the moment."
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[3].speaks.Array.data[4].dialogTexts
-      value: You can spawn it by the secondary button of your controller.
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[3].speaks.Array.data[2].speaker
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 82026447227232180, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: dialogues.Array.data[3].speaks.Array.data[4].speaker
-      value: 1
+      propertyPath: dialogues.Array.data[3].speaks.Array.data[5].dialogTexts
+      value: Now you can try to extract the fuel from the ore we saw.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ee248eae7fc7574998196240b18bb9b, type: 3}

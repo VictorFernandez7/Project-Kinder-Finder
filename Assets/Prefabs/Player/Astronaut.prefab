@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 54109}
   - component: {fileID: 825139090}
   - component: {fileID: 825139091}
+  - component: {fileID: 380655785564044189}
   m_Layer: 20
   m_Name: SpotLight1
   m_TagString: Untagged
@@ -165,6 +166,19 @@ MonoBehaviour:
   blockerSampleCount: 24
   filterSampleCount: 16
   minFilterSize: 0.00001
+--- !u!114 &380655785564044189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 54107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a23af77284f5b754399474e32f28cae3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transforms: {fileID: 1237434967680266}
 --- !u!1 &173589048
 GameObject:
   m_ObjectHideFlags: 0
@@ -10862,7 +10876,7 @@ MonoBehaviour:
   iaResourcePoint: {fileID: 0}
   mainCamera: {fileID: 0}
   playerShip: {fileID: 0}
-  lantern: {fileID: 54107}
+  lantern: {fileID: 4343479621416924595}
   sunLight: {fileID: 0}
   gameManager: {fileID: 0}
   astronautResourcesCheck: {fileID: 668643024586636418}
@@ -12122,15 +12136,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65bca409f88c802499bf7bfd519a8ee1, type: 3}
---- !u!4 &4511095248147997 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4511096219209658, guid: 65bca409f88c802499bf7bfd519a8ee1,
-    type: 3}
-  m_PrefabInstance: {fileID: 1516362151}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1239214194977091 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1239215430283492, guid: 65bca409f88c802499bf7bfd519a8ee1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1516362151}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4511095248147997 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4511096219209658, guid: 65bca409f88c802499bf7bfd519a8ee1,
     type: 3}
   m_PrefabInstance: {fileID: 1516362151}
   m_PrefabAsset: {fileID: 0}
