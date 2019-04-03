@@ -103,7 +103,7 @@ public class Scr_AstronautsActions : MonoBehaviour
 
                 if (!pickFirst)
                 {
-                    narrativeManager.StartDialogue(6);
+                    narrativeManager.StartDialogue(4);
                     pickFirst = true;
                 }
             }
@@ -153,7 +153,7 @@ public class Scr_AstronautsActions : MonoBehaviour
 
         if (!introduceFirst)
         {
-            narrativeManager.StartDialogue(7);
+            narrativeManager.StartDialogue(5);
             introduceFirst = true;
         }
 
