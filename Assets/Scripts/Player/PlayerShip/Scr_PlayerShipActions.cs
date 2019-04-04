@@ -316,7 +316,8 @@ public class Scr_PlayerShipActions : MonoBehaviour
         astronaut.GetComponent<Scr_AstronautMovement>().planetPosition = lastFramePlanetPosition;
         astronaut.GetComponent<Scr_AstronautMovement>().onGround = true;
         playerShipMovement.mainCamera.GetComponent<Scr_MainCamera>().followAstronaut = true;
-        Instantiate(IA, IAStpot.position, IAStpot.rotation);
+        GameObject ia = Instantiate(IA, IAStpot.position, IAStpot.rotation);
+        astronaut.GetComponent<Scr_AstronautsActions>().iaResourcePoint = ia.transform.Find("ResourceSpot");
         playerShipMovement.currentPlanet.GetComponentInParent<Scr_PlanetDiscovery>().explored = true;
     }
 

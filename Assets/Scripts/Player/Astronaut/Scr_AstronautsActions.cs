@@ -11,7 +11,7 @@ public class Scr_AstronautsActions : MonoBehaviour
     [SerializeField] private Animator interactionIndicatorAnim;
     [SerializeField] public Transform pickPoint;
     [SerializeField] private Transform spawnPoint;
-    [SerializeField] private Transform iaResourcePoint;
+    [SerializeField] public Transform iaResourcePoint;
     [SerializeField] private GameObject mainCamera;
     [SerializeField] private GameObject playerShip;
     [SerializeField] private GameObject lantern;
@@ -35,7 +35,7 @@ public class Scr_AstronautsActions : MonoBehaviour
     private bool introduceFirst;
     private int resourceIndex = 0;
 
-    private GameObject[] currentResource = new GameObject[5];
+    public GameObject[] currentResource = new GameObject[5];
     private Scr_CableVisuals cableVisuals;
     private Scr_AstronautMovement astronautMovement;
     private Scr_AstronautStats astronautStats;

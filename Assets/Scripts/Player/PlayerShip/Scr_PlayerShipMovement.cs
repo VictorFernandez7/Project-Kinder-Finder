@@ -315,7 +315,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
                     playerShipPrediction.predictionTime = 6;
             }
 
-            if (Input.GetKey(KeyCode.LeftShift) && playerShipState == PlayerShipState.landed && canControlShip && !damaged)
+            if (Input.GetKey(KeyCode.LeftShift) && playerShipState == PlayerShipState.landed && canControlShip && !damaged && playerShipStats.currentFuel > (playerShipStats.maxFuel * 0.15f))
             {
                 playerShipEffects.warmingSlider.gameObject.SetActive(true);
                 playerShipEffects.warmingSlider.value += Time.deltaTime * warmingSpeed;

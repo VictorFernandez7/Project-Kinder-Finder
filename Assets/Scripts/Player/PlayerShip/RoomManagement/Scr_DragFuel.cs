@@ -19,10 +19,22 @@ public class Scr_DragFuel : MonoBehaviour, IPointerDownHandler,IPointerUpHandler
     private bool dragging;
     private bool onRange;
 
+    private void Start()
+    {
+        if(GetComponentInChildren<Scr_Tooltip>())
+            GetComponentInChildren<Scr_Tooltip>().tipText = "";
+    }
+
     private void Update()
     {
         if (dragging)
             transform.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+
+        if (playerShipStats.resourceWarehouse[itemIndex] != null)
+            displayTooltip = true;
+
+        else
+            displayTooltip = false;
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -41,7 +53,7 @@ public class Scr_DragFuel : MonoBehaviour, IPointerDownHandler,IPointerUpHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (displayTooltip)
+        if (displayTooltip && playerShipStats.resourceWarehouse[itemIndex] != null)
             GetComponentInChildren<Scr_Tooltip>().tipText = playerShipStats.resourceWarehouse[itemIndex].name;
     }
 
