@@ -19,6 +19,7 @@ public class Scr_PickUpMiningTool : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.E) && onRange)
         {
             astronautActions.unlockedTools[0] = true;
+            Scr_LevelManager.unlockedTools[0] = true;
             narrativeManager.StartDialogue(dialogIndex);
             Destroy(this.gameObject);
         }

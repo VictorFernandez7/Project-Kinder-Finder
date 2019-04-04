@@ -8,10 +8,9 @@ public class Scr_Travel : MonoBehaviour
 
     private static Scr_PlayerShipWarehouse playerShipWarehouse;
 
-    private void Start()
+    public static void Finder()
     {
-        if (Scr_Levels.currentLevel == Scr_Levels.LevelToLoad.PlanetSystem1 || Scr_Levels.currentLevel == Scr_Levels.LevelToLoad.PlanetSystem2)
-            playerShipWarehouse = GameObject.Find("RoomManagement").GetComponent<Scr_PlayerShipWarehouse>();
+        playerShipWarehouse = GameObject.Find("RoomManagement").GetComponent<Scr_PlayerShipWarehouse>();
     }
 
     public static void JumpTravel(bool multiJump, Scr_Levels.Galaxies targetGalaxy, Scr_Levels.LevelToLoad targetSystem)
