@@ -49,6 +49,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
     [SerializeField] public Scr_LevelData levelData;
     [SerializeField] public Scr_CraftData craftData;
     [SerializeField] public Scr_LevelUpCanvas levelUpCanvas;
+    [SerializeField] public Scr_NarrativeManager narrativeManager;
 
     [Header("Inventory")]
     [SerializeField] public GameObject[] resourceWarehouse;
@@ -64,6 +65,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
     private Rigidbody2D rb;
     private Scr_PlayerShipMovement playerShipMovement;
     private Scr_PlayerShipEffects playerShipEffects;
+    private bool isRefueled;
 
     private void Start()
     {
@@ -83,6 +85,9 @@ public class Scr_PlayerShipStats : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.L))
             GetExperience(35);
+
+        if(currentFuel == maxFuel && !isRefueled)
+            narrativeManager.StartDialogue(9);
     }
 
     float sliderValue;

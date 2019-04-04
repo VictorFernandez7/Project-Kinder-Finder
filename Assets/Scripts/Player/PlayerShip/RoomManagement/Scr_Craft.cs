@@ -68,7 +68,10 @@ public class Scr_Craft : MonoBehaviour {
     private void GenerateCraft()
     {
         if(craftData.CraftList[craftInterface.index].craftType == CraftType.tools)
+        {
             astronautsActions.unlockedTools[craftData.CraftList[craftInterface.index].ToolNum] = true;
+            Scr_LevelManager.unlockedTools[craftData.CraftList[craftInterface.index].ToolNum] = true;
+        }
 
         if (craftData.CraftList[craftInterface.index].craftType == CraftType.jetpack)
             astronautMovement.unlockedJetpack = true;

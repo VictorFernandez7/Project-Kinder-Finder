@@ -40,6 +40,12 @@ public class Scr_GameManager : MonoBehaviour
         initialRatio = ratio;
     }
 
+    private void Start()
+    {
+        Scr_LevelManager.Finder();
+        Scr_Travel.Finder();
+    }
+
     private void Update()
     {
         VortexSpawn();
