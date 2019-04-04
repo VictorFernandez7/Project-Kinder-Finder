@@ -33,8 +33,9 @@ public class Scr_AstronautsActions : MonoBehaviour
     private bool canInputAgain = true;
     private bool pickFirst;
     private bool introduceFirst;
+    private int resourceIndex = 0;
 
-    private GameObject currentResource;
+    private GameObject[] currentResource = new GameObject[5];
     private Scr_CableVisuals cableVisuals;
     private Scr_AstronautMovement astronautMovement;
     private Scr_AstronautStats astronautStats;
@@ -55,7 +56,7 @@ public class Scr_AstronautsActions : MonoBehaviour
     {
         if (Input.GetButton("Interact"))
         {
-            if (astronautMovement.canEnterShip && emptyHands)
+            if (astronautMovement.canEnterShip && emptyHands && resourceIndex == 0)
             {
                 holdInputTime -= Time.deltaTime;
                 interactionIndicatorAnim.gameObject.SetActive(true);
@@ -89,18 +90,54 @@ public class Scr_AstronautsActions : MonoBehaviour
             if (toolOnHands)
                 astronautStats.toolSlots[numberToolActive].GetComponent<Scr_ToolBase>().UseTool();
 
-            else if (emptyHands && !toolOnHands && astronautResourcesCheck.resourceList.Count > 0)
+            else if (emptyHands && !toolOnHands && astronautResourcesCheck.resourceList.Count > 0 && resourceIndex < 5)
             {
+                switch (resourceIndex)
+                {
+                    case 0:
+                        currentResource[0] = astronautResourcesCheck.resourceList[0];
+                        currentResource[0].transform.position = iaResourcePoint.position + (-iaResourcePoint.up * 0.15f);
+                        currentResource[0].GetComponent<Scr_Resource>().onHands = true;
+                        currentResource[0].GetComponent<BoxCollider2D>().enabled = false;
+                        currentResource[0].transform.SetParent(iaResourcePoint);
+                        break;
 
-                currentResource = astronautResourcesCheck.resourceList[0];
-                astronautResourcesCheck.resourceList.RemoveAt(0);
+                    case 1:
+                        currentResource[1] = astronautResourcesCheck.resourceList[0];
+                        currentResource[1].transform.position = iaResourcePoint.position + (iaResourcePoint.up * 0.15f);
+                        currentResource[1].GetComponent<Scr_Resource>().onHands = true;
+                        currentResource[1].GetComponent<BoxCollider2D>().enabled = false;
+                        currentResource[1].transform.SetParent(iaResourcePoint);
+                        break;
 
-                currentResource.transform.position = pickPoint.position;
-                currentResource.GetComponent<Scr_Resource>().onHands = true;
-                currentResource.GetComponent<BoxCollider2D>().enabled = false;
-                currentResource.transform.SetParent(pickPoint);
-                emptyHands = false;
+                    case 2:
+                        currentResource[2] = astronautResourcesCheck.resourceList[0];
+                        currentResource[2].transform.position = iaResourcePoint.position + (-iaResourcePoint.right * 0.15f);
+                        currentResource[2].GetComponent<Scr_Resource>().onHands = true;
+                        currentResource[2].GetComponent<BoxCollider2D>().enabled = false;
+                        currentResource[2].transform.SetParent(iaResourcePoint);
+                        break;
 
+                    case 3:
+                        currentResource[3] = astronautResourcesCheck.resourceList[0];
+                        currentResource[3].transform.position = iaResourcePoint.position + (iaResourcePoint.right * 0.15f);
+                        currentResource[3].GetComponent<Scr_Resource>().onHands = true;
+                        currentResource[3].GetComponent<BoxCollider2D>().enabled = false;
+                        currentResource[3].transform.SetParent(iaResourcePoint);
+                        break;
+
+                    case 4:
+                        currentResource[4] = astronautResourcesCheck.resourceList[0];
+                        currentResource[4].transform.position = pickPoint.position;
+                        currentResource[4].GetComponent<Scr_Resource>().onHands = true;
+                        currentResource[4].GetComponent<BoxCollider2D>().enabled = false;
+                        currentResource[4].transform.SetParent(pickPoint);
+                        emptyHands = false;
+                        break;
+                }
+
+                resourceIndex += 1;
+                
                 if (!pickFirst)
                 {
                     narrativeManager.StartDialogue(4);
@@ -139,14 +176,23 @@ public class Scr_AstronautsActions : MonoBehaviour
 
     private void IntroduceResource()
     {
-        if (currentResource.CompareTag("Resources"))
+        for(int i = 0; i < currentResource.Length; i++)
         {
-            for (int j = 0; j < playerShip.GetComponent<Scr_PlayerShipStats>().resourceWarehouse.Length; j++)
+            if (currentResource[i] != null)
             {
-                if (playerShip.GetComponent<Scr_PlayerShipStats>().resourceWarehouse[j] == null)
+                if (currentResource[i].CompareTag("Resources"))
                 {
-                    playerShip.GetComponent<Scr_PlayerShipStats>().resourceWarehouse[j] = currentResource.GetComponent<Scr_Resource>().resourceReference;
-                    break;
+                    for (int j = 0; j < playerShip.GetComponent<Scr_PlayerShipStats>().resourceWarehouse.Length; j++)
+                    {
+                        if (playerShip.GetComponent<Scr_PlayerShipStats>().resourceWarehouse[j] == null)
+                        {
+                            playerShip.GetComponent<Scr_PlayerShipStats>().resourceWarehouse[j] = currentResource[i].GetComponent<Scr_Resource>().resourceReference;
+                            break;
+                        }
+                    }
+
+                    Destroy(currentResource[i].gameObject);
+                    currentResource[i] = null;
                 }
             }
         }
@@ -157,8 +203,7 @@ public class Scr_AstronautsActions : MonoBehaviour
             introduceFirst = true;
         }
 
-        Destroy(currentResource);
-        currentResource = null;
+        resourceIndex = 0;
         emptyHands = true;
     }
 
