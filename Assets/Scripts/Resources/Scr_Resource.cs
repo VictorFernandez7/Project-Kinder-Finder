@@ -52,9 +52,7 @@ public class Scr_Resource : MonoBehaviour
     }
 
     private void FixedUpdate()
-    {
-        print(rb.velocity);
-        
+    {        
         if (!onHands)
         {
             activationDelay -= Time.deltaTime;
@@ -68,6 +66,7 @@ public class Scr_Resource : MonoBehaviour
                 {
                     rb.isKinematic = true;
                     isGrounded = true;
+                    rb.velocity = Vector3.zero;
                 }
 
                 else
