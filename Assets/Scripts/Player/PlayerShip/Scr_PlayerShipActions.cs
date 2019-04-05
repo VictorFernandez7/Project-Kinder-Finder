@@ -309,12 +309,10 @@ public class Scr_PlayerShipActions : MonoBehaviour
         astronaut.GetComponent<Scr_AstronautMovement>().currentPlanet = playerShipMovement.currentPlanet;
         astronaut.transform.rotation = Quaternion.LookRotation(astronaut.transform.forward, (astronaut.transform.position - playerShipMovement.currentPlanet.transform.position));
         astronaut.SetActive(true);
-        astronaut.GetComponent<Scr_AstronautMovement>().keep = false;
         astronaut.GetComponent<Scr_AstronautMovement>().planetRotation = playerShipMovement.currentPlanet.transform.rotation;
         playerShipMovement.astronautOnBoard = false;
         playerShipMovement.canControlShip = false;
         astronaut.GetComponent<Scr_AstronautMovement>().planetPosition = lastFramePlanetPosition;
-        astronaut.GetComponent<Scr_AstronautMovement>().onGround = true;
         playerShipMovement.mainCamera.GetComponent<Scr_MainCamera>().followAstronaut = true;
         GameObject ia = Instantiate(IA, IAStpot.position, IAStpot.rotation);
         astronaut.GetComponent<Scr_AstronautsActions>().iaResourcePoint = ia.transform.Find("ResourceSpot");

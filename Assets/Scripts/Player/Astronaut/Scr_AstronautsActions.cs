@@ -155,7 +155,6 @@ public class Scr_AstronautsActions : MonoBehaviour
             playerShip.GetComponent<Scr_PlayerShipActions>().startExitDelay = true;
             playerShip.GetComponent<Scr_PlayerShipMovement>().canControlShip = true;
             mainCamera.GetComponent<Scr_MainCamera>().followAstronaut = false;
-            astronautMovement.keep = true;
             playerShipWarehouse.ReadNames();
             gameObject.SetActive(false);
     }
