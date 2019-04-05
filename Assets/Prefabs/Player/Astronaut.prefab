@@ -10906,8 +10906,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13991ef6310ac6e44bfd40289a73e7f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkingSpeed: 0.015
-  sprintSpeed: 0.03
+  walkSpeed: 0.02
+  runSpeed: 0.03
   collisionMask:
     serializedVersion: 2
     m_Bits: 5120
@@ -10921,7 +10921,6 @@ MonoBehaviour:
     m_Bits: 4096
   precisionHeight: 0.06
   speedJump: 0.02
-  fallModifier: 0.6
   airDragModifier: 0.001
   gravity: 0.01
   speedJetpack: 0
@@ -10930,31 +10929,21 @@ MonoBehaviour:
   astronautHeight: 0.08
   astronautWidth: 0.08
   minSlideAngle: 40
-  walkSpeed: 0.33
-  runSpeed: 0
+  walkAnimationSpeed: 0
+  runAnimationSpeed: 0
   rayPointLeft: {fileID: 1705007326068512}
   rayPointRight: {fileID: 1642608111972328}
   walkingParticles: {fileID: 198665950421681262}
   transforms: {fileID: 4080018639410374}
   astronautVisuals: {fileID: 9188732813530184360}
   astronautAnim: {fileID: 9188732813537462634}
-  bodyAnim: {fileID: 1171857779031409037}
   playerShip: {fileID: 0}
   mainCamera: {fileID: 0}
   interfaceManager: {fileID: 0}
-  onGround: 1
-  canMove: 1
   canEnterShip: 0
-  keep: 0
-  faceRight: 1
   breathable: 0
-  jumping: 0
   unlockedJetpack: 0
-  timeAtAir: 0
-  velocity: 0
-  exponentialMultiplier: 0
   planetPosition: {x: 146.10114, y: 11.952582, z: 0}
-  vectorJump: {x: 0, y: 0, z: 0}
   planetRotation: {x: -0, y: -0, z: 0.57485926, w: 0.8182523}
   currentPlanet: {fileID: 0}
 --- !u!114 &114544908541210520

@@ -6,8 +6,8 @@ using UnityEngine;
 public class Scr_AstronautMovement : MonoBehaviour
 {
     [Header("Movement Properties")]
-    [SerializeField] private float walkingSpeed;
-    [SerializeField] private float sprintSpeed;
+    [SerializeField] private float walkSpeed;
+    [SerializeField] private float runSpeed;
     [SerializeField] private LayerMask collisionMask;
 
     [Header("Space Walk Parameters")]
@@ -18,11 +18,9 @@ public class Scr_AstronautMovement : MonoBehaviour
     [SerializeField] private float damageMultiplier;
     [SerializeField] private LayerMask asteroidMask;
 
-    [Header("Height Properties")]
+    [Header("Jump Properties")]
     [SerializeField] private float precisionHeight;
     [SerializeField] private float speedJump;
-    [Tooltip("Smaller value fall slower")]
-    [SerializeField] private float fallModifier;
     [Tooltip("Smaller value drag less")]
     [SerializeField] private float airDragModifier;
     [SerializeField] private float gravity;
@@ -38,8 +36,8 @@ public class Scr_AstronautMovement : MonoBehaviour
     [SerializeField] private float minSlideAngle;
 
     [Header("Animation Properties")]
-    [SerializeField] private float walkSpeed;
-    [SerializeField] private float runSpeed;
+    [SerializeField] private float walkAnimationSpeed;
+    [SerializeField] private float runAnimationSpeed;
 
     [Header("References")]
     [SerializeField] private GameObject rayPointLeft;
@@ -48,27 +46,19 @@ public class Scr_AstronautMovement : MonoBehaviour
     [SerializeField] private Transform transforms;
     [SerializeField] private GameObject astronautVisuals;
     [SerializeField] private Animator astronautAnim;
-    [SerializeField] private Animator bodyAnim;
     [SerializeField] private GameObject playerShip;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private Scr_InterfaceManager interfaceManager;
 
-    [HideInInspector] public bool onGround = true;
-    [HideInInspector] public bool canMove;
     [HideInInspector] public bool canEnterShip;
-    [HideInInspector] public bool keep;
-    [HideInInspector] public bool faceRight;
     [HideInInspector] public bool breathable;
-    [HideInInspector] public bool jumping;
     [HideInInspector] public bool unlockedJetpack;
-    [HideInInspector] public float timeAtAir;
-    [HideInInspector] public float velocity;
-    [HideInInspector] public float exponentialMultiplier;
     [HideInInspector] public Vector3 planetPosition;
-    [HideInInspector] public Vector3 vectorJump;
     [HideInInspector] public Quaternion planetRotation;
     [HideInInspector] public GameObject currentPlanet;
 
+    private bool faceRight;
+    private bool jumping;
     private bool toJump;
     private bool canMoveRight = true;
     private bool canMoveLeft = true;
@@ -76,6 +66,9 @@ public class Scr_AstronautMovement : MonoBehaviour
     private bool attached;
     private bool dettaching; 
     private bool charge;
+    private float exponentialMultiplier;
+    private float currentVelocity;
+    private float timeAtAir;
     private float savedTimeCharge;
     private float timeAfterJump = 0.5f;
     private float savedTimeAfterJump = 0.5f;
@@ -83,28 +76,21 @@ public class Scr_AstronautMovement : MonoBehaviour
     private float baseDistanceFromCenterToGround;
     private float currentAngle;
     private float currentDistanceFromCenterToGround;
-    private float inertialTime;
     private float surfaceAngle;
-
+    private float nextStepAngleLeft;
+    private float nextStepAngleRight;
     private Rigidbody2D astronautRb;
-    private RaycastHit2D hitJL;
-    private RaycastHit2D hitJR;
     private Scr_PlayerShipMovement playerShipMovement;
     private Scr_PlayerShipActions playerShipActions;
     private Scr_AstronautStats astronautStats;
     private Scr_AstronautEffects astronautEffects;
-
     private Vector2 movementVector;
     private Vector2 hitLeftGroundPoint;
     private Vector2 hitRightGroundPoint;
-    private float nextStepAngleLeft;
-    private float nextStepAngleRight;
+    private Vector2 vectorJump;
 
     public void Start()
     {
-        playerShip = GameObject.Find("PlayerShip");
-        mainCamera = GameObject.Find("MainCamera").GetComponent<Camera>();
-
         astronautRb = GetComponent<Rigidbody2D>();
         playerShipMovement = playerShip.GetComponent<Scr_PlayerShipMovement>();
         playerShipActions = playerShip.GetComponent<Scr_PlayerShipActions>();
@@ -135,10 +121,15 @@ public class Scr_AstronautMovement : MonoBehaviour
 
         if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed && !interfaceManager.gamePaused)
         {
-            Jumping();
+            if (Input.GetButtonDown("Jump") && (surfaceAngle < minSlideAngle && surfaceAngle > -minSlideAngle) && !jumping)
+            {
+                timeAtAir = 0;
+                speedInJump = speedJump;
+                jumping = true;
+            }
+
             Jetpacking();
         }
-
 
         if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace)
             InSpaceMovement();
@@ -147,17 +138,19 @@ public class Scr_AstronautMovement : MonoBehaviour
     private void FixedUpdate()
     {
         Calculations();
+        SnapToFloor();
 
         if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed)
         {
-            if ((surfaceAngle < minSlideAngle) || jumping)
-            {
+            if (surfaceAngle < minSlideAngle && !jumping)
                 PlanetMovement();
 
-                if (jumping)
-                    MoveOnAir(lastRight);
+            else if (jumping)
+            {
+                Jumping();
+                MoveOnAir(lastRight);
             }
-                
+
             else
                 SlideDown();
 
@@ -246,18 +239,17 @@ public class Scr_AstronautMovement : MonoBehaviour
         else
             movementVector = (hitRightGroundPoint - hitLeftGroundPoint).normalized;
 
-        velocity += Vector3.Project((-transform.up * gravity), movementVector).magnitude / 2;
+        currentVelocity += Vector3.Project((-transform.up * gravity), movementVector).magnitude / 2;
 
-        transform.Translate(movementVector * velocity, Space.World);
+        transform.Translate(movementVector * currentVelocity, Space.World);
     }
 
     public void Stop(bool complete, bool right)
     {
-        velocity = 0;
+        currentVelocity = 0;
         exponentialMultiplier = 1;
 
         astronautAnim.SetBool("Moving", false);
-        bodyAnim.SetBool("Moving", false);
 
         if (complete)
         {
@@ -280,50 +272,49 @@ public class Scr_AstronautMovement : MonoBehaviour
 
     private void PlanetAttachment()
     {
-        if (onGround)
-        {
-            transform.position += (currentPlanet.transform.position - planetPosition);
-            planetPosition = currentPlanet.transform.position;
-            transform.RotateAround(currentPlanet.transform.position, Vector3.forward, currentPlanet.transform.rotation.eulerAngles.z - planetRotation.eulerAngles.z);
-            planetRotation = currentPlanet.transform.rotation;
-        }
+        transform.position += (currentPlanet.transform.position - planetPosition);
+        planetPosition = currentPlanet.transform.position;
+        transform.RotateAround(currentPlanet.transform.position, Vector3.forward, currentPlanet.transform.rotation.eulerAngles.z - planetRotation.eulerAngles.z);
+        planetRotation = currentPlanet.transform.rotation;
 
         transform.rotation = Quaternion.LookRotation(transform.forward, (transform.position - currentPlanet.transform.position));
     }
 
+    private void SnapToFloor()
+    {
+        if (!jumping)
+        {
+            float positionCorrection = currentDistanceFromCenterToGround - baseDistanceFromCenterToGround;
+
+            if (positionCorrection != 0)
+                transform.Translate(transform.up * -positionCorrection, Space.World);
+        }
+
+        else if ((currentDistanceFromCenterToGround > (baseDistanceFromCenterToGround - precisionHeight)) && (currentDistanceFromCenterToGround < (baseDistanceFromCenterToGround + precisionHeight)) && toJump)
+        {
+            vectorJump = Vector2.zero;
+            speedInJump = 0;
+            timeAfterJump = savedTimeAfterJump;
+            toJump = false;
+            jumping = false;
+        }
+    }
+
     private void PlanetMovement()
     {
-        SnapToFloor();
-
         if (Input.GetButton("Horizontal") && Input.GetAxis("Horizontal") < 0f && canMoveLeft)
         {
             MoveOnPlanet(false, false);
-
-            if (!jumping)
-                lastRight = false;
-
-            if (onGround)
-                bodyAnim.SetBool("Moving", true);
-
-            else
-                bodyAnim.SetBool("Moving", false);
+            lastRight = false;
         }
 
         else if (Input.GetButton("Horizontal") && Input.GetAxis("Horizontal") > 0f && canMoveRight)
         {
             MoveOnPlanet(false, true);
-
-            if (!jumping)
-                lastRight = true;
-
-            if (onGround)
-                bodyAnim.SetBool("Moving", true);
-
-            else
-                bodyAnim.SetBool("Moving", false);
+            lastRight = true;
         }
 
-        else if (velocity > 0)
+        else if (currentVelocity > 0)
         {
             if (lastRight)
                 MoveOnPlanet(true, true);
@@ -333,67 +324,37 @@ public class Scr_AstronautMovement : MonoBehaviour
 
         else
         {
-            velocity = 0;
+            currentVelocity = 0;
             exponentialMultiplier = 1;
 
             astronautAnim.SetBool("Moving", false);
-            bodyAnim.SetBool("Moving", false);
         }
 
         astronautAnim.SetBool("OnGround", !jumping);
     }
 
-    private void SnapToFloor()
-    {
-        if (!jumping && !keep)
-        {
-            if (currentDistanceFromCenterToGround > (baseDistanceFromCenterToGround + gravity))
-                transform.Translate(transform.up * -gravity, Space.World);
-
-            else if (currentDistanceFromCenterToGround < (baseDistanceFromCenterToGround - gravity))
-                transform.Translate(transform.up * gravity, Space.World);
-        }
-
-        else if ((currentDistanceFromCenterToGround > (baseDistanceFromCenterToGround - precisionHeight)) && (currentDistanceFromCenterToGround < (baseDistanceFromCenterToGround + precisionHeight)) && toJump)
-        {
-            vectorJump = new Vector2(0f, 0f);
-            timeAfterJump = savedTimeAfterJump;
-            toJump = false;
-            jumping = false;
-        }
-    }
-
     private void MoveOnPlanet(bool decelerating, bool right)
     {
-        if (!jumping)
-        {
-            if ((faceRight && !right) || (!faceRight && right))
-                Flip();
+        if ((faceRight && !right) || (!faceRight && right))
+            Flip();
 
-            if((nextStepAngleLeft >= minSlideAngle) && !right)
-                Stop(false, false);
+        if ((nextStepAngleLeft >= minSlideAngle) && !right)
+            Stop(false, false);
 
-            else if ((nextStepAngleRight >= minSlideAngle) && right)
-                Stop(false, true);
+        else if ((nextStepAngleRight >= minSlideAngle) && right)
+            Stop(false, true);
 
-            else
-                MoveAgain();
+        else
+            MoveAgain();
 
-            SprintOrWalk(right, decelerating);
-        }
-    }
-
-    private void SprintOrWalk(bool right, bool decelerating)
-    {
         astronautAnim.SetBool("Moving", true);
 
         if (!decelerating)
         {
             if (Input.GetButton("Boost"))
             {
-                Move(right, sprintSpeed);
+                Move(right, runSpeed);
                 astronautAnim.SetFloat("Speed", 2);
-                bodyAnim.SetFloat("Speed", runSpeed);
 
                 if (!breathable)
                     GetComponent<Scr_AstronautStats>().currentOxygen -= 0.05f;
@@ -401,9 +362,8 @@ public class Scr_AstronautMovement : MonoBehaviour
 
             else
             {
-                Move(right, walkingSpeed);
+                Move(right, walkSpeed);
                 astronautAnim.SetFloat("Speed", 1);
-                bodyAnim.SetFloat("Speed", walkSpeed);
             }
         }
 
@@ -411,71 +371,60 @@ public class Scr_AstronautMovement : MonoBehaviour
             Move(right, 0);
     }
 
-    private void Move(bool right, float movement)
+    private void Move(bool right, float targetVelocity)
     {
-        if (!jumping)
-        {
-            if (right)
-                movementVector = (hitRightGroundPoint - hitLeftGroundPoint).normalized;
+        if (right)
+            movementVector = (hitRightGroundPoint - hitLeftGroundPoint).normalized;
 
-            if (!right)
-                movementVector = (hitLeftGroundPoint - hitRightGroundPoint).normalized;
-        }
+        if (!right)
+            movementVector = (hitLeftGroundPoint - hitRightGroundPoint).normalized;
 
-        if (velocity < movement)
+        if (currentVelocity < targetVelocity)
         {
-            velocity += 0.0005f * exponentialMultiplier;
+            currentVelocity += 0.0005f * exponentialMultiplier;
             exponentialMultiplier += 0.5f;
 
-            if (velocity >= movement)
+            if (currentVelocity >= targetVelocity)
             {
-                velocity = movement;
+                currentVelocity = targetVelocity;
                 exponentialMultiplier = 1;
             }
         }
 
-        else if (velocity > movement)
+        else if (currentVelocity > targetVelocity)
         {
-            velocity -= 0.001f * exponentialMultiplier;
+            currentVelocity -= 0.001f * exponentialMultiplier;
             exponentialMultiplier += 1f;
 
-            if (velocity <= movement)
+            if (currentVelocity <= targetVelocity)
             {
-                velocity = movement;
+                currentVelocity = targetVelocity;
                 exponentialMultiplier = 1;
             }
         }
 
-        transform.Translate(movementVector * velocity, Space.World);
+        transform.Translate(movementVector * currentVelocity, Space.World);
     }
+
+    float speedInJump;
 
     private void Jumping()
     {
-        if (jumping && !toJump)
+        if (jumping)
         {
-            if (timeAfterJump > 0f)
-                timeAfterJump -= Time.deltaTime;
-
-            else if (timeAfterJump <= 0f)
-                toJump = true;
-        }
-
-        if ((currentDistanceFromCenterToGround > (baseDistanceFromCenterToGround - precisionHeight)) && (currentDistanceFromCenterToGround < (baseDistanceFromCenterToGround + precisionHeight)))
-        {
-            if (Input.GetButtonDown("Jump") && (surfaceAngle < minSlideAngle && surfaceAngle > -minSlideAngle))
+            if (!toJump)
             {
-                timeAtAir = 0;
-                vectorJump = (transform.position - currentPlanet.transform.position).normalized * speedJump;
-                jumping = true;
+                if (timeAfterJump > 0f)
+                    timeAfterJump -= Time.deltaTime;
+
+                else if (timeAfterJump <= 0f)
+                    toJump = true;
             }
+
+            speedInJump -= Time.fixedDeltaTime * gravity;
         }
 
-        else if (jumping)
-        {
-            timeAtAir += Time.deltaTime * 10;
-            vectorJump -= (transform.position - currentPlanet.transform.position).normalized * gravity * fallModifier * timeAtAir * Time.deltaTime;
-        }
-
+        vectorJump = (transform.position - currentPlanet.transform.position).normalized * speedInJump;
         transform.Translate(vectorJump, Space.World);
     }
 
@@ -503,11 +452,11 @@ public class Scr_AstronautMovement : MonoBehaviour
 
     private void MoveOnAir(bool right)
     {
-        hitJL = Physics2D.Raycast(transform.position + (transform.up * astronautHeight) + (-transform.right * astronautWidth), -transform.up, distance, collisionMask);
-        hitJR = Physics2D.Raycast(transform.position + (transform.up * astronautHeight) + (transform.right * astronautWidth), -transform.up, distance, collisionMask);
+        RaycastHit2D hitCollisionLeft = Physics2D.Raycast(transform.position + (transform.up * astronautHeight) + (-transform.right * astronautWidth), -transform.up, distance, collisionMask);
+        RaycastHit2D hitCollisionRight = Physics2D.Raycast(transform.position + (transform.up * astronautHeight) + (transform.right * astronautWidth), -transform.up, distance, collisionMask);
 
-        if (hitJL || hitJR)
-            velocity = 0;
+        if (hitCollisionLeft || hitCollisionRight)
+            currentVelocity = 0;
 
         if (right)
             movementVector = Vector2.Perpendicular((currentPlanet.transform.position - transform.position).normalized);
@@ -515,10 +464,10 @@ public class Scr_AstronautMovement : MonoBehaviour
         if (!right)
             movementVector = -Vector2.Perpendicular((currentPlanet.transform.position - transform.position).normalized);
 
-        if(velocity > 0)
-            velocity -= (airDragModifier / 1000);
+        if(currentVelocity > 0)
+            currentVelocity -= (airDragModifier / 1000);
 
-        transform.Translate(movementVector * velocity, Space.World);
+        transform.Translate(movementVector * currentVelocity, Space.World);
     }
 
     Vector3 playerShipPosition;
