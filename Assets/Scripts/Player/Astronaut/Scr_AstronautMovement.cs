@@ -57,7 +57,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     [HideInInspector] public Quaternion planetRotation;
     [HideInInspector] public GameObject currentPlanet;
 
-    private bool faceRight;
+    private bool faceRight = true;
     private bool jumping;
     private bool toJump;
     private bool canMoveRight = true;
