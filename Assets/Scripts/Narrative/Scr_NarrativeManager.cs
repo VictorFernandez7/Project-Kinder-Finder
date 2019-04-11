@@ -26,6 +26,8 @@ public class Scr_NarrativeManager : MonoBehaviour
     private int speakerIndex = 0;
     private int textIndex = 0;
     private Queue<string> sentences;
+    private string sentence;
+    private bool isFinished = true;
 
     private void Start()
     {
@@ -61,32 +63,43 @@ public class Scr_NarrativeManager : MonoBehaviour
 
     public void DisplayNextSentence(int index)
     {
-        if (sentences.Count == 0)
+        if(isFinished)
         {
-            EndDialogue();
-            return;
+            if (sentences.Count == 0)
+            {
+                EndDialogue();
+                return;
+            }
+
+            switch (dialogues[index].speaks[speakerIndex].speaker)
+            {
+                case speakerID.Jack:
+                    speakerName.text = "Jack";
+                    jackImage.SetActive(true);
+                    iaImage.SetActive(false);
+                    break;
+
+                case speakerID.IA:
+                    speakerName.text = "IA";
+                    jackImage.SetActive(false);
+                    iaImage.SetActive(true);
+                    break;
+            }
+
+            sentence = sentences.Dequeue();
+            speakerIndex += 1;
+            isFinished = false;
+            StopAllCoroutines();
+            StartCoroutine(TypeSentences(sentence));
         }
 
-        switch (dialogues[index].speaks[speakerIndex].speaker)
+        else
         {
-            case speakerID.Jack:
-                speakerName.text = "Jack";
-                jackImage.SetActive(true);
-                iaImage.SetActive(false);
-                break;
-
-            case speakerID.IA:
-                speakerName.text = "IA";
-                jackImage.SetActive(false);
-                iaImage.SetActive(true);
-                break;
+            texts.text = sentence;
+            isFinished = true;
+            StopAllCoroutines();
         }
 
-        speakerIndex += 1;
-
-        string sentence = sentences.Dequeue();
-        StopAllCoroutines();
-        StartCoroutine(TypeSentences(sentence));
     }
 
     IEnumerator TypeSentences(string sentence)
@@ -98,6 +111,8 @@ public class Scr_NarrativeManager : MonoBehaviour
             texts.text += letter;
             yield return new WaitForSeconds(speedText);
         }
+
+        isFinished = true;
     }
 
     private void EndDialogue()

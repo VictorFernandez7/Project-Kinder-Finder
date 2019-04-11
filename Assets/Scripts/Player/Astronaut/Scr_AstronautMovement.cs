@@ -62,6 +62,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     private bool toJump;
     private bool canMoveRight = true;
     private bool canMoveLeft = true;
+    private bool canJump = true;
     private bool lastRight;
     private bool attached;
     private bool dettaching; 
@@ -121,7 +122,7 @@ public class Scr_AstronautMovement : MonoBehaviour
 
         if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed && !interfaceManager.gamePaused)
         {
-            if (Input.GetButtonDown("Jump") && (surfaceAngle < minSlideAngle && surfaceAngle > -minSlideAngle) && !jumping)
+            if (Input.GetButtonDown("Jump") && (surfaceAngle < minSlideAngle && surfaceAngle > -minSlideAngle) && !jumping && canJump)
             {
                 timeAtAir = 0;
                 speedInJump = speedJump;
@@ -255,6 +256,7 @@ public class Scr_AstronautMovement : MonoBehaviour
         {
             canMoveLeft = false;
             canMoveRight = false;
+            canJump = false;
         }
 
         else if(right)
@@ -268,6 +270,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     {
         canMoveLeft = true;
         canMoveRight = true;
+        canJump = true;
     }
 
     private void PlanetAttachment()

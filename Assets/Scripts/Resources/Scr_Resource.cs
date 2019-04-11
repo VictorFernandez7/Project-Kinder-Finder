@@ -26,6 +26,7 @@ public class Scr_Resource : MonoBehaviour
 
     [HideInInspector] public GameObject resourceReference;
     [HideInInspector] public bool onHands;
+    [HideInInspector] public int iD;
 
     private bool emulatePhysics;
     private bool isGrounded;
