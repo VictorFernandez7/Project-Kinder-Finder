@@ -9,7 +9,7 @@ public class Scr_DragFuel : MonoBehaviour, IPointerDownHandler,IPointerUpHandler
     [SerializeField] private bool displayTooltip;
 
     [Header("Item Values")]
-    [SerializeField] private int itemIndex;
+    [SerializeField] public int itemIndex;
 
     [Header("References")]
     [SerializeField] private Scr_PlayerShipStats playerShipStats;
@@ -18,6 +18,8 @@ public class Scr_DragFuel : MonoBehaviour, IPointerDownHandler,IPointerUpHandler
 
     private bool dragging;
     private bool onRange;
+    private bool overSlot;
+    private Scr_DragFuel slot;
 
     private void Start()
     {
@@ -45,6 +47,13 @@ public class Scr_DragFuel : MonoBehaviour, IPointerDownHandler,IPointerUpHandler
     public void OnPointerUp(PointerEventData eventData)
     {
         dragging = false;
+
+        if (overSlot)
+        {
+            playerShipStats.resourceWarehouse[slot.itemIndex] = playerShipStats.resourceWarehouse[itemIndex];
+            playerShipStats.resourceWarehouse[itemIndex] = null;
+        }
+
         transform.localPosition = Vector3.zero;
 
         if (onRange && playerShipStats.resourceWarehouse[itemIndex].name == "Fuel")
@@ -66,6 +75,12 @@ public class Scr_DragFuel : MonoBehaviour, IPointerDownHandler,IPointerUpHandler
             if (playerShipStats.resourceWarehouse[itemIndex].name == "Fuel")
                 fuelSliderGlow.SetActive(true);
         }
+
+        else if (collision.CompareTag("WarehouseSlot"))
+        {
+            slot = collision.gameObject.GetComponent<Scr_DragFuel>();
+            overSlot = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -74,6 +89,12 @@ public class Scr_DragFuel : MonoBehaviour, IPointerDownHandler,IPointerUpHandler
         {
             onRange = false;
             fuelSliderGlow.SetActive(false);
+        }
+
+        else if (collision.CompareTag("WarehouseSlot"))
+        {
+            slot = null;
+            overSlot = false;
         }
     }
 
