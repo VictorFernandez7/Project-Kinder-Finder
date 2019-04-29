@@ -34,7 +34,7 @@ public class Scr_AstronautStats : MonoBehaviour
         Oxygen();
         Health();
 
-        if (currentOxygen <= 0)
+        if (currentOxygen <= 0 && !Scr_PlayerData.dead)
             playership.GetComponent<Scr_PlayerShipStats>().Death();
     }
 

@@ -89,7 +89,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
         if(currentFuel == maxFuel && !isRefueled)
             narrativeManager.StartDialogue(9);
 
-        if (currentFuel >= 0 && !playerShipMovement.onGround)
+        if (currentFuel <= 0 && !playerShipMovement.onGround)
             Death();
     }
 
@@ -204,20 +204,24 @@ public class Scr_PlayerShipStats : MonoBehaviour
 
     public void Death()
     {
-        playerShipMovement.canControlShip = false;
-        playerShipMovement.canRotateShip = false;
-        Scr_PlayerData.dead = true;
-        rb.isKinematic = true;
-        rb.velocity = Vector3.zero;
-        shipVisuals.gameObject.SetActive(false);
-        deathParticles.Play();
-        playerShipEffects.thrusterParticles.Stop();
-        playerShipEffects.thrusterParticles2.Stop();
-        playerShipEffects.thrusterParticles3.Stop();
-        collider.enabled = false;
+        if (playerShipMovement.astronautOnBoard)
+        {
+            playerShipMovement.canControlShip = false;
+            playerShipMovement.canRotateShip = false;
+            Scr_PlayerData.dead = true;
+            rb.isKinematic = true;
+            rb.velocity = Vector3.zero;
+            shipVisuals.gameObject.SetActive(false);
+            deathParticles.Play();
+            playerShipEffects.thrusterParticles.Stop();
+            playerShipEffects.thrusterParticles2.Stop();
+            playerShipEffects.thrusterParticles3.Stop();
+            collider.enabled = false;
 
-        GetComponentInChildren<Scr_PlayerShipDeathCheck>().enabled = false;
-        GetComponent<Scr_PlayerShipPrediction>().enabled = false;
+            GetComponentInChildren<Scr_PlayerShipDeathCheck>().enabled = false;
+            GetComponent<Scr_PlayerShipPrediction>().enabled = false;
+        }
+       // fadeImage.SetBool("Fade", false);
 
         Invoke("Respawn", respawnTime);
     }
@@ -232,12 +236,11 @@ public class Scr_PlayerShipStats : MonoBehaviour
         currentShield = Scr_PlayerData.checkpointShield;
         rb.isKinematic = false;
         playerShipMovement.mainCamera.GetComponent<Scr_MainCamera>().smoothRotation = true;
-        //playerShipMovement.undercarriageAnim.SetBool("PickUp", false);
         GetComponent<Scr_PlayerShipActions>().canExitShip = true;
         playerShipMovement.playerShipState = Scr_PlayerShipMovement.PlayerShipState.landed;
         playerShipMovement.canControlShip = true;
         shipVisuals.gameObject.SetActive(true);
-        fadeImage.SetBool("Fade", true);
+       // fadeImage.SetBool("Fade", true);
         Scr_PlayerData.dead = false;
 
         if (!playerShipMovement.astronautOnBoard)
