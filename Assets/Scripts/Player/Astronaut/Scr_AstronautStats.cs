@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Scr_AstronautStats : MonoBehaviour
 {
     [Header("Oxygen System")]
-    [SerializeField] private float maxOxygen;
+    [SerializeField] public float maxOxygen;
     [Range(0, 100)] [SerializeField] private float oxygenAlertPercentage;
 
     [Header("Health System")]
@@ -16,6 +16,7 @@ public class Scr_AstronautStats : MonoBehaviour
     [Header("References")]
     [SerializeField] private Slider oxygenSlider;
     [SerializeField] private Slider healthSlider;
+    [SerializeField] private GameObject playership;
     [SerializeField] public Animator anim_OxygenPanel;
     [SerializeField] public Animator anim_HealthPanel;
     [SerializeField] public List<GameObject> toolSlots = new List<GameObject>();
@@ -32,6 +33,9 @@ public class Scr_AstronautStats : MonoBehaviour
     {
         Oxygen();
         Health();
+
+        if (currentOxygen <= 0)
+            playership.GetComponent<Scr_PlayerShipStats>().Death();
     }
 
     private void InitialSet()

@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class Scr_PlayerData : Scr_PersistentSingleton<Scr_PlayerData>
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public static float checkpointFuel;
+    public static float checkpointShield;
+    public static Vector3 checkpointPlayershipPosition;
+    public static Quaternion checkpointPlayershipRotation;
+    public static Transform checkpointPlanet;
+    public static bool dead;
 }
