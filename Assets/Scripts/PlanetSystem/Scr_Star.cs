@@ -28,7 +28,7 @@ public class Scr_Star : Scr_AstroBase
 
     public override void FixedUpdate()
     {
-        if (playerShip.GetComponent<Scr_PlayerShipMovement>().onGround == false && switchGravity)
+        if (!playerShip.GetComponent<Scr_PlayerShipMovement>().onGround && switchGravity)
         {
             Vector3 translocation = transform.position;
             translocation = transform.position - translocation;

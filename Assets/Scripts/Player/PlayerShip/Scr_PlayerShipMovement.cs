@@ -49,7 +49,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [SerializeField] private Transform endOfShip;
     [SerializeField] private Animator warmingSliderAnim;
     [SerializeField] private Animator messageTextAnim;
-    [SerializeField] private Animator undercarriageAnim;
+    [SerializeField] public Animator undercarriageAnim;
     [SerializeField] private CapsuleCollider2D mouseCheckTrigger;
     [SerializeField] public Camera mainCamera;
     [SerializeField] private TextMeshProUGUI limiterText;
@@ -65,7 +65,6 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [HideInInspector] public bool onGround;
     [HideInInspector] public bool takingOff;
     [HideInInspector] public bool landing;
-    [HideInInspector] public bool dead;
     [HideInInspector] public bool canRotateShip;
     [HideInInspector] public bool canControlShip;
     [HideInInspector] public bool landedOnce;
@@ -286,7 +285,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
     private void PlayerShipStateCheck()
     {
-        if (!dead)
+        if (!Scr_PlayerData.dead)
         {
             if (currentPlanet != null)
             {
@@ -424,6 +423,12 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
         if (rb.velocity != Vector2.zero)
             rb.velocity = Vector2.zero;
+
+        Scr_PlayerData.checkpointPlanet = currentPlanet.transform;
+        Scr_PlayerData.checkpointPlayershipPosition = transform.localPosition;
+        Scr_PlayerData.checkpointPlayershipRotation = transform.localRotation;
+        Scr_PlayerData.checkpointFuel = playerShipStats.currentFuel;
+        Scr_PlayerData.checkpointShield = playerShipStats.currentShield;
     }
 
     void TakingOff()
@@ -433,6 +438,9 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         takingOff = true;
         onGround = false;
         playerShipActions.startExitDelay = false;
+
+        Scr_PlayerData.checkpointFuel = playerShipStats.currentFuel;
+        Scr_PlayerData.checkpointShield = playerShipStats.currentShield;
     }
 
     private void Landing()

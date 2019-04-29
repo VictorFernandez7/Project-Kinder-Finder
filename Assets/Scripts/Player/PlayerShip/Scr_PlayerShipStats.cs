@@ -88,6 +88,9 @@ public class Scr_PlayerShipStats : MonoBehaviour
 
         if(currentFuel == maxFuel && !isRefueled)
             narrativeManager.StartDialogue(9);
+
+        if (currentFuel >= 0 && !playerShipMovement.onGround)
+            Death();
     }
 
     float sliderValue;
@@ -203,14 +206,16 @@ public class Scr_PlayerShipStats : MonoBehaviour
     {
         playerShipMovement.canControlShip = false;
         playerShipMovement.canRotateShip = false;
-        playerShipMovement.dead = true;
+        Scr_PlayerData.dead = true;
         rb.isKinematic = true;
         rb.velocity = Vector3.zero;
         shipVisuals.gameObject.SetActive(false);
         deathParticles.Play();
         playerShipEffects.thrusterParticles.Stop();
+        playerShipEffects.thrusterParticles2.Stop();
+        playerShipEffects.thrusterParticles3.Stop();
         collider.enabled = false;
-        fadeImage.SetBool("Fade", false);
+
         GetComponentInChildren<Scr_PlayerShipDeathCheck>().enabled = false;
         GetComponent<Scr_PlayerShipPrediction>().enabled = false;
 
@@ -219,7 +224,24 @@ public class Scr_PlayerShipStats : MonoBehaviour
 
     private void Respawn()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        playerShipMovement.onGround = true;
+        transform.SetParent(Scr_PlayerData.checkpointPlanet);
+        transform.localPosition = Scr_PlayerData.checkpointPlayershipPosition;
+        transform.localRotation = Scr_PlayerData.checkpointPlayershipRotation;
+        currentFuel = Scr_PlayerData.checkpointFuel;
+        currentShield = Scr_PlayerData.checkpointShield;
+        rb.isKinematic = false;
+        playerShipMovement.mainCamera.GetComponent<Scr_MainCamera>().smoothRotation = true;
+        //playerShipMovement.undercarriageAnim.SetBool("PickUp", false);
+        GetComponent<Scr_PlayerShipActions>().canExitShip = true;
+        playerShipMovement.playerShipState = Scr_PlayerShipMovement.PlayerShipState.landed;
+        playerShipMovement.canControlShip = true;
+        shipVisuals.gameObject.SetActive(true);
+        fadeImage.SetBool("Fade", true);
+        Scr_PlayerData.dead = false;
+
+        if (!playerShipMovement.astronautOnBoard)
+            GetComponent<Scr_PlayerShipActions>().astronaut.GetComponent<Scr_AstronautsActions>().EnterShipFromPlanet();
     }
 
     public void GetExperience (int amount)

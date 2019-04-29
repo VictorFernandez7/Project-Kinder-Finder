@@ -31,7 +31,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
     [SerializeField] private DistanceJoint2D spaceWalkCable;
     [SerializeField] private Animator interactionIndicatorAnim;
     [SerializeField] private BoxCollider2D spaceCollider;
-    [SerializeField] private GameObject astronaut;
+    [SerializeField] public GameObject astronaut;
     [SerializeField] private Slider miningSlider;
     [SerializeField] private Image miningFill;
     [SerializeField] private TextMeshProUGUI miningPowerText;
@@ -57,7 +57,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
     private float laserRange;
     private float deployDelaySaved;
     private float holdInputTime = 0.9f;
-    private bool canExitShip;
+    public bool canExitShip;
     private bool toolPanel;
     private bool doneOnce;
     private bool canInputAgain = true;

@@ -149,14 +149,15 @@ public class Scr_AstronautsActions : MonoBehaviour
         TurnOnLantern();
     }
     
-    private void EnterShipFromPlanet()
+    public void EnterShipFromPlanet()
     {
-            playerShip.GetComponent<Scr_PlayerShipMovement>().astronautOnBoard = true;
-            playerShip.GetComponent<Scr_PlayerShipActions>().startExitDelay = true;
-            playerShip.GetComponent<Scr_PlayerShipMovement>().canControlShip = true;
-            mainCamera.GetComponent<Scr_MainCamera>().followAstronaut = false;
-            playerShipWarehouse.ReadNames();
-            gameObject.SetActive(false);
+        playerShip.GetComponent<Scr_PlayerShipMovement>().astronautOnBoard = true;
+        playerShip.GetComponent<Scr_PlayerShipActions>().startExitDelay = true;
+        playerShip.GetComponent<Scr_PlayerShipMovement>().canControlShip = true;
+        mainCamera.GetComponent<Scr_MainCamera>().followAstronaut = false;
+        astronautStats.currentOxygen = astronautStats.maxOxygen;
+        playerShipWarehouse.ReadNames();
+        gameObject.SetActive(false);
     }
 
     private void EnterShipFromSpace()
