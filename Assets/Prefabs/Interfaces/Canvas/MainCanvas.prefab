@@ -3963,7 +3963,7 @@ GameObject:
   - component: {fileID: 8070539312780426825}
   m_Layer: 0
   m_Name: PlayerShipSlotImage
-  m_TagString: Untagged
+  m_TagString: WarehouseSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5617,8 +5617,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 224535352784203242}
-  - {fileID: 4260827783246584}
+  - {fileID: 2466892948099297344}
+  - {fileID: 316418673053312170}
   m_Father: {fileID: 224285515487323472}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6644,246 +6644,6 @@ MonoBehaviour:
   m_FillClockwise: 0
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
---- !u!1 &1707805394900742
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4260827783246584}
-  - component: {fileID: 20846939172799704}
-  - component: {fileID: 114169589246184620}
-  - component: {fileID: 114373452239600966}
-  - component: {fileID: 114735984854740108}
-  - component: {fileID: 1073972541999774728}
-  m_Layer: 16
-  m_Name: MiniMapCamera
-  m_TagString: MainCamera
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4260827783246584
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1707805394900742}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -350.4, y: -256.1, z: -306.7637}
-  m_LocalScale: {x: 0.68169713, y: 0.68169713, z: 3.067637}
-  m_Children: []
-  m_Father: {fileID: 224989586847235808}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!20 &20846939172799704
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1707805394900742}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
-  m_projectionMatrixMode: 1
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_GateFitMode: 2
-  m_FocalLength: 50
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0.836
-    y: 0.71
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 1
-  orthographic size: 10
-  m_Depth: 1
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 138551
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 0
-  m_AllowMSAA: 0
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 1
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!114 &114169589246184620
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1707805394900742}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  volumeTrigger: {fileID: 4260827783246584}
-  volumeLayer:
-    serializedVersion: 2
-    m_Bits: 65536
-  stopNaNPropagation: 1
-  finalBlitToCameraTarget: 1
-  antialiasingMode: 0
-  temporalAntialiasing:
-    jitterSpread: 0.75
-    sharpness: 0.25
-    stationaryBlending: 0.95
-    motionBlending: 0.85
-  subpixelMorphologicalAntialiasing:
-    quality: 2
-  fastApproximateAntialiasing:
-    fastMode: 0
-    keepAlpha: 0
-  fog:
-    enabled: 1
-    excludeSkybox: 1
-  debugLayer:
-    lightMeter:
-      width: 512
-      height: 256
-      showCurves: 1
-    histogram:
-      width: 512
-      height: 256
-      channel: 3
-    waveform:
-      exposure: 0.12
-      height: 256
-    vectorscope:
-      size: 256
-      exposure: 0.12
-    overlaySettings:
-      linearDepth: 0
-      motionColorIntensity: 4
-      motionGridSize: 64
-      colorBlindnessType: 0
-      colorBlindnessStrength: 1
-  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
-  m_ShowToolkit: 0
-  m_ShowCustomSorter: 0
-  breakBeforeColorGrading: 0
-  m_BeforeTransparentBundles: []
-  m_BeforeStackBundles: []
-  m_AfterStackBundles: []
---- !u!114 &114373452239600966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1707805394900742}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sharedProfile: {fileID: 11400000, guid: de5d85eab8f6e5240b89db978e9f7941, type: 2}
-  isGlobal: 1
-  blendDistance: 3.2
-  weight: 1
-  priority: 1
---- !u!114 &114735984854740108
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1707805394900742}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b6aaf56e7793c54f8152e12c69a0979, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  zoomInSpace: 30
-  zoomInPlanetMult: 10
-  zoomSpeed: 1
-  followSpeed: 1
-  playerShip: {fileID: 0}
-  mainCamera: {fileID: 0}
---- !u!114 &1073972541999774728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1707805394900742}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23c1ce4fb46143f46bc5cb5224c934f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Version: 1
-  clearColorMode: 1
-  backgroundColorHDR: {r: 0, g: 0, b: 0, a: 0}
-  clearDepth: 1
-  renderingPath: 0
-  volumeLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  volumeAnchorOverride: {fileID: 0}
-  aperture: 8
-  shutterSpeed: 0.005
-  iso: 400
-  m_FrameSettings:
-    overrides: 0
-    enableShadow: 1
-    enableContactShadows: 1
-    enableShadowMask: 1
-    enableSSR: 0
-    enableSSAO: 1
-    enableSubsurfaceScattering: 1
-    enableTransmission: 1
-    enableAtmosphericScattering: 1
-    enableVolumetrics: 1
-    enableReprojectionForVolumetrics: 1
-    enableLightLayers: 1
-    diffuseGlobalDimmer: 1
-    specularGlobalDimmer: 1
-    shaderLitMode: 1
-    enableDepthPrepassWithDeferredRendering: 0
-    enableTransparentPrepass: 1
-    enableMotionVectors: 1
-    enableObjectMotionVectors: 1
-    enableDecals: 1
-    enableRoughRefraction: 1
-    enableTransparentPostpass: 1
-    enableDistortion: 1
-    enablePostprocess: 1
-    enableOpaqueObjects: 1
-    enableTransparentObjects: 1
-    enableRealtimePlanarReflection: 1
-    enableMSAA: 0
-    enableAsyncCompute: 1
-    runLightListAsync: 1
-    runSSRAsync: 1
-    runSSAOAsync: 1
-    runContactShadowsAsync: 1
-    runVolumeVoxelizationAsync: 1
-    lightLoopSettings:
-      overrides: 0
-      enableTileAndCluster: 1
-      enableComputeLightEvaluation: 1
-      enableComputeLightVariants: 1
-      enableComputeMaterialVariants: 1
-      enableFptlForForwardOpaque: 1
-      enableBigTilePrepass: 1
-      isFptlEnabled: 1
 --- !u!1 &1720973931096924
 GameObject:
   m_ObjectHideFlags: 0
@@ -7414,7 +7174,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: fcebd8780a0f12944af8e0e92a4f3374, type: 3}
   m_Type: 0
-  m_PreserveAspect: 1
+  m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -7749,94 +7509,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!1 &1915897433417942
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 224535352784203242}
-  - component: {fileID: 222160224138053478}
-  - component: {fileID: 114633938437538532}
-  - component: {fileID: 92899476817915209}
-  m_Layer: 0
-  m_Name: Background
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &224535352784203242
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1915897433417942}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 224989586847235808}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 7.44, y: 6}
-  m_SizeDelta: {x: 85.82, y: 82.99}
-  m_Pivot: {x: 1, y: 1}
---- !u!222 &222160224138053478
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1915897433417942}
-  m_CullTransparentMesh: 0
---- !u!114 &114633938437538532
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1915897433417942}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: fcebd8780a0f12944af8e0e92a4f3374, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
---- !u!114 &92899476817915209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1915897433417942}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 361b6e2cdc884d0498e3a27e9afaba60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mapManager: {fileID: 0}
 --- !u!1 &1933372501876802
 GameObject:
   m_ObjectHideFlags: 0
@@ -10643,7 +10315,7 @@ GameObject:
   - component: {fileID: 2373328587930896597}
   m_Layer: 0
   m_Name: PlayerShipSlotImage
-  m_TagString: Untagged
+  m_TagString: WarehouseSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10885,7 +10557,7 @@ GameObject:
   - component: {fileID: 4494663399023532880}
   m_Layer: 0
   m_Name: PlayerShipSlotImage
-  m_TagString: Untagged
+  m_TagString: WarehouseSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11321,7 +10993,7 @@ GameObject:
   - component: {fileID: 7727444720923983582}
   m_Layer: 0
   m_Name: PlayerShipSlotImage
-  m_TagString: Untagged
+  m_TagString: WarehouseSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11463,7 +11135,7 @@ GameObject:
   - component: {fileID: 722003038846910039}
   m_Layer: 0
   m_Name: PlayerShipSlotImage
-  m_TagString: Untagged
+  m_TagString: WarehouseSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12233,7 +11905,7 @@ GameObject:
   - component: {fileID: 6107898111172951832}
   m_Layer: 0
   m_Name: PlayerShipSlotImage
-  m_TagString: Untagged
+  m_TagString: WarehouseSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12557,7 +12229,7 @@ GameObject:
   - component: {fileID: 339265268357919211}
   m_Layer: 0
   m_Name: PlayerShipSlotImage
-  m_TagString: Untagged
+  m_TagString: WarehouseSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13003,7 +12675,7 @@ GameObject:
   - component: {fileID: 3032549954258887864}
   m_Layer: 0
   m_Name: PlayerShipSlotImage
-  m_TagString: Untagged
+  m_TagString: WarehouseSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13511,7 +13183,7 @@ GameObject:
   - component: {fileID: 7380291135455241450}
   m_Layer: 0
   m_Name: PlayerShipSlotImage
-  m_TagString: Untagged
+  m_TagString: WarehouseSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13653,7 +13325,7 @@ GameObject:
   - component: {fileID: 7932331981478653800}
   m_Layer: 0
   m_Name: PlayerShipSlotImage
-  m_TagString: Untagged
+  m_TagString: WarehouseSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13955,7 +13627,7 @@ GameObject:
   - component: {fileID: 3406308475126025590}
   m_Layer: 0
   m_Name: PlayerShipSlotImage
-  m_TagString: Untagged
+  m_TagString: WarehouseSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15104,7 +14776,7 @@ GameObject:
   - component: {fileID: 1564980053564638479}
   m_Layer: 0
   m_Name: PlayerShipSlotImage
-  m_TagString: Untagged
+  m_TagString: WarehouseSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17988,7 +17660,7 @@ GameObject:
   - component: {fileID: 8594253700497968746}
   m_Layer: 0
   m_Name: PlayerShipSlotImage
-  m_TagString: Untagged
+  m_TagString: WarehouseSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20021,7 +19693,7 @@ GameObject:
   - component: {fileID: 2539841635504054995}
   m_Layer: 0
   m_Name: PlayerShipSlotImage
-  m_TagString: Untagged
+  m_TagString: WarehouseSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20163,7 +19835,7 @@ GameObject:
   - component: {fileID: 9112022133660849389}
   m_Layer: 0
   m_Name: PlayerShipSlotImage
-  m_TagString: Untagged
+  m_TagString: WarehouseSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21235,7 +20907,7 @@ GameObject:
   - component: {fileID: 1245385989834099754}
   m_Layer: 0
   m_Name: PlayerShipSlotImage
-  m_TagString: Untagged
+  m_TagString: WarehouseSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21377,7 +21049,7 @@ GameObject:
   - component: {fileID: 710145682067778671}
   m_Layer: 0
   m_Name: PlayerShipSlotImage
-  m_TagString: Untagged
+  m_TagString: WarehouseSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23633,7 +23305,7 @@ GameObject:
   - component: {fileID: 9208244615071288986}
   m_Layer: 0
   m_Name: PlayerShipSlotImage
-  m_TagString: Untagged
+  m_TagString: WarehouseSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24117,7 +23789,7 @@ GameObject:
   - component: {fileID: 8898905000092502256}
   m_Layer: 0
   m_Name: PlayerShipSlotImage
-  m_TagString: Untagged
+  m_TagString: WarehouseSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25595,7 +25267,7 @@ GameObject:
   - component: {fileID: 2203585760410086027}
   m_Layer: 0
   m_Name: PlayerShipSlotImage
-  m_TagString: Untagged
+  m_TagString: WarehouseSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26732,7 +26404,7 @@ GameObject:
   - component: {fileID: 4434171292918726664}
   m_Layer: 0
   m_Name: PlayerShipSlotImage
-  m_TagString: Untagged
+  m_TagString: WarehouseSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26874,7 +26546,7 @@ GameObject:
   - component: {fileID: 4821215985486003110}
   m_Layer: 0
   m_Name: PlayerShipSlotImage
-  m_TagString: Untagged
+  m_TagString: WarehouseSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28031,7 +27703,7 @@ GameObject:
   - component: {fileID: 1696900451715664653}
   m_Layer: 0
   m_Name: PlayerShipSlotImage
-  m_TagString: Untagged
+  m_TagString: WarehouseSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30293,7 +29965,7 @@ GameObject:
   - component: {fileID: 81061921388375165}
   m_Layer: 0
   m_Name: PlayerShipSlotImage
-  m_TagString: Untagged
+  m_TagString: WarehouseSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30473,7 +30145,7 @@ GameObject:
   - component: {fileID: 334762960944939997}
   m_Layer: 0
   m_Name: PlayerShipSlotImage
-  m_TagString: Untagged
+  m_TagString: WarehouseSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31124,7 +30796,7 @@ GameObject:
   - component: {fileID: 7400607747956915430}
   m_Layer: 0
   m_Name: PlayerShipSlotImage
-  m_TagString: Untagged
+  m_TagString: WarehouseSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31436,7 +31108,7 @@ GameObject:
   - component: {fileID: 5091150481211119757}
   m_Layer: 0
   m_Name: PlayerShipSlotImage
-  m_TagString: Untagged
+  m_TagString: WarehouseSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31794,7 +31466,7 @@ GameObject:
   - component: {fileID: 1533876424790706210}
   m_Layer: 0
   m_Name: PlayerShipSlotImage
-  m_TagString: Untagged
+  m_TagString: WarehouseSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33731,6 +33403,94 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!1 &6923134538854701396
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2466892948099297344}
+  - component: {fileID: 1252622192029268222}
+  - component: {fileID: 8791934059007642497}
+  - component: {fileID: 7747334895020637836}
+  m_Layer: 0
+  m_Name: Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2466892948099297344
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6923134538854701396}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1}
+  m_Children: []
+  m_Father: {fileID: 224989586847235808}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -1.4, y: -1.3}
+  m_SizeDelta: {x: 72.91, y: 70.51}
+  m_Pivot: {x: 1, y: 1}
+--- !u!222 &1252622192029268222
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6923134538854701396}
+  m_CullTransparentMesh: 0
+--- !u!114 &8791934059007642497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6923134538854701396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 2d7ef19e4b85d3f4380358f6bc97e102, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+--- !u!114 &7747334895020637836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6923134538854701396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 361b6e2cdc884d0498e3a27e9afaba60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapManager: {fileID: 0}
 --- !u!1 &6931379873964884645
 GameObject:
   m_ObjectHideFlags: 0
@@ -33907,7 +33667,7 @@ GameObject:
   - component: {fileID: 4654431584100293089}
   m_Layer: 0
   m_Name: PlayerShipSlotImage
-  m_TagString: Untagged
+  m_TagString: WarehouseSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35700,7 +35460,7 @@ GameObject:
   - component: {fileID: 511370630198184746}
   m_Layer: 0
   m_Name: PlayerShipSlotImage
-  m_TagString: Untagged
+  m_TagString: WarehouseSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36630,7 +36390,7 @@ GameObject:
   - component: {fileID: 2598622578929282148}
   m_Layer: 0
   m_Name: PlayerShipSlotImage
-  m_TagString: Untagged
+  m_TagString: WarehouseSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37697,7 +37457,7 @@ GameObject:
   - component: {fileID: 4626132848632387399}
   m_Layer: 0
   m_Name: PlayerShipSlotImage
-  m_TagString: Untagged
+  m_TagString: WarehouseSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39050,7 +38810,7 @@ GameObject:
   - component: {fileID: 1202119741883379951}
   m_Layer: 0
   m_Name: PlayerShipSlotImage
-  m_TagString: Untagged
+  m_TagString: WarehouseSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40989,6 +40749,78 @@ MonoBehaviour:
   pivot: {fileID: 0}
   planetCanvas: {fileID: 0}
   mainCamera: {fileID: 0}
+--- !u!1 &9066155416268209105
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 316418673053312170}
+  - component: {fileID: 4116609963678449397}
+  - component: {fileID: 2777207422746492640}
+  m_Layer: 0
+  m_Name: RawImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &316418673053312170
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9066155416268209105}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 224989586847235808}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -2.8549995, y: -0.7599983}
+  m_SizeDelta: {x: 68.483, y: 68.48}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &4116609963678449397
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9066155416268209105}
+  m_CullTransparentMesh: 0
+--- !u!114 &2777207422746492640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9066155416268209105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -98529514, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Texture: {fileID: 8400000, guid: 127343176fe0b2e4a8b7b530a256daa2, type: 2}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
 --- !u!1 &9078575586112487701
 GameObject:
   m_ObjectHideFlags: 0
@@ -41436,7 +41268,7 @@ GameObject:
   - component: {fileID: 7905536476369980487}
   m_Layer: 0
   m_Name: PlayerShipSlotImage
-  m_TagString: Untagged
+  m_TagString: WarehouseSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41652,7 +41484,7 @@ GameObject:
   - component: {fileID: 362119300793455730}
   m_Layer: 0
   m_Name: PlayerShipSlotImage
-  m_TagString: Untagged
+  m_TagString: WarehouseSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47012,15 +46844,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e155d26e550f1648bf9295531c45336, type: 3}
---- !u!1 &6259225119440298952 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2059036499882746332, guid: 0e155d26e550f1648bf9295531c45336,
-    type: 3}
-  m_PrefabInstance: {fileID: 5354242144467141140}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &6259225119440298959 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2059036499882746331, guid: 0e155d26e550f1648bf9295531c45336,
+    type: 3}
+  m_PrefabInstance: {fileID: 5354242144467141140}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6259225119440298952 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2059036499882746332, guid: 0e155d26e550f1648bf9295531c45336,
     type: 3}
   m_PrefabInstance: {fileID: 5354242144467141140}
   m_PrefabAsset: {fileID: 0}
