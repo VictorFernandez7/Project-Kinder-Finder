@@ -3,7 +3,23 @@ using UnityEngine;
 
 public class Scr_LoadingScreen : MonoBehaviour
 {
-    private void OnEnable()
+    [Header("Paramaters")]
+    [SerializeField] private float timeToLoad;
+
+    private bool done;
+
+    private void Update()
+    {
+        timeToLoad -= Time.deltaTime;
+
+        if (timeToLoad <= 0 && !done)
+        {
+            Load();
+            done = true;
+        }
+    }
+
+    private void Load()
     {
         if (Scr_Levels.currentlyLoading == Scr_Levels.CurrentlyLoading.LoadingMenu)
         {
