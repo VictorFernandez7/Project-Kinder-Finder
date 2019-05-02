@@ -31,8 +31,8 @@ public class Scr_MainMenuManager : MonoBehaviour
     [HideInInspector] public Vector3 savedCamSpot;
     [HideInInspector] public Vector3 currentCameraPos;
     [HideInInspector] public MainMenuLevel mainMenuLevel;
+    [HideInInspector] public bool canControlInterface;
 
-    private bool canControlInterface;
     private Resolution[] resolutions;
 
     public enum MainMenuLevel
@@ -119,8 +119,14 @@ public class Scr_MainMenuManager : MonoBehaviour
             mainButtonsAnim.SetBool("Show", true);
 
             currentCameraPos = initialCameraPos.position;
-            canControlInterface = true;
+
+            Invoke("GiveControlToPlayer", 2);
         }
+    }
+
+    private void GiveControlToPlayer()
+    {
+        canControlInterface = true;
     }
 
     private void CheckInput()
