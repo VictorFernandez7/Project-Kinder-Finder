@@ -67,7 +67,8 @@ public class Scr_MainMenuButton : MonoBehaviour
 
     private void Update()
     {
-        indicator.transform.LookAt(mainMenuManager.mainCamera.transform);
+        if (!mainMenuManager.canControlInterface)
+            indicator.transform.LookAt(mainMenuManager.mainCamera.transform);
 
         if ((mainMenuButton == MainMenuButton.Play || mainMenuButton == MainMenuButton.Settings || mainMenuButton == MainMenuButton.AboutUs))
         {
