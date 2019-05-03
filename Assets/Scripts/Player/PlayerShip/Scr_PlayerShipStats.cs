@@ -87,7 +87,10 @@ public class Scr_PlayerShipStats : MonoBehaviour
             GetExperience(35);
 
         if(currentFuel == maxFuel && !isRefueled)
+        {
             narrativeManager.StartDialogue(9);
+            isRefueled = true;
+        }
 
         if (currentFuel <= 0 && !playerShipMovement.onGround)
             Death();
