@@ -60,6 +60,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [SerializeField] private Scr_AstronautMovement astronautMovement;
     [SerializeField] private GameObject leftLander;
     [SerializeField] private GameObject rightLander;
+    [SerializeField] private Scr_GameManager gameManager;
 
     [HideInInspector] public bool astronautOnBoard;
     [HideInInspector] public bool onGround;
@@ -399,7 +400,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
                     else
                     {
-                        rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, Time.deltaTime * landingTime);
+                        rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, Time.deltaTime * landingTime * (currentPlanet.transform.GetComponentInChildren<Renderer>().bounds.size.y / gameManager.initialPlanet.GetComponentInChildren<Renderer>().bounds.size.y));
 
                         playerShipDeathCheck.CheckLandingTime(false);
                         playerShipEffects.LandingEffects(true);
