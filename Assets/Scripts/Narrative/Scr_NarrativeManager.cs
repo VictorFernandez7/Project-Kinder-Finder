@@ -47,6 +47,7 @@ public class Scr_NarrativeManager : MonoBehaviour
     {
         textIndex = index;
         astronautMovement.Stop(true, true);
+        astronautMovement.onDialogue = true;
         panelAnim.gameObject.SetActive(true);
         panelAnim.SetBool("Show", true);
         onDialogue = true;
@@ -120,6 +121,7 @@ public class Scr_NarrativeManager : MonoBehaviour
         speakerIndex = 0;
         panelAnim.SetBool("Show", false);
         onDialogue = false;
+        astronautMovement.onDialogue = false;
         astronautMovement.MoveAgain();
     }
 }
