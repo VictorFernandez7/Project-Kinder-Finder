@@ -13,6 +13,7 @@ public class Scr_InterfaceManager : MonoBehaviour
     [SerializeField] private Animator anim_PlayerShipWindow;
     [SerializeField] private Animator anim_FadeImage;
     [SerializeField] private Animator anim_MiniMapPanel;
+    [SerializeField] private Animator anim_XPPanel;
     [SerializeField] private GameObject landingInterface;
     [SerializeField] private GameObject playerShipIcon;
     [SerializeField] private GameObject pauseCanvas;
@@ -48,12 +49,16 @@ public class Scr_InterfaceManager : MonoBehaviour
         if (!interacting)
         {
             if (playerShipWindowActive)
+            {
                 anim_MiniMapPanel.SetBool("Show", false);
+                anim_XPPanel.SetBool("Show", false);
+            }
 
             else
             {
                 CheckAstronautState();
                 anim_MiniMapPanel.SetBool("Show", true);
+                anim_XPPanel.SetBool("Show", true);
             }
         }
     }
@@ -130,6 +135,7 @@ public class Scr_InterfaceManager : MonoBehaviour
         {
             anim_AstronautInterface.SetBool("Show", !clear);
             anim_MiniMapPanel.SetBool("Show", !clear);
+            anim_XPPanel.SetBool("Show", !clear);
         }
 
         else
@@ -138,6 +144,7 @@ public class Scr_InterfaceManager : MonoBehaviour
             anim_PlayerShipInterface.SetBool("Show", !clear);
             anim_PlayerShipActions.SetBool("InsideShip", !clear);
             anim_MiniMapPanel.SetBool("Show", !clear);
+            anim_XPPanel.SetBool("Show", !clear);
         }
     }
 

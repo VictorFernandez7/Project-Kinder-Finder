@@ -14142,6 +14142,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 115117087499257826}
+  - component: {fileID: 1067218448759888392}
   m_Layer: 0
   m_Name: ExperiencePanel
   m_TagString: Untagged
@@ -14170,6 +14171,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -5.7998047}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0}
+--- !u!95 &1067218448759888392
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756631784773907057}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b7ea5b639780b28499d2cd275eeebf9a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1757045020282506101
 GameObject:
   m_ObjectHideFlags: 0
@@ -48690,16 +48710,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 158771303401835942, guid: 8f4b3db10d97c564d98a9a70d4ebf6b3,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -20
-      objectReference: {fileID: 0}
-    - target: {fileID: 158771303401835942, guid: 8f4b3db10d97c564d98a9a70d4ebf6b3,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -312
-      objectReference: {fileID: 0}
     - target: {fileID: 9112786991509905167, guid: 8f4b3db10d97c564d98a9a70d4ebf6b3,
         type: 3}
       propertyPath: staticTooltip
@@ -48710,6 +48720,16 @@ PrefabInstance:
       propertyPath: tooltip
       value: 
       objectReference: {fileID: 6259225119440298952}
+    - target: {fileID: 158771303401835942, guid: 8f4b3db10d97c564d98a9a70d4ebf6b3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 158771303401835942, guid: 8f4b3db10d97c564d98a9a70d4ebf6b3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -312
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f4b3db10d97c564d98a9a70d4ebf6b3, type: 3}
 --- !u!224 &8534991560609946960 stripped
