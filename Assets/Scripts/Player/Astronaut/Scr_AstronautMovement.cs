@@ -107,8 +107,6 @@ public class Scr_AstronautMovement : MonoBehaviour
         Calculations();
         baseDistanceFromCenterToGround = currentDistanceFromCenterToGround;
 
-        astronautAnim.SetTrigger("JumpStart");
-
         //////////////////////////// METER EN CÓDIGO DE SALTO
         ///
 
