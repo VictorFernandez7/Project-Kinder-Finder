@@ -8,6 +8,7 @@ public class Scr_MainButton : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     [Header("References")]
     [SerializeField] private Animator filesAnim;
+    [SerializeField] private Animator textsAnim;
 
     private bool filesActive;
     private Animator anim;
@@ -33,13 +34,26 @@ public class Scr_MainButton : MonoBehaviour, IPointerEnterHandler, IPointerExitH
                 anim.SetBool("ShowText", true);
         }
 
+        else if (desiredButton == DesiredButton.Planets)
+            textsAnim.SetBool("ShowPlanet", true);
+
+        else if (desiredButton == DesiredButton.Treasure)
+            textsAnim.SetBool("ShowTreasure", true);
+
         else
             anim.SetBool("ShowText", true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        anim.SetBool("ShowText", false);
+        if (desiredButton == DesiredButton.Planets)
+            textsAnim.SetBool("ShowPlanet", false);
+
+        else if (desiredButton == DesiredButton.Treasure)
+            textsAnim.SetBool("ShowTreasure", false);
+
+        else
+            anim.SetBool("ShowText", false);
     }
 
     public void OnPointerClick(PointerEventData eventData)
