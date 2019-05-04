@@ -28,7 +28,7 @@ public class Scr_MiningTool : Scr_ToolBase
 
     public override void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && transform.parent.GetComponent<Scr_IAMovement>().isMining)
         {
             executingRepairingTool = true;
             laser.enabled = executingRepairingTool;
@@ -64,26 +64,10 @@ public class Scr_MiningTool : Scr_ToolBase
     {
         Vector3 direction = (mainCamera.ScreenToWorldPoint(Input.mousePosition) - (transform.position + (transform.up * 0.01f)));
         direction = new Vector3(direction.x, direction.y, 0).normalized;
-        hitLaser = Physics2D.Raycast(transform.position + (transform.up * 0.01f), direction, distance, masker);
+        hitLaser = Physics2D.Raycast(transform.position, -transform.up, Mathf.Infinity, masker);
 
-        laser.SetPosition(0, transform.position + (transform.up * 0.01f));
-
-        if (Vector3.Angle(transform.right, direction) < angleLimit)
-        {
-            if (hitLaser)
-                laser.SetPosition(1, hitLaser.point);
-
-            else
-                laser.SetPosition(1, (transform.position + (transform.up * 0.01f)) + (direction * distance));
-
-            lastDirection = direction;
-        }
-
-        else if (Vector3.Angle(transform.right, lastDirection) < 90)
-            laser.SetPosition(1, (transform.position + (transform.up * 0.01f)) + (lastDirection * distance));
-
-        else
-            laser.SetPosition(1, transform.position);
+        laser.SetPosition(0, transform.position);
+        laser.SetPosition(1, hitLaser.point);
     }
 
     private void LaserFunction()
