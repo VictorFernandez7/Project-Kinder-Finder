@@ -58,7 +58,7 @@ public class Scr_AstronautsActions : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.E))
             unlockInteract = true;
 
-        if (Input.GetButton("Interact") && unlockInteract)
+        if (Input.GetButton("Interact") && unlockInteract && !narrativeManager.onDialogue)
         {
             if (astronautMovement.canEnterShip && emptyHands && resourceIndex == 0)
             {
