@@ -33,6 +33,7 @@ public class Scr_AstronautsActions : MonoBehaviour
     private bool canInputAgain = true;
     private bool pickFirst;
     private bool introduceFirst;
+    private bool unlockInteract = true;
     private int resourceIndex = 0;
 
     public GameObject[] currentResource = new GameObject[5];
@@ -54,7 +55,10 @@ public class Scr_AstronautsActions : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButton("Interact"))
+        if (Input.GetKeyUp(KeyCode.E))
+            unlockInteract = true;
+
+        if (Input.GetButton("Interact") && unlockInteract)
         {
             if (astronautMovement.canEnterShip && emptyHands && resourceIndex == 0)
             {
@@ -65,6 +69,7 @@ public class Scr_AstronautsActions : MonoBehaviour
                 {
                     canInputAgain = false;
                     interactionIndicatorAnim.gameObject.SetActive(false);
+                    unlockInteract = false;
 
                     if (playerShip.GetComponent<Scr_PlayerShipMovement>().playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed)
                         EnterShipFromPlanet();
@@ -75,7 +80,10 @@ public class Scr_AstronautsActions : MonoBehaviour
             }
 
             else if (astronautMovement.canEnterShip)
+            {
                 IntroduceResource();
+                unlockInteract = false;
+            }
         }
 
         else

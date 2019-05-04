@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Scr_DragFuel : MonoBehaviour, IPointerDownHandler,IPointerUpHandler, IPointerEnterHandler
+public class Scr_DragFuel : MonoBehaviour, IPointerDownHandler,IPointerUpHandler
 {
     [Header("Display Tooltip?")]
     [SerializeField] private bool displayTooltip;
@@ -33,10 +33,19 @@ public class Scr_DragFuel : MonoBehaviour, IPointerDownHandler,IPointerUpHandler
             transform.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
 
         if (playerShipStats.resourceWarehouse[itemIndex] != null)
+        {
             displayTooltip = true;
+            GetComponentInChildren<Scr_Tooltip>().isItem = true;
+        }
 
         else
+        {
             displayTooltip = false;
+            GetComponentInChildren<Scr_Tooltip>().isItem = false;
+        }
+
+        if (displayTooltip)
+            GetComponentInChildren<Scr_Tooltip>().tipText = playerShipStats.resourceWarehouse[itemIndex].name;
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -52,18 +61,13 @@ public class Scr_DragFuel : MonoBehaviour, IPointerDownHandler,IPointerUpHandler
         {
             playerShipStats.resourceWarehouse[slot.itemIndex] = playerShipStats.resourceWarehouse[itemIndex];
             playerShipStats.resourceWarehouse[itemIndex] = null;
+            slot.GetComponentInChildren<Scr_Tooltip>().isJustActive = true;
         }
 
         transform.localPosition = Vector3.zero;
 
         if (onRange && playerShipStats.resourceWarehouse[itemIndex].name == "Fuel")
             Refuel();
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        if (displayTooltip && playerShipStats.resourceWarehouse[itemIndex] != null)
-            GetComponentInChildren<Scr_Tooltip>().tipText = playerShipStats.resourceWarehouse[itemIndex].name;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

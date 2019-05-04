@@ -58,6 +58,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
     private float deployDelaySaved;
     private float holdInputTime = 0.9f;
     public bool canExitShip;
+    private bool unlockInteract;
     private bool toolPanel;
     private bool doneOnce;
     private bool canInputAgain = true;
@@ -106,6 +107,9 @@ public class Scr_PlayerShipActions : MonoBehaviour
 
         if (doingSpaceWalk && currentAsteroid != null)
             transform.up = currentAsteroid.transform.position - transform.position;
+
+        if (Input.GetKeyUp(KeyCode.E) && playerShipMovement.astronautOnBoard)
+            unlockInteract = true;
     }
 
     private void FixedUpdate()
@@ -151,8 +155,8 @@ public class Scr_PlayerShipActions : MonoBehaviour
     {
         if (playerShipMovement.astronautOnBoard)
         {
-            if (Input.GetButton("Interact"))
-            {
+            if (Input.GetButton("Interact") && unlockInteract && playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed && !astronaut.activeInHierarchy && canExitShip)
+            { 
                 holdInputTime -= Time.deltaTime;
                 interactionIndicatorAnim.gameObject.SetActive(true);
 
@@ -161,37 +165,34 @@ public class Scr_PlayerShipActions : MonoBehaviour
                     canInputAgain = false;
                     interactionIndicatorAnim.gameObject.SetActive(false);
 
-                    if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed && !astronaut.activeInHierarchy && canExitShip)
+                    if (playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().blockType == Scr_Planet.BlockType.HighTemperature && !unlockedSuits[0])
                     {
-                        if (playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().blockType == Scr_Planet.BlockType.HighTemperature && !unlockedSuits[0])
-                        {
-                            //reaccion CANT GO HOT PLANET
-                        }
+                        //reaccion CANT GO HOT PLANET
+                    }
 
-                        else if (playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().blockType == Scr_Planet.BlockType.LowTemperature && !unlockedSuits[1])
-                        {
-                            //reaccion CANT GO COLD PLANET
-                        }
+                    else if (playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().blockType == Scr_Planet.BlockType.LowTemperature && !unlockedSuits[1])
+                    {
+                        //reaccion CANT GO COLD PLANET
+                    }
 
-                        else if (playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().blockType == Scr_Planet.BlockType.Toxic && !unlockedSuits[2])
-                        {
-                            //reaccion CANT GO TOXIC PLANET
-                        }
+                    else if (playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().blockType == Scr_Planet.BlockType.Toxic && !unlockedSuits[2])
+                    {
+                        //reaccion CANT GO TOXIC PLANET
+                    }
+
+                    else
+                    {
+                        if (playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().blockType == Scr_Planet.BlockType.HighTemperature)
+                            DeployAstronaut(Suit.HotResistance);
+
+                        else if (playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().blockType == Scr_Planet.BlockType.LowTemperature)
+                            DeployAstronaut(Suit.ColdResistance);
+
+                        else if (playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().blockType == Scr_Planet.BlockType.Toxic)
+                            DeployAstronaut(Suit.ToxicResistance);
 
                         else
-                        {
-                            if (playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().blockType == Scr_Planet.BlockType.HighTemperature)
-                                DeployAstronaut(Suit.HotResistance);
-
-                            else if (playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().blockType == Scr_Planet.BlockType.LowTemperature)
-                                DeployAstronaut(Suit.ColdResistance);
-
-                            else if (playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().blockType == Scr_Planet.BlockType.Toxic)
-                                DeployAstronaut(Suit.ToxicResistance);
-
-                            else
-                                DeployAstronaut(Suit.SpaceSuit);
-                        }
+                            DeployAstronaut(Suit.SpaceSuit);
                     }
 
                     if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace && !astronaut.activeInHierarchy && !doingSpaceWalk && unlockedSpaceWalk)
@@ -277,9 +278,9 @@ public class Scr_PlayerShipActions : MonoBehaviour
         {
             case Suit.SpaceSuit:
                 normalSuit.SetActive(true);
-                highTemperatureSuit.SetActive(false);
-                lowTemperatureSuit.SetActive(false);
-                toxicSuit.SetActive(false);
+               // highTemperatureSuit.SetActive(false);
+               // lowTemperatureSuit.SetActive(false);
+                //toxicSuit.SetActive(false);
                 break;
 
             case Suit.HotResistance:
@@ -304,6 +305,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
                 break;
         }
 
+        unlockInteract = false;
         astronaut.GetComponent<Scr_AstronautEffects>().breathingBool = true;
         astronaut.transform.position = spawnPoint.position;
         astronaut.GetComponent<Scr_AstronautMovement>().currentPlanet = playerShipMovement.currentPlanet;
@@ -316,7 +318,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
         playerShipMovement.mainCamera.GetComponent<Scr_MainCamera>().followAstronaut = true;
         GameObject ia = Instantiate(IA, IAStpot.position, IAStpot.rotation);
         astronaut.GetComponent<Scr_AstronautsActions>().iaResourcePoint = ia.transform.Find("ResourceSpot");
-        playerShipMovement.currentPlanet.GetComponentInParent<Scr_PlanetDiscovery>().explored = true;
+       // playerShipMovement.currentPlanet.GetComponentInParent<Scr_PlanetDiscovery>().explored = true;
     }
 
     private void MiningSliderColor()

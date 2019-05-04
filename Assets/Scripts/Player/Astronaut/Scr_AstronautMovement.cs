@@ -56,6 +56,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     [HideInInspector] public Vector3 planetPosition;
     [HideInInspector] public Quaternion planetRotation;
     [HideInInspector] public GameObject currentPlanet;
+    [HideInInspector] public bool onDialogue;
 
     private bool faceRight = true;
     private bool jumping;
@@ -125,7 +126,7 @@ public class Scr_AstronautMovement : MonoBehaviour
             Stop(true, true);
         }
 
-        else if (Input.GetMouseButtonUp(1))
+        else if (Input.GetMouseButtonUp(1) && !onDialogue)
         {
             MoveAgain();
         }
