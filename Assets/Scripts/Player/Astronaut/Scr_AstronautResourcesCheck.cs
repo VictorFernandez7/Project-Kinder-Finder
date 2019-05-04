@@ -7,6 +7,8 @@ public class Scr_AstronautResourcesCheck : MonoBehaviour
     public List<GameObject> resourceList = new List<GameObject>();
     private int count = 0;
 
+    [HideInInspector] public GameObject miningSpot;
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha0))
@@ -30,10 +32,10 @@ public class Scr_AstronautResourcesCheck : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Resources"))
-        {
             resourceList.Add(collision.gameObject);
-        }
 
+        if (collision.CompareTag("MiningSpot"))
+            miningSpot = collision.gameObject;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -46,5 +48,8 @@ public class Scr_AstronautResourcesCheck : MonoBehaviour
                     resourceList.RemoveAt(i);
             }
         }
+
+        if (collision.CompareTag("MiningSpot"))
+            miningSpot = null;
     }
 }

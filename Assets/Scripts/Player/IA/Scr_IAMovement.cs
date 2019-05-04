@@ -21,12 +21,13 @@ public class Scr_IAMovement : MonoBehaviour
     private GameObject playerShip;
     private Transform playerShipSpot;
     private Scr_PlayerShipMovement playerShipMovement;
-
     private float desiredSpeed;
     private float savedDelay;
     private Vector3 desiredRotation;
-    private Transform target;
     private Animator anim;
+
+    [HideInInspector] public Transform target;
+    [HideInInspector] public bool isMining;
 
     private void Start()
     {
@@ -47,6 +48,8 @@ public class Scr_IAMovement : MonoBehaviour
         CheckPlanet();
         CheckDistance();
         Interactions();
+
+        Debug.Log(target);
     }
 
     private void FixedUpdate()
@@ -61,11 +64,14 @@ public class Scr_IAMovement : MonoBehaviour
 
     private void CheckDistance()
     {
-        if (Vector3.Distance(astronaut.transform.position, playerShip.transform.position) <= distanceFormShip)
-            target = playerShipSpot;
+        if (!isMining)
+        {
+            if (Vector3.Distance(astronaut.transform.position, playerShip.transform.position) <= distanceFormShip)
+                target = playerShipSpot;
 
-        else
-            target = astronautSpot;
+            else
+                target = astronautSpot;
+        }
     }
 
     private void FollowTarget()
@@ -84,8 +90,11 @@ public class Scr_IAMovement : MonoBehaviour
         if (target == astronautSpot)
             desiredRotation = Vector3.Lerp(desiredRotation, astronautUpVector, Time.deltaTime * rotationSpeed);
 
-        else
+        else if (target == playerShipSpot)
             desiredRotation = Vector3.Lerp(desiredRotation, playerShipVectorUp, Time.deltaTime * rotationSpeed);
+
+        else
+            desiredRotation = Vector3.Lerp(desiredRotation, target.up, Time.deltaTime * rotationSpeed);
 
         if (target != null)
         {
