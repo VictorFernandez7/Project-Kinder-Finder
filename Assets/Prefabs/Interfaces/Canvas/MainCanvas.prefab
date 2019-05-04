@@ -2448,7 +2448,7 @@ RectTransform:
   - {fileID: 3221257956199557965}
   - {fileID: 8534991560609946960}
   m_Father: {fileID: 224166198170107452}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3069,8 +3069,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6259225119440298959}
-  - {fileID: 5531452681520569888}
   - {fileID: 2043607276}
+  - {fileID: 5531452681520569888}
   m_Father: {fileID: 224797435248660994}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -27520,7 +27520,7 @@ RectTransform:
   - {fileID: 8871597743090913194}
   - {fileID: 224122350892158542}
   m_Father: {fileID: 224166198170107452}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -47788,6 +47788,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tooltip
       objectReference: {fileID: 0}
+    - target: {fileID: 2059036499882746332, guid: 0e155d26e550f1648bf9295531c45336,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2059036499882746331, guid: 0e155d26e550f1648bf9295531c45336,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -47896,19 +47901,19 @@ PrefabInstance:
     - target: {fileID: 2059036501601038861, guid: 0e155d26e550f1648bf9295531c45336,
         type: 3}
       propertyPath: m_havePropertiesChanged
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e155d26e550f1648bf9295531c45336, type: 3}
---- !u!224 &6259225119440298959 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2059036499882746331, guid: 0e155d26e550f1648bf9295531c45336,
-    type: 3}
-  m_PrefabInstance: {fileID: 5354242144467141140}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6259225119440298952 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2059036499882746332, guid: 0e155d26e550f1648bf9295531c45336,
+    type: 3}
+  m_PrefabInstance: {fileID: 5354242144467141140}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &6259225119440298959 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2059036499882746331, guid: 0e155d26e550f1648bf9295531c45336,
     type: 3}
   m_PrefabInstance: {fileID: 5354242144467141140}
   m_PrefabAsset: {fileID: 0}
