@@ -20,30 +20,34 @@ public class Scr_Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     [SerializeField] private Camera mainCamera;
     [SerializeField] private Transform tooltipPos;
 
+    [HideInInspector] public bool isItem;
+    [HideInInspector] public bool isJustActive;
+
     private bool mouseOver;
     private TextMeshProUGUI tooltipText;
 
     private void Start()
     {
         tooltipText = tooltip.GetComponentInChildren<TextMeshProUGUI>();
+        isItem = true;
     }
 
     private void Update()
     {
         if (mouseOver)
             ToolTipMovement();
+
+        if (isItem && isJustActive)
+        {
+            ActivateTooltip();
+            isJustActive = false;
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        mouseOver = true;
-
-        tooltipText.text = tipText;
-        tooltipText.fontSize = fontSize;
-        tooltip.SetActive(true);
-
-        if (!staticTooltip)
-            tooltipText.transform.localPosition = new Vector3(xPos, yPos, tooltip.transform.position.z);
+        if (isItem)
+            ActivateTooltip();
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -64,5 +68,17 @@ public class Scr_Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
         else
             tooltip.transform.position = tooltipPos.position;
+    }
+
+    private void ActivateTooltip()
+    {
+        mouseOver = true;
+
+        tooltipText.text = tipText;
+        tooltipText.fontSize = fontSize;
+        tooltip.SetActive(true);
+
+        if (!staticTooltip)
+            tooltipText.transform.localPosition = new Vector3(xPos, yPos, tooltip.transform.position.z);
     }
 }
