@@ -80,7 +80,10 @@ public class Scr_AstronautsActions : MonoBehaviour
             }
 
             else if (astronautMovement.canEnterShip)
+            {
                 IntroduceResource();
+                unlockInteract = false;
+            }
         }
 
         else
