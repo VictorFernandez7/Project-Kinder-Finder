@@ -27,6 +27,7 @@ public class Scr_AstronautsActions : MonoBehaviour
     [HideInInspector] public bool emptyHands;
     [HideInInspector] public bool toolOnHands;
     [HideInInspector] public GameObject toolOnFloor;
+    [HideInInspector] public GameObject miningSpot;
     [HideInInspector] public bool[] unlockedTools = new bool[5];
 
     private float fuelAmount;
@@ -56,14 +57,19 @@ public class Scr_AstronautsActions : MonoBehaviour
 
     private void Update()
     {
+
+
         if (Input.GetKeyUp(KeyCode.E))
             unlockInteract = true;
 
-        if(astronautResourcesCheck.miningSpot == null)
-            iAMovement.isMining = false;
-
         if (Input.GetButton("Interact") && !narrativeManager.onDialogue)
         {
+            if (miningSpot != null && !iAMovement.isMining)
+            {
+                iAMovement.isMining = true;
+                iAMovement.target = miningSpot.transform;
+            }
+
             if (astronautMovement.canEnterShip && emptyHands && resourceIndex == 0 && unlockInteract)
             {
                 holdInputTime -= Time.deltaTime;
@@ -95,19 +101,11 @@ public class Scr_AstronautsActions : MonoBehaviour
             canInputAgain = true;
             holdInputTime = 0.9f;
             interactionIndicatorAnim.gameObject.SetActive(false);
+            iAMovement.isMining = false;
         }
 
         if (Input.GetButtonDown("Interact") && !narrativeManager.onDialogue)
         {
-            if (astronautResourcesCheck.miningSpot != null && !iAMovement.isMining)
-            {
-                iAMovement.isMining = true;
-                iAMovement.target = astronautResourcesCheck.miningSpot.transform;
-            }
-
-            else
-                iAMovement.isMining = false;
-
             if (toolOnHands)
                 astronautStats.toolSlots[numberToolActive].GetComponent<Scr_ToolBase>().UseTool();
 
