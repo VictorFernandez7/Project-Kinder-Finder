@@ -52,7 +52,8 @@ public class Scr_AstronautsActions : MonoBehaviour
     {
         solidSpot,
         liquidSpot,
-        gasSpot
+        gasSpot,
+        breakeable
     }
 
     private void Start()
@@ -73,7 +74,7 @@ public class Scr_AstronautsActions : MonoBehaviour
 
         if (Input.GetButton("Interact") && !narrativeManager.onDialogue)
         {
-            if (miningSpot != null && ((spotType == SpotType.solidSpot && solidTool.activeInHierarchy) || (spotType == SpotType.liquidSpot && liquidTool.activeInHierarchy) || (spotType == SpotType.gasSpot && gasTool.activeInHierarchy)))
+            if (miningSpot != null && ((spotType == SpotType.solidSpot && solidTool.activeInHierarchy) || (spotType == SpotType.liquidSpot && liquidTool.activeInHierarchy) || (spotType == SpotType.gasSpot && gasTool.activeInHierarchy) || (spotType == SpotType.breakeable && solidTool.activeInHierarchy)))
             {
                 iAMovement.isMining = true;
                 iAMovement.target = miningSpot.transform;

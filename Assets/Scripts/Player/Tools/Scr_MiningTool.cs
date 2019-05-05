@@ -5,7 +5,6 @@ using UnityEngine;
 public class Scr_MiningTool : Scr_ToolBase
 {
     [Header("Repairing Tool Parameters")]
-    [SerializeField] private float angleLimit;
     [SerializeField] private float miningSpeed;
     [SerializeField] private float laserSpeed;
     [SerializeField] private LayerMask masker;
@@ -104,7 +103,7 @@ public class Scr_MiningTool : Scr_ToolBase
 
         if (activating)
         {
-            distance = Vector2.Distance(transform.position, hitLaser.point);
+            distance = Vector2.Distance(transform.position, hitLaserPoint);
             laserPoint = transform.position + ((transform.parent.GetComponent<Scr_IAMovement>().target.parent.transform.position - transform.position).normalized * distance * laserPercent * switcher);
         }
 
@@ -121,7 +120,7 @@ public class Scr_MiningTool : Scr_ToolBase
             if (hitLaser.collider.transform.CompareTag("Block") && laserPercent == 1)
                 hitLaser.collider.transform.gameObject.GetComponent<Scr_Ore>().amount -= miningSpeed * Time.deltaTime;
 
-            else if(hitLaser.collider.transform.CompareTag("Breakeable"))
+            else if(hitLaser.collider.transform.CompareTag("Breakeable") && laserPercent == 1)
                 hitLaser.collider.transform.gameObject.GetComponent<Scr_Breakeable>().amount -= miningSpeed * Time.deltaTime;
         }
     }
