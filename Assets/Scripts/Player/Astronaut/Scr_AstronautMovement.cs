@@ -342,6 +342,7 @@ public class Scr_AstronautMovement : MonoBehaviour
             exponentialMultiplier = 1;
 
             astronautAnim.SetBool("Moving", false);
+            astronautEffects.MovementParticles(false);
         }
 
         astronautAnim.SetBool("OnGround", !jumping);
@@ -362,6 +363,7 @@ public class Scr_AstronautMovement : MonoBehaviour
             MoveAgain();
 
         astronautAnim.SetBool("Moving", true);
+        astronautEffects.MovementParticles(true);
 
         if (!decelerating)
         {

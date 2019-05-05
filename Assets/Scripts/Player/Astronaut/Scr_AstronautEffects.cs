@@ -34,11 +34,11 @@ public class Scr_AstronautEffects : MonoBehaviour
 
     private void Update()
     {
-        //SoundManager();
+        SoundManager();
     }
 
     private void SoundManager()
-    {
+    {/*
         if (!musicManager.transform.GetChild(2).GetComponent<AudioSource>().isPlaying)
         {
             Scr_MusicManager.Instance.PlaySound(steps.Sound, 0);
@@ -69,7 +69,7 @@ public class Scr_AstronautEffects : MonoBehaviour
         if ()
         {
            Scr_MusicManager.Instance.PlaySound(repair.Sound, 0);
-        }*/
+        }
 
         if (breathingBool && !musicManager.transform.GetChild(2).GetComponent<AudioSource>().isPlaying)
         {
@@ -80,21 +80,24 @@ public class Scr_AstronautEffects : MonoBehaviour
         {
 
         }
-        /*
+        
        if ()
        {
            Scr_MusicManager.Instance.PlaySound(chatter.Sound, 0);
-       } */
+       }*/
     }
 
     public void MovementParticles(bool isMoving)
     {
-        movingParticlesRenderer.material = playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().particlesMaterial;
+        //movingParticlesRenderer.material = playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().particlesMaterial;
 
-        if (isMoving && !movingParticles.isPlaying)
-            movingParticles.Play();
+        if (isMoving)
+        {
+            if (!movingParticles.isPlaying)
+                movingParticles.Play();
+        }
 
-        else if (movingParticles.isPlaying)
+        else
             movingParticles.Stop();
     }
 }
