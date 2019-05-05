@@ -6,9 +6,8 @@ using UnityEngine.UI;
 public class Scr_Resource : MonoBehaviour
 {
     [Header("Resource Properties")]
-    [SerializeField] private ResourceType resourceType;
     [SerializeField] private int typeIndex;
-    [SerializeField] public Sprite icon;
+    [SerializeField] private ResourceType resourceType;
 
     [Header("Physics")]
     [SerializeField] private float gravity;
@@ -23,6 +22,10 @@ public class Scr_Resource : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform rayOrigin1;
     [SerializeField] private Transform rayOrigin2;
+    [SerializeField] private GameObject solidVisuals;
+    [SerializeField] private GameObject gasVisuals;
+    [SerializeField] private GameObject liquidVisuals;
+    [SerializeField] public Sprite icon;
 
     [HideInInspector] public GameObject resourceReference;
     [HideInInspector] public bool onHands;
@@ -36,8 +39,9 @@ public class Scr_Resource : MonoBehaviour
 
     public enum ResourceType
     {
-        gas,
-        solid
+        Gas,
+        Solid,
+        Liquid
     }
 
     private void Start()
@@ -90,11 +94,11 @@ public class Scr_Resource : MonoBehaviour
     {
         switch (resourceType)
         {
-            case ResourceType.gas:
+            case ResourceType.Gas:
                 resourceReference = GameObject.Find("ReferenceManager").GetComponent<Scr_ReferenceManager>().Resources[typeIndex];
                 break;
 
-            case ResourceType.solid:
+            case ResourceType.Solid:
                 resourceReference = GameObject.Find("ReferenceManager").GetComponent<Scr_ReferenceManager>().Resources[typeIndex];
                 break;
         }
@@ -105,5 +109,27 @@ public class Scr_Resource : MonoBehaviour
         spawnAngle = Random.Range(-maxSpawnAngle, maxSpawnAngle);
 
         rb.AddForce((transform.up + transform.right * (spawnAngle / 10)).normalized * spawnImpulse);
+    }
+
+    public void ChangeVisuals()
+    {
+        switch (resourceType)
+        {
+            case ResourceType.Gas:
+                solidVisuals.SetActive(false);
+                gasVisuals.SetActive(true);
+                liquidVisuals.SetActive(false);
+                break;
+            case ResourceType.Solid:
+                solidVisuals.SetActive(true);
+                gasVisuals.SetActive(false);
+                liquidVisuals.SetActive(false);
+                break;
+            case ResourceType.Liquid:
+                solidVisuals.SetActive(false);
+                gasVisuals.SetActive(false);
+                liquidVisuals.SetActive(true);
+                break;
+        }
     }
 }
