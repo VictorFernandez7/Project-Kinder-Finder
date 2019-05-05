@@ -19,7 +19,8 @@ public class Scr_MiningTool : Scr_ToolBase
     private RaycastHit2D hitLaser;
     private Vector3 lastDirection;
     private Vector3 laserPoint;
-    private float laserPercent;
+    private Vector3 hitLaserPoint;
+    private float laserPercent = -2f;
     private float distance;
 
     void Start()
@@ -32,9 +33,10 @@ public class Scr_MiningTool : Scr_ToolBase
 
     public override void Update()
     {
-        hitLaser = Physics2D.Raycast(transform.position, -transform.up, Mathf.Infinity, masker);
+        if(transform.parent.GetComponent<Scr_IAMovement>().target)
+            hitLaser = Physics2D.Raycast(transform.position, transform.parent.GetComponent<Scr_IAMovement>().target.parent.transform.position - transform.position, Mathf.Infinity, masker);
 
-        if (Input.GetMouseButton(0) && transform.parent.GetComponent<Scr_IAMovement>().isMining && hitLaser)
+        if (Input.GetButton("Interact") && transform.parent.GetComponent<Scr_IAMovement>().isMining && hitLaser)
         {
             executingRepairingTool = true;
             laser.enabled = executingRepairingTool;
@@ -57,7 +59,7 @@ public class Scr_MiningTool : Scr_ToolBase
         {
             executingRepairingTool = false;
             laser.enabled = executingRepairingTool;
-            laserPercent = 0;
+            laserPercent = -2f;
 
             if (!hitLaser && isMining)
                 transform.parent.GetComponent<Scr_IAMovement>().isMining = false;
@@ -86,13 +88,28 @@ public class Scr_MiningTool : Scr_ToolBase
     {
         laser.SetPosition(0, transform.position);
 
-        if (activating)
-            distance = Vector2.Distance(transform.position, hitLaser.point);
-
         if (laserPercent > 1)
             laserPercent = 1;
 
-        laserPoint = transform.position + (-transform.up * distance * laserPercent);
+        int switcher;
+
+        if (laserPercent < 0)
+            switcher = 0;
+
+        else
+            switcher = 1;
+
+        if (hitLaser)
+            hitLaserPoint = hitLaser.point;
+
+        if (activating)
+        {
+            distance = Vector2.Distance(transform.position, hitLaser.point);
+            laserPoint = transform.position + ((transform.parent.GetComponent<Scr_IAMovement>().target.parent.transform.position - transform.position).normalized * distance * laserPercent * switcher);
+        }
+
+        else
+            laserPoint = transform.position + ((hitLaserPoint - transform.position).normalized * distance * laserPercent);
 
         laser.SetPosition(1, laserPoint);
     }
