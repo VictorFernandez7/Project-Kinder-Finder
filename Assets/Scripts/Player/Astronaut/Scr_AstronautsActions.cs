@@ -15,6 +15,9 @@ public class Scr_AstronautsActions : MonoBehaviour
     [SerializeField] private GameObject mainCamera;
     [SerializeField] private GameObject playerShip;
     [SerializeField] private GameObject lantern;
+    [SerializeField] private GameObject solidTool;
+    [SerializeField] private GameObject liquidTool;
+    [SerializeField] private GameObject gasTool;
     [SerializeField] private Scr_SunLight sunLight;
     [SerializeField] private Scr_GameManager gameManager;
     [SerializeField] private Scr_AstronautResourcesCheck astronautResourcesCheck;
@@ -29,6 +32,7 @@ public class Scr_AstronautsActions : MonoBehaviour
     [HideInInspector] public GameObject toolOnFloor;
     [HideInInspector] public GameObject miningSpot;
     [HideInInspector] public bool[] unlockedTools = new bool[5];
+    [HideInInspector] public SpotType spotType;
 
     private float fuelAmount;
     private float holdInputTime = 0.9f;
@@ -43,6 +47,13 @@ public class Scr_AstronautsActions : MonoBehaviour
     private Scr_AstronautMovement astronautMovement;
     private Scr_AstronautStats astronautStats;
     private Scr_PlayerShipActions playerShipActions;
+
+    public enum SpotType
+    {
+        solidSpot,
+        liquidSpot,
+        gasSpot
+    }
 
     private void Start()
     {
@@ -62,7 +73,7 @@ public class Scr_AstronautsActions : MonoBehaviour
 
         if (Input.GetButton("Interact") && !narrativeManager.onDialogue)
         {
-            if (miningSpot != null)
+            if (miningSpot != null && ((spotType == SpotType.solidSpot && solidTool.activeInHierarchy) || (spotType == SpotType.liquidSpot && liquidTool.activeInHierarchy) || (spotType == SpotType.gasSpot && gasTool.activeInHierarchy)))
             {
                 iAMovement.isMining = true;
                 iAMovement.target = miningSpot.transform;
