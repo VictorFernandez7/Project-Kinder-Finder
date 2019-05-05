@@ -306,12 +306,14 @@ public class Scr_MainMenuButton : MonoBehaviour
 
     private void ContinueGame()
     {
-        Scr_LevelManager.LoadNarrativeScene();
+        mainMenuManager.fadeImage.SetBool("Show", true);
+        Invoke("ChangeScene", 2.5f);
     }
 
     private void NewGame()
     {
-        Scr_LevelManager.LoadNarrativeScene();
+        mainMenuManager.fadeImage.SetBool("Show", true);
+        Invoke("ChangeScene", 2.5f);
     }
 
     private void LoadSlot1()
@@ -327,5 +329,10 @@ public class Scr_MainMenuButton : MonoBehaviour
     private void LoadSlot3()
     {
 
+    }
+
+    private void ChangeScene()
+    {
+        Scr_LevelManager.LoadNarrativeScene();
     }
 }
