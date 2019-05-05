@@ -26,6 +26,7 @@ public class Scr_MainMenuManager : MonoBehaviour
     [SerializeField] public Animator settingsAnim;
     [SerializeField] public Animator aboutUsAnim;
     [SerializeField] public Animator mainCanvasAnim;
+    [SerializeField] public Animator exitButtonAnim;
     [SerializeField] public Transform initialCameraPos;
 
     [HideInInspector] public Vector3 savedCamSpot;
@@ -117,6 +118,7 @@ public class Scr_MainMenuManager : MonoBehaviour
         {
             mainCanvasAnim.SetBool("Hide", true);
             mainButtonsAnim.SetBool("Show", true);
+            exitButtonAnim.SetBool("Show", true);
 
             currentCameraPos = initialCameraPos.position;
 
@@ -141,6 +143,8 @@ public class Scr_MainMenuManager : MonoBehaviour
                 secondaryButtonsAnim.SetBool("Play", false);
                 secondaryButtonsAnim.SetBool("Settings", false);
                 secondaryButtonsAnim.SetBool("AboutUs", false);
+
+                exitButtonAnim.SetBool("Show", true);
             }
 
             else if (mainMenuLevel == MainMenuLevel.Secondary)
@@ -217,5 +221,10 @@ public class Scr_MainMenuManager : MonoBehaviour
     public void OpenTigSource()
     {
         Application.OpenURL("https://forums.tigsource.com/index.php?topic=66844.0");
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }
