@@ -35,6 +35,9 @@ public class Scr_AstronautEffects : MonoBehaviour
     private void Update()
     {
         SoundManager();
+
+        if (movingParticles.isPlaying && astronautMovement.jumping)
+            movingParticles.Stop();
     }
 
     private void SoundManager()
@@ -89,7 +92,7 @@ public class Scr_AstronautEffects : MonoBehaviour
 
     public void MovementParticles(bool isMoving)
     {
-        //movingParticlesRenderer.material = playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().particlesMaterial;
+        movingParticlesRenderer.material = playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().particlesMaterial;
 
         if (isMoving)
         {
@@ -99,5 +102,13 @@ public class Scr_AstronautEffects : MonoBehaviour
 
         else
             movingParticles.Stop();
+    }
+
+    public void JumpParticles()
+    {
+        jumpParticlesRenderer.material = playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().particlesMaterial;
+
+        if (!jumpParticles.isPlaying)
+            jumpParticles.Play();
     }
 }

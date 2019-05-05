@@ -57,9 +57,9 @@ public class Scr_AstronautMovement : MonoBehaviour
     [HideInInspector] public Quaternion planetRotation;
     [HideInInspector] public GameObject currentPlanet;
     [HideInInspector] public bool onDialogue;
+    [HideInInspector] public bool jumping;
 
     private bool faceRight = true;
-    private bool jumping;
     private bool toJump;
     private bool canMoveRight = true;
     private bool canMoveLeft = true;
@@ -114,6 +114,7 @@ public class Scr_AstronautMovement : MonoBehaviour
         // Comienzo Salto (presionar tecla) - astronautAnim.SetTrigger("JumpStart");
 
         // Final Salto (caer al suelo) - astronautAnim.SetTrigger("JumpLoop");
+        //                             - astronautEffects.JumpParticles();
 
         ///
         ////////////////////////////
@@ -138,6 +139,7 @@ public class Scr_AstronautMovement : MonoBehaviour
                 timeAtAir = 0;
                 speedInJump = speedJump;
                 jumping = true;
+                astronautEffects.JumpParticles();
             }
 
             Jetpacking();
