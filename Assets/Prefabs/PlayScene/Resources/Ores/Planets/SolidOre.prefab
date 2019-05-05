@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4768274543656946}
-  - component: {fileID: 61835272635921014}
   - component: {fileID: 114375747254265304}
+  - component: {fileID: 2436776023832821142}
   m_Layer: 13
   m_Name: SolidOre
   m_TagString: Block
@@ -34,32 +34,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &61835272635921014
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1274462527133118}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.0016517155, y: 0.07515329}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.18017933, y: 0.16380373}
-  m_EdgeRadius: 0
 --- !u!114 &114375747254265304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,6 +54,48 @@ MonoBehaviour:
   playerShipStats: {fileID: 0}
   visuals: {fileID: 6066221715447718133}
   currentResource: {fileID: 0}
+--- !u!68 &2436776023832821142
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1274462527133118}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.0811955, y: -0.00016073138}
+  - {x: -0.091674745, y: 0.022148434}
+  - {x: -0.08388972, y: 0.043468285}
+  - {x: -0.057028726, y: 0.04988677}
+  - {x: -0.043121096, y: 0.04690209}
+  - {x: -0.047044225, y: 0.0689425}
+  - {x: -0.044453356, y: 0.11862241}
+  - {x: -0.039303165, y: 0.11423094}
+  - {x: -0.036143508, y: 0.15629302}
+  - {x: -0.039248724, y: 0.1594268}
+  - {x: -0.036835473, y: 0.1694004}
+  - {x: -0.03022387, y: 0.16692986}
+  - {x: -0.00020369329, y: 0.18245941}
+  - {x: 0.015831525, y: 0.15963863}
+  - {x: 0.025837764, y: 0.1568692}
+  - {x: 0.040208872, y: 0.124763004}
+  - {x: 0.039821696, y: 0.09857722}
+  - {x: 0.03800112, y: 0.09751242}
+  - {x: 0.03941864, y: 0.084018216}
+  - {x: 0.066720895, y: 0.10205865}
+  - {x: 0.11493866, y: 0.08226793}
+  - {x: 0.10917716, y: 0.033501845}
+  - {x: 0.11189027, y: 0.028138049}
+  - {x: 0.09656694, y: 0.019443393}
+  - {x: 0.098281, y: 0.018225178}
+  - {x: 0.091282226, y: 0.00039846823}
 --- !u!1 &1536247083229312
 GameObject:
   m_ObjectHideFlags: 0
