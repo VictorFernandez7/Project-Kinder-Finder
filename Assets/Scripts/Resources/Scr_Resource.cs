@@ -111,9 +111,9 @@ public class Scr_Resource : MonoBehaviour
         rb.AddForce((transform.up + transform.right * (spawnAngle / 10)).normalized * spawnImpulse);
     }
 
-    public void ChangeVisuals()
+    public void ChangeVisuals(ResourceType targetType)
     {
-        switch (resourceType)
+        switch (targetType)
         {
             case ResourceType.Gas:
                 solidVisuals.SetActive(false);
