@@ -48,6 +48,7 @@ public class Scr_LiquidTool : Scr_ToolBase
         {
             amount -= 1;
             GameObject resources = Instantiate(resource, transform.position, transform.rotation);
+            resources.GetComponent<Scr_Resource>().ChangeVisuals(Scr_Resource.ResourceType.Liquid);
             resources.transform.SetParent(playerShipMovement.currentPlanet.transform);
         }
     }
