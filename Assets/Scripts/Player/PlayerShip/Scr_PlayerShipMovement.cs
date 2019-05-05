@@ -122,7 +122,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     private void Update()
     {
         Timers();
-        BulletTime();
+       // BulletTime();
         SpeedLimiter();
         MessageTextManager();
         PlayerShipStateCheck();
