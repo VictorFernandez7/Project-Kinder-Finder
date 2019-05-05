@@ -61,6 +61,13 @@ public class Scr_LevelManager : Scr_PersistentSingleton<Scr_LevelManager>
         SceneManager.LoadScene(MenuStorage.loadingScreen);
     }
 
+    public static void LoadNarrativeScene()
+    {
+        Scr_Levels.currentlyLoading = Scr_Levels.CurrentlyLoading.LoadingMenu;
+        Scr_Levels.menuToLoad = Scr_Levels.MenuToLoad.NarrativeScene;
+        SceneManager.LoadScene(MenuStorage.loadingScreen);
+    }
+
     public static void LoadPlanetSystem(Scr_Levels.LevelToLoad desiredLevel)
     {
         Scr_Levels.currentlyLoading = Scr_Levels.CurrentlyLoading.LoadingLevel;

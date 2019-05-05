@@ -305,12 +305,12 @@ public class Scr_MainMenuButton : MonoBehaviour
 
     private void ContinueGame()
     {
-
+        Scr_LevelManager.LoadNarrativeScene();
     }
 
     private void NewGame()
     {
-        Scr_LevelManager.LoadPlanetSystem(Scr_Levels.LevelToLoad.PlanetSystem1);
+        Scr_LevelManager.LoadNarrativeScene();
     }
 
     private void LoadSlot1()

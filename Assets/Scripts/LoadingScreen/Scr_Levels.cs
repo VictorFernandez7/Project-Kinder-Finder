@@ -21,7 +21,8 @@ public class Scr_Levels
     public enum MenuToLoad
     {
         MainMenu,
-        SystemSelection
+        SystemSelection,
+        NarrativeScene
     }
 
     public enum LevelToLoad
@@ -48,6 +49,7 @@ public class MenuStorage
     public static string mainMenu = "Scn_MainMenu";
     public static string systemSelection = "Scn_SystemSelection";
     public static string loadingScreen = "Scn_LoadingScreen";
+    public static string narrativeScene = "Scn_NarrativeScene";
 }
 
 public class LevelStorage
