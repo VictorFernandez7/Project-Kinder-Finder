@@ -31,6 +31,9 @@ public class Scr_LoadingScreen : MonoBehaviour
                 case Scr_Levels.MenuToLoad.SystemSelection:
                     SceneManager.LoadSceneAsync(MenuStorage.systemSelection, LoadSceneMode.Additive);
                     break;
+                case Scr_Levels.MenuToLoad.NarrativeScene:
+                    SceneManager.LoadSceneAsync(MenuStorage.narrativeScene, LoadSceneMode.Additive);
+                    break;
             }
         }
 
