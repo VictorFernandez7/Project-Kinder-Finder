@@ -28,11 +28,12 @@ public class Scr_MainMenuManager : MonoBehaviour
     [SerializeField] public Animator mainCanvasAnim;
     [SerializeField] public Animator exitButtonAnim;
     [SerializeField] public Transform initialCameraPos;
+    [SerializeField] public Texture2D cursorImage;
 
     [HideInInspector] public Vector3 savedCamSpot;
     [HideInInspector] public Vector3 currentCameraPos;
-    [HideInInspector] public MainMenuLevel mainMenuLevel;
     [HideInInspector] public bool canControlInterface;
+    [HideInInspector] public MainMenuLevel mainMenuLevel;
 
     private Resolution[] resolutions;
 
@@ -47,6 +48,7 @@ public class Scr_MainMenuManager : MonoBehaviour
     private void Start()
     {
         currentCameraPos = mainCamera.transform.position;
+        Cursor.SetCursor(cursorImage, Vector2.zero, CursorMode.Auto);
 
         Graphics();
         Resolution();
