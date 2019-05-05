@@ -16,6 +16,10 @@ public class Scr_GasZone : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Scr_ReferenceManager referenceManager;
+    [SerializeField] private GameObject oxygenVisuals;
+    [SerializeField] private GameObject fuelVisuals;
+    [SerializeField] private GameObject heliumVisuals;
+    [SerializeField] private GameObject aerogelVisuals;
 
     [HideInInspector] public GameObject currentResource;
     [HideInInspector] public float initialAmount;
@@ -36,6 +40,8 @@ public class Scr_GasZone : MonoBehaviour
         gasParticles = GetComponentInChildren<ParticleSystem>();
 
         initialAmount = amount;
+
+        ChangeVisuals();
 
         switch (gasType)
         {
@@ -89,5 +95,36 @@ public class Scr_GasZone : MonoBehaviour
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, zoneSize);
+    }
+
+    private void ChangeVisuals()
+    {
+        switch (gasType)
+        {
+            case GasType.Oxygen:
+                oxygenVisuals.SetActive(true);
+                fuelVisuals.SetActive(false);
+                heliumVisuals.SetActive(false);
+                aerogelVisuals.SetActive(false);
+                break;
+            case GasType.Fuel:
+                oxygenVisuals.SetActive(false);
+                fuelVisuals.SetActive(true);
+                heliumVisuals.SetActive(false);
+                aerogelVisuals.SetActive(false);
+                break;
+            case GasType.Helium:
+                oxygenVisuals.SetActive(false);
+                fuelVisuals.SetActive(false);
+                heliumVisuals.SetActive(true);
+                aerogelVisuals.SetActive(false);
+                break;
+            case GasType.Aerogel:
+                oxygenVisuals.SetActive(false);
+                fuelVisuals.SetActive(false);
+                heliumVisuals.SetActive(false);
+                aerogelVisuals.SetActive(true);
+                break;
+        }
     }
 }
