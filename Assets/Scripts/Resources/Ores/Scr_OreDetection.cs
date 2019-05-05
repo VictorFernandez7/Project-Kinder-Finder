@@ -10,6 +10,7 @@ public class Scr_OreDetection : MonoBehaviour
     {
         if (collision.CompareTag("Astronaut"))
             astronautsActions.miningSpot = this.gameObject;
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)

@@ -5970,6 +5970,59 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1522647530}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &471005561
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 471005562}
+  - component: {fileID: 471005563}
+  m_Layer: 0
+  m_Name: LiquidSpot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &471005562
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 471005561}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.0000040295417, y: 0.006014072, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4923803341024848705}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &471005563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 471005561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276ee97814f6cbf429ddee5155c6b5e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toolName: Liquid Tool
+  icon: {fileID: 21300000, guid: 0e5dbbfbf3dafca4ba7f0daede1513b4, type: 3}
+  resource: {fileID: 0}
+  resourceAmount: 0
+  onHands: 0
+  resourceLeft: 0
+  extractionSpeed: 2
+  playerShipMovement: {fileID: 0}
+  onRange: 0
+  zone: {fileID: 0}
 --- !u!1001 &485933584
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7764,6 +7817,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a432fe9269ce584b9335543eee539f2, type: 3}
+--- !u!1 &761432099 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6012328284279613826, guid: 4ebd81613b53d60479accdefa16de025,
+    type: 3}
+  m_PrefabInstance: {fileID: 4923803341024848704}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &762136135 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114798426577923630, guid: 5c7e8f1f62be70143b2e0edf73736d31,
@@ -8137,6 +8196,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a432fe9269ce584b9335543eee539f2, type: 3}
+--- !u!1 &824682540
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 824682541}
+  m_Layer: 0
+  m_Name: GasSpot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &824682541
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824682540}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.0000040295417, y: 0.006014072, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4923803341024848705}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &828524735 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4390908855813652246, guid: 91a2a951a97b84a42967987fb6c9eb55,
@@ -8753,6 +8842,11 @@ PrefabInstance:
       propertyPath: astronautsActions
       value: 
       objectReference: {fileID: 2028569277}
+    - target: {fileID: 8169837488806275576, guid: 9a432fe9269ce584b9335543eee539f2,
+        type: 3}
+      propertyPath: solidTool
+      value: 
+      objectReference: {fileID: 761432099}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a432fe9269ce584b9335543eee539f2, type: 3}
 --- !u!1 &928942743
@@ -12125,6 +12219,21 @@ PrefabInstance:
       propertyPath: iAMovement
       value: 
       objectReference: {fileID: 1362380261}
+    - target: {fileID: 114105366921904924, guid: a7965b5f8a536a540b7c003202d37841,
+        type: 3}
+      propertyPath: solidTool
+      value: 
+      objectReference: {fileID: 761432099}
+    - target: {fileID: 114105366921904924, guid: a7965b5f8a536a540b7c003202d37841,
+        type: 3}
+      propertyPath: liquidTool
+      value: 
+      objectReference: {fileID: 471005561}
+    - target: {fileID: 114105366921904924, guid: a7965b5f8a536a540b7c003202d37841,
+        type: 3}
+      propertyPath: gasTool
+      value: 
+      objectReference: {fileID: 824682540}
     - target: {fileID: 114544908541210520, guid: a7965b5f8a536a540b7c003202d37841,
         type: 3}
       propertyPath: playerShipMovement
@@ -18937,6 +19046,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6012328284279613826, guid: 4ebd81613b53d60479accdefa16de025,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8775970079224772942, guid: 4ebd81613b53d60479accdefa16de025,
         type: 3}
       propertyPath: miningSpeed
@@ -18949,6 +19063,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ebd81613b53d60479accdefa16de025, type: 3}
+--- !u!4 &4923803341024848705 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4923803342526802461, guid: 4ebd81613b53d60479accdefa16de025,
+    type: 3}
+  m_PrefabInstance: {fileID: 4923803341024848704}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &5669436776134930598 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5669436776134930598, guid: 0e428ff9369d70c4cba369c148df7a59,
