@@ -139,6 +139,7 @@ public class Scr_AstronautMovement : MonoBehaviour
                 timeAtAir = 0;
                 speedInJump = speedJump;
                 jumping = true;
+                astronautAnim.SetTrigger("JumpStart");
                 astronautEffects.JumpParticles();
             }
 
@@ -311,6 +312,8 @@ public class Scr_AstronautMovement : MonoBehaviour
             vectorJump = Vector2.zero;
             speedInJump = 0;
             timeAfterJump = savedTimeAfterJump;
+            astronautAnim.SetTrigger("JumpEnd");
+            astronautEffects.JumpParticles();
             toJump = false;
             jumping = false;
         }
