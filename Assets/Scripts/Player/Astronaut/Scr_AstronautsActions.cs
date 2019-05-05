@@ -57,18 +57,19 @@ public class Scr_AstronautsActions : MonoBehaviour
 
     private void Update()
     {
-
-
         if (Input.GetKeyUp(KeyCode.E))
             unlockInteract = true;
 
         if (Input.GetButton("Interact") && !narrativeManager.onDialogue)
         {
-            if (miningSpot != null && !iAMovement.isMining)
+            if (miningSpot != null)
             {
                 iAMovement.isMining = true;
                 iAMovement.target = miningSpot.transform;
             }
+
+            else
+                iAMovement.isMining = false;
 
             if (astronautMovement.canEnterShip && emptyHands && resourceIndex == 0 && unlockInteract)
             {
