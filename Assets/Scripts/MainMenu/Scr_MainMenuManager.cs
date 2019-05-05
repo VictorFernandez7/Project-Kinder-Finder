@@ -218,4 +218,9 @@ public class Scr_MainMenuManager : MonoBehaviour
     {
         Application.OpenURL("https://forums.tigsource.com/index.php?topic=66844.0");
     }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }
