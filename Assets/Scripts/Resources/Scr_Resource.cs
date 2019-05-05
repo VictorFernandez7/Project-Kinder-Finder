@@ -69,9 +69,9 @@ public class Scr_Resource : MonoBehaviour
 
                 if (hit1 && hit2)
                 {
+                    rb.velocity = Vector3.zero;
                     rb.isKinematic = true;
                     isGrounded = true;
-                    rb.velocity = Vector3.zero;
                 }
 
                 else

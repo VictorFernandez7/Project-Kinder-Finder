@@ -128,10 +128,7 @@ public class Scr_AstronautsActions : MonoBehaviour
 
         if (Input.GetButtonDown("Interact") && !narrativeManager.onDialogue)
         {
-            if (toolOnHands)
-                astronautStats.toolSlots[numberToolActive].GetComponent<Scr_ToolBase>().UseTool();
-
-            else if (emptyHands && !toolOnHands && astronautResourcesCheck.resourceList.Count > 0 && resourceIndex < 5)
+            if (emptyHands && astronautResourcesCheck.resourceList.Count > 0 && resourceIndex < 5)
             {
                 switch (resourceIndex)
                 {
