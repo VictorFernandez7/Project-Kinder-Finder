@@ -28,7 +28,6 @@ public class Scr_MaterialDetection : MonoBehaviour
             case DetectionType.Gas:
                 if (collision.CompareTag("GasZone"))
                 {
-                    gasTool.onRange = true;
                     gasTool.zone = collision.gameObject;
                 }
                 break;
@@ -49,7 +48,6 @@ public class Scr_MaterialDetection : MonoBehaviour
             case DetectionType.Gas:
                 if (collision.CompareTag("GasZone"))
                 {
-                    gasTool.onRange = false;
                     gasTool.zone = null;
                 }
                 break;

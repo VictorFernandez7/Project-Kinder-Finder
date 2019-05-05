@@ -10,14 +10,13 @@ public class Scr_GasTool : Scr_ToolBase
     [Header("References")]
     [SerializeField] private Scr_PlayerShipMovement playerShipMovement;
 
-    [HideInInspector] public bool onRange;
     [HideInInspector] public GameObject zone;
 
     private float amount;
 
     public override void Update()
     {
-        if (Input.GetMouseButton(0) && onRange)
+        if (Input.GetButton("Interact") && zone)
             ExtractGas();
     }
 
@@ -49,6 +48,7 @@ public class Scr_GasTool : Scr_ToolBase
         {
             amount -= 1;
             GameObject resources = Instantiate(resource, transform.position, transform.rotation);
+            resources.GetComponent<Scr_Resource>().ChangeVisuals(Scr_Resource.ResourceType.Gas);
             resources.transform.SetParent(playerShipMovement.currentPlanet.transform);
         }
     }

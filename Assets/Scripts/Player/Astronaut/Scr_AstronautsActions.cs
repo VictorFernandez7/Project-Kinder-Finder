@@ -80,10 +80,17 @@ public class Scr_AstronautsActions : MonoBehaviour
 
                 if (spotType == SpotType.liquidSpot)
                     liquidTool.GetComponent<Scr_LiquidTool>().zone = miningSpot.transform.parent.gameObject;
+
+                if (spotType == SpotType.gasSpot)
+                    gasTool.GetComponent<Scr_GasTool>().zone = miningSpot.transform.parent.gameObject;
             }
 
             else
+            {
                 iAMovement.isMining = false;
+                liquidTool.GetComponent<Scr_LiquidTool>().zone = null;
+                gasTool.GetComponent<Scr_GasTool>().zone = null;
+            }
 
             if (astronautMovement.canEnterShip && emptyHands && resourceIndex == 0 && unlockInteract)
             {
