@@ -3465,6 +3465,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 224855475066111086, guid: 5c7e8f1f62be70143b2e0edf73736d31,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 224728092080529248, guid: 5c7e8f1f62be70143b2e0edf73736d31,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -6019,9 +6024,8 @@ MonoBehaviour:
   resourceAmount: 0
   onHands: 0
   resourceLeft: 0
-  extractionSpeed: 2
-  playerShipMovement: {fileID: 0}
-  onRange: 0
+  extractionSpeed: 0.5
+  playerShipMovement: {fileID: 557998426}
   zone: {fileID: 0}
 --- !u!1001 &485933584
 PrefabInstance:
@@ -8736,13 +8740,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ore (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1274462527133118, guid: 9a432fe9269ce584b9335543eee539f2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4768274543656946, guid: 9a432fe9269ce584b9335543eee539f2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.603
+      value: -4.375
       objectReference: {fileID: 0}
     - target: {fileID: 4768274543656946, guid: 9a432fe9269ce584b9335543eee539f2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.888
+      value: 6.05
       objectReference: {fileID: 0}
     - target: {fileID: 4768274543656946, guid: 9a432fe9269ce584b9335543eee539f2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8758,11 +8766,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4768274543656946, guid: 9a432fe9269ce584b9335543eee539f2, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.37137678
+      value: 0.3532358
       objectReference: {fileID: 0}
     - target: {fileID: 4768274543656946, guid: 9a432fe9269ce584b9335543eee539f2, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9284823
+      value: 0.93553436
       objectReference: {fileID: 0}
     - target: {fileID: 4768274543656946, guid: 9a432fe9269ce584b9335543eee539f2, type: 3}
       propertyPath: m_RootOrder
@@ -8778,7 +8786,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4768274543656946, guid: 9a432fe9269ce584b9335543eee539f2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 43.601
+      value: 41.371002
       objectReference: {fileID: 0}
     - target: {fileID: 4768274543656946, guid: 9a432fe9269ce584b9335543eee539f2, type: 3}
       propertyPath: m_LocalScale.x
@@ -18424,12 +18432,12 @@ PrefabInstance:
     - target: {fileID: 2968212515379619193, guid: ddf3d7f788ecbdf4eb70ae8dad730e82,
         type: 3}
       propertyPath: movementSpeed
-      value: 0.09
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2968212515379619193, guid: ddf3d7f788ecbdf4eb70ae8dad730e82,
         type: 3}
       propertyPath: rotationSpeed
-      value: 0.017
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6713218465350985968, guid: ddf3d7f788ecbdf4eb70ae8dad730e82,
         type: 3}

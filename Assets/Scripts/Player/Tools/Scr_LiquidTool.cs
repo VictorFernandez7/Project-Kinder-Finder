@@ -10,14 +10,13 @@ public class Scr_LiquidTool : Scr_ToolBase
     [Header("References")]
     [SerializeField] private Scr_PlayerShipMovement playerShipMovement;
 
-    [HideInInspector] public bool onRange;
     [HideInInspector] public GameObject zone;
 
-    private float amount;
+    private float amount = 0;
 
     public override void Update()
     {
-        if (Input.GetMouseButton(0) && onRange)
+        if (Input.GetButton("Interact") && zone)
             ExtractLiquid();
     }
 

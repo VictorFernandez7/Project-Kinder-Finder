@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Scr_OreDetection : MonoBehaviour
+public class Scr_LiquidDetection : MonoBehaviour
 {
     [SerializeField] private Scr_AstronautsActions astronautsActions;
 
@@ -11,9 +11,8 @@ public class Scr_OreDetection : MonoBehaviour
         if (collision.CompareTag("Astronaut"))
         {
             astronautsActions.miningSpot = this.gameObject;
-            astronautsActions.spotType = Scr_AstronautsActions.SpotType.solidSpot;
+            astronautsActions.spotType = Scr_AstronautsActions.SpotType.liquidSpot;
         }
-
     }
 
     private void OnTriggerExit2D(Collider2D collision)

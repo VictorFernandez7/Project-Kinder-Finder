@@ -21,7 +21,6 @@ public class Scr_MaterialDetection : MonoBehaviour
             case DetectionType.Liquid:
                 if (collision.CompareTag("LiquidZone"))
                 {
-                    liquidTool.onRange = true;
                     liquidTool.zone = collision.gameObject;
                 }
                 break;
@@ -43,7 +42,6 @@ public class Scr_MaterialDetection : MonoBehaviour
             case DetectionType.Liquid:
                 if (collision.CompareTag("LiquidZone"))
                 {
-                    liquidTool.onRange = false;
                     liquidTool.zone = null;
                 }
                 break;
