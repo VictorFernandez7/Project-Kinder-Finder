@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Scr_Interior : MonoBehaviour
 {
-    [SerializeField] private Renderer[] walls;
+    [SerializeField] private GameObject[] walls;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -12,7 +12,7 @@ public class Scr_Interior : MonoBehaviour
         {
             for(int i = 0; i < walls.Length; i++)
             {
-                walls[i].enabled = false;
+                walls[i].SetActive(false);
             }
         }   
     }
@@ -23,7 +23,7 @@ public class Scr_Interior : MonoBehaviour
         {
             for (int i = 0; i < walls.Length; i++)
             {
-                walls[i].enabled = true;
+                walls[i].SetActive(true);
             }
         }
     }
