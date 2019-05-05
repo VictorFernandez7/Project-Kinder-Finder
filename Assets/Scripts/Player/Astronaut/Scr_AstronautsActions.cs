@@ -77,6 +77,9 @@ public class Scr_AstronautsActions : MonoBehaviour
             {
                 iAMovement.isMining = true;
                 iAMovement.target = miningSpot.transform;
+
+                if (spotType == SpotType.liquidSpot)
+                    liquidTool.GetComponent<Scr_LiquidTool>().zone = miningSpot.transform.parent.gameObject;
             }
 
             else
