@@ -144,6 +144,7 @@ public class Scr_MainMenuButton : MonoBehaviour
                 {
                     mainMenuManager.mainMenuLevel = Scr_MainMenuManager.MainMenuLevel.Main;
                     mainMenuManager.savedCamSpot = cameraSpot.position;
+                    mainMenuManager.exitButtonAnim.SetBool("Show", false);
 
                     switch (mainMenuButton)
                     {
