@@ -48,8 +48,6 @@ public class Scr_IAMovement : MonoBehaviour
         CheckPlanet();
         CheckDistance();
         Interactions();
-
-        Debug.Log(target);
     }
 
     private void FixedUpdate()
@@ -93,7 +91,7 @@ public class Scr_IAMovement : MonoBehaviour
         else if (target == playerShipSpot)
             desiredRotation = Vector3.Lerp(desiredRotation, playerShipVectorUp, Time.deltaTime * rotationSpeed);
 
-        else
+        else if (target)
             desiredRotation = Vector3.Lerp(desiredRotation, target.up, Time.deltaTime * rotationSpeed);
 
         if (target != null)
