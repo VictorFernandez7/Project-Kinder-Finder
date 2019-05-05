@@ -27,6 +27,7 @@ public class Scr_MainMenuManager : MonoBehaviour
     [SerializeField] public Animator aboutUsAnim;
     [SerializeField] public Animator mainCanvasAnim;
     [SerializeField] public Animator exitButtonAnim;
+    [SerializeField] public Animator fadeImage;
     [SerializeField] public Transform initialCameraPos;
     [SerializeField] public Texture2D cursorImage;
 
