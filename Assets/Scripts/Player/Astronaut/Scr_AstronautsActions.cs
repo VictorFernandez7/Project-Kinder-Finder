@@ -14,11 +14,9 @@ public class Scr_AstronautsActions : MonoBehaviour
     [SerializeField] public Transform iaResourcePoint;
     [SerializeField] private GameObject mainCamera;
     [SerializeField] private GameObject playerShip;
-    [SerializeField] private GameObject lantern;
     [SerializeField] private GameObject solidTool;
     [SerializeField] private GameObject liquidTool;
     [SerializeField] private GameObject gasTool;
-    [SerializeField] private Scr_SunLight sunLight;
     [SerializeField] private Scr_GameManager gameManager;
     [SerializeField] private Scr_AstronautResourcesCheck astronautResourcesCheck;
     [SerializeField] private Scr_PlayerShipProxCheck playerShipProxCheck;
@@ -184,8 +182,6 @@ public class Scr_AstronautsActions : MonoBehaviour
                 }
             }
         }
-
-        TurnOnLantern();
     }
     
     public void EnterShipFromPlanet()
@@ -274,10 +270,5 @@ public class Scr_AstronautsActions : MonoBehaviour
             toolOnHands = false;
             emptyHands = true;
         }
-    }
-
-    private void TurnOnLantern()
-    {
-        lantern.SetActive(!sunLight.hitByLight);
     }
 }
