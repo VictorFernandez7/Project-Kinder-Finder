@@ -57,7 +57,7 @@ public class Scr_GameManager : MonoBehaviour
 
     private void VortexSpawn()
     {
-        initialRatio -= Time.deltaTime;
+        /*initialRatio -= Time.deltaTime;
 
         if (initialRatio <= 0)
         {
@@ -66,7 +66,7 @@ public class Scr_GameManager : MonoBehaviour
             Instantiate(vortex, vortexPosition, transform.rotation);
 
             initialRatio = ratio;
-        }
+        }*/
     }
 
     public void Gravity(bool active)
