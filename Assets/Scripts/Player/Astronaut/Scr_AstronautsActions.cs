@@ -15,8 +15,8 @@ public class Scr_AstronautsActions : MonoBehaviour
     [SerializeField] private GameObject mainCamera;
     [SerializeField] private GameObject playerShip;
     [SerializeField] public GameObject solidTool;
-    [SerializeField] private GameObject liquidTool;
-    [SerializeField] private GameObject gasTool;
+    [SerializeField] public GameObject liquidTool;
+    [SerializeField] public GameObject gasTool;
     [SerializeField] private Scr_GameManager gameManager;
     [SerializeField] private Scr_AstronautResourcesCheck astronautResourcesCheck;
     [SerializeField] private Scr_PlayerShipProxCheck playerShipProxCheck;
