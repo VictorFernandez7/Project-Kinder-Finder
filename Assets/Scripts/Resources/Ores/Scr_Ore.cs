@@ -130,13 +130,13 @@ public class Scr_Ore : MonoBehaviour
         {
             rest += 1;
             playerShipStats.GetExperience(20);
-            GameObject resource = Instantiate(currentResource, transform.position, transform.rotation);
+            GameObject resource = Instantiate(currentResource, transform.position + Vector3.back, transform.rotation);
             resource.transform.SetParent(transform.parent);
         }
 
         if (amount <= 0)
         {
-            GameObject resource = Instantiate(currentResource, transform.position, transform.rotation);
+            GameObject resource = Instantiate(currentResource, transform.position + Vector3.back, transform.rotation);
             resource.transform.SetParent(transform.parent);
             astronautsActions.miningSpot = null;
             Destroy(gameObject);
