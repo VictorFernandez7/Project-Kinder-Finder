@@ -13,6 +13,7 @@ public class Scr_Resource : MonoBehaviour
     [SerializeField] private float gravity;
     [SerializeField] private float spawnImpulse;
     [SerializeField] private float maxSpawnAngle;
+    [SerializeField] private float flyingSpeed;
 
     [Header("Raycast")]
     [SerializeField] private float activationDelay;
@@ -30,6 +31,8 @@ public class Scr_Resource : MonoBehaviour
     [HideInInspector] public GameObject resourceReference;
     [HideInInspector] public bool onHands;
     [HideInInspector] public int iD;
+    [HideInInspector] public bool lerping;
+    [HideInInspector] public Vector3 targetPosition;
 
     private bool emulatePhysics;
     private bool isGrounded;
@@ -57,7 +60,10 @@ public class Scr_Resource : MonoBehaviour
     }
 
     private void FixedUpdate()
-    {        
+    {
+        if (lerping)
+            transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * flyingSpeed);
+
         if (!onHands)
         {
             activationDelay -= Time.deltaTime;
