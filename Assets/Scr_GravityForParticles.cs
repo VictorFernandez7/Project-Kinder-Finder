@@ -24,7 +24,8 @@ public class Scr_GravityForParticles : MonoBehaviour
     private void Update()
     {
         numberOfParticles = liquidParticles.GetParticles(currentParticles);
-        desiredDirection = playerShipMovement.currentPlanet.transform.position - transform.position;
+        if(playerShipMovement.currentPlanet != null)
+            desiredDirection = playerShipMovement.currentPlanet.transform.position - transform.position;
 
         for (int i = 0; i < numberOfParticles; i++)
         {
