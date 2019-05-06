@@ -3,6 +3,9 @@ using TMPro;
 
 public class Scr_CraftStation : MonoBehaviour
 {
+    [Header("Interface Properties")]
+    [SerializeField] private float delay;
+
     [Header("Interaction Properties")]
     [SerializeField] private KeyCode interactKey;
     [SerializeField] private string interactMessage;
@@ -64,16 +67,26 @@ public class Scr_CraftStation : MonoBehaviour
 
     private void Interact(bool start)
     {
-        interfaceManager.interacting = start;
-        interfaceManager.ClearInterface(start);
         mainCamera.interacting = start;
+
+        if (start)
+            mainCamera.craftCenter = cameraSpot;
+
+        if (!interacting)
+            Invoke("ShowInterface", delay);
+
+        else
+            ShowInterface();
+    }
+
+    private void ShowInterface()
+    {
+        interfaceManager.interacting = interacting;
+        interfaceManager.ClearInterface(interacting);
 
         if (!craftCanvasAnim.gameObject.activeInHierarchy)
             craftCanvasAnim.gameObject.SetActive(true);
 
-        craftCanvasAnim.SetBool("Show", start);
-
-        if (start)
-            mainCamera.craftCenter = cameraSpot;
+        craftCanvasAnim.SetBool("Show", interacting);
     }
 }
