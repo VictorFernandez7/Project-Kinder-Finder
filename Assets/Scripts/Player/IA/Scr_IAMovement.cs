@@ -16,6 +16,9 @@ public class Scr_IAMovement : MonoBehaviour
     [Header("Interaction Parameters")]
     [SerializeField] private float delay;
 
+    [Header("Tools")]
+    [SerializeField] public GameObject[] tools;
+
     private GameObject astronaut;
     private Transform astronautSpot;
     private GameObject playerShip;

@@ -317,6 +317,16 @@ public class Scr_PlayerShipActions : MonoBehaviour
         astronaut.GetComponent<Scr_AstronautMovement>().planetPosition = lastFramePlanetPosition;
         playerShipMovement.mainCamera.GetComponent<Scr_MainCamera>().followAstronaut = true;
         GameObject ia = Instantiate(IA, IAStpot.position, IAStpot.rotation);
+
+        for(int i = 0; i < astronaut.GetComponent<Scr_AstronautStats>().toolSlots.Count; i++)
+        {
+            astronaut.GetComponent<Scr_AstronautStats>().toolSlots[i] = ia.GetComponent<Scr_IAMovement>().tools[i];
+        }
+
+        astronaut.GetComponent<Scr_AstronautsActions>().solidTool = ia.GetComponent<Scr_IAMovement>().tools[0];
+        astronaut.GetComponent<Scr_AstronautsActions>().liquidTool = ia.GetComponent<Scr_IAMovement>().tools[1];
+        astronaut.GetComponent<Scr_AstronautsActions>().gasTool = ia.GetComponent<Scr_IAMovement>().tools[2];
+
         astronaut.GetComponent<Scr_AstronautsActions>().iaResourcePoint = ia.transform.Find("ResourceSpot");
        // playerShipMovement.currentPlanet.GetComponentInParent<Scr_PlanetDiscovery>().explored = true;
     }
