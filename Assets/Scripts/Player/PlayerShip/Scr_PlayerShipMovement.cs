@@ -76,6 +76,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     private bool countDownToMove;
     private bool slow;
     private bool takingOffSlow;
+    private bool firstTakeOff;
     private float maxSpeedSaved;
     private float currentSpeed;
     private float canControlTimerSaved;
@@ -317,17 +318,21 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
             if (Input.GetKey(KeyCode.LeftShift) && playerShipState == PlayerShipState.landed && canControlShip && !damaged && playerShipStats.currentFuel > (playerShipStats.maxFuel * 0.15f))
             {
-                playerShipEffects.warmingSlider.gameObject.SetActive(true);
-                playerShipEffects.warmingSlider.value += Time.deltaTime * warmingSpeed;
-
-                if (playerShipEffects.warmingSlider.value >= (0.95f * playerShipEffects.warmingSlider.maxValue) && Input.GetMouseButtonDown(0))
+                if(playerShipStats.currentFuel == playerShipStats.maxFuel || firstTakeOff)
                 {
-                    playerShipEffects.warmingSlider.gameObject.SetActive(false);
+                    firstTakeOff = true;
+                    playerShipEffects.warmingSlider.gameObject.SetActive(true);
+                    playerShipEffects.warmingSlider.value += Time.deltaTime * warmingSpeed;
 
-                    mainCamera.GetComponent<Scr_MainCamera>().smoothRotation = false;
-                    mainCamera.GetComponent<Scr_MainCamera>().CameraShake();
+                    if (playerShipEffects.warmingSlider.value >= (0.95f * playerShipEffects.warmingSlider.maxValue) && Input.GetMouseButtonDown(0))
+                    {
+                        playerShipEffects.warmingSlider.gameObject.SetActive(false);
 
-                    TakingOff();
+                        mainCamera.GetComponent<Scr_MainCamera>().smoothRotation = false;
+                        mainCamera.GetComponent<Scr_MainCamera>().CameraShake();
+
+                        TakingOff();
+                    }
                 }
             }
 
