@@ -4,7 +4,18 @@ using UnityEngine;
 
 public class Scr_OreDetection : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] private Scr_AstronautsActions astronautsActions;
+    [SerializeField] public GameObject inputText;
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Astronaut") && astronautsActions.solidTool.activeInHierarchy)
+            inputText.SetActive(true);
+
+        else
+            inputText.SetActive(false);
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
