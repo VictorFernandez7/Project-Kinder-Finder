@@ -115,6 +115,7 @@ GameObject:
   - component: {fileID: 3511929358425504529}
   - component: {fileID: 2944976975953000026}
   - component: {fileID: 865704686188774513}
+  - component: {fileID: 7585994865171763320}
   m_Layer: 0
   m_Name: Particles
   m_TagString: Untagged
@@ -710,7 +711,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.05
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -2229,7 +2230,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
   ForceModule:
-    enabled: 1
+    enabled: 0
     x:
       serializedVersion: 2
       minMaxState: 0
@@ -4802,6 +4803,20 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &7585994865171763320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935386375433557810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb9a43f9e7ff57d4b95fbee30555c3d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityAmount: -0.1
+  playerShipMovement: {fileID: 0}
 --- !u!1 &4401660143771195283
 GameObject:
   m_ObjectHideFlags: 0
@@ -4813,6 +4828,7 @@ GameObject:
   - component: {fileID: 5886538996926603316}
   - component: {fileID: 2268026817061645484}
   - component: {fileID: 8966034789969712218}
+  - component: {fileID: 1284590260}
   m_Layer: 0
   m_Name: Particles
   m_TagString: Untagged
@@ -4827,13 +4843,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4401660143771195283}
-  m_LocalRotation: {x: 0, y: 0, z: 0.60876137, w: 0.7933534}
+  m_LocalRotation: {x: 0, y: 0, z: 0.59130967, w: 0.8064446}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3316309805378575714}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 75}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 72.5}
 --- !u!198 &2268026817061645484
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -9500,6 +9516,20 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &1284590260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4401660143771195283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb9a43f9e7ff57d4b95fbee30555c3d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityAmount: -0.1
+  playerShipMovement: {fileID: 0}
 --- !u!1 &5145267649734232067
 GameObject:
   m_ObjectHideFlags: 0
@@ -9681,6 +9711,7 @@ GameObject:
   m_Component:
   - component: {fileID: 275353304900706419}
   - component: {fileID: 989855712163301455}
+  - component: {fileID: 8597145328675276559}
   m_Layer: 0
   m_Name: LiquidOre
   m_TagString: LiquidZone
@@ -9724,6 +9755,45 @@ MonoBehaviour:
   termatiteVisuals: {fileID: 5446134981779387938}
   currentResource: {fileID: 0}
   initialAmount: 0
+--- !u!68 &8597145328675276559
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6508025995361192879}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.08032222, y: -0.030181825}
+  - {x: -0.053972967, y: -0.005249165}
+  - {x: -0.043803517, y: 0.0016437779}
+  - {x: -0.042596966, y: 0.0017774225}
+  - {x: -0.04159081, y: 0.0025089874}
+  - {x: -0.040277556, y: 0.0021141858}
+  - {x: -0.035771187, y: 0.0029827906}
+  - {x: -0.03323015, y: 0.004426141}
+  - {x: -0.031116674, y: 0.0046928152}
+  - {x: -0.030345133, y: 0.0038369843}
+  - {x: -0.029378382, y: 0.0040417854}
+  - {x: -0.018773353, y: 0.004224367}
+  - {x: 0.0001942601, y: 0.005372067}
+  - {x: 0.01248738, y: 0.003934018}
+  - {x: 0.030630123, y: 0.0035589703}
+  - {x: 0.034462843, y: 0.0028040048}
+  - {x: 0.037416104, y: 0.0036202155}
+  - {x: 0.04010414, y: 0.0022581744}
+  - {x: 0.0417125, y: 0.0033749142}
+  - {x: 0.046050984, y: 0.0015162699}
+  - {x: 0.056750458, y: -0.0057124263}
+  - {x: 0.073774934, y: -0.021746362}
+  - {x: 0.08264779, y: -0.030262554}
 --- !u!1 &7015333505763543178
 GameObject:
   m_ObjectHideFlags: 0
@@ -9735,6 +9805,7 @@ GameObject:
   - component: {fileID: 8891010859577967704}
   - component: {fileID: 1255905983237242793}
   - component: {fileID: 1197807655705893432}
+  - component: {fileID: 5193134558604207453}
   m_Layer: 0
   m_Name: Particles
   m_TagString: Untagged
@@ -10330,7 +10401,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.05
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -11849,7 +11920,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
   ForceModule:
-    enabled: 1
+    enabled: 0
     x:
       serializedVersion: 2
       minMaxState: 0
@@ -14422,6 +14493,20 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &5193134558604207453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7015333505763543178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb9a43f9e7ff57d4b95fbee30555c3d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityAmount: -0.1
+  playerShipMovement: {fileID: 0}
 --- !u!1 &7065907651669388426
 GameObject:
   m_ObjectHideFlags: 0
