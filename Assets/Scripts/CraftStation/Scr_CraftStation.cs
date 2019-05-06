@@ -72,18 +72,18 @@ public class Scr_CraftStation : MonoBehaviour
         if (start)
             mainCamera.craftCenter = cameraSpot;
 
-        if (!interacting)
+        if (interacting)
             Invoke("ShowInterface", delay);
 
         else
             ShowInterface();
+
+        interfaceManager.interacting = interacting;
+        interfaceManager.ClearInterface(interacting);
     }
 
     private void ShowInterface()
     {
-        interfaceManager.interacting = interacting;
-        interfaceManager.ClearInterface(interacting);
-
         if (!craftCanvasAnim.gameObject.activeInHierarchy)
             craftCanvasAnim.gameObject.SetActive(true);
 

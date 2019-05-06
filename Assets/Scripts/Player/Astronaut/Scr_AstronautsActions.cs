@@ -22,7 +22,7 @@ public class Scr_AstronautsActions : MonoBehaviour
     [SerializeField] private Scr_PlayerShipProxCheck playerShipProxCheck;
     [SerializeField] private Scr_NarrativeManager narrativeManager;
     [SerializeField] public Scr_PlayerShipWarehouse playerShipWarehouse;
-    [SerializeField] private Scr_IAMovement iAMovement;
+    [SerializeField] public Scr_IAMovement iAMovement;
 
     [HideInInspector] public int numberToolActive;
     [HideInInspector] public bool emptyHands;

@@ -326,9 +326,10 @@ public class Scr_PlayerShipActions : MonoBehaviour
         astronaut.GetComponent<Scr_AstronautsActions>().solidTool = ia.GetComponent<Scr_IAMovement>().tools[0];
         astronaut.GetComponent<Scr_AstronautsActions>().liquidTool = ia.GetComponent<Scr_IAMovement>().tools[1];
         astronaut.GetComponent<Scr_AstronautsActions>().gasTool = ia.GetComponent<Scr_IAMovement>().tools[2];
-
         astronaut.GetComponent<Scr_AstronautsActions>().iaResourcePoint = ia.transform.Find("ResourceSpot");
-       // playerShipMovement.currentPlanet.GetComponentInParent<Scr_PlanetDiscovery>().explored = true;
+        astronaut.GetComponent<Scr_AstronautsActions>().iAMovement = ia.GetComponent<Scr_IAMovement>();
+
+        // playerShipMovement.currentPlanet.GetComponentInParent<Scr_PlanetDiscovery>().explored = true;
     }
 
     private void MiningSliderColor()
