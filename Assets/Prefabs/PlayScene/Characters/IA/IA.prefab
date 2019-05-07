@@ -145,11 +145,11 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1583061287}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1.193662
+  m_Intensity: 10
   m_Range: 2
   m_SpotAngle: 150
   m_CookieSize: 10
@@ -417,8 +417,8 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.03421831
-  m_Range: 0.77
+  m_Intensity: 3.75
+  m_Range: 0.5
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -731,6 +731,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4923803342526802461}
     m_Modifications:
+    - target: {fileID: 100000, guid: cc02f6fa23993ee41b192d62362686ee, type: 3}
+      propertyPath: m_Name
+      value: Visuals
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cc02f6fa23993ee41b192d62362686ee, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -774,10 +778,6 @@ PrefabInstance:
     - target: {fileID: 400000, guid: cc02f6fa23993ee41b192d62362686ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: cc02f6fa23993ee41b192d62362686ee, type: 3}
-      propertyPath: m_Name
-      value: Visuals
       objectReference: {fileID: 0}
     - target: {fileID: 9500000, guid: cc02f6fa23993ee41b192d62362686ee, type: 3}
       propertyPath: m_Controller
