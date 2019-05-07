@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Scr_GravityForParticles : MonoBehaviour
 {
-    [Header("Gravity Parameters")]
+    [Header("Particle Parameters")]
     [SerializeField] private float gravityAmount;
 
     [Header("References")]
@@ -24,7 +24,8 @@ public class Scr_GravityForParticles : MonoBehaviour
     private void Update()
     {
         numberOfParticles = liquidParticles.GetParticles(currentParticles);
-        if(playerShipMovement.currentPlanet != null)
+
+        if (playerShipMovement.currentPlanet != null)
             desiredDirection = playerShipMovement.currentPlanet.transform.position - transform.position;
 
         for (int i = 0; i < numberOfParticles; i++)
