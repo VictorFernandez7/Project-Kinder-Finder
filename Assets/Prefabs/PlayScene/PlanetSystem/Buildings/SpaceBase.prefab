@@ -4971,13 +4971,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8070353087660597745}
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0.7071068, w: 0}
+  m_LocalRotation: {x: -0.70708597, y: 0.0054178215, z: 0.0054178215, w: 0.7070861}
   m_LocalPosition: {x: -5.29002, y: 0.0006350959, z: 0.63970006}
   m_LocalScale: {x: 0.6003606, y: 0.60036045, z: 0.60036045}
   m_Children: []
   m_Father: {fileID: 4222116633262847767}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: -180}
+  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 0.878}
 --- !u!33 &4775045023542250678
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5280,14 +5280,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8672247351131368393}
-  m_LocalRotation: {x: 0.5, y: -0.5, z: -0.5, w: -0.5}
+  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: -5.29002, y: 0.0006350959, z: 0.63970006}
   m_LocalScale: {x: 0.6003606, y: 0.60036045, z: 0.60036045}
   m_Children:
   - {fileID: 9024522578443498208}
   m_Father: {fileID: 4222116633262847767}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: -270}
+  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 90}
 --- !u!33 &8657894017008829007
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5725,6 +5725,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2051945894759676059}
     m_Modifications:
+    - target: {fileID: 5873819138361300076, guid: ef61e056796813745abcc5b08d954e0d,
+        type: 3}
+      propertyPath: m_Name
+      value: CraftStation
+      objectReference: {fileID: 0}
     - target: {fileID: 9180202555192493985, guid: ef61e056796813745abcc5b08d954e0d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5795,20 +5800,15 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 3.1943517
       objectReference: {fileID: 0}
-    - target: {fileID: 5873819138361300076, guid: ef61e056796813745abcc5b08d954e0d,
+    - target: {fileID: 5933255619317478642, guid: ef61e056796813745abcc5b08d954e0d,
         type: 3}
-      propertyPath: m_Name
-      value: CraftStation
+      propertyPath: m_LocalPosition.y
+      value: 0.127
       objectReference: {fileID: 0}
     - target: {fileID: 5899512598488181653, guid: ef61e056796813745abcc5b08d954e0d,
         type: 3}
       propertyPath: delay
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5933255619317478642, guid: ef61e056796813745abcc5b08d954e0d,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.127
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef61e056796813745abcc5b08d954e0d, type: 3}
