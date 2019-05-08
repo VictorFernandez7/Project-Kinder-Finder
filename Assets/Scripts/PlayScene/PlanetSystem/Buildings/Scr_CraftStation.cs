@@ -15,6 +15,7 @@ public class Scr_CraftStation : MonoBehaviour
     [SerializeField] private GameObject interactPanel;
     [SerializeField] private GameObject cameraSpot;
     [SerializeField] private Scr_MainCamera mainCamera;
+    [SerializeField] public ParticleSystem interactionParticles;
     [SerializeField] private Scr_InterfaceManager interfaceManager;
 
     private bool onRange;
@@ -68,6 +69,7 @@ public class Scr_CraftStation : MonoBehaviour
     private void Interact(bool start)
     {
         mainCamera.interacting = start;
+        interactionParticles.Stop();
 
         if (start)
             mainCamera.craftCenter = cameraSpot;
