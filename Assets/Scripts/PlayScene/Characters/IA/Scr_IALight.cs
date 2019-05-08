@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Scr_IALight : MonoBehaviour
 {
+    [Header("Intensity Parameters")]
+    [SerializeField] private float spotLightIntensity;
+    [SerializeField] private float pointLightIntensity;
+
     [Header("Range Parameters")]
     [SerializeField] private float range;
 
@@ -24,6 +28,7 @@ public class Scr_IALight : MonoBehaviour
     void Update()
     {
         LightRange();
+        LightIntensity();
         LightDirection();
         LightActivation();
     }
@@ -33,6 +38,12 @@ public class Scr_IALight : MonoBehaviour
         float distance = Vector3.Distance(transform.position, astronaut.transform.position);
 
         spotLight.range = distance * range;
+    }
+
+    private void LightIntensity()
+    {
+        spotLight.intensity = spotLightIntensity;
+        pointLight.intensity = pointLightIntensity;
     }
 
     private void LightDirection()
