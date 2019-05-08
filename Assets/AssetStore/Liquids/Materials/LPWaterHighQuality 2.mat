@@ -7,10 +7,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: LPWaterHighQuality
+  m_Name: LPWaterHighQuality 2
   m_Shader: {fileID: 4800000, guid: 8165be4dd0b12774d80426d906df9c38, type: 3}
-  m_ShaderKeywords: LPW_FOAM WATER_REFLECTIVE _CUSTOM_SHAPE _EDGEBLEND_ON _EMISSION
-    _LIGHTABS_ON _SHADING_FLAT _WAVES_HIGHQUALITY _ZWRITE_ON
+  m_ShaderKeywords: LPW_HQFOAM WATER_REFLECTIVE _CUSTOM_SHAPE _EDGEBLEND_ON _EMISSION
+    _HQFOAM_ON _SHADING_FLAT _WAVES_HIGHQUALITY _ZWRITE_ON
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -44,12 +44,12 @@ Material:
     m_Floats:
     - _Absorption: 7
     - _BumpScale: 35
-    - _BumpScale_: 393.31577
+    - _BumpScale_: 1.3606539
     - _BumpSpeed: 0.2
     - _Cull: 0
     - _Cull_: 2
-    - _Diffuse: 0.7
-    - _Direction: 180
+    - _Diffuse: 1
+    - _Direction: 128
     - _Distort: 0
     - _Distortion: 1
     - _EdgeBlend: 1
@@ -57,43 +57,43 @@ Material:
     - _FoamScale: 20
     - _FoamSpeed: 0.3
     - _FoamSpread: 1
-    - _FresPower: 1.5
-    - _HQFoam: 0
-    - _Height: 0.5
-    - _Height_: 5.618797
-    - _Length: 3
-    - _LightAbs: 1
-    - _NormalOffset: 1
-    - _Opacity: 0.2
+    - _FresPower: 2
+    - _HQFoam: 1
+    - _Height: 0.62
+    - _Height_: 0.024103012
+    - _Length: 7.55
+    - _LightAbs: 0
+    - _NormalOffset: 1.91
+    - _Opacity: 0.774
     - _PointLights: 0
     - _RHeight: 0.25
-    - _RHeight_: 2.8093984
+    - _RHeight_: 0.009718956
     - _RSpeed: 1
-    - _RSpeed_: 11.237594
-    - _Reflection: 1.2
+    - _RSpeed_: 0.038875826
+    - _Reflection: 0.64
     - _Refraction: 2
     - _Scale: 1
-    - _Scale_: 11.237594
+    - _Scale_: 0.038875826
     - _Shading: 0
     - _Shadow: 0.5
-    - _ShoreDistance: 0.5
-    - _ShoreIntensity: 1
-    - _Specular: 44
-    - _Speed: 0.5
-    - _Speed_: 5.618797
-    - _Steepness: 0.2
-    - _Stretch: 10
-    - _TexSize_: 719.206
+    - _ShoreDistance: 0.18
+    - _ShoreIntensity: -1
+    - _Specular: 300
+    - _Speed: 2
+    - _Speed_: 0.07775165
+    - _Steepness: 0
+    - _Stretch: 8
+    - _TexSize_: 2.4880528
     - _Time_: 323.62787
-    - _TransformScale_: 11.237594
+    - _TransformScale_: 0.038875826
     - _Waves: 2
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0, g: 1, b: 0.751724, a: 1}
-    - _DeepColor: {r: 0, g: 0.6006591, b: 0.75735295, a: 1}
-    - _Direction_: {r: -1, g: -0.00000008742278, b: -6.742556, a: -0.00000058945295}
-    - _FresColor: {r: 0.525519, g: 0.72743106, b: 0.7941176, a: 1}
-    - _ShoreColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SpecColor: {r: 0.5955882, g: 0.57104737, b: 0.35472533, a: 1}
+    - _Color: {r: 0.5660378, g: 0.0066592684, b: 0, a: 1}
+    - _DeepColor: {r: 1, g: 0, b: 0.05529642, a: 1}
+    - _Direction_: {r: -0.61566144, g: 0.7880108, b: -0, a: 0}
+    - _FresColor: {r: 1, g: 0, b: 0, a: 1}
+    - _ShoreColor: {r: 1, g: 0.2889196, b: 0, a: 1}
+    - _SpecColor: {r: 0.028301895, g: 0.025943402, b: 0, a: 1}
     - _Sun: {r: -0, g: -0, b: -1, a: 0}
     - _SunColor: {r: 1, g: 1, b: 1, a: 1}
