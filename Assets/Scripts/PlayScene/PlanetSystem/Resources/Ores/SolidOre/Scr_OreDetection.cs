@@ -1,15 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using TMPro;
 
 public class Scr_OreDetection : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] public GameObject inputText;
     [SerializeField] private GameObject tooltipPanel;
-    [SerializeField] private Scr_AstronautsActions astronautsActions;
+    [SerializeField] private TextMeshProUGUI resourceName;
+    [SerializeField] private TextMeshProUGUI resourceAmount;
 
     private bool insideTrigger;
+    private Scr_Ore ore;
+    private Scr_AstronautsActions astronautsActions;
+
+    private void Start()
+    {
+        ore = GetComponentInParent<Scr_Ore>();
+        astronautsActions = ore.astronautsActions;
+
+        resourceName.text = ore.oreResourceType.ToString();
+        resourceAmount.text = (ore.amount + 1).ToString();
+    }
 
     private void Update()
     {

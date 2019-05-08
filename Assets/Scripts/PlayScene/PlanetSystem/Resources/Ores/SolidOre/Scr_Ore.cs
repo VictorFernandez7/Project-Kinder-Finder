@@ -6,13 +6,13 @@ public class Scr_Ore : MonoBehaviour
     [SerializeField] private BlockType blockType;
 
     [Header("If Ore")]
-    [SerializeField] private OreResourceType oreResourceType;
+    [SerializeField] public OreResourceType oreResourceType;
 
     [Header("If Crystal")]
     [SerializeField] private CrystalResourceType crystalResourceType;
 
     [Header("Resource Properties")]
-    public float amount;
+    [SerializeField] public float amount;
 
     [Header("Shake Properties")]
 
@@ -23,7 +23,7 @@ public class Scr_Ore : MonoBehaviour
     [SerializeField] private ParticleSystem explosionParticles;
     [SerializeField] private Scr_ReferenceManager referenceManager;
     [SerializeField] private Scr_PlayerShipStats playerShipStats;
-    [SerializeField] private Scr_AstronautsActions astronautsActions;
+    [SerializeField] public Scr_AstronautsActions astronautsActions;
 
     [HideInInspector] public GameObject currentResource;
 
@@ -38,7 +38,7 @@ public class Scr_Ore : MonoBehaviour
         Crystal
     }
 
-    private enum OreResourceType
+    public enum OreResourceType
     {
         Oxygen,
         Fuel,
