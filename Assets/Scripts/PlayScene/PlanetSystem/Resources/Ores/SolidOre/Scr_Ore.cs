@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Scr_Ore : MonoBehaviour
 {
@@ -16,16 +14,21 @@ public class Scr_Ore : MonoBehaviour
     [Header("Resource Properties")]
     public float amount;
 
+    [Header("Shake Properties")]
+
     [Header("References")]
+    [SerializeField] private GameObject visuals;
+    [SerializeField] private Scr_MainCamera mainCamera;
+    [SerializeField] private ParticleSystem explosionParticles;
     [SerializeField] private Scr_ReferenceManager referenceManager;
     [SerializeField] private Scr_PlayerShipStats playerShipStats;
     [SerializeField] private Scr_AstronautsActions astronautsActions;
-    [SerializeField] private GameObject visuals;
 
     [HideInInspector] public GameObject currentResource;
 
     private float initalAmount;
     private float rest = 1;
+    private bool playedOnce;
     private GameObject[] oreVisuals;
 
     private enum BlockType
@@ -136,10 +139,21 @@ public class Scr_Ore : MonoBehaviour
 
         if (amount <= 0)
         {
-            GameObject resource = Instantiate(currentResource, transform.position + Vector3.back, transform.rotation);
-            resource.transform.SetParent(transform.parent);
-            astronautsActions.miningSpot = null;
-            Destroy(gameObject);
+            if (!explosionParticles.isPlaying && !playedOnce)
+            {
+                GameObject resource = Instantiate(currentResource, transform.position + Vector3.back, transform.rotation);
+                resource.transform.SetParent(transform.parent);
+                astronautsActions.miningSpot = null;
+
+                explosionParticles.Play();
+                mainCamera.CameraShake(0.25f, 5, 2);
+                visuals.SetActive(false);
+                GetComponent<EdgeCollider2D>().enabled = false;
+
+                playedOnce = true;
+
+                Destroy(gameObject, 2.5f);
+            }
         }   
     }
 

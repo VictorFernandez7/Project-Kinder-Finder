@@ -5,22 +5,23 @@ using UnityEngine;
 public class Scr_OreDetection : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private Scr_AstronautsActions astronautsActions;
     [SerializeField] public GameObject inputText;
+    [SerializeField] private GameObject tooltipPanel;
+    [SerializeField] private Scr_AstronautsActions astronautsActions;
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private bool insideTrigger;
+
+    private void Update()
     {
-        if (collision.CompareTag("Astronaut") && astronautsActions.solidTool.activeInHierarchy)
-            inputText.SetActive(true);
-
-        else
-            inputText.SetActive(false);
+        CanvasItemActivation();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Astronaut"))
         {
+            insideTrigger = true;
+
             astronautsActions.miningSpot = this.gameObject;
             astronautsActions.spotType = Scr_AstronautsActions.SpotType.solidSpot;
         }
@@ -30,6 +31,36 @@ public class Scr_OreDetection : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Astronaut"))
+        {
+            insideTrigger = false;
+
             astronautsActions.miningSpot = null;
+        }
+    }
+
+    private void CanvasItemActivation()
+    {
+        if (insideTrigger)
+        {
+            if (astronautsActions.iAMovement.isMining)
+            {
+                tooltipPanel.SetActive(false);
+                inputText.SetActive(false);
+            }
+
+            else
+            {
+                tooltipPanel.SetActive(true);
+
+                if (astronautsActions.solidTool.activeInHierarchy)
+                    inputText.SetActive(true);
+            }
+        }
+
+        else
+        {
+            tooltipPanel.SetActive(false);
+            inputText.SetActive(false);
+        }
     }
 }

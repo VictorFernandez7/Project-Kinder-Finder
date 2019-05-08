@@ -160,7 +160,7 @@ public class Scr_AsteroidStats : MonoBehaviour
         playerShip.GetComponent<Rigidbody2D>().AddForce(impulseDirection * deathForce);
         playerShipStats.currentShield -= deathDamage;
 
-        mainCamera.CameraShake();
+        mainCamera.CameraShake(0.25f, 5, 12);
 
         Destroy(gameObject, 1.5f);
     }

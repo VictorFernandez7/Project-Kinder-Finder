@@ -298,7 +298,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
                 if (beginLandingHit && playerShipState == PlayerShipState.inSpace)
                 {
                     mainCamera.GetComponent<Scr_MainCamera>().smoothRotation = true;
-                    mainCamera.GetComponent<Scr_MainCamera>().CameraShake();
+                    mainCamera.GetComponent<Scr_MainCamera>().CameraShake(0.25f, 5, 12);
 
                     maxSpeedSaved = maxSpeed;
 
@@ -329,7 +329,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
                         playerShipEffects.warmingSlider.gameObject.SetActive(false);
 
                         mainCamera.GetComponent<Scr_MainCamera>().smoothRotation = false;
-                        mainCamera.GetComponent<Scr_MainCamera>().CameraShake();
+                        mainCamera.GetComponent<Scr_MainCamera>().CameraShake(0.25f, 5, 12);
 
                         TakingOff();
                     }
