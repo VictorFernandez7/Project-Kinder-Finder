@@ -18,6 +18,7 @@ public class Scr_Ore : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private GameObject visuals;
+    [SerializeField] private GameObject canvas;
     [SerializeField] private Scr_MainCamera mainCamera;
     [SerializeField] private ParticleSystem explosionParticles;
     [SerializeField] private Scr_ReferenceManager referenceManager;
@@ -148,6 +149,7 @@ public class Scr_Ore : MonoBehaviour
                 explosionParticles.Play();
                 mainCamera.CameraShake(0.25f, 5, 2);
                 visuals.SetActive(false);
+                canvas.SetActive(false);
                 GetComponent<EdgeCollider2D>().enabled = false;
 
                 playedOnce = true;

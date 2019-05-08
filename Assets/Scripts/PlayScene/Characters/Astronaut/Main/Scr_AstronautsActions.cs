@@ -139,6 +139,7 @@ public class Scr_AstronautsActions : MonoBehaviour
                         //currentResource[0].GetComponent<Scr_Resource>().lerping = true;
 
                         currentResource[0].GetComponent<Scr_Resource>().onHands = true;
+                        currentResource[0].GetComponent<Scr_Resource>().lootParticles.Stop();
                         currentResource[0].GetComponent<BoxCollider2D>().enabled = false;
                         currentResource[0].transform.SetParent(iaResourcePoint);
                         break;
@@ -151,6 +152,7 @@ public class Scr_AstronautsActions : MonoBehaviour
                         //currentResource[1].GetComponent<Scr_Resource>().lerping = true;
 
                         currentResource[1].GetComponent<Scr_Resource>().onHands = true;
+                        currentResource[1].GetComponent<Scr_Resource>().lootParticles.Stop();
                         currentResource[1].GetComponent<BoxCollider2D>().enabled = false;
                         currentResource[1].transform.SetParent(iaResourcePoint);
                         break;
@@ -163,6 +165,7 @@ public class Scr_AstronautsActions : MonoBehaviour
                         //currentResource[2].GetComponent<Scr_Resource>().lerping = true;
 
                         currentResource[2].GetComponent<Scr_Resource>().onHands = true;
+                        currentResource[2].GetComponent<Scr_Resource>().lootParticles.Stop();
                         currentResource[2].GetComponent<BoxCollider2D>().enabled = false;
                         currentResource[2].transform.SetParent(iaResourcePoint);
                         break;
@@ -175,6 +178,7 @@ public class Scr_AstronautsActions : MonoBehaviour
                         //currentResource[3].GetComponent<Scr_Resource>().lerping = true;
 
                         currentResource[3].GetComponent<Scr_Resource>().onHands = true;
+                        currentResource[3].GetComponent<Scr_Resource>().lootParticles.Stop();
                         currentResource[3].GetComponent<BoxCollider2D>().enabled = false;
                         currentResource[3].transform.SetParent(iaResourcePoint);
                         break;
@@ -183,6 +187,7 @@ public class Scr_AstronautsActions : MonoBehaviour
                         currentResource[4] = astronautResourcesCheck.resourceList[0];
                         currentResource[4].transform.position = pickPoint.position;
                         currentResource[4].GetComponent<Scr_Resource>().onHands = true;
+                        currentResource[4].GetComponent<Scr_Resource>().lootParticles.Stop();
                         currentResource[4].GetComponent<BoxCollider2D>().enabled = false;
                         currentResource[4].transform.SetParent(pickPoint);
                         emptyHands = false;
