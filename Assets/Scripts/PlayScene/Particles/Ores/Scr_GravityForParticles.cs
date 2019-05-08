@@ -7,32 +7,28 @@ public class Scr_GravityForParticles : MonoBehaviour
     [Header("Particle Parameters")]
     [SerializeField] private float gravityAmount;
 
-    [Header("References")]
-    [SerializeField] private Scr_PlayerShipMovement playerShipMovement;
-
     private int numberOfParticles;
     private Vector3 desiredDirection;
-    private ParticleSystem liquidParticles;
-    private ParticleSystem.Particle[] currentParticles;
+    private ParticleSystem desiredParticles;
+    private ParticleSystem.Particle[] particleArray;
 
     private void Start()
     {
-        liquidParticles = GetComponent<ParticleSystem>();
-        currentParticles = new ParticleSystem.Particle[liquidParticles.main.maxParticles];
+        desiredParticles = GetComponent<ParticleSystem>();
+        particleArray = new ParticleSystem.Particle[desiredParticles.main.maxParticles];
+
+        desiredDirection = -transform.up;
     }
 
     private void Update()
     {
-        numberOfParticles = liquidParticles.GetParticles(currentParticles);
-
-        if (playerShipMovement.currentPlanet != null)
-            desiredDirection = playerShipMovement.currentPlanet.transform.position - transform.position;
+        numberOfParticles = desiredParticles.GetParticles(particleArray);
 
         for (int i = 0; i < numberOfParticles; i++)
         {
-            currentParticles[i].velocity += desiredDirection * gravityAmount * Time.deltaTime;
+            particleArray[i].velocity += desiredDirection * gravityAmount * Time.deltaTime;
         }
 
-        liquidParticles.SetParticles(currentParticles, numberOfParticles);
+        desiredParticles.SetParticles(particleArray, numberOfParticles);
     }
 }
