@@ -12,22 +12,25 @@ public class Scr_IAMovement : MonoBehaviour
     [Range(0, 3)] [SerializeField] private float astronautFollowMult;
     [Tooltip("Movement speed depends on the distance between GameObjects, this is a multiplicator.")]
     [Range(0, 3)] [SerializeField] private float playerShipFollowMult;
+    [Tooltip("Movement speed depends on the distance between GameObjects, this is a multiplicator.")]
+    [Range(0, 3)] [SerializeField] private float miningFollowMult;
 
     [Header("Interaction Parameters")]
-    [SerializeField] private float delay;
+    [SerializeField] private float boardingDelay;
 
     [Header("Tools")]
     [SerializeField] public GameObject[] tools;
 
-    private GameObject astronaut;
-    private Transform astronautSpot;
-    private GameObject playerShip;
-    private Transform playerShipSpot;
-    private Scr_PlayerShipMovement playerShipMovement;
     private float desiredSpeed;
     private float savedDelay;
     private Vector3 desiredRotation;
     private Animator anim;
+    private Transform astronautSpot;
+    private GameObject astronaut;
+    private GameObject playerShip;
+    private Transform playerShipSpot;
+    private Scr_PlayerShipActions playerShipActions;
+    private Scr_PlayerShipMovement playerShipMovement;
 
     [HideInInspector] public Transform target;
     [HideInInspector] public bool isMining;
@@ -40,9 +43,10 @@ public class Scr_IAMovement : MonoBehaviour
         playerShipSpot = GameObject.Find("PlayerShipSpot").GetComponent<Transform>();
 
         anim = GetComponentInChildren<Animator>();
+        playerShipActions = playerShip.GetComponent<Scr_PlayerShipActions>();
         playerShipMovement = playerShip.GetComponent<Scr_PlayerShipMovement>();
 
-        savedDelay = delay;
+        savedDelay = boardingDelay;
         target = playerShipSpot;
     }
 
@@ -85,8 +89,11 @@ public class Scr_IAMovement : MonoBehaviour
         if (target == astronautSpot)
             desiredSpeed = astronautFollowSpeed * astronautFollowMult;
 
-        else
+        else if (target == playerShipSpot)
             desiredSpeed = playerShipFollowSpeed * playerShipFollowMult;
+
+        else
+            desiredSpeed = playerShipFollowSpeed * miningFollowMult;
 
         if (target == astronautSpot)
             desiredRotation = Vector3.Lerp(desiredRotation, astronautUpVector, Time.deltaTime * rotationSpeed);
@@ -94,7 +101,7 @@ public class Scr_IAMovement : MonoBehaviour
         else if (target == playerShipSpot)
             desiredRotation = Vector3.Lerp(desiredRotation, playerShipVectorUp, Time.deltaTime * rotationSpeed);
 
-        else if (target)
+        else
             desiredRotation = Vector3.Lerp(desiredRotation, target.up, Time.deltaTime * rotationSpeed);
 
         if (target != null)
