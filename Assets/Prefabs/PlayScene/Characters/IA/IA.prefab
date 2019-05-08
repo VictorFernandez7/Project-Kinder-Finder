@@ -398,8 +398,8 @@ MonoBehaviour:
   distanceFormShip: 2
   astronautFollowMult: 1
   playerShipFollowMult: 0.75
-  miningFollowMult: 0
-  boardingDelay: 0
+  miningFollowMult: 0.25
+  boardingDelay: 2
   tools:
   - {fileID: 6012328284279613826}
   - {fileID: 471005561}
@@ -824,18 +824,14 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1797199683272776, guid: 4910da04669ef424c9d560e761e78458, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1093384883173778, guid: 4910da04669ef424c9d560e761e78458, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198274572850973734, guid: 4910da04669ef424c9d560e761e78458,
         type: 3}
-      propertyPath: InitialModule.gravityModifier.scalar
-      value: 0
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 198274572850973734, guid: 4910da04669ef424c9d560e761e78458,
         type: 3}
@@ -844,8 +840,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 198274572850973734, guid: 4910da04669ef424c9d560e761e78458,
         type: 3}
-      propertyPath: InitialModule.startSpeed.scalar
-      value: 5
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198274572850973734, guid: 4910da04669ef424c9d560e761e78458,
         type: 3}
@@ -1098,10 +1094,6 @@ PrefabInstance:
     - target: {fileID: 1274731270023326, guid: f553384660fc82d48a16f9421a25b1d7, type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1590741204927100, guid: f553384660fc82d48a16f9421a25b1d7, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f553384660fc82d48a16f9421a25b1d7, type: 3}
