@@ -366,7 +366,8 @@ MonoBehaviour:
   distanceFormShip: 2
   astronautFollowMult: 1
   playerShipFollowMult: 0.75
-  delay: 2
+  miningFollowMult: 0
+  boardingDelay: 0
   tools:
   - {fileID: 6012328284279613826}
   - {fileID: 471005561}
@@ -706,6 +707,34 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1797199683272776, guid: 4910da04669ef424c9d560e761e78458, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1093384883173778, guid: 4910da04669ef424c9d560e761e78458, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198274572850973734, guid: 4910da04669ef424c9d560e761e78458,
+        type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198274572850973734, guid: 4910da04669ef424c9d560e761e78458,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.minScalar
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 198274572850973734, guid: 4910da04669ef424c9d560e761e78458,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 198274572850973734, guid: 4910da04669ef424c9d560e761e78458,
+        type: 3}
+      propertyPath: ShapeModule.arc.value
+      value: 1.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4910da04669ef424c9d560e761e78458, type: 3}
 --- !u!4 &3847497028686506117 stripped
@@ -878,6 +907,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BeamYellowStart
       objectReference: {fileID: 0}
+    - target: {fileID: 198582847480832670, guid: f553384660fc82d48a16f9421a25b1d7,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4568370480841046, guid: f553384660fc82d48a16f9421a25b1d7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.0001
@@ -934,11 +968,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.124607295
       objectReference: {fileID: 0}
-    - target: {fileID: 198582847480832670, guid: f553384660fc82d48a16f9421a25b1d7,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 198326153759736312, guid: f553384660fc82d48a16f9421a25b1d7,
         type: 3}
       propertyPath: InitialModule.startSpeed.scalar
@@ -948,6 +977,14 @@ PrefabInstance:
         type: 3}
       propertyPath: InitialModule.startSpeed.minScalar
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1274731270023326, guid: f553384660fc82d48a16f9421a25b1d7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1590741204927100, guid: f553384660fc82d48a16f9421a25b1d7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f553384660fc82d48a16f9421a25b1d7, type: 3}
