@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Scr_Ore : MonoBehaviour
 {
@@ -8,24 +6,30 @@ public class Scr_Ore : MonoBehaviour
     [SerializeField] private BlockType blockType;
 
     [Header("If Ore")]
-    [SerializeField] private OreResourceType oreResourceType;
+    [SerializeField] public OreResourceType oreResourceType;
 
     [Header("If Crystal")]
     [SerializeField] private CrystalResourceType crystalResourceType;
 
     [Header("Resource Properties")]
-    public float amount;
+    [SerializeField] public float amount;
+
+    [Header("Shake Properties")]
 
     [Header("References")]
+    [SerializeField] private GameObject visuals;
+    [SerializeField] private GameObject canvas;
+    [SerializeField] private Scr_MainCamera mainCamera;
+    [SerializeField] private ParticleSystem explosionParticles;
     [SerializeField] private Scr_ReferenceManager referenceManager;
     [SerializeField] private Scr_PlayerShipStats playerShipStats;
-    [SerializeField] private Scr_AstronautsActions astronautsActions;
-    [SerializeField] private GameObject visuals;
+    [SerializeField] public Scr_AstronautsActions astronautsActions;
 
     [HideInInspector] public GameObject currentResource;
 
     private float initalAmount;
     private float rest = 1;
+    private bool playedOnce;
     private GameObject[] oreVisuals;
 
     private enum BlockType
@@ -34,7 +38,7 @@ public class Scr_Ore : MonoBehaviour
         Crystal
     }
 
-    private enum OreResourceType
+    public enum OreResourceType
     {
         Oxygen,
         Fuel,
@@ -136,10 +140,22 @@ public class Scr_Ore : MonoBehaviour
 
         if (amount <= 0)
         {
-            GameObject resource = Instantiate(currentResource, transform.position + Vector3.back, transform.rotation);
-            resource.transform.SetParent(transform.parent);
-            astronautsActions.miningSpot = null;
-            Destroy(gameObject);
+            if (!explosionParticles.isPlaying && !playedOnce)
+            {
+                GameObject resource = Instantiate(currentResource, transform.position + Vector3.back, transform.rotation);
+                resource.transform.SetParent(transform.parent);
+                astronautsActions.miningSpot = null;
+
+                explosionParticles.Play();
+                mainCamera.CameraShake(0.25f, 5, 2);
+                visuals.SetActive(false);
+                canvas.SetActive(false);
+                GetComponent<EdgeCollider2D>().enabled = false;
+
+                playedOnce = true;
+
+                Destroy(gameObject, 2.5f);
+            }
         }   
     }
 

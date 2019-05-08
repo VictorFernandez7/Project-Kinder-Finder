@@ -28,11 +28,12 @@ public class Scr_Resource : MonoBehaviour
     [SerializeField] private GameObject liquidVisuals;
     [SerializeField] public Sprite icon;
 
-    [HideInInspector] public GameObject resourceReference;
-    [HideInInspector] public bool onHands;
     [HideInInspector] public int iD;
+    [HideInInspector] public bool onHands;
     [HideInInspector] public bool lerping;
     [HideInInspector] public Vector3 targetPosition;
+    [HideInInspector] public GameObject resourceReference;
+    [HideInInspector] public ParticleSystem lootParticles;
 
     private bool emulatePhysics;
     private bool isGrounded;
@@ -51,6 +52,7 @@ public class Scr_Resource : MonoBehaviour
     {
         playerShipMovement = GameObject.Find("PlayerShip").GetComponent<Scr_PlayerShipMovement>();
         rb = GetComponent<Rigidbody2D>();
+        lootParticles = GetComponentInChildren<ParticleSystem>();
 
         emulatePhysics = true;
         onHands = false;

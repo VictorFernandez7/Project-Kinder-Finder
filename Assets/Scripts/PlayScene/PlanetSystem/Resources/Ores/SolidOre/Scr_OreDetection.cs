@@ -1,26 +1,38 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using TMPro;
 
 public class Scr_OreDetection : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private Scr_AstronautsActions astronautsActions;
     [SerializeField] public GameObject inputText;
+    [SerializeField] private GameObject tooltipPanel;
+    [SerializeField] private TextMeshProUGUI resourceName;
+    [SerializeField] private TextMeshProUGUI resourceAmount;
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private bool insideTrigger;
+    private Scr_Ore ore;
+    private Scr_AstronautsActions astronautsActions;
+
+    private void Start()
     {
-        if (collision.CompareTag("Astronaut") && astronautsActions.solidTool.activeInHierarchy)
-            inputText.SetActive(true);
+        ore = GetComponentInParent<Scr_Ore>();
+        astronautsActions = ore.astronautsActions;
 
-        else
-            inputText.SetActive(false);
+        resourceName.text = ore.oreResourceType.ToString();
+        resourceAmount.text = (ore.amount + 1).ToString();
+    }
+
+    private void Update()
+    {
+        CanvasItemActivation();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Astronaut"))
         {
+            insideTrigger = true;
+
             astronautsActions.miningSpot = this.gameObject;
             astronautsActions.spotType = Scr_AstronautsActions.SpotType.solidSpot;
         }
@@ -30,6 +42,36 @@ public class Scr_OreDetection : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Astronaut"))
+        {
+            insideTrigger = false;
+
             astronautsActions.miningSpot = null;
+        }
+    }
+
+    private void CanvasItemActivation()
+    {
+        if (insideTrigger)
+        {
+            if (astronautsActions.iAMovement.isMining)
+            {
+                tooltipPanel.SetActive(false);
+                inputText.SetActive(false);
+            }
+
+            else
+            {
+                tooltipPanel.SetActive(true);
+
+                if (astronautsActions.solidTool.activeInHierarchy)
+                    inputText.SetActive(true);
+            }
+        }
+
+        else
+        {
+            tooltipPanel.SetActive(false);
+            inputText.SetActive(false);
+        }
     }
 }

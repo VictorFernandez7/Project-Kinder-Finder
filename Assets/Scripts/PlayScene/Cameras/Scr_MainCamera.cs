@@ -143,7 +143,7 @@ public class Scr_MainCamera : MonoBehaviour
         }
     }
 
-    public void CameraShake()
+    public void CameraShake(float magnitude, float roughness, float fadeOutTime)
     {
         CameraShaker.Instance.ShakeOnce(magnitude, roughness, 0, fadeOutTime);
     }

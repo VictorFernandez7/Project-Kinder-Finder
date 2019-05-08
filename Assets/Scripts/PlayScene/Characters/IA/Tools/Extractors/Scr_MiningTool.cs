@@ -138,6 +138,9 @@ public class Scr_MiningTool : Scr_ToolBase
         {
             if (!startParticles.isPlaying)
                 startParticles.Play();
+
+            Vector3 direction = GetComponentInParent<Scr_IAMovement>().target.parent.transform.position - transform.position;
+            startParticles.transform.forward = direction;
         }
 
         else
