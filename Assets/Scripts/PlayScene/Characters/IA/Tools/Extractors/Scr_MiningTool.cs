@@ -8,34 +8,39 @@ public class Scr_MiningTool : Scr_ToolBase
     [SerializeField] private float miningSpeed;
     [SerializeField] private float laserSpeed;
     [SerializeField] private LayerMask masker;
-    [SerializeField] private Color miningColor;
+
+    [Header("References")]
+    [SerializeField] private ParticleSystem startParticles;
+    [SerializeField] private ParticleSystem hitParticles;
 
     [HideInInspector] public Camera mainCamera;
 
     private bool executingRepairingTool;
     private bool isMining;
-    private LineRenderer laser;
-    private RaycastHit2D hitLaser;
+    private float laserPercent = -2f;
+    private float distance;
     private Vector3 lastDirection;
     private Vector3 laserPoint;
     private Vector3 hitLaserPoint;
-    private float laserPercent = -2f;
-    private float distance;
+    private LineRenderer laser;
+    private RaycastHit2D hitLaser;
 
     void Start()
     {
         mainCamera = GameObject.Find("MainCamera").GetComponent<Camera>();
 
-        laser = GetComponent<LineRenderer>();
-        laser.material.color = miningColor;
+        laser = GetComponentInChildren<LineRenderer>();
+
+        startParticles.Stop();
+        hitParticles.Stop();
     }
 
     public override void Update()
     {
-        if(transform.parent.GetComponent<Scr_IAMovement>().target)
-            hitLaser = Physics2D.Raycast(transform.position, transform.parent.GetComponent<Scr_IAMovement>().target.parent.transform.position - transform.position, Mathf.Infinity, masker);
+        if(GetComponentInParent<Scr_IAMovement>().target)
+            hitLaser = Physics2D.Raycast(transform.position, GetComponentInParent<Scr_IAMovement>().target.parent.transform.position - transform.position, Mathf.Infinity, masker);
 
-        if (Input.GetButton("Interact") && transform.parent.GetComponent<Scr_IAMovement>().isMining && hitLaser)
+        if (Input.GetButton("Interact") && GetComponentInParent<Scr_IAMovement>().isMining && hitLaser)
         {
             executingRepairingTool = true;
             laser.enabled = executingRepairingTool;
@@ -61,10 +66,12 @@ public class Scr_MiningTool : Scr_ToolBase
             laserPercent = -2f;
 
             if (!hitLaser && isMining)
-                transform.parent.GetComponent<Scr_IAMovement>().isMining = false;
+                GetComponentInParent<Scr_IAMovement>().isMining = false;
 
             isMining = false;
         }
+
+        ParticleManagement();
     }
 
     public override void UseTool() { }
@@ -104,7 +111,7 @@ public class Scr_MiningTool : Scr_ToolBase
         if (activating)
         {
             distance = Vector2.Distance(transform.position, hitLaserPoint);
-            laserPoint = transform.position + ((transform.parent.GetComponent<Scr_IAMovement>().target.parent.transform.position - transform.position).normalized * distance * laserPercent * switcher);
+            laserPoint = transform.position + ((GetComponentInParent<Scr_IAMovement>().target.parent.transform.position - transform.position).normalized * distance * laserPercent * switcher);
         }
 
         else
@@ -123,5 +130,28 @@ public class Scr_MiningTool : Scr_ToolBase
             else if(hitLaser.collider.transform.CompareTag("Breakeable") && laserPercent == 1)
                 hitLaser.collider.transform.gameObject.GetComponent<Scr_Breakeable>().amount -= miningSpeed * Time.deltaTime;
         }
+    }
+
+    private void ParticleManagement()
+    {
+        if (laserPercent >= 0)
+        {
+            if (!startParticles.isPlaying)
+                startParticles.Play();
+        }
+
+        else
+            startParticles.Stop();
+
+        if (laserPercent >= 1)
+        {
+            if (!hitParticles.isPlaying)
+                hitParticles.Play();
+
+            hitParticles.transform.position = hitLaser.point;
+        }
+
+        else
+            hitParticles.Stop();
     }
 }
