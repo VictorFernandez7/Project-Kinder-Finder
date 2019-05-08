@@ -8,6 +8,7 @@ public class Scr_MainCamera : MonoBehaviour
     [SerializeField] private float zoomInPlanet;
     [SerializeField] private float miningZoom;
     [SerializeField] private float craftZoom;
+    [SerializeField] private float dialogueZoom;
     [SerializeField] private float zoomSpeed;
 
     [Header("Rotation Properties")]
@@ -22,6 +23,7 @@ public class Scr_MainCamera : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameObject playerShip;
     [SerializeField] private GameObject astronaut;
+    [SerializeField] private Scr_NarrativeManager narrativeManager;
 
     [HideInInspector] public bool followAstronaut = true;
     [HideInInspector] public bool smoothRotation = true;
@@ -137,6 +139,9 @@ public class Scr_MainCamera : MonoBehaviour
         {
             if (interacting)
                 mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, craftZoom, Time.deltaTime * (zoomSpeed * 3));
+
+            else if (narrativeManager.onDialogue)
+                mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, dialogueZoom, Time.deltaTime * zoomSpeed);
 
             else
                 mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, zoomInPlanet, Time.deltaTime * zoomSpeed);

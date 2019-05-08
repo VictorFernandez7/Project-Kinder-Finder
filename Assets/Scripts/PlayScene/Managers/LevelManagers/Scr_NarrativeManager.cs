@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class Scr_NarrativeManager : MonoBehaviour
@@ -16,6 +15,8 @@ public class Scr_NarrativeManager : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Animator panelAnim;
+    [SerializeField] private ParticleSystem astronautGlow;
+    [SerializeField] private ParticleSystem IAGlow;
     [SerializeField] private TextMeshProUGUI texts;
     [SerializeField] private TextMeshProUGUI speakerName;
     [SerializeField] private Scr_AstronautMovement astronautMovement;
@@ -39,6 +40,8 @@ public class Scr_NarrativeManager : MonoBehaviour
 
     private void Update()
     {
+        DialogueEffects();
+
         if (Input.GetMouseButtonDown(0) && onDialogue)
             DisplayNextSentence(textIndex);
     }
@@ -123,6 +126,36 @@ public class Scr_NarrativeManager : MonoBehaviour
         onDialogue = false;
         astronautMovement.onDialogue = false;
         astronautMovement.MoveAgain();
+    }
+
+    private void DialogueEffects()
+    {
+        if (onDialogue)
+        {
+            if (speakerName.text == "Jack")
+            {
+                if (!astronautGlow.isPlaying)
+                {
+                    astronautGlow.Play();
+                    IAGlow.Stop();
+                }
+            }
+
+            else if (speakerName.text == "IA")
+            {
+                if (!IAGlow.isPlaying)
+                {
+                    IAGlow.Play();
+                    astronautGlow.Stop();
+                }
+            }
+        }
+
+        else
+        {
+            IAGlow.Stop();
+            astronautGlow.Stop();
+        }
     }
 }
 
