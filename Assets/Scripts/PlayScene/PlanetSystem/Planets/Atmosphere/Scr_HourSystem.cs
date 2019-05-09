@@ -3,6 +3,10 @@ using UnityEngine;
 
 public class Scr_HourSystem : MonoBehaviour
 {
+    [Header("Main Parameters")]
+    [SerializeField] private bool changeAlpha;
+    [SerializeField] private bool changeColor;
+
     [Header("Alpha Parameters")]
     [Range(0, 255)] [SerializeField] private float dayAmount;
     [Range(0, 255)] [SerializeField] private float nightAmount;
@@ -44,9 +48,14 @@ public class Scr_HourSystem : MonoBehaviour
 
     void Update()
     {
-        AtmosphereColor();
-        AtmosphereAlpha();
-        AngleCalculation();
+        if (changeColor)
+            AtmosphereColor();
+
+        if (changeAlpha)
+            AtmosphereAlpha();
+
+        if (changeAlpha || changeColor)
+            AngleCalculation();
 
         atmosphereImage.color = temporaryColor;
     }
