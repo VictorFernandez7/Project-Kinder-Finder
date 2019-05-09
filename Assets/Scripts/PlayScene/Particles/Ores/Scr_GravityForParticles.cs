@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Scr_GravityForParticles : MonoBehaviour
 {
+    [Header("Select Desired Transform")]
+    [SerializeField] private TransformSelection transformSelection;
+
     [Header("Particle Parameters")]
     [SerializeField] private float gravityAmount;
 
@@ -12,16 +15,26 @@ public class Scr_GravityForParticles : MonoBehaviour
     private ParticleSystem desiredParticles;
     private ParticleSystem.Particle[] particleArray;
 
+    private enum TransformSelection
+    {
+        Up,
+        Down,
+        Right,
+        Left,
+        Forward,
+        Backward
+    }
+
     private void Start()
     {
         desiredParticles = GetComponent<ParticleSystem>();
         particleArray = new ParticleSystem.Particle[desiredParticles.main.maxParticles];
-
-        desiredDirection = -transform.up;
     }
 
     private void Update()
     {
+        SelectTransform();
+
         numberOfParticles = desiredParticles.GetParticles(particleArray);
 
         for (int i = 0; i < numberOfParticles; i++)
@@ -30,5 +43,30 @@ public class Scr_GravityForParticles : MonoBehaviour
         }
 
         desiredParticles.SetParticles(particleArray, numberOfParticles);
+    }
+
+    private void SelectTransform()
+    {
+        switch (transformSelection)
+        {
+            case TransformSelection.Up:
+                desiredDirection = -transform.up;
+                break;
+            case TransformSelection.Down:
+                desiredDirection = transform.up;
+                break;
+            case TransformSelection.Right:
+                desiredDirection = transform.right;
+                break;
+            case TransformSelection.Left:
+                desiredDirection = -transform.right;
+                break;
+            case TransformSelection.Forward:
+                desiredDirection = transform.forward;
+                break;
+            case TransformSelection.Backward:
+                desiredDirection = -transform.forward;
+                break;
+        }
     }
 }
