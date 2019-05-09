@@ -51,5 +51,10 @@ public class Scr_GasTool : Scr_ToolBase
             resources.GetComponent<Scr_Resource>().ChangeVisuals(Scr_Resource.ResourceType.Gas);
             resources.transform.SetParent(playerShipMovement.currentPlanet.transform);
         }
+
+        GameObject extractionModule = zone.GetComponentInChildren<Scr_ParticleAbsorbing>().gameObject;
+
+        extractionModule.transform.position = transform.position;
+        extractionModule.GetComponent<Scr_ParticleAbsorbing>().AbsorbParticles();
     }
 }

@@ -24,7 +24,6 @@ public class Scr_GasZone : MonoBehaviour
     [HideInInspector] public GameObject currentResource;
     [HideInInspector] public float initialAmount;
 
-
     private ParticleSystem gasParticles;
 
     private enum GasType
@@ -37,8 +36,6 @@ public class Scr_GasZone : MonoBehaviour
 
     private void Start()
     {
-        gasParticles = GetComponentInChildren<ParticleSystem>();
-
         initialAmount = amount;
 
         ChangeVisuals();
@@ -66,8 +63,8 @@ public class Scr_GasZone : MonoBehaviour
     private void Update ()
     {
         CheckAmount();
-        ParticleAmount();
-        GasZoneSize();
+        //ParticleAmount();
+        //GasZoneSize();
     }
 
     private void CheckAmount()
@@ -106,24 +103,28 @@ public class Scr_GasZone : MonoBehaviour
                 fuelVisuals.SetActive(false);
                 heliumVisuals.SetActive(false);
                 aerogelVisuals.SetActive(false);
+                gasParticles = oxygenVisuals.GetComponentInChildren<ParticleSystem>();
                 break;
             case GasType.Fuel:
                 oxygenVisuals.SetActive(false);
                 fuelVisuals.SetActive(true);
                 heliumVisuals.SetActive(false);
                 aerogelVisuals.SetActive(false);
+                gasParticles = fuelVisuals.GetComponentInChildren<ParticleSystem>();
                 break;
             case GasType.Helium:
                 oxygenVisuals.SetActive(false);
                 fuelVisuals.SetActive(false);
                 heliumVisuals.SetActive(true);
                 aerogelVisuals.SetActive(false);
+                gasParticles = heliumVisuals.GetComponentInChildren<ParticleSystem>();
                 break;
             case GasType.Aerogel:
                 oxygenVisuals.SetActive(false);
                 fuelVisuals.SetActive(false);
                 heliumVisuals.SetActive(false);
                 aerogelVisuals.SetActive(true);
+                gasParticles = aerogelVisuals.GetComponentInChildren<ParticleSystem>();
                 break;
         }
     }
