@@ -332,7 +332,10 @@ public class Scr_PlayerShipActions : MonoBehaviour
         devTools.liquidTool = ia.GetComponent<Scr_IAMovement>().tools[1];
         devTools.gasTool = ia.GetComponent<Scr_IAMovement>().tools[2];
 
-        astronaut.GetComponent<Scr_AstronautsActions>().iaResourcePoint = ia.transform.Find("ResourceSpot");
+        astronaut.GetComponent<Scr_AstronautsActions>().iaSpotTransformDown = ia.transform.Find("DownSpot");
+        astronaut.GetComponent<Scr_AstronautsActions>().iaSpotTransformLeft = ia.transform.Find("LeftSpot");
+        astronaut.GetComponent<Scr_AstronautsActions>().iaSpotTransformRight = ia.transform.Find("RightSpot");
+        astronaut.GetComponent<Scr_AstronautsActions>().iaSpotTransformUp = ia.transform.Find("UpSpot");
         astronaut.GetComponent<Scr_AstronautsActions>().iAMovement = ia.GetComponent<Scr_IAMovement>();
 
         // playerShipMovement.currentPlanet.GetComponentInParent<Scr_PlanetDiscovery>().explored = true;
