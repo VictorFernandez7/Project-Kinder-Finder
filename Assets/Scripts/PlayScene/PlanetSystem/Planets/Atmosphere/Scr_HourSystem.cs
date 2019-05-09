@@ -4,8 +4,8 @@ using UnityEngine;
 public class Scr_HourSystem : MonoBehaviour
 {
     [Header("Alpha Parameters")]
-    [Range(400, 600)] [SerializeField] private float dayRelation;
-    [Range(0, 0.3f)] [SerializeField] private float nightAmount;
+    [Range(0, 255)] [SerializeField] private float dayAmount;
+    [Range(0, 255)] [SerializeField] private float nightAmount;
 
     [Header("Lerp Parameters")]
     [SerializeField] private float lerpSpeed;
@@ -20,7 +20,7 @@ public class Scr_HourSystem : MonoBehaviour
     [SerializeField] private Transform astronaut;
     [SerializeField] private Scr_SunLight sunLight;
 
-    private Color temporaryColor;
+    private Color32 temporaryColor;
     private float hourAngle;
     private float alphaAmount;
     private float redAmount;
@@ -54,13 +54,17 @@ public class Scr_HourSystem : MonoBehaviour
 
     private void AtmosphereAlpha()
     {
+        float maxDivisor = dayAmount / 180;
+
         if (hourAngle >= 0)
-            alphaAmount = Mathf.Lerp(alphaAmount, hourAngle / dayRelation, Time.deltaTime * lerpSpeed);
+            alphaAmount = Mathf.Lerp(alphaAmount, hourAngle / 2 * maxDivisor, Time.deltaTime * lerpSpeed);
 
         else
             alphaAmount = Mathf.Lerp(alphaAmount, nightAmount, Time.deltaTime);
 
-        temporaryColor.a = alphaAmount;
+        int newAlphaAmount = (int)alphaAmount;
+
+        temporaryColor.a = (byte)newAlphaAmount;
     }
 
     private void AtmosphereColor()
@@ -88,7 +92,10 @@ public class Scr_HourSystem : MonoBehaviour
 
         //print(redAmount);
 
-        temporaryColor.r = redAmount;
-        temporaryColor.b = blueAmount;
+        int newRedAmount = (int)redAmount;
+        int newBlueAmount = (int)blueAmount;
+
+        temporaryColor.r = (byte)newRedAmount;
+        temporaryColor.b = (byte)newBlueAmount;
     }
 }
