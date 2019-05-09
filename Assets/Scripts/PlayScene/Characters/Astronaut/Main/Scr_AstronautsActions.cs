@@ -11,7 +11,10 @@ public class Scr_AstronautsActions : MonoBehaviour
     [SerializeField] private Animator interactionIndicatorAnim;
     [SerializeField] public Transform pickPoint;
     [SerializeField] private Transform spawnPoint;
-    [SerializeField] public Transform iaResourcePoint;
+    [SerializeField] public Transform iaSpotTransformUp;
+    [SerializeField] public Transform iaSpotTransformDown;
+    [SerializeField] public Transform iaSpotTransformRight;
+    [SerializeField] public Transform iaSpotTransformLeft;
     [SerializeField] private GameObject mainCamera;
     [SerializeField] private GameObject playerShip;
     [SerializeField] public GameObject solidTool;
@@ -134,53 +137,53 @@ public class Scr_AstronautsActions : MonoBehaviour
                     case 0:
                         currentResource[0] = astronautResourcesCheck.resourceList[0];
 
-                        currentResource[0].transform.position = iaResourcePoint.position + (-iaResourcePoint.up * 0.15f);
-                        //currentResource[0].GetComponent<Scr_Resource>().targetPosition = iaResourcePoint.position + (-iaResourcePoint.up * 0.15f);
-                        //currentResource[0].GetComponent<Scr_Resource>().lerping = true;
+                        //currentResource[0].transform.position = iaSpotTransformLeft.position;
+                        currentResource[0].GetComponent<Scr_Resource>().targetPosition = iaSpotTransformLeft.gameObject;
+                        currentResource[0].GetComponent<Scr_Resource>().lerping = true;
 
                         currentResource[0].GetComponent<Scr_Resource>().onHands = true;
                         currentResource[0].GetComponent<Scr_Resource>().lootParticles.Stop();
                         currentResource[0].GetComponent<BoxCollider2D>().enabled = false;
-                        currentResource[0].transform.SetParent(iaResourcePoint);
+                        currentResource[0].transform.SetParent(iaSpotTransformLeft);
                         break;
 
                     case 1:
                         currentResource[1] = astronautResourcesCheck.resourceList[0];
 
-                        currentResource[1].transform.position = iaResourcePoint.position + (iaResourcePoint.up * 0.15f);
-                        //currentResource[1].GetComponent<Scr_Resource>().targetPosition = iaResourcePoint.position + (iaResourcePoint.up * 0.15f);
-                        //currentResource[1].GetComponent<Scr_Resource>().lerping = true;
+                        //currentResource[1].transform.position = iaSpotTransformUp.position;
+                        currentResource[1].GetComponent<Scr_Resource>().targetPosition = iaSpotTransformUp.gameObject;
+                        currentResource[1].GetComponent<Scr_Resource>().lerping = true;
 
                         currentResource[1].GetComponent<Scr_Resource>().onHands = true;
                         currentResource[1].GetComponent<Scr_Resource>().lootParticles.Stop();
                         currentResource[1].GetComponent<BoxCollider2D>().enabled = false;
-                        currentResource[1].transform.SetParent(iaResourcePoint);
+                        currentResource[1].transform.SetParent(iaSpotTransformUp);
                         break;
 
                     case 2:
                         currentResource[2] = astronautResourcesCheck.resourceList[0];
 
-                        currentResource[2].transform.position = iaResourcePoint.position + (-iaResourcePoint.right * 0.15f);
-                        //currentResource[2].GetComponent<Scr_Resource>().targetPosition = iaResourcePoint.position + (-iaResourcePoint.right * 0.15f);
-                        //currentResource[2].GetComponent<Scr_Resource>().lerping = true;
+                        //currentResource[2].transform.position = iaSpotTransformRight.position;
+                        currentResource[2].GetComponent<Scr_Resource>().targetPosition = iaSpotTransformRight.gameObject;
+                        currentResource[2].GetComponent<Scr_Resource>().lerping = true;
 
                         currentResource[2].GetComponent<Scr_Resource>().onHands = true;
                         currentResource[2].GetComponent<Scr_Resource>().lootParticles.Stop();
                         currentResource[2].GetComponent<BoxCollider2D>().enabled = false;
-                        currentResource[2].transform.SetParent(iaResourcePoint);
+                        currentResource[2].transform.SetParent(iaSpotTransformRight);
                         break;
 
                     case 3:
                         currentResource[3] = astronautResourcesCheck.resourceList[0];
 
-                        currentResource[3].transform.position = iaResourcePoint.position + (iaResourcePoint.right * 0.15f);
-                        //currentResource[3].GetComponent<Scr_Resource>().targetPosition = iaResourcePoint.position + (iaResourcePoint.right * 0.15f);
-                        //currentResource[3].GetComponent<Scr_Resource>().lerping = true;
+                        //currentResource[3].transform.position = iaSpotTransformDown.position;
+                        currentResource[3].GetComponent<Scr_Resource>().targetPosition = iaSpotTransformDown.gameObject;
+                        currentResource[3].GetComponent<Scr_Resource>().lerping = true;
 
                         currentResource[3].GetComponent<Scr_Resource>().onHands = true;
                         currentResource[3].GetComponent<Scr_Resource>().lootParticles.Stop();
                         currentResource[3].GetComponent<BoxCollider2D>().enabled = false;
-                        currentResource[3].transform.SetParent(iaResourcePoint);
+                        currentResource[3].transform.SetParent(iaSpotTransformDown);
                         break;
 
                     case 4:

@@ -31,7 +31,7 @@ public class Scr_Resource : MonoBehaviour
     [HideInInspector] public int iD;
     [HideInInspector] public bool onHands;
     [HideInInspector] public bool lerping;
-    [HideInInspector] public Vector3 targetPosition;
+    [HideInInspector] public GameObject targetPosition;
     [HideInInspector] public GameObject resourceReference;
     [HideInInspector] public ParticleSystem lootParticles;
 
@@ -64,7 +64,7 @@ public class Scr_Resource : MonoBehaviour
     private void FixedUpdate()
     {
         if (lerping)
-            transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * flyingSpeed);
+            transform.position = Vector3.Lerp(transform.position, targetPosition.transform.position, Time.deltaTime * flyingSpeed);
 
         if (!onHands)
         {
