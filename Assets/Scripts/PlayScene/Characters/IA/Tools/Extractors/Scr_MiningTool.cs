@@ -53,7 +53,7 @@ public class Scr_MiningTool : Scr_ToolBase
             }
         }
 
-        else if (laser.enabled && laserPercent > 0)
+        else if (executingRepairingTool && laserPercent > 0)
         {
             MiningTool(false);
             laserPercent -= Time.deltaTime * laserSpeed;

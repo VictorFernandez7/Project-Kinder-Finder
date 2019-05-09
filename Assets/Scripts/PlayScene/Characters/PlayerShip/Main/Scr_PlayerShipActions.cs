@@ -44,6 +44,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
     [SerializeField] private GameObject highTemperatureSuit;
     [SerializeField] private GameObject toxicSuit;
     [SerializeField] private Transform IAStpot;
+    [SerializeField] private Scr_DevTools devTools;
 
     [HideInInspector] public bool startExitDelay;
     [HideInInspector] public bool closeToAsteroid;
@@ -278,9 +279,9 @@ public class Scr_PlayerShipActions : MonoBehaviour
         {
             case Suit.SpaceSuit:
                 normalSuit.SetActive(true);
-               // highTemperatureSuit.SetActive(false);
-               // lowTemperatureSuit.SetActive(false);
-                //toxicSuit.SetActive(false);
+                highTemperatureSuit.SetActive(false);
+                lowTemperatureSuit.SetActive(false);
+                toxicSuit.SetActive(false);
                 break;
 
             case Suit.HotResistance:
@@ -326,6 +327,11 @@ public class Scr_PlayerShipActions : MonoBehaviour
         astronaut.GetComponent<Scr_AstronautsActions>().solidTool = ia.GetComponent<Scr_IAMovement>().tools[0];
         astronaut.GetComponent<Scr_AstronautsActions>().liquidTool = ia.GetComponent<Scr_IAMovement>().tools[1];
         astronaut.GetComponent<Scr_AstronautsActions>().gasTool = ia.GetComponent<Scr_IAMovement>().tools[2];
+
+        devTools.solidTool = ia.GetComponent<Scr_IAMovement>().tools[0];
+        devTools.liquidTool = ia.GetComponent<Scr_IAMovement>().tools[1];
+        devTools.gasTool = ia.GetComponent<Scr_IAMovement>().tools[2];
+
         astronaut.GetComponent<Scr_AstronautsActions>().iaResourcePoint = ia.transform.Find("ResourceSpot");
         astronaut.GetComponent<Scr_AstronautsActions>().iAMovement = ia.GetComponent<Scr_IAMovement>();
 
