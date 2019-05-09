@@ -362,7 +362,7 @@ public class Scr_AstronautMovement : MonoBehaviour
             if (Input.GetButton("Boost"))
             {
                 Move(right, runSpeed);
-                astronautAnim.SetFloat("Speed", 2);
+                astronautAnim.SetFloat("Speed", 2.5f);
 
                 if (!breathable)
                     GetComponent<Scr_AstronautStats>().currentOxygen -= 0.05f;
@@ -371,7 +371,7 @@ public class Scr_AstronautMovement : MonoBehaviour
             else
             {
                 Move(right, walkSpeed);
-                astronautAnim.SetFloat("Speed", 1);
+                astronautAnim.SetFloat("Speed", 1.75f);
             }
         }
 

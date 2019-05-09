@@ -28,7 +28,6 @@ public class Scr_AstronautEffects : MonoBehaviour
         astronautMovement = GetComponent<Scr_AstronautMovement>();
 
         breathingBool = true;
-        movingParticles.Play();
     }
 
     private void Update()
