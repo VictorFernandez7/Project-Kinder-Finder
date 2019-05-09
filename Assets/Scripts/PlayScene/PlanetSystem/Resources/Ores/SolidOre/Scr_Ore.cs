@@ -134,16 +134,17 @@ public class Scr_Ore : MonoBehaviour
         {
             rest += 1;
             playerShipStats.GetExperience(20);
-            GameObject resource = Instantiate(currentResource, transform.position + Vector3.back, transform.rotation);
-            resource.transform.SetParent(transform.parent);
         }
 
         if (amount <= 0)
         {
             if (!explosionParticles.isPlaying && !playedOnce)
             {
-                GameObject resource = Instantiate(currentResource, transform.position + Vector3.back, transform.rotation);
-                resource.transform.SetParent(transform.parent);
+                for (int i = 0; i < initalAmount; i++) { 
+                    GameObject resource = Instantiate(currentResource, transform.position + Vector3.back, transform.rotation);
+                    resource.transform.SetParent(transform.parent);
+                }
+
                 astronautsActions.miningSpot = null;
 
                 explosionParticles.Play();

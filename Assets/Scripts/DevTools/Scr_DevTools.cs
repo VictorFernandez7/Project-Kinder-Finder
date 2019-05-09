@@ -10,11 +10,19 @@ public class Scr_DevTools : MonoBehaviour
     [Header("Reload Scene")]
     [SerializeField] private KeyCode RS_key;
 
-    [Header("Reset Technologies")]
-    [SerializeField] private KeyCode RT_key;
+    [Header("Active Solid Tool")]
+    [SerializeField] private KeyCode ST_key;
 
-    [Header("Unlock Liquid Tool")]
+    [Header("Active Liquid Tool")]
     [SerializeField] private KeyCode LT_key;
+
+    [Header("Active Gas Tool")]
+    [SerializeField] private KeyCode GT_key;
+
+    [Header("References")]
+    [SerializeField] public GameObject solidTool;
+    [SerializeField] public GameObject liquidTool;
+    [SerializeField] public GameObject gasTool;
 
     private GameObject playerShip;
     private bool devSlow; 
@@ -39,6 +47,15 @@ public class Scr_DevTools : MonoBehaviour
 
         if (Input.GetKeyDown(RS_key))
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        if (Input.GetKeyDown(ST_key))
+            solidTool.SetActive(!solidTool.activeInHierarchy);
+
+        if (Input.GetKeyDown(LT_key))
+            liquidTool.SetActive(!liquidTool.activeInHierarchy);
+
+        if (Input.GetKeyDown(GT_key))
+            gasTool.SetActive(!gasTool.activeInHierarchy);
     }
 
     private void BulletTime(bool active)
