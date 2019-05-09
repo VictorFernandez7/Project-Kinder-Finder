@@ -49,8 +49,6 @@ public class Scr_HourSystem : MonoBehaviour
         AngleCalculation();
 
         atmosphereImage.color = temporaryColor;
-
-        print(hourAngle);
     }
 
     private void AngleCalculation()
