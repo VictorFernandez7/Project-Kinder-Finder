@@ -49,6 +49,8 @@ public class Scr_HourSystem : MonoBehaviour
         AngleCalculation();
 
         atmosphereImage.color = temporaryColor;
+
+        print(hourAngle);
     }
 
     private void AngleCalculation()
@@ -78,11 +80,13 @@ public class Scr_HourSystem : MonoBehaviour
 
     private void AtmosphereColor()
     {
-        if (hourAngle >= 0)
+        if (hourAngle >= 90)
             DayRGB();
 
         else
             NightRGB();
+
+        Mathf.Clamp(greenAmount, 0, 125);
 
         int newRedAmount = (int)redAmount;
         int newGreenAmount = (int)greenAmount;
@@ -100,11 +104,12 @@ public class Scr_HourSystem : MonoBehaviour
         float blueDivisor = maxBlue / 180 * 2;
 
         float redHourAngle = hourAngle - 90;
+        float greenHourAngle = hourAngle;
         float blueHourAngle = hourAngle - 180;
 
         redAmount = Mathf.Lerp(redAmount, redHourAngle * redDivisor, Time.deltaTime * lerpSpeed);
 
-        greenAmount = 255;
+        greenAmount = Mathf.Lerp(greenAmount, greenHourAngle, Time.deltaTime * lerpSpeed);
 
         if (blueHourAngle > 0)
             blueAmount = Mathf.Lerp(blueAmount, blueHourAngle * blueDivisor, Time.deltaTime * lerpSpeed);
@@ -115,6 +120,8 @@ public class Scr_HourSystem : MonoBehaviour
 
     private void NightRGB()
     {
-
+        redAmount = Mathf.Lerp(redAmount, nightRed, Time.deltaTime * lerpSpeed);
+        greenAmount = Mathf.Lerp(greenAmount, nightGreen, Time.deltaTime * lerpSpeed);
+        blueAmount = Mathf.Lerp(blueAmount, nightBlue, Time.deltaTime * lerpSpeed);
     }
 }
