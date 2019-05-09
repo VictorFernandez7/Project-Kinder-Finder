@@ -302,7 +302,7 @@ public class Scr_AstronautMovement : MonoBehaviour
             speedInJump = 0;
             timeAfterJump = savedTimeAfterJump;
             astronautAnim.SetTrigger("JumpEnd");
-            astronautEffects.JumpParticles();
+            astronautEffects.FallParticles();
             toJump = false;
             jumping = false;
         }

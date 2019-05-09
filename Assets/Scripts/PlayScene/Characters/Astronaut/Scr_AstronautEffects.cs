@@ -7,6 +7,7 @@ public class Scr_AstronautEffects : MonoBehaviour
     [Header("References")]
     [SerializeField] private ParticleSystem movingParticles;
     [SerializeField] private ParticleSystem jumpParticles;
+    [SerializeField] private ParticleSystem fallParticles;
     [SerializeField] private Scr_MusicManager musicManager;
     [SerializeField] private Scr_PlayerShipMovement playerShipMovement;
 
@@ -95,5 +96,11 @@ public class Scr_AstronautEffects : MonoBehaviour
     {
         if (!jumpParticles.isPlaying)
             jumpParticles.Play();
+    }
+
+    public void FallParticles()
+    {
+        if (!fallParticles.isPlaying)
+            fallParticles.Play();
     }
 }
