@@ -7,12 +7,21 @@ public class Scr_HourSystem : MonoBehaviour
     [Range(0, 255)] [SerializeField] private float dayAmount;
     [Range(0, 255)] [SerializeField] private float nightAmount;
 
+    [Header("Day's Color Parameters")]
+    [Range(0, 255)] [SerializeField] private float maxRed;
+    [Range(0, 255)] [SerializeField] private float minRed;
+    [Range(0, 255)] [SerializeField] private float maxGreen;
+    [Range(0, 255)] [SerializeField] private float minGreen;
+    [Range(0, 255)] [SerializeField] private float maxBlue;
+    [Range(0, 255)] [SerializeField] private float minBlue;
+
+    [Header("Night's Color Parameters")]
+    [Range(0, 255)] [SerializeField] private float nightRed;
+    [Range(0, 255)] [SerializeField] private float nightGreen;
+    [Range(0, 255)] [SerializeField] private float nightBlue;
+
     [Header("Lerp Parameters")]
     [SerializeField] private float lerpSpeed;
-
-    [Header("Color Parameters")]
-    [SerializeField] private Color nightColor;
-    [SerializeField] private Color dayColor;
 
     [Header("References")]
     [SerializeField] private SpriteRenderer atmosphereImage;
@@ -30,12 +39,12 @@ public class Scr_HourSystem : MonoBehaviour
 
     private void Start()
     {
-        temporaryColor = nightColor;
+        temporaryColor = atmosphereImage.color;
     }
 
     void Update()
     {
-        //AtmosphereColor();
+        AtmosphereColor();
         AtmosphereAlpha();
         AngleCalculation();
 
@@ -57,7 +66,7 @@ public class Scr_HourSystem : MonoBehaviour
         float maxDivisor = dayAmount / 180;
 
         if (hourAngle >= 0)
-            alphaAmount = Mathf.Lerp(alphaAmount, hourAngle / 2 * maxDivisor, Time.deltaTime * lerpSpeed);
+            alphaAmount = Mathf.Lerp(alphaAmount, hourAngle * maxDivisor, Time.deltaTime * lerpSpeed);
 
         else
             alphaAmount = Mathf.Lerp(alphaAmount, nightAmount, Time.deltaTime);
@@ -69,33 +78,43 @@ public class Scr_HourSystem : MonoBehaviour
 
     private void AtmosphereColor()
     {
-        float maxDivisor = 2.83f;
-
-        float redHourAngle = hourAngle / 2;
-        float blueHourAngle = hourAngle - 180;
-
         if (hourAngle >= 0)
-        {
-            redAmount = Mathf.Lerp(redAmount, redHourAngle * maxDivisor, Time.deltaTime * lerpSpeed);
-
-            if (blueHourAngle > 0)
-                blueAmount = Mathf.Lerp(blueAmount, blueHourAngle * maxDivisor, Time.deltaTime * lerpSpeed);
-
-            else
-                blueAmount = Mathf.Lerp(blueAmount, blueHourAngle * -maxDivisor, Time.deltaTime * lerpSpeed);
-        }
+            DayRGB();
 
         else
-        {
-
-        }
-
-        //print(redAmount);
+            NightRGB();
 
         int newRedAmount = (int)redAmount;
+        int newGreenAmount = (int)greenAmount;
         int newBlueAmount = (int)blueAmount;
 
         temporaryColor.r = (byte)newRedAmount;
+        temporaryColor.g = (byte)newGreenAmount;
         temporaryColor.b = (byte)newBlueAmount;
+    }
+
+    private void DayRGB()
+    {
+        float redDivisor = maxRed / 180 * 2;
+        float greenDivisor = maxGreen / 180 * 2;
+        float blueDivisor = maxBlue / 180 * 2;
+
+        float redHourAngle = hourAngle - 90;
+        float blueHourAngle = hourAngle - 180;
+
+        redAmount = Mathf.Lerp(redAmount, redHourAngle * redDivisor, Time.deltaTime * lerpSpeed);
+
+        greenAmount = 255;
+
+        if (blueHourAngle > 0)
+            blueAmount = Mathf.Lerp(blueAmount, blueHourAngle * blueDivisor, Time.deltaTime * lerpSpeed);
+
+        else
+            blueAmount = Mathf.Lerp(blueAmount, blueHourAngle * -blueDivisor, Time.deltaTime * lerpSpeed);
+    }
+
+    private void NightRGB()
+    {
+
     }
 }

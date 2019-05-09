@@ -14894,6 +14894,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelManagers
       objectReference: {fileID: 0}
+    - target: {fileID: 114015190228644646, guid: 6ee248eae7fc7574998196240b18bb9b,
+        type: 3}
+      propertyPath: solidTool
+      value: 
+      objectReference: {fileID: 761432099}
+    - target: {fileID: 114015190228644646, guid: 6ee248eae7fc7574998196240b18bb9b,
+        type: 3}
+      propertyPath: liquidTool
+      value: 
+      objectReference: {fileID: 471005561}
+    - target: {fileID: 114015190228644646, guid: 6ee248eae7fc7574998196240b18bb9b,
+        type: 3}
+      propertyPath: gasTool
+      value: 
+      objectReference: {fileID: 824682540}
+    - target: {fileID: 114015190228644646, guid: 6ee248eae7fc7574998196240b18bb9b,
+        type: 3}
+      propertyPath: ST_key
+      value: 49
+      objectReference: {fileID: 0}
+    - target: {fileID: 114015190228644646, guid: 6ee248eae7fc7574998196240b18bb9b,
+        type: 3}
+      propertyPath: LT_key
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 114015190228644646, guid: 6ee248eae7fc7574998196240b18bb9b,
+        type: 3}
+      propertyPath: GT_key
+      value: 51
+      objectReference: {fileID: 0}
     - target: {fileID: 114879436719918488, guid: 6ee248eae7fc7574998196240b18bb9b,
         type: 3}
       propertyPath: mapCamera
@@ -15148,36 +15178,6 @@ PrefabInstance:
       propertyPath: astronautMovement
       value: 
       objectReference: {fileID: 2028569275}
-    - target: {fileID: 114015190228644646, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: solidTool
-      value: 
-      objectReference: {fileID: 761432099}
-    - target: {fileID: 114015190228644646, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: liquidTool
-      value: 
-      objectReference: {fileID: 471005561}
-    - target: {fileID: 114015190228644646, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: gasTool
-      value: 
-      objectReference: {fileID: 824682540}
-    - target: {fileID: 114015190228644646, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: ST_key
-      value: 49
-      objectReference: {fileID: 0}
-    - target: {fileID: 114015190228644646, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: LT_key
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 114015190228644646, guid: 6ee248eae7fc7574998196240b18bb9b,
-        type: 3}
-      propertyPath: GT_key
-      value: 51
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ee248eae7fc7574998196240b18bb9b, type: 3}
 --- !u!114 &1776733534 stripped
@@ -19555,11 +19555,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02e93b73bab58c2478bb0c0fafa240be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dayRelation: 500
-  nightAmount: 0.1
+  dayAmount: 80
+  nightAmount: 25
+  maxRed: 255
+  minRed: 0
+  maxGreen: 255
+  minGreen: 180
+  maxBlue: 255
+  minBlue: 0
+  nightRed: 0
+  nightGreen: 255
+  nightBlue: 255
   lerpSpeed: 2
-  nightColor: {r: 0, g: 0.99215686, b: 1, a: 1}
-  dayColor: {r: 1, g: 0.7210716, b: 0, a: 1}
   atmosphereImage: {fileID: 914645045}
   sun: {fileID: 441807389}
   astronaut: {fileID: 1466912768}
