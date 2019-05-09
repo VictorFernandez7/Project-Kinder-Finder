@@ -6,9 +6,7 @@ public class Scr_AstronautEffects : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private ParticleSystem movingParticles;
-    [SerializeField] private ParticleSystemRenderer movingParticlesRenderer;
     [SerializeField] private ParticleSystem jumpParticles;
-    [SerializeField] private ParticleSystemRenderer jumpParticlesRenderer;
     [SerializeField] private Scr_MusicManager musicManager;
     [SerializeField] private Scr_PlayerShipMovement playerShipMovement;
 
@@ -30,6 +28,7 @@ public class Scr_AstronautEffects : MonoBehaviour
         astronautMovement = GetComponent<Scr_AstronautMovement>();
 
         breathingBool = true;
+        movingParticles.Play();
     }
 
     private void Update()
@@ -38,6 +37,9 @@ public class Scr_AstronautEffects : MonoBehaviour
 
         if (movingParticles.isPlaying && astronautMovement.jumping)
             movingParticles.Stop();
+
+        else if (!movingParticles.isPlaying)
+            movingParticles.Play();
     }
 
     private void SoundManager()
@@ -90,24 +92,8 @@ public class Scr_AstronautEffects : MonoBehaviour
        }*/
     }
 
-    public void MovementParticles(bool isMoving)
-    {
-        movingParticlesRenderer.material = playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().particlesMaterial;
-
-        if (isMoving)
-        {
-            if (!movingParticles.isPlaying)
-                movingParticles.Play();
-        }
-
-        else
-            movingParticles.Stop();
-    }
-
     public void JumpParticles()
     {
-        jumpParticlesRenderer.material = playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().particlesMaterial;
-
         if (!jumpParticles.isPlaying)
             jumpParticles.Play();
     }
