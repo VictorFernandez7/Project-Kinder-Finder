@@ -23,6 +23,9 @@ public class Scr_HourSystem : MonoBehaviour
     private Color temporaryColor;
     private float hourAngle;
     private float alphaAmount;
+    private float redAmount;
+    private float greenAmount;
+    private float blueAmount;
     private Vector3 sunAstronautVector;
 
     private void Start()
@@ -32,8 +35,11 @@ public class Scr_HourSystem : MonoBehaviour
 
     void Update()
     {
+        //AtmosphereColor();
         AtmosphereAlpha();
         AngleCalculation();
+
+        atmosphereImage.color = temporaryColor;
     }
 
     private void AngleCalculation()
@@ -55,6 +61,34 @@ public class Scr_HourSystem : MonoBehaviour
             alphaAmount = Mathf.Lerp(alphaAmount, nightAmount, Time.deltaTime);
 
         temporaryColor.a = alphaAmount;
-        atmosphereImage.color = temporaryColor;
+    }
+
+    private void AtmosphereColor()
+    {
+        float maxDivisor = 2.83f;
+
+        float redHourAngle = hourAngle / 2;
+        float blueHourAngle = hourAngle - 180;
+
+        if (hourAngle >= 0)
+        {
+            redAmount = Mathf.Lerp(redAmount, redHourAngle * maxDivisor, Time.deltaTime * lerpSpeed);
+
+            if (blueHourAngle > 0)
+                blueAmount = Mathf.Lerp(blueAmount, blueHourAngle * maxDivisor, Time.deltaTime * lerpSpeed);
+
+            else
+                blueAmount = Mathf.Lerp(blueAmount, blueHourAngle * -maxDivisor, Time.deltaTime * lerpSpeed);
+        }
+
+        else
+        {
+
+        }
+
+        //print(redAmount);
+
+        temporaryColor.r = redAmount;
+        temporaryColor.b = blueAmount;
     }
 }
