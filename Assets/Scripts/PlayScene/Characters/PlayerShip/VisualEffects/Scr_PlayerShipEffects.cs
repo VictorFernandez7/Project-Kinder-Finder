@@ -31,11 +31,12 @@ public class Scr_PlayerShipEffects : MonoBehaviour
     [SerializeField] private ParticleSystem rightPropulsor;
     [SerializeField] private ParticleSystem explosion;
     [SerializeField] private ParticleSystem takingOffSlam;
+    [SerializeField] private ParticleSystem takingOffSmoke;
     [SerializeField] private ParticleSystem landingSlam;
     [SerializeField] private ParticleSystem stars;
 
-    [SerializeField] private bool warming;
-    [SerializeField] private bool turbo;
+    [HideInInspector] public bool warming;
+    [HideInInspector] public bool turbo;
 
     private float desiredEmission;
     private Scr_PlayerShipMovement playerShipMovement;
@@ -49,6 +50,17 @@ public class Scr_PlayerShipEffects : MonoBehaviour
     {
         StarControl();
         ThrustersEmissionControl();
+
+        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.takingOff)
+        {
+            PlayParticleSystem(mainThruster);
+            PlayParticleSystem(takingOffSmoke);
+        }
+
+        else if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landing)
+            PlayParticleSystem(mainThruster);
+
+        // Parar partículas en el evento de salir de la atmósfera
     }
 
     private void StarControl()
