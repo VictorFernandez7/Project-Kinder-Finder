@@ -8,6 +8,7 @@ public class Scr_PlayerShipEffects : MonoBehaviour
     [Header("Landing / Taking Off Parameters")]
     [SerializeField] private float landingPower;
     [SerializeField] private float takingOffPower;
+    [SerializeField] private float takingOffSmokePower;
 
     [Header("In Space Parameters")]
     [SerializeField] private float thrusterPower;
@@ -27,10 +28,10 @@ public class Scr_PlayerShipEffects : MonoBehaviour
     [SerializeField] private ParticleSystem leftPropulsor;
     [SerializeField] private ParticleSystem rightPropulsor;
     [SerializeField] private ParticleSystem explosion;
-    [SerializeField] private ParticleSystem takingOffSlam;
+    [SerializeField] public ParticleSystem takingOffSlam;
     [SerializeField] public ParticleSystem takingOffSmoke;
     [SerializeField] private ParticleSystem damagedSmoke;
-    [SerializeField] private ParticleSystem landingSlam;
+    [SerializeField] public ParticleSystem landingSlam;
     [SerializeField] private ParticleSystem stars;
 
     [HideInInspector] public bool warming;
@@ -50,6 +51,7 @@ public class Scr_PlayerShipEffects : MonoBehaviour
         StarControl();
         DamageControl();
         ThrusterPlayControl();
+        OtherEmissionControl();
         ThrustersEmissionControl();
     }
 
@@ -99,6 +101,13 @@ public class Scr_PlayerShipEffects : MonoBehaviour
         rightEmission.rateOverTime = auxiliarThrusterPower;
     }
 
+    private void OtherEmissionControl()
+    {
+        var takingOffSmokeEmission = takingOffSmoke.emission;
+
+        takingOffSmokeEmission.rateOverTime = takingOffSmokePower;
+    }
+
     private void ThrusterPlayControl()
     {
         if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.takingOff)
@@ -107,7 +116,7 @@ public class Scr_PlayerShipEffects : MonoBehaviour
             PlayParticleSystem(takingOffSmoke);
         }
 
-        else if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landing)
+        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landing)
             PlayParticleSystem(mainThruster);
 
         // Parar partículas en el evento de salir de la atmósfera y de tocar el suelo
@@ -180,7 +189,7 @@ public class Scr_PlayerShipEffects : MonoBehaviour
             PlayParticleSystem(rightPropulsor);
     }
 
-    private void PlayParticleSystem(ParticleSystem desiredParticles)
+    public void PlayParticleSystem(ParticleSystem desiredParticles)
     {
         if (!desiredParticles.isPlaying)
             desiredParticles.Play();
