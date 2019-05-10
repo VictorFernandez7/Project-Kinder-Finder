@@ -270,10 +270,11 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
                     savedTimeToTakeOff -= Time.deltaTime;
 
-                    if (savedTimeToTakeOff <= 0)
+                    if (savedTimeToTakeOff <= 0 && Input.GetMouseButtonDown(0))
                     {
                         playerShipEffects.WarmingEffects(false);
                         playerShipEffects.warming = false;
+                        playerShipEffects.PlayParticleSystem(playerShipEffects.takingOffSlam);
 
                         mainCamera.GetComponent<Scr_MainCamera>().smoothRotation = false;
                         mainCamera.GetComponent<Scr_MainCamera>().CameraShake(0.25f, 5, 12);
@@ -282,6 +283,9 @@ public class Scr_PlayerShipMovement : MonoBehaviour
                     }
                 }
             }
+
+            if (Input.GetKeyUp(KeyCode.LeftShift) && playerShipState == PlayerShipState.landed)
+                playerShipEffects.WarmingEffects(false);
 
             if (onGround)
             {
@@ -347,7 +351,8 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
                 if (onGround)
                 {
-                    playerShipEffects.mainThruster.Stop();
+                    playerShipEffects.StopParticleSystem(playerShipEffects.mainThruster);
+                    playerShipEffects.PlayParticleSystem(playerShipEffects.landingSlam);
                     landing = false;
                 }
             }
@@ -440,7 +445,8 @@ public class Scr_PlayerShipMovement : MonoBehaviour
                     playerShipEffects.ThrusterEffects(false, false);
             }
 
-            playerShipEffects.StopParticleSystem(playerShipEffects.mainThruster);
+            else
+                playerShipEffects.StopParticleSystem(playerShipEffects.mainThruster);
         }
 
         if (canRotateShip && (playerShipState == PlayerShipState.inSpace || playerShipState == PlayerShipState.landing))
