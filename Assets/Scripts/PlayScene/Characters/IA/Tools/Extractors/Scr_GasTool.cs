@@ -32,6 +32,8 @@ public class Scr_GasTool : Scr_ToolBase
 
     private void ExtractGas()
     {
+        zone.GetComponent<Scr_GasZone>().iAMovement = transform.GetComponentInParent<Scr_IAMovement>();
+
         if (resource == null)
             resource = zone.GetComponent<Scr_GasZone>().currentResource;
 

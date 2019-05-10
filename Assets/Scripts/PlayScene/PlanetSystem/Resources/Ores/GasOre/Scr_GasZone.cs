@@ -22,6 +22,7 @@ public class Scr_GasZone : MonoBehaviour
     [SerializeField] private GameObject aerogelVisuals;
 
     [HideInInspector] public GameObject currentResource;
+    [HideInInspector] public Scr_IAMovement iAMovement;
     [HideInInspector] public float initialAmount;
 
     private ParticleSystem gasParticles;
@@ -63,14 +64,16 @@ public class Scr_GasZone : MonoBehaviour
     private void Update ()
     {
         CheckAmount();
-        //ParticleAmount();
+        ParticleAmount();
         //GasZoneSize();
     }
 
     private void CheckAmount()
     {
-        if (amount <= 0 && gasParticles.particleCount <= 0)
+        if (amount <= 0 && gasParticles.particleCount <= 0) {
+            iAMovement.isMining = false;
             Destroy(gameObject);
+        }
     }
 
     private void ParticleAmount()
