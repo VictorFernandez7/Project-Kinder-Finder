@@ -23,6 +23,7 @@ public class Scr_Resource : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform rayOrigin1;
     [SerializeField] private Transform rayOrigin2;
+    [SerializeField] private Transform rayOrigin3;
     [SerializeField] private GameObject solidVisuals;
     [SerializeField] private GameObject gasVisuals;
     [SerializeField] private GameObject liquidVisuals;
@@ -37,7 +38,11 @@ public class Scr_Resource : MonoBehaviour
 
     private bool emulatePhysics;
     private bool isGrounded;
+    private bool lerpingToSurface;
     private float spawnAngle;
+    private float speed;
+    private Vector3 direction;
+    private Vector3 finalHitPoint = Vector3.zero;
     private Rigidbody2D rb;
     private Scr_PlayerShipMovement playerShipMovement;
 
@@ -86,12 +91,29 @@ public class Scr_Resource : MonoBehaviour
                 {
                     transform.rotation = Quaternion.LookRotation(transform.forward, -(playerShipMovement.currentPlanet.transform.position - gameObject.transform.position));
                     rb.AddForce((playerShipMovement.currentPlanet.transform.position - gameObject.transform.position).normalized * gravity);
+                    direction = rb.velocity.normalized;
+                    speed = rb.velocity.magnitude;
                     rb.isKinematic = false;
                 }
             }
 
+            else if (isGrounded && !lerpingToSurface)
+            {
+                RaycastHit2D hit3 = Physics2D.Raycast(rayOrigin3.position,direction, 0.04f, collisionMask);
+
+                if(hit3)
+                    finalHitPoint = hit3.point;
+
+                lerpingToSurface = true;
+            }
+
             else if (activationDelay <= 0)
+            {
                 rb.velocity = Vector3.zero;
+
+                if((Vector3.Distance(rayOrigin3.position, finalHitPoint) > 0.015f && Vector3.Distance(rayOrigin3.position, finalHitPoint) <= 0.03f) && finalHitPoint != Vector3.zero)
+                    transform.position = Vector2.Lerp(rayOrigin3.position, finalHitPoint, Time.deltaTime * speed);
+            }
         }
 
         else
