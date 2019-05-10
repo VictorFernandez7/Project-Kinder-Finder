@@ -47,21 +47,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76b52f89ffd484a46ba10b4e7491944a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resourceType: 1
   typeIndex: 12
-  icon: {fileID: 21300000, guid: 93e2efb68ea1a8140b85c87979b75f59, type: 3}
+  resourceType: 1
   gravity: 1
   spawnImpulse: 15
-  maxSpawnAngle: 3
+  maxSpawnAngle: 5
+  flyingSpeed: 5
   activationDelay: 0.5
-  rayLength: 0.01
+  rayLength: 0.025
   collisionMask:
     serializedVersion: 2
     m_Bits: 1024
   rayOrigin1: {fileID: 4810106577547251414}
   rayOrigin2: {fileID: 1161236241417712181}
-  resourceReference: {fileID: 0}
+  solidVisuals: {fileID: 0}
+  gasVisuals: {fileID: 0}
+  liquidVisuals: {fileID: 0}
+  icon: {fileID: 21300000, guid: 93e2efb68ea1a8140b85c87979b75f59, type: 3}
+  iD: 0
   onHands: 0
+  lerping: 0
+  targetPosition: {fileID: 0}
+  resourceReference: {fileID: 0}
+  lootParticles: {fileID: 0}
 --- !u!50 &4877725222627251758
 Rigidbody2D:
   serializedVersion: 4
@@ -208,14 +216,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4447931587795128}
     m_Modifications:
-    - target: {fileID: 100000, guid: f169e340519d039478e235a22bab035f, type: 3}
-      propertyPath: m_Name
-      value: Visuals
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: f169e340519d039478e235a22bab035f, type: 3}
-      propertyPath: m_TagString
-      value: Resources
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f169e340519d039478e235a22bab035f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -271,6 +271,14 @@ PrefabInstance:
     - target: {fileID: 400000, guid: f169e340519d039478e235a22bab035f, type: 3}
       propertyPath: m_LocalScale.z
       value: 11.012263
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f169e340519d039478e235a22bab035f, type: 3}
+      propertyPath: m_Name
+      value: Visuals
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f169e340519d039478e235a22bab035f, type: 3}
+      propertyPath: m_TagString
+      value: Resources
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: f169e340519d039478e235a22bab035f, type: 3}
       propertyPath: m_Materials.Array.data[0]
