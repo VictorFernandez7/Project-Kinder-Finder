@@ -17535,11 +17535,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -29537,6 +29537,7 @@ GameObject:
   - component: {fileID: 4112365397398479985}
   - component: {fileID: 4715098196883384654}
   - component: {fileID: 1443845840904896713}
+  - component: {fileID: 6202589605869740557}
   m_Layer: 0
   m_Name: Decoration
   m_TagString: Untagged
@@ -29626,6 +29627,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2.5
+--- !u!95 &6202589605869740557
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5523982043169956809}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f7d39d77199a0834d85c7df062bcf3f3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5529300227657255771
 GameObject:
   m_ObjectHideFlags: 0
@@ -49835,11 +49855,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2103570915234967749}
     m_Modifications:
-    - target: {fileID: 4444932372547427643, guid: 81525ad16c99b474fbb697f160801245,
-        type: 3}
-      propertyPath: m_Name
-      value: MainTooltip
-      objectReference: {fileID: 0}
     - target: {fileID: 4444932372547427642, guid: 81525ad16c99b474fbb697f160801245,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -49959,6 +49974,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.84586
+      objectReference: {fileID: 0}
+    - target: {fileID: 4444932372547427643, guid: 81525ad16c99b474fbb697f160801245,
+        type: 3}
+      propertyPath: m_Name
+      value: MainTooltip
       objectReference: {fileID: 0}
     - target: {fileID: 4444932372773855365, guid: 81525ad16c99b474fbb697f160801245,
         type: 3}
@@ -50129,11 +50149,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1614967358776809372}
     m_Modifications:
-    - target: {fileID: 4444932372547427643, guid: 81525ad16c99b474fbb697f160801245,
-        type: 3}
-      propertyPath: m_Name
-      value: MainTooltip
-      objectReference: {fileID: 0}
     - target: {fileID: 4444932372547427642, guid: 81525ad16c99b474fbb697f160801245,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -50239,6 +50254,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4444932372547427643, guid: 81525ad16c99b474fbb697f160801245,
+        type: 3}
+      propertyPath: m_Name
+      value: MainTooltip
+      objectReference: {fileID: 0}
     - target: {fileID: 4444932372773855367, guid: 81525ad16c99b474fbb697f160801245,
         type: 3}
       propertyPath: m_text
@@ -50259,11 +50279,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4301694142966074528}
     m_Modifications:
-    - target: {fileID: 4444932372547427643, guid: 81525ad16c99b474fbb697f160801245,
-        type: 3}
-      propertyPath: m_Name
-      value: MainTooltip
-      objectReference: {fileID: 0}
     - target: {fileID: 4444932372547427642, guid: 81525ad16c99b474fbb697f160801245,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -50368,6 +50383,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4444932372547427643, guid: 81525ad16c99b474fbb697f160801245,
+        type: 3}
+      propertyPath: m_Name
+      value: MainTooltip
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81525ad16c99b474fbb697f160801245, type: 3}
@@ -50502,24 +50522,24 @@ PrefabInstance:
     - target: {fileID: 2059036501601038861, guid: 0e155d26e550f1648bf9295531c45336,
         type: 3}
       propertyPath: m_havePropertiesChanged
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2059036501601038861, guid: 0e155d26e550f1648bf9295531c45336,
         type: 3}
       propertyPath: m_isInputParsingRequired
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e155d26e550f1648bf9295531c45336, type: 3}
---- !u!224 &6259225119440298959 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2059036499882746331, guid: 0e155d26e550f1648bf9295531c45336,
-    type: 3}
-  m_PrefabInstance: {fileID: 5354242144467141140}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6259225119440298952 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2059036499882746332, guid: 0e155d26e550f1648bf9295531c45336,
+    type: 3}
+  m_PrefabInstance: {fileID: 5354242144467141140}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &6259225119440298959 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2059036499882746331, guid: 0e155d26e550f1648bf9295531c45336,
     type: 3}
   m_PrefabInstance: {fileID: 5354242144467141140}
   m_PrefabAsset: {fileID: 0}
@@ -50530,11 +50550,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5657703985606672029}
     m_Modifications:
-    - target: {fileID: 4444932372547427643, guid: 81525ad16c99b474fbb697f160801245,
-        type: 3}
-      propertyPath: m_Name
-      value: MainTooltip
-      objectReference: {fileID: 0}
     - target: {fileID: 4444932372547427642, guid: 81525ad16c99b474fbb697f160801245,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -50639,6 +50654,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4444932372547427643, guid: 81525ad16c99b474fbb697f160801245,
+        type: 3}
+      propertyPath: m_Name
+      value: MainTooltip
       objectReference: {fileID: 0}
     - target: {fileID: 4444932372773855367, guid: 81525ad16c99b474fbb697f160801245,
         type: 3}
@@ -50775,16 +50795,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 158771303401835942, guid: 8f4b3db10d97c564d98a9a70d4ebf6b3,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -20
-      objectReference: {fileID: 0}
-    - target: {fileID: 158771303401835942, guid: 8f4b3db10d97c564d98a9a70d4ebf6b3,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -312
-      objectReference: {fileID: 0}
     - target: {fileID: 9112786991509905167, guid: 8f4b3db10d97c564d98a9a70d4ebf6b3,
         type: 3}
       propertyPath: staticTooltip
@@ -50795,6 +50805,16 @@ PrefabInstance:
       propertyPath: tooltip
       value: 
       objectReference: {fileID: 2541285950809141481}
+    - target: {fileID: 158771303401835942, guid: 8f4b3db10d97c564d98a9a70d4ebf6b3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 158771303401835942, guid: 8f4b3db10d97c564d98a9a70d4ebf6b3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -312
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f4b3db10d97c564d98a9a70d4ebf6b3, type: 3}
 --- !u!224 &8534991560609946960 stripped
@@ -50810,11 +50830,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4301694142966074528}
     m_Modifications:
-    - target: {fileID: 4444932372547427643, guid: 81525ad16c99b474fbb697f160801245,
-        type: 3}
-      propertyPath: m_Name
-      value: MainTooltip (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 4444932372547427642, guid: 81525ad16c99b474fbb697f160801245,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -50935,6 +50950,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.99999994
       objectReference: {fileID: 0}
+    - target: {fileID: 4444932372547427643, guid: 81525ad16c99b474fbb697f160801245,
+        type: 3}
+      propertyPath: m_Name
+      value: MainTooltip (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 4444932372773855364, guid: 81525ad16c99b474fbb697f160801245,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -50990,11 +51010,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 224781446218551028}
     m_Modifications:
-    - target: {fileID: 4444932372547427643, guid: 81525ad16c99b474fbb697f160801245,
-        type: 3}
-      propertyPath: m_Name
-      value: MainTooltip
-      objectReference: {fileID: 0}
     - target: {fileID: 4444932372547427642, guid: 81525ad16c99b474fbb697f160801245,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -51114,6 +51129,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.84586
+      objectReference: {fileID: 0}
+    - target: {fileID: 4444932372547427643, guid: 81525ad16c99b474fbb697f160801245,
+        type: 3}
+      propertyPath: m_Name
+      value: MainTooltip
       objectReference: {fileID: 0}
     - target: {fileID: 4444932372773855364, guid: 81525ad16c99b474fbb697f160801245,
         type: 3}
@@ -51264,11 +51284,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1156812748640723193}
     m_Modifications:
-    - target: {fileID: 4444932372547427643, guid: 81525ad16c99b474fbb697f160801245,
-        type: 3}
-      propertyPath: m_Name
-      value: MainTooltip
-      objectReference: {fileID: 0}
     - target: {fileID: 4444932372547427642, guid: 81525ad16c99b474fbb697f160801245,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -51388,6 +51403,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.84586
+      objectReference: {fileID: 0}
+    - target: {fileID: 4444932372547427643, guid: 81525ad16c99b474fbb697f160801245,
+        type: 3}
+      propertyPath: m_Name
+      value: MainTooltip
       objectReference: {fileID: 0}
     - target: {fileID: 4444932372773855364, guid: 81525ad16c99b474fbb697f160801245,
         type: 3}
