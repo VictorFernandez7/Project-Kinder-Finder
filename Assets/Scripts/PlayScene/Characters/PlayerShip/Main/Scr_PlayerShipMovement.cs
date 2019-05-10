@@ -9,7 +9,8 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [Header("Ship State")]
     [SerializeField] public PlayerShipState playerShipState;
 
-    [Header("Taking Off Parameters")]    
+    [Header("Taking Off Parameters")]
+    [SerializeField] private float timeToTakeOff;
     [SerializeField] private float takeOffDistance;
     [SerializeField] private float targetVelocity;
     [SerializeField] private float takingOffTime;
@@ -82,13 +83,13 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     private float canControlTimerSaved;
     private float checkingDistance;
     private float initialBulletTime;
-    
+    private float savedTimeToTakeOff;
+
     private Vector3 landingOrientationVector;
     private Vector3 targetTakingOff;
     private Vector3 targetLanding;    
     private Scr_PlayerShipStats playerShipStats;
     private Scr_PlayerShipActions playerShipActions;
-    private Scr_PlayerShipEffects playerShipEffects;
     private Scr_PlayerShipDeathCheck playerShipDeathCheck;
     private Scr_PlayerShipPrediction playerShipPrediction;
 
@@ -105,7 +106,6 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         playerShipStats = GetComponent<Scr_PlayerShipStats>();
         playerShipActions = GetComponent<Scr_PlayerShipActions>();
-        playerShipEffects = GetComponent<Scr_PlayerShipEffects>();
         playerShipPrediction = GetComponent<Scr_PlayerShipPrediction>();
         playerShipDeathCheck = GetComponentInChildren<Scr_PlayerShipDeathCheck>();
 
@@ -118,88 +118,26 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         onGround = true;
         checkingDistance = 100f;
         initialBulletTime = bulletTime;
+        savedTimeToTakeOff = timeToTakeOff;
     }
 
     private void Update()
     {
         Timers();
-       // BulletTime();
+        //BulletTime();
         SpeedLimiter();
-        MessageTextManager();
         PlayerShipStateCheck();
 
-        playerShipEffects.OnGroundEffects();
-
         if (playerShipState == PlayerShipState.inSpace)
-        {
             ShipControl();
-            playerShipEffects.InSpaceEffects();
-        }
 
         if (playerShipState == PlayerShipState.landing)
             ShipControl();
-
-        if (playerShipState == PlayerShipState.landed)
-            playerShipEffects.WarmingSliderColor();
     }
 
     private void FixedUpdate()
     {
         UpdateShipRotationWhenLanded();
-    }
-
-    float messageTimer1 = 2f;
-
-    private void MessageTextManager()
-    {
-        if (damaged)
-        {
-            messageText.fontSize = 6;
-            messageText.text = damagedMessage;
-            messageTextAnim.SetBool("Show", true);
-        }
-
-        else
-        {
-            if (astronautMovement.canEnterShip)
-            {
-                if (!astronautOnBoard)
-                {
-                    messageText.fontSize = 14;
-                    messageText.text = getInOutMessage;
-                    messageTextAnim.SetBool("Show", true);
-                }
-
-                else
-                    messageTextAnim.SetBool("Show", false);
-            }
-
-            else
-                messageTextAnim.SetBool("Show", false);
-
-            if (playerShipState == PlayerShipState.landed && astronautOnBoard)
-            {
-                messageTimer1 -= Time.deltaTime;
-
-                if (messageTimer1 <= 0)
-                {
-                    messageText.fontSize = 6;
-                    messageText.text = warmingMessage;
-                    messageTextAnim.SetBool("Show", true);
-
-                    if (playerShipEffects.warmingSlider.value > 0)
-                    {
-                        messageTextAnim.SetBool("Show", false);
-
-                        if (playerShipEffects.warmingSlider.value >= 0.9f * playerShipEffects.warmingSlider.maxValue)
-                        {
-                            messageText.text = takeOffMessage;
-                            messageTextAnim.SetBool("Show", true);
-                        }
-                    }
-                }
-            }
-        }
     }
 
     private void Timers()
@@ -316,18 +254,22 @@ public class Scr_PlayerShipMovement : MonoBehaviour
                     playerShipPrediction.predictionTime = 6;
             }
 
+            if (Input.GetKeyDown(KeyCode.LeftShift) && playerShipState == PlayerShipState.landed && canControlShip && !damaged && playerShipStats.currentFuel > (playerShipStats.maxFuel * 0.15f))
+            {
+                if (playerShipStats.currentFuel == playerShipStats.maxFuel || firstTakeOff)
+                    savedTimeToTakeOff = timeToTakeOff;
+            }
+
             if (Input.GetKey(KeyCode.LeftShift) && playerShipState == PlayerShipState.landed && canControlShip && !damaged && playerShipStats.currentFuel > (playerShipStats.maxFuel * 0.15f))
             {
-                if(playerShipStats.currentFuel == playerShipStats.maxFuel || firstTakeOff)
+                if (playerShipStats.currentFuel == playerShipStats.maxFuel || firstTakeOff)
                 {
                     firstTakeOff = true;
-                    playerShipEffects.warmingSlider.gameObject.SetActive(true);
-                    playerShipEffects.warmingSlider.value += Time.deltaTime * warmingSpeed;
 
-                    if (playerShipEffects.warmingSlider.value >= (0.95f * playerShipEffects.warmingSlider.maxValue) && Input.GetMouseButtonDown(0))
+                    savedTimeToTakeOff -= Time.deltaTime;
+
+                    if (savedTimeToTakeOff <= 0)
                     {
-                        playerShipEffects.warmingSlider.gameObject.SetActive(false);
-
                         mainCamera.GetComponent<Scr_MainCamera>().smoothRotation = false;
                         mainCamera.GetComponent<Scr_MainCamera>().CameraShake(0.25f, 5, 12);
 
@@ -336,20 +278,11 @@ public class Scr_PlayerShipMovement : MonoBehaviour
                 }
             }
 
-            else
-            {
-                playerShipEffects.warmingSlider.value -= Time.deltaTime;
-
-                if (playerShipEffects.warmingSlider.value <= 0)
-                    playerShipEffects.warmingSlider.gameObject.SetActive(false);
-            }
-
             if (onGround)
             {
                 playerShipState = PlayerShipState.landed;
 
                 Landed();
-                playerShipEffects.LandingEffects(false);
             }
 
             if (takingOff)
@@ -360,12 +293,9 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
                 rb.velocity = Vector2.Lerp(rb.velocity, targetVelocity * transform.up, Time.deltaTime * takingOffTime);
 
-                playerShipEffects.TakingOffEffects(true);
-
                 if (currentPlanet == null)
                 {
                     transform.SetParent(null);
-                    playerShipEffects.TakingOffEffects(false);
 
                     canRotateShip = true;
                     canControlShip = true;
@@ -400,7 +330,6 @@ public class Scr_PlayerShipMovement : MonoBehaviour
                         rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, Time.deltaTime * landingTime);
 
                         playerShipDeathCheck.CheckLandingTime(false);
-                        playerShipEffects.LandingEffects(true);
                     }
 
                     else
@@ -408,16 +337,11 @@ public class Scr_PlayerShipMovement : MonoBehaviour
                         rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, Time.deltaTime * landingTime * (currentPlanet.transform.GetComponentInChildren<Renderer>().bounds.size.y / gameManager.initialPlanet.GetComponentInChildren<Renderer>().bounds.size.y));
 
                         playerShipDeathCheck.CheckLandingTime(false);
-                        playerShipEffects.LandingEffects(true);
                     }
                 }
 
                 if (onGround)
-                {
-                    playerShipEffects.LandingEffects(false);
-
                     landing = false;
-                }
             }
         }
     }
@@ -485,16 +409,11 @@ public class Scr_PlayerShipMovement : MonoBehaviour
             {
                 if (Input.GetMouseButton(0) && playerShipState == PlayerShipState.inSpace)
                 {
-                    playerShipEffects.thrusterParticles.Play();
-
                     if (Input.GetButton("Boost"))
                     {
                         playerShipStats.FuelConsumption(true);
                         currentSpeed = boostSpeed;
                         rb.AddForce(transform.up * currentSpeed * Time.fixedDeltaTime);
-
-                        playerShipEffects.thrusterParticles2.Play();
-                        playerShipEffects.thrusterParticles3.Play();
                     }
 
                     else
@@ -502,28 +421,8 @@ public class Scr_PlayerShipMovement : MonoBehaviour
                         playerShipStats.FuelConsumption(false);
                         currentSpeed = normalSpeed;
                         rb.AddForce(transform.up * currentSpeed * Time.fixedDeltaTime);
-
-                        playerShipEffects.thrusterParticles2.Stop();
-                        playerShipEffects.thrusterParticles3.Stop();
                     }
                 }
-
-                else if (playerShipState == PlayerShipState.inSpace)
-                {
-                    playerShipEffects.thrusterParticles.Stop();
-
-                    playerShipEffects.thrusterParticles2.Stop();
-                    playerShipEffects.thrusterParticles3.Stop();
-                }
-            }
-
-            else
-                playerShipEffects.thrusterParticles.Stop();
-
-            if (Input.GetButtonDown("Boost"))
-            {
-                playerShipEffects.thrusterParticles2.Stop();
-                playerShipEffects.thrusterParticles3.Stop();
             }
         }
 

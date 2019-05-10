@@ -35,7 +35,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
     [SerializeField] private Slider miningSlider;
     [SerializeField] private Image miningFill;
     [SerializeField] private TextMeshProUGUI miningPowerText;
-    [SerializeField] private Scr_MainCamera mainCamera;
+    [SerializeField] public Scr_MainCamera mainCamera;
     [SerializeField] private Scr_GameManager gameManager;
     [SerializeField] private GameObject lineRenderer;
     [SerializeField] private GameObject IA;
@@ -71,7 +71,6 @@ public class Scr_PlayerShipActions : MonoBehaviour
     private Scr_CableVisuals cableVisuals;
     private Scr_PlayerShipMovement playerShipMovement;
     private Scr_PlayerShipPrediction playerShipPrediction;
-    private Scr_PlayerShipEffects playerShipEffects;
     private Scr_PlayerShipProxCheck playerShipProxCheck;
 
     public enum Suit
@@ -87,7 +86,6 @@ public class Scr_PlayerShipActions : MonoBehaviour
         playerShipMovement = GetComponent<Scr_PlayerShipMovement>();
         playerShipPrediction = GetComponent<Scr_PlayerShipPrediction>();
         cableVisuals = GetComponentInChildren<Scr_CableVisuals>();
-        playerShipEffects = GetComponent<Scr_PlayerShipEffects>();
         playerShipProxCheck = GetComponentInChildren<Scr_PlayerShipProxCheck>();
         playerShipRb = GetComponent<Rigidbody2D>();
         astronautRb = astronaut.GetComponent<Rigidbody2D>();
@@ -238,30 +236,21 @@ public class Scr_PlayerShipActions : MonoBehaviour
                             miningLaser.SetPosition(1, laserHit.point);
                             laserHitPosition = laserHit.point;
 
-                            playerShipEffects.MiningEffects(true);
-
                             currentAsteroid.GetComponent<Scr_AsteroidStats>().mining = true;
-
                             currentAsteroid.GetComponent<Scr_AsteroidStats>().currentPower += (currentPower * Time.deltaTime);
                         }
 
                         else
                         {
                             miningLaser.SetPosition(1, miningLaserStart.position + transform.up * laserRange);
-
                             currentAsteroid.GetComponent<Scr_AsteroidStats>().mining = false;
-
-                            playerShipEffects.MiningEffects(false);
                         }
                     }
 
                     else
                     {
                         miningLaser.enabled = false;
-
                         currentAsteroid.GetComponent<Scr_AsteroidStats>().mining = false;
-
-                        playerShipEffects.MiningEffects(false);
                     }
 
                     currentPower = Mathf.Clamp(currentPower, 0, maxPower);
@@ -391,8 +380,6 @@ public class Scr_PlayerShipActions : MonoBehaviour
             mainCamera.mining = true;
             lineRenderer.SetActive(false);
             playerShipProxCheck.ClearInterface(false);
-
-            playerShipEffects.AttachedEffects(true);
         }
 
         else
@@ -405,8 +392,6 @@ public class Scr_PlayerShipActions : MonoBehaviour
             miningLaser.enabled = false;
             lineRenderer.SetActive(true);
             playerShipProxCheck.ClearInterface(true);
-
-            playerShipEffects.AttachedEffects(false);
         }
     }
 

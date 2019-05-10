@@ -49,13 +49,11 @@ public class Scr_AsteroidStats : MonoBehaviour
     private Vector3 initialScale;    
     private Scr_PlayerShipStats playerShipStats;
     private Scr_PlayerShipActions playerShipActions;
-    private Scr_PlayerShipEffects playerShipEffects;
     private Scr_AsteroidBehaviour asteroidBehaviour;
 
     private void Start()
     {
         playerShipActions = playerShip.GetComponent<Scr_PlayerShipActions>();
-        playerShipEffects = playerShip.GetComponent<Scr_PlayerShipEffects>();
         playerShipStats = playerShip.GetComponent<Scr_PlayerShipStats>();
 
         asteroidBehaviour = GetComponent<Scr_AsteroidBehaviour>();
@@ -153,9 +151,6 @@ public class Scr_AsteroidStats : MonoBehaviour
 
         if (!deathParticles.isPlaying)
             deathParticles.Play();
-
-        if (playerShipEffects.miningParticles.isPlaying)
-            playerShipEffects.miningParticles.Stop();
 
         playerShip.GetComponent<Rigidbody2D>().AddForce(impulseDirection * deathForce);
         playerShipStats.currentShield -= deathDamage;

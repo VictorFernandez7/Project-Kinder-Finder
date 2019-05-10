@@ -302,7 +302,7 @@ public class Scr_AstronautMovement : MonoBehaviour
             speedInJump = 0;
             timeAfterJump = savedTimeAfterJump;
             astronautAnim.SetTrigger("JumpEnd");
-            astronautEffects.JumpParticles();
+            astronautEffects.FallParticles();
             toJump = false;
             jumping = false;
         }
@@ -336,7 +336,6 @@ public class Scr_AstronautMovement : MonoBehaviour
             exponentialMultiplier = 1;
 
             astronautAnim.SetBool("Moving", false);
-            astronautEffects.MovementParticles(false);
         }
 
         astronautAnim.SetBool("OnGround", !jumping);
@@ -357,14 +356,13 @@ public class Scr_AstronautMovement : MonoBehaviour
             MoveAgain();
 
         astronautAnim.SetBool("Moving", true);
-        astronautEffects.MovementParticles(true);
 
         if (!decelerating)
         {
             if (Input.GetButton("Boost"))
             {
                 Move(right, runSpeed);
-                astronautAnim.SetFloat("Speed", 2);
+                astronautAnim.SetFloat("Speed", 2.5f);
 
                 if (!breathable)
                     GetComponent<Scr_AstronautStats>().currentOxygen -= 0.05f;
@@ -373,7 +371,7 @@ public class Scr_AstronautMovement : MonoBehaviour
             else
             {
                 Move(right, walkSpeed);
-                astronautAnim.SetFloat("Speed", 1);
+                astronautAnim.SetFloat("Speed", 1.75f);
             }
         }
 
