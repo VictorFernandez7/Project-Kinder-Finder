@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6641131593516169855}
   - component: {fileID: 6838062929559347971}
   - component: {fileID: 6838286481039807683}
+  - component: {fileID: 8323009867814148255}
   m_Layer: 0
   m_Name: VerticalEmbers
   m_TagString: Untagged
@@ -606,7 +607,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: -0.2
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -4765,6 +4766,20 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &8323009867814148255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6638502888995123367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb9a43f9e7ff57d4b95fbee30555c3d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transformSelection: 0
+  gravityAmount: 2
 --- !u!1 &6638586324922992601
 GameObject:
   m_ObjectHideFlags: 0
@@ -4776,6 +4791,7 @@ GameObject:
   - component: {fileID: 6644370881596967073}
   - component: {fileID: 6816869496963171761}
   - component: {fileID: 6837000069658906755}
+  - component: {fileID: 5375033008541687301}
   m_Layer: 0
   m_Name: LandingSlam
   m_TagString: Untagged
@@ -5376,8 +5392,8 @@ ParticleSystem:
     rotation3D: 0
     gravityModifier:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: -0.3
+      minMaxState: 0
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -9536,6 +9552,20 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &5375033008541687301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6638586324922992601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb9a43f9e7ff57d4b95fbee30555c3d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transformSelection: 0
+  gravityAmount: 1
 --- !u!1 &6638676325064005875
 GameObject:
   m_ObjectHideFlags: 0
@@ -9547,6 +9577,7 @@ GameObject:
   - component: {fileID: 6641417188089637769}
   - component: {fileID: 6838495146902819007}
   - component: {fileID: 6836918059512875289}
+  - component: {fileID: 6043226591998252729}
   m_Layer: 0
   m_Name: SmokeVertical
   m_TagString: Untagged
@@ -10142,7 +10173,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: -0.03
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -14301,6 +14332,20 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &6043226591998252729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6638676325064005875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb9a43f9e7ff57d4b95fbee30555c3d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transformSelection: 0
+  gravityAmount: 2
 --- !u!1 &6639158368640952343
 GameObject:
   m_ObjectHideFlags: 0
@@ -19068,6 +19113,7 @@ GameObject:
   - component: {fileID: 6644164878905867067}
   - component: {fileID: 6838132527628912665}
   - component: {fileID: 6836512117027204579}
+  - component: {fileID: 4755292823181966491}
   m_Layer: 0
   m_Name: SmokeCircle
   m_TagString: Untagged
@@ -19663,7 +19709,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: -0.03
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -23822,6 +23868,20 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &4755292823181966491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6639251104468189505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb9a43f9e7ff57d4b95fbee30555c3d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transformSelection: 0
+  gravityAmount: 1
 --- !u!1 &6639406508098529599
 GameObject:
   m_ObjectHideFlags: 0
