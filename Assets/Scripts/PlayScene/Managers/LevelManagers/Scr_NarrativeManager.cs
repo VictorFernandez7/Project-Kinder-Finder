@@ -151,7 +151,7 @@ public class Scr_NarrativeManager : MonoBehaviour
             }
         }
 
-        else
+        else if (IAGlow != null)
         {
             IAGlow.Stop();
             astronautGlow.Stop();

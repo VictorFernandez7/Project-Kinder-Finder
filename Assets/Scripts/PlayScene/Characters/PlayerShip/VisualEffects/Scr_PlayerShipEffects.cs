@@ -57,7 +57,7 @@ public class Scr_PlayerShipEffects : MonoBehaviour
     {
         var emission = stars.emission;
 
-        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landing)
+        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed || playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landing)
         {
             emission.rateOverTime = inPlanetEmission;
             stars.transform.localScale = Vector3.Lerp(stars.transform.localScale, inPlanetSize, Time.deltaTime);
