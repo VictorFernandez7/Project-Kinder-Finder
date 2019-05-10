@@ -21,22 +21,22 @@ public class Scr_PlayerShipEffects : MonoBehaviour
     [SerializeField] private Vector3 inPlanetSize;
 
     [Header("Particle References")]
-    [SerializeField] private ParticleSystem mainThruster;
+    [SerializeField] public ParticleSystem mainThruster;
     [SerializeField] private ParticleSystem leftThruster;
     [SerializeField] private ParticleSystem rightThruster;
     [SerializeField] private ParticleSystem leftPropulsor;
     [SerializeField] private ParticleSystem rightPropulsor;
     [SerializeField] private ParticleSystem explosion;
     [SerializeField] private ParticleSystem takingOffSlam;
-    [SerializeField] private ParticleSystem takingOffSmoke;
+    [SerializeField] public ParticleSystem takingOffSmoke;
     [SerializeField] private ParticleSystem damagedSmoke;
     [SerializeField] private ParticleSystem landingSlam;
     [SerializeField] private ParticleSystem stars;
 
     [HideInInspector] public bool warming;
-    [HideInInspector] public bool turbo;
     [HideInInspector] public bool damaged;
 
+    private bool turbo;
     private float desiredEmission;
     private Scr_PlayerShipMovement playerShipMovement;
 
@@ -110,7 +110,7 @@ public class Scr_PlayerShipEffects : MonoBehaviour
         else if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landing)
             PlayParticleSystem(mainThruster);
 
-        // Parar partículas en el evento de salir de la atmósfera
+        // Parar partículas en el evento de salir de la atmósfera y de tocar el suelo
     }
 
     private void DamageControl()
@@ -133,29 +133,24 @@ public class Scr_PlayerShipEffects : MonoBehaviour
             StopParticleSystem(mainThruster);
     }
 
-    public void ThrusterEffects(bool play)
+    public void ThrusterEffects(bool play, bool turboActivated)
     {
+        turbo = turboActivated;
+
         if (play)
             PlayParticleSystem(mainThruster);
 
         else
             StopParticleSystem(mainThruster);
-    }
 
-    public void TurboEffects(bool play) // Cuando se deje de llamar hay que hacer el booleano warming false.
-    {
-        turbo = true;
-
-        if (play)
+        if (turboActivated)
         {
-            PlayParticleSystem(mainThruster);
             PlayParticleSystem(leftThruster);
             PlayParticleSystem(rightThruster);
         }
 
         else
         {
-            StopParticleSystem(mainThruster);
             StopParticleSystem(leftThruster);
             StopParticleSystem(rightThruster);
         }
@@ -191,7 +186,7 @@ public class Scr_PlayerShipEffects : MonoBehaviour
             desiredParticles.Play();
     }
 
-    private void StopParticleSystem(ParticleSystem desiredParticles)
+    public void StopParticleSystem(ParticleSystem desiredParticles)
     {
         if (desiredParticles.isPlaying)
             desiredParticles.Stop();

@@ -16,6 +16,10 @@ public class Scr_Atmosphere : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "PlayerShip")
+        {
             playerShipMovement.currentPlanet = null;
+            playerShipMovement.GetComponent<Scr_PlayerShipEffects>().mainThruster.Stop();
+            playerShipMovement.GetComponent<Scr_PlayerShipEffects>().takingOffSmoke.Stop();
+        }
     }
 }
