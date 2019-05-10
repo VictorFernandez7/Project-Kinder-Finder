@@ -54,7 +54,6 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [SerializeField] private CapsuleCollider2D mouseCheckTrigger;
     [SerializeField] public Camera mainCamera;
     [SerializeField] private TextMeshProUGUI limiterText;
-    [SerializeField] private TextMeshProUGUI speedText;
     [SerializeField] private TextMeshProUGUI messageText;
     [SerializeField] private Slider speedSlider;
     [SerializeField] private Slider limitSlider;
@@ -400,8 +399,6 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         speedSlider.value = speed;
         limitSlider.value = maxSpeedSaved;
 
-        speedText.text = speed.ToString();
-        speedText.transform.localPosition = new Vector3(0, speed * 3, 0);
         limiterText.text = maxSpeedSaved.ToString();
 
         if (playerShipState == PlayerShipState.inSpace && !mainCamera.GetComponent<Scr_MainCamera>().mining)

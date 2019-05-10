@@ -3,6 +3,9 @@ using TMPro;
 
 public class Scr_InterfaceManager : MonoBehaviour
 {
+    [Header("Main Canvas Tooltips")]
+    [SerializeField] public bool tooltipsOn;
+
     [Header("Interface Inputs")]
     [SerializeField] private KeyCode input_PauseMenu;
 

@@ -242,6 +242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bed0b63bc21bc346b3b6978c02ad780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tooltipsOn: 1
   input_PauseMenu: 27
   anim_AstronautInterface: {fileID: 0}
   anim_PlayerShipInterface: {fileID: 0}
@@ -306,8 +307,15 @@ MonoBehaviour:
   slowAmount: 0.05
   BT_key: 56
   RS_key: 57
-  RT_key: 55
-  LT_key: 0
+  ST_key: 49
+  LT_key: 50
+  GT_key: 51
+  solidTool: {fileID: 0}
+  liquidTool: {fileID: 0}
+  gasTool: {fileID: 0}
+  SN_key: 8
+  switchOffNarrative: 1
+  narrativeManager: {fileID: 82026447227232180}
 --- !u!1 &1535065661933764
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,3 +520,4 @@ MonoBehaviour:
   speakerName: {fileID: 0}
   astronautMovement: {fileID: 0}
   onDialogue: 0
+  switchOff: 0
