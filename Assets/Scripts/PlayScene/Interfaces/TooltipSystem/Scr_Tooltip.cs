@@ -61,7 +61,7 @@ public class Scr_Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         if (!staticTooltip)
         {
-            Vector3 targetPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, tooltip.transform.position.z);
+            Vector3 targetPos = new Vector3(Input.mousePosition.x + xPos, Input.mousePosition.y + yPos, tooltip.transform.position.z);
 
             tooltip.transform.position = targetPos;
         }
@@ -77,8 +77,5 @@ public class Scr_Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         tooltipText.text = tipText;
         tooltipText.fontSize = fontSize;
         tooltip.SetActive(true);
-
-        if (!staticTooltip)
-            tooltipText.transform.localPosition = new Vector3(xPos, yPos, tooltip.transform.position.z);
     }
 }
