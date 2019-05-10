@@ -31434,6 +31434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerShipState: 2
+  timeToTakeOff: 0
   takeOffDistance: 18
   targetVelocity: 4
   takingOffTime: 5
@@ -31603,38 +31604,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89dc3e89ced4c0c44b9fbbb493c43466, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dustMultiplier: 500
-  takingOffThrusterPower: 2000
-  inSpaceThrusterPower: 1250
-  landingThrusterPower: 1500
-  attachedThrusterPower: 100
+  warmingPower: 0
+  landingPower: 0
+  takingOffPower: 0
+  thrusterPower: 0
+  turboPower: 0
+  auxiliarThrusterPower: 0
   inSpaceEmission: 100
   inPlanetEmission: 0
   inSpaceSize: {x: 0.75, y: 0.75, z: 0.75}
   inPlanetSize: {x: 0.25, y: 0.25, z: 0.25}
-  landedThrusterMult: 250
-  landedDustMult: 30
-  color0: {r: 0.9078033, g: 1, b: 0, a: 1}
-  color25: {r: 1, g: 0.6443302, b: 0, a: 1}
-  color50: {r: 1, g: 0.41492444, b: 0, a: 1}
-  color75: {r: 1, g: 0, b: 0.04318142, a: 1}
-  windowOn: {fileID: 2100000, guid: a86ca837b08576f45a12fea5a089f212, type: 2}
-  windowOff: {fileID: 2100000, guid: 5b3f193611efb184c92e405ba191ee8a, type: 2}
-  endOfShip: {fileID: 4046255908165590}
-  thrusterParticles: {fileID: 198911628216928882}
-  thrusterParticles2: {fileID: 5342883320440907743}
-  thrusterParticles3: {fileID: 4298087633295755985}
-  takingOffDustParticles: {fileID: 198439528862557930}
-  damageParticles: {fileID: 198333808919146426}
-  dustParticles: {fileID: 1247645789991328, guid: bbbbba65b8622bd4b990250ed90c558a,
-    type: 3}
-  atmosphereParticles: {fileID: 198678149364849852}
-  miningParticles: {fileID: 198929548371070658}
-  miningLight: {fileID: 108917598069573828}
-  starParticles: {fileID: 198935063272262492}
-  warmingSlider: {fileID: 114109521143006318}
-  warmingFill: {fileID: 114640883589750958}
-  meshRenderer: {fileID: 5967977470487995661}
+  mainThruster: {fileID: 0}
+  leftThruster: {fileID: 0}
+  rightThruster: {fileID: 0}
+  leftPropulsor: {fileID: 0}
+  rightPropulsor: {fileID: 0}
+  explosion: {fileID: 0}
+  takingOffSlam: {fileID: 0}
+  landingSlam: {fileID: 0}
+  stars: {fileID: 0}
+  warming: 0
+  turbo: 0
 --- !u!1 &1461644405029842
 GameObject:
   m_ObjectHideFlags: 0
@@ -54095,12 +54085,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4757837970045498320}
   m_PrefabAsset: {fileID: 0}
---- !u!198 &198935063272262492 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 4667415925540780172, guid: f51f9ff1a744d2e41bd2120abb4c55d1,
-    type: 3}
-  m_PrefabInstance: {fileID: 4757837970045498320}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5012237682924160587
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54344,12 +54328,6 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 38816b5780632a048b86aab8e83075e7, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d16a0d32bace7dc4e9c2ed12f1a33695, type: 3}
---- !u!23 &5967977470487995661 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 2300000, guid: d16a0d32bace7dc4e9c2ed12f1a33695,
-    type: 3}
-  m_PrefabInstance: {fileID: 5967977470486101357}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5967977470486226925 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: d16a0d32bace7dc4e9c2ed12f1a33695,

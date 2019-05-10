@@ -5,7 +5,159 @@ using UnityEngine;
 
 public class Scr_PlayerShipEffects : MonoBehaviour
 {
-    [Header("Taking Off Effects")]
+    [Header("Warming System")]
+    [SerializeField] private float warmingPower;
+
+    [Header("Landing / Taking Off Parameters")]
+    [SerializeField] private float landingPower;
+    [SerializeField] private float takingOffPower;
+
+    [Header("In Space Parameters")]
+    [SerializeField] private float thrusterPower;
+    [SerializeField] private float turboPower;
+    [SerializeField] private float auxiliarThrusterPower;
+
+    [Header("Star Parameters")]
+    [SerializeField] private float inSpaceEmission;
+    [SerializeField] private float inPlanetEmission;
+    [SerializeField] private Vector3 inSpaceSize;
+    [SerializeField] private Vector3 inPlanetSize;
+
+    [Header("Particle References")]
+    [SerializeField] private ParticleSystem mainThruster;
+    [SerializeField] private ParticleSystem leftThruster;
+    [SerializeField] private ParticleSystem rightThruster;
+    [SerializeField] private ParticleSystem leftPropulsor;
+    [SerializeField] private ParticleSystem rightPropulsor;
+    [SerializeField] private ParticleSystem explosion;
+    [SerializeField] private ParticleSystem takingOffSlam;
+    [SerializeField] private ParticleSystem landingSlam;
+    [SerializeField] private ParticleSystem stars;
+
+    [SerializeField] private bool warming;
+    [SerializeField] private bool turbo;
+
+    private float desiredEmission;
+    private Scr_PlayerShipMovement playerShipMovement;
+
+    private void Start()
+    {
+        playerShipMovement = GetComponent<Scr_PlayerShipMovement>();
+    }
+
+    private void Update()
+    {
+        StarControl();
+        ThrustersEmissionControl();
+    }
+
+    private void StarControl()
+    {
+        var emission = stars.emission;
+
+        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landing)
+        {
+            emission.rateOverTime = inPlanetEmission;
+            stars.transform.localScale = Vector3.Lerp(stars.transform.localScale, inPlanetSize, Time.deltaTime);
+        }
+
+        else if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace)
+        {
+            emission.rateOverTime = inSpaceEmission;
+            stars.transform.localScale = Vector3.Lerp(stars.transform.localScale, inSpaceSize, Time.deltaTime);
+        }
+    }
+
+    private void ThrustersEmissionControl()
+    {
+        var mainEmission = mainThruster.emission;
+        var leftEmission = leftThruster.emission;
+        var rightEmission = rightThruster.emission;
+
+        if (warming)
+            desiredEmission = warmingPower;
+
+        else if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.takingOff)
+            desiredEmission = takingOffPower;
+
+        else if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landing)
+            desiredEmission = landingPower;
+
+        else if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace)
+        {
+            if (turbo)
+                desiredEmission = turboPower;
+
+            else
+                desiredEmission = thrusterPower;
+        }
+
+        mainEmission.rateOverTime = desiredEmission;
+        leftEmission.rateOverTime = auxiliarThrusterPower;
+        rightEmission.rateOverTime = auxiliarThrusterPower;
+    }
+
+    public void WarmingEffects(bool play) // Cuando se deje de llamar hay que hacer el booleano warming false.
+    {
+        warming = true;
+
+        if (play)
+            PlayParticleSystem(mainThruster);
+
+        else
+            mainThruster.Stop();
+    }
+
+    public void ThrusterEffects(bool play)
+    {
+        if (play)
+            PlayParticleSystem(mainThruster);
+
+        else
+            mainThruster.Stop();
+    }
+
+    public void TurboEffects(bool play) // Cuando se deje de llamar hay que hacer el booleano warming false.
+    {
+        turbo = true;
+
+        if (play)
+        {
+            PlayParticleSystem(mainThruster);
+            PlayParticleSystem(leftThruster);
+            PlayParticleSystem(rightThruster);
+        }
+
+        else
+        {
+            mainThruster.Stop();
+            leftThruster.Stop();
+            rightThruster.Stop();
+        }
+    }
+
+    public void TakingOffSlamEffect()
+    {
+        PlayParticleSystem(takingOffSlam);
+    }
+
+    public void LandingSlamEffect()
+    {
+        PlayParticleSystem(landingSlam);
+    }
+
+    public void ExplosionEffect()
+    {
+        PlayParticleSystem(explosion);
+    }
+
+    private void PlayParticleSystem(ParticleSystem desiredParticles)
+    {
+        if (!desiredParticles.isPlaying)
+            desiredParticles.Play();
+    }
+
+    /*[Header("Taking Off Effects")]
     [Range(50, 500)] [SerializeField] private float dustMultiplier;
     [Range(350, 4000)] [SerializeField] private float takingOffThrusterPower;
 
@@ -18,11 +170,6 @@ public class Scr_PlayerShipEffects : MonoBehaviour
     [Header("Mining Effects")]
     [SerializeField] private float attachedThrusterPower;
 
-    [Header("Stars Effects")]
-    [SerializeField] private float inSpaceEmission;
-    [SerializeField] private float inPlanetEmission;
-    [SerializeField] private Vector3 inSpaceSize;
-    [SerializeField] private Vector3 inPlanetSize;
 
     [Header("Warming System")]
     [SerializeField] private float landedThrusterMult;
@@ -326,5 +473,5 @@ public class Scr_PlayerShipEffects : MonoBehaviour
 
         else if (damageParticles.isPlaying)
             damageParticles.Stop();
-    }
+    }*/ // OLD SCRIPT
 }
