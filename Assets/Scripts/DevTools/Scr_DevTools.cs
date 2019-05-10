@@ -24,8 +24,19 @@ public class Scr_DevTools : MonoBehaviour
     [SerializeField] public GameObject liquidTool;
     [SerializeField] public GameObject gasTool;
 
+    [Header("Narrative")]
+    [SerializeField] private KeyCode SN_key;
+    [SerializeField] private bool switchOffNarrative;
+    [SerializeField] private Scr_NarrativeManager narrativeManager;
+
     private GameObject playerShip;
-    private bool devSlow; 
+    private bool devSlow;
+
+    private void Awake()
+    {
+        if (switchOffNarrative)
+            narrativeManager.switchOff = true;
+    }
 
     private void Start()
     {
@@ -35,6 +46,9 @@ public class Scr_DevTools : MonoBehaviour
     private void Update()
     {
         CheckInputs();
+
+        if (switchOffNarrative)
+            narrativeManager.switchOff = true;
     }
 
     private void CheckInputs()
@@ -56,6 +70,9 @@ public class Scr_DevTools : MonoBehaviour
 
         if (Input.GetKeyDown(GT_key))
             gasTool.SetActive(!gasTool.activeInHierarchy);
+
+        if (Input.GetKeyDown(SN_key))
+            switchOffNarrative = !switchOffNarrative;
     }
 
     private void BulletTime(bool active)
