@@ -29,6 +29,7 @@ public class Scr_NarrativeManager : MonoBehaviour
     private Queue<string> sentences;
     private string sentence;
     private bool isFinished = true;
+    public bool switchOff;
 
     private void Start()
     {
@@ -48,21 +49,24 @@ public class Scr_NarrativeManager : MonoBehaviour
 
     public void StartDialogue(int index)
     {
-        textIndex = index;
-        astronautMovement.Stop(true, true);
-        astronautMovement.onDialogue = true;
-        panelAnim.gameObject.SetActive(true);
-        panelAnim.SetBool("Show", true);
-        onDialogue = true;
-
-        sentences.Clear();
-
-        for(int i = 0; i < dialogues[index].speaks.Length; i++)
+        if (!switchOff)
         {
-            sentences.Enqueue(dialogues[index].speaks[i].dialogTexts);
-        }
+            textIndex = index;
+            astronautMovement.Stop(true, true);
+            astronautMovement.onDialogue = true;
+            panelAnim.gameObject.SetActive(true);
+            panelAnim.SetBool("Show", true);
+            onDialogue = true;
 
-        DisplayNextSentence(textIndex);
+            sentences.Clear();
+
+            for (int i = 0; i < dialogues[index].speaks.Length; i++)
+            {
+                sentences.Enqueue(dialogues[index].speaks[i].dialogTexts);
+            }
+
+            DisplayNextSentence(textIndex);
+        }
     }
 
     public void DisplayNextSentence(int index)
