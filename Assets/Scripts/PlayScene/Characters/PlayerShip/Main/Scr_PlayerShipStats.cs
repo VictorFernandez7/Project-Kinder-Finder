@@ -64,11 +64,13 @@ public class Scr_PlayerShipStats : MonoBehaviour
   
     private Rigidbody2D rb;
     private Scr_PlayerShipMovement playerShipMovement;
+    private Scr_PlayerShipEffects playerShipEffects;
     private bool isRefueled;
 
     private void Start()
     {
         playerShipMovement = GetComponent<Scr_PlayerShipMovement>();
+        playerShipEffects = GetComponent<Scr_PlayerShipEffects>();
         rb = GetComponent<Rigidbody2D>();
 
         fuelSlider.maxValue = maxFuel;
@@ -137,6 +139,12 @@ public class Scr_PlayerShipStats : MonoBehaviour
 
         else
             anim_ShieldPanel.SetBool("Alert", false);
+
+        if (currentShield <= (0.25 * maxShield))
+            playerShipEffects.damaged = true;
+
+        else
+            playerShipEffects.damaged = false;
     }
 
     public void FuelConsumption(bool boost)
