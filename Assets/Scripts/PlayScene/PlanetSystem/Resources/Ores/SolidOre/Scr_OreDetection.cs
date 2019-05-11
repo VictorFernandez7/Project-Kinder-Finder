@@ -65,6 +65,9 @@ public class Scr_OreDetection : MonoBehaviour
 
                 if (astronautsActions.solidTool.activeInHierarchy)
                     inputText.SetActive(true);
+
+                else
+                    inputText.SetActive(false);
             }
         }
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Scr_GasZone : MonoBehaviour
 {
     [Header("Gas Zone Type")]
-    [SerializeField] private GasType gasType;
+    [SerializeField] public GasType gasType;
 
     [Header("Resource Properties")]
     [SerializeField] public float amount;
@@ -21,13 +21,13 @@ public class Scr_GasZone : MonoBehaviour
     [SerializeField] private GameObject heliumVisuals;
     [SerializeField] private GameObject aerogelVisuals;
 
+    [HideInInspector] public float initialAmount;
     [HideInInspector] public GameObject currentResource;
     [HideInInspector] public Scr_IAMovement iAMovement;
-    [HideInInspector] public float initialAmount;
 
     private ParticleSystem gasParticles;
 
-    private enum GasType
+    public enum GasType
     {
         Oxygen,
         Fuel,

@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gasType: 0
-  amount: 5
+  amount: 3
   zoneSize: 0.6
   initialEmission: 100
   referenceManager: {fileID: 0}
@@ -72,9 +72,9 @@ MonoBehaviour:
   fuelVisuals: {fileID: 7656986558009336485}
   heliumVisuals: {fileID: 8471247886066617180}
   aerogelVisuals: {fileID: 7549592783555145822}
+  initialAmount: 0
   currentResource: {fileID: 0}
   iAMovement: {fileID: 0}
-  initialAmount: 0
 --- !u!1 &67686886396034538
 GameObject:
   m_ObjectHideFlags: 0
@@ -14626,8 +14626,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.014910011, y: 0.4381}
-  m_SizeDelta: {x: 0.4981, y: 0.3907}
+  m_AnchoredPosition: {x: 0.014910011, y: 0.6326}
+  m_SizeDelta: {x: 0.4981, y: 0.5472}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &2084123231022114684
 Canvas:
@@ -14887,7 +14887,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.095}
+  m_AnchoredPosition: {x: 0, y: 0.05875002}
   m_SizeDelta: {x: 0.2691, y: 0.1175}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7416917504353483827
@@ -14924,7 +14924,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.1561}
+  m_AnchoredPosition: {x: 0, y: 0.141}
   m_SizeDelta: {x: 2.38, y: 0.64212}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6510751473527969444
@@ -29527,6 +29527,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bb2ee34961812845b6623df7d8270e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputText: {fileID: 7416917504353483827}
+  tooltipPanel: {fileID: 6531581305649328657}
+  resourceName: {fileID: 6007570072766380831}
+  resourceAmount: {fileID: 869704996286348207}
   astronautsActions: {fileID: 0}
 --- !u!1001 &740685792604794341
 PrefabInstance:
