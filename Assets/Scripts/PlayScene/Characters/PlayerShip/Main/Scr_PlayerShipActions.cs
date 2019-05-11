@@ -327,7 +327,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
         astronaut.GetComponent<Scr_AstronautsActions>().iaSpotTransformUp = ia.transform.Find("UpSpot");
         astronaut.GetComponent<Scr_AstronautsActions>().iAMovement = ia.GetComponent<Scr_IAMovement>();
 
-        // playerShipMovement.currentPlanet.GetComponentInParent<Scr_PlanetDiscovery>().explored = true;
+        playerShipMovement.currentPlanet.GetComponentInChildren<Scr_PlanetDiscovery>().PlanetExplored();
     }
 
     private void MiningSliderColor()
