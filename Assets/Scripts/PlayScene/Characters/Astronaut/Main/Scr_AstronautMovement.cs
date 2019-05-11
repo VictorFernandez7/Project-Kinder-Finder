@@ -8,6 +8,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     [Header("Movement Properties")]
     [SerializeField] private float walkSpeed;
     [SerializeField] private float runSpeed;
+    [SerializeField] private float slideSpeed;
     [SerializeField] private LayerMask collisionMask;
 
     [Header("Space Walk Parameters")]
@@ -59,11 +60,12 @@ public class Scr_AstronautMovement : MonoBehaviour
     [HideInInspector] public GameObject currentPlanet;
     [HideInInspector] public bool onDialogue;
     [HideInInspector] public bool jumping;
+    [HideInInspector] public bool canMove;
 
-    private bool faceRight = true;
-    private bool toJump;
     private bool canMoveRight = true;
     private bool canMoveLeft = true;
+    private bool faceRight = true;
+    private bool toJump;
     private bool canJump = true;
     private bool lastRight = true;
     private bool attached;
@@ -109,6 +111,7 @@ public class Scr_AstronautMovement : MonoBehaviour
 
         Calculations();
         baseDistanceFromCenterToGround = currentDistanceFromCenterToGround;
+        canMove = true;
     }
 
     private void Update()
@@ -149,7 +152,10 @@ public class Scr_AstronautMovement : MonoBehaviour
         if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed)
         {
             if (surfaceAngle < minSlideAngle && !jumping)
-                PlanetMovement();
+            {
+                if (canMove)
+                    PlanetMovement();
+            }
 
             else if (jumping)
             {
@@ -245,7 +251,7 @@ public class Scr_AstronautMovement : MonoBehaviour
         else
             movementVector = (hitRightGroundPoint - hitLeftGroundPoint).normalized;
 
-        currentVelocity += Vector3.Project((-transform.up * gravity), movementVector).magnitude / 4;
+        currentVelocity += Vector3.Project((-transform.up * gravity), movementVector).magnitude * slideSpeed;
 
         transform.Translate(movementVector * currentVelocity, Space.World);
     }
