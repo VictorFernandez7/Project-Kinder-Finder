@@ -4,102 +4,144 @@ using UnityEngine;
 
 public class Scr_PlayerShipHalo : MonoBehaviour
 {
-    [Header("Halo Sttings")]
+    [Header("Halo Parameters")]
     [SerializeField] private float radius;
     [SerializeField] private float width;
-    [SerializeField] private float colorLerpSpeed;
-    [SerializeField] private float colorChangeDelay;
-    [SerializeField] private Color activeHalo;
-    [SerializeField] private Color notActiveHalo;
+
+    [Header("Color Parameters")]
+    [SerializeField] private Color inSpace;
+    [SerializeField] private Color inPlanet;
+
+    [Header("Speed Parameters")]
+    [SerializeField] private float takingOffSpeed;
+    [SerializeField] private float landingSpeed;
+
+    [Header("Delays")]
+    [SerializeField] private float takingOffDelay;
+    [SerializeField] private float disablingDelay;
+    [SerializeField] private float activateDelay;
 
     [Header("References")]
     [SerializeField] private Transform playership;
-    [SerializeField] private Scr_PlayerShipMovement playerShipMovement;
 
-    private float initialTimerValue;
-    private LineRenderer haloLine;
+    private bool lerping;
+    private float takingOffDelaySaved;
+    private float disablingDelaySaved;
+    private float activateDelaySaved;
+    private float targetSpeed;
+    private Color targetColor;
+    private LineRenderer lineRenderer;
+    private Scr_PlayerShipMovement playerShipMovement;
 
     private void Start()
     {
-        haloLine = GetComponent<LineRenderer>();
-        initialTimerValue = colorChangeDelay;
+        playerShipMovement = playership.GetComponent<Scr_PlayerShipMovement>();
+        lineRenderer = GetComponent<LineRenderer>();
+
+        takingOffDelaySaved = takingOffDelay;
+        disablingDelaySaved = disablingDelay;
+        activateDelaySaved = activateDelay;
     }
 
     void Update()
     {
-        HaloColor();
         HaloPoints();
         HaloProperties();
-    }
-
-    private void HaloColor()
-    {
-        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed)
-        {
-            haloLine.startColor = notActiveHalo;
-            haloLine.endColor = notActiveHalo;
-
-            colorChangeDelay = initialTimerValue;
-        }
-
-        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landing)
-        {
-            haloLine.startColor = Color.Lerp(haloLine.startColor, notActiveHalo, Time.deltaTime * colorLerpSpeed);
-            haloLine.endColor = Color.Lerp(haloLine.startColor, notActiveHalo, Time.deltaTime * colorLerpSpeed);
-        }
-
-        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.takingOff || playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace)
-        {
-            colorChangeDelay -= Time.deltaTime;
-
-            if (colorChangeDelay <= 0)
-            {
-                haloLine.startColor = Color.Lerp(haloLine.startColor, activeHalo, Time.deltaTime * colorLerpSpeed);
-                haloLine.endColor = Color.Lerp(haloLine.startColor, activeHalo, Time.deltaTime * colorLerpSpeed);
-            }
-        }
+        HaloAlphaControl();
     }
 
     private void HaloPoints()
     {
         int index = 0;
 
-        haloLine.positionCount = 41;
+        lineRenderer.positionCount = 41;
 
         for (float i = 1; i >= 0; i -= 0.1f)
         {
             Vector3 vectorDirector = new Vector3(i, 1 - i, 0);
-            haloLine.SetPosition(index, (vectorDirector.normalized * radius) + playership.position);
+            lineRenderer.SetPosition(index, (vectorDirector.normalized * radius) + playership.position);
             index += 1;
         }
 
         for (float i = 0; i >= -1; i -= 0.1f)
         {
             Vector3 vectorDirector = new Vector3(i, 1 + i, 0);
-            haloLine.SetPosition(index, (vectorDirector.normalized * radius) + playership.position);
+            lineRenderer.SetPosition(index, (vectorDirector.normalized * radius) + playership.position);
             index += 1;
         }
 
         for (float i = -1; i <= 0; i += 0.1f)
         {
             Vector3 vectorDirector = new Vector3(i, -1 - i, 0);
-            haloLine.SetPosition(index, (vectorDirector.normalized * radius) + playership.position);
+            lineRenderer.SetPosition(index, (vectorDirector.normalized * radius) + playership.position);
             index += 1;
         }
 
         for (float i = 0; i <= 1; i += 0.1f)
         {
             Vector3 vectorDirector = new Vector3(i, -1 + i, 0);
-            haloLine.SetPosition(index, (vectorDirector.normalized * radius) + playership.position);
+            lineRenderer.SetPosition(index, (vectorDirector.normalized * radius) + playership.position);
             index += 1;
         }
 
-        haloLine.SetPosition(40, (new Vector3(1, 0, 0) * radius) + playership.position);
+        lineRenderer.SetPosition(40, (new Vector3(1, 0, 0) * radius) + playership.position);
     }
 
     private void HaloProperties()
     {
-        haloLine.startWidth = width;
-        haloLine.endWidth = width;
+        lineRenderer.startWidth = width;
+        lineRenderer.endWidth = width;
+    }
+
+    private void HaloAlphaControl()
+    {
+        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed)
+        {
+            takingOffDelaySaved = takingOffDelay;
+            activateDelaySaved = activateDelay;
+        }
+
+        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landing)
+        {
+            lerping = true;
+
+            targetColor = inPlanet;
+            targetSpeed = landingSpeed;
+            disablingDelaySaved -= Time.deltaTime;
+
+            if (disablingDelaySaved <= 0)
+                lerping = false;
+        }
+
+        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.takingOff || playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace)
+        {
+            lerping = true;
+
+            disablingDelaySaved = disablingDelay;
+            takingOffDelaySaved -= Time.deltaTime;
+
+            if (takingOffDelaySaved <= 0)
+            {
+                targetSpeed = takingOffSpeed;
+                targetColor = inSpace;
+
+                activateDelaySaved -= Time.deltaTime;
+
+                if (activateDelaySaved <= 0)
+                    lerping = false;
+            }
+        }
+
+        if (lerping)
+        {
+            lineRenderer.startColor = Color.Lerp(lineRenderer.startColor, targetColor, Time.deltaTime * targetSpeed);
+            lineRenderer.endColor = Color.Lerp(lineRenderer.endColor, targetColor, Time.deltaTime * targetSpeed);
+        }
+
+        else
+        {
+            lineRenderer.startColor = targetColor;
+            lineRenderer.endColor = targetColor;
+        }
     }
 }

@@ -61,10 +61,10 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
                 CreateAsteroidIndicator(collision.transform.parent.name, collision.transform.position);
             }
             
-            else if (collision.gameObject.CompareTag("Planet"))
+            else if (collision.GetComponent<Scr_Planet>() != null)
             {
                 planets.Add(new Scr_PlanetClass(collision.name, collision.gameObject, Vector3.Distance(collision.transform.position, playerShip.transform.position), collision.transform.position));
-                CreatePlanetIndicator(collision.name, collision.transform.position);
+                CreatePlanetIndicator(collision.name, collision.transform.position, collision.gameObject);
             }
         }
     }
@@ -79,7 +79,7 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
                 DestroyAsteroidIndicator(collision.transform.parent.name);
             }
 
-            else if (collision.gameObject.CompareTag("Planet"))
+            else if (collision.GetComponent<Scr_Planet>() != null)
             {
                 DestroyPlanet(collision.transform.parent.name);
                 DestroyPlanetIndicator(collision.name);
@@ -119,9 +119,10 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
         asteroidIndicators.Add(indicatorClone);
     }
 
-    private void CreatePlanetIndicator(string collisionName, Vector3 collisionPosition)
+    private void CreatePlanetIndicator(string collisionName, Vector3 collisionPosition, GameObject planetObject)
     {
         GameObject indicatorClone = Instantiate(planetIndicator, collisionPosition, gameObject.transform.rotation);
+        indicatorClone.GetComponent<Scr_PlanetIndicator>().indicatorType = planetObject.GetComponent<Scr_Planet>().planetType;
         indicatorClone.transform.SetParent(worldCanvas.transform);
         indicatorClone.name = collisionName;
         planetIndicators.Add(indicatorClone);
@@ -223,6 +224,7 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
                     if (planet.name == indicator.name)
                     {
                         indicator.transform.position = ((planet.currentPos - this.transform.position).normalized) * displayDistance + this.transform.position;
+                        indicator.transform.position = new Vector3(indicator.transform.position.x, indicator.transform.position.y, -10f);
 
                         if (planet.distanceToShip <= planetDistanceDetection)
                             indicator.transform.localScale = ((planetDistanceDetection - planet.distanceToShip) / planetSizeDivider) * Vector3.one;
