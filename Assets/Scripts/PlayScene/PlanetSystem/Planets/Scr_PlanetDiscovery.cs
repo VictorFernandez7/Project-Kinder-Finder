@@ -26,7 +26,7 @@ public class Scr_PlanetDiscovery : MonoBehaviour
 
         sighted = discovered;
         explored = discovered;
-        planet.SetActive(discovered);
+       //planet.SetActive(discovered);
         circleCollider.enabled = !discovered;
     }
 
@@ -43,13 +43,16 @@ public class Scr_PlanetDiscovery : MonoBehaviour
 
     public void PlanetExplored()
     {
-        explored = true;
-        playerShipStats.GetExperience(gameManager.exploredXP);
+        if (!explored)
+        {
+            explored = true;
+            playerShipStats.GetExperience(gameManager.exploredXP);
 
-        if (Scr_Levels.currentLevel == Scr_Levels.LevelToLoad.PlanetSystem1)
-            Scr_LevelManager.system1Info[planetIndex] = true;
+            if (Scr_Levels.currentLevel == Scr_Levels.LevelToLoad.PlanetSystem1)
+                Scr_LevelManager.system1Info[planetIndex] = true;
 
-        else if (Scr_Levels.currentLevel == Scr_Levels.LevelToLoad.PlanetSystem2)
-            Scr_LevelManager.system2Info[planetIndex] = true;
+            else if (Scr_Levels.currentLevel == Scr_Levels.LevelToLoad.PlanetSystem2)
+                Scr_LevelManager.system2Info[planetIndex] = true;
+        }
     }
 }
