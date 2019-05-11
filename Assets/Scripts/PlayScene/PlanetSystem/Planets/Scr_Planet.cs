@@ -47,7 +47,8 @@ public class Scr_Planet : Scr_AstroBase, IPointerEnterHandler
         EarthLike,
         Frozen,
         Volcanic,
-        Arid
+        Arid,
+        Toxic
     }
 
     public enum BlockType

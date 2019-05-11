@@ -64,7 +64,7 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
             else if (collision.GetComponent<Scr_Planet>() != null)
             {
                 planets.Add(new Scr_PlanetClass(collision.name, collision.gameObject, Vector3.Distance(collision.transform.position, playerShip.transform.position), collision.transform.position));
-                CreatePlanetIndicator(collision.name, collision.transform.position);
+                CreatePlanetIndicator(collision.name, collision.transform.position, collision.gameObject);
             }
         }
     }
@@ -119,9 +119,10 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
         asteroidIndicators.Add(indicatorClone);
     }
 
-    private void CreatePlanetIndicator(string collisionName, Vector3 collisionPosition)
+    private void CreatePlanetIndicator(string collisionName, Vector3 collisionPosition, GameObject planetObject)
     {
         GameObject indicatorClone = Instantiate(planetIndicator, collisionPosition, gameObject.transform.rotation);
+        indicatorClone.GetComponent<Scr_PlanetIndicator>().indicatorType = planetObject.GetComponent<Scr_Planet>().planetType;
         indicatorClone.transform.SetParent(worldCanvas.transform);
         indicatorClone.name = collisionName;
         planetIndicators.Add(indicatorClone);

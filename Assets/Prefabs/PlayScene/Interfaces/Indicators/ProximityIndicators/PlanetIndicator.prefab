@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2735617062933432652}
   - component: {fileID: 6407037731004270905}
   - component: {fileID: 847814695966840367}
+  - component: {fileID: 3357805042300237884}
   m_Layer: 18
   m_Name: PlanetIndicator
   m_TagString: Untagged
@@ -65,6 +66,28 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3357805042300237884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1835652779398765983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e608449f7f0cee46a0c00de3b595609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arid1: {fileID: 21300000, guid: 8d93f8b646fad08429a3686590a61bf7, type: 3}
+  arid2: {fileID: 21300000, guid: 4a868e28be12a6349a2742aa1909ed42, type: 3}
+  earthLike: {fileID: 21300000, guid: 0aab17f474ae0434eb7aff4a29cc0123, type: 3}
+  frozen1: {fileID: 21300000, guid: 8ff5851d96e353540b1e6d34f6dafe7b, type: 3}
+  frozen2: {fileID: 21300000, guid: ef1bf2ecc16140f4195ed991ac4136c1, type: 3}
+  sun: {fileID: 21300000, guid: d1633d80f997845418c21db664ba138f, type: 3}
+  toxic: {fileID: 21300000, guid: c135213a5c54f2f4984eaa105cc33b20, type: 3}
+  volcanic1: {fileID: 21300000, guid: 765aab9d7d5f75f478521312f0b8a3dd, type: 3}
+  volcanic2: {fileID: 21300000, guid: ddc556a241acd514ba8409f6e064201c, type: 3}
+  indicatorType: 0
 --- !u!1 &8055735520024859520
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,7 +98,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4581134488647814478}
   - component: {fileID: 8942965862941731869}
-  - component: {fileID: 747171931909912598}
+  - component: {fileID: 4051963824026974466}
   m_Layer: 18
   m_Name: Visuals
   m_TagString: Untagged
@@ -110,7 +133,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8055735520024859520}
   m_CullTransparentMesh: 0
---- !u!114 &747171931909912598
+--- !u!114 &4051963824026974466
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,7 +142,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8055735520024859520}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef8b96895a0ec4ba685178a052544251, type: 3}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -131,3 +154,11 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 765aab9d7d5f75f478521312f0b8a3dd, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
