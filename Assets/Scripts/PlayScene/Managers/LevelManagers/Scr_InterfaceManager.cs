@@ -16,6 +16,7 @@ public class Scr_InterfaceManager : MonoBehaviour
     [SerializeField] private Animator anim_PlayerShipWindow;
     [SerializeField] private Animator anim_FadeImage;
     [SerializeField] private Animator anim_MiniMapPanel;
+    [SerializeField] private Animator anim_miniMapDecoration;
     [SerializeField] private Animator anim_XPPanel;
     [SerializeField] private GameObject landingInterface;
     [SerializeField] private GameObject playerShipIcon;
@@ -64,6 +65,12 @@ public class Scr_InterfaceManager : MonoBehaviour
                 anim_XPPanel.SetBool("Show", true);
             }
         }
+
+        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed)
+            anim_miniMapDecoration.SetBool("Decoration", true);
+
+        else if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.takingOff)
+            anim_miniMapDecoration.SetBool("Decoration", false);
     }
 
     public void PlayerShipWindow()

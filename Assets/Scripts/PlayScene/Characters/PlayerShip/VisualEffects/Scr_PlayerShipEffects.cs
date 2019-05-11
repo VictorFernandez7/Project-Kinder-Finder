@@ -34,6 +34,11 @@ public class Scr_PlayerShipEffects : MonoBehaviour
     [SerializeField] public ParticleSystem landingSlam;
     [SerializeField] private ParticleSystem stars;
 
+    [Header("Material References")]
+    [SerializeField] private Material windowOn;
+    [SerializeField] private Material windowOff;
+    [SerializeField] private MeshRenderer visuals;
+
     [HideInInspector] public bool warming;
     [HideInInspector] public bool damaged;
 
@@ -52,6 +57,7 @@ public class Scr_PlayerShipEffects : MonoBehaviour
         DamageControl();
         ThrusterPlayControl();
         OtherEmissionControl();
+        WindowMaterialControl();
         ThrustersEmissionControl();
     }
 
@@ -118,8 +124,6 @@ public class Scr_PlayerShipEffects : MonoBehaviour
 
         if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landing)
             PlayParticleSystem(mainThruster);
-
-        // Parar partículas en el evento de salir de la atmósfera y de tocar el suelo
     }
 
     private void DamageControl()
@@ -131,7 +135,21 @@ public class Scr_PlayerShipEffects : MonoBehaviour
             StopParticleSystem(damagedSmoke);
     }
 
-    public void WarmingEffects(bool play) // Cuando se deje de llamar hay que hacer el booleano warming false.
+    private void WindowMaterialControl()
+    {
+        Material[] materialArray = new Material[visuals.materials.Length];
+        materialArray = visuals.materials;
+
+        if (playerShipMovement.astronautOnBoard)
+            materialArray[5] = windowOn;
+
+        else
+            materialArray[5] = windowOff;
+
+        visuals.materials = materialArray;
+    }
+
+    public void WarmingEffects(bool play)
     {
         warming = true;
 
