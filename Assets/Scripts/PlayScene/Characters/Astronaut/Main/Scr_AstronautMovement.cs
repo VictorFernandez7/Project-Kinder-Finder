@@ -245,7 +245,7 @@ public class Scr_AstronautMovement : MonoBehaviour
         else
             movementVector = (hitRightGroundPoint - hitLeftGroundPoint).normalized;
 
-        currentVelocity += Vector3.Project((-transform.up * gravity), movementVector).magnitude / 2;
+        currentVelocity += Vector3.Project((-transform.up * gravity), movementVector).magnitude / 4;
 
         transform.Translate(movementVector * currentVelocity, Space.World);
     }
