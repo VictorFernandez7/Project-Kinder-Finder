@@ -54,6 +54,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
     [SerializeField] public Scr_AstronautMovement astronautMovement;
     [SerializeField] public Animator astronautAnim;
     [SerializeField] public Scr_AstronautEffects astronautEffects;
+    [SerializeField] public Scr_MainCamera mainCamera;
 
     [Header("Inventory")]
     [SerializeField] public GameObject[] resourceWarehouse;
