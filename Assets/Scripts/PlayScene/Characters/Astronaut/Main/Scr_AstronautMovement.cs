@@ -21,6 +21,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     [Header("Jump Properties")]
     [SerializeField] private float precisionHeight;
     [SerializeField] private float speedJump;
+    [SerializeField] private float stopMovement;
     [Tooltip("Smaller value drag less")]
     [SerializeField] private float airDragModifier;
     [SerializeField] private float gravity;
@@ -64,10 +65,11 @@ public class Scr_AstronautMovement : MonoBehaviour
     private bool canMoveRight = true;
     private bool canMoveLeft = true;
     private bool canJump = true;
-    private bool lastRight;
+    private bool lastRight = true;
     private bool attached;
     private bool dettaching; 
     private bool charge;
+    private bool movementCapacityOnAir = true;
     private float exponentialMultiplier;
     private float currentVelocity;
     private float timeAtAir;
@@ -338,6 +340,7 @@ public class Scr_AstronautMovement : MonoBehaviour
             astronautAnim.SetBool("Moving", false);
         }
 
+        movementCapacityOnAir = true;
         astronautAnim.SetBool("OnGround", !jumping);
     }
 
@@ -474,6 +477,28 @@ public class Scr_AstronautMovement : MonoBehaviour
 
         if(currentVelocity > 0)
             currentVelocity -= (airDragModifier / 1000);
+
+        if(currentVelocity == 0 && movementCapacityOnAir)
+        {
+            if(Input.GetButton("Horizontal") && Input.GetAxis("Horizontal") < 0f)
+            {
+                movementVector = -Vector2.Perpendicular((currentPlanet.transform.position - transform.position).normalized);
+                currentVelocity = stopMovement;
+                lastRight = false;
+                movementCapacityOnAir = false;
+            }
+
+            else if (Input.GetButton("Horizontal") && Input.GetAxis("Horizontal") > 0f)
+            {
+                movementVector = Vector2.Perpendicular((currentPlanet.transform.position - transform.position).normalized);
+                currentVelocity = stopMovement;
+                lastRight = true;
+                movementCapacityOnAir = false;
+            }
+        }
+
+        if ((faceRight && !right) || (!faceRight && right))
+            Flip();
 
         transform.Translate(movementVector * currentVelocity, Space.World);
     }
