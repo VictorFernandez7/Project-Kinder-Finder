@@ -61,9 +61,9 @@ MonoBehaviour:
   rayOrigin1: {fileID: 4810106577547251414}
   rayOrigin2: {fileID: 1161236241417712181}
   rayOrigin3: {fileID: 1244334640434272101}
-  solidVisuals: {fileID: 0}
+  solidVisuals: {fileID: 5013573950608367397}
   gasVisuals: {fileID: 447283150285394996}
-  liquidVisuals: {fileID: 0}
+  liquidVisuals: {fileID: 6334494448979907672}
   icon: {fileID: 21300000, guid: 29455c8bcfe4ae146b6c21b7bc81339d, type: 3}
   iD: 0
   onHands: 0
@@ -289,6 +289,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 23000014136643664, guid: b1b88de1f14472c48a2128f06a2a92f9,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d7d4cc2e05d3f52439ef7704a741b270, type: 2}
     - target: {fileID: 4000014000184070, guid: b1b88de1f14472c48a2128f06a2a92f9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -345,11 +350,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.07341097
       objectReference: {fileID: 0}
-    - target: {fileID: 23000014136643664, guid: b1b88de1f14472c48a2128f06a2a92f9,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: d7d4cc2e05d3f52439ef7704a741b270, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1b88de1f14472c48a2128f06a2a92f9, type: 3}
 --- !u!1 &447283150285394996 stripped
@@ -371,6 +371,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3732482297519616}
     m_Modifications:
+    - target: {fileID: 100000, guid: f169e340519d039478e235a22bab035f, type: 3}
+      propertyPath: m_Name
+      value: SolidVisuals
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f169e340519d039478e235a22bab035f, type: 3}
+      propertyPath: m_TagString
+      value: Resources
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f169e340519d039478e235a22bab035f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f169e340519d039478e235a22bab035f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -427,24 +439,18 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 11.012263
       objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: f169e340519d039478e235a22bab035f, type: 3}
-      propertyPath: m_Name
-      value: SolidVisuals
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: f169e340519d039478e235a22bab035f, type: 3}
-      propertyPath: m_TagString
-      value: Resources
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: f169e340519d039478e235a22bab035f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: f169e340519d039478e235a22bab035f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 07c32917ba8483b4db288782d4930828, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f169e340519d039478e235a22bab035f, type: 3}
+--- !u!1 &5013573950608367397 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: f169e340519d039478e235a22bab035f,
+    type: 3}
+  m_PrefabInstance: {fileID: 5013573950608267653}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5013573950608655109 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: f169e340519d039478e235a22bab035f,
@@ -458,6 +464,19 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3732482297519616}
     m_Modifications:
+    - target: {fileID: 1000010565588344, guid: 686fd8e833c62714e8d90ea73c3873e2, type: 3}
+      propertyPath: m_Name
+      value: LiquidVisuals
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010565588344, guid: 686fd8e833c62714e8d90ea73c3873e2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 23000010846125742, guid: 686fd8e833c62714e8d90ea73c3873e2,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d554701d5506a0344a0c4c6ea090f048, type: 2}
     - target: {fileID: 4000010805769224, guid: 686fd8e833c62714e8d90ea73c3873e2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -514,21 +533,14 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.07341097
       objectReference: {fileID: 0}
-    - target: {fileID: 1000010565588344, guid: 686fd8e833c62714e8d90ea73c3873e2, type: 3}
-      propertyPath: m_Name
-      value: LiquidVisuals
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000010565588344, guid: 686fd8e833c62714e8d90ea73c3873e2, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 23000010846125742, guid: 686fd8e833c62714e8d90ea73c3873e2,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: d554701d5506a0344a0c4c6ea090f048, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 686fd8e833c62714e8d90ea73c3873e2, type: 3}
+--- !u!1 &6334494448979907672 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1000010565588344, guid: 686fd8e833c62714e8d90ea73c3873e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 6335201980795388192}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6333500748223345960 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000010805769224, guid: 686fd8e833c62714e8d90ea73c3873e2,
