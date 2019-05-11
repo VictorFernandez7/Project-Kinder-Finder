@@ -11,15 +11,24 @@ public class Scr_PlayerShipHalo : MonoBehaviour
     [Header("Color Parameters")]
     [SerializeField] private Color inSpace;
     [SerializeField] private Color inPlanet;
-    [SerializeField] private float lerpSpeed;
+
+    [Header("Speed Parameters")]
+    [SerializeField] private float takingOffSpeed;
+    [SerializeField] private float landingSpeed;
 
     [Header("Delays")]
     [SerializeField] private float takingOffDelay;
+    [SerializeField] private float disablingDelay;
+    [SerializeField] private float activateDelay;
 
     [Header("References")]
     [SerializeField] private Transform playership;
 
-    private float savedTimer;
+    private bool lerping;
+    private float takingOffDelaySaved;
+    private float disablingDelaySaved;
+    private float activateDelaySaved;
+    private float targetSpeed;
     private Color targetColor;
     private LineRenderer lineRenderer;
     private Scr_PlayerShipMovement playerShipMovement;
@@ -29,7 +38,9 @@ public class Scr_PlayerShipHalo : MonoBehaviour
         playerShipMovement = playership.GetComponent<Scr_PlayerShipMovement>();
         lineRenderer = GetComponent<LineRenderer>();
 
-        savedTimer = takingOffDelay;
+        takingOffDelaySaved = takingOffDelay;
+        disablingDelaySaved = disablingDelay;
+        activateDelaySaved = activateDelay;
     }
 
     void Update()
@@ -86,22 +97,51 @@ public class Scr_PlayerShipHalo : MonoBehaviour
     {
         if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed)
         {
-            targetColor = inPlanet;
-            savedTimer = takingOffDelay;
+            takingOffDelaySaved = takingOffDelay;
+            activateDelaySaved = activateDelay;
         }
 
         if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landing)
+        {
+            lerping = true;
+
             targetColor = inPlanet;
+            targetSpeed = landingSpeed;
+            disablingDelaySaved -= Time.deltaTime;
+
+            if (disablingDelaySaved <= 0)
+                lerping = false;
+        }
 
         if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.takingOff || playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace)
         {
-            savedTimer -= Time.deltaTime;
+            lerping = true;
 
-            if (savedTimer <= 0)
+            disablingDelaySaved = disablingDelay;
+            takingOffDelaySaved -= Time.deltaTime;
+
+            if (takingOffDelaySaved <= 0)
+            {
+                targetSpeed = takingOffSpeed;
                 targetColor = inSpace;
+
+                activateDelaySaved -= Time.deltaTime;
+
+                if (activateDelaySaved <= 0)
+                    lerping = false;
+            }
         }
 
-        lineRenderer.startColor = Color.Lerp(lineRenderer.startColor, targetColor, Time.deltaTime * lerpSpeed);
-        lineRenderer.endColor = Color.Lerp(lineRenderer.endColor, targetColor, Time.deltaTime * lerpSpeed);
+        if (lerping)
+        {
+            lineRenderer.startColor = Color.Lerp(lineRenderer.startColor, targetColor, Time.deltaTime * targetSpeed);
+            lineRenderer.endColor = Color.Lerp(lineRenderer.endColor, targetColor, Time.deltaTime * targetSpeed);
+        }
+
+        else
+        {
+            lineRenderer.startColor = targetColor;
+            lineRenderer.endColor = targetColor;
+        }
     }
 }
