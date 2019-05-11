@@ -41,8 +41,6 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
 
     private void Update()
     {
-        print(planets.Count);
-
         UpdateListStats();
         TriggerActivation();
     }
