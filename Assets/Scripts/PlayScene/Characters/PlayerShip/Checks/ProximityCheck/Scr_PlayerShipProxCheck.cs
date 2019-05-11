@@ -41,6 +41,8 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
 
     private void Update()
     {
+        print(planets.Count);
+
         UpdateListStats();
         TriggerActivation();
     }
@@ -61,7 +63,7 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
                 CreateAsteroidIndicator(collision.transform.parent.name, collision.transform.position);
             }
             
-            else if (collision.gameObject.CompareTag("Planet"))
+            else if (collision.GetComponent<Scr_Planet>() != null)
             {
                 planets.Add(new Scr_PlanetClass(collision.name, collision.gameObject, Vector3.Distance(collision.transform.position, playerShip.transform.position), collision.transform.position));
                 CreatePlanetIndicator(collision.name, collision.transform.position);
@@ -79,7 +81,7 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
                 DestroyAsteroidIndicator(collision.transform.parent.name);
             }
 
-            else if (collision.gameObject.CompareTag("Planet"))
+            else if (collision.GetComponent<Scr_Planet>() != null)
             {
                 DestroyPlanet(collision.transform.parent.name);
                 DestroyPlanetIndicator(collision.name);
