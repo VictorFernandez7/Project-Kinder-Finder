@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class Scr_AstronautEffects : MonoBehaviour
 {
-    [Header("References")]
+    [Header("Particle References")]
     [SerializeField] private ParticleSystem movingParticles;
     [SerializeField] private ParticleSystem jumpParticles;
     [SerializeField] private ParticleSystem fallParticles;
-    [SerializeField] private Scr_MusicManager musicManager;
-    [SerializeField] private Scr_PlayerShipMovement playerShipMovement;
+    [SerializeField] private ParticleSystem normalDeathParticles;
+    [SerializeField] private ParticleSystem fireDeathParticles;
+    [SerializeField] private ParticleSystem IceDeathParticles;
+    [SerializeField] private ParticleSystem poisonDeathParticles;
 
-    [Header("Sounds")]
+    [Header("Sound References")]
     [SerializeField] private SoundDefinition steps;
     [SerializeField] private SoundDefinition jump;
     [SerializeField] private SoundDefinition mine;
@@ -20,9 +22,21 @@ public class Scr_AstronautEffects : MonoBehaviour
     [SerializeField] private SoundDefinition breathing;
     [SerializeField] private SoundDefinition chatter;
 
+    [Header("Other References")]
+    [SerializeField] private Scr_MusicManager musicManager;
+    [SerializeField] private Scr_PlayerShipMovement playerShipMovement;
+
     [HideInInspector] public bool breathingBool;
 
     private Scr_AstronautMovement astronautMovement;
+
+    public enum DeathType
+    {
+        Normal,
+        Fire,
+        Ice,
+        Posion
+    }
 
     private void Start()
     {
@@ -34,12 +48,51 @@ public class Scr_AstronautEffects : MonoBehaviour
     private void Update()
     {
         SoundManager();
+        MovingParticles();
+    }
 
+    private void MovingParticles()
+    {
         if (movingParticles.isPlaying && astronautMovement.jumping)
             movingParticles.Stop();
 
-        else if (!movingParticles.isPlaying)
-            movingParticles.Play();
+        else
+            PlayParticleSystem(movingParticles);
+    }
+
+    public void JumpParticles()
+    {
+        PlayParticleSystem(jumpParticles);
+    }
+
+    public void FallParticles()
+    {
+        PlayParticleSystem(fallParticles);
+    }
+
+    public void DeathParticles(DeathType deathType)
+    {
+        switch (deathType)
+        {
+            case DeathType.Normal:
+                PlayParticleSystem(normalDeathParticles);
+                break;
+            case DeathType.Fire:
+                PlayParticleSystem(fireDeathParticles);
+                break;
+            case DeathType.Ice:
+                PlayParticleSystem(IceDeathParticles);
+                break;
+            case DeathType.Posion:
+                PlayParticleSystem(poisonDeathParticles);
+                break;
+        }
+    }
+
+    private void PlayParticleSystem(ParticleSystem desiredParticles)
+    {
+        if (!desiredParticles.isPlaying)
+            desiredParticles.Play();
     }
 
     private void SoundManager()
@@ -90,17 +143,5 @@ public class Scr_AstronautEffects : MonoBehaviour
        {
            Scr_MusicManager.Instance.PlaySound(chatter.Sound, 0);
        }*/
-    }
-
-    public void JumpParticles()
-    {
-        if (!jumpParticles.isPlaying)
-            jumpParticles.Play();
-    }
-
-    public void FallParticles()
-    {
-        if (!fallParticles.isPlaying)
-            fallParticles.Play();
     }
 }
