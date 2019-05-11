@@ -72,6 +72,7 @@ MonoBehaviour:
   heliumVisuals: {fileID: 8471247886066617180}
   aerogelVisuals: {fileID: 7549592783555145822}
   currentResource: {fileID: 0}
+  iAMovement: {fileID: 0}
   initialAmount: 0
 --- !u!1 &67686886396034538
 GameObject:
@@ -84,6 +85,7 @@ GameObject:
   - component: {fileID: 70258559129222984}
   - component: {fileID: 159707398170220424}
   - component: {fileID: 158673019445409892}
+  - component: {fileID: 5302561362630794398}
   m_Layer: 0
   m_Name: Debris
   m_TagString: Untagged
@@ -679,7 +681,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -4829,6 +4831,20 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &5302561362630794398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 67686886396034538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb9a43f9e7ff57d4b95fbee30555c3d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transformSelection: 1
+  gravityAmount: 1
 --- !u!1 &68408836829395196
 GameObject:
   m_ObjectHideFlags: 0

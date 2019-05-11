@@ -315,6 +315,36 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!1 &907526506
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 907526507}
+  m_Layer: 0
+  m_Name: ResourceSpot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &907526507
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 907526506}
+  m_LocalRotation: {x: 0.5637149, y: -0.00000008940694, z: 0.00000014901156, w: 0.82596946}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4892425341733505852}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 68.626, y: 0, z: 0}
 --- !u!1 &1064349420
 GameObject:
   m_ObjectHideFlags: 0
@@ -1057,7 +1087,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxResourcesCapacity: 0
   interactionIndicatorAnim: {fileID: 0}
-  pickPoint: {fileID: 4973946125739948}
+  pickPoint: {fileID: 907526507}
   spawnPoint: {fileID: 0}
   iaSpotTransformUp: {fileID: 0}
   iaSpotTransformDown: {fileID: 0}
@@ -17216,7 +17246,8 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0.0006989681, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 907526507}
   m_Father: {fileID: 4892212995797215780}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

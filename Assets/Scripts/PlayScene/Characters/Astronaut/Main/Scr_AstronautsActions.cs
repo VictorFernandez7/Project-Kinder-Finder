@@ -188,11 +188,13 @@ public class Scr_AstronautsActions : MonoBehaviour
 
                     case 4:
                         currentResource[4] = astronautResourcesCheck.resourceList[0];
-                        currentResource[4].transform.position = pickPoint.position;
+                        //currentResource[4].transform.position = pickPoint.position;
                         currentResource[4].GetComponent<Scr_Resource>().onHands = true;
                         currentResource[4].GetComponent<Scr_Resource>().lootParticles.Stop();
                         currentResource[4].GetComponent<BoxCollider2D>().enabled = false;
                         currentResource[4].transform.SetParent(pickPoint);
+                        currentResource[4].transform.localPosition = Vector3.zero;
+                        currentResource[4].transform.localRotation = Quaternion.Euler(Vector3.zero);
                         emptyHands = false;
                         break;
                 }
