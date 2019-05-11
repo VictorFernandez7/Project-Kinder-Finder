@@ -92,9 +92,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockType: 0
-  oreResourceType: 1
+  oreResourceType: 0
   crystalResourceType: 0
-  amount: 4
+  amount: 2
   visuals: {fileID: 6066221715447718133}
   canvas: {fileID: 1879345762652586386}
   mainCamera: {fileID: 0}
@@ -749,11 +749,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -1072,11 +1072,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -1658,11 +1658,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -1767,13 +1767,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 198085798176871954, guid: 32b679ac2fa27cb4f921a45940ac0e7c,
         type: 3}
-      propertyPath: ShapeModule.arc.spread
+      propertyPath: playOnAwake
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198085798176871954, guid: 32b679ac2fa27cb4f921a45940ac0e7c,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
-      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 198085798176871954, guid: 32b679ac2fa27cb4f921a45940ac0e7c,
         type: 3}
@@ -1787,13 +1782,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 198085798176871954, guid: 32b679ac2fa27cb4f921a45940ac0e7c,
         type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198085798176871954, guid: 32b679ac2fa27cb4f921a45940ac0e7c,
-        type: 3}
-      propertyPath: ShapeModule.radiusThickness
-      value: 1
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 4663487787256026, guid: 32b679ac2fa27cb4f921a45940ac0e7c, type: 3}
       propertyPath: m_LocalPosition.x
