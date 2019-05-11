@@ -3612,12 +3612,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 3
   width: 0.05
-  colorLerpSpeed: 0.75
-  colorChangeDelay: 1
-  activeHalo: {r: 1, g: 1, b: 1, a: 0.50980395}
-  notActiveHalo: {r: 1, g: 1, b: 1, a: 0}
+  inSpace: {r: 1, g: 1, b: 1, a: 0.50980395}
+  inPlanet: {r: 1, g: 1, b: 1, a: 0}
+  lerpSpeed: 40
+  takingOffDelay: 1.5
   playership: {fileID: 4030621875282276}
-  playerShipMovement: {fileID: 114696350668254112}
 --- !u!120 &120993982603081888
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -3678,8 +3677,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 1, g: 1, b: 1, a: 0}
+      key1: {r: 1, g: 1, b: 1, a: 0}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
