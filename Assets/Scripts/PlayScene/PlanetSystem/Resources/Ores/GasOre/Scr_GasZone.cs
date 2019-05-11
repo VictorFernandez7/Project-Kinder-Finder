@@ -64,8 +64,8 @@ public class Scr_GasZone : MonoBehaviour
     private void Update ()
     {
         CheckAmount();
-        ParticleAmount();
         GasZoneSize();
+        ParticleAmount();
     }
 
     private void CheckAmount()

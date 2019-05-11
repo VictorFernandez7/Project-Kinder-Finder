@@ -5,10 +5,13 @@ using UnityEngine;
 public class Scr_LiquidZone : MonoBehaviour
 {
     [Header("Liquid Zone Type")]
-    [SerializeField] private LiquidType liquidType;
+    [SerializeField] public LiquidType liquidType;
 
     [Header("Resource Properties")]
     [SerializeField] public float amount;
+
+    [Header("Particle Properties")]
+    [SerializeField] private float initialEmission;
 
     [Header("References")]
     [SerializeField] private Scr_ReferenceManager referenceManager;
@@ -16,10 +19,13 @@ public class Scr_LiquidZone : MonoBehaviour
     [SerializeField] private GameObject mercuryVisuals;
     [SerializeField] private GameObject termatiteVisuals;
 
-    [HideInInspector] public GameObject currentResource;
     [HideInInspector] public float initialAmount;
+    [HideInInspector] public GameObject currentResource;
+    [HideInInspector] public Scr_IAMovement iAMovement;
 
-    private enum LiquidType
+    private ParticleSystem liquidParticles;
+
+    public enum LiquidType
     {
         Fuel,
         Mercury,
@@ -30,6 +36,52 @@ public class Scr_LiquidZone : MonoBehaviour
     {
         initialAmount = amount;
 
+        SetVisuals();
+        SetResource();
+    }
+
+    void Update()
+    {
+        CheckAmount();
+        ParticleAmount();
+    }
+
+    private void CheckAmount()
+    {
+        if (amount <= 0 && liquidParticles.particleCount <= 0)
+        {
+            iAMovement.isMining = false;
+            Destroy(gameObject);
+        }
+    }
+
+    private void SetVisuals()
+    {
+        switch (liquidType)
+        {
+            case LiquidType.Fuel:
+                fuelVisuals.SetActive(true);
+                mercuryVisuals.SetActive(false);
+                termatiteVisuals.SetActive(false);
+                liquidParticles = fuelVisuals.GetComponentInChildren<ParticleSystem>();
+                break;
+            case LiquidType.Mercury:
+                fuelVisuals.SetActive(false);
+                mercuryVisuals.SetActive(true);
+                termatiteVisuals.SetActive(false);
+                liquidParticles = mercuryVisuals.GetComponentInChildren<ParticleSystem>();
+                break;
+            case LiquidType.Termatite:
+                fuelVisuals.SetActive(false);
+                mercuryVisuals.SetActive(false);
+                termatiteVisuals.SetActive(true);
+                liquidParticles = termatiteVisuals.GetComponentInChildren<ParticleSystem>();
+                break;
+        }
+    }
+
+    private void SetResource()
+    {
         switch (liquidType)
         {
             case LiquidType.Fuel:
@@ -46,36 +98,10 @@ public class Scr_LiquidZone : MonoBehaviour
         }
     }
 
-    void Update()
+    private void ParticleAmount()
     {
-        CheckAmount();
-    }
+        var emission = liquidParticles.emission;
 
-    private void CheckAmount()
-    {
-        if (amount <= 0 /*&& gasParticles.particleCount <= 0*/)
-            Destroy(gameObject);
-    }
-
-    private void ChangeVisuals()
-    {
-        switch (liquidType)
-        {
-            case LiquidType.Fuel:
-                fuelVisuals.SetActive(true);
-                mercuryVisuals.SetActive(false);
-                termatiteVisuals.SetActive(false);
-                break;
-            case LiquidType.Mercury:
-                fuelVisuals.SetActive(false);
-                mercuryVisuals.SetActive(true);
-                termatiteVisuals.SetActive(false);
-                break;
-            case LiquidType.Termatite:
-                fuelVisuals.SetActive(false);
-                mercuryVisuals.SetActive(false);
-                termatiteVisuals.SetActive(true);
-                break;
-        }
+        emission.rateOverTime = amount * (initialEmission / initialAmount);
     }
 }

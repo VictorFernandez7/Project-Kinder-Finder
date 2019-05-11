@@ -30,23 +30,23 @@ public class Scr_AstronautsActions : MonoBehaviour
     [HideInInspector] public int numberToolActive;
     [HideInInspector] public bool emptyHands;
     [HideInInspector] public bool toolOnHands;
-    [HideInInspector] public GameObject toolOnFloor;
-    [HideInInspector] public GameObject miningSpot;
     [HideInInspector] public bool[] unlockedTools = new bool[5];
     [HideInInspector] public SpotType spotType;
+    [HideInInspector] public GameObject miningSpot;
+    [HideInInspector] public GameObject toolOnFloor;
 
-    private float fuelAmount;
-    private float holdInputTime = 0.9f;
+    private int resourceIndex = 0;
     private bool canInputAgain = true;
     private bool pickFirst;
     private bool introduceFirst;
     private bool unlockInteract = true;
-    private int resourceIndex = 0;
+    private float fuelAmount;
+    private float holdInputTime = 0.9f;
 
     public GameObject[] currentResource = new GameObject[5];
     private Scr_CableVisuals cableVisuals;
-    private Scr_AstronautMovement astronautMovement;
     private Scr_AstronautStats astronautStats;
+    private Scr_AstronautMovement astronautMovement;
     private Scr_PlayerShipActions playerShipActions;
 
     public enum SpotType

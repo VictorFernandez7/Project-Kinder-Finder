@@ -13,11 +13,15 @@ public class Scr_LiquidTool : Scr_ToolBase
     [HideInInspector] public GameObject zone;
 
     private float amount = 0;
+    private GameObject extractionModule;
 
     public override void Update()
     {
         if (Input.GetButton("Interact") && zone)
             ExtractLiquid();
+
+        if (Input.GetButtonUp("Interact") && extractionModule != null)
+            extractionModule.GetComponent<Scr_LiquidAbsorbing>().StopAbsorbing();
     }
 
     public override void UseTool() { }
@@ -32,6 +36,8 @@ public class Scr_LiquidTool : Scr_ToolBase
 
     private void ExtractLiquid()
     {
+        zone.GetComponent<Scr_LiquidZone>().iAMovement = transform.GetComponentInParent<Scr_IAMovement>();
+
         if (resource == null)
             resource = zone.GetComponent<Scr_LiquidZone>().currentResource;
 
@@ -51,5 +57,10 @@ public class Scr_LiquidTool : Scr_ToolBase
             resources.GetComponent<Scr_Resource>().ChangeVisuals(Scr_Resource.ResourceType.Liquid);
             resources.transform.SetParent(playerShipMovement.currentPlanet.transform);
         }
+
+        extractionModule = zone.GetComponentInChildren<Scr_LiquidAbsorbing>().gameObject;
+
+        extractionModule.transform.position = transform.position;
+        extractionModule.GetComponent<Scr_LiquidAbsorbing>().AbsorbParticles();
     }
 }
