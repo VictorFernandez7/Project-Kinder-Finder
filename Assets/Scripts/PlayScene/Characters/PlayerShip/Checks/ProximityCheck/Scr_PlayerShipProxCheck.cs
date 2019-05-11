@@ -223,6 +223,7 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
                     if (planet.name == indicator.name)
                     {
                         indicator.transform.position = ((planet.currentPos - this.transform.position).normalized) * displayDistance + this.transform.position;
+                        indicator.transform.position = new Vector3(indicator.transform.position.x, indicator.transform.position.y, -10f);
 
                         if (planet.distanceToShip <= planetDistanceDetection)
                             indicator.transform.localScale = ((planetDistanceDetection - planet.distanceToShip) / planetSizeDivider) * Vector3.one;
