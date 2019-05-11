@@ -5,7 +5,7 @@ using UnityEngine;
 public class Scr_LiquidZone : MonoBehaviour
 {
     [Header("Liquid Zone Type")]
-    [SerializeField] private LiquidType liquidType;
+    [SerializeField] public LiquidType liquidType;
 
     [Header("Resource Properties")]
     [SerializeField] public float amount;
@@ -19,7 +19,7 @@ public class Scr_LiquidZone : MonoBehaviour
     [HideInInspector] public GameObject currentResource;
     [HideInInspector] public float initialAmount;
 
-    private enum LiquidType
+    public enum LiquidType
     {
         Fuel,
         Mercury,
