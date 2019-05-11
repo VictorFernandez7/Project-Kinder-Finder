@@ -45,7 +45,7 @@ public class Scr_PlayerShipHalo : MonoBehaviour
         if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landing)
         {
             haloLine.startColor = Color.Lerp(haloLine.startColor, notActiveHalo, Time.deltaTime * colorLerpSpeed);
-            haloLine.endColor = Color.Lerp(haloLine.startColor, notActiveHalo, Time.deltaTime * colorLerpSpeed);
+            haloLine.endColor = Color.Lerp(haloLine.endColor, notActiveHalo, Time.deltaTime * colorLerpSpeed);
         }
 
         if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.takingOff || playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace)
@@ -55,7 +55,7 @@ public class Scr_PlayerShipHalo : MonoBehaviour
             if (colorChangeDelay <= 0)
             {
                 haloLine.startColor = Color.Lerp(haloLine.startColor, activeHalo, Time.deltaTime * colorLerpSpeed);
-                haloLine.endColor = Color.Lerp(haloLine.startColor, activeHalo, Time.deltaTime * colorLerpSpeed);
+                haloLine.endColor = Color.Lerp(haloLine.endColor, activeHalo, Time.deltaTime * colorLerpSpeed);
             }
         }
     }
