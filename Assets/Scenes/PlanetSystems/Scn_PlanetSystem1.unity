@@ -12171,6 +12171,11 @@ PrefabInstance:
       propertyPath: toolSlots.Array.data[4]
       value: 
       objectReference: {fileID: 824682540}
+    - target: {fileID: 114844797242794480, guid: a7965b5f8a536a540b7c003202d37841,
+        type: 3}
+      propertyPath: maxOxygen
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4004395127091482, guid: a7965b5f8a536a540b7c003202d37841, type: 3}
       propertyPath: m_LocalPosition.x
       value: -73.1089
@@ -12968,6 +12973,31 @@ PrefabInstance:
       propertyPath: narrativeManager
       value: 
       objectReference: {fileID: 82026447227232181}
+    - target: {fileID: 114778194997285574, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
+        type: 3}
+      propertyPath: astronautMovement
+      value: 
+      objectReference: {fileID: 2028569275}
+    - target: {fileID: 114778194997285574, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
+        type: 3}
+      propertyPath: astronautAnim
+      value: 
+      objectReference: {fileID: 4802737719350437522}
+    - target: {fileID: 114778194997285574, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
+        type: 3}
+      propertyPath: astronautEffects
+      value: 
+      objectReference: {fileID: 114544908541210520}
+    - target: {fileID: 114778194997285574, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
+        type: 3}
+      propertyPath: respawnTime
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114778194997285574, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
+        type: 3}
+      propertyPath: fadeTime
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 114779136795001458, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
         type: 3}
       propertyPath: worldCanvas
@@ -17632,6 +17662,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 874abb15452fbcc478dafd171682b753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114544908541210520 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114544908541210520, guid: a7965b5f8a536a540b7c003202d37841,
+    type: 3}
+  m_PrefabInstance: {fileID: 1466912763}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2028569272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fff63e50c464ca459bedd18a4082f76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114844797242794480 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114844797242794480, guid: a7965b5f8a536a540b7c003202d37841,
@@ -19583,6 +19625,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e2ee6a2f3deacd4684cadfa4a335475, type: 3}
+--- !u!95 &4802737719350437522 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4802737719350437522, guid: a7965b5f8a536a540b7c003202d37841,
+    type: 3}
+  m_PrefabInstance: {fileID: 1466912763}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4923803341024848704
 PrefabInstance:
   m_ObjectHideFlags: 0

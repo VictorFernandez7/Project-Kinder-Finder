@@ -9,6 +9,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
 {
     [Header("Respawn Properties")]
     [SerializeField] private float respawnTime;
+    [SerializeField] private float fadeTime;
 
     [Header("Shield Properties")]
     [SerializeField] public float currentShield;
@@ -50,6 +51,9 @@ public class Scr_PlayerShipStats : MonoBehaviour
     [SerializeField] public Scr_CraftData craftData;
     [SerializeField] public Scr_LevelUpCanvas levelUpCanvas;
     [SerializeField] public Scr_NarrativeManager narrativeManager;
+    [SerializeField] public Scr_AstronautMovement astronautMovement;
+    [SerializeField] public Animator astronautAnim;
+    [SerializeField] public Scr_AstronautEffects astronautEffects;
 
     [Header("Inventory")]
     [SerializeField] public GameObject[] resourceWarehouse;
@@ -205,6 +209,8 @@ public class Scr_PlayerShipStats : MonoBehaviour
             shieldSliderFill.color = Color.Lerp(shieldSliderFill.color, shieldColor0, Time.deltaTime * colorChangeSpeed);
     }
 
+    bool diedOnce = false;
+
     public void Death()
     {
         if (playerShipMovement.astronautOnBoard)
@@ -221,9 +227,42 @@ public class Scr_PlayerShipStats : MonoBehaviour
             GetComponentInChildren<Scr_PlayerShipDeathCheck>().enabled = false;
             GetComponent<Scr_PlayerShipPrediction>().enabled = false;
         }
-       // fadeImage.SetBool("Fade", false);
+
+        else if (!diedOnce)
+        {
+            diedOnce = true;
+
+            astronautMovement.canMove = false;
+            astronautAnim.SetTrigger("Death");
+
+            switch (playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().planetType)
+            {
+                case Scr_Planet.PlanetType.EarthLike:
+                    astronautEffects.DeathParticles(Scr_AstronautEffects.DeathType.Normal);
+                    break;
+                case Scr_Planet.PlanetType.Frozen:
+                    astronautEffects.DeathParticles(Scr_AstronautEffects.DeathType.Ice);
+                    break;
+                case Scr_Planet.PlanetType.Volcanic:
+                    astronautEffects.DeathParticles(Scr_AstronautEffects.DeathType.Fire);
+                    break;
+                case Scr_Planet.PlanetType.Arid:
+                    astronautEffects.DeathParticles(Scr_AstronautEffects.DeathType.Normal);
+                    break;
+                case Scr_Planet.PlanetType.Toxic:
+                    astronautEffects.DeathParticles(Scr_AstronautEffects.DeathType.Posion);
+                    break;
+            }
+
+            Invoke("Fade", fadeTime);
+        }
 
         Invoke("Respawn", respawnTime);
+    }
+
+    private void Fade()
+    {
+        fadeImage.SetBool("Fade", false);
     }
 
     private void Respawn()
@@ -240,11 +279,14 @@ public class Scr_PlayerShipStats : MonoBehaviour
         playerShipMovement.playerShipState = Scr_PlayerShipMovement.PlayerShipState.landed;
         playerShipMovement.canControlShip = true;
         shipVisuals.gameObject.SetActive(true);
-       // fadeImage.SetBool("Fade", true);
         Scr_PlayerData.dead = false;
 
         if (!playerShipMovement.astronautOnBoard)
             GetComponent<Scr_PlayerShipActions>().astronaut.GetComponent<Scr_AstronautsActions>().EnterShipFromPlanet();
+
+        diedOnce = false;
+        astronautMovement.canMove = true;
+        fadeImage.SetBool("Fade", true);
     }
 
     public void GetExperience (int amount)
