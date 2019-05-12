@@ -11,7 +11,7 @@ public class Scr_LiquidZone : MonoBehaviour
     [SerializeField] public float amount;
 
     [Header("Particle Properties")]
-    [SerializeField] private float initialEmission;
+    [SerializeField] public float initialEmission;
 
     [Header("References")]
     [SerializeField] private Scr_ReferenceManager referenceManager;
@@ -24,6 +24,7 @@ public class Scr_LiquidZone : MonoBehaviour
     [HideInInspector] public Scr_IAMovement iAMovement;
 
     private ParticleSystem liquidParticles;
+    private float savedEmission;
 
     public enum LiquidType
     {
@@ -35,6 +36,7 @@ public class Scr_LiquidZone : MonoBehaviour
     void Start()
     {
         initialAmount = amount;
+        savedEmission = initialEmission;
 
         SetVisuals();
         SetResource();
@@ -51,6 +53,19 @@ public class Scr_LiquidZone : MonoBehaviour
         if (amount <= 0 && liquidParticles.particleCount <= 0)
         {
             iAMovement.isMining = false;
+
+            if(liquidType == LiquidType.Fuel)
+            {
+                GameObject newLiquidZone = Instantiate(referenceManager.Zones[1], transform.position, transform.rotation, transform.parent);
+                newLiquidZone.SetActive(false);
+                newLiquidZone.GetComponent<Scr_LiquidZone>().referenceManager = referenceManager;
+                newLiquidZone.GetComponent<Scr_LiquidZone>().amount = initialAmount;
+                newLiquidZone.GetComponent<Scr_LiquidZone>().initialEmission = savedEmission;
+                newLiquidZone.GetComponent<Scr_LiquidZone>().liquidType = LiquidType.Fuel;
+                newLiquidZone.GetComponentInChildren<Scr_LiquidDetection>().astronautsActions = GetComponentInChildren<Scr_LiquidDetection>().astronautsActions;
+                referenceManager.respawnFuelResources.Add(newLiquidZone);
+            }
+
             Destroy(gameObject);
         }
     }

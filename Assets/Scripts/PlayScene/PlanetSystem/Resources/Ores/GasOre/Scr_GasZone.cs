@@ -28,6 +28,7 @@ public class Scr_GasZone : MonoBehaviour
 
     private ParticleSystem gasParticles;
     private int realAmount;
+    private float savedEmission;
 
     public enum GasType
     {
@@ -41,6 +42,7 @@ public class Scr_GasZone : MonoBehaviour
     {
         initialAmount = amount;
         realAmount = 0;
+        savedEmission = initialEmission;
 
         ChangeVisuals();
 
@@ -75,6 +77,19 @@ public class Scr_GasZone : MonoBehaviour
     {
         if (amount <= 0 && gasParticles.particleCount <= 0) {
             iAMovement.isMining = false;
+
+            if(gasType == GasType.Fuel)
+            {
+                GameObject newGasZone = Instantiate(referenceManager.Zones[2], transform.position, transform.rotation, transform.parent);
+                newGasZone.SetActive(false);
+                newGasZone.GetComponent<Scr_GasZone>().amount = initialAmount;
+                newGasZone.GetComponent<Scr_GasZone>().initialEmission = savedEmission;
+                newGasZone.GetComponent<Scr_GasZone>().referenceManager = referenceManager;
+                newGasZone.GetComponent<Scr_GasZone>().gasType = GasType.Fuel;
+                newGasZone.GetComponentInChildren<Scr_GasDetection>().astronautsActions = GetComponentInChildren<Scr_GasDetection>().astronautsActions;
+                referenceManager.respawnFuelResources.Add(newGasZone);
+            }
+
             Destroy(gameObject);
         }
 

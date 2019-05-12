@@ -155,6 +155,19 @@ public class Scr_Ore : MonoBehaviour
 
                 playedOnce = true;
 
+                if (oreResourceType == OreResourceType.Fuel)
+                {
+                    GameObject newOre = Instantiate(referenceManager.Zones[0], transform.position, transform.rotation, transform.parent);
+                    newOre.SetActive(false);
+                    newOre.GetComponent<Scr_Ore>().mainCamera = mainCamera;
+                    newOre.GetComponent<Scr_Ore>().referenceManager = referenceManager;
+                    newOre.GetComponent<Scr_Ore>().playerShipStats = playerShipStats;
+                    newOre.GetComponent<Scr_Ore>().astronautsActions = astronautsActions;
+                    newOre.GetComponent<Scr_Ore>().oreResourceType = OreResourceType.Fuel;
+                    newOre.GetComponent<Scr_Ore>().amount = initalAmount;
+                    referenceManager.respawnFuelResources.Add(newOre);
+                }
+                
                 Destroy(gameObject, 2.5f);
             }
         }   
