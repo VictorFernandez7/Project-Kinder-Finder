@@ -61,7 +61,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
 
     [HideInInspector] public int lastWarehouseEmpty;
     [HideInInspector] public int experience;
-    [HideInInspector] public int level = 1;
+    [HideInInspector] public int level;
     [HideInInspector] public bool gasExtractor;
     [HideInInspector] public bool repairingTool;
     [HideInInspector] public bool jetpack;
@@ -81,6 +81,8 @@ public class Scr_PlayerShipStats : MonoBehaviour
         fuelSlider.maxValue = maxFuel;
         fuelTankSlider.maxValue = maxFuel;
         shieldSlider.maxValue = maxShield;
+
+        level = 1;
     }
 
     private void Update()
