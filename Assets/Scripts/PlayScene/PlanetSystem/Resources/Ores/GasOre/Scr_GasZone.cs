@@ -9,6 +9,7 @@ public class Scr_GasZone : MonoBehaviour
 
     [Header("Resource Properties")]
     [SerializeField] public float amount;
+    [SerializeField] public float partResource;
     [SerializeField] public float zoneSize;
 
     [Header("Particle Properties")]
@@ -26,6 +27,7 @@ public class Scr_GasZone : MonoBehaviour
     [HideInInspector] public Scr_IAMovement iAMovement;
 
     private ParticleSystem gasParticles;
+    private int realAmount;
 
     public enum GasType
     {
@@ -38,6 +40,7 @@ public class Scr_GasZone : MonoBehaviour
     private void Start()
     {
         initialAmount = amount;
+        realAmount = 0;
 
         ChangeVisuals();
 
@@ -73,6 +76,13 @@ public class Scr_GasZone : MonoBehaviour
         if (amount <= 0 && gasParticles.particleCount <= 0) {
             iAMovement.isMining = false;
             Destroy(gameObject);
+        }
+
+        else if (partResource >= 1 && realAmount != initialAmount)
+        {
+            iAMovement.gameObject.GetComponentInChildren<Scr_GasTool>().GenerateResource();
+            partResource = 0;
+            realAmount += 1;
         }
     }
 
