@@ -6,6 +6,7 @@ public class Scr_AstronautsActions : MonoBehaviour
 {
     [Header("Resources")]
     [SerializeField] private int maxResourcesCapacity;
+    [SerializeField] private float timeToMine;
 
     [Header("References")]
     [SerializeField] private Animator interactionIndicatorAnim;
@@ -42,6 +43,7 @@ public class Scr_AstronautsActions : MonoBehaviour
     private bool unlockInteract = true;
     private float fuelAmount;
     private float holdInputTime = 0.9f;
+    private float savedTimeToMine;
 
     public GameObject[] currentResource = new GameObject[5];
     private Scr_CableVisuals cableVisuals;
@@ -66,6 +68,7 @@ public class Scr_AstronautsActions : MonoBehaviour
 
         toolOnFloor = null;
         emptyHands = true;
+        savedTimeToMine = timeToMine;
     }
 
     private void Update()
@@ -77,14 +80,20 @@ public class Scr_AstronautsActions : MonoBehaviour
         {
             if (miningSpot != null && ((spotType == SpotType.solidSpot && solidTool.activeInHierarchy) || (spotType == SpotType.liquidSpot && liquidTool.activeInHierarchy) || (spotType == SpotType.gasSpot && gasTool.activeInHierarchy) || (spotType == SpotType.breakeable && solidTool.activeInHierarchy)))
             {
-                iAMovement.isMining = true;
-                iAMovement.target = miningSpot.transform;
+                if (savedTimeToMine > 0)
+                    savedTimeToMine -= Time.deltaTime;
 
-                if (spotType == SpotType.liquidSpot)
-                    liquidTool.GetComponent<Scr_LiquidTool>().zone = miningSpot.transform.parent.gameObject;
+                else
+                {
+                    iAMovement.isMining = true;
+                    iAMovement.target = miningSpot.transform;
 
-                if (spotType == SpotType.gasSpot)
-                    gasTool.GetComponent<Scr_GasTool>().zone = miningSpot.transform.parent.gameObject;
+                    if (spotType == SpotType.liquidSpot)
+                        liquidTool.GetComponent<Scr_LiquidTool>().zone = miningSpot.transform.parent.gameObject;
+
+                    if (spotType == SpotType.gasSpot)
+                        gasTool.GetComponent<Scr_GasTool>().zone = miningSpot.transform.parent.gameObject;
+                }
             }
 
             else
@@ -126,6 +135,7 @@ public class Scr_AstronautsActions : MonoBehaviour
             holdInputTime = 0.9f;
             interactionIndicatorAnim.gameObject.SetActive(false);
             iAMovement.isMining = false;
+            savedTimeToMine = timeToMine;
         }
 
         if (Input.GetButtonDown("Interact") && !narrativeManager.onDialogue)
