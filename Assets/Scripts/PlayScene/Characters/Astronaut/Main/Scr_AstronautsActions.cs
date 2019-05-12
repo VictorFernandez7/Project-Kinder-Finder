@@ -217,6 +217,9 @@ public class Scr_AstronautsActions : MonoBehaviour
                     pickFirst = true;
                 }
             }
+
+            else if(astronautResourcesCheck.resourceList.Count > 0)
+                narrativeManager.StartDialogue(10);
         }
     }
     

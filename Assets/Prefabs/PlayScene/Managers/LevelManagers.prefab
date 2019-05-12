@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b02534b15621e4846b7a733f3be46975, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  respawnTime: 4
   Resources:
   - {fileID: 1364721059764218, guid: 72ea6c9c91448fe4daa7138e4fd07ba1, type: 3}
   - {fileID: 1364721059764218, guid: 1fb546f9cd3a6f7409edd26a134a62ad, type: 3}
@@ -58,6 +59,11 @@ MonoBehaviour:
   - {fileID: 1364721059764218, guid: 71dffa255e58b7a4bb7a4697b4edb23c, type: 3}
   - {fileID: 1364721059764218, guid: 414adfcfce8a19a43a3b4da75b3edb65, type: 3}
   - {fileID: 1364721059764218, guid: e20e511c1daec8e48a2dba048d9213da, type: 3}
+  Zones:
+  - {fileID: 1274462527133118, guid: 9a432fe9269ce584b9335543eee539f2, type: 3}
+  - {fileID: 6508025995361192879, guid: c1ba9a5dfba965b4cb32736386a1c538, type: 3}
+  - {fileID: 1250788440388146, guid: 82ec228afd5ddfb48a4c045256bc2db8, type: 3}
+  respawnFuelResources: []
 --- !u!1 &1015756977819562
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,7 +321,7 @@ MonoBehaviour:
   liquidTool: {fileID: 0}
   gasTool: {fileID: 0}
   SN_key: 8
-  switchOffNarrative: 1
+  switchOffNarrative: 0
   narrativeManager: {fileID: 82026447227232180}
 --- !u!1 &1535065661933764
 GameObject:
@@ -512,6 +518,9 @@ MonoBehaviour:
       dialogTexts: Great. Next time keep the percentages to yourself please.
     - speaker: 1
       dialogTexts: Percentages deactivated.
+  - speaks:
+    - speaker: 0
+      dialogTexts: Are you blind? I'm full.
   jackImage: {fileID: 0}
   iaImage: {fileID: 0}
   panelAnim: {fileID: 0}
@@ -521,4 +530,4 @@ MonoBehaviour:
   speakerName: {fileID: 0}
   astronautMovement: {fileID: 0}
   onDialogue: 0
-  switchOff: 0
+  switchOff: 1

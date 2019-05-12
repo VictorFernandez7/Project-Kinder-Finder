@@ -8,7 +8,7 @@ public class Scr_LiquidDetection : MonoBehaviour
     [SerializeField] private GameObject tooltipPanel;
     [SerializeField] private TextMeshProUGUI resourceName;
     [SerializeField] private TextMeshProUGUI resourceAmount;
-    [SerializeField] private Scr_AstronautsActions astronautsActions;
+    [SerializeField] public Scr_AstronautsActions astronautsActions;
 
     private bool insideTrigger;
     private Scr_LiquidZone liquidOre;
