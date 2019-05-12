@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine;
-using TMPro;
 
 public class Scr_PlayerShipStats : MonoBehaviour
 {
@@ -270,6 +269,9 @@ public class Scr_PlayerShipStats : MonoBehaviour
 
     private void Respawn()
     {
+        if (!playerShipMovement.astronautOnBoard)
+            GetComponent<Scr_PlayerShipActions>().astronaut.GetComponent<Scr_AstronautsActions>().EnterShipFromPlanet();
+
         playerShipMovement.onGround = true;
         transform.SetParent(Scr_PlayerData.checkpointPlanet);
         transform.localPosition = Scr_PlayerData.checkpointPlayershipPosition;
@@ -278,14 +280,13 @@ public class Scr_PlayerShipStats : MonoBehaviour
         currentShield = Scr_PlayerData.checkpointShield;
         rb.isKinematic = false;
         playerShipMovement.mainCamera.GetComponent<Scr_MainCamera>().smoothRotation = true;
+        GetComponent<Scr_PlayerShipActions>().startExitDelay = false;
         GetComponent<Scr_PlayerShipActions>().canExitShip = true;
+        GetComponent<Scr_PlayerShipActions>().unlockInteract = true;
         playerShipMovement.playerShipState = Scr_PlayerShipMovement.PlayerShipState.landed;
         playerShipMovement.canControlShip = true;
         shipVisuals.gameObject.SetActive(true);
         Scr_PlayerData.dead = false;
-
-        if (!playerShipMovement.astronautOnBoard)
-            GetComponent<Scr_PlayerShipActions>().astronaut.GetComponent<Scr_AstronautsActions>().EnterShipFromPlanet();
 
         diedOnce = false;
         astronautMovement.canMove = true;
