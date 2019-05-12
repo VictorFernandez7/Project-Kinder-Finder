@@ -50,11 +50,11 @@ MonoBehaviour:
   typeIndex: 12
   resourceType: 1
   gravity: 1
-  spawnImpulse: 15
+  spawnImpulse: 20
   maxSpawnAngle: 5
   flyingSpeed: 5
-  activationDelay: 0.5
-  rayLength: 0.025
+  activationDelay: 0.6
+  rayLength: 0.05
   collisionMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -68,6 +68,7 @@ MonoBehaviour:
   iD: 0
   onHands: 0
   lerping: 0
+  entering: 0
   targetPosition: {fileID: 0}
   resourceReference: {fileID: 0}
   lootParticles: {fileID: 0}
@@ -248,6 +249,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4447931587795128}
     m_Modifications:
+    - target: {fileID: 100000, guid: f169e340519d039478e235a22bab035f, type: 3}
+      propertyPath: m_Name
+      value: Visuals
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f169e340519d039478e235a22bab035f, type: 3}
+      propertyPath: m_TagString
+      value: Resources
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f169e340519d039478e235a22bab035f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -303,14 +312,6 @@ PrefabInstance:
     - target: {fileID: 400000, guid: f169e340519d039478e235a22bab035f, type: 3}
       propertyPath: m_LocalScale.z
       value: 11.012263
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: f169e340519d039478e235a22bab035f, type: 3}
-      propertyPath: m_Name
-      value: Visuals
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: f169e340519d039478e235a22bab035f, type: 3}
-      propertyPath: m_TagString
-      value: Resources
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: f169e340519d039478e235a22bab035f, type: 3}
       propertyPath: m_Materials.Array.data[0]

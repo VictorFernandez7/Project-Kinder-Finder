@@ -103,7 +103,7 @@ public class Scr_Resource : MonoBehaviour
 
             else if (isGrounded && !lerpingToSurface)
             {
-                RaycastHit2D hit3 = Physics2D.Raycast(rayOrigin3.position,direction, 0.04f, collisionMask);
+                RaycastHit2D hit3 = Physics2D.Raycast(rayOrigin3.position,direction, Mathf.Infinity, collisionMask);
 
                 if(hit3)
                     finalHitPoint = hit3.point;
@@ -115,8 +115,10 @@ public class Scr_Resource : MonoBehaviour
             {
                 rb.velocity = Vector3.zero;
 
-                if((Vector3.Distance(rayOrigin3.position, finalHitPoint) > 0.015f && Vector3.Distance(rayOrigin3.position, finalHitPoint) <= 0.03f) && finalHitPoint != Vector3.zero)
-                    transform.position = Vector2.Lerp(rayOrigin3.position, finalHitPoint, Time.deltaTime * speed);
+                if(finalHitPoint != Vector3.zero)
+                {
+                    transform.position = Vector2.Lerp(transform.position, finalHitPoint + transform.up * 0.03f, Time.deltaTime * speed);
+                }
             }
         }
 
