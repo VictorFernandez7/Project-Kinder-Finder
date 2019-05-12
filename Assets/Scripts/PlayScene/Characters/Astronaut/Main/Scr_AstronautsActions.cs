@@ -265,7 +265,8 @@ public class Scr_AstronautsActions : MonoBehaviour
                         }
                     }
 
-                    Destroy(currentResource[i].gameObject);
+                    currentResource[i].GetComponent<Scr_Resource>().entering = true;
+                    //Destroy(currentResource[i].gameObject);
                     currentResource[i] = null;
                 }
             }

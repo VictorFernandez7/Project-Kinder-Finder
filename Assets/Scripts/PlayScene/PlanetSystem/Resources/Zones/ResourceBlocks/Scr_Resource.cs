@@ -32,6 +32,7 @@ public class Scr_Resource : MonoBehaviour
     [HideInInspector] public int iD;
     [HideInInspector] public bool onHands;
     [HideInInspector] public bool lerping;
+    [HideInInspector] public bool entering;
     [HideInInspector] public GameObject targetPosition;
     [HideInInspector] public GameObject resourceReference;
     [HideInInspector] public ParticleSystem lootParticles;
@@ -70,6 +71,9 @@ public class Scr_Resource : MonoBehaviour
     {
         if (lerping)
             transform.position = Vector3.Lerp(transform.position, targetPosition.transform.position, Time.deltaTime * flyingSpeed);
+
+        if (entering)
+            IntroduceInTheShip();
 
         if (!onHands)
         {
@@ -160,6 +164,19 @@ public class Scr_Resource : MonoBehaviour
                 gasVisuals.SetActive(false);
                 liquidVisuals.SetActive(true);
                 break;
+        }
+    }
+
+    public void IntroduceInTheShip()
+    {
+        lerping = false;
+        Vector2 position = playerShipMovement.gameObject.transform.position + (playerShipMovement.gameObject.transform.up * 0.2f);
+        transform.position = Vector3.Lerp(transform.position, position, Time.deltaTime * flyingSpeed);
+
+        if (transform.position.x <= position.x + 0.1f && transform.position.x >= position.x - 0.1f && transform.position.y <= position.y + 0.1f && transform.position.y >= position.y - 0.1f)
+        {
+            print("ppp");
+            Destroy(this.gameObject);
         }
     }
 }
