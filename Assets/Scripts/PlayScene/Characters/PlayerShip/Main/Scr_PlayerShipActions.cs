@@ -38,7 +38,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
     [SerializeField] public Scr_MainCamera mainCamera;
     [SerializeField] private Scr_GameManager gameManager;
     [SerializeField] private GameObject lineRenderer;
-    [SerializeField] private GameObject IA;
+    [SerializeField] public GameObject IA;
     [SerializeField] private GameObject normalSuit;
     [SerializeField] private GameObject lowTemperatureSuit;
     [SerializeField] private GameObject highTemperatureSuit;
@@ -54,15 +54,15 @@ public class Scr_PlayerShipActions : MonoBehaviour
     [HideInInspector] public GameObject currentAsteroid;
     [HideInInspector] public Vector3 laserHitPosition;
     [HideInInspector] public bool[] unlockedSuits = new bool[3];
+    [HideInInspector] public bool canInputAgain;
 
     private float laserRange;
     private float deployDelaySaved;
     private float holdInputTime = 0.9f;
     public bool canExitShip;
-    private bool unlockInteract;
+    public bool unlockInteract;
     private bool toolPanel;
     private bool doneOnce;
-    private bool canInputAgain = true;
     private int system = 0;
     private int galaxy = 0;
     private Vector3 lastFramePlanetPosition;
@@ -92,6 +92,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
 
         unlockedMiningLaser = false;
         unlockedSpaceWalk = false;
+        canInputAgain = true;
 
         deployDelaySaved = deployDelay;
         miningSlider.maxValue = maxPower;

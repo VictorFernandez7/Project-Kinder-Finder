@@ -103,22 +103,18 @@ public class Scr_Resource : MonoBehaviour
 
             else if (isGrounded && !lerpingToSurface)
             {
-                RaycastHit2D hit3 = Physics2D.Raycast(rayOrigin3.position,direction, Mathf.Infinity, collisionMask);
+                RaycastHit2D hit3 = Physics2D.Raycast(rayOrigin3.position,direction, rayLength + 0.1f, collisionMask);
 
                 if(hit3)
                     finalHitPoint = hit3.point;
 
-                lerpingToSurface = true;
-            }
-
-            else if (activationDelay <= 0)
-            {
-                rb.velocity = Vector3.zero;
-
-                if(finalHitPoint != Vector3.zero)
+                if(finalHitPoint != Vector3.zero && Vector2.Distance(transform.position, finalHitPoint + transform.up * 0.03f) > 0.01f)
                 {
-                    transform.position = Vector2.Lerp(transform.position, finalHitPoint + transform.up * 0.03f, Time.deltaTime * speed);
+                    transform.position = Vector2.Lerp(transform.position, finalHitPoint + transform.up * 0.03f, Time.deltaTime * speed * 10);
                 }
+
+                else
+                    lerpingToSurface = true;
             }
         }
 
@@ -176,9 +172,6 @@ public class Scr_Resource : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, position, Time.deltaTime * flyingSpeed);
 
         if (transform.position.x <= position.x + 0.1f && transform.position.x >= position.x - 0.1f && transform.position.y <= position.y + 0.1f && transform.position.y >= position.y - 0.1f)
-        {
-            print("ppp");
             Destroy(this.gameObject);
-        }
     }
 }
