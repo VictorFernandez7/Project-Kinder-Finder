@@ -245,14 +245,24 @@ public class Scr_AstronautMovement : MonoBehaviour
 
     private void SlideDown()
     {
+        bool right;
+
         if (Vector3.Project(hitLeftGroundPoint, transform.up).magnitude > Vector3.Project(hitRightGroundPoint, transform.up).magnitude)
+        {
             movementVector = (hitLeftGroundPoint - hitRightGroundPoint).normalized;
+            right = false;
+        }
 
         else
+        {
             movementVector = (hitRightGroundPoint - hitLeftGroundPoint).normalized;
+            right = true;
+        }
+
+        if ((faceRight && !right) || (!faceRight && right))
+            Flip();
 
         currentVelocity += Vector3.Project((-transform.up * gravity), movementVector).magnitude * slideSpeed;
-
         transform.Translate(movementVector * currentVelocity, Space.World);
     }
 
