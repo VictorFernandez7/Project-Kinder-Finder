@@ -373,7 +373,6 @@ public class Scr_PlayerShipActions : MonoBehaviour
 
         if (on)
         {
-            playerShipProxCheck.ClearInterface(false);
             playerShipRb.velocity = Vector2.zero;
             playerShipRb.isKinematic = true;
             playerShipMovement.canControlShip = false;
@@ -385,7 +384,6 @@ public class Scr_PlayerShipActions : MonoBehaviour
 
         else
         {
-            playerShipProxCheck.ClearInterface(true);
             playerShipRb.isKinematic = false;
             playerShipMovement.canControlShip = true;
             playerShipPrediction.predictionTime = 6;

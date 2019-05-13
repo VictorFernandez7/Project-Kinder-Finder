@@ -33,6 +33,7 @@ public class Scr_PlayerShipEffects : MonoBehaviour
     [SerializeField] private ParticleSystem damagedSmoke;
     [SerializeField] public ParticleSystem landingSlam;
     [SerializeField] private ParticleSystem stars;
+    [SerializeField] private ParticleSystem confetti;
 
     [Header("Material References")]
     [SerializeField] private Material windowOn;
@@ -205,6 +206,11 @@ public class Scr_PlayerShipEffects : MonoBehaviour
 
         else
             PlayParticleSystem(rightPropulsor);
+    }
+
+    public void ConfettiEffect()
+    {
+        PlayParticleSystem(confetti);
     }
 
     public void PlayParticleSystem(ParticleSystem desiredParticles)

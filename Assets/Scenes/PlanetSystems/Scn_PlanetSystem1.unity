@@ -8371,6 +8371,26 @@ PrefabInstance:
       propertyPath: astronautsActions
       value: 
       objectReference: {fileID: 2028569277}
+    - target: {fileID: 3262568954367715180, guid: 9a432fe9269ce584b9335543eee539f2,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3262568954367715180, guid: 9a432fe9269ce584b9335543eee539f2,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 572465394389016119, guid: 9a432fe9269ce584b9335543eee539f2,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 572465394389016119, guid: 9a432fe9269ce584b9335543eee539f2,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a432fe9269ce584b9335543eee539f2, type: 3}
 --- !u!1 &928942743
@@ -9177,6 +9197,12 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!198 &1049275032 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4426367677998557180, guid: 4ebd81613b53d60479accdefa16de025,
+    type: 3}
+  m_PrefabInstance: {fileID: 4923803341024848704}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1053981201
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12316,6 +12342,11 @@ PrefabInstance:
       propertyPath: iAMovement
       value: 
       objectReference: {fileID: 1362380261}
+    - target: {fileID: 114544908541210520, guid: a7965b5f8a536a540b7c003202d37841,
+        type: 3}
+      propertyPath: confettiParticles
+      value: 
+      objectReference: {fileID: 1049275032}
     - target: {fileID: 114544908541210520, guid: a7965b5f8a536a540b7c003202d37841,
         type: 3}
       propertyPath: playerShipMovement
@@ -19501,7 +19532,7 @@ PrefabInstance:
     - target: {fileID: 1072635885149695334, guid: ddf3d7f788ecbdf4eb70ae8dad730e82,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2968212514026546568, guid: ddf3d7f788ecbdf4eb70ae8dad730e82,
         type: 3}
@@ -19648,26 +19679,6 @@ PrefabInstance:
       propertyPath: mapCamera
       value: 
       objectReference: {fileID: 1280596058}
-    - target: {fileID: 2713335503218900154, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
-        type: 3}
-      propertyPath: planetName
-      value: Magma
-      objectReference: {fileID: 0}
-    - target: {fileID: 2713335503218900154, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
-        type: 3}
-      propertyPath: renderer
-      value: 
-      objectReference: {fileID: 5685924519796873171}
-    - target: {fileID: 2713335503218900154, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
-        type: 3}
-      propertyPath: maxClampDistance
-      value: 28.26
-      objectReference: {fileID: 0}
-    - target: {fileID: 2713335503218900156, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
-        type: 3}
-      propertyPath: m_Radius
-      value: 32.4
-      objectReference: {fileID: 0}
     - target: {fileID: 5889764302848913715, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
         type: 3}
       propertyPath: gameManager
@@ -19678,51 +19689,11 @@ PrefabInstance:
       propertyPath: playerShipStats
       value: 
       objectReference: {fileID: 557998424}
-    - target: {fileID: 176842608409867429, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5158723282316603402, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 941194711085712356, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1444327070753116977, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8114603975956616153, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
         type: 3}
       propertyPath: sun
       value: 
       objectReference: {fileID: 257991237}
-    - target: {fileID: 1842024435136928006, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7317409578650716453, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 949916222419355512, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2713335504425892743, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
-        type: 3}
-      propertyPath: m_Radius
-      value: 23.4
-      objectReference: {fileID: 0}
     - target: {fileID: 8692801341180439923, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
         type: 3}
       propertyPath: playerShipMovement
@@ -19838,6 +19809,21 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6801959087198798322, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
+        type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 719102042}
+    - target: {fileID: 4871619453595072335, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
+        type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 719102042}
+    - target: {fileID: 3213715043299150574, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
+        type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 719102042}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4, type: 3}
 --- !u!1 &4390908856637076402 stripped
@@ -20036,12 +20022,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5669436776134930598, guid: 0e428ff9369d70c4cba369c148df7a59,
     type: 3}
   m_PrefabInstance: {fileID: 1677599909306290362}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &5685924519796873171 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 9013965867225019003, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
-    type: 3}
-  m_PrefabInstance: {fileID: 3742627677221971368}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &5797564252197297255 stripped
 GameObject:
