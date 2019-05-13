@@ -39,10 +39,11 @@ public class Scr_PlanetDiscovery : MonoBehaviour
                 planet.SetActive(true);
                 circleCollider.enabled = false;
                 playerShipStats.GetExperience(gameManager.sightedXP);
+                playerShipStats.GetComponent<Scr_PlayerShipEffects>().ConfettiEffect();
             }
 
-            collision.GetComponentInChildren<Scr_PlayerShipProxCheck>().ClearInterface(false);
-            collision.GetComponent<Scr_PlayerShipHalo>().disableHalo = true;
+            //playerShipStats.GetComponentInChildren<Scr_PlayerShipProxCheck>().ClearInterface(false);
+            //playerShipStats.GetComponentInChildren<Scr_PlayerShipHalo>().disableHalo = true;
         }
 
         
@@ -50,8 +51,8 @@ public class Scr_PlanetDiscovery : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("PlayerShip"))
-            collision.GetComponent<Scr_PlayerShipHalo>().disableHalo = false;
+        //if (collision.CompareTag("PlayerShip"))
+        //    playerShipStats.GetComponentInChildren<Scr_PlayerShipHalo>().disableHalo = false;
     }
 
     public void PlanetExplored()

@@ -12,6 +12,7 @@ public class Scr_AstronautEffects : MonoBehaviour
     [SerializeField] private ParticleSystem fireDeathParticles;
     [SerializeField] private ParticleSystem IceDeathParticles;
     [SerializeField] private ParticleSystem poisonDeathParticles;
+    [SerializeField] private ParticleSystem confettiParticles;
 
     [Header("Sound References")]
     [SerializeField] private SoundDefinition steps;
@@ -87,6 +88,11 @@ public class Scr_AstronautEffects : MonoBehaviour
                 PlayParticleSystem(poisonDeathParticles);
                 break;
         }
+    }
+
+    public void ConfettiParticles()
+    {
+        PlayParticleSystem(confettiParticles);
     }
 
     private void PlayParticleSystem(ParticleSystem desiredParticles)
