@@ -11,6 +11,7 @@ Shader "PolygonArsenal/PolyRimLightTransparent"
      {
        Tags { "Queue" = "Transparent" "RenderType"="Transparent" }
        
+	   ZWrite On
        Cull Back
 	   Lighting Off
        Blend One One
