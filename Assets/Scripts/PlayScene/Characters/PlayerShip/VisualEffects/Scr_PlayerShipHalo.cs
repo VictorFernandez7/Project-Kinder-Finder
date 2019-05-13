@@ -24,6 +24,8 @@ public class Scr_PlayerShipHalo : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform playership;
 
+    [HideInInspector] public bool disableHalo;
+
     private bool lerping;
     private float takingOffDelaySaved;
     private float disablingDelaySaved;
@@ -101,7 +103,7 @@ public class Scr_PlayerShipHalo : MonoBehaviour
             activateDelaySaved = activateDelay;
         }
 
-        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landing)
+        if (disableHalo)
         {
             lerping = true;
 
