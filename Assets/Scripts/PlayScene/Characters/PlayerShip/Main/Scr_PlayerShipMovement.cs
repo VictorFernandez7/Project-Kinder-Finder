@@ -77,6 +77,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     private bool slow;
     private bool takingOffSlow;
     private bool firstTakeOff;
+    private bool snapped;
     private float maxSpeedSaved;
     private float currentSpeed;
     private float canControlTimerSaved;
@@ -190,8 +191,8 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
     private void UpdateShipRotationWhenLanded()
     {
-        RaycastHit2D leftLanderHit = Physics2D.Raycast(leftLander.transform.position, -transform.up, Mathf.Infinity, planetLayer);
-        RaycastHit2D rightLanderHit = Physics2D.Raycast(rightLander.transform.position, -transform.up, Mathf.Infinity, planetLayer);
+        RaycastHit2D leftLanderHit = Physics2D.Raycast(leftLander.transform.position, -transform.up, landingAccuracy + 0.1f, planetLayer);
+        RaycastHit2D rightLanderHit = Physics2D.Raycast(rightLander.transform.position, -transform.up, landingAccuracy + 0.1f, planetLayer);
 
         Debug.DrawLine(leftLander.transform.position, leftLanderHit.point, Color.red);
 
@@ -219,7 +220,15 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         }
         
         if (currentPlanet != null && playerShipState == PlayerShipState.landed)
+        {
             transform.rotation = Quaternion.LookRotation(transform.forward, Vector2.Perpendicular(rightLanderHit.point - leftLanderHit.point));
+
+            if (Vector2.Distance(transform.position, leftLanderHit.point + (Vector2)transform.up * 0.1911f + (Vector2)transform.right * 0.1654f) > 0.01f && !snapped)
+                transform.position = Vector2.Lerp(transform.position, leftLanderHit.point + (Vector2)transform.up * 0.1911f + (Vector2)transform.right * 0.1654f, Time.deltaTime * 10);
+
+            else
+                snapped = true;
+        }
     }
 
     private void PlayerShipStateCheck()
@@ -304,6 +313,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
                 if (currentPlanet == null)
                 {
                     transform.SetParent(null);
+                    snapped = false;
 
                     canRotateShip = true;
                     canControlShip = true;
@@ -342,7 +352,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
                     else
                     {
-                        rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, Time.deltaTime * landingTime * (currentPlanet.transform.GetComponentInChildren<Renderer>().bounds.size.y / gameManager.initialPlanet.GetComponentInChildren<Renderer>().bounds.size.y));
+                        rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, Time.deltaTime * landingTime / (currentPlanet.transform.GetComponentInChildren<Renderer>().bounds.size.y / gameManager.initialPlanet.GetComponentInChildren<Renderer>().bounds.size.y));
 
                         playerShipDeathCheck.CheckLandingTime(false);
                     }
