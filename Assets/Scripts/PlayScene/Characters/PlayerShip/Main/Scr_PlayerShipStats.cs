@@ -300,6 +300,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
         if (levelData.LevelList[level].experienceNeeded <= experience)
         {
             experience -= levelData.LevelList[level].experienceNeeded;
+            astronautMovement.gameObject.GetComponent<Scr_AstronautEffects>().ConfettiParticles();
 
             levelUpCanvas.gameObject.SetActive(true);
 

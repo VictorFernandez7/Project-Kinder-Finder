@@ -39,7 +39,7 @@ public class Scr_PlayerShipPrediction : MonoBehaviour
         Vector3[] results = new Vector3[pointNumber];
         Vector3 moveStep = rb.velocity * Time.fixedDeltaTime;
         Vector3 currentPosition = transform.position;
-        bool contact = false;
+        //bool contact = false;
 
         for (int i = 0; i < results.Length; ++i)
         {
@@ -85,6 +85,9 @@ public class Scr_PlayerShipPrediction : MonoBehaviour
     private void Prediction()
     {
         Vector3[] points = GeneratePredictionPoints();
+
+        for(int i = 0; i < points.Length; i++)
+            points[i].z = transform.position.z + 1f;
 
         predictionLine.positionCount = points.Length;
         predictionLine.SetPositions(points);
