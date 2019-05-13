@@ -31,7 +31,7 @@ public class Scr_MiniMapIndicator : MonoBehaviour
 
         else if (target == Target.PlayerShip)
         {
-            if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed)
+            if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed || playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landing)
             {
                 spriteRenderer1.enabled = true;
                 spriteRenderer2.enabled = false;

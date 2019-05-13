@@ -26,19 +26,32 @@ public class Scr_PlanetDiscovery : MonoBehaviour
 
         sighted = discovered;
         explored = discovered;
-       //planet.SetActive(discovered);
-        circleCollider.enabled = !discovered;
+        planet.SetActive(discovered);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("PlayerShip"))
         {
-            sighted = true;
-            planet.SetActive(true);
-            circleCollider.enabled = false;
-            playerShipStats.GetExperience(gameManager.sightedXP);
+            if (!discovered)
+            {
+                sighted = true;
+                planet.SetActive(true);
+                circleCollider.enabled = false;
+                playerShipStats.GetExperience(gameManager.sightedXP);
+            }
+
+            collision.GetComponentInChildren<Scr_PlayerShipProxCheck>().ClearInterface(false);
+            collision.GetComponent<Scr_PlayerShipHalo>().disableHalo = true;
         }
+
+        
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("PlayerShip"))
+            collision.GetComponent<Scr_PlayerShipHalo>().disableHalo = false;
     }
 
     public void PlanetExplored()
