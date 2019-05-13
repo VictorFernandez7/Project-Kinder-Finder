@@ -239,7 +239,7 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
 
     public void ClearInterface(bool active)
     {
-        halo.SetActive(active);
+        //halo.SetActive(active);
 
         foreach (GameObject indicator in planetIndicators)
         {

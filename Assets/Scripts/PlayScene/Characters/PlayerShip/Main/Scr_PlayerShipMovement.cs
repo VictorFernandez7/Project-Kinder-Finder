@@ -61,6 +61,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     [SerializeField] private GameObject leftLander;
     [SerializeField] private GameObject rightLander;
     [SerializeField] private Scr_GameManager gameManager;
+    [SerializeField] private GameObject visuals;
 
     [HideInInspector] public bool astronautOnBoard;
     [HideInInspector] public bool onGround;
@@ -85,9 +86,10 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     private float initialBulletTime;
     private float savedTimeToTakeOff;
 
+    private float initialZ;
     private Vector3 landingOrientationVector;
     private Vector3 targetTakingOff;
-    private Vector3 targetLanding;    
+    private Vector3 targetLanding;
     private Scr_PlayerShipStats playerShipStats;
     private Scr_PlayerShipEffects playerShipEffects;
     private Scr_PlayerShipActions playerShipActions;
@@ -121,6 +123,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
         checkingDistance = 100f;
         initialBulletTime = bulletTime;
         savedTimeToTakeOff = timeToTakeOff;
+        initialZ = transform.position.z;
     }
 
     private void Update()
@@ -365,6 +368,12 @@ public class Scr_PlayerShipMovement : MonoBehaviour
                     landing = false;
                 }
             }
+
+            if (astronautOnBoard)
+                visuals.transform.position = new Vector3(visuals.transform.position.x, transform.position.y, initialZ + 50);
+
+            else
+                visuals.transform.position = new Vector3(visuals.transform.position.x, transform.position.y, initialZ);
         }
     }
 

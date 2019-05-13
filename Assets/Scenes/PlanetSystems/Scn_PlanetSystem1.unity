@@ -3068,6 +3068,16 @@ PrefabInstance:
       propertyPath: discovered
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5640857353765407017, guid: 9e5591a8a9841424cb9f4ef3ba1b569e,
+        type: 3}
+      propertyPath: playerShipProxCheck
+      value: 
+      objectReference: {fileID: 1984114489}
+    - target: {fileID: 5640857353765407017, guid: 9e5591a8a9841424cb9f4ef3ba1b569e,
+        type: 3}
+      propertyPath: playerShipHalo
+      value: 
+      objectReference: {fileID: 1299274137}
     - target: {fileID: 7110542942150862632, guid: 9e5591a8a9841424cb9f4ef3ba1b569e,
         type: 3}
       propertyPath: playerShipMovement
@@ -5361,11 +5371,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 409190675}
     m_Modifications:
-    - target: {fileID: 3427783866233378542, guid: 6f9f44321c7fecb4ca781a2a50b41d25,
-        type: 3}
-      propertyPath: m_Name
-      value: SpaceBase2
-      objectReference: {fileID: 0}
     - target: {fileID: 3427783866233378541, guid: 6f9f44321c7fecb4ca781a2a50b41d25,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5421,6 +5426,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -129.54701
       objectReference: {fileID: 0}
+    - target: {fileID: 3427783866233378542, guid: 6f9f44321c7fecb4ca781a2a50b41d25,
+        type: 3}
+      propertyPath: m_Name
+      value: SpaceBase2
+      objectReference: {fileID: 0}
+    - target: {fileID: 161311578526757817, guid: 6f9f44321c7fecb4ca781a2a50b41d25,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 161311578526757817, guid: 6f9f44321c7fecb4ca781a2a50b41d25,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 888316435, guid: 6f9f44321c7fecb4ca781a2a50b41d25, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 719102039}
     - target: {fileID: 4575521977536840105, guid: 6f9f44321c7fecb4ca781a2a50b41d25,
         type: 3}
       propertyPath: craftCanvasAnim
@@ -5436,24 +5460,10 @@ PrefabInstance:
       propertyPath: interfaceManager
       value: 
       objectReference: {fileID: 1776733534}
-    - target: {fileID: 161311578526757817, guid: 6f9f44321c7fecb4ca781a2a50b41d25,
-        type: 3}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 161311578526757817, guid: 6f9f44321c7fecb4ca781a2a50b41d25,
-        type: 3}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 803580642, guid: 6f9f44321c7fecb4ca781a2a50b41d25, type: 3}
       propertyPath: astronautsActions
       value: 
       objectReference: {fileID: 2028569277}
-    - target: {fileID: 888316435, guid: 6f9f44321c7fecb4ca781a2a50b41d25, type: 3}
-      propertyPath: mainCamera
-      value: 
-      objectReference: {fileID: 719102039}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f9f44321c7fecb4ca781a2a50b41d25, type: 3}
 --- !u!114 &458981208 stripped
@@ -11100,6 +11110,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 884968320}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1299274137 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114199029138039828, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
+    type: 3}
+  m_PrefabInstance: {fileID: 1522647530}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12f66225cdf348940838f54ef8f6b659, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1302255609
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12203,6 +12225,11 @@ PrefabInstance:
       propertyPath: toolSlots.Array.data[4]
       value: 
       objectReference: {fileID: 824682540}
+    - target: {fileID: 114844797242794480, guid: a7965b5f8a536a540b7c003202d37841,
+        type: 3}
+      propertyPath: maxOxygen
+      value: 400
+      objectReference: {fileID: 0}
     - target: {fileID: 4004395127091482, guid: a7965b5f8a536a540b7c003202d37841, type: 3}
       propertyPath: m_LocalPosition.x
       value: 17.806
@@ -12976,6 +13003,16 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1611353680}
+    - target: {fileID: 114696350668254112, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
+        type: 3}
+      propertyPath: visuals
+      value: 
+      objectReference: {fileID: 1557125494}
+    - target: {fileID: 114696350668254112, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
+        type: 3}
+      propertyPath: rotationDelay
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4030621875282276, guid: 15c55cceacb93ea4bb7e3f3c7e160410, type: 3}
       propertyPath: m_LocalPosition.x
       value: 16.847
@@ -13555,6 +13592,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a432fe9269ce584b9335543eee539f2, type: 3}
+--- !u!1 &1557125494 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1885463595833038, guid: 15c55cceacb93ea4bb7e3f3c7e160410,
+    type: 3}
+  m_PrefabInstance: {fileID: 1522647530}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1561736833
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18869,6 +18912,16 @@ PrefabInstance:
       propertyPath: discovered
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9159054379039148609, guid: 2642f6dc19ca8504faae6a24c965b7cc,
+        type: 3}
+      propertyPath: playerShipProxCheck
+      value: 
+      objectReference: {fileID: 1984114489}
+    - target: {fileID: 9159054379039148609, guid: 2642f6dc19ca8504faae6a24c965b7cc,
+        type: 3}
+      propertyPath: playerShipHalo
+      value: 
+      objectReference: {fileID: 1299274137}
     - target: {fileID: 7384586004028757569, guid: 2642f6dc19ca8504faae6a24c965b7cc,
         type: 3}
       propertyPath: playerShipMovement
@@ -19069,6 +19122,16 @@ PrefabInstance:
       propertyPath: discovered
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6713218465350985968, guid: ddf3d7f788ecbdf4eb70ae8dad730e82,
+        type: 3}
+      propertyPath: playerShipProxCheck
+      value: 
+      objectReference: {fileID: 1984114489}
+    - target: {fileID: 6713218465350985968, guid: ddf3d7f788ecbdf4eb70ae8dad730e82,
+        type: 3}
+      propertyPath: playerShipHalo
+      value: 
+      objectReference: {fileID: 1299274137}
     - target: {fileID: 8373749778354943152, guid: ddf3d7f788ecbdf4eb70ae8dad730e82,
         type: 3}
       propertyPath: playerShipMovement
@@ -19568,20 +19631,40 @@ MonoBehaviour:
   changeColor: 0
   dayAmount: 65
   nightAmount: 25
-  maxRed: 255
-  minRed: 0
-  maxGreen: 255
-  minGreen: 180
-  maxBlue: 255
-  minBlue: 0
-  nightRed: 0
-  nightGreen: 90
-  nightBlue: 255
   lerpSpeed: 2
   atmosphereImage: {fileID: 914645045}
   sun: {fileID: 441807389}
   astronaut: {fileID: 1466912768}
   sunLight: {fileID: 672503368}
+  colorines:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
 --- !u!1001 &3742627677221971368
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19689,6 +19772,16 @@ PrefabInstance:
       propertyPath: playerShipStats
       value: 
       objectReference: {fileID: 557998424}
+    - target: {fileID: 5889764302848913715, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
+        type: 3}
+      propertyPath: playerShipProxCheck
+      value: 
+      objectReference: {fileID: 1984114489}
+    - target: {fileID: 5889764302848913715, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
+        type: 3}
+      propertyPath: playerShipHalo
+      value: 
+      objectReference: {fileID: 1299274137}
     - target: {fileID: 8114603975956616153, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
         type: 3}
       propertyPath: sun
@@ -19714,6 +19807,176 @@ PrefabInstance:
       propertyPath: sunLight
       value: 
       objectReference: {fileID: 672503368}
+    - target: {fileID: 2713335504425892760, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
+        type: 3}
+      propertyPath: colorines.key0.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713335504425892760, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
+        type: 3}
+      propertyPath: colorines.key0.g
+      value: 0.08136632
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713335504425892760, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
+        type: 3}
+      propertyPath: colorines.key0.b
+      value: 0.3301887
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713335504425892760, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
+        type: 3}
+      propertyPath: colorines.key1.g
+      value: 0.629949
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713335504425892760, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
+        type: 3}
+      propertyPath: colorines.key1.b
+      value: 0.7264151
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713335504425892760, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
+        type: 3}
+      propertyPath: colorines.key2.r
+      value: 0.8726415
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713335504425892760, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
+        type: 3}
+      propertyPath: colorines.key2.g
+      value: 0.9597131
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713335504425892760, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
+        type: 3}
+      propertyPath: colorines.key2.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713335504425892760, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
+        type: 3}
+      propertyPath: colorines.ctime1
+      value: 32768
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713335504425892760, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
+        type: 3}
+      propertyPath: colorines.ctime2
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713335504425892760, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
+        type: 3}
+      propertyPath: colorines.m_NumColorKeys
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713335504425892760, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
+        type: 3}
+      propertyPath: colorines.key1.r
+      value: 0.42145783
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713335504425892760, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
+        type: 3}
+      propertyPath: colorines.key3.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713335504425892760, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
+        type: 3}
+      propertyPath: colorines.key3.g
+      value: 0.24449503
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713335504425892760, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
+        type: 3}
+      propertyPath: colorines.key3.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713335504425892760, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
+        type: 3}
+      propertyPath: colorines.ctime3
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713335504425892760, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
+        type: 3}
+      propertyPath: colorines.ctime0
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713335504425892760, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
+        type: 3}
+      propertyPath: colorines.key4.g
+      value: 0.24449503
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713335504425892760, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
+        type: 3}
+      propertyPath: colorines.key4.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713335504425892760, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
+        type: 3}
+      propertyPath: colorines.ctime4
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713335504425892760, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
+        type: 3}
+      propertyPath: colorines.key5.g
+      value: 0.08136632
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713335504425892760, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
+        type: 3}
+      propertyPath: colorines.key5.b
+      value: 0.3301887
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713335504425892760, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
+        type: 3}
+      propertyPath: colorines.ctime5
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713335504425892760, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
+        type: 3}
+      propertyPath: colorines.key4.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713335504425892760, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
+        type: 3}
+      propertyPath: colorines.key6.g
+      value: 0.08136632
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713335504425892760, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
+        type: 3}
+      propertyPath: colorines.key6.b
+      value: 0.3301887
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713335504425892760, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
+        type: 3}
+      propertyPath: colorines.ctime6
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713335504425892760, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
+        type: 3}
+      propertyPath: colorines.key7.g
+      value: 0.08136632
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713335504425892760, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
+        type: 3}
+      propertyPath: colorines.key7.b
+      value: 0.3301887
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713335504425892760, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
+        type: 3}
+      propertyPath: colorines.ctime7
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713335504425892760, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
+        type: 3}
+      propertyPath: colorines.key5.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713335504425892760, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
+        type: 3}
+      propertyPath: changeColor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713335504425892760, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
+        type: 3}
+      propertyPath: colorines.key1.a
+      value: 0.25490198
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713335504425892760, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
+        type: 3}
+      propertyPath: colorines.key0.a
+      value: 0.09803922
+      objectReference: {fileID: 0}
     - target: {fileID: 3631629910793787370, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
         type: 3}
       propertyPath: mainCamera
@@ -19824,6 +20087,11 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 719102042}
+    - target: {fileID: 1444327070753116977, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b1f1c8b749c2434ba29ca7e07dc47b4, type: 3}
 --- !u!1 &4390908856637076402 stripped
@@ -20161,6 +20429,16 @@ PrefabInstance:
       propertyPath: discovered
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3243226107249110557, guid: 451b63f8ffd1ace44baed8f34829c05d,
+        type: 3}
+      propertyPath: playerShipProxCheck
+      value: 
+      objectReference: {fileID: 1984114489}
+    - target: {fileID: 3243226107249110557, guid: 451b63f8ffd1ace44baed8f34829c05d,
+        type: 3}
+      propertyPath: playerShipHalo
+      value: 
+      objectReference: {fileID: 1299274137}
     - target: {fileID: 3264543679423406714, guid: 451b63f8ffd1ace44baed8f34829c05d,
         type: 3}
       propertyPath: playerShipMovement
@@ -20358,6 +20636,16 @@ PrefabInstance:
       propertyPath: discovered
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 433357126258017583, guid: 91a2a951a97b84a42967987fb6c9eb55,
+        type: 3}
+      propertyPath: playerShipProxCheck
+      value: 
+      objectReference: {fileID: 1984114489}
+    - target: {fileID: 433357126258017583, guid: 91a2a951a97b84a42967987fb6c9eb55,
+        type: 3}
+      propertyPath: playerShipHalo
+      value: 
+      objectReference: {fileID: 1299274137}
     - target: {fileID: 4965755574321802159, guid: 91a2a951a97b84a42967987fb6c9eb55,
         type: 3}
       propertyPath: playerShipMovement

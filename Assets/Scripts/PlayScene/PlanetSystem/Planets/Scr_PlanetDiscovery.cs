@@ -14,6 +14,8 @@ public class Scr_PlanetDiscovery : MonoBehaviour
     [SerializeField] private GameObject planet;
     [SerializeField] private Scr_GameManager gameManager;
     [SerializeField] private Scr_PlayerShipStats playerShipStats;
+    [SerializeField] private Scr_PlayerShipProxCheck playerShipProxCheck;
+    [SerializeField] private Scr_PlayerShipHalo playerShipHalo;
 
     [HideInInspector] public bool sighted;
     [HideInInspector] public bool explored;
@@ -42,8 +44,8 @@ public class Scr_PlanetDiscovery : MonoBehaviour
                 playerShipStats.GetComponent<Scr_PlayerShipEffects>().ConfettiEffect();
             }
 
-            //playerShipStats.GetComponentInChildren<Scr_PlayerShipProxCheck>().ClearInterface(false);
-            //playerShipStats.GetComponentInChildren<Scr_PlayerShipHalo>().disableHalo = true;
+            playerShipProxCheck.ClearInterface(false);
+            playerShipHalo.disableHalo = true;
         }
 
         
@@ -51,8 +53,11 @@ public class Scr_PlanetDiscovery : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        //if (collision.CompareTag("PlayerShip"))
-        //    playerShipStats.GetComponentInChildren<Scr_PlayerShipHalo>().disableHalo = false;
+        if (collision.CompareTag("PlayerShip"))
+        {
+            playerShipProxCheck.ClearInterface(true);
+            playerShipHalo.disableHalo = false;
+        }
     }
 
     public void PlanetExplored()
