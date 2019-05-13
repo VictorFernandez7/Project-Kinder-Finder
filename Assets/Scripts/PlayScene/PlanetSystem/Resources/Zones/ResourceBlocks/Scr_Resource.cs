@@ -119,7 +119,11 @@ public class Scr_Resource : MonoBehaviour
         }
 
         else
+        {
             rb.isKinematic = true;
+            rb.velocity = Vector3.zero;
+            isGrounded = true;
+        }
     }
 
     private void ResourceTypeChoice()
