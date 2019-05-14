@@ -21,6 +21,8 @@ public class Scr_IAMovement : MonoBehaviour
     [Header("Tools")]
     [SerializeField] public GameObject[] tools;
 
+    public ParticleSystem IAGlow;
+
     private float desiredSpeed;
     private float savedDelay;
     private Vector3 desiredRotation;
