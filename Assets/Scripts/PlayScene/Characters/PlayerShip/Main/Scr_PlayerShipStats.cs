@@ -227,7 +227,6 @@ public class Scr_PlayerShipStats : MonoBehaviour
             collider.enabled = false;
 
             GetComponentInChildren<Scr_PlayerShipDeathCheck>().enabled = false;
-            GetComponent<Scr_PlayerShipPrediction>().enabled = false;
         }
 
         else if (!diedOnce)
