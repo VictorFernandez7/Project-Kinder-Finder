@@ -308,6 +308,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
         astronaut.GetComponent<Scr_AstronautMovement>().planetPosition = lastFramePlanetPosition;
         playerShipMovement.mainCamera.GetComponent<Scr_MainCamera>().followAstronaut = true;
         GameObject ia = Instantiate(IA, IAStpot.position, IAStpot.rotation);
+        GetComponent<Scr_PlayerShipStats>().narrativeManager.IAGlow = ia.GetComponent<Scr_IAMovement>().IAGlow;
 
         for(int i = 0; i < astronaut.GetComponent<Scr_AstronautStats>().toolSlots.Count; i++)
         {

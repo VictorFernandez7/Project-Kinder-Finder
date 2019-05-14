@@ -16,7 +16,7 @@ public class Scr_NarrativeManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private Animator panelAnim;
     [SerializeField] private ParticleSystem astronautGlow;
-    [SerializeField] private ParticleSystem IAGlow;
+    [SerializeField] public ParticleSystem IAGlow;
     [SerializeField] private TextMeshProUGUI texts;
     [SerializeField] private TextMeshProUGUI speakerName;
     [SerializeField] private Scr_AstronautMovement astronautMovement;
