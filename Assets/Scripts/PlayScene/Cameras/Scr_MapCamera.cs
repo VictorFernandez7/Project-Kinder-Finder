@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Scr_MapCamera : MonoBehaviour
 {
@@ -12,26 +10,27 @@ public class Scr_MapCamera : MonoBehaviour
 
     [Header("Camera Movement")]
     [SerializeField] private bool inverted;
-    [SerializeField] private float dragSpeed;
+    [SerializeField] private float speedRatio;
+    [SerializeField] private float moveTimer;
 
     [Header("Focus Properties")]
     [SerializeField] private float focusZoom;
-    [SerializeField] private float positionSpeed;
+    [SerializeField] private float moveSpeed;
     [SerializeField] private float zoomSpeed;
-    [SerializeField] private float xDifference;
+    [SerializeField] private float xOffset;
 
     [Header("References")]
-    [SerializeField] private Scr_MapManager mapManager;
-    [SerializeField] private GameObject zoomPanel;
     [SerializeField] private GameObject playerShip;
+    [SerializeField] private Scr_InterfaceManager interfaceManager;
 
     [HideInInspector] public bool focus;
+    [HideInInspector] public Animator mapCanvasAnim;
     [HideInInspector] public GameObject target;
 
     private float currentZoom;
-    private float savedZoom;
-    private float savedPosition;
+    private float savedTimer;
     private Camera mapCamera;
+    private Vector3 targetPos;
     private Vector3 dragOrigin;
 
     private void Start()
@@ -39,6 +38,7 @@ public class Scr_MapCamera : MonoBehaviour
         mapCamera = GetComponent<Camera>();
 
         currentZoom = initialZoom;
+        savedTimer = moveTimer;
 
         mapCamera.orthographicSize = initialZoom;
         mapCamera.transform.position = new Vector3(playerShip.transform.position.x, playerShip.transform.position.y, transform.position.z);
@@ -46,49 +46,63 @@ public class Scr_MapCamera : MonoBehaviour
 
     private void Update()
     {
-        if (mapManager.mapActive && mapManager.canMove)
+        if (interfaceManager.mapActive)
         {
-            MapMovement();
-            ZoomSystem();
+            CameraZoom();
+
+            if (!focus)
+                MapMovement();
         }
     }
 
     private void MapMovement()
     {
         if (Input.GetMouseButtonDown(0))
-        {
             dragOrigin = Input.mousePosition;
-            return;
+
+        if (Input.GetMouseButton(0))
+        {
+            savedTimer -= Time.deltaTime;
+
+            if (savedTimer > 0)
+            {
+                float targetSpeed = currentZoom / 100 * speedRatio;
+                Vector3 cameraPos = GetComponent<Camera>().ScreenToViewportPoint(Input.mousePosition - dragOrigin).normalized;
+                Vector3 movementVector = new Vector3(cameraPos.x, cameraPos.y, 0) * targetSpeed;
+
+                transform.position += inverted ? movementVector : -movementVector;
+            }
         }
 
-        if (!Input.GetMouseButton(0)) return;
-
-        Vector3 cameraPos = GetComponent<Camera>().ScreenToViewportPoint(Input.mousePosition - dragOrigin);
-        Vector3 movementVector = new Vector3(cameraPos.x * dragSpeed, cameraPos.y * dragSpeed, 0);
-
-        transform.position += inverted ? movementVector : -movementVector;
+        if (Input.GetMouseButtonUp(0))
+            savedTimer = moveTimer;
     }
 
-    private void ZoomSystem()
+    public void CalculateCameraPos()
+    {
+        targetPos = new Vector3(target.transform.position.x + xOffset, target.transform.position.y, -100);
+    }
+
+    private void CameraZoom()
     {
         if (focus)
         {
             mapCamera.orthographicSize = Mathf.Lerp(mapCamera.orthographicSize, focusZoom, Time.unscaledDeltaTime * zoomSpeed);
-            mapCamera.transform.position = Vector3.Lerp(mapCamera.transform.position, new Vector3(target.transform.position.x + xDifference, target.transform.position.y, mapCamera.transform.position.z), positionSpeed * Time.unscaledDeltaTime);
-
-            if (mapCamera.orthographicSize <= focusZoom + 20)
-                //zoomPanel.SetBool("Show", true);
-                zoomPanel.SetActive(false);
+            mapCamera.transform.position = Vector3.Lerp(mapCamera.transform.position, targetPos, Time.unscaledDeltaTime * moveSpeed);
         }
 
         else
         {
             currentZoom = Mathf.Clamp(currentZoom, minZoom, maxZoom);
             currentZoom += Input.GetAxis("Mouse ScrollWheel") * -wheelSpeed;
-            mapCamera.orthographicSize = currentZoom;
 
-            //zoomPanel.SetBool("Show", false);
-            zoomPanel.SetActive(true);
+            if (currentZoom <= maxZoom && currentZoom >= minZoom)
+                mapCamera.orthographicSize = currentZoom;
         }
+    }
+
+    public void StopFocus()
+    {
+        focus = false;
     }
 }

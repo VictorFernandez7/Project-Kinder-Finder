@@ -15,16 +15,20 @@ public class Scr_AstronautStats : MonoBehaviour
     [Header("References")]
     [SerializeField] private Slider oxygenSlider;
     [SerializeField] private Slider healthSlider;
-    [SerializeField] private GameObject playership;
     [SerializeField] public Animator anim_OxygenPanel;
     [SerializeField] public Animator anim_HealthPanel;
+    [SerializeField] public GameObject visuals;
+    [SerializeField] private GameObject playership;
     [SerializeField] public List<GameObject> toolSlots = new List<GameObject>();
 
     [HideInInspector] public float currentOxygen;
     [HideInInspector] public float currentHealth;
+    [HideInInspector] public Vector3 initialVisualPos;
 
     private void Start()
     {
+        initialVisualPos = visuals.transform.position;
+
         InitialSet();
     }
 
