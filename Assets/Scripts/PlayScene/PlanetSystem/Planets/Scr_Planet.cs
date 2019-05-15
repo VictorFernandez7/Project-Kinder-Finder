@@ -1,16 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.EventSystems;
+﻿using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 
-public class Scr_Planet : Scr_AstroBase, IPointerEnterHandler
+public class Scr_Planet : Scr_AstroBase
 {
     [Header("Planet Info")]
     [SerializeField] public string planetName;
     [SerializeField] public PlanetType planetType;
     [SerializeField] public BlockType blockType;
     [SerializeField] public List<Scr_ReferenceManager.ResourceName> resources;
-    [SerializeField] public bool planetOxygen;
 
     [Header("Movement Properties")]
     [SerializeField] private float movementSpeed;
@@ -27,14 +26,23 @@ public class Scr_Planet : Scr_AstroBase, IPointerEnterHandler
     [Header("Internal References")]
     [SerializeField] private GameObject mapIndicator;
     [SerializeField] public Renderer renderer;
+    [SerializeField] public Animator canvasAnim;
+    [SerializeField] public TextMeshProUGUI canvasName;
+    [SerializeField] public TextMeshProUGUI canvasType;
+    [SerializeField] public TextMeshProUGUI canvasBlock;
+    [SerializeField] public TextMeshProUGUI canvasResource1;
+    [SerializeField] public TextMeshProUGUI canvasResource2;
+    [SerializeField] public TextMeshProUGUI canvasResource3;
+    [SerializeField] public TextMeshProUGUI canvasResource4;
 
     [Header("External References")]
     [SerializeField] private GameObject rotationPivot;
-    [SerializeField] private Scr_MapManager mapManager;
+    [SerializeField] private Scr_InterfaceManager interfaceManager;
     [SerializeField] private GameObject playerShip;
     [SerializeField] private GameObject astronaut;
     [SerializeField] private GameObject mainCanvas;
     [SerializeField] private Scr_MapCamera mapCamera;
+    [SerializeField] private Animator mapCanvasAnim;
 
     private double gravityConstant;
     private Vector3 lastFrameRotationPivot;
@@ -68,6 +76,13 @@ public class Scr_Planet : Scr_AstroBase, IPointerEnterHandler
         playerShipRb = playerShip.GetComponent<Rigidbody2D>();
         astronautRB = astronaut.GetComponent<Rigidbody2D>();
         gravityConstant = 6.674 * (10 ^ -11);
+
+        ChangePanelInfo();
+    }
+
+    private void Update()
+    {
+        MapAnimators();
     }
 
     public override void FixedUpdate()
@@ -129,17 +144,30 @@ public class Scr_Planet : Scr_AstroBase, IPointerEnterHandler
 
     private void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(0) && mapManager.mapActive)
+        if (Input.GetMouseButtonDown(0) && interfaceManager.mapActive && !mapCamera.focus)
         {
+            mapCamera.focus = true;
             mapCamera.target = gameObject;
-            mapCamera.focus = !mapCamera.focus;
-            mapManager.canMove = !mapManager.canMove;
-            mapManager.ChangePlanetInfo(planetName, planetType, blockType, planetOxygen);
-            mapManager.currentPlanet = gameObject;
+            mapCamera.CalculateCameraPos();
+            canvasAnim.SetBool("Show", true);
+            mapCanvasAnim.SetBool("Show", true);
         }
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    private void ChangePanelInfo()
     {
+        canvasName.text = planetName;
+        canvasType.text = planetType.ToString();
+        canvasBlock.text = blockType.ToString();
+        canvasResource1.text = resources[0].ToString();
+        canvasResource2.text = resources[1].ToString();
+        canvasResource3.text = resources[2].ToString();
+        canvasResource4.text = resources[3].ToString();
+    }
+
+    private void MapAnimators()
+    {
+        canvasAnim.SetBool("Show", mapCamera.focus);
+        mapCanvasAnim.SetBool("Show", mapCamera.focus);
     }
 }

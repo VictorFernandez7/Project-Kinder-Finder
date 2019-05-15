@@ -24,12 +24,22 @@ public class Scr_InterfaceManager : MonoBehaviour
     [SerializeField] private GameObject playerShip;
     [SerializeField] private GameObject angleIcon;
     [SerializeField] private GameObject astronaut;
-    [SerializeField] private Scr_MainCamera mainCamera;
     [SerializeField] private TextMeshProUGUI planetName;
+
+    [Header("Map References")]
+    [SerializeField] private GameObject mapCanvas;
+    [SerializeField] private GameObject mainCanvas;
+    [SerializeField] private Scr_MapCamera mapCamera;
+    [SerializeField] private Scr_MainCamera mainCamera;
+    [SerializeField] private TextMeshProUGUI mapPlanetName;
+    [SerializeField] private TextMeshProUGUI mapPlanetType;
+    [SerializeField] private TextMeshProUGUI mapPlanetBlock;
 
     [HideInInspector] public bool gamePaused;
     [HideInInspector] public bool interacting;
+    [HideInInspector] public bool mapActive;
 
+    private bool slow;
     private bool playerShipWindowActive;
     private Scr_PlayerShipMovement playerShipMovement;
     private Scr_PlayerShipStats playerShipStats;
@@ -45,10 +55,11 @@ public class Scr_InterfaceManager : MonoBehaviour
 
     private void Update()
     {
-        AstronautInterfaceInfoUpdate();
-        PlayerShipWindowAvailable();
-        LandingInterface();
         CheckInputs();
+        MapActivation();
+        LandingInterface();
+        PlayerShipWindowAvailable();
+        AstronautInterfaceInfoUpdate();
 
         if (!interacting)
         {
@@ -122,7 +133,7 @@ public class Scr_InterfaceManager : MonoBehaviour
     private void CheckInputs()
     {
         if (Input.GetKeyDown(input_PauseMenu))
-            PauseGame(true);
+            PauseGame(!gamePaused);
     }
 
     private void LandingInterface()
@@ -178,5 +189,43 @@ public class Scr_InterfaceManager : MonoBehaviour
     public void Exit()
     {
         Scr_LevelManager.LoadMainMenu();
+    }
+
+    public void Map()
+    {
+        mapActive = !mapActive;
+
+        mainCamera.gameObject.SetActive(!mapActive);
+        mapCamera.gameObject.SetActive(mapActive);
+        mainCanvas.gameObject.SetActive(!mapActive);
+        mapCanvas.gameObject.SetActive(mapActive);
+    }
+
+    private void MapActivation()
+    {
+        if (mapActive)
+        {
+            playerShip.GetComponent<Scr_PlayerShipPrediction>().enabled = false;
+            playerShip.GetComponent<LineRenderer>().enabled = false;
+
+            Time.timeScale = 0f;
+            Time.fixedDeltaTime = Time.timeScale * 0.02f;
+            slow = true;
+        }
+
+        else if (!mapActive && Time.timeScale < 1 && slow == true)
+        {
+            Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
+            Time.timeScale += 0.25f * Time.unscaledDeltaTime;
+            Time.fixedDeltaTime = Time.timeScale * 0.02f;
+
+            if (Time.timeScale >= 1)
+            {
+                Time.timeScale = 1;
+                playerShip.GetComponent<Scr_PlayerShipPrediction>().enabled = true;
+                playerShip.GetComponent<LineRenderer>().enabled = true;
+                slow = false;
+            }
+        }
     }
 }
