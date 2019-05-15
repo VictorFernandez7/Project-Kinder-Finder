@@ -27,7 +27,7 @@ public class Scr_PlayerShipEffects : MonoBehaviour
     [SerializeField] private ParticleSystem rightThruster;
     [SerializeField] private ParticleSystem leftPropulsor;
     [SerializeField] private ParticleSystem rightPropulsor;
-    [SerializeField] private ParticleSystem explosion;
+    [SerializeField] public ParticleSystem explosion;
     [SerializeField] public ParticleSystem takingOffSlam;
     [SerializeField] public ParticleSystem takingOffSmoke;
     [SerializeField] private ParticleSystem damagedSmoke;
@@ -211,6 +211,13 @@ public class Scr_PlayerShipEffects : MonoBehaviour
     public void ConfettiEffect()
     {
         PlayParticleSystem(confetti);
+    }
+
+    public void StopAllThrusters()
+    {
+        StopParticleSystem(mainThruster);
+        StopParticleSystem(leftThruster);
+        StopParticleSystem(rightThruster);
     }
 
     public void PlayParticleSystem(ParticleSystem desiredParticles)

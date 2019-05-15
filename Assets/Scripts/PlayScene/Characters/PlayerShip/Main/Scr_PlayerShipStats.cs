@@ -31,7 +31,6 @@ public class Scr_PlayerShipStats : MonoBehaviour
     [SerializeField] private Color fuelColor75;
 
     [Header("References")]
-    [SerializeField] private ParticleSystem deathParticles;
     [SerializeField] private GameObject shipVisuals;
     [SerializeField] private BoxCollider2D collider;
     [SerializeField] private Animator fadeImage;
@@ -216,51 +215,58 @@ public class Scr_PlayerShipStats : MonoBehaviour
 
     public void Death()
     {
-        if (playerShipMovement.astronautOnBoard)
-        {   
-            playerShipMovement.canControlShip = false;
-            playerShipMovement.canRotateShip = false;
-            Scr_PlayerData.dead = true;
-            rb.isKinematic = true;
-            rb.velocity = Vector3.zero;
-            shipVisuals.gameObject.SetActive(false);
-            deathParticles.Play();
-            collider.enabled = false;
-
-            GetComponentInChildren<Scr_PlayerShipDeathCheck>().enabled = false;
-        }
-
-        else if (!diedOnce)
+        if (!diedOnce)
         {
             diedOnce = true;
 
-            astronautStats.visuals.transform.position = new Vector3(astronautStats.visuals.transform.position.x, astronautStats.visuals.transform.position.y, astronautStats.initialVisualPos.z + 50);
-            astronautMovement.canMove = false;
-            astronautAnim.SetTrigger("Death");
-
-            switch (playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().planetType)
+            if (playerShipMovement.astronautOnBoard)
             {
-                case Scr_Planet.PlanetType.EarthLike:
-                    astronautEffects.DeathParticles(Scr_AstronautEffects.DeathType.Normal);
-                    break;
-                case Scr_Planet.PlanetType.Frozen:
-                    astronautEffects.DeathParticles(Scr_AstronautEffects.DeathType.Ice);
-                    break;
-                case Scr_Planet.PlanetType.Volcanic:
-                    astronautEffects.DeathParticles(Scr_AstronautEffects.DeathType.Fire);
-                    break;
-                case Scr_Planet.PlanetType.Arid:
-                    astronautEffects.DeathParticles(Scr_AstronautEffects.DeathType.Normal);
-                    break;
-                case Scr_Planet.PlanetType.Toxic:
-                    astronautEffects.DeathParticles(Scr_AstronautEffects.DeathType.Posion);
-                    break;
+                playerShipMovement.canControlShip = false;
+                playerShipMovement.canRotateShip = false;
+                Scr_PlayerData.dead = true;
+                rb.isKinematic = true;
+                rb.velocity = Vector3.zero;
+                shipVisuals.gameObject.SetActive(false);
+                playerShipEffects.PlayParticleSystem(playerShipEffects.explosion);
+                playerShipEffects.StopAllThrusters();
+                collider.enabled = false;
+
+                GetComponentInChildren<Scr_PlayerShipDeathCheck>().enabled = false;
+
+                Invoke("Fade", fadeTime);
             }
 
-            Invoke("Fade", fadeTime);
+            else
+            {
+                astronautStats.visuals.transform.position = new Vector3(astronautStats.visuals.transform.position.x, astronautStats.visuals.transform.position.y, astronautStats.initialVisualPos.z + 50);
+                astronautMovement.canMove = false;
+                astronautAnim.SetTrigger("Death");
+
+                switch (playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().planetType)
+                {
+                    case Scr_Planet.PlanetType.EarthLike:
+                        astronautEffects.DeathParticles(Scr_AstronautEffects.DeathType.Normal);
+                        break;
+                    case Scr_Planet.PlanetType.Frozen:
+                        astronautEffects.DeathParticles(Scr_AstronautEffects.DeathType.Ice);
+                        break;
+                    case Scr_Planet.PlanetType.Volcanic:
+                        astronautEffects.DeathParticles(Scr_AstronautEffects.DeathType.Fire);
+                        break;
+                    case Scr_Planet.PlanetType.Arid:
+                        astronautEffects.DeathParticles(Scr_AstronautEffects.DeathType.Normal);
+                        break;
+                    case Scr_Planet.PlanetType.Toxic:
+                        astronautEffects.DeathParticles(Scr_AstronautEffects.DeathType.Posion);
+                        break;
+                }
+
+                Invoke("Fade", fadeTime);
+            }
+
+            Invoke("Respawn", respawnTime);
         }
 
-        Invoke("Respawn", respawnTime);
     }
 
     private void Fade()
