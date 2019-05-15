@@ -53,6 +53,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
     [SerializeField] public Scr_AstronautMovement astronautMovement;
     [SerializeField] public Animator astronautAnim;
     [SerializeField] public Scr_AstronautEffects astronautEffects;
+    [SerializeField] public Scr_AstronautStats astronautStats;
     [SerializeField] public Scr_MainCamera mainCamera;
 
     [Header("Inventory")]
@@ -216,7 +217,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
     public void Death()
     {
         if (playerShipMovement.astronautOnBoard)
-        {
+        {   
             playerShipMovement.canControlShip = false;
             playerShipMovement.canRotateShip = false;
             Scr_PlayerData.dead = true;
@@ -233,6 +234,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
         {
             diedOnce = true;
 
+            astronautStats.visuals.transform.position = new Vector3(astronautStats.visuals.transform.position.x, astronautStats.visuals.transform.position.y, astronautStats.initialVisualPos.z + 50);
             astronautMovement.canMove = false;
             astronautAnim.SetTrigger("Death");
 
@@ -271,6 +273,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
         if (!playerShipMovement.astronautOnBoard)
             GetComponent<Scr_PlayerShipActions>().astronaut.GetComponent<Scr_AstronautsActions>().EnterShipFromPlanet();
 
+        astronautStats.visuals.transform.position = new Vector3(astronautStats.visuals.transform.position.x, astronautStats.visuals.transform.position.y, astronautStats.initialVisualPos.z);
         playerShipMovement.onGround = true;
         transform.SetParent(Scr_PlayerData.checkpointPlanet);
         transform.localPosition = Scr_PlayerData.checkpointPlayershipPosition;
