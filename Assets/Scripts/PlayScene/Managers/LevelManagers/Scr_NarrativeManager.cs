@@ -134,7 +134,7 @@ public class Scr_NarrativeManager : MonoBehaviour
 
     private void DialogueEffects()
     {
-        if (onDialogue)
+        if (onDialogue && IAGlow)
         {
             if (speakerName.text == "Jack")
             {
