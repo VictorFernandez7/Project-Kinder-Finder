@@ -21,6 +21,7 @@ public class Scr_BreakeableDetection : MonoBehaviour
         {
             insideTrigger = true;
 
+            astronautsActions.gameObject.GetComponent<CircleCollider2D>().enabled = true;
             astronautsActions.miningSpot = this.gameObject;
             astronautsActions.spotType = Scr_AstronautsActions.SpotType.breakeable;
         }
@@ -34,6 +35,7 @@ public class Scr_BreakeableDetection : MonoBehaviour
             insideTrigger = false; ;
 
             astronautsActions.miningSpot = null;
+            astronautsActions.gameObject.GetComponent<CircleCollider2D>().enabled = false;
         }
     }
 

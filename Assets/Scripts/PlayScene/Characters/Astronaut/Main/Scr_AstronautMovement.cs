@@ -225,10 +225,10 @@ public class Scr_AstronautMovement : MonoBehaviour
 
         //WITH TWO RAYCAST TAKE TO POINTS PER SIDE TO CHECK THE ANGLE OF THE NEXT STEP OF THE ASTRONAUT
 
-        RaycastHit2D hitUpLeft = Physics2D.Raycast(transform.position + (-transform.up * 0.03f), -transform.right, 0.8f, collisionMask);
-        RaycastHit2D hitDownLeft = Physics2D.Raycast(transform.position + (-transform.up * 0.05f), -transform.right, 0.8f, collisionMask);
-        RaycastHit2D hitUpRight = Physics2D.Raycast(transform.position + (-transform.up * 0.03f), transform.right, 0.08f, collisionMask);
-        RaycastHit2D hitDownRight = Physics2D.Raycast(transform.position + (-transform.up * 0.05f), transform.right, 0.08f, collisionMask);
+        RaycastHit2D hitUpLeft = Physics2D.Raycast(transform.position + (-transform.up * 0.03f), -transform.right, 0.09f, collisionMask);
+        RaycastHit2D hitDownLeft = Physics2D.Raycast(transform.position + (-transform.up * 0.05f), -transform.right, 0.09f, collisionMask);
+        RaycastHit2D hitUpRight = Physics2D.Raycast(transform.position + (-transform.up * 0.03f), transform.right, 0.09f, collisionMask);
+        RaycastHit2D hitDownRight = Physics2D.Raycast(transform.position + (-transform.up * 0.05f), transform.right, 0.09f, collisionMask);
 
         if (hitUpLeft && hitDownLeft)
             nextStepAngleLeft = Vector2.Angle(hitUpLeft.point - hitDownLeft.point, -transform.right);
