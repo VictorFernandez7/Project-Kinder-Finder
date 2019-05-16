@@ -6,8 +6,8 @@ public class Scr_Obstacle : MonoBehaviour
     [SerializeField] private ObstacleType obstacleType;
 
     [Header("Obstacle Parameters")]
-    [SerializeField] private float damage;
-    [SerializeField] private float impulseForce;
+    [SerializeField] public float damage;
+    [SerializeField] public float impulseForce;
 
     [Header("References")]
     [SerializeField] private GameObject lavaVisuals;
@@ -24,16 +24,6 @@ public class Scr_Obstacle : MonoBehaviour
     void Start()
     {
         ChangeVisuals();
-    }
-
-    void Update()
-    {
-        
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        
     }
 
     private void ChangeVisuals()
