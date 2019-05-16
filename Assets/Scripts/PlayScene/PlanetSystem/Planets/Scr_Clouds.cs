@@ -40,8 +40,8 @@ public class Scr_Clouds : MonoBehaviour
 
     private void Timers()
     {
-        timeToSpeed -= Time.deltaTime;
-        timeToDirection -= Time.deltaTime;
+        timeToSpeed -= Time.unscaledDeltaTime;
+        timeToDirection -= Time.unscaledDeltaTime;
 
         if (timeToSpeed <= 0)
         {
@@ -62,6 +62,6 @@ public class Scr_Clouds : MonoBehaviour
 
     private void Movement()
     {
-        transform.Rotate(Vector3.forward * Time.deltaTime * targetSpeed * targetDirection);
+        transform.Rotate(Vector3.forward * Time.unscaledDeltaTime * targetSpeed * targetDirection);
     }
 }
