@@ -19,9 +19,11 @@ public class Scr_HourSystem : MonoBehaviour
     private float hourAngle;
     private Color32 temporaryColor;
     private Vector3 desiredVector;
+    private Scr_PlayerShipMovement playerShipMovement;
 
     private void Start()
     {
+        playerShipMovement = playerShip.GetComponent<Scr_PlayerShipMovement>();
         temporaryColor = atmosphereImage.color;
     }
 
@@ -39,12 +41,17 @@ public class Scr_HourSystem : MonoBehaviour
     private void AngleCalculation()
     {
         if (astronaut.gameObject.activeInHierarchy)
+        {
             desiredVector = astronaut.position - sun.position;
+            hourAngle = Vector3.Angle(desiredVector, astronaut.up);
+        }
 
-        else
+        else if (playerShipMovement.currentPlanet != null)
+        {
             desiredVector = playerShip.position - sun.position;
+            hourAngle = Vector3.Angle(desiredVector, playerShip.transform.position - playerShipMovement.currentPlanet.transform.position);
+        }
 
-        hourAngle = Vector3.Angle(desiredVector, astronaut.up);
     }
 
     private void AtmosphereColor()
