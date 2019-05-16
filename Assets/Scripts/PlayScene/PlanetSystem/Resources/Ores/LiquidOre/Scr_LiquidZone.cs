@@ -18,6 +18,8 @@ public class Scr_LiquidZone : MonoBehaviour
     [SerializeField] private GameObject fuelVisuals;
     [SerializeField] private GameObject mercuryVisuals;
     [SerializeField] private GameObject termatiteVisuals;
+    [SerializeField] private GameObject liquidOreRock;
+    [SerializeField] private Scr_PlayerShipMovement playerShipMovement;
 
     [HideInInspector] public float initialAmount;
     [HideInInspector] public GameObject currentResource;
@@ -65,6 +67,10 @@ public class Scr_LiquidZone : MonoBehaviour
                 newLiquidZone.GetComponentInChildren<Scr_LiquidDetection>().astronautsActions = GetComponentInChildren<Scr_LiquidDetection>().astronautsActions;
                 referenceManager.respawnFuelResources.Add(newLiquidZone);
             }
+
+            GameObject rock = Instantiate(liquidOreRock, fuelVisuals.transform.position, transform.rotation);
+            rock.transform.SetParent(playerShipMovement.currentPlanet.transform);
+            rock.transform.localScale = transform.localScale;
 
             Destroy(gameObject);
         }
