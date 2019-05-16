@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Scr_PlanetDiscovery : MonoBehaviour
 {
-    [Header("Start Conditions")]
+    [Header("Select Planet Index")]
     [SerializeField] private int planetIndex;
 
     [Header("Start Conditions")]
     [SerializeField] private bool discovered;
 
     [Header("References")]
+    [SerializeField] private Animator discoveryPanelAnim;
     [SerializeField] private GameObject planet;
     [SerializeField] private Scr_GameManager gameManager;
     [SerializeField] private Scr_PlayerShipStats playerShipStats;
@@ -42,6 +43,9 @@ public class Scr_PlanetDiscovery : MonoBehaviour
                 circleCollider.enabled = false;
                 playerShipStats.GetExperience(gameManager.sightedXP);
                 playerShipStats.GetComponent<Scr_PlayerShipEffects>().ConfettiEffect();
+                discoveryPanelAnim.SetBool("Show", true);
+
+                Invoke("HideDiscoveryPanel", 1.5f);
             }
 
             playerShipProxCheck.ClearInterface(false);
@@ -73,5 +77,10 @@ public class Scr_PlanetDiscovery : MonoBehaviour
             else if (Scr_Levels.currentLevel == Scr_Levels.LevelToLoad.PlanetSystem2)
                 Scr_LevelManager.system2Info[planetIndex] = true;
         }
+    }
+
+    private void HideDiscoveryPanel()
+    {
+        discoveryPanelAnim.SetBool("Show", false);
     }
 }
