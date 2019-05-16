@@ -24,6 +24,9 @@ public class Scr_LiquidDetection : MonoBehaviour
     {
         resourceAmount.text = ((int)liquidOre.amount).ToString();
 
+        if (!astronautsActions.gameObject.activeInHierarchy)
+            insideTrigger = false;
+
         CanvasItemActivation();
     }
 
