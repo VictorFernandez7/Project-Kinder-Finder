@@ -36,7 +36,7 @@ public class Scr_PlanetIndicator : MonoBehaviour
     {
         if (discovered)
         {
-            if (moon)
+            if (isMoon)
                 iconImage.sprite = moon;
 
             else
