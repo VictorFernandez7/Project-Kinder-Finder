@@ -12,7 +12,7 @@ public class Scr_MainCamera : MonoBehaviour
     [SerializeField] private float zoomSpeed;
 
     [Header("Rotation Properties")]
-    [SerializeField] private float shipRotationSpeed;
+    [SerializeField] public float shipRotationSpeed;
     [SerializeField] private float astronautRotationSpeed;
 
     [Header("Shake Properties")]

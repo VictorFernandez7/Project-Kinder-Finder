@@ -269,9 +269,20 @@ public class Scr_PlayerShipStats : MonoBehaviour
 
     }
 
+    private float savedRotationSpeed;
+
     private void Fade()
     {
         fadeImage.SetBool("Fade", false);
+        savedRotationSpeed = mainCamera.shipRotationSpeed;
+        mainCamera.shipRotationSpeed = 20;
+
+        Invoke("ResoreRotationSpeed", 5f);
+    }
+
+    private void ResoreRotationSpeed()
+    {
+        mainCamera.shipRotationSpeed = savedRotationSpeed;
     }
 
     private void Respawn()
@@ -287,7 +298,6 @@ public class Scr_PlayerShipStats : MonoBehaviour
         currentFuel = Scr_PlayerData.checkpointFuel;
         currentShield = Scr_PlayerData.checkpointShield;
         rb.isKinematic = false;
-        playerShipMovement.mainCamera.GetComponent<Scr_MainCamera>().smoothRotation = true;
         GetComponent<Scr_PlayerShipActions>().startExitDelay = false;
         GetComponent<Scr_PlayerShipActions>().canExitShip = true;
         GetComponent<Scr_PlayerShipActions>().unlockInteract = true;

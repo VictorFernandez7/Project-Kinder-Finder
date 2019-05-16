@@ -45,8 +45,6 @@ public class Scr_CraftStation : MonoBehaviour
             else
                 astronaut.GetComponent<Scr_AstronautMovement>().MoveAgain();
         }
-
-        astronautMovement.canMove = !interacting;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -56,6 +54,12 @@ public class Scr_CraftStation : MonoBehaviour
             onRange = true;
             astronaut = collision.gameObject;
         }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Astronaut"))
+            astronautMovement.canMove = !interacting;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
