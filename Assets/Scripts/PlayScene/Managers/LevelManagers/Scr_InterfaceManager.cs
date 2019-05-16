@@ -57,7 +57,6 @@ public class Scr_InterfaceManager : MonoBehaviour
     {
         CheckInputs();
         MapActivation();
-        LandingInterface();
         PlayerShipWindowAvailable();
         AstronautInterfaceInfoUpdate();
 
@@ -134,20 +133,6 @@ public class Scr_InterfaceManager : MonoBehaviour
     {
         if (Input.GetKeyDown(input_PauseMenu))
             PauseGame(!gamePaused);
-    }
-
-    private void LandingInterface()
-    {
-        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landing)
-        {
-            landingInterface.SetActive(true);
-
-            float angle = Vector2.SignedAngle((playerShipMovement.currentPlanet.transform.position - playerShip.transform.position), playerShip.transform.up);
-            playerShipIcon.transform.rotation = Quaternion.Euler(0, 0, angle);
-        }
-
-        else
-            landingInterface.SetActive(false);
     }
 
     public void ClearInterface(bool clear)
