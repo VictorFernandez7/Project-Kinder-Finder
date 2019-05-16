@@ -239,4 +239,13 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
             indicator.gameObject.SetActive(active);
         }
     }
+
+    public void PlanetDiscovered(string planetName)
+    {
+        foreach (GameObject indicator in planetIndicators)
+        {
+            if (indicator.name == planetName)
+                indicator.GetComponent<Scr_PlanetIndicator>().discovered = true;
+        }
+    }
 }
