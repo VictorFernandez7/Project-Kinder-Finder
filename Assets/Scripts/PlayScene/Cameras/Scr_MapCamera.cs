@@ -14,7 +14,7 @@ public class Scr_MapCamera : MonoBehaviour
     [SerializeField] private float moveTimer;
 
     [Header("Focus Properties")]
-    [SerializeField] private float focusZoom;
+    [SerializeField] private float focusZoomRatio;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float zoomSpeed;
     [SerializeField] private float xOffset;
@@ -87,7 +87,9 @@ public class Scr_MapCamera : MonoBehaviour
     {
         if (focus)
         {
-            mapCamera.orthographicSize = Mathf.Lerp(mapCamera.orthographicSize, focusZoom, Time.unscaledDeltaTime * zoomSpeed);
+            float targetFocusZoom = focusZoomRatio * target.GetComponent<Scr_Planet>().planetSize;
+
+            mapCamera.orthographicSize = Mathf.Lerp(mapCamera.orthographicSize, focusZoomRatio, Time.unscaledDeltaTime * zoomSpeed);
             mapCamera.transform.position = Vector3.Lerp(mapCamera.transform.position, targetPos, Time.unscaledDeltaTime * moveSpeed);
         }
 

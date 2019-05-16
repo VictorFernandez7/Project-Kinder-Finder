@@ -9,6 +9,7 @@ public class Scr_Planet : Scr_AstroBase
     [SerializeField] public string planetName;
     [SerializeField] public PlanetType planetType;
     [SerializeField] public BlockType blockType;
+    [SerializeField] public float planetSize;
     [SerializeField] public List<Scr_ReferenceManager.ResourceName> resources;
 
     [Header("Movement Properties")]

@@ -5,7 +5,7 @@ public class Scr_MainCamera : MonoBehaviour
 {
     [Header("Zoom Properties")]
     [SerializeField] private float zoomInSpace;
-    [SerializeField] private float zoomInPlanet;
+    [SerializeField] private float zoomInPlanetRatio;
     [SerializeField] private float miningZoom;
     [SerializeField] private float craftZoom;
     [SerializeField] private float dialogueZoom;
@@ -32,6 +32,7 @@ public class Scr_MainCamera : MonoBehaviour
     [HideInInspector] public GameObject craftCenter;
 
     private float zoomDistance;
+    private float zoomInPlanet;
     private Vector3 desiredUp;
     private Camera mainCamera;
     private GameObject currentPlanet;
@@ -45,6 +46,9 @@ public class Scr_MainCamera : MonoBehaviour
         playerShipActions = playerShip.GetComponent<Scr_PlayerShipActions>();
         mainCamera = GetComponent<Camera>();
         desiredUp = transform.up;
+
+        if (playerShipMovement.currentPlanet != null)
+            zoomInPlanet = zoomInPlanetRatio * playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().planetSize;
 
         mainCamera.orthographicSize = zoomInPlanet;
         smoothRotation = true;
@@ -137,6 +141,8 @@ public class Scr_MainCamera : MonoBehaviour
 
         if (playerShipMovement.landing || playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed)
         {
+            zoomInPlanet = zoomInPlanetRatio * playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().planetSize;
+
             if (interacting)
                 mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, craftZoom, Time.deltaTime * (zoomSpeed * 3));
 
