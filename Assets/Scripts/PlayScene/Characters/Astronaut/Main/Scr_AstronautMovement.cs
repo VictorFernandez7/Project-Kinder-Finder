@@ -172,16 +172,40 @@ public class Scr_AstronautMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "PlayerShip")
+        if (collision.CompareTag("PlayerShip"))
             canEnterShip = true;
 
-        if (collision.gameObject.tag == "Tool")
+        if (collision.CompareTag("Tool"))
             GetComponent<Scr_AstronautsActions>().toolOnFloor = collision.gameObject;
 
-        if(collision.gameObject.tag == "Asteroid" && !attached)
+        if (collision.CompareTag("Asteroid") && !attached)
         {
             astronautRb.velocity = new Vector2(-astronautRb.velocity.x, -astronautRb.velocity.y) * collisionKnockBack;
             astronautStats.TakeDamaged(astronautRb.velocity.magnitude * damageMultiplier);
+        }
+
+        if (collision.CompareTag("Obstacle"))
+        {
+            if (jumping)
+            {
+                movementVector = Vector2.zero;
+                timeAtAir = 0;
+                speedInJump = collision.GetComponent<Scr_Obstacle>().impulseForce;
+                astronautEffects.JumpParticles();
+            }
+
+            else
+            {
+                timeAtAir = 0;
+                speedInJump = collision.GetComponent<Scr_Obstacle>().impulseForce * 0.5f;
+                lastRight = !lastRight;
+                currentVelocity = currentVelocity * 0.35f;
+                jumping = true;
+                astronautAnim.SetTrigger("JumpStart");
+                astronautEffects.JumpParticles();
+            }
+
+            astronautStats.currentHealth -= collision.GetComponent<Scr_Obstacle>().damage;
         }
     }
 
