@@ -10,10 +10,12 @@ public class Scr_PlanetIndicator : MonoBehaviour
     [SerializeField] private Sprite sun;
     [SerializeField] private Sprite toxic;
     [SerializeField] private Sprite volcanic1;
+    [SerializeField] private Sprite moon;
     [SerializeField] private Sprite unknownPlanet;
 
     [HideInInspector] public Scr_Planet.PlanetType indicatorType;
     [HideInInspector] public bool discovered;
+    [HideInInspector] public bool isMoon;
 
     private Image iconImage;
     private Camera mainCamera;
@@ -34,23 +36,29 @@ public class Scr_PlanetIndicator : MonoBehaviour
     {
         if (discovered)
         {
-            switch (indicatorType)
+            if (moon)
+                iconImage.sprite = moon;
+
+            else
             {
-                case Scr_Planet.PlanetType.EarthLike:
-                    iconImage.sprite = earthLike;
-                    break;
-                case Scr_Planet.PlanetType.Frozen:
-                    iconImage.sprite = frozen1;
-                    break;
-                case Scr_Planet.PlanetType.Volcanic:
-                    iconImage.sprite = volcanic1;
-                    break;
-                case Scr_Planet.PlanetType.Arid:
-                    iconImage.sprite = arid1;
-                    break;
-                case Scr_Planet.PlanetType.Toxic:
-                    iconImage.sprite = toxic;
-                    break;
+                switch (indicatorType)
+                {
+                    case Scr_Planet.PlanetType.EarthLike:
+                        iconImage.sprite = earthLike;
+                        break;
+                    case Scr_Planet.PlanetType.Frozen:
+                        iconImage.sprite = frozen1;
+                        break;
+                    case Scr_Planet.PlanetType.Volcanic:
+                        iconImage.sprite = volcanic1;
+                        break;
+                    case Scr_Planet.PlanetType.Arid:
+                        iconImage.sprite = arid1;
+                        break;
+                    case Scr_Planet.PlanetType.Toxic:
+                        iconImage.sprite = toxic;
+                        break;
+                }
             }
         }
 
