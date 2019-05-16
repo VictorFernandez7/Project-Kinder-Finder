@@ -7,7 +7,7 @@ public class Scr_HourSystem : MonoBehaviour
     [SerializeField] private bool changeColor;
 
     [Header("Color Parameters")]
-    [SerializeField] Gradient colorines;
+    [SerializeField] Gradient hourColors;
 
     [Header("References")]
     [SerializeField] private SpriteRenderer atmosphereImage;
@@ -51,6 +51,6 @@ public class Scr_HourSystem : MonoBehaviour
     {
         float desiredRGB = hourAngle / 180;
 
-        temporaryColor = colorines.Evaluate(desiredRGB);
+        temporaryColor = hourColors.Evaluate(desiredRGB);
     }
 }
