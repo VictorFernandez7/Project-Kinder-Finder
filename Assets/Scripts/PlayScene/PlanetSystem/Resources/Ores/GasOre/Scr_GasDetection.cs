@@ -24,6 +24,9 @@ public class Scr_GasDetection : MonoBehaviour
     {
         resourceAmount.text = ((int)gasOre.amount).ToString();
 
+        if (!astronautsActions.gameObject.activeInHierarchy)
+            insideTrigger = false;
+
         CanvasItemActivation();
     }
 

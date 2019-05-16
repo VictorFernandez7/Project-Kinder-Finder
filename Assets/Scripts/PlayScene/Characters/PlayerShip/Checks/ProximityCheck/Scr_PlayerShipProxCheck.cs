@@ -23,26 +23,21 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
 
     private List<GameObject> asteroidIndicators;
     private List<GameObject> planetIndicators;
-    private CircleCollider2D trigger;
     private Scr_PlayerShipMovement playerShipMovement;
 
     private void Awake()
     {
         playerShipMovement = playerShip.GetComponent<Scr_PlayerShipMovement>();
-        trigger = GetComponent<CircleCollider2D>();
 
         asteroids = new List<Scr_AsteroidClass>();
         planets = new List<Scr_PlanetClass>();
         asteroidIndicators = new List<GameObject>();
         planetIndicators = new List<GameObject>();
-
-        trigger.enabled = false;
     }
 
     private void Update()
     {
         UpdateListStats();
-        TriggerActivation();
     }
 
     private void FixedUpdate()
@@ -53,19 +48,16 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace)
+        if (collision.gameObject.CompareTag("Asteroid"))
         {
-            if (collision.gameObject.CompareTag("Asteroid"))
-            {
-                asteroids.Add(new Scr_AsteroidClass(collision.transform.parent.name, collision.gameObject, Vector3.Distance(collision.transform.position, playerShip.transform.position), collision.transform.position));
-                CreateAsteroidIndicator(collision.transform.parent.name, collision.transform.position);
-            }
-            
-            else if (collision.GetComponent<Scr_Planet>() != null)
-            {
-                planets.Add(new Scr_PlanetClass(collision.name, collision.gameObject, Vector3.Distance(collision.transform.position, playerShip.transform.position), collision.transform.position));
-                CreatePlanetIndicator(collision.name, collision.transform.position, collision.gameObject);
-            }
+            asteroids.Add(new Scr_AsteroidClass(collision.transform.parent.name, collision.gameObject, Vector3.Distance(collision.transform.position, playerShip.transform.position), collision.transform.position));
+            CreateAsteroidIndicator(collision.transform.parent.name, collision.transform.position);
+        }
+
+        else if (collision.GetComponent<Scr_Planet>() != null)
+        {
+            planets.Add(new Scr_PlanetClass(collision.name, collision.gameObject, Vector3.Distance(collision.transform.position, playerShip.transform.position), collision.transform.position));
+            CreatePlanetIndicator(collision.name, collision.transform.position, collision.gameObject);
         }
     }
 
@@ -85,15 +77,6 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
                 DestroyPlanetIndicator(collision.name);
             }
         }
-    }
-
-    private void TriggerActivation()
-    {
-        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed)
-            trigger.enabled = false;
-
-        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace)
-            trigger.enabled = true;
     }
 
     private void UpdateListStats()
@@ -239,16 +222,23 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
 
     public void ClearInterface(bool active)
     {
-        //halo.SetActive(active);
-
         foreach (GameObject indicator in planetIndicators)
         {
-            indicator.gameObject.SetActive(active);
+            indicator.GetComponent<Animator>().SetBool("Show", active);
         }
 
         foreach (GameObject indicator in asteroidIndicators)
         {
             indicator.gameObject.SetActive(active);
+        }
+    }
+
+    public void PlanetDiscovered(string planetName)
+    {
+        foreach (GameObject indicator in planetIndicators)
+        {
+            if (indicator.name == planetName)
+                indicator.GetComponent<Scr_PlanetIndicator>().discovered = true;
         }
     }
 }

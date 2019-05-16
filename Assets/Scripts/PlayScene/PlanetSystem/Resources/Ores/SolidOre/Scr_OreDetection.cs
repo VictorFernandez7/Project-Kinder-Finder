@@ -19,11 +19,15 @@ public class Scr_OreDetection : MonoBehaviour
         astronautsActions = ore.astronautsActions;
 
         resourceName.text = ore.oreResourceType.ToString();
-        resourceAmount.text = (ore.amount).ToString();
     }
 
     private void Update()
     {
+        resourceAmount.text = (ore.amount).ToString();
+
+        if (!astronautsActions.gameObject.activeInHierarchy)
+            insideTrigger = false;
+
         CanvasItemActivation();
     }
 

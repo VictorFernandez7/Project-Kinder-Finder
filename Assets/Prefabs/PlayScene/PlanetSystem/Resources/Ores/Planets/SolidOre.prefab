@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2436776023832821142}
   - component: {fileID: 114375747254265304}
   - component: {fileID: 8752532925155967423}
+  - component: {fileID: 6587648439056123712}
   m_Layer: 13
   m_Name: SolidOre
   m_TagString: Block
@@ -94,7 +95,7 @@ MonoBehaviour:
   blockType: 0
   oreResourceType: 1
   crystalResourceType: 0
-  amount: 2
+  amount: 4
   visuals: {fileID: 6066221715447718133}
   canvas: {fileID: 1879345762652586386}
   mainCamera: {fileID: 0}
@@ -124,6 +125,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &6587648439056123712
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1274462527133118}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cd504fd6bfaf60c4788a36ba9943fc1c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1536247083229312
 GameObject:
   m_ObjectHideFlags: 0
@@ -765,11 +785,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -1088,11 +1108,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -1542,6 +1562,7 @@ GameObject:
   - component: {fileID: 5438217646515677974}
   - component: {fileID: 5342402887379330371}
   - component: {fileID: 7297326420997866322}
+  - component: {fileID: 3740864212225699642}
   m_Layer: 13
   m_Name: InputText
   m_TagString: Untagged
@@ -1565,7 +1586,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.006, y: 0.148}
+  m_AnchoredPosition: {x: -0.006, y: 0.134}
   m_SizeDelta: {x: 2.38, y: 0.64212}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5342402887379330371
@@ -1674,11 +1695,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -1692,6 +1713,21 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3740864212225699642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8793533679749055733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 021ab00318718074ca9d31919ee3acf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleRatio: 0.08
+  posRatio: 0.22
+  mainCamera: {fileID: 0}
 --- !u!1 &8984051037525450636
 GameObject:
   m_ObjectHideFlags: 0
@@ -1777,26 +1813,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7542419769523365339}
     m_Modifications:
-    - target: {fileID: 198085798176871954, guid: 32b679ac2fa27cb4f921a45940ac0e7c,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198085798176871954, guid: 32b679ac2fa27cb4f921a45940ac0e7c,
-        type: 3}
-      propertyPath: ShapeModule.type
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 198085798176871954, guid: 32b679ac2fa27cb4f921a45940ac0e7c,
-        type: 3}
-      propertyPath: ShapeModule.radius.value
-      value: 0.22
-      objectReference: {fileID: 0}
-    - target: {fileID: 198085798176871954, guid: 32b679ac2fa27cb4f921a45940ac0e7c,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
-      value: 25
-      objectReference: {fileID: 0}
     - target: {fileID: 4663487787256026, guid: 32b679ac2fa27cb4f921a45940ac0e7c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.01
@@ -1856,6 +1872,31 @@ PrefabInstance:
     - target: {fileID: 1103121671024242, guid: 32b679ac2fa27cb4f921a45940ac0e7c, type: 3}
       propertyPath: m_Name
       value: SmokeCircleDark
+      objectReference: {fileID: 0}
+    - target: {fileID: 198085798176871954, guid: 32b679ac2fa27cb4f921a45940ac0e7c,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198085798176871954, guid: 32b679ac2fa27cb4f921a45940ac0e7c,
+        type: 3}
+      propertyPath: ShapeModule.type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 198085798176871954, guid: 32b679ac2fa27cb4f921a45940ac0e7c,
+        type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 198085798176871954, guid: 32b679ac2fa27cb4f921a45940ac0e7c,
+        type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 198085798176871954, guid: 32b679ac2fa27cb4f921a45940ac0e7c,
+        type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 198119732816463832, guid: 32b679ac2fa27cb4f921a45940ac0e7c,
         type: 3}

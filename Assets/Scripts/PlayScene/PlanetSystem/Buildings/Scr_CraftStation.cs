@@ -17,6 +17,7 @@ public class Scr_CraftStation : MonoBehaviour
     [SerializeField] private Scr_MainCamera mainCamera;
     [SerializeField] public ParticleSystem interactionParticles;
     [SerializeField] private Scr_InterfaceManager interfaceManager;
+    [SerializeField] private Scr_AstronautMovement astronautMovement;
 
     private bool onRange;
     private bool interacting;
@@ -53,6 +54,12 @@ public class Scr_CraftStation : MonoBehaviour
             onRange = true;
             astronaut = collision.gameObject;
         }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Astronaut"))
+            astronautMovement.canMove = !interacting;
     }
 
     private void OnTriggerExit2D(Collider2D collision)

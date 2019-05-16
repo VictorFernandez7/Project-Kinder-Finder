@@ -131,12 +131,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1583061287}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0.5}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4923803342526802461}
-  m_RootOrder: 3
+  m_Father: {fileID: 4923803340772229126}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!108 &1583061292
 Light:
@@ -10066,7 +10066,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -14846,7 +14846,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -19671,7 +19671,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -24446,7 +24446,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -29217,7 +29217,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -34229,6 +34229,7 @@ Transform:
   m_Children:
   - {fileID: 4923803340772229128}
   - {fileID: 1799357290540058752}
+  - {fileID: 1583061288}
   m_Father: {fileID: 4923803342526802461}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -35058,7 +35059,6 @@ Transform:
   - {fileID: 4923803340772229126}
   - {fileID: 2844164813952526141}
   - {fileID: 9161383495697711299}
-  - {fileID: 1583061288}
   - {fileID: 3507317756564330474}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -35078,7 +35078,7 @@ MonoBehaviour:
   rotationSpeed: 1.5
   distanceFormShip: 2
   astronautFollowMult: 1
-  playerShipFollowMult: 0.75
+  playerShipFollowMult: 2.5
   miningFollowMult: 0.25
   boardingDelay: 2
   tools:
@@ -35414,7 +35414,7 @@ Transform:
   - {fileID: 7487552223152258728}
   - {fileID: 6695633474641892100}
   m_Father: {fileID: 4923803342526802461}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3851911982544590163
 PrefabInstance:
@@ -35423,6 +35423,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1452683114684389642}
     m_Modifications:
+    - target: {fileID: 1107562920683562, guid: 4910da04669ef424c9d560e761e78458, type: 3}
+      propertyPath: m_Name
+      value: BeamYellowEnd
+      objectReference: {fileID: 0}
     - target: {fileID: 4982589758569942, guid: 4910da04669ef424c9d560e761e78458, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.0001
@@ -35479,17 +35483,13 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.10262501
       objectReference: {fileID: 0}
+    - target: {fileID: 1093384883173778, guid: 4910da04669ef424c9d560e761e78458, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 198726064300247504, guid: 4910da04669ef424c9d560e761e78458,
         type: 3}
       propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1107562920683562, guid: 4910da04669ef424c9d560e761e78458, type: 3}
-      propertyPath: m_Name
-      value: BeamYellowEnd
-      objectReference: {fileID: 0}
-    - target: {fileID: 1093384883173778, guid: 4910da04669ef424c9d560e761e78458, type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198274572850973734, guid: 4910da04669ef424c9d560e761e78458,
@@ -35514,15 +35514,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4910da04669ef424c9d560e761e78458, type: 3}
---- !u!4 &3847497028686506117 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4982589758569942, guid: 4910da04669ef424c9d560e761e78458,
-    type: 3}
-  m_PrefabInstance: {fileID: 3851911982544590163}
-  m_PrefabAsset: {fileID: 0}
 --- !u!198 &4014600383398567043 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 198726064300247504, guid: 4910da04669ef424c9d560e761e78458,
+    type: 3}
+  m_PrefabInstance: {fileID: 3851911982544590163}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3847497028686506117 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4982589758569942, guid: 4910da04669ef424c9d560e761e78458,
     type: 3}
   m_PrefabInstance: {fileID: 3851911982544590163}
   m_PrefabAsset: {fileID: 0}
@@ -35533,10 +35533,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1452683114684389642}
     m_Modifications:
-    - target: {fileID: 198582847480832670, guid: f553384660fc82d48a16f9421a25b1d7,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 0
+    - target: {fileID: 1569048298829072, guid: f553384660fc82d48a16f9421a25b1d7, type: 3}
+      propertyPath: m_Name
+      value: BeamYellowStart
       objectReference: {fileID: 0}
     - target: {fileID: 4568370480841046, guid: f553384660fc82d48a16f9421a25b1d7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -35594,9 +35593,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.124607295
       objectReference: {fileID: 0}
-    - target: {fileID: 1569048298829072, guid: f553384660fc82d48a16f9421a25b1d7, type: 3}
-      propertyPath: m_Name
-      value: BeamYellowStart
+    - target: {fileID: 198582847480832670, guid: f553384660fc82d48a16f9421a25b1d7,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1274731270023326, guid: f553384660fc82d48a16f9421a25b1d7, type: 3}
       propertyPath: m_IsActive
@@ -35633,6 +35633,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1452683114684389642}
     m_Modifications:
+    - target: {fileID: 1801798944994376, guid: 89393581439b2f845a76dab652442825, type: 3}
+      propertyPath: m_Name
+      value: BeamYellow
+      objectReference: {fileID: 0}
     - target: {fileID: 4557835563631828, guid: 89393581439b2f845a76dab652442825, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -35676,10 +35680,6 @@ PrefabInstance:
     - target: {fileID: 4557835563631828, guid: 89393581439b2f845a76dab652442825, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1801798944994376, guid: 89393581439b2f845a76dab652442825, type: 3}
-      propertyPath: m_Name
-      value: BeamYellow
       objectReference: {fileID: 0}
     - target: {fileID: 120768390381408384, guid: 89393581439b2f845a76dab652442825,
         type: 3}
