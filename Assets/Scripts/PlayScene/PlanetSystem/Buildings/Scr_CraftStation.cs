@@ -17,6 +17,7 @@ public class Scr_CraftStation : MonoBehaviour
     [SerializeField] private Scr_MainCamera mainCamera;
     [SerializeField] public ParticleSystem interactionParticles;
     [SerializeField] private Scr_InterfaceManager interfaceManager;
+    [SerializeField] private Scr_AstronautMovement astronautMovement;
 
     private bool onRange;
     private bool interacting;
@@ -44,6 +45,8 @@ public class Scr_CraftStation : MonoBehaviour
             else
                 astronaut.GetComponent<Scr_AstronautMovement>().MoveAgain();
         }
+
+        astronautMovement.canMove = !interacting;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
