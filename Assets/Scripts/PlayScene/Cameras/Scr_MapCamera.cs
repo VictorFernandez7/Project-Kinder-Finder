@@ -67,7 +67,7 @@ public class Scr_MapCamera : MonoBehaviour
             if (savedTimer > 0)
             {
                 float targetSpeed = currentZoom / 100 * speedRatio;
-                Vector3 cameraPos = GetComponent<Camera>().ScreenToViewportPoint(Input.mousePosition - dragOrigin).normalized;
+                Vector3 cameraPos = GetComponent<Camera>().ScreenToViewportPoint(Input.mousePosition - dragOrigin);
                 Vector3 movementVector = new Vector3(cameraPos.x, cameraPos.y, 0) * targetSpeed;
 
                 transform.position += inverted ? movementVector : -movementVector;

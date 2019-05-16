@@ -144,7 +144,7 @@ public class Scr_Planet : Scr_AstroBase
 
     private void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(0) && interfaceManager.mapActive && !mapCamera.focus)
+        if (Input.GetMouseButtonUp(0) && interfaceManager.mapActive && !mapCamera.focus)
         {
             mapCamera.focus = true;
             mapCamera.target = gameObject;
