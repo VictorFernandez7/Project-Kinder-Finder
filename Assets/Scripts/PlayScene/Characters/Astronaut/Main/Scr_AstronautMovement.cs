@@ -268,7 +268,7 @@ public class Scr_AstronautMovement : MonoBehaviour
     }
 
     private void SlideDown()
-    {
+    {/*
         bool right;
 
         if (Vector3.Project(hitLeftGroundPoint, transform.up).magnitude > Vector3.Project(hitRightGroundPoint, transform.up).magnitude)
@@ -287,7 +287,13 @@ public class Scr_AstronautMovement : MonoBehaviour
             Flip();
 
         currentVelocity += Vector3.Project((-transform.up * gravity), movementVector).magnitude * slideSpeed;
-        transform.Translate(movementVector * currentVelocity, Space.World);
+        transform.Translate(movementVector * currentVelocity, Space.World);*/
+
+        timeAtAir = 0;
+        speedInJump = 0.015f;
+        jumping = true;
+        astronautAnim.SetTrigger("JumpStart");
+        astronautEffects.JumpParticles();
     }
 
     public void Stop(bool complete, bool right)
