@@ -17,7 +17,6 @@ public class Scr_PlayerShipHalo : MonoBehaviour
     [SerializeField] private float landingSpeed;
 
     [Header("Delays")]
-    [SerializeField] private float takingOffDelay;
     [SerializeField] private float disablingDelay;
     [SerializeField] private float activateDelay;
 
@@ -27,7 +26,6 @@ public class Scr_PlayerShipHalo : MonoBehaviour
     [HideInInspector] public bool disableHalo;
 
     private bool lerping;
-    private float takingOffDelaySaved;
     private float disablingDelaySaved;
     private float activateDelaySaved;
     private float targetSpeed;
@@ -40,7 +38,6 @@ public class Scr_PlayerShipHalo : MonoBehaviour
         playerShipMovement = playership.GetComponent<Scr_PlayerShipMovement>();
         lineRenderer = GetComponent<LineRenderer>();
 
-        takingOffDelaySaved = takingOffDelay;
         disablingDelaySaved = disablingDelay;
         activateDelaySaved = activateDelay;
     }
@@ -98,10 +95,7 @@ public class Scr_PlayerShipHalo : MonoBehaviour
     private void HaloAlphaControl()
     {
         if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed)
-        {
-            takingOffDelaySaved = takingOffDelay;
             activateDelaySaved = activateDelay;
-        }
 
         if (disableHalo)
         {
@@ -115,23 +109,19 @@ public class Scr_PlayerShipHalo : MonoBehaviour
                 lerping = false;
         }
 
-        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.takingOff || playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace)
+        else
         {
             lerping = true;
 
             disablingDelaySaved = disablingDelay;
-            takingOffDelaySaved -= Time.deltaTime;
 
-            if (takingOffDelaySaved <= 0)
-            {
-                targetSpeed = takingOffSpeed;
-                targetColor = inSpace;
+            targetSpeed = takingOffSpeed;
+            targetColor = inSpace;
 
-                activateDelaySaved -= Time.deltaTime;
+            activateDelaySaved -= Time.deltaTime;
 
-                if (activateDelaySaved <= 0)
-                    lerping = false;
-            }
+            if (activateDelaySaved <= 0)
+                lerping = false;
         }
 
         if (lerping)

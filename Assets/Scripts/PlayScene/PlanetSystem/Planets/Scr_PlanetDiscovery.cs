@@ -47,8 +47,6 @@ public class Scr_PlanetDiscovery : MonoBehaviour
             playerShipProxCheck.ClearInterface(false);
             playerShipHalo.disableHalo = true;
         }
-
-        
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -56,6 +54,7 @@ public class Scr_PlanetDiscovery : MonoBehaviour
         if (collision.CompareTag("PlayerShip"))
         {
             playerShipProxCheck.ClearInterface(true);
+            playerShipProxCheck.trigger.enabled = true;
             playerShipHalo.disableHalo = false;
         }
     }

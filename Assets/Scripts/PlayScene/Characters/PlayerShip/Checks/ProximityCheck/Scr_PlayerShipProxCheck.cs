@@ -20,10 +20,10 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
 
     [HideInInspector] public List<Scr_AsteroidClass> asteroids;
     [HideInInspector] public List<Scr_PlanetClass> planets;
+    [HideInInspector] public CircleCollider2D trigger;
 
     private List<GameObject> asteroidIndicators;
     private List<GameObject> planetIndicators;
-    private CircleCollider2D trigger;
     private Scr_PlayerShipMovement playerShipMovement;
 
     private void Awake()
@@ -42,7 +42,6 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
     private void Update()
     {
         UpdateListStats();
-        TriggerActivation();
     }
 
     private void FixedUpdate()
@@ -85,15 +84,6 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
                 DestroyPlanetIndicator(collision.name);
             }
         }
-    }
-
-    private void TriggerActivation()
-    {
-        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed)
-            trigger.enabled = false;
-
-        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace)
-            trigger.enabled = true;
     }
 
     private void UpdateListStats()
@@ -239,11 +229,9 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
 
     public void ClearInterface(bool active)
     {
-        //halo.SetActive(active);
-
         foreach (GameObject indicator in planetIndicators)
         {
-            indicator.gameObject.SetActive(active);
+            indicator.GetComponent<Animator>().SetBool("Show", active);
         }
 
         foreach (GameObject indicator in asteroidIndicators)
