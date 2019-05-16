@@ -106,6 +106,7 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
     {
         GameObject indicatorClone = Instantiate(planetIndicator, collisionPosition, gameObject.transform.rotation);
         indicatorClone.GetComponent<Scr_PlanetIndicator>().indicatorType = planetObject.GetComponent<Scr_Planet>().planetType;
+        indicatorClone.GetComponent<Scr_PlanetIndicator>().isMoon = planetObject.GetComponent<Scr_Planet>().isMoon;
         indicatorClone.transform.SetParent(worldCanvas.transform);
         indicatorClone.name = collisionName;
         planetIndicators.Add(indicatorClone);
