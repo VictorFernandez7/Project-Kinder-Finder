@@ -54,6 +54,8 @@ public class Scr_PlayerShipStats : MonoBehaviour
     [SerializeField] public Scr_AstronautEffects astronautEffects;
     [SerializeField] public Scr_AstronautStats astronautStats;
     [SerializeField] public Scr_MainCamera mainCamera;
+    [SerializeField] public Scr_PlayerShipProxCheck playerShipProxCheck;
+    [SerializeField] public Scr_PlayerShipHalo playerShipHalo;
 
     [Header("Inventory")]
     [SerializeField] public GameObject[] resourceWarehouse;
@@ -69,12 +71,14 @@ public class Scr_PlayerShipStats : MonoBehaviour
     private Rigidbody2D rb;
     private Scr_PlayerShipMovement playerShipMovement;
     private Scr_PlayerShipEffects playerShipEffects;
+    private Scr_PlayerShipPrediction playerShipPrediction;
     private bool isRefueled;
 
     private void Start()
     {
         playerShipMovement = GetComponent<Scr_PlayerShipMovement>();
         playerShipEffects = GetComponent<Scr_PlayerShipEffects>();
+        playerShipPrediction = GetComponent<Scr_PlayerShipPrediction>();
         rb = GetComponent<Rigidbody2D>();
 
         fuelSlider.maxValue = maxFuel;
@@ -211,7 +215,8 @@ public class Scr_PlayerShipStats : MonoBehaviour
             shieldSliderFill.color = Color.Lerp(shieldSliderFill.color, shieldColor0, Time.deltaTime * colorChangeSpeed);
     }
 
-    bool diedOnce = false;
+    private int savedPrediction;
+    private bool diedOnce = false;
 
     public void Death()
     {
@@ -230,6 +235,10 @@ public class Scr_PlayerShipStats : MonoBehaviour
                 playerShipEffects.PlayParticleSystem(playerShipEffects.explosion);
                 playerShipEffects.StopAllThrusters();
                 collider.enabled = false;
+                playerShipProxCheck.ClearInterface(false);
+                playerShipHalo.disableHalo = true;
+                savedPrediction = playerShipPrediction.predictionTime;
+                playerShipPrediction.predictionTime = 0;
 
                 GetComponentInChildren<Scr_PlayerShipDeathCheck>().enabled = false;
 
@@ -305,6 +314,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
         playerShipMovement.canControlShip = true;
         shipVisuals.gameObject.SetActive(true);
         Scr_PlayerData.dead = false;
+        playerShipPrediction.predictionTime = savedPrediction;
 
         diedOnce = false;
         astronautMovement.canMove = true;

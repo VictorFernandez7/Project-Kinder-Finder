@@ -58,7 +58,6 @@ public class Scr_PlanetDiscovery : MonoBehaviour
         if (collision.CompareTag("PlayerShip"))
         {
             playerShipProxCheck.ClearInterface(true);
-            playerShipProxCheck.trigger.enabled = true;
             playerShipProxCheck.PlanetDiscovered(transform.parent.name);
             playerShipHalo.disableHalo = false;
         }

@@ -20,7 +20,6 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
 
     [HideInInspector] public List<Scr_AsteroidClass> asteroids;
     [HideInInspector] public List<Scr_PlanetClass> planets;
-    [HideInInspector] public CircleCollider2D trigger;
 
     private List<GameObject> asteroidIndicators;
     private List<GameObject> planetIndicators;
@@ -29,14 +28,11 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
     private void Awake()
     {
         playerShipMovement = playerShip.GetComponent<Scr_PlayerShipMovement>();
-        trigger = GetComponent<CircleCollider2D>();
 
         asteroids = new List<Scr_AsteroidClass>();
         planets = new List<Scr_PlanetClass>();
         asteroidIndicators = new List<GameObject>();
         planetIndicators = new List<GameObject>();
-
-        trigger.enabled = false;
     }
 
     private void Update()
@@ -52,19 +48,16 @@ public class Scr_PlayerShipProxCheck : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.inSpace)
+        if (collision.gameObject.CompareTag("Asteroid"))
         {
-            if (collision.gameObject.CompareTag("Asteroid"))
-            {
-                asteroids.Add(new Scr_AsteroidClass(collision.transform.parent.name, collision.gameObject, Vector3.Distance(collision.transform.position, playerShip.transform.position), collision.transform.position));
-                CreateAsteroidIndicator(collision.transform.parent.name, collision.transform.position);
-            }
-            
-            else if (collision.GetComponent<Scr_Planet>() != null)
-            {
-                planets.Add(new Scr_PlanetClass(collision.name, collision.gameObject, Vector3.Distance(collision.transform.position, playerShip.transform.position), collision.transform.position));
-                CreatePlanetIndicator(collision.name, collision.transform.position, collision.gameObject);
-            }
+            asteroids.Add(new Scr_AsteroidClass(collision.transform.parent.name, collision.gameObject, Vector3.Distance(collision.transform.position, playerShip.transform.position), collision.transform.position));
+            CreateAsteroidIndicator(collision.transform.parent.name, collision.transform.position);
+        }
+
+        else if (collision.GetComponent<Scr_Planet>() != null)
+        {
+            planets.Add(new Scr_PlanetClass(collision.name, collision.gameObject, Vector3.Distance(collision.transform.position, playerShip.transform.position), collision.transform.position));
+            CreatePlanetIndicator(collision.name, collision.transform.position, collision.gameObject);
         }
     }
 
