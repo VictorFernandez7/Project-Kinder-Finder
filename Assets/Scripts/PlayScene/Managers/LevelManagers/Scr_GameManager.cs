@@ -48,7 +48,7 @@ public class Scr_GameManager : MonoBehaviour
 
     private void Update()
     {
-        VortexSpawn();
+        //VortexSpawn();
 
         shipWheel.unlockedItems = shipCrafts;
         toolWheel.unlockedItems = toolCrafts;
