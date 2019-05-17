@@ -8,16 +8,20 @@ public class Scr_RepairingTool : Scr_ToolBase
     [SerializeField] private float distance;
     [SerializeField] private float angleLimit;
     [SerializeField] private float repairingFactor;
+    [SerializeField] private float laserSpeed;
     [SerializeField] private LayerMask masker;
     [SerializeField] private Color repairingColor;
 
     [HideInInspector] public Camera mainCamera;
 
     private bool executingRepairingTool;
+    private bool isMining;
+    private float laserPercent = -2f;
     private GameObject playerShip;
     private LineRenderer laser;
     private RaycastHit2D hitLaser;
-    private Vector3 lastDirection;
+    private Vector3 hitLaserPoint;
+    private Vector3 laserPoint;
 
     void Start ()
     {
@@ -28,21 +32,40 @@ public class Scr_RepairingTool : Scr_ToolBase
         laser.material.color = repairingColor;
     }
 
-    public override void Update () {
+    public override void Update ()
+    {
+        if (GetComponentInParent<Scr_IAMovement>().target)
+            hitLaser = Physics2D.Raycast(transform.position, GetComponentInParent<Scr_IAMovement>().target.parent.transform.position - transform.position, Mathf.Infinity, masker);
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetButton("Interact") && GetComponentInParent<Scr_IAMovement>().isMining && hitLaser)
         {
             executingRepairingTool = true;
             laser.enabled = executingRepairingTool;
 
             if (executingRepairingTool)
-                RepairingTool();
+            {
+                RepairingTool(true);
+                isMining = true;
+                laserPercent += Time.deltaTime * laserSpeed;
+            }
+        }
+
+        else if (executingRepairingTool && laserPercent > 0)
+        {
+            RepairingTool(false);
+            laserPercent -= Time.deltaTime * laserSpeed;
         }
 
         else
         {
             executingRepairingTool = false;
             laser.enabled = executingRepairingTool;
+            laserPercent = -2f;
+
+            if (!hitLaser && isMining)
+                GetComponentInParent<Scr_IAMovement>().isMining = false;
+
+            isMining = false;
         }
     }
 
@@ -56,36 +79,40 @@ public class Scr_RepairingTool : Scr_ToolBase
 
     public override void OnMouseExit() { }
 
-    private void RepairingTool()
+    private void RepairingTool(bool activating)
     {
-        LaserPosition();
+        LaserPosition(activating);
         LaserFunction();
     }
 
-    private void LaserPosition()
+    private void LaserPosition(bool activating)
     {
-        Vector3 direction = (mainCamera.ScreenToWorldPoint(Input.mousePosition) - (transform.position + (transform.up * 0.01f)));
-        direction = new Vector3(direction.x, direction.y, 0).normalized;
-        hitLaser = Physics2D.Raycast(transform.position + (transform.up * 0.01f), direction, distance, masker);
+        laser.SetPosition(0, transform.position);
 
-        laser.SetPosition(0, transform.position + (transform.up * 0.01f));
+        if (laserPercent > 1)
+            laserPercent = 1;
 
-        if (Vector3.Angle(transform.right, direction) < angleLimit)
-        {
-            if (hitLaser)
-                laser.SetPosition(1, hitLaser.point);
+        int switcher;
 
-            else
-                laser.SetPosition(1, (transform.position + (transform.up * 0.01f)) + (direction * distance));
-
-            lastDirection = direction;
-        }
-
-        else if (Vector3.Angle(transform.right, lastDirection) < 90)
-            laser.SetPosition(1, (transform.position + (transform.up * 0.01f)) + (lastDirection * distance));
+        if (laserPercent < 0)
+            switcher = 0;
 
         else
-            laser.SetPosition(1, transform.position);
+            switcher = 1;
+
+        if (hitLaser)
+            hitLaserPoint = hitLaser.point;
+
+        if (activating)
+        {
+            distance = Vector2.Distance(transform.position, hitLaserPoint);
+            laserPoint = transform.position + ((GetComponentInParent<Scr_IAMovement>().target.parent.transform.position - transform.position).normalized * distance * laserPercent * switcher);
+        }
+
+        else
+            laserPoint = transform.position + ((hitLaserPoint - transform.position).normalized * distance * laserPercent);
+
+        laser.SetPosition(1, laserPoint);
     }
 
     private void LaserFunction()
@@ -94,7 +121,7 @@ public class Scr_RepairingTool : Scr_ToolBase
         {
             if (hitLaser.collider.transform.CompareTag("PlayerShip"))
             {
-                if (playerShip.GetComponent<Scr_PlayerShipStats>().currentShield < playerShip.GetComponent<Scr_PlayerShipStats>().maxShield)
+                if (playerShip.GetComponent<Scr_PlayerShipStats>().currentShield < playerShip.GetComponent<Scr_PlayerShipStats>().maxShield && laserPercent == 1)
                     playerShip.GetComponent<Scr_PlayerShipStats>().currentShield += Time.deltaTime * repairingFactor;
             }
         }
