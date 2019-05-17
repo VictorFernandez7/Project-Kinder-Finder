@@ -62,7 +62,7 @@ public class Scr_PlayerShipDeathCheck : MonoBehaviour
         landingAngle = Vector3.Angle(playerShipDirection, playerShipToPlanetDirection);
 
         if (landingAngle >= deathAngle)
-            playerShipStats.Death();
+            playerShipStats.currentShield = 0;
     }
 
     float maxHelath;
