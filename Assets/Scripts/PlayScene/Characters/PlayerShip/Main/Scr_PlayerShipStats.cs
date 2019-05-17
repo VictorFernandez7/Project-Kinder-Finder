@@ -102,6 +102,9 @@ public class Scr_PlayerShipStats : MonoBehaviour
             isRefueled = true;
         }
 
+        if (currentShield <= 0)
+            Death();
+
         if (currentFuel <= 0 && !playerShipMovement.onGround)
             Death();
     }
@@ -140,12 +143,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
 
 
         if (currentShield <= ((shieldAlertPercentage / 100) * maxShield))
-        {
             anim_ShieldPanel.SetBool("Alert", true);
-
-            if (currentShield < 0)
-                Death();
-        }
 
         else
             anim_ShieldPanel.SetBool("Alert", false);
@@ -286,12 +284,13 @@ public class Scr_PlayerShipStats : MonoBehaviour
         savedRotationSpeed = mainCamera.shipRotationSpeed;
         mainCamera.shipRotationSpeed = 20;
 
-        Invoke("ResoreRotationSpeed", 5f);
+        Invoke("ResoreRotationSpeed", 4.5f);
     }
 
     private void ResoreRotationSpeed()
     {
         mainCamera.shipRotationSpeed = savedRotationSpeed;
+        fadeImage.SetBool("Fade", true);
     }
 
     private void Respawn()
@@ -318,7 +317,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
 
         diedOnce = false;
         astronautMovement.canMove = true;
-        fadeImage.SetBool("Fade", true);
+
     }
 
     public void GetExperience (int amount)

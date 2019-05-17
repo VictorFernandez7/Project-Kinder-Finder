@@ -382,12 +382,6 @@ public class Scr_PlayerShipMovement : MonoBehaviour
 
         if (rb.velocity != Vector2.zero)
             rb.velocity = Vector2.zero;
-
-        Scr_PlayerData.checkpointPlanet = currentPlanet.transform;
-        Scr_PlayerData.checkpointPlayershipPosition = transform.localPosition;
-        Scr_PlayerData.checkpointPlayershipRotation = transform.localRotation;
-        Scr_PlayerData.checkpointFuel = playerShipStats.currentFuel;
-        Scr_PlayerData.checkpointShield = playerShipStats.currentShield;
     }
 
     void TakingOff()

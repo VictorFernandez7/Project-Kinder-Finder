@@ -96,6 +96,12 @@ public class Scr_PlayerShipActions : MonoBehaviour
 
         deployDelaySaved = deployDelay;
         miningSlider.maxValue = maxPower;
+
+        Scr_PlayerData.checkpointPlanet = playerShipMovement.currentPlanet.transform;
+        Scr_PlayerData.checkpointPlayershipPosition = transform.localPosition;
+        Scr_PlayerData.checkpointPlayershipRotation = transform.localRotation;
+        Scr_PlayerData.checkpointFuel = GetComponent<Scr_PlayerShipStats>().currentFuel;
+        Scr_PlayerData.checkpointShield = GetComponent<Scr_PlayerShipStats>().currentShield;
     }
 
     private void Update()
@@ -318,6 +324,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
         astronaut.GetComponent<Scr_AstronautsActions>().solidTool = ia.GetComponent<Scr_IAMovement>().tools[0];
         astronaut.GetComponent<Scr_AstronautsActions>().liquidTool = ia.GetComponent<Scr_IAMovement>().tools[1];
         astronaut.GetComponent<Scr_AstronautsActions>().gasTool = ia.GetComponent<Scr_IAMovement>().tools[2];
+        astronaut.GetComponent<Scr_AstronautsActions>().repairingTool = ia.GetComponent<Scr_IAMovement>().tools[3];
 
         devTools.solidTool = ia.GetComponent<Scr_IAMovement>().tools[0];
         devTools.liquidTool = ia.GetComponent<Scr_IAMovement>().tools[1];
@@ -328,6 +335,12 @@ public class Scr_PlayerShipActions : MonoBehaviour
         astronaut.GetComponent<Scr_AstronautsActions>().iaSpotTransformRight = ia.GetComponent<Scr_IAMovement>().right;
         astronaut.GetComponent<Scr_AstronautsActions>().iaSpotTransformUp = ia.GetComponent<Scr_IAMovement>().up;
         astronaut.GetComponent<Scr_AstronautsActions>().iAMovement = ia.GetComponent<Scr_IAMovement>();
+
+        Scr_PlayerData.checkpointPlanet = playerShipMovement.currentPlanet.transform;
+        Scr_PlayerData.checkpointPlayershipPosition = transform.localPosition;
+        Scr_PlayerData.checkpointPlayershipRotation = transform.localRotation;
+        Scr_PlayerData.checkpointFuel = GetComponent<Scr_PlayerShipStats>().currentFuel;
+        Scr_PlayerData.checkpointShield = GetComponent<Scr_PlayerShipStats>().currentShield;
 
         playerShipMovement.currentPlanet.GetComponentInChildren<Scr_PlanetDiscovery>().PlanetExplored();
     }
