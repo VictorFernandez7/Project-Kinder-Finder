@@ -19,7 +19,6 @@ public class Scr_MiningTool : Scr_ToolBase
     private bool isMining;
     private float laserPercent = -2f;
     private float distance;
-    private Vector3 lastDirection;
     private Vector3 laserPoint;
     private Vector3 hitLaserPoint;
     private LineRenderer laser;

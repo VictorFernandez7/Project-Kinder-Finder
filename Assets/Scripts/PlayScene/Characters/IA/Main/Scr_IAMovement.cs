@@ -61,6 +61,12 @@ public class Scr_IAMovement : MonoBehaviour
         CheckPlanet();
         CheckDistance();
         Interactions();
+
+        if (target == playerShipSpot)
+            astronaut.GetComponent<Scr_AstronautsActions>().miningSpot = playerShipSpot.gameObject;
+
+        else if(target == null)
+            astronaut.GetComponent<Scr_AstronautsActions>().miningSpot = null;
     }
 
     private void FixedUpdate()

@@ -21,6 +21,7 @@ public class Scr_AstronautsActions : MonoBehaviour
     [SerializeField] public GameObject solidTool;
     [SerializeField] public GameObject liquidTool;
     [SerializeField] public GameObject gasTool;
+    [SerializeField] public GameObject repairingTool;
     [SerializeField] private Scr_GameManager gameManager;
     [SerializeField] private Scr_AstronautResourcesCheck astronautResourcesCheck;
     [SerializeField] private Scr_PlayerShipProxCheck playerShipProxCheck;
@@ -78,7 +79,7 @@ public class Scr_AstronautsActions : MonoBehaviour
 
         if (Input.GetButton("Interact") && !narrativeManager.onDialogue)
         {
-            if (miningSpot != null && ((spotType == SpotType.solidSpot && solidTool.activeInHierarchy) || (spotType == SpotType.liquidSpot && liquidTool.activeInHierarchy) || (spotType == SpotType.gasSpot && gasTool.activeInHierarchy) || (spotType == SpotType.breakeable && solidTool.activeInHierarchy)))
+            if (miningSpot != null && ((spotType == SpotType.solidSpot && solidTool.activeInHierarchy) || (spotType == SpotType.liquidSpot && liquidTool.activeInHierarchy) || (spotType == SpotType.gasSpot && gasTool.activeInHierarchy) || (spotType == SpotType.breakeable && solidTool.activeInHierarchy) || (repairingTool.activeInHierarchy && playerShip.GetComponent<Scr_PlayerShipStats>().currentShield != playerShip.GetComponent<Scr_PlayerShipStats>().maxShield)))
             {
                 if (savedTimeToMine > 0)
                     savedTimeToMine -= Time.deltaTime;
