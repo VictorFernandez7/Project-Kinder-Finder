@@ -16,10 +16,15 @@ public class Scr_Craft : MonoBehaviour {
     [SerializeField] private Scr_CraftInterface craftInterface;
     [SerializeField] private GameObject rightPanel;
 
+    [Header("Sound")]
+    [SerializeField] private SoundDefinition upgrade;
+
     private int resourceListIndex;
 
     public void CraftItem()
     {
+        Scr_MusicManager.Instance.PlaySound(upgrade.Sound, 0);
+
         List<string> keyr = new List<string>(playerShipWarehouse.Resources.Keys);
 
         foreach (string k in keyr)

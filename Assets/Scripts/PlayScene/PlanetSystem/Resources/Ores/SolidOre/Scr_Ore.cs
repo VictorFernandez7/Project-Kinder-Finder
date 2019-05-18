@@ -13,6 +13,7 @@ public class Scr_Ore : MonoBehaviour
 
     [Header("Resource Properties")]
     [SerializeField] public float amount;
+    [SerializeField] private int experience;
 
     [Header("Shake Properties")]
 
@@ -133,7 +134,7 @@ public class Scr_Ore : MonoBehaviour
         if (amount <= (initalAmount - rest))
         {
             rest += 1;
-            playerShipStats.GetExperience(20);
+            playerShipStats.GetExperience(experience);
         }
 
         if (amount <= 0)
