@@ -45,6 +45,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
     [SerializeField] private GameObject toxicSuit;
     [SerializeField] private Transform IAStpot;
     [SerializeField] private Scr_DevTools devTools;
+    [SerializeField] private Animator blockAlertAnim;
 
     [HideInInspector] public bool startExitDelay;
     [HideInInspector] public bool closeToAsteroid;
@@ -172,30 +173,33 @@ public class Scr_PlayerShipActions : MonoBehaviour
                     interactionIndicatorAnim.gameObject.SetActive(false);
 
                     if (playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().blockType == Scr_Planet.BlockType.HighTemperature && !unlockedSuits[0])
-                    {
-                        //reaccion CANT GO HOT PLANET
-                    }
+                        blockAlertAnim.SetBool("Show", true);
 
                     else if (playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().blockType == Scr_Planet.BlockType.LowTemperature && !unlockedSuits[1])
-                    {
-                        //reaccion CANT GO COLD PLANET
-                    }
+                        blockAlertAnim.SetBool("Show", true);
 
                     else if (playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().blockType == Scr_Planet.BlockType.Toxic && !unlockedSuits[2])
-                    {
-                        //reaccion CANT GO TOXIC PLANET
-                    }
+                        blockAlertAnim.SetBool("Show", true);
 
                     else
                     {
                         if (playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().blockType == Scr_Planet.BlockType.HighTemperature)
+                        {
                             DeployAstronaut(Suit.HotResistance);
+                            Invoke("HideAlertPanel", 3f);
+                        }
 
                         else if (playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().blockType == Scr_Planet.BlockType.LowTemperature)
+                        {
                             DeployAstronaut(Suit.ColdResistance);
+                            Invoke("HideAlertPanel", 3f);
+                        }
 
                         else if (playerShipMovement.currentPlanet.GetComponent<Scr_Planet>().blockType == Scr_Planet.BlockType.Toxic)
+                        {
                             DeployAstronaut(Suit.ToxicResistance);
+                            Invoke("HideAlertPanel", 3f);
+                        }
 
                         else
                             DeployAstronaut(Suit.SpaceSuit);
@@ -267,6 +271,11 @@ public class Scr_PlayerShipActions : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void HideAlertPanel()
+    {
+        blockAlertAnim.SetBool("Show", false);
     }
 
     private void DeployAstronaut(Suit suit)

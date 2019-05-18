@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Scr_PlanetDiscovery : MonoBehaviour
 {
@@ -14,19 +12,15 @@ public class Scr_PlanetDiscovery : MonoBehaviour
     [SerializeField] private Animator discoveryPanelAnim;
     [SerializeField] private GameObject planet;
     [SerializeField] private Scr_GameManager gameManager;
+    [SerializeField] private Scr_PlayerShipHalo playerShipHalo;
     [SerializeField] private Scr_PlayerShipStats playerShipStats;
     [SerializeField] private Scr_PlayerShipProxCheck playerShipProxCheck;
-    [SerializeField] private Scr_PlayerShipHalo playerShipHalo;
 
     [HideInInspector] public bool sighted;
     [HideInInspector] public bool explored;
 
-    private CircleCollider2D circleCollider;
-
     private void Start()
     {
-        circleCollider = GetComponent<CircleCollider2D>();
-
         sighted = discovered;
         explored = discovered;
         planet.SetActive(discovered);
@@ -40,12 +34,11 @@ public class Scr_PlanetDiscovery : MonoBehaviour
             {
                 sighted = true;
                 planet.SetActive(true);
-                circleCollider.enabled = false;
                 playerShipStats.GetExperience(gameManager.sightedXP);
                 playerShipStats.GetComponent<Scr_PlayerShipEffects>().ConfettiEffect();
                 discoveryPanelAnim.SetBool("Show", true);
 
-                Invoke("HideDiscoveryPanel", 1.5f);
+                Invoke("HideDiscoveryPanel", 3f);
             }
 
             playerShipProxCheck.ClearInterface(false);
