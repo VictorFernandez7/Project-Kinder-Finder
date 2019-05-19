@@ -25,8 +25,8 @@ public class Scr_DarkMatter : MonoBehaviour
                 Invoke("Temporal", 1f);
             }
 
-            else
-                playerShipStats.Death();
+            //else
+                //playerShipStats.Death();
         }
     }
 

@@ -37,7 +37,7 @@ public class Scr_PlayerShipDeathCheck : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Planet") && playerShipMovement.landedOnce)
+        if (collision.gameObject.CompareTag("Planet") && playerShipMovement.landedOnce && !Scr_PlayerData.dead)
         {
             CheckAngle();
             LandingQuality();

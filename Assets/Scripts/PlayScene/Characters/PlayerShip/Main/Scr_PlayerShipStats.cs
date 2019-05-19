@@ -57,6 +57,9 @@ public class Scr_PlayerShipStats : MonoBehaviour
     [SerializeField] public Scr_PlayerShipProxCheck playerShipProxCheck;
     [SerializeField] public Scr_PlayerShipHalo playerShipHalo;
 
+    [Header("Sounds")]
+    [SerializeField] private SoundDefinition explosion;
+
     [Header("Inventory")]
     [SerializeField] public GameObject[] resourceWarehouse;
 
@@ -102,7 +105,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
             isRefueled = true;
         }
 
-        if (currentShield <= 0)
+        if (currentShield <= 0 && !Scr_PlayerData.dead)
             Death();
 
         if (currentFuel <= 0 && !playerShipMovement.onGround)
@@ -214,7 +217,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
     }
 
     private int savedPrediction;
-    private bool diedOnce = false;
+    private bool diedOnce;
 
     public void Death()
     {
@@ -226,11 +229,13 @@ public class Scr_PlayerShipStats : MonoBehaviour
             {
                 playerShipMovement.canControlShip = false;
                 playerShipMovement.canRotateShip = false;
+                playerShipMovement.landedOnce = false;
                 Scr_PlayerData.dead = true;
-                rb.isKinematic = true;
                 rb.velocity = Vector3.zero;
+                rb.isKinematic = true;
                 shipVisuals.gameObject.SetActive(false);
                 playerShipEffects.PlayParticleSystem(playerShipEffects.explosion);
+                Scr_MusicManager.Instance.PlaySound(explosion.Sound, 0);
                 playerShipEffects.StopAllThrusters();
                 collider.enabled = false;
                 playerShipProxCheck.ClearInterface(false);
@@ -299,25 +304,28 @@ public class Scr_PlayerShipStats : MonoBehaviour
             GetComponent<Scr_PlayerShipActions>().astronaut.GetComponent<Scr_AstronautsActions>().EnterShipFromPlanet();
 
         astronautStats.visuals.transform.position = new Vector3(astronautStats.visuals.transform.position.x, astronautStats.visuals.transform.position.y, astronautStats.initialVisualPos.z);
+        currentShield = Scr_PlayerData.checkpointShield;
+        playerShipMovement.currentPlanet = Scr_PlayerData.checkpointPlanet.gameObject;
+        playerShipMovement.playerShipState = Scr_PlayerShipMovement.PlayerShipState.landed;
+        playerShipMovement.snapped = false;
         playerShipMovement.onGround = true;
         transform.SetParent(Scr_PlayerData.checkpointPlanet);
-        transform.localPosition = Scr_PlayerData.checkpointPlayershipPosition;
         transform.localRotation = Scr_PlayerData.checkpointPlayershipRotation;
+        transform.localPosition = Scr_PlayerData.checkpointPlayershipPosition;
         currentFuel = Scr_PlayerData.checkpointFuel;
-        currentShield = Scr_PlayerData.checkpointShield;
         rb.isKinematic = false;
         GetComponent<Scr_PlayerShipActions>().startExitDelay = false;
         GetComponent<Scr_PlayerShipActions>().canExitShip = true;
         GetComponent<Scr_PlayerShipActions>().unlockInteract = true;
-        playerShipMovement.playerShipState = Scr_PlayerShipMovement.PlayerShipState.landed;
         playerShipMovement.canControlShip = true;
         shipVisuals.gameObject.SetActive(true);
-        Scr_PlayerData.dead = false;
         playerShipPrediction.predictionTime = savedPrediction;
+        playerShipMovement.snapped = false;
 
-        diedOnce = false;
         astronautMovement.canMove = true;
 
+        diedOnce = false;
+        Scr_PlayerData.dead = false;
     }
 
     public void GetExperience (int amount)
