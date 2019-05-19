@@ -91,6 +91,62 @@ public class Scr_PlayerShipWarehouse : MonoBehaviour
                 }
             }
         }
+
+        if(astronautStats.gameObject.GetComponent<Scr_AstronautsActions>().iaSpotTransformDown.childCount > 0)
+        {
+            List<string> names = new List<string>(Resources.Keys);
+
+            foreach (string name in names)
+            {
+
+                if (astronautStats.gameObject.GetComponent<Scr_AstronautsActions>().iaSpotTransformDown.transform.GetChild(0).name.Contains(name))
+                    Resources[name] += 1;
+            }
+        }
+
+        if (astronautStats.gameObject.GetComponent<Scr_AstronautsActions>().iaSpotTransformLeft.childCount > 0)
+        {
+            List<string> names = new List<string>(Resources.Keys);
+
+            foreach (string name in names)
+            {
+                if (astronautStats.gameObject.GetComponent<Scr_AstronautsActions>().iaSpotTransformLeft.GetChild(0).name.Contains(name))
+                    Resources[name] += 1;
+            }
+        }
+
+        if (astronautStats.gameObject.GetComponent<Scr_AstronautsActions>().iaSpotTransformRight.childCount > 0)
+        {
+            List<string> names = new List<string>(Resources.Keys);
+
+            foreach (string name in names)
+            {
+                if (astronautStats.gameObject.GetComponent<Scr_AstronautsActions>().iaSpotTransformRight.GetChild(0).name.Contains(name))
+                    Resources[name] += 1;
+            }
+        }
+
+        if (astronautStats.gameObject.GetComponent<Scr_AstronautsActions>().iaSpotTransformUp.childCount > 0)
+        {
+            List<string> names = new List<string>(Resources.Keys);
+
+            foreach (string name in names)
+            {
+                if (astronautStats.gameObject.GetComponent<Scr_AstronautsActions>().iaSpotTransformUp.GetChild(0).name.Contains(name))
+                    Resources[name] += 1;
+            }
+        }
+
+        if (astronautStats.gameObject.GetComponent<Scr_AstronautsActions>().pickPoint.childCount > 0)
+        {
+            List<string> names = new List<string>(Resources.Keys);
+
+            foreach (string name in names)
+            {
+                if (astronautStats.gameObject.GetComponent<Scr_AstronautsActions>().pickPoint.GetChild(0).name.Contains(name))
+                    Resources[name] += 1;
+            }
+        }
     }
 
     //RESOURCE WAREHOUSE

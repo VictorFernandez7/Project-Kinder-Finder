@@ -20,6 +20,7 @@ public class Scr_Planet : Scr_AstroBase
     [Header("Gravity Properties")]
     [SerializeField] private float maxClampDistance;
     [SerializeField] private float minClampDistance;
+    [SerializeField] private float mass;
 
     [Header("Particle Properties")]
     [SerializeField] public float particleMultiplier;
@@ -106,7 +107,7 @@ public class Scr_Planet : Scr_AstroBase
             playerShip.transform.position += clamp * translocation;
 
             Vector3 gravityDirection = (transform.position - playerShip.transform.position);
-            float gravity = (float)(planetRb.mass * playerShipRb.mass * gravityConstant) / ((gravityDirection.magnitude) * (gravityDirection.magnitude));
+            float gravity = (float)(mass * playerShipRb.mass * gravityConstant) / ((gravityDirection.magnitude) * (gravityDirection.magnitude));
             playerShipRb.AddForce(gravityDirection.normalized * -gravity * Time.fixedDeltaTime);
         }
     }
@@ -131,7 +132,7 @@ public class Scr_Planet : Scr_AstroBase
         transform.RotateAround(lastFrameRotationPivot, Vector3.forward, movementSpeed * time);
 
         Vector3 gravityDirection = (transform.position - position);
-        float gravity = (float)(planetRb.mass * playerShipRb.mass * gravityConstant) / ((gravityDirection.magnitude) * (gravityDirection.magnitude));
+        float gravity = (float)(mass * playerShipRb.mass * gravityConstant) / ((gravityDirection.magnitude) * (gravityDirection.magnitude));
         transform.RotateAround(lastFrameRotationPivot, Vector3.forward, -movementSpeed * time);
 
         return gravityDirection.normalized * -gravity * Time.fixedDeltaTime;
