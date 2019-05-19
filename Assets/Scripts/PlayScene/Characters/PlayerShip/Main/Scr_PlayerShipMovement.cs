@@ -76,7 +76,7 @@ public class Scr_PlayerShipMovement : MonoBehaviour
     private bool slow;
     private bool takingOffSlow;
     private bool firstTakeOff;
-    private bool snapped;
+    public bool snapped;
     private float maxSpeedSaved;
     private float currentSpeed;
     private float canControlTimerSaved;
