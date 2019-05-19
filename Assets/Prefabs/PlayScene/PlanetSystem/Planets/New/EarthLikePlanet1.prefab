@@ -29497,7 +29497,7 @@ MonoBehaviour:
   particlesMaterial: {fileID: 2100000, guid: 35265bc91dbfe944cb3718697b3eb57d, type: 2}
   mapIndicator: {fileID: 1537797829338736, guid: d2431a6539bbcd045b900b661cb80386,
     type: 3}
-  renderer: {fileID: 0}
+  renderer: {fileID: 8272543719837410122}
   canvasAnim: {fileID: 1749437611207676773}
   canvasName: {fileID: 4158375876858085727}
   canvasType: {fileID: 8518844731942806689}
@@ -29578,9 +29578,9 @@ MonoBehaviour:
   discoveryPanelAnim: {fileID: 0}
   planet: {fileID: 4513922969374600825}
   gameManager: {fileID: 0}
+  playerShipHalo: {fileID: 0}
   playerShipStats: {fileID: 0}
   playerShipProxCheck: {fileID: 0}
-  playerShipHalo: {fileID: 0}
   sighted: 0
   explored: 0
 --- !u!1 &4513922968890962034
@@ -95775,13 +95775,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4650564165056913041, guid: b8d3559c448cab54ea4040dc6a053eaf,
-        type: 3}
-      propertyPath: sun
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8d3559c448cab54ea4040dc6a053eaf, type: 3}
+--- !u!23 &8272543719837410122 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 649456456939761443, guid: b8d3559c448cab54ea4040dc6a053eaf,
+    type: 3}
+  m_PrefabInstance: {fileID: 8921260988183235689}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1528285311690937541 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7997021842311174316, guid: b8d3559c448cab54ea4040dc6a053eaf,
