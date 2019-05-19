@@ -30,7 +30,7 @@ public class Scr_IALight : MonoBehaviour
         LightRange();
         LightIntensity();
         LightDirection();
-        LightActivation();
+        //LightActivation();
     }
 
     private void LightRange()
