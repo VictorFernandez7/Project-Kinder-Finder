@@ -26694,7 +26694,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2887995811092389584
 Transform:
   m_ObjectHideFlags: 0
@@ -29724,9 +29724,9 @@ MonoBehaviour:
   discoveryPanelAnim: {fileID: 0}
   planet: {fileID: 3688756678305829140}
   gameManager: {fileID: 0}
+  playerShipHalo: {fileID: 0}
   playerShipStats: {fileID: 0}
   playerShipProxCheck: {fileID: 0}
-  playerShipHalo: {fileID: 0}
   sighted: 0
   explored: 0
 --- !u!1 &3688756679163443029
@@ -29785,7 +29785,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3688756679431899170}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 71.518425, y: -248.51123, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -29860,7 +29860,7 @@ MonoBehaviour:
   particlesMaterial: {fileID: 2100000, guid: 35265bc91dbfe944cb3718697b3eb57d, type: 2}
   mapIndicator: {fileID: 1537797829338736, guid: d2431a6539bbcd045b900b661cb80386,
     type: 3}
-  renderer: {fileID: 0}
+  renderer: {fileID: 4849452952684512708}
   canvasAnim: {fileID: 1572589274043624456}
   canvasName: {fileID: 3756056455374339634}
   canvasType: {fileID: 8911692959466970060}
@@ -95775,68 +95775,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5669095169314546589, guid: 563f1fc4e6dcb024183411a8255ec8b6,
-        type: 3}
-      propertyPath: sun
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5779253427132024479, guid: 563f1fc4e6dcb024183411a8255ec8b6,
-        type: 3}
-      propertyPath: sun
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5779253427703339669, guid: 563f1fc4e6dcb024183411a8255ec8b6,
-        type: 3}
-      propertyPath: sun
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5779253427528878997, guid: 563f1fc4e6dcb024183411a8255ec8b6,
-        type: 3}
-      propertyPath: sun
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5779253428011871565, guid: 563f1fc4e6dcb024183411a8255ec8b6,
-        type: 3}
-      propertyPath: sun
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5779253427529026274, guid: 563f1fc4e6dcb024183411a8255ec8b6,
-        type: 3}
-      propertyPath: sun
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5779253427232782855, guid: 563f1fc4e6dcb024183411a8255ec8b6,
-        type: 3}
-      propertyPath: sun
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5779253426508799285, guid: 563f1fc4e6dcb024183411a8255ec8b6,
-        type: 3}
-      propertyPath: sun
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5779253426673418606, guid: 563f1fc4e6dcb024183411a8255ec8b6,
-        type: 3}
-      propertyPath: sun
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5779253427086536984, guid: 563f1fc4e6dcb024183411a8255ec8b6,
-        type: 3}
-      propertyPath: sun
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5779253427272537901, guid: 563f1fc4e6dcb024183411a8255ec8b6,
-        type: 3}
-      propertyPath: sun
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5779253426212824124, guid: 563f1fc4e6dcb024183411a8255ec8b6,
-        type: 3}
-      propertyPath: sun
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 563f1fc4e6dcb024183411a8255ec8b6, type: 3}
+--- !u!23 &4849452952684512708 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 4839253474376729151, guid: 563f1fc4e6dcb024183411a8255ec8b6,
+    type: 3}
+  m_PrefabInstance: {fileID: 28372491310598139}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5574499796379401703 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5564292613975603740, guid: 563f1fc4e6dcb024183411a8255ec8b6,

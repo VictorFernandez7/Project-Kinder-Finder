@@ -98,7 +98,7 @@ public class Scr_PlayerShipActions : MonoBehaviour
         deployDelaySaved = deployDelay;
         miningSlider.maxValue = maxPower;
 
-        Scr_PlayerData.checkpointPlanet = playerShipMovement.currentPlanet.transform;
+        Scr_PlayerData.checkpointPlanet = gameManager.initialPlanet.transform;
         Scr_PlayerData.checkpointPlayershipPosition = transform.localPosition;
         Scr_PlayerData.checkpointPlayershipRotation = transform.localRotation;
         Scr_PlayerData.checkpointFuel = GetComponent<Scr_PlayerShipStats>().currentFuel;
