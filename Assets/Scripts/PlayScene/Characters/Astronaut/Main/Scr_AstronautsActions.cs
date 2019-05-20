@@ -37,7 +37,7 @@ public class Scr_AstronautsActions : MonoBehaviour
     [HideInInspector] public GameObject miningSpot;
     [HideInInspector] public GameObject toolOnFloor;
 
-    private int resourceIndex = 0;
+    public int resourceIndex = 0;
     private bool canInputAgain = true;
     private bool pickFirst;
     private bool introduceFirst;
