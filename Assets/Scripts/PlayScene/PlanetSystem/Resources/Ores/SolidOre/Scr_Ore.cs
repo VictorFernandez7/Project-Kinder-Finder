@@ -28,8 +28,8 @@ public class Scr_Ore : MonoBehaviour
 
     [HideInInspector] public GameObject currentResource;
 
-    private float initalAmount;
-    private float rest = 1;
+    public float initalAmount;
+    public float rest = 0;
     private bool playedOnce;
     private GameObject[] oreVisuals;
 
@@ -131,12 +131,6 @@ public class Scr_Ore : MonoBehaviour
 
     private void Update()
     {
-        if (amount <= (initalAmount - rest))
-        {
-            rest += 1;
-            playerShipStats.GetExperience(experience);
-        }
-
         if (amount <= 0)
         {
             if (!explosionParticles.isPlaying && !playedOnce)
@@ -144,6 +138,7 @@ public class Scr_Ore : MonoBehaviour
                 for (int i = 0; i < initalAmount; i++) { 
                     GameObject resource = Instantiate(currentResource, transform.position + Vector3.back, transform.rotation);
                     resource.transform.SetParent(transform.parent);
+                    playerShipStats.GetExperience(experience);
                 }
 
                 astronautsActions.miningSpot = null;
@@ -171,7 +166,13 @@ public class Scr_Ore : MonoBehaviour
                 
                 Destroy(gameObject, 2.5f);
             }
-        }   
+        }  
+        
+        if (amount < (initalAmount - rest))
+        {
+            rest += 1;
+            rest = Mathf.Clamp(rest, 0, initalAmount);
+        }
     }
 
     private void GetVisualsChildren()

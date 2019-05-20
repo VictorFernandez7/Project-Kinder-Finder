@@ -23,7 +23,7 @@ public class Scr_OreDetection : MonoBehaviour
 
     private void Update()
     {
-        resourceAmount.text = (ore.amount).ToString();
+        resourceAmount.text = (ore.initalAmount - ore.rest).ToString();
 
         if (!astronautsActions.gameObject.activeInHierarchy)
             insideTrigger = false;
