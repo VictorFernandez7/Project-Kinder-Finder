@@ -97,8 +97,11 @@ public class Scr_AstronautEffects : MonoBehaviour
 
     private void PlayParticleSystem(ParticleSystem desiredParticles)
     {
-        if (!desiredParticles.isPlaying)
-            desiredParticles.Play();
+        if (desiredParticles)
+        {
+            if (!desiredParticles.isPlaying)
+                desiredParticles.Play();
+        }
     }
 
     private void SoundManager()
