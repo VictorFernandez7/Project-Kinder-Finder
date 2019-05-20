@@ -44,6 +44,52 @@ public class Scr_Craft : MonoBehaviour {
                 {
                     for (int j = playerShipStats.resourceWarehouse.Length - 1; j >= 0; j--)
                     {
+                        if (astronautsActions.pickPoint.childCount > 0)
+                        {
+                            if (astronautsActions.pickPoint.GetChild(0).name.Contains(name))
+                            {
+                                Destroy(astronautsActions.pickPoint.GetChild(0).gameObject);
+                                break;
+                            }
+                        }
+
+                        if (astronautsActions.iaSpotTransformDown.childCount > 0)
+                        {
+                            if (astronautsActions.iaSpotTransformDown.transform.GetChild(0).name.Contains(k))
+                            {
+                                Destroy(astronautsActions.iaSpotTransformDown.transform.GetChild(0).gameObject);
+                                break;
+                            }
+                        }
+
+                        if (astronautsActions.iaSpotTransformLeft.childCount > 0)
+                        {
+                            if (astronautsActions.iaSpotTransformLeft.GetChild(0).name.Contains(name))
+                            {
+                                Destroy(astronautsActions.iaSpotTransformLeft.GetChild(0).gameObject);
+                                break;
+                            }
+                        }
+
+                        if (astronautsActions.iaSpotTransformRight.childCount > 0)
+                        {
+                            if (astronautsActions.iaSpotTransformRight.GetChild(0).name.Contains(name))
+                            {
+                                Destroy(astronautsActions.iaSpotTransformRight.GetChild(0).gameObject);
+                                break;
+                            }
+                        }
+
+                        if (astronautsActions.iaSpotTransformUp.childCount > 0)
+                        {
+                            if (astronautsActions.iaSpotTransformUp.GetChild(0).name.Contains(name))
+                            {
+                                Destroy(astronautsActions.iaSpotTransformUp.GetChild(0).gameObject);
+                                break;
+                            }
+                        }
+
+
                         if (playerShipStats.resourceWarehouse[j])
                         {
                             if (playerShipStats.resourceWarehouse[j].name == k)
