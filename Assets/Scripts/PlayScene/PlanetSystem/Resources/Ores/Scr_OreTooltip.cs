@@ -19,6 +19,6 @@ public class Scr_OreTooltip : MonoBehaviour
     void Update()
     {
         transform.localScale = Vector3.one * mainCamera.orthographicSize * scaleRatio;
-        transform.position = new Vector3(initialPos.x, initialPos.y + (mainCamera.orthographicSize * posRatio), initialPos.z);
+        transform.localPosition = new Vector2(0, initialPos.y + (mainCamera.orthographicSize / posRatio));
     }
 }
