@@ -29,6 +29,42 @@ public class Scr_Craft : MonoBehaviour {
 
         foreach (string k in keyr)
         {
+            bool pickUp = false;
+            bool up = false;
+            bool down = false;
+            bool right = false;
+            bool left = false;
+
+            if (astronautsActions.pickPoint.childCount > 0)
+            {
+                if (astronautsActions.pickPoint.GetChild(0).name.Contains(k))
+                    pickUp = true;
+            }
+
+            if (astronautsActions.iaSpotTransformDown.childCount > 0)
+            {
+                if (astronautsActions.iaSpotTransformDown.transform.GetChild(0).name.Contains(k))
+                    down = true;
+            }
+
+            if (astronautsActions.iaSpotTransformLeft.childCount > 0)
+            {
+                if (astronautsActions.iaSpotTransformLeft.GetChild(0).name.Contains(k))
+                    left = true;
+            }
+
+            if (astronautsActions.iaSpotTransformRight.childCount > 0)
+            {
+                if (astronautsActions.iaSpotTransformRight.GetChild(0).name.Contains(k))
+                    right = true;
+            }
+
+            if (astronautsActions.iaSpotTransformUp.childCount > 0)
+            {
+                if (astronautsActions.iaSpotTransformUp.GetChild(0).name.Contains(k))
+                    up = true;
+            }
+
             for (int p = 0; p < craftData.CraftList[craftInterface.index].resourceNameList.Count; p++)
             {
                 if (craftData.CraftList[craftInterface.index].resourceNameList[p] == k)
@@ -42,60 +78,52 @@ public class Scr_Craft : MonoBehaviour {
             {
                 for (int i = craftData.CraftList[craftInterface.index].resourceAmountList[resourceListIndex]; i > 0; i--)
                 {
-                    for (int j = playerShipStats.resourceWarehouse.Length - 1; j >= 0; j--)
+                    if(pickUp)
                     {
-                        if (astronautsActions.pickPoint.childCount > 0)
-                        {
-                            if (astronautsActions.pickPoint.GetChild(0).name.Contains(name))
-                            {
-                                Destroy(astronautsActions.pickPoint.GetChild(0).gameObject);
-                                break;
-                            }
-                        }
+                        Destroy(astronautsActions.pickPoint.GetChild(0).gameObject);
+                        pickUp = false;
+                        astronautsActions.resourceIndex -= 1;
+                    }
 
-                        if (astronautsActions.iaSpotTransformDown.childCount > 0)
-                        {
-                            if (astronautsActions.iaSpotTransformDown.transform.GetChild(0).name.Contains(k))
-                            {
-                                Destroy(astronautsActions.iaSpotTransformDown.transform.GetChild(0).gameObject);
-                                break;
-                            }
-                        }
+                    else if (down)
+                    {
+                        Destroy(astronautsActions.iaSpotTransformDown.transform.GetChild(0).gameObject);
+                        down = false;
+                        astronautsActions.resourceIndex -= 1;
+                    }
 
-                        if (astronautsActions.iaSpotTransformLeft.childCount > 0)
-                        {
-                            if (astronautsActions.iaSpotTransformLeft.GetChild(0).name.Contains(name))
-                            {
-                                Destroy(astronautsActions.iaSpotTransformLeft.GetChild(0).gameObject);
-                                break;
-                            }
-                        }
+                    else if (right)
+                    {
+                        Destroy(astronautsActions.iaSpotTransformRight.GetChild(0).gameObject);
+                        right = false;
+                        astronautsActions.resourceIndex -= 1;
+                    }
 
-                        if (astronautsActions.iaSpotTransformRight.childCount > 0)
-                        {
-                            if (astronautsActions.iaSpotTransformRight.GetChild(0).name.Contains(name))
-                            {
-                                Destroy(astronautsActions.iaSpotTransformRight.GetChild(0).gameObject);
-                                break;
-                            }
-                        }
+                    else if (up)
+                    {
+                        Destroy(astronautsActions.iaSpotTransformUp.GetChild(0).gameObject);
+                        up = false;
+                        astronautsActions.resourceIndex -= 1;
+                    }
 
-                        if (astronautsActions.iaSpotTransformUp.childCount > 0)
-                        {
-                            if (astronautsActions.iaSpotTransformUp.GetChild(0).name.Contains(name))
-                            {
-                                Destroy(astronautsActions.iaSpotTransformUp.GetChild(0).gameObject);
-                                break;
-                            }
-                        }
+                    else if (left)
+                    {
+                        Destroy(astronautsActions.iaSpotTransformLeft.GetChild(0).gameObject);
+                        left = false;
+                        astronautsActions.resourceIndex -= 1;
+                    }
 
-
-                        if (playerShipStats.resourceWarehouse[j])
+                    else
+                    {
+                        for (int j = playerShipStats.resourceWarehouse.Length - 1; j >= 0; j--)
                         {
-                            if (playerShipStats.resourceWarehouse[j].name == k)
+                            if (playerShipStats.resourceWarehouse[j])
                             {
-                                playerShipStats.resourceWarehouse[j] = null;
-                                break;
+                                if (playerShipStats.resourceWarehouse[j].name == k)
+                                {
+                                    playerShipStats.resourceWarehouse[j] = null;
+                                    break;
+                                }
                             }
                         }
                     }
