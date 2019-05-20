@@ -88,7 +88,7 @@ public class Scr_PlayerShipStats : MonoBehaviour
         fuelTankSlider.maxValue = maxFuel;
         shieldSlider.maxValue = maxShield;
 
-        level = 1;
+        level = 0;
     }
 
     private void Update()
@@ -346,13 +346,13 @@ public class Scr_PlayerShipStats : MonoBehaviour
                     craftData.CraftList[levelData.LevelList[level].levelRewards[i]].crafteable = true;
                 }
 
-                levelUpCanvas.UpdatePanelInfo(experience, levelData.LevelList[level + 1].experienceNeeded, (level + 1).ToString(), levelData.LevelList[level].levelTitle, false, craftData.CraftList[levelData.LevelList[level].levelRewards[0]].m_name, craftData.CraftList[levelData.LevelList[level].levelRewards[0]].m_icon, craftData.CraftList[levelData.LevelList[level].levelRewards[1]].m_name, craftData.CraftList[levelData.LevelList[level].levelRewards[1]].m_icon);
+                levelUpCanvas.UpdatePanelInfo(experience, levelData.LevelList[level + 1].experienceNeeded, (level + 2).ToString(), levelData.LevelList[level].levelTitle, false, craftData.CraftList[levelData.LevelList[level].levelRewards[0]].m_name, craftData.CraftList[levelData.LevelList[level].levelRewards[0]].m_icon, craftData.CraftList[levelData.LevelList[level].levelRewards[1]].m_name, craftData.CraftList[levelData.LevelList[level].levelRewards[1]].m_icon);
             }
 
             else
             {
                 craftData.CraftList[levelData.LevelList[level].levelRewards[0]].crafteable = true;
-                levelUpCanvas.UpdatePanelInfo(experience, levelData.LevelList[level + 1].experienceNeeded, (level + 1).ToString(), levelData.LevelList[level].levelTitle, true, craftData.CraftList[levelData.LevelList[level].levelRewards[0]].m_name, craftData.CraftList[levelData.LevelList[level].levelRewards[0]].m_icon, null, null);
+                levelUpCanvas.UpdatePanelInfo(experience, levelData.LevelList[level + 1].experienceNeeded, (level + 2).ToString(), levelData.LevelList[level].levelTitle, true, craftData.CraftList[levelData.LevelList[level].levelRewards[0]].m_name, craftData.CraftList[levelData.LevelList[level].levelRewards[0]].m_icon, null, null);
             }
 
             UpdateCrafts();

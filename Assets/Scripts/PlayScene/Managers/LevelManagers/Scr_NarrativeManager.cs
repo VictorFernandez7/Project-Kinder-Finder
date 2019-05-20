@@ -52,7 +52,7 @@ public class Scr_NarrativeManager : MonoBehaviour
         if (!switchOff)
         {
             textIndex = index;
-            astronautMovement.Stop(true, true);
+            //astronautMovement.Stop(true, true);
             astronautMovement.onDialogue = true;
             panelAnim.gameObject.SetActive(true);
             panelAnim.SetBool("Show", true);

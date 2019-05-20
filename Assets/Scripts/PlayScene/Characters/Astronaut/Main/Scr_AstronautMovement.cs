@@ -126,6 +126,9 @@ public class Scr_AstronautMovement : MonoBehaviour
             MoveAgain();
         }
 
+        if (onDialogue && !jumping)
+            Stop(true, true);
+
         if (playerShipMovement.playerShipState == Scr_PlayerShipMovement.PlayerShipState.landed && !interfaceManager.gamePaused)
         {
             if (Input.GetButtonDown("Jump") && (surfaceAngle < minSlideAngle && surfaceAngle > -minSlideAngle) && !jumping && canJump)

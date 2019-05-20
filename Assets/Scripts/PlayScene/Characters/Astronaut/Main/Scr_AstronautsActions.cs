@@ -286,7 +286,7 @@ public class Scr_AstronautsActions : MonoBehaviour
    //HACER SELECCION DE TOOL
    public void TakeTool (int index)
     {
-        if (unlockedTools[index] && emptyHands)
+        if (unlockedTools[index])
         {
             if (toolOnHands)
             {
