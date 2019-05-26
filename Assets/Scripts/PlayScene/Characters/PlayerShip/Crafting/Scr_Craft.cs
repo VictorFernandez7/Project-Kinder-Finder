@@ -141,7 +141,6 @@ public class Scr_Craft : MonoBehaviour {
             craftInterface.UpdateInfo(Scr_CraftInterface.TypeOfCraft.Ship, 1);
 
         GenerateCraft();
-
     }
 
     private void GenerateCraft()

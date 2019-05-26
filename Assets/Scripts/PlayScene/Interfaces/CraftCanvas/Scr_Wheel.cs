@@ -80,8 +80,8 @@ public class Scr_Wheel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         if (mouseOver && Vector2.Distance(wheel.transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition)) > 0.01f)
         {
             UpdateSelectedTool();
-            
-            if (Input.GetMouseButtonDown(0) && selectedTool != null && savedSelectedTool != selectedTool)
+
+            if (Input.GetMouseButtonDown(0) && selectedTool != null /*&& savedSelectedTool != selectedTool*/)
                 ClickEvent();
         }
 

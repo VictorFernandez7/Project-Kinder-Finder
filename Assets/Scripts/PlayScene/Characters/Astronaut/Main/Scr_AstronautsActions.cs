@@ -141,9 +141,32 @@ public class Scr_AstronautsActions : MonoBehaviour
 
         if (Input.GetButtonDown("Interact") && !narrativeManager.onDialogue)
         {
-            if (emptyHands && astronautResourcesCheck.resourceList.Count > 0 && resourceIndex < 5)
+            emptyHands = false;
+
+            for (int i = 0; i < 5; i++)
             {
-                switch (resourceIndex)
+                if(currentResource[i] == null)
+                {
+                    emptyHands = true;
+                    break;
+                }
+            }
+
+
+            if (emptyHands && astronautResourcesCheck.resourceList.Count > 0)
+            {
+                int index = 0;
+
+                for(int i = 0; i < 5; i++)
+                {
+                    if (currentResource[i] == null)
+                    {
+                        index = i;
+                        break;
+                    }
+                }
+
+                switch (index)
                 {
                     case 0:
                         currentResource[0] = astronautResourcesCheck.resourceList[0];
@@ -206,7 +229,6 @@ public class Scr_AstronautsActions : MonoBehaviour
                         currentResource[4].transform.SetParent(pickPoint);
                         currentResource[4].transform.localPosition = Vector3.zero;
                         currentResource[4].transform.localRotation = Quaternion.Euler(Vector3.zero);
-                        emptyHands = false;
                         break;
                 }
 
